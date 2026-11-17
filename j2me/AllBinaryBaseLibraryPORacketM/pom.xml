@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary</groupId>
+    <artifactId>AllBinaryBaseLibraryPOMRacket</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>AllBinaryBaseLibraryPOMRacket</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+        <module>../CommonJavaLibraryRacketM</module>
+        <module>../TempBaseJavaLibraryRacketM</module>
+        
+        <module>../../allbinary_src/LogRacketM</module>
+        <module>../../allbinary_src/allbinary_src_designpatterns_srcRacketM</module>
+        <module>../../allbinary_src/data/BaseDataJavaLibraryRacketM</module>
+        <module>../../allbinary_src/cache/BaseCacheJavaLibraryRacketM</module>
+        <module>../../allbinary_src/logic/BasePreloaderJavaLibraryRacketM</module>
+        <module>../../allbinary_src/logic/BasePreloaderJ2MEJavaLibraryRacketM</module>
+
+        <module>../ExceptionHTMLJavaLibraryRacketM</module>
+        <module>../J2MEExceptionLibraryRacketM</module>
+        <module>../../allbinary_src/J2SEExceptionLibraryRacketM</module>
+        <module>../J2MEUtilJavaLibraryRacketM</module>
+        <module>../J2MEColorJavaLibraryRacketM</module>
+        <module>../EventJ2MELibraryRacketM</module>
+
+        <module>../../allbinary_src/LogNoPlatformJavaLibraryRacketM</module>
+        <module>../../allbinary_src/LogJ2MEJavaLibraryRacketM</module>
+        <module>../../allbinary_src/LogJ2SEJavaLibraryRacketM</module>
+        <!--<module>../../allbinary_src/LogAndroidJavaLibraryRacketM</module>-->
+        <module>../logging/LoggingNoneRacketM</module>
+        <module>../logging/LoggingJ2MEAllRacketM</module>
+        <module>../logging/LoggingJ2MEExceptionRacketM</module>
+        <!--<module>../logging/LoggingAndroidAllRacketM</module>-->
+        <!--
+        //While it is a possible dependency option it really does not fit here
+        //as such it is actually build in the final POM builds instead
+        <module>../logging/LoggingRemoteExceptionRacketM</module>  
+        -->
+        
+        <module>../J2MEWindowingJavaLibraryRacketM</module>
+        
+        <module>../lib/BaseMathLibraryRacketM</module>
+        <module>../lib/BasicMathLibraryRacketM</module>
+        
+        <module>../../allbinary_src/ThreadLibraryRacketM</module>
+        <!--<module>../../allbinary_src/ThreadHTMLLibraryRacketM</module>-->
+        <module>../../replace_these_stub_projects/allbinary_src/NoneOnlyJavaLibraryRacketM</module>
+        <module>../../allbinary_src/ThreadJ2MELibraryRacketM</module>
+        <module>../time/TimeJavaLibraryRacketM</module>
+
+        <module>../statistics/ApplicationStatisticsJ2SELibraryRacketM</module>
+        <module>../statistics/ApplicationStatisticsJ2MELibraryRacketM</module>
+        <module>../statistics/ApplicationStatisticsJavaLibraryRacketM</module>
+
+        <module>../../allbinary_src/logging/BasicLogConfigTypeJavaLibraryRacketM</module>
+        <module>../../allbinary_src/logging/LogConfigTypeGameClientJavaLibraryRacketM</module>
+
+        <module>../../allbinary_src/hardware/HardwareLibraryPORacketM</module>
+
+        <module>../lib/TrigBaseLibraryRacketM</module>
+
+    </modules>
+
+</project>
+

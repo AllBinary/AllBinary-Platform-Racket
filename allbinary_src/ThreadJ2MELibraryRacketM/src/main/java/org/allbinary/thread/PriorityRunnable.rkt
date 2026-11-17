@@ -1,0 +1,37 @@
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.thread
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/lang/Runnable.rkt")
+(provide (all-defined-out))
+
+(define PriorityRunnable%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getPriority_0)
+      (raise (JR.newException "AbstractMethodError" "getPriority")))
+    (define/public (jm_isDone_0)
+      (raise (JR.newException "AbstractMethodError" "isDone")))
+    (define/public (jm_reset_0)
+      (raise (JR.newException "AbstractMethodError" "reset")))))
+
+(define (PriorityRunnable.jnew_0)
+  (define this (new PriorityRunnable% [jclass "PriorityRunnable"]))
+  this)
+
+
+

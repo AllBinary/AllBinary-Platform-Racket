@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary</groupId>
+    <artifactId>OtherGraphicsMediaLibraryPRacket</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>OtherGraphicsMediaLibraryPRacket</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+
+        <!--
+        -->
+        <module>../../graphics/animation/vector/VectorAnimationBaseJavaLibraryRacketM</module>
+
+        <module>../../graphics/animation/vector/VectorAnimationJ2MEJavaLibraryRacketM</module>
+        <module>../../graphics/animation/vector/VectorAnimationJavaLibraryRacketM</module>
+
+        <module>../../graphics/VectorJavaLibraryRacketM</module>
+
+        <module>../../graphics/BoundsJavaLibraryRacketM</module>
+
+        <module>../../../../graphics/opengl/OpenGLESNullImageJavaLibraryRacketM</module>
+        <module>../../../../graphics/opengl/OpenGLESNullImageJ2MEJavaLibraryRacketM</module>
+
+        <module>../../graphics/animation/image/AllBinaryImageAnimationJavaLibraryRacketM</module>
+        <module>../../graphics/animation/sprite/AllBinarySpriteAnimationJavaLibraryRacketM</module>
+
+        <!--
+        ../../
+        <module>../../../../../workracket/j2me/media/graphics/animation/sprite/AllBinaryQuarterSpriteAnimationJavaLibraryRacketM</module>
+        -->
+        <!--
+        ../../
+        <module>../../../../../workracket/j2me/media/graphics/animation/sprite/AllBinaryQuarterSpriteAnimation2JavaLibraryRacketM</module>
+        -->
+
+        <module>../../graphics/animation/image/ImageJ2MEJavaLibraryRacketM</module>
+        <!--
+        <module>../../graphics/animation/image/ImageHTMLJavaLibraryRacketM</module>
+        -->
+        <!--<module>../../graphics/animation/image/ImageJ2SEJavaLibraryRacketM</module>-->
+        <!--
+        <module>../../graphics/animation/image/ImageAndroidJavaLibraryRacketM</module>
+        -->
+        <!--
+        <module>../../graphics/animation/image/ImageSwtJ2SEJavaLibraryRacketM</module>
+        -->
+        
+        <!--
+        ../../
+        <module>../../../../../workracket/j2me/media/graphics/layer/AllBinaryTiledLayerJavaLibraryRacketM</module>
+        <module>../../graphics/layer/AllBinaryTiledLayerJavaLibraryRacketM</module>
+        -->
+
+        <!-- Not used in Platform Libraries -->
+        <module>../../graphics/GraphicsBasicImageJavaLibraryRacketM</module>
+        <!--
+        -->
+        <module>../../graphics/animation/image/AllBinaryImageAnimationRotationJavaLibraryRacketM</module>
+
+    </modules>
+
+</project>
+

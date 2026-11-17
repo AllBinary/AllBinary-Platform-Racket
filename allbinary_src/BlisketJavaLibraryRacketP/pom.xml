@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary.business</groupId>
+    <artifactId>BlisketJavaLibraryPRacket</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>BlisketJavaLibraryPRacket</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <modules>
+
+        <!--
+        <module>../../j2me/AllBinaryJ2MELibraryRacketP</module>
+        -->
+        <!--
+        <module>../data/DataJavaLibraryRacketM</module>
+        -->
+
+        <module>../licensing/TestServiceClientInfoJavaLibraryRacketM</module>        
+
+        <module>../data/DataTableInterfacesRacketM</module>
+        
+        <module>../QueueJavaLibraryRacketM</module>
+        
+        <!--
+        <module>../TokenizerJavaLibraryRacketM</module>
+        -->
+
+        <module>../logging/LogConfigTypeFreeblisketJavaLibraryRacketM</module>
+
+        <module>../JavaUtilLibraryRacketM</module>
+        <module>../NullInitInfoJavaLibraryRacketM</module>        
+        <module>../InitInfoJavaLibraryRacketM</module>
+        <module>../PreLoaderHttpJavaLibraryRacketM</module>
+        
+        <module>../TagsBaseJavaLibraryRacketM</module>
+        <module>../CustomLoaderJavaLibraryRacketM</module>
+        
+        <!--
+        <module>../logic/data/file/FileJ2SEJavaLibraryRacketM</module>
+        <module>../logic/data/file/FileJavaLibraryRacketM</module>
+        -->
+
+        <module>../data/SQLAllBinaryJavaLibraryRacketM</module>
+
+        <!--
+        <module>../licensing/FileLicenseInitInfoJavaLibraryRacketM</module>
+        -->
+
+        <module>../DocumentObjectModelJavaLibraryRacketM</module>
+
+        <module>../VisualStyleJavaLibraryRacketM</module>
+
+        <module>../ConfigurationJavaLibraryRacketM</module>
+
+        <module>../VisualTransformBaseJavaLibraryRacketM</module>
+
+        <module>../CategoryBaseJavaLibraryRacketM</module>
+        <module>../CategoryJavaLibraryRacketM</module>
+
+        <module>../UserJavaLibraryRacketM</module>
+
+        <module>../PaymentGatewayBaseJavaLibraryRacketM</module>
+
+        <module>../data/vo/EntitiesBlisketVOJavaLibraryRacketM</module>
+        <module>../PaymentGatewayJavaLibraryRacketM</module>
+        <module>../data/vo/EntitiesOrderHistoryVOJavaLibraryRacketM</module>
+        <module>../data/vo/EntityPaymentGatewayVOJavaLibraryRacketM</module>
+        <module>../data/vo/EntityStoreFrontVOJavaLibraryRacketM</module>
+
+        <module>../data/EntitiesBlisketBaseInterfacesJavaLibraryRacketM</module>
+        <module>../data/EntitiesBlisketBaseJavaLibraryRacketM</module>
+        
+        <module>../data/EntitiesAdvertisementBaseJavaLibraryRacketM</module>
+        <module>../data/EntityOrderHistoryJavaLibraryRacketM</module>
+        <module>../data/EntityPaymentGatewayJavaLibraryRacketM</module>
+        <module>../data/EntityVisualTransformJavaLibraryRacketM</module>
+        <module>../data/EntityUserJavaLibraryRacketM</module>
+        <module>../data/EntityWorkflowJavaLibraryRacketM</module>
+
+        <module>../SMTPConfigurationJavaLibraryRacketM</module>
+        <module>../SMTPBaseJavaLibraryRacketM</module>
+
+        <module>../VisualTransformJavaLibraryRacketM</module>
+
+        <module>../../replace_these_stub_projects/allbinary_src/YourRuntimeEnvironmentJavaLibraryRacketM</module>
+        <module>../GatewayJavaLibraryRacketM</module>
+        
+        <module>../WorkflowBaseJavaLibraryRacketM</module>
+        <module>../WorkflowJavaLibraryRacketM</module>
+
+        <module>../IdGeneratorUsingFilesJavaLibraryRacketM</module>
+        <module>../BlisketPreVOJavaLibraryRacketM</module>
+
+        <!-- 
+        EntitiesOrderHistoryVOJavaLibrary
+        UserJavaLibrary
+        -->
+        
+        <module>../BlisketVOJavaLibraryRacketM</module>
+
+        <module>../UserCommerceJavaLibraryRacketM</module>
+
+        <module>../CustomizerValidatorsJavaLibraryRacketM</module>
+
+        <!-- 
+        AllBinaryCacheForShiftOneJavaLibrary
+        AllBinaryJSECacheJavaLibrary
+        ColorJavaLibrary
+        ImageJavaLibrary
+        -->
+        
+        <module>../logic/data/file/FileMediaJ2SEJavaLibraryRacketM</module>
+        <module>../BlisketBaseJavaLibraryRacketM</module>
+
+        <module>../logging/LoggingGAEAllRacketM</module>
+        <module>../BlisketJavaLibraryRacketM</module>
+        
+    </modules>
+
+</project>
+

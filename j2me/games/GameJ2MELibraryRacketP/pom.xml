@@ -1,0 +1,192 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>GameJ2MELibraryPOMRacket</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>GameJ2MELibraryPOMRacket</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+
+    <modules>
+
+        <!--
+        NoGyroSensorLibrary
+
+        -->
+        <!--<module>../../android/AndroidUtilJavaLibraryRacketM</module>-->
+
+        <module>../../../allbinary_src/security/SimpleCryptLibraryRacketM</module>
+        <!--
+        <module>../../../../working_thirdpartyracket/security/BouncyCastleDESJavaLibraryRacketM</module>
+        <module>../../../../working_thirdpartyracket/communication/XmlRpc/XmlRpcJavaLibraryRacketM</module>
+        -->
+        <module>../../../allbinary_src/TokenizerJavaLibraryRacketM</module>
+        <module>../../../allbinary_src/security/BasicSecurityJavaLibraryRacketM</module>
+        <!--<module>../../../replace_these_stub_projects/security/YourCryptFileJavaLibraryRacketM</module>-->
+        <module>../../../replace_these_stub_projects/security/YourSecurityJavaLibraryRacketM</module>
+        <module>../../../replace_these_stub_projects/communication/YourXmlRpcJavaLibraryRacketM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MEOnlyJavaLibraryRacketM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MECompatibilityJavaLibraryRacketM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MEJsInteropCompatibilityJavaLibraryRacketM</module>
+
+        <module>../../DebugJavaLibraryRacketM</module>             
+        <module>../../ResourceLibraryRacketM</module>
+        <module>../../ResourceJ2MEJavaLibraryRacketM</module>
+        <!--<module>../../AndroidResourceLibraryRacketM</module>-->
+        <!--<module>../../../allbinary_src/hardware/AndroidSystemJavaLibraryRacketM</module>-->
+
+        <module>../../../game/behavior/ArtificialIntelligenceLibraryRacketM</module>
+
+        <module>../../media/graphics/PlatformNullImageJavaLibraryRacketM</module>
+        <module>../../media/graphics/ImageCacheBaseJ2MEJavaLibraryRacketM</module>
+        <module>../../media/graphics/ImageCacheJ2MEJavaLibraryRacketM</module>
+        <module>../../../graphics/opengl/OpenGLJ2MENoneJavaLibraryRacketM</module>
+        <module>../../../graphics/opengl/OpenGLNoneJavaLibraryRacketM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOtherJavaLibraryRacketM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOther2JavaLibraryRacketM</module>
+        <module>../../../graphics/opengl/OpenGLESBaseJ2MEJavaLibraryRacketM</module>
+
+        <module>../../media/graphics/animation/AnimationLibraryRacketM</module>
+        <module>../../media/graphics/animation/RotationAnimationJavaLibraryRacketM</module>
+
+        <module>../../games/GameInputLibraryRacketM</module>
+
+        <module>../../games/GameScoresBaseJavaLibraryRacketM</module>
+        <module>../../games/GameScoresBaseJ2MELibraryRacketM</module>
+
+        <module>../../statistics/ApplicationStatisticsHTMLLibraryRacketM</module>
+        <!--
+        <module>../../games/GameConfigurationHTMLJavaLibraryRacketM</module>
+        -->
+        <module>../../games/GameConfigurationJ2MEJavaLibraryRacketM</module>   
+        <module>../../games/GameConfigurationJavaLibraryRacketM</module>
+
+        <module>../../games/GameIntermissionLibraryRacketM</module>
+
+        <module>../../GroupLibraryRacketM</module>
+
+        <module>../../input/NoSensorJavaLibraryRacketM</module>
+
+        <module>../../input/AllBinarySensorJavaLibraryRacketM</module>
+
+        <module>../../input/platform/me/GameInputMEJavaLibraryRacketM</module>
+        <module>../../input/platform/me/GameInputMEKeyOnlyJavaLibraryRacketM</module>
+        <module>../../input/platform/me/GameInputMEMotionJavaLibraryRacketM</module>
+        <module>../../input/platform/pc/GameInputPCBaseJavaLibraryRacketM</module>
+        <module>../../input/platform/pc/GameInputPCJavaLibraryRacketM</module>
+        <module>../../input/platform/pc/GameInputPCKeyOnlyJavaLibraryRacketM</module>
+        <module>../../input/platform/pc/GameInputPCMotionJavaLibraryRacketM</module>
+        <module>../../input/platform/pc/GameInputSwtJavaLibraryRacketM</module>
+
+        <module>../../input/AllBinaryGyroSensorJavaLibraryRacketM</module>
+        <module>../../input/MotionGestureJavaLibraryRacketM</module>
+        
+        <module>../../input/MotionGestureBaseJavaLibraryRacketM</module>
+
+        <module>../../games/GameInputPersistanceLibraryRacketM</module>
+        <module>../../games/GameInputNoPersistanceLibraryRacketM</module>
+        
+        <module>../../lib/VectorThreeDimensionalLibraryRacketM</module>
+        <module>../../input/AllBinaryAccelerometerSensorJavaLibraryRacketM</module>
+        <module>../../input/NoGyroSensorJavaLibraryRacketM</module>
+        <module>../../input/JSEGyroSensorJavaLibraryRacketM</module>
+        <!--
+        <module>../../input/android/</module>
+        <module>../../input/platform/android/GameInputAndroidBaseJavaLibraryRacketM</module>
+        -->
+
+        <module>../../media/sound/BasicPlayerJavaLibraryRacketM</module>
+        <module>../../media/sound/BasicPlayerMIDP2JavaLibraryRacketM</module>
+        <module>../../media/sound/NoPlayerJavaLibraryRacketM</module>
+        <module>../../media/sound/SoundJ2MELibraryRacketM</module>
+
+        <module>../../media/motion/AllBinaryVibrationJavaLibraryRacketM</module>
+        <module>../../media/motion/NoVibrateJavaLibraryRacketM</module>
+        <!--<module>../../media/motion/VibrateAndroidJavaLibraryRacketM</module>-->
+
+        <module>../../media/graphics/NullCustomUIJavaLibraryRacketM</module>
+        <module>../../media/graphics/NullCustomUIBaseJavaLibraryRacketM</module>
+
+        <module>../../media/graphics/FormValidationJavaLibraryRacketM</module>
+        
+        <module>../../media/graphics/FormJavaLibraryRacketM</module>
+        <module>../../media/graphics/FormBaseJavaLibraryRacketM</module>
+        <!--
+        <module>../../media/graphics/FormJMEJavaLibraryRacketM</module>
+        -->
+        <module>../../../j2me/media/graphics/FormJMEJavaLibraryRacketM</module>
+
+        <module>../../media/graphics/animation/AnimationResourceJavaLibraryRacketM</module>
+        <module>../../media/graphics/animation/TransitionAnimationJavaLibraryRacketM</module>
+        <module>../../media/graphics/animation/NoTransitionAnimationJavaLibraryRacketM</module>
+        <!--
+        AndroidTransitionAnimationJavaLibraryM
+        -->
+        <module>../../media/graphics/animation/GameAnimationJavaLibraryRacketM</module>
+        <module>../../games/GameResourceJavaLibraryRacketM</module>
+        <module>../../games/GameSoundsJavaLibraryRacketM</module>
+
+        <module>../../input/TouchInputLibraryRacketP</module>
+
+        <module>../../media/MediaDataRacketM</module>
+        <module>../../media/sound/NotDeviceSpecificNoMediaMIDP1LibraryRacketM</module>
+
+        <module>../../../allbinary_src/content/ContentNoneJavaLibraryRacketM</module>
+        <!--<module>../../../allbinary_src/content/ContentAndroidJavaLibraryRacketM</module>-->
+
+        <module>../../games/GameConfigurationFormJavaLibraryRacketM</module>
+
+        <module>../../FullScreenNoneJavaLibraryRacketM</module>
+        <!--
+        <module>../../FullScreenJavaLibraryRacketM</module>
+        -->
+
+        <module>../../../physics/VelocityLibraryRacketM</module>
+
+        <module>../../games/weapon/SoundsBasicWeaponsJavaLibraryRacketM</module>
+
+        <module>../../lib/TrigJ2MELibraryRacketM</module>
+
+        <module>../../media/graphics/geography/map/LayerPlacementLibraryRacketM</module>
+        <module>../../media/graphics/layer/AllBinaryLayerJavaLibraryRacketM</module>
+
+        <module>../../ScreenCaptureNoneJavaLibraryRacketM</module>
+        
+        <module>../licensing/GameLicensingNullJavaLibraryRacketM</module>
+        
+        <module>../../business/advertisement/AllBinaryAdvertisementClientJavaLibraryRacketM</module>
+        <module>../../business/advertisement/AdvertisementClientNoneJavaLibraryRacketM</module>
+
+        <module>../GameNotificationJavaLibraryRacketM</module>
+
+        <module>../../../graphics/opengl/NoSWTJavaLibraryRacketM</module>
+        <module>../../../graphics/opengl/SWTWithoutJOGLJavaLibraryRacketM</module>
+        <module>../SWTJavaLibraryRacketM</module>
+        <module>../GameJ2MELibraryRacketM</module>
+        
+        <!--
+        <module>../GameJ2MEOptionalLibraryPORacketM</module>
+        -->
+    
+    </modules>
+
+</project>
+

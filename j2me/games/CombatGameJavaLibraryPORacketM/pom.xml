@@ -1,0 +1,142 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>CombatGameJavaLibraryPOMRacket</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>CombatGameJavaLibraryPOMRacket</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+
+        <!--
+
+        -->
+
+        <module>../../games/TickableJavaLibraryRacketM</module>
+
+        <module>../../games/CommonHeadsUpDisplayLibraryRacketM</module>
+
+        <module>../../../physics/MovementJavaLibraryRacketM</module>
+        <!--        -->
+        <module>../../games/PartsJavaLibraryRacketM</module>
+        <module>../../games/PickupGameJavaLibraryRacketM</module>
+
+        <module>../../../allbinary_src/licensing/HardCodedLicenseInitInfoJavaLibraryRacketM</module>
+        <module>../../../allbinary_src/licensing/FileLicenseInitInfoJavaLibraryRacketM</module>
+        <module>../../../allbinary_src/licensing/ClientInfoLicensingJavaLibraryRacketM</module>
+
+        <module>../../games/licensing/PartnerJ2MEJavaLibraryRacketM</module>
+        <!--<module>../../games/licensing/PartnerHTMLJavaLibraryRacketM</module>-->
+        <!--<module>../../games/licensing/PartnerAndroidJavaLibraryRacketM</module>-->
+        <module>../../games/licensing/NoGameLicensingJavaLibraryRacketM</module>
+        <module>../../games/licensing/GameLicensingOnlyDemoJavaLibraryRacketM</module>
+        <!--<module>../../games/licensing/GameLicensingOnlyNormalJavaLibraryRacketM</module>-->
+        <module>../../games/licensing/GameLicensingBaseJavaLibraryRacketM</module>
+
+        <!--
+        <module>../../games/GameScoresBaseLibraryRacketM</module>
+        <module>../../games/GameScoresBaseHTMLLibraryRacketM</module>
+        <module>../../games/GameScoresBaseJ2MELibraryRacketM</module>
+        -->
+        <module>../../games/GameScoresLocalJavaLibraryRacketM</module>
+        <!--<module>../../games/GameScoresRemoteAndLocalJavaLibraryRacketM</module>-->
+
+        <module>../../../store/ThirdPartyStoreJavaLibraryRacketM</module>
+        <module>../../../store/NoThirdPartyStoreJavaLibraryRacketM</module>
+
+        <module>../../media/graphics/layer/CollisionLayerJavaLibraryRacketM</module>
+        <module>../../games/CollisionLibraryRacketM</module>
+
+        <module>../../games/multiplayer/AllBinaryGameClientBaseNullJavaLibraryRacketM</module>
+
+        <module>../../games/PickupLayerJavaLibraryRacketM</module>
+
+        <module>../../games/DamageGameJavaLibraryRacketM</module>
+        <module>../../games/DropJavaLibraryRacketM</module>
+        <module>../../games/WeaponLayerJavaLibraryRacketM</module>
+
+        <module>../../games/CombatGameJavaLibraryRacketM</module>
+        <module>../../games/LifeJavaLibraryRacketM</module>
+
+        <module>../../games/CommonHeadsUpDisplayCombatGameLibraryRacketM</module>
+        <module>../../games/LifeOrDeathDataJavaLibraryRacketM</module>
+
+        <module>../../games/BasicWeaponPartsJavaLibraryRacketM</module>
+        <module>../../games/weapon/WeaponPropertiesJavaLibraryRacketM</module>
+
+        <module>../../games/weapon/WeaponMineJavaLibraryRacketM</module>
+
+        <!--
+        <module>../../media/graphics/effects/fireworks/FireworksJavaLibraryRacketM</module>
+        -->
+
+        <module>../../media/graphics/geography/map/TerrainEventJavaLibraryRacketM</module>
+
+<!--
+        <module>../../media/graphics/geography/map/BasicPlatformGeographicMapJavaLibraryRacketM</module>
+        -->
+
+        <!--
+        <module>../../media/graphics/geography/map/RaceTrackRacketP</module>
+        -->
+
+        <!--
+        XmlRpcJavaLibrary
+        RemoteXmlRpcJavaLibrary
+
+        Since POMs are built before the other libs is it best to handle this differently
+        ../../
+        <module>../../../../workracket/j2me/games/strategy/rts/RTSGameJavaLibraryRacketP</module>
+        -->
+
+        <module>../../media/graphics/OtherGraphicsMediaLibraryRacketP</module>
+
+        <module>../../input/NoTouchButtonResourceAnimationJavaLibraryRacketM</module>
+        <module>../../input/TouchButtonResourceAnimationJavaLibraryRacketM</module>
+        <module>../../input/TouchButtonResourceOpenGLESAnimationJavaLibraryRacketM</module>
+
+        <module>../../input/TrackingEventJavaLibraryRacketM</module>
+        <module>../../../game/behavior/BehaviorLibraryRacketP</module>
+
+        <module>../../media/sound/OtherSoundMediaLibraryRacketP</module>
+
+        <module>../../../allbinary_src/licensing/ApplicationConfigurationJavaLibraryRacketM</module>
+        <module>../../../allbinary_src/licensing/ApplicationConfigurationNoFSJavaLibraryRacketM</module>
+        <module>../../input/AllBinaryMagneticFieldSensorJavaLibraryRacketM</module>
+        <!--<module>../../android/VirtualKeyboardJavaLibraryRacketM</module>-->
+
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
+
