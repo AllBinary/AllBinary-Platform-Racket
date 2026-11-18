@@ -1,73 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local VelocityProperties = require("org.allbinary.game.physics.velocity.VelocityProperties")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local BasicConstantVelocityMovement = require("org.allbinary.physics.movement.BasicConstantVelocityMovement")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./BasicConstantVelocityMovement.rkt")
+(lazy-require ["../../../../org/allbinary/game/physics/velocity/VelocityProperties.rkt" (VelocityProperties.jnew_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OscillateVelocityMovement%
+  (class BasicConstantVelocityMovement%
+    (super-new)
+    (field [f_oscillateMin 0])
+    (field [f_oscillateMax 0])
+    (field [f_oscillate 0])
+    (field [f_oscillatePositive #f])
+    (define/override (jm_process_1 _layer)
+    (let ()
+      (let/ec jreturn
+        (super jm_process_1 _layer)
+        (if (< (get-field f_oscillate this) (get-field f_oscillateMin this))
+            (begin
+            (set-field! f_oscillatePositive this #t))
+            (when (> (get-field f_oscillate this) (get-field f_oscillateMax this))
+            (begin
+            (set-field! f_oscillatePositive this #f))))
+        (if (get-field f_oscillatePositive this)
+            (begin
+            (set-field! f_oscillate this (JR.i32 (+ (get-field f_oscillate this) 1)))
+            (JR.className (JR.className (send this jm_getVelocityProperties_0))))
+            (begin
+            (set-field! f_oscillate this (JR.i32 (- (get-field f_oscillate this) 1)))
+            (JR.className (JR.className (send this jm_getVelocityProperties_0))))))))))
+(define (OscillateVelocityMovement.jclassValue) OscillateVelocityMovement%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OscillateVelocityMovement = {}
-OscillateVelocityMovement.__index = OscillateVelocityMovement
-OscillateVelocityMovement.className = "OscillateVelocityMovement"
-setmetatable(OscillateVelocityMovement, {__index = BasicConstantVelocityMovement})
-
-function OscillateVelocityMovement:_init_fields()
-    self.oscillateMin = nil
-    self.oscillateMax = nil
-    self.oscillate = 0
-    self.oscillatePositive = false
-end
+(define (OscillateVelocityMovement.jnew_3 _speedBasicDecimal _oscillateMin _oscillateMax)
+  (define this (new OscillateVelocityMovement% [jclass "OscillateVelocityMovement"]))
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_oscillateMin this _oscillateMin)
+        (set-field! f_oscillateMax this _oscillateMax)))
+  this)
 
 
-function OscillateVelocityMovement.new(speedBasicDecimal, oscillateMin, oscillateMax)
-    local self = setmetatable(BasicConstantVelocityMovement.new(speedBasicDecimal, VelocityProperties.new(java_int(speedBasicDecimal:getUnscaled()), java_int(speedBasicDecimal:getUnscaled()))), OscillateVelocityMovement)
-    self:_init_fields()
-        -- super(...) made self above
-        self.oscillateMin = oscillateMin
-        self.oscillateMax = oscillateMax
-    return self
-end
-
-
--- throws Exception
-function OscillateVelocityMovement:process(layer)
-        BasicConstantVelocityMovement.process(self, layer)
-        if self.oscillate < self.oscillateMin then
-            self.oscillatePositive = true
-        elseif self.oscillate > self.oscillateMax then
-            self.oscillatePositive = false
-        end
-        if self.oscillatePositive then
-            self.oscillate = self.oscillate + 1
-            self:getVelocityProperties():getVelocityXBasicDecimalP():addint(2000)
-        else
-            self.oscillate = self.oscillate - 1
-            self:getVelocityProperties():getVelocityXBasicDecimalP():subtractint(2000)
-        end
-end
-
-return OscillateVelocityMovement
 

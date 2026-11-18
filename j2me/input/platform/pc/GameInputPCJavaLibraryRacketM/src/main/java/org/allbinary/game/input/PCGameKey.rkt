@@ -1,63 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local Input = require("org.allbinary.game.input.Input")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./Input.rkt")
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["./InputFactory.rkt" (InputFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PCGameKey%
+  (class Input%
+    (super-new)
+    (define/override (jm_toString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.concat "PCGameKey: " (super jm_toString_0))))))))
+(define (PCGameKey.jclassValue) PCGameKey%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (PCGameKey.jnew_2 _keyCode _name)
+  (define this (new PCGameKey% [jclass "PCGameKey"]))
+    (let ([_id JR.null])
+      (let/ec jreturn
+        (void)
+        (set! _id (send this jm_getId_0))
+        (when (>= _id 0)
+            (begin
+            (send (InputFactory.jm_getInstance_0) jm_add_2 _id this)))))
+  this)
 
-local PCGameKey = {}
-PCGameKey.__index = PCGameKey
-PCGameKey.className = "PCGameKey"
-setmetatable(PCGameKey, {__index = Input})
-
-
-function PCGameKey.new(keyCode, name)
-    local self = setmetatable(Input.new(keyCode, name), PCGameKey)
-        -- super(...) made self above
-        local id = self:getId()
-        if id >= 0 then
-            InputFactory.getInstance():add(id, self)
-        end
-    return self
-end
-
-
-function PCGameKey:toString()
-        return "PCGameKey: " .. tostring(Input)
-end
-PCGameKey.__tostring = function(self) return self:toString() end
+(define (PCGameKey.jm_getString_1 _keyCode)
+    (let ([_input JR.null])
+      (let/ec jreturn
+        (set! _input (send (InputFactory.jm_getInstance_0) jm_getInstanceById_1 _keyCode))
+        (if (not (JR.null? _input))
+            (begin
+            (jreturn (send _input jm_getName_0)))
+            (begin
+            (jreturn (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))))
 
 
-function PCGameKey.getString(keyCode)
-        local input = InputFactory.getInstance():getInstanceById(keyCode)
-        if input ~= nil then
-            return input:getName()
-        else
-            return StringUtil.getInstance().EMPTY_STRING
-        end
-end
-
-return PCGameKey
 

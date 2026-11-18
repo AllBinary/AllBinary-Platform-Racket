@@ -1,70 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image.sprite
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local AnimationFactorySpriteScaleUtil = require("org.allbinary.image.sprite.AnimationFactorySpriteScaleUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface.rkt"
+  "../../../../../org/allbinary/animation/image/BaseImageAnimationFactory.rkt")
+(lazy-require ["../../../../../org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil.rkt" (AnimationFactorySpriteScaleUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(lazy-require ["./SpriteIndexedAnimation.rkt" (SpriteIndexedAnimation.jnew_4)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ColorCompositeSpriteIndexedAnimationFactory%
+  (class BaseImageAnimationFactory%
+    (super-new)
+    (field [f_animationFactorySpriteScaleUtil JR.null])
+    (field [f_basicColorArray JR.null])
+    (define/override (jm_getInstance_1 _instanceId)
+    (let ([_sprite JR.null])
+      (let/ec jreturn
+        (set! _sprite (send (get-field f_animationFactorySpriteScaleUtil this) jm_createImage_5 (send this jm_getImage_0) (get-field f_width (get-field f_animationFactoryInitializationVisitor this)) (get-field f_height (get-field f_animationFactoryInitializationVisitor this)) (get-field f_scaleWidth (get-field f_scaleProperties this)) (get-field f_scaleHeight (get-field f_scaleProperties this))))
+        (jreturn (SpriteIndexedAnimation.jnew_4 _sprite (send this jm_getImage_0) (get-field f_basicColorArray this) (send (get-field f_animationBehaviorFactory this) jm_getOrCreateInstance_0))))))
+    (define/public (jm_getInstanceAnimation_1 _animationInterface)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getInstance_1 0)))))))
+(define (ColorCompositeSpriteIndexedAnimationFactory.jclassValue) ColorCompositeSpriteIndexedAnimationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ColorCompositeSpriteIndexedAnimationFactory = {}
-ColorCompositeSpriteIndexedAnimationFactory.__index = ColorCompositeSpriteIndexedAnimationFactory
-ColorCompositeSpriteIndexedAnimationFactory.className = "ColorCompositeSpriteIndexedAnimationFactory"
-setmetatable(ColorCompositeSpriteIndexedAnimationFactory, {__index = BaseImageAnimationFactory})
-
-function ColorCompositeSpriteIndexedAnimationFactory:_init_fields()
-    self.animationFactorySpriteScaleUtil = AnimationFactorySpriteScaleUtil.getInstance()
-    self.basicColorArray = nil
-end
-
-
-function ColorCompositeSpriteIndexedAnimationFactory.new(image, basicColorArray, width, height, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), width, height, 0, 0, animationBehaviorFactory), ColorCompositeSpriteIndexedAnimationFactory)
-    self:_init_fields()
-        -- super(...) made self above
-        self.basicColorArray = basicColorArray
-    return self
-end
+(define (ColorCompositeSpriteIndexedAnimationFactory.jnew_5 _image _basicColorArray _width _height _animationBehaviorFactory)
+  (define this (new ColorCompositeSpriteIndexedAnimationFactory% [jclass "ColorCompositeSpriteIndexedAnimationFactory"]))
+    (set-field! f_animationFactorySpriteScaleUtil this (AnimationFactorySpriteScaleUtil.jm_getInstance_0))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_basicColorArray this _basicColorArray)))
+  this)
 
 
--- throws Exception
-function ColorCompositeSpriteIndexedAnimationFactory:getInstance(instanceId)
-        local sprite = self.animationFactorySpriteScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        return SpriteIndexedAnimation.new(sprite, self:getImage(), self.basicColorArray, self.animationBehaviorFactory:getOrCreateInstance())
-end
-
-
--- throws Exception
-function ColorCompositeSpriteIndexedAnimationFactory:getInstanceAnimation(animationInterface)
-        return self:getInstance(0)
-end
-
-return ColorCompositeSpriteIndexedAnimationFactory
 

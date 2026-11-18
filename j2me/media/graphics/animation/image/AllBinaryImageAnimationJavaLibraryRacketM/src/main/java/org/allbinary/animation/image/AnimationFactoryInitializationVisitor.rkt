@@ -1,72 +1,64 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local PositionStrings = require("org.allbinary.math.PositionStrings")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/math/PositionStrings.rkt" (PositionStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonLabels.rkt" (CommonLabels.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AnimationFactoryInitializationVisitor%
+  (class JObject%
+    (super-new)
+    (field [f_width 0])
+    (field [f_height 0])
+    (field [f_dx 0])
+    (field [f_dy 0])
+    (field [f_originalDx 0])
+    (field [f_originalDy 0])
+    (define/public (jm_visit_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_toString_0)
+    (let ([_commonSeps JR.null][_commonLabels JR.null][_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _commonSeps (CommonSeps.jm_getInstance_0))
+        (set! _commonLabels (CommonLabels.jm_getInstance_0))
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send (send _stringBuffer jm_append_1 (get-field f_DX_LABEL (PositionStrings.jm_getInstance_0))) jm_appendfloat_1 (JR.toDouble (get-field f_dx this)))
+        (send (send _stringBuffer jm_append_1 (get-field f_DY_LABEL (PositionStrings.jm_getInstance_0))) jm_appendfloat_1 (JR.toDouble (get-field f_dy this)))
+        (send _stringBuffer jm_append_1 (get-field f_WIDTH_LABEL _commonLabels))
+        (send _stringBuffer jm_appendint_1 (get-field f_width this))
+        (send _stringBuffer jm_append_1 (get-field f_SPACE _commonSeps))
+        (send _stringBuffer jm_append_1 (get-field f_HEIGHT_LABEL _commonLabels))
+        (send _stringBuffer jm_appendint_1 (get-field f_height this))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (AnimationFactoryInitializationVisitor.jclassValue) AnimationFactoryInitializationVisitor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AnimationFactoryInitializationVisitor = {}
-AnimationFactoryInitializationVisitor.__index = AnimationFactoryInitializationVisitor
-AnimationFactoryInitializationVisitor.className = "AnimationFactoryInitializationVisitor"
-
-function AnimationFactoryInitializationVisitor:_init_fields()
-    self.width = 0
-    self.height = 0
-    self.dx = 0
-    self.dy = 0
-    self.originalDx = 0
-    self.originalDy = 0
-end
-
-function AnimationFactoryInitializationVisitor.new()
-    local self = setmetatable({}, AnimationFactoryInitializationVisitor)
-    self:_init_fields()
-    return self
-end
+(define (AnimationFactoryInitializationVisitor.jnew_0)
+  (define this (new AnimationFactoryInitializationVisitor% [jclass "AnimationFactoryInitializationVisitor"]))
+    
+    
+    
+    
+    
+    
+  this)
 
 
-function AnimationFactoryInitializationVisitor:visit()
-end
-
-
-function AnimationFactoryInitializationVisitor:toString()
-        local commonSeps = CommonSeps.getInstance()
-        local commonLabels = CommonLabels.getInstance()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(PositionStrings.getInstance().DX_LABEL):appendfloat((self.dx + 0.0))
-        stringBuffer:append(PositionStrings.getInstance().DY_LABEL):appendfloat((self.dy + 0.0))
-        stringBuffer:append(commonLabels.WIDTH_LABEL)
-        stringBuffer:appendint(self.width)
-        stringBuffer:append(commonSeps.SPACE)
-        stringBuffer:append(commonLabels.HEIGHT_LABEL)
-        stringBuffer:appendint(self.height)
-        return tostring(stringBuffer)
-end
-AnimationFactoryInitializationVisitor.__tostring = function(self) return self:toString() end
-
-return AnimationFactoryInitializationVisitor
 

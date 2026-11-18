@@ -1,45 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.command
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.displayable.command
 
--- local Command = require("javax.microedition.lcdui.Command")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MyCommandInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_addCommand_1 _command)
+      (raise (JR.newException "AbstractMethodError" "addCommand")))
+    (define/public (jm_removeAllCommands_0)
+      (raise (JR.newException "AbstractMethodError" "removeAllCommands")))))
+(define (MyCommandInterface.jclassValue) MyCommandInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local MyCommandInterface = {}
-MyCommandInterface.__index = MyCommandInterface
-MyCommandInterface.className = "MyCommandInterface"
-
-
-function MyCommandInterface:addCommand(command)
-    error("abstract method addCommand")
-end
+(define (MyCommandInterface.jnew_0)
+  (define this (new MyCommandInterface% [jclass "MyCommandInterface"]))
+  this)
 
 
-function MyCommandInterface:removeAllCommands()
-    error("abstract method removeAllCommands")
-end
-
-return MyCommandInterface
 

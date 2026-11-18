@@ -42,6 +42,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (JR.i32 (- 1))))))))
+(define (ABRunnable.jclassValue) ABRunnable%)
 
 (define (ABRunnable.jnew_0)
   (define this (new ABRunnable% [jclass "ABRunnable"]))

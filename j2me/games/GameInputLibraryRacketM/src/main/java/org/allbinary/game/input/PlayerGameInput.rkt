@@ -1,99 +1,81 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local GameKeyEventListenerInterface = require("org.allbinary.game.input.event.GameKeyEventListenerInterface")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local GameInput = require("org.allbinary.game.input.GameInput")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/game/input/event/GameKeyEventListenerInterface.rkt"
+  "../../../../java/lang/Integer.rkt"
+  "./GameInput.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonLabels.rkt" (CommonLabels.jm_getInstance_0)])
+(lazy-require ["./GameInputStrings.rkt" (GameInputStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PlayerGameInput%
+  (class GameInput%
+    (super-new)
+    (field [f_gameInputStrings JR.null])
+    (field [f_playerInputId 0])
+    (define/public (jm_onPressGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn
+        (send this jm_add_1 _gameKeyEvent)
+        (send this jm_addForRemoval_1 _gameKeyEvent))))
+    (define/public (jm_onDownGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn
+        (send this jm_add_1 _gameKeyEvent))))
+    (define/public (jm_onDownKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn
+        (send this jm_add_1 _gameKeyEvent)
+        (send this jm_addForRemoval_1 _gameKeyEvent))))
+    (define/public (jm_onDownKey_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn
+        (PreLogUtil.jm_put_3 (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_START_LABEL (CommonLabels.jm_getInstance_0))) jm_append_1 (send _gameKeyEvent jm_toString_0)) jm_toString_0) this (get-field f_ON_DOWN_GAME_KEY (get-field f_gameInputStrings this))))))
+    (define/public (jm_onUpGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn
+        (send this jm_addForRemoval_1 _gameKeyEvent))))
+    (define/public (jm_onUpKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_PERFORMANCE_MESSAGE (EventStrings.jm_getInstance_0)) this))))
+    (define/public (jm_getPlayerInputId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_playerInputId this)))))))
+(define (PlayerGameInput.jclassValue) PlayerGameInput%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PlayerGameInput = {}
-PlayerGameInput.__index = PlayerGameInput
-PlayerGameInput.className = "PlayerGameInput"
-setmetatable(PlayerGameInput, {__index = GameInput})
-
-function PlayerGameInput:_init_fields()
-    self.gameInputStrings = GameInputStrings.getInstance()
-    self.playerInputId = nil
-end
-
-
-function PlayerGameInput.new(gameKeyEventList, removalGameKeyEventList, playerInputId)
-    local self = setmetatable(GameInput.new(gameKeyEventList, removalGameKeyEventList), PlayerGameInput)
-    self:_init_fields()
-        -- super(...) made self above
-        self.playerInputId = playerInputId
-    return self
-end
-
-
-function PlayerGameInput:onPressGameKeyEvent(gameKeyEvent)
-        self:add(gameKeyEvent)
-        self:addForRemoval(gameKeyEvent)
-end
-
-
-function PlayerGameInput:onDownGameKeyEvent(gameKeyEvent)
-        self:add(gameKeyEvent)
-end
-
-
-function PlayerGameInput:onDownKeyEvent(gameKeyEvent)
-        self:add(gameKeyEvent)
-        self:addForRemoval(gameKeyEvent)
-end
-
-
-function PlayerGameInput:onDownKey(gameKeyEvent)
-        PreLogUtil.put(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append(tostring(gameKeyEvent))), self, self.gameInputStrings.ON_DOWN_GAME_KEY)
-end
-
-
-function PlayerGameInput:onUpGameKeyEvent(gameKeyEvent)
-        self:addForRemoval(gameKeyEvent)
-end
+(define (PlayerGameInput.jnew_3 _gameKeyEventList _removalGameKeyEventList _playerInputId)
+  (define this (new PlayerGameInput% [jclass "PlayerGameInput"]))
+    (set-field! f_gameInputStrings this (GameInputStrings.jm_getInstance_0))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_playerInputId this _playerInputId)))
+  this)
 
 
-function PlayerGameInput:onUpKeyEvent(gameKeyEvent)
-end
-
-
-function PlayerGameInput:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function PlayerGameInput:getPlayerInputId()
-        return self.playerInputId
-end
-
-return PlayerGameInput
 

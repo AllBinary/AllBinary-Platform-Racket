@@ -124,7 +124,7 @@
 
         <module>../../../allbinary_src/licensing/ApplicationConfigurationJavaLibraryRacketM</module>
         <module>../../../allbinary_src/licensing/ApplicationConfigurationNoFSJavaLibraryRacketM</module>
-        <module>../../input/AllBinaryMagneticFieldSensorJavaLibraryRacketM</module>
+        <!--<module>../../input/AllBinaryMagneticFieldSensorJavaLibraryRacketM</module>-->
         <!--<module>../../android/VirtualKeyboardJavaLibraryRacketM</module>-->
 
     </modules>

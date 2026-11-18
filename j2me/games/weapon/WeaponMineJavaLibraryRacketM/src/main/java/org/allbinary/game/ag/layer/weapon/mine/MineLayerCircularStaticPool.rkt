@@ -1,54 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.weapon.mine
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.weapon.mine
 
-local WeaponLayerCircularPool = require("org.allbinary.game.layer.weapon.WeaponLayerCircularPool")
-local ViewPositionFactoryInterface = require("org.allbinary.view.ViewPositionFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../../../org/allbinary/game/layer/weapon/WeaponLayerCircularPool.rkt" (WeaponLayerCircularPool.jnew_0)])
+(lazy-require ["./MineCountedPickedUpLayerInterfaceFactory.rkt" (MineCountedPickedUpLayerInterfaceFactory.jm_init_0)])
+(lazy-require ["./MineLayerFactory.rkt" (MineLayerFactory.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MineLayerCircularStaticPool%
+  (class JObject%
+    (super-new)))
+(define (MineLayerCircularStaticPool.jclassValue) MineLayerCircularStaticPool%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define MineLayerCircularStaticPool.jcell_WEAPON_LAYER_CIRCULAR_STATIC_POOL 'jnone)
+(define (MineLayerCircularStaticPool.jstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL)
+  (when (eq? MineLayerCircularStaticPool.jcell_WEAPON_LAYER_CIRCULAR_STATIC_POOL 'jnone) (set! MineLayerCircularStaticPool.jcell_WEAPON_LAYER_CIRCULAR_STATIC_POOL (WeaponLayerCircularPool.jnew_0)))
+  MineLayerCircularStaticPool.jcell_WEAPON_LAYER_CIRCULAR_STATIC_POOL)
+(define (MineLayerCircularStaticPool.jsetstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL value) (set! MineLayerCircularStaticPool.jcell_WEAPON_LAYER_CIRCULAR_STATIC_POOL value))
 
-local MineLayerCircularStaticPool = {}
-MineLayerCircularStaticPool.__index = MineLayerCircularStaticPool
-MineLayerCircularStaticPool.className = "MineLayerCircularStaticPool"
+(define (MineLayerCircularStaticPool.jnew_0)
+  (define this (new MineLayerCircularStaticPool% [jclass "MineLayerCircularStaticPool"]))
+  this)
 
-function MineLayerCircularStaticPool.new()
-    local self = setmetatable({}, MineLayerCircularStaticPool)
-    return self
-end
+(define (MineLayerCircularStaticPool.jm_init_1 _viewPositionFactoryInterface)
+    (let ()
+      (let/ec jreturn
+        (MineCountedPickedUpLayerInterfaceFactory.jm_init_0)
+        (JR.className (MineLayerCircularStaticPool.jstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL)))))
+
+(define (MineLayerCircularStaticPool.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (MineLayerCircularStaticPool.jstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL)))))
 
 
--- throws Exception
-function MineLayerCircularStaticPool.init(viewPositionFactoryInterface)
-        MineCountedPickedUpLayerInterfaceFactory.init()
-        MineLayerCircularStaticPool.WEAPON_LAYER_CIRCULAR_STATIC_POOL:initAllBinaryLayerCircularPool(MineLayerFactory.new(viewPositionFactoryInterface), 20)
-end
-
-
-function MineLayerCircularStaticPool.getInstance()
-        return MineLayerCircularStaticPool.WEAPON_LAYER_CIRCULAR_STATIC_POOL
-end
-
-MineLayerCircularStaticPool.WEAPON_LAYER_CIRCULAR_STATIC_POOL = WeaponLayerCircularPool.new()
-
-return MineLayerCircularStaticPool
 

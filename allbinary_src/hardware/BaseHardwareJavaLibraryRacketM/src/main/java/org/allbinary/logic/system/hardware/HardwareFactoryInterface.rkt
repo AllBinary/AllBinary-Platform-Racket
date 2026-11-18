@@ -21,6 +21,7 @@
 (define HardwareFactoryInterface%
   (class JObject%
     (super-new)))
+(define (HardwareFactoryInterface.jclassValue) HardwareFactoryInterface%)
 
 (define (HardwareFactoryInterface.jnew_0)
   (define this (new HardwareFactoryInterface% [jclass "HardwareFactoryInterface"]))

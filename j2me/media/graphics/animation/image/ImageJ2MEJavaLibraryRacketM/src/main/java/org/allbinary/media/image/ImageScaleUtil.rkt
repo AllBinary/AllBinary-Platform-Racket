@@ -1,60 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local ImageCache = require("org.allbinary.image.ImageCache")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageScaleUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_createImage2_7 _imageCache _originalImage _scaleNominatorX _scaleDenominatorX _scaleNominatorY _scaleDenominatorY _cached)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_createImage3_8 _imageCache _originalImage _scaleNominatorX _scaleDenominatorX _scaleNominatorY _scaleDenominatorY _cached #t)))))
+    (define/public (jm_createImage3_8 _imageCache _originalImage _scaleNominatorX _scaleDenominatorX _scaleNominatorY _scaleDenominatorY _cached _mutable)
+    (let ()
+      (let/ec jreturn
+        (jreturn _originalImage))))))
+(define (ImageScaleUtil.jclassValue) ImageScaleUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ImageScaleUtil.jcell_instance 'jnone)
+(define (ImageScaleUtil.jstatic_instance)
+  (when (eq? ImageScaleUtil.jcell_instance 'jnone) (set! ImageScaleUtil.jcell_instance (ImageScaleUtil.jnew_0)))
+  ImageScaleUtil.jcell_instance)
+(define (ImageScaleUtil.jsetstatic_instance value) (set! ImageScaleUtil.jcell_instance value))
 
-local ImageScaleUtil = {}
-ImageScaleUtil.__index = ImageScaleUtil
-ImageScaleUtil.className = "ImageScaleUtil"
+(define (ImageScaleUtil.jnew_0)
+  (define this (new ImageScaleUtil% [jclass "ImageScaleUtil"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function ImageScaleUtil.getInstance()
-        return ImageScaleUtil.instance
-end
-
-
-function ImageScaleUtil.new()
-    local self = setmetatable({}, ImageScaleUtil)
-    return self
-end
-
-
--- throws Exception
-function ImageScaleUtil:createImage2(imageCache, originalImage, scaleNominatorX, scaleDenominatorX, scaleNominatorY, scaleDenominatorY, cached)
-        return self:createImage3(imageCache, originalImage, scaleNominatorX, scaleDenominatorX, scaleNominatorY, scaleDenominatorY, cached, true)
-end
+(define (ImageScaleUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageScaleUtil.jstatic_instance)))))
 
 
--- throws Exception
-function ImageScaleUtil:createImage3(imageCache, originalImage, scaleNominatorX, scaleDenominatorX, scaleNominatorY, scaleDenominatorY, cached, mutable)
-        return originalImage
-end
-
-ImageScaleUtil.instance = ImageScaleUtil.new()
-
-return ImageScaleUtil
 

@@ -22,6 +22,7 @@
 (define ColorChangeListener%
   (class JObject%
     (super-new)))
+(define (ColorChangeListener.jclassValue) ColorChangeListener%)
 
 (define (ColorChangeListener.jnew_0)
   (define this (new ColorChangeListener% [jclass "ColorChangeListener"]))

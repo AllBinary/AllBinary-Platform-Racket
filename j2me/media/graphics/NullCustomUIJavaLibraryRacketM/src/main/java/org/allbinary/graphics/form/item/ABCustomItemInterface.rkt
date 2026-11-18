@@ -1,48 +1,29 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ABCustomItemInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getMinimumWidth_0)
+      (raise (JR.newException "AbstractMethodError" "getMinimumWidth")))
+    (define/public (jm_getMinimumHeight_0)
+      (raise (JR.newException "AbstractMethodError" "getMinimumHeight")))
+    (define/public (jm_getLabel_0)
+      (raise (JR.newException "AbstractMethodError" "getLabel")))
+    (define/public (jm_paintXY_3 _graphics _x _y)
+      (raise (JR.newException "AbstractMethodError" "paintXY")))
+    (define/public (jm_paintUnselected_3 _graphics _x _y)
+      (raise (JR.newException "AbstractMethodError" "paintUnselected")))))
+(define (ABCustomItemInterface.jclassValue) ABCustomItemInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local ABCustomItemInterface = {}
-ABCustomItemInterface.__index = ABCustomItemInterface
-ABCustomItemInterface.className = "ABCustomItemInterface"
-
-
-function ABCustomItemInterface:getMinimumWidth()
-    error("abstract method getMinimumWidth")
-end
-
-
-function ABCustomItemInterface:getMinimumHeight()
-    error("abstract method getMinimumHeight")
-end
+(define (ABCustomItemInterface.jnew_0)
+  (define this (new ABCustomItemInterface% [jclass "ABCustomItemInterface"]))
+  this)
 
 
-function ABCustomItemInterface:getLabel()
-    error("abstract method getLabel")
-end
-
-
-function ABCustomItemInterface:paintXY(graphics, x, y)
-    error("abstract method paintXY")
-end
-
-
-function ABCustomItemInterface:paintUnselected(graphics, x, y)
-    error("abstract method paintUnselected")
-end
-
-return ABCustomItemInterface
 

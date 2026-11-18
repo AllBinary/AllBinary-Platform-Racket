@@ -32,6 +32,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_basicColor this)))))))
+(define (ColorChangeEvent.jclassValue) ColorChangeEvent%)
 
 (define (ColorChangeEvent.jnew_1 _anyType)
   (define this (new ColorChangeEvent% [jclass "ColorChangeEvent"]))

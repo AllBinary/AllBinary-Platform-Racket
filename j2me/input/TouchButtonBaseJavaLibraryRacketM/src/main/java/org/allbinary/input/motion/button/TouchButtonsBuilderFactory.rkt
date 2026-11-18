@@ -1,45 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["./NoButtonsTouchInputFactory.rkt" (NoButtonsTouchInputFactory.jm_getInstance_0)])
+(provide (all-defined-out))
+
+(define TouchButtonsBuilderFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NoButtonsTouchInputFactory.jm_getInstance_0)))))))
+(define (TouchButtonsBuilderFactory.jclassValue) TouchButtonsBuilderFactory%)
+
+(define TouchButtonsBuilderFactory.jcell_NO_TOUCH_BUTTON_BUILDER_FACTORY 'jnone)
+(define (TouchButtonsBuilderFactory.jstatic_NO_TOUCH_BUTTON_BUILDER_FACTORY)
+  (when (eq? TouchButtonsBuilderFactory.jcell_NO_TOUCH_BUTTON_BUILDER_FACTORY 'jnone) (set! TouchButtonsBuilderFactory.jcell_NO_TOUCH_BUTTON_BUILDER_FACTORY (TouchButtonsBuilderFactory.jnew_0)))
+  TouchButtonsBuilderFactory.jcell_NO_TOUCH_BUTTON_BUILDER_FACTORY)
+(define (TouchButtonsBuilderFactory.jsetstatic_NO_TOUCH_BUTTON_BUILDER_FACTORY value) (set! TouchButtonsBuilderFactory.jcell_NO_TOUCH_BUTTON_BUILDER_FACTORY value))
+
+(define (TouchButtonsBuilderFactory.jnew_0)
+  (define this (new TouchButtonsBuilderFactory% [jclass "TouchButtonsBuilderFactory"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TouchButtonsBuilderFactory = {}
-TouchButtonsBuilderFactory.__index = TouchButtonsBuilderFactory
-TouchButtonsBuilderFactory.className = "TouchButtonsBuilderFactory"
-
-function TouchButtonsBuilderFactory.new()
-    local self = setmetatable({}, TouchButtonsBuilderFactory)
-    return self
-end
-
-
-function TouchButtonsBuilderFactory:getInstance()
-        return NoButtonsTouchInputFactory.getInstance()
-end
-
-TouchButtonsBuilderFactory.NO_TOUCH_BUTTON_BUILDER_FACTORY = TouchButtonsBuilderFactory.new()
-
-return TouchButtonsBuilderFactory
 

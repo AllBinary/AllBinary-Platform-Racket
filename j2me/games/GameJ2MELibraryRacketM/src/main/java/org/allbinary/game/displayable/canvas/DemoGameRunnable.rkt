@@ -1,72 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local GameTickTimeDelayHelper = require("org.allbinary.time.GameTickTimeDelayHelper")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local GameRunnable = require("org.allbinary.game.displayable.canvas.GameRunnable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./GameRunnable.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/time/GameTickTimeDelayHelperFactory.rkt" (GameTickTimeDelayHelperFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DemoGameRunnable%
+  (class GameRunnable%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_demoCanvas JR.null])
+    (field [f_gameTickTimeDelayHelper JR.null])
+    (define/override (jm_run_0)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_RUN _commonStrings) _e))])
+            (JR.className (send (get-field f_demoCanvas this) jm_getLoopTimeHelperP_0))
+            (send (get-field f_demoCanvas this) jm_processGame_0)))))
+    (define/override (jm_processLoopSleep_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_demoCanvas this) jm_processLoopSleep_0))))))
+(define (DemoGameRunnable.jclassValue) DemoGameRunnable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local DemoGameRunnable = {}
-DemoGameRunnable.__index = DemoGameRunnable
-DemoGameRunnable.className = "DemoGameRunnable"
-setmetatable(DemoGameRunnable, {__index = GameRunnable})
-
-function DemoGameRunnable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.demoCanvas = nil
-    self.gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-end
-
-
-function DemoGameRunnable.new(demoCanvas)
-    local self = setmetatable(GameRunnable.new(), DemoGameRunnable)
-    self:_init_fields()
-        self.demoCanvas = demoCanvas
-    return self
-end
-
-
-function DemoGameRunnable:run()
-        local try_ok, try_error = pcall(function()
-            self.demoCanvas:getLoopTimeHelperP():setStartTime(self.gameTickTimeDelayHelper:setStartTime())
-            self.demoCanvas:processGame()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
-        end
-end
+(define (DemoGameRunnable.jnew_1 _demoCanvas)
+  (define this (new DemoGameRunnable% [jclass "DemoGameRunnable"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    
+    (set-field! f_gameTickTimeDelayHelper this (GameTickTimeDelayHelperFactory.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn
+        (set-field! f_demoCanvas this _demoCanvas)))
+  this)
 
 
--- throws Exception
-function DemoGameRunnable:processLoopSleep()
-        self.demoCanvas:processLoopSleep()
-end
-
-return DemoGameRunnable
 

@@ -1,54 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Layer = require("org.allbinary.layer.Layer")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./Layer.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullLayer%
+  (class Layer%
+    (super-new)
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullLayer.jclassValue) NullLayer%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullLayer.jcell_instance 'jnone)
+(define (NullLayer.jstatic_instance)
+  (when (eq? NullLayer.jcell_instance 'jnone) (set! NullLayer.jcell_instance (NullLayer.jnew_0)))
+  NullLayer.jcell_instance)
+(define (NullLayer.jsetstatic_instance value) (set! NullLayer.jcell_instance value))
 
-local NullLayer = {}
-NullLayer.__index = NullLayer
-NullLayer.className = "NullLayer"
-setmetatable(NullLayer, {__index = Layer})
+(define (NullLayer.jnew_0)
+  (define this (new NullLayer% [jclass "NullLayer"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-
-function NullLayer.getInstance()
-        return NullLayer.instance
-end
-
-
-function NullLayer.new()
-    local self = setmetatable(Layer.new(0, 0), NullLayer)
-        -- super(...) made self above
-    return self
-end
+(define (NullLayer.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullLayer.jstatic_instance)))))
 
 
-function NullLayer:paint(graphics)
-end
-
-NullLayer.instance = NullLayer.new()
-
-return NullLayer
 

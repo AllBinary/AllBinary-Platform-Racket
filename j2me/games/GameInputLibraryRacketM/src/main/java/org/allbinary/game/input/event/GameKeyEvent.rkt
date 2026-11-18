@@ -1,119 +1,106 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input.event
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/logic/util/event/AllBinaryEventObject.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameKeyEvent%
+  (class AllBinaryEventObject%
+    (super-new)
+    (field [f_sourceId 0])
+    (field [f_repeated #f])
+    (field [f_key 0])
+    (field [f_gameActionKey 0])
+    (field [f_originalKey 0])
+    (define/public (jm_init_1 _anyType)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setSource_1 _anyType))))
+    (define/public (jm_setRepeatEvents_1 _repeated)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_repeated this _repeated))))
+    (define/public (jm_hasRepeatEvents_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_repeated this)))))
+    (define/public (jm_getKey_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_key this)))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 "\nKey: ")
+        (send _stringBuffer jm_appendint_1 (send this jm_getKey_0))
+        (jreturn (send _stringBuffer jm_toString_0)))))
+    (define/public (jm_getOriginalKey_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_originalKey this)))))
+    (define/public (jm_setOriginalKey_1 _originalKey)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_originalKey this _originalKey))))
+    (define/public (jm_getGameActionKey_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameActionKey this)))))
+    (define/public (jm_setGameActionKey_1 _gameActionKey)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_gameActionKey this _gameActionKey))))
+    (define/public (jm_getSourceId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_sourceId this)))))))
+(define (GameKeyEvent.jclassValue) GameKeyEvent%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameKeyEvent.jcell_NONE 'jnone)
+(define (GameKeyEvent.jstatic_NONE)
+  (when (eq? GameKeyEvent.jcell_NONE 'jnone) (set! GameKeyEvent.jcell_NONE (GameKeyEvent.jnew_6 (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)) (JR.i32 (- 1)) (JR.i32 (- 1)) (JR.i32 (- 1)) (JR.i32 (- 1)) #f)))
+  GameKeyEvent.jcell_NONE)
+(define (GameKeyEvent.jsetstatic_NONE value) (set! GameKeyEvent.jcell_NONE value))
 
-local GameKeyEvent = {}
-GameKeyEvent.__index = GameKeyEvent
-GameKeyEvent.className = "GameKeyEvent"
-setmetatable(GameKeyEvent, {__index = AllBinaryEventObject})
+(define (GameKeyEvent.jnew_6 _anyType _sourceId _originalKey _gameActionKey _key _repeated)
+  (define this (new GameKeyEvent% [jclass "GameKeyEvent"]))
+    
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_sourceId this _sourceId)
+        (send this jm_setOriginalKey_1 _originalKey)
+        (set-field! f_key this _key)
+        (send this jm_setGameActionKey_1 _gameActionKey)
+        (send this jm_setRepeatEvents_1 _repeated)))
+  this)
 
-function GameKeyEvent:_init_fields()
-    self.sourceId = nil
-    self.repeated = false
-    self.key = nil
-    self.gameActionKey = 0
-    self.originalKey = 0
-end
-
-
-function GameKeyEvent.createEvent(anyType, sourceId, key)
-        return GameKeyEvent.new(anyType, sourceId, 0, 0, key, false)
-end
-
-
-function GameKeyEvent.new(anyType, sourceId, originalKey, gameActionKey, key, repeated)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), GameKeyEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self.sourceId = sourceId
-        self:setOriginalKey(originalKey)
-        self.key = key
-        self:setGameActionKey(gameActionKey)
-        self:setRepeatEvents(repeated)
-    return self
-end
-
-
-function GameKeyEvent:init(anyType)
-        self:setSource(anyType)
-end
-
-
-function GameKeyEvent:setRepeatEvents(repeated)
-        self.repeated = repeated
-end
-
-
-function GameKeyEvent:hasRepeatEvents()
-        return self.repeated
-end
-
-
-function GameKeyEvent:getKey()
-        return self.key
-end
-
-
-function GameKeyEvent:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("\nKey: ")
-        stringBuffer:appendint(self:getKey())
-        return tostring(stringBuffer)
-end
-GameKeyEvent.__tostring = function(self) return self:toString() end
-
-
-function GameKeyEvent:getOriginalKey()
-        return self.originalKey
-end
-
-
-function GameKeyEvent:setOriginalKey(originalKey)
-        self.originalKey = originalKey
-end
-
-
-function GameKeyEvent:getGameActionKey()
-        return self.gameActionKey
-end
-
-
-function GameKeyEvent:setGameActionKey(gameActionKey)
-        self.gameActionKey = gameActionKey
-end
+(define (GameKeyEvent.jm_createEvent_3 _anyType _sourceId _key)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameKeyEvent.jnew_6 _anyType _sourceId 0 0 _key #f)))))
 
 
-function GameKeyEvent:getSourceId()
-        return self.sourceId
-end
-
-GameKeyEvent.NONE = GameKeyEvent.new(NullUtil.getInstance().NULL_OBJECT, -1, -1, -1, -1, false)
-
-return GameKeyEvent
 

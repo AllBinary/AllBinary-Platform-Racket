@@ -1,64 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local TopULayerBounds = require("org.allbinary.bounds.TopULayerBounds")
-local ArtificialIntelligenceInterfaceFactoryInterface = require("org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local VelocityInterface = require("org.allbinary.game.physics.velocity.VelocityInterface")
-local VelocityInterfaceCompositeInterface = require("org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface")
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface.rkt")
+(lazy-require ["../../../../../org/allbinary/bounds/TopULayerBounds.rkt" (TopULayerBounds.jnew_1)])
+(lazy-require ["../../../../../org/allbinary/graphics/PointFactory.rkt" (PointFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/Rectangle.rkt" (Rectangle.jnew_3)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["./BoundBounceAI.rkt" (BoundBounceAI.jnew_4)])
+(lazy-require ["./ReverseVelocityBoundsVisitor.rkt" (ReverseVelocityBoundsVisitor.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TopUBoundBounceAIFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_3 _hashtable _ownerLayerInterface _gameInput)
+    (let ([_velocityInterfaceCompositeInterface JR.null][_velocityInterface JR.null][_maxDistancePerTick JR.null][_halfWidth JR.null][_halfHeight JR.null][_point JR.null][_displayInfo JR.null][_rectangle JR.null])
+      (let/ec jreturn
+        (set! _velocityInterfaceCompositeInterface _ownerLayerInterface)
+        (set! _velocityInterface (send _velocityInterfaceCompositeInterface jm_getVelocityProperties_0))
+        (set! _maxDistancePerTick (arithmetic-shift (send _velocityInterface jm_getMaxForwardVelocity_0) (- (bitwise-and (JR.className (send _velocityInterface jm_getVelocityXBasicDecimalP_0)) 31))))
+        (set! _halfWidth (JR.i32 (+ (JR.i32 (+ (JR.i32 (* (send _ownerLayerInterface jm_getWidth_0) 2)) _maxDistancePerTick)) 1)))
+        (set! _halfHeight (JR.i32 (+ (JR.i32 (+ (JR.i32 (* (send _ownerLayerInterface jm_getHeight_0) 2)) _maxDistancePerTick)) 1)))
+        (set! _point (send (PointFactory.jm_getInstance_0) jm_createXY_2 _halfWidth (JR.i32 (+ _halfHeight 60))))
+        (set! _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (set! _rectangle (Rectangle.jnew_3 _point (JR.i32 (- (JR.i32 (- (send _displayInfo jm_getLastWidth_0) _halfWidth)) (send _point jm_getX_0))) (JR.i32 (- (JR.i32 (- (send _displayInfo jm_getLastHeight_0) _halfHeight)) (send _point jm_getY_0)))))
+        (jreturn (BoundBounceAI.jnew_4 _ownerLayerInterface _gameInput (TopULayerBounds.jnew_1 _rectangle) (ReverseVelocityBoundsVisitor.jnew_1 _ownerLayerInterface))))))))
+(define (TopUBoundBounceAIFactory.jclassValue) TopUBoundBounceAIFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TopUBoundBounceAIFactory = {}
-TopUBoundBounceAIFactory.__index = TopUBoundBounceAIFactory
-TopUBoundBounceAIFactory.className = "TopUBoundBounceAIFactory"
-
-function TopUBoundBounceAIFactory.new()
-    local self = setmetatable({}, TopUBoundBounceAIFactory)
-    return self
-end
+(define (TopUBoundBounceAIFactory.jnew_0)
+  (define this (new TopUBoundBounceAIFactory% [jclass "TopUBoundBounceAIFactory"]))
+  this)
 
 
--- throws Exception
-function TopUBoundBounceAIFactory:getInstance(hashtable, ownerLayerInterface, gameInput)
-        local velocityInterfaceCompositeInterface = ownerLayerInterface
-        local velocityInterface = velocityInterfaceCompositeInterface:getVelocityProperties()
-        local maxDistancePerTick = (((velocityInterface:getMaxForwardVelocity()) // (1 << (velocityInterface:getVelocityXBasicDecimalP():getScaledFactor()))))
-        local halfWidth = ownerLayerInterface:getWidth() * 2 + maxDistancePerTick + 1
-        local halfHeight = ownerLayerInterface:getHeight() * 2 + maxDistancePerTick + 1
-        local point = PointFactory.getInstance():createXY(halfWidth, halfHeight + 60)
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        local rectangle = Rectangle.new(point, (displayInfo:getLastWidth() - halfWidth - point:getX()), (displayInfo:getLastHeight() - halfHeight - point:getY()))
-        return BoundBounceAI.new(ownerLayerInterface, gameInput, TopULayerBounds.new(rectangle), ReverseVelocityBoundsVisitor.new(ownerLayerInterface))
-end
-
-return TopUBoundBounceAIFactory
 

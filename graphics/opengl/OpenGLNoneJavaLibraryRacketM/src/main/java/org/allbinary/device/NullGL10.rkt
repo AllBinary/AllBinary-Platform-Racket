@@ -1,525 +1,418 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.device
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.device
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../javax/microedition/khronos/opengles/GL10.rkt"
+  "../../../java/nio/Buffer.rkt"
+  "../../../java/nio/FloatBuffer.rkt"
+  "../../../java/nio/IntBuffer.rkt")
+(lazy-require ["../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
+
+(define NullGL10%
+  (class JObject%
+    (super-new)
+    (define/public (jm_glActiveTexture_1 _texture)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glAlphaFunc_2 _func _ref)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glBindTexture_2 _target _texture)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glBlendFunc_2 _sfactor _dfactor)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glClear_1 _mask)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glClearColor_4 _red _green _blue _alpha)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glClearDepthf_1 _depth)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glClearStencil_1 _s)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glClientActiveTexture_1 _texture)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glColor4f_4 _red _green _blue _alpha)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glColorMask_4 _red _green _blue _alpha)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glColorPointer_4 _size _type _stride _pointer)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glCompressedTexImage2D_8 _target _level _internalformat _width _height _border _imageSize _data)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glCompressedTexSubImage2D_9 _target _level _xoffset _yoffset _width _height _format _imageSize _data)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glCopyTexImage2D_8 _target _level _internalformat _x _y _width _height _border)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glCopyTexSubImage2D_8 _target _level _xoffset _yoffset _x _y _width _height)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glCullFace_1 _mode)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glDeleteTextures_3 _n _textures _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glDeleteTextures_2 _n _textures)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glDepthFunc_1 _func)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glDepthMask_1 _flag)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glDepthRangef_2 _zNear _zFar)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glDisable_1 _cap)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glDisableClientState_1 _array)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glDrawArrays_3 _mode _first _count)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glDrawElements_4 _mode _count _type _indices)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glEnable_1 _cap)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glEnableClientState_1 _array)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glFinish_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glFlush_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glFogf_2 _pname _param)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glFogfv_3 _pname _params _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glFogfv_2 _pname _params)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glFrontFace_1 _mode)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glFrustumf_6 _left _right _bottom _top _zNear _zFar)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glGenTextures_3 _n _textures _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glGenTextures_2 _n _textures)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glGetError_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_glGetIntegerv_3 _pname _params _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glGetIntegerv_2 _pname _params)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glGetString_1 _name)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))
+    (define/public (jm_glHint_2 _target _mode)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLightModelf_2 _pname _param)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLightModelfv_3 _pname _params _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLightModelfv_2 _pname _params)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLightf_3 _light _pname _param)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLightfv_4 _light _pname _params _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLightfv_3 _light _pname _params)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLineWidth_1 _width)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLoadIdentity_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLoadMatrixf_2 _m _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLoadMatrixf_1 _m)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glLogicOp_1 _opcode)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glMaterialf_3 _face _pname _param)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glMaterialfv_4 _face _pname _params _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glMaterialfv_3 _face _pname _params)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glMatrixMode_1 _mode)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glMultMatrixf_2 _m _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glMultMatrixf_1 _m)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glMultiTexCoord4f_5 _target _s _t _r _q)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glNormal3f_3 _nx _ny _nz)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glNormalPointer_3 _type _stride _pointer)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glOrthof_6 _left _right _bottom _top _zNear _zFar)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glPixelStorei_2 _pname _param)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glPointSize_1 _size)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glPolygonOffset_2 _factor _units)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glPopMatrix_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glPushMatrix_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glReadPixels_7 _x _y _width _height _format _type _pixels)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glRotatef_4 _angle _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glRotatex_4 _angle _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glSampleCoverage_2 _value _invert)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glScalef_3 _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glScalex_3 _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glScissor_4 _x _y _width _height)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glShadeModel_1 _mode)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glStencilFunc_3 _func _ref _mask)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glStencilMask_1 _mask)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glStencilOp_3 _fail _zfail _zpass)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glTexCoordPointer_4 _size _type _stride _pointer)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glTexEnvf_3 _target _pname _param)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glTexEnvfv_4 _target _pname _params _offset)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glTexEnvfv_3 _target _pname _params)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glTexImage2D_9 _target _level _internalformat _width _height _border _format _type _pixels)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glTexParameterf_3 _target _pname _param)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glTexParameteri_3 _target _pname _param)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glTexSubImage2D_9 _target _level _xoffset _yoffset _width _height _format _type _pixels)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glTranslatef_3 _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glVertexPointer_4 _size _type _stride _pointer)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glViewport_4 _x _y _width _height)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glBegin_1 _i)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glEnd_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glVertex3f_3 _f _f2 _f3)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))
+    (define/public (jm_glPolygonMode_2 _i _i1)
+    (let ()
+      (let/ec jreturn
+        (jreturn (void)))))))
+(define (NullGL10.jclassValue) NullGL10%)
+
+(define NullGL10.jcell_NULL_GL10 'jnone)
+(define (NullGL10.jstatic_NULL_GL10)
+  (when (eq? NullGL10.jcell_NULL_GL10 'jnone) (set! NullGL10.jcell_NULL_GL10 (NullGL10.jnew_0)))
+  NullGL10.jcell_NULL_GL10)
+(define (NullGL10.jsetstatic_NULL_GL10 value) (set! NullGL10.jcell_NULL_GL10 value))
+
+(define (NullGL10.jnew_0)
+  (define this (new NullGL10% [jclass "NullGL10"]))
+  this)
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
--- local Buffer = require("java.nio.Buffer")
--- local FloatBuffer = require("java.nio.FloatBuffer")
--- local IntBuffer = require("java.nio.IntBuffer")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local NullGL10 = {}
-NullGL10.__index = NullGL10
-NullGL10.className = "NullGL10"
-
-function NullGL10.new()
-    local self = setmetatable({}, NullGL10)
-    return self
-end
-
-
-function NullGL10:glActiveTexture(texture)
-        return
-end
-
-
-function NullGL10:glAlphaFunc(func, ref)
-        return
-end
-
-
-function NullGL10:glBindTexture(target, texture)
-        return
-end
-
-
-function NullGL10:glBlendFunc(sfactor, dfactor)
-        return
-end
-
-
-function NullGL10:glClear(mask)
-        return
-end
-
-
-function NullGL10:glClearColor(red, green, blue, alpha)
-        return
-end
-
-
-function NullGL10:glClearDepthf(depth)
-        return
-end
-
-
-function NullGL10:glClearStencil(s)
-        return
-end
-
-
-function NullGL10:glClientActiveTexture(texture)
-        return
-end
-
-
-function NullGL10:glColor4f(red, green, blue, alpha)
-        return
-end
-
-
-function NullGL10:glColorMask(red, green, blue, alpha)
-        return
-end
-
-
-function NullGL10:glColorPointer(size, type, stride, pointer)
-        return
-end
-
-
-function NullGL10:glCompressedTexImage2D(target, level, internalformat, width, height, border, imageSize, data)
-        return
-end
-
-
-function NullGL10:glCompressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, imageSize, data)
-        return
-end
-
-
-function NullGL10:glCopyTexImage2D(target, level, internalformat, x, y, width, height, border)
-        return
-end
-
-
-function NullGL10:glCopyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height)
-        return
-end
-
-
-function NullGL10:glCullFace(mode)
-        return
-end
-
-
-function NullGL10:glDeleteTextures(n, textures, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glDeleteTextures(n, textures)
-        return
-end
-
-
-function NullGL10:glDepthFunc(func)
-        return
-end
-
-
-function NullGL10:glDepthMask(flag)
-        return
-end
-
-
-function NullGL10:glDepthRangef(zNear, zFar)
-        return
-end
-
-
-function NullGL10:glDisable(cap)
-        return
-end
-
-
-function NullGL10:glDisableClientState(array)
-        return
-end
-
-
-function NullGL10:glDrawArrays(mode, first, count)
-        return
-end
-
-
-function NullGL10:glDrawElements(mode, count, type, indices)
-        return
-end
-
-
-function NullGL10:glEnable(cap)
-        return
-end
-
-
-function NullGL10:glEnableClientState(array)
-        return
-end
-
-
-function NullGL10:glFinish()
-        return
-end
-
-
-function NullGL10:glFlush()
-        return
-end
-
-
-function NullGL10:glFogf(pname, param)
-        return
-end
-
-
-function NullGL10:glFogfv(pname, params, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glFogfv(pname, params)
-        return
-end
-
-
-function NullGL10:glFrontFace(mode)
-        return
-end
-
-
-function NullGL10:glFrustumf(left, right, bottom, top, zNear, zFar)
-        return
-end
-
-
-function NullGL10:glGenTextures(n, textures, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glGenTextures(n, textures)
-        return
-end
-
-
-function NullGL10:glGetError()
-        return 0
-end
-
-
-function NullGL10:glGetIntegerv(pname, params, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glGetIntegerv(pname, params)
-        return
-end
-
-
-function NullGL10:glGetString(name)
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function NullGL10:glHint(target, mode)
-        return
-end
-
-
-function NullGL10:glLightModelf(pname, param)
-        return
-end
-
-
-function NullGL10:glLightModelfv(pname, params, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glLightModelfv(pname, params)
-        return
-end
-
-
-function NullGL10:glLightf(light, pname, param)
-        return
-end
-
-
-function NullGL10:glLightfv(light, pname, params, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glLightfv(light, pname, params)
-        return
-end
-
-
-function NullGL10:glLineWidth(width)
-        return
-end
-
-
-function NullGL10:glLoadIdentity()
-        return
-end
-
-
-function NullGL10:glLoadMatrixf(m, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glLoadMatrixf(m)
-        return
-end
-
-
-function NullGL10:glLogicOp(opcode)
-        return
-end
-
-
-function NullGL10:glMaterialf(face, pname, param)
-        return
-end
-
-
-function NullGL10:glMaterialfv(face, pname, params, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glMaterialfv(face, pname, params)
-        return
-end
-
-
-function NullGL10:glMatrixMode(mode)
-        return
-end
-
-
-function NullGL10:glMultMatrixf(m, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glMultMatrixf(m)
-        return
-end
-
-
-function NullGL10:glMultiTexCoord4f(target, s, t, r, q)
-        return
-end
-
-
-function NullGL10:glNormal3f(nx, ny, nz)
-        return
-end
-
-
-function NullGL10:glNormalPointer(type, stride, pointer)
-        return
-end
-
-
-function NullGL10:glOrthof(left, right, bottom, top, zNear, zFar)
-        return
-end
-
-
-function NullGL10:glPixelStorei(pname, param)
-        return
-end
-
-
-function NullGL10:glPointSize(size)
-        return
-end
-
-
-function NullGL10:glPolygonOffset(factor, units)
-        return
-end
-
-
-function NullGL10:glPopMatrix()
-        return
-end
-
-
-function NullGL10:glPushMatrix()
-        return
-end
-
-
-function NullGL10:glReadPixels(x, y, width, height, format, type, pixels)
-        return
-end
-
-
-function NullGL10:glRotatef(angle, x, y, z)
-        return
-end
-
-
-function NullGL10:glRotatex(angle, x, y, z)
-        return
-end
-
-
-function NullGL10:glSampleCoverage(value, invert)
-        return
-end
-
-
-function NullGL10:glScalef(x, y, z)
-        return
-end
-
-
-function NullGL10:glScalex(x, y, z)
-        return
-end
-
-
-function NullGL10:glScissor(x, y, width, height)
-        return
-end
-
-
-function NullGL10:glShadeModel(mode)
-        return
-end
-
-
-function NullGL10:glStencilFunc(func, ref, mask)
-        return
-end
-
-
-function NullGL10:glStencilMask(mask)
-        return
-end
-
-
-function NullGL10:glStencilOp(fail, zfail, zpass)
-        return
-end
-
-
-function NullGL10:glTexCoordPointer(size, type, stride, pointer)
-        return
-end
-
-
-function NullGL10:glTexEnvf(target, pname, param)
-        return
-end
-
-
-function NullGL10:glTexEnvfv(target, pname, params, offset)
-        return
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullGL10:glTexEnvfv(target, pname, params)
-        return
-end
-
-
-function NullGL10:glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels)
-        return
-end
-
-
-function NullGL10:glTexParameterf(target, pname, param)
-        return
-end
-
-
-function NullGL10:glTexParameteri(target, pname, param)
-        return
-end
-
-
-function NullGL10:glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels)
-        return
-end
-
-
-function NullGL10:glTranslatef(x, y, z)
-        return
-end
-
-
-function NullGL10:glVertexPointer(size, type, stride, pointer)
-        return
-end
-
-
-function NullGL10:glViewport(x, y, width, height)
-        return
-end
-
-
-function NullGL10:glBegin(i)
-        return
-end
-
-
-function NullGL10:glEnd()
-        return
-end
-
-
-function NullGL10:glVertex3f(f, f2, f3)
-        return
-end
-
-
-function NullGL10:glPolygonMode(i, i1)
-        return
-end
-
-NullGL10.NULL_GL10 = NullGL10.new()
-
-return NullGL10
 

@@ -25,6 +25,7 @@
       (raise (JR.newException "AbstractMethodError" "compareTo")))
     (define/override (jm_toString_0)
       (raise (JR.newException "AbstractMethodError" "toString")))))
+(define (HardwareComponentInterface.jclassValue) HardwareComponentInterface%)
 
 (define (HardwareComponentInterface.jnew_0)
   (define this (new HardwareComponentInterface% [jclass "HardwareComponentInterface"]))

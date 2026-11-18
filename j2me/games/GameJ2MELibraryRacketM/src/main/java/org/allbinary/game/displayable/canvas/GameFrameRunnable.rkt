@@ -1,73 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local GameTickDisplayInfoSingleton = require("org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local GameTickTimeDelayHelper = require("org.allbinary.time.GameTickTimeDelayHelper")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local GameRunnable = require("org.allbinary.game.displayable.canvas.GameRunnable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./GameRunnable.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/GameTickDisplayInfoSingleton.rkt" (GameTickDisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/time/GameTickTimeDelayHelperFactory.rkt" (GameTickTimeDelayHelperFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameFrameRunnable%
+  (class GameRunnable%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_gameTickDisplayInfoSingleton JR.null])
+    (field [f_allBinaryGameCanvas JR.null])
+    (field [f_gameTickTimeDelayHelper JR.null])
+    (define/override (jm_run_0)
+    (let ([_allBinaryGameCanvas JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_RUN _commonStrings) _e))])
+            (set! _allBinaryGameCanvas (get-field f_allBinaryGameCanvas this))
+            (JR.className (send _allBinaryGameCanvas jm_getLoopTimeHelperP_0))
+            (send (get-field f_gameTickDisplayInfoSingleton this) jm_update_0)
+            (send _allBinaryGameCanvas jm_processGame_0)
+            (when (or (not (send _allBinaryGameCanvas jm_isRunning_0)) (send _allBinaryGameCanvas jm_isPaused_0))
+                (begin
+                (send _allBinaryGameCanvas jm_notifyDonePainting_0)))))))))
+(define (GameFrameRunnable.jclassValue) GameFrameRunnable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameFrameRunnable = {}
-GameFrameRunnable.__index = GameFrameRunnable
-GameFrameRunnable.className = "GameFrameRunnable"
-setmetatable(GameFrameRunnable, {__index = GameRunnable})
-
-function GameFrameRunnable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
-    self.allBinaryGameCanvas = nil
-    self.gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-end
+(define (GameFrameRunnable.jnew_1 _allBinaryGameCanvas)
+  (define this (new GameFrameRunnable% [jclass "GameFrameRunnable"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_gameTickDisplayInfoSingleton this (GameTickDisplayInfoSingleton.jm_getInstance_0))
+    
+    (set-field! f_gameTickTimeDelayHelper this (GameTickTimeDelayHelperFactory.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn
+        (set-field! f_allBinaryGameCanvas this _allBinaryGameCanvas)))
+  this)
 
 
-function GameFrameRunnable.new(allBinaryGameCanvas)
-    local self = setmetatable(GameRunnable.new(), GameFrameRunnable)
-    self:_init_fields()
-        self.allBinaryGameCanvas = allBinaryGameCanvas
-    return self
-end
-
-
-function GameFrameRunnable:run()
-        local try_ok, try_error = pcall(function()
-            local allBinaryGameCanvas = self.allBinaryGameCanvas
-            allBinaryGameCanvas:getLoopTimeHelperP():setStartTime(self.gameTickTimeDelayHelper:setStartTime())
-            self.gameTickDisplayInfoSingleton:update()
-            allBinaryGameCanvas:processGame()
-            if not allBinaryGameCanvas:isRunning() or allBinaryGameCanvas:isPaused() then
-                allBinaryGameCanvas:notifyDonePainting()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
-        end
-end
-
-return GameFrameRunnable
 

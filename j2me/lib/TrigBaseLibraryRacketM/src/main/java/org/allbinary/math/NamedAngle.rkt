@@ -23,6 +23,7 @@
   (class Angle%
     (super-new)
     (field [f_name JR.null])))
+(define (NamedAngle.jclassValue) NamedAngle%)
 
 (define (NamedAngle.jnew_2 _angle _name)
   (define this (new NamedAngle% [jclass "NamedAngle"]))

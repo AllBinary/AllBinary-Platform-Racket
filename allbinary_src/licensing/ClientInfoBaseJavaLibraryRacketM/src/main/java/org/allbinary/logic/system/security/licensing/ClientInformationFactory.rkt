@@ -1,50 +1,43 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system.security.licensing
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./ClientInformation.rkt" (ClientInformation.jnew_4)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ClientInformationFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_0)
+    (let ([_logUtil JR.null][_commonStrings JR.null][_stringUtil JR.null])
+      (let/ec jreturn
+        (set! _logUtil (LogUtil.jm_getInstance_0))
+        (set! _commonStrings (CommonStrings.jm_getInstance_0))
+        (send _logUtil jm_putF_3 (get-field f_NOT_IMPLEMENTED _commonStrings) this (get-field f_GET_INSTANCE _commonStrings))
+        (set! _stringUtil (StringUtil.jm_getInstance_0))
+        (jreturn (ClientInformation.jnew_4 (get-field f_NULL_STRING _stringUtil) (get-field f_NULL_STRING _stringUtil) (get-field f_NULL_STRING _stringUtil) (get-field f_NULL_STRING _stringUtil))))))))
+(define (ClientInformationFactory.jclassValue) ClientInformationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ClientInformationFactory = {}
-ClientInformationFactory.__index = ClientInformationFactory
-ClientInformationFactory.className = "ClientInformationFactory"
-
-function ClientInformationFactory.new()
-    local self = setmetatable({}, ClientInformationFactory)
-    return self
-end
+(define (ClientInformationFactory.jnew_0)
+  (define this (new ClientInformationFactory% [jclass "ClientInformationFactory"]))
+  this)
 
 
-function ClientInformationFactory:getInstance()
-        local logUtil = LogUtil.getInstance()
-        local commonStrings = CommonStrings.getInstance()
-        logUtil:putF(commonStrings.NOT_IMPLEMENTED, self, commonStrings.GET_INSTANCE)
-        local stringUtil = StringUtil.getInstance()
-        return ClientInformation.new(stringUtil.NULL_STRING, stringUtil.NULL_STRING, stringUtil.NULL_STRING, stringUtil.NULL_STRING)
-end
-
-return ClientInformationFactory
 

@@ -1,39 +1,33 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input.event
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define RawKeyEventListener%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onEventRaw_3 _keyCode _deviceId _repeated)
+      (raise (JR.newException "AbstractMethodError" "onEventRaw")))))
+(define (RawKeyEventListener.jclassValue) RawKeyEventListener%)
+
+(define (RawKeyEventListener.jnew_0)
+  (define this (new RawKeyEventListener% [jclass "RawKeyEventListener"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local RawKeyEventListener = {}
-RawKeyEventListener.__index = RawKeyEventListener
-RawKeyEventListener.className = "RawKeyEventListener"
-
-
-function RawKeyEventListener:onEventRaw(keyCode, deviceId, repeated)
-    error("abstract method onEventRaw")
-end
-
-return RawKeyEventListener
 

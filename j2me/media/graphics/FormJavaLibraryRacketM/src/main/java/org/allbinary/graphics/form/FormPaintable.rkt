@@ -1,58 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/paint/Paintable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define FormPaintable%
+  (class Paintable%
+    (super-new)
+    (field [f_form JR.null])
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_form this) jm_paint_1 _graphics))))
+    (define/public (jm_getForm_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_form this)))))))
+(define (FormPaintable.jclassValue) FormPaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local FormPaintable = {}
-FormPaintable.__index = FormPaintable
-FormPaintable.className = "FormPaintable"
-setmetatable(FormPaintable, {__index = Paintable})
-
-function FormPaintable:_init_fields()
-    self.form = nil
-end
-
-
-function FormPaintable.new(form)
-    local self = setmetatable(Paintable.new(), FormPaintable)
-    self:_init_fields()
-        self.form = form
-    return self
-end
+(define (FormPaintable.jnew_1 _form)
+  (define this (new FormPaintable% [jclass "FormPaintable"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_form this _form)))
+  this)
 
 
-function FormPaintable:paint(graphics)
-        self.form:paint(graphics)
-end
-
-
-function FormPaintable:getForm()
-        return self.form
-end
-
-return FormPaintable
 

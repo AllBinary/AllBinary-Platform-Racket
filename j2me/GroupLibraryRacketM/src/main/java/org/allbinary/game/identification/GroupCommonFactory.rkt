@@ -1,59 +1,58 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.identification
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.identification
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.rkt" (SmallIntegerSingletonFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GroupCommonFactory%
+  (class JObject%
+    (super-new)
+    (field [f_ID JR.null])
+    (field [f_GROUP_NAME_LABEL JR.null])
+    (field [f_ID_LABEL JR.null])
+    (field [f_ADDING_LABEL JR.null])
+    (field [f_TO_LABEL JR.null])))
+(define (GroupCommonFactory.jclassValue) GroupCommonFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GroupCommonFactory.jcell_instance 'jnone)
+(define (GroupCommonFactory.jstatic_instance)
+  (when (eq? GroupCommonFactory.jcell_instance 'jnone) (set! GroupCommonFactory.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  GroupCommonFactory.jcell_instance)
+(define (GroupCommonFactory.jsetstatic_instance value) (set! GroupCommonFactory.jcell_instance value))
 
-local GroupCommonFactory = {}
-GroupCommonFactory.__index = GroupCommonFactory
-GroupCommonFactory.className = "GroupCommonFactory"
+(define (GroupCommonFactory.jnew_0)
+  (define this (new GroupCommonFactory% [jclass "GroupCommonFactory"]))
+    (set-field! f_ID this (send (SmallIntegerSingletonFactory.jm_getInstance_0) jm_getAt_1 10))
+    (set-field! f_GROUP_NAME_LABEL this "Group Name: ")
+    (set-field! f_ID_LABEL this " Id: ")
+    (set-field! f_ADDING_LABEL this "Adding: ")
+    (set-field! f_TO_LABEL this " to: ")
+  this)
 
-function GroupCommonFactory:_init_fields()
-    self.ID = SmallIntegerSingletonFactory.getInstance():getAt(10)
-    self.GROUP_NAME_LABEL = "Group Name: "
-    self.ID_LABEL = " Id: "
-    self.ADDING_LABEL = "Adding: "
-    self.TO_LABEL = " to: "
-end
-
-function GroupCommonFactory.new()
-    local self = setmetatable({}, GroupCommonFactory)
-    self:_init_fields()
-    return self
-end
+(define (GroupCommonFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (GroupCommonFactory.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! GroupCommonFactory.jcell_instance (GroupCommonFactory.jnew_0))))
+        (jreturn (GroupCommonFactory.jstatic_instance)))))
 
 
-function GroupCommonFactory.getInstance()
-        if GroupCommonFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            GroupCommonFactory.instance = GroupCommonFactory.new()
-        end
-        return GroupCommonFactory.instance
-end
-
-GroupCommonFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return GroupCommonFactory
 

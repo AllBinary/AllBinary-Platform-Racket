@@ -22,6 +22,7 @@
 (define ABStack%
   (class Stack%
     (super-new)))
+(define (ABStack.jclassValue) ABStack%)
 
 (define (ABStack.jnew_0)
   (define this (new ABStack% [jclass "ABStack"]))

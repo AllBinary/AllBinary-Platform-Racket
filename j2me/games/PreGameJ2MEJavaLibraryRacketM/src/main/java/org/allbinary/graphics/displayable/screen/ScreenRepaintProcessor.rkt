@@ -1,54 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.displayable.screen
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
-local Processor = require("org.allbinary.canvas.Processor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/canvas/Processor.rkt")
+(lazy-require ["./ScreenRepaintUtil.rkt" (ScreenRepaintUtil.jm_repaint_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ScreenRepaintProcessor%
+  (class Processor%
+    (super-new)
+    (field [f_displayable JR.null])
+    (define/override (jm_process_0)
+    (let ()
+      (let/ec jreturn
+        (ScreenRepaintUtil.jm_repaint_1 (get-field f_displayable this)))))))
+(define (ScreenRepaintProcessor.jclassValue) ScreenRepaintProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ScreenRepaintProcessor = {}
-ScreenRepaintProcessor.__index = ScreenRepaintProcessor
-ScreenRepaintProcessor.className = "ScreenRepaintProcessor"
-setmetatable(ScreenRepaintProcessor, {__index = Processor})
-
-function ScreenRepaintProcessor:_init_fields()
-    self.displayable = nil
-end
-
-
-function ScreenRepaintProcessor.new(displayable)
-    local self = setmetatable(Processor.new(), ScreenRepaintProcessor)
-    self:_init_fields()
-        self.displayable = displayable
-    return self
-end
+(define (ScreenRepaintProcessor.jnew_1 _displayable)
+  (define this (new ScreenRepaintProcessor% [jclass "ScreenRepaintProcessor"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_displayable this _displayable)))
+  this)
 
 
--- throws Exception
-function ScreenRepaintProcessor:process()
-        ScreenRepaintUtil.repaint(self.displayable)
-end
-
-return ScreenRepaintProcessor
 

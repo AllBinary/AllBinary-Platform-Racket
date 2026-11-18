@@ -1,56 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local ArtificialIntelligenceInterfaceFactoryInterface = require("org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface.rkt")
+(lazy-require ["./NullAI.rkt" (NullAI.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullAIFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_3 _hashtable _ownerLayerInterface _gameInput)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullAIFactory.jstatic_NULL_AI)))))))
+(define (NullAIFactory.jclassValue) NullAIFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullAIFactory.jcell_NULL_AI 'jnone)
+(define (NullAIFactory.jstatic_NULL_AI)
+  (when (eq? NullAIFactory.jcell_NULL_AI 'jnone) (set! NullAIFactory.jcell_NULL_AI (NullAI.jnew_0)))
+  NullAIFactory.jcell_NULL_AI)
+(define (NullAIFactory.jsetstatic_NULL_AI value) (set! NullAIFactory.jcell_NULL_AI value))
 
-local NullAIFactory = {}
-NullAIFactory.__index = NullAIFactory
-NullAIFactory.className = "NullAIFactory"
+(define (NullAIFactory.jnew_0)
+  (define this (new NullAIFactory% [jclass "NullAIFactory"]))
+  this)
 
-function NullAIFactory.new()
-    local self = setmetatable({}, NullAIFactory)
-    return self
-end
-
-
-function NullAIFactory:getInstance(hashtable, ownerLayerInterface, gameInput)
-        return NullAIFactory.NULL_AI
-end
+(define (NullAIFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullAIFactory.jstatic_NULL_AI)))))
 
 
--- Java overloaded method: Lua keeps the last definition
-function NullAIFactory.getInstance()
-        return NullAIFactory.NULL_AI
-end
-
-NullAIFactory.NULL_AI = NullAI.new()
-
-return NullAIFactory
 

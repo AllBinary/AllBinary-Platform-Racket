@@ -1,79 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system.security.licensing
 
-local LicenseInitInfo = require("org.allbinary.business.init.LicenseInitInfo")
-local LicenseInitInfoUtil = require("org.allbinary.business.init.LicenseInitInfoUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
-local OperatingSystemFactory = require("org.allbinary.logic.system.os.OperatingSystemFactory")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ClientInformation = require("org.allbinary.logic.system.security.licensing.ClientInformation")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "./ClientInformation.rkt")
+(lazy-require ["../../../../../../org/allbinary/business/init/LicenseInitInfoUtil.rkt" (LicenseInitInfoUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringValidationUtil.rkt" (StringValidationUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/system/os/OperatingSystemFactory.rkt" (OperatingSystemFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+; This is the information sent to the license server
+(define AbeClientInformation%
+  (class ClientInformation%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/override (jm_init_0)
+    (let ([_licenseInitInfo JR.null][_stringValidationUtil JR.null][_NONE JR.null][_commonStrings JR.null][_logUtil JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _logUtil (LogUtil.jm_getInstance_0))
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send _logUtil jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_CONSTRUCTOR _commonStrings) _e))])
+            (send this jm_setOperatingSystemInterface_1 (send (OperatingSystemFactory.jm_getInstance_0) jm_getOperatingSystemInstance_0))
+            (set! _licenseInitInfo (send (LicenseInitInfoUtil.jm_getInstance_0) jm_read_0))
+            (send this jm_setLicenseId_1 (send _licenseInitInfo jm_getLicenseId_0))
+            (send this jm_setLicenseServers_1 (send _licenseInitInfo jm_getServerList_0))
+            (set! _stringValidationUtil (StringValidationUtil.jm_getInstance_0))
+            (when (send _stringValidationUtil jm_isEmpty_1 (send this jm_getLicenseId_0))
+                (begin
+                (set! _NONE "No License Id")
+                (send this jm_setLicenseId_1 _NONE)))
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (PreLogUtil.jm_put_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "Special Name: ") jm_append_1 (send this jm_getSpecialName_0)) jm_toString_0) this (get-field f_CONSTRUCTOR _commonStrings))))))))
+(define (AbeClientInformation.jclassValue) AbeClientInformation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- This is the information sent to the license server
-local AbeClientInformation = {}
-AbeClientInformation.__index = AbeClientInformation
-AbeClientInformation.className = "AbeClientInformation"
-setmetatable(AbeClientInformation, {__index = ClientInformation})
-
-function AbeClientInformation:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+(define (AbeClientInformation.jnew_4 _name _version _specialName _shortName)
+  (define this (new AbeClientInformation% [jclass "AbeClientInformation"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function AbeClientInformation.new(name, version, specialName, shortName)
-    local self = setmetatable(ClientInformation.new(name, version, specialName, shortName), AbeClientInformation)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function AbeClientInformation:init()
-        local try_ok, try_error = pcall(function()
-            self:setOperatingSystemInterface(OperatingSystemFactory.getInstance():getOperatingSystemInstance())
-            local licenseInitInfo = LicenseInitInfoUtil.getInstance():read()
-            self:setLicenseId(licenseInitInfo:getLicenseId())
-            self:setLicenseServers(licenseInitInfo:getServerList())
-            local stringValidationUtil = StringValidationUtil.getInstance()
-            if stringValidationUtil:isEmpty(self:getLicenseId()) then
-                local NONE = "No License Id"
-                self:setLicenseId(NONE)
-            end
-            local commonStrings = CommonStrings.getInstance()
-            PreLogUtil.put(tostring(StringMaker.new():append("Special Name: "):append(self:getSpecialName())), self, commonStrings.CONSTRUCTOR)
-        end)
-        if not try_ok then
-            local e = try_error
-            local logUtil = LogUtil.getInstance()
-            local commonStrings = CommonStrings.getInstance()
-            logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-        end
-end
-
-return AbeClientInformation
 

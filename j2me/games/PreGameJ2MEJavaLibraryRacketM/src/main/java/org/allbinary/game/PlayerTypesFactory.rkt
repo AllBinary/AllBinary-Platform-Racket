@@ -1,52 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["./PlayerType.rkt" (PlayerType.jnew_2)])
+(provide (all-defined-out))
+
+(define PlayerTypesFactory%
+  (class JObject%
+    (super-new)
+    (field [f_PLAYER_TYPE_ONE JR.null])
+    (field [f_PLAYER_TYPE_TWO JR.null])
+    (field [f_PLAYER_TYPE_THREE JR.null])))
+(define (PlayerTypesFactory.jclassValue) PlayerTypesFactory%)
+
+(define PlayerTypesFactory.jcell_SINGLETON 'jnone)
+(define (PlayerTypesFactory.jstatic_SINGLETON)
+  (when (eq? PlayerTypesFactory.jcell_SINGLETON 'jnone) (set! PlayerTypesFactory.jcell_SINGLETON (PlayerTypesFactory.jnew_0)))
+  PlayerTypesFactory.jcell_SINGLETON)
+(define (PlayerTypesFactory.jsetstatic_SINGLETON value) (set! PlayerTypesFactory.jcell_SINGLETON value))
+
+(define (PlayerTypesFactory.jnew_0)
+  (define this (new PlayerTypesFactory% [jclass "PlayerTypesFactory"]))
+    (set-field! f_PLAYER_TYPE_ONE this (PlayerType.jnew_2 "Player Type One" 0))
+    (set-field! f_PLAYER_TYPE_TWO this (PlayerType.jnew_2 "Player Type Two" 1))
+    (set-field! f_PLAYER_TYPE_THREE this (PlayerType.jnew_2 "Player Type Three" 2))
+  this)
+
+(define (PlayerTypesFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PlayerTypesFactory.jstatic_SINGLETON)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PlayerTypesFactory = {}
-PlayerTypesFactory.__index = PlayerTypesFactory
-PlayerTypesFactory.className = "PlayerTypesFactory"
-
-function PlayerTypesFactory:_init_fields()
-    self.PLAYER_TYPE_ONE = PlayerType.new("Player Type One", 0)
-    self.PLAYER_TYPE_TWO = PlayerType.new("Player Type Two", 1)
-    self.PLAYER_TYPE_THREE = PlayerType.new("Player Type Three", 2)
-end
-
-function PlayerTypesFactory.new()
-    local self = setmetatable({}, PlayerTypesFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function PlayerTypesFactory.getInstance()
-        return PlayerTypesFactory.SINGLETON
-end
-
-PlayerTypesFactory.SINGLETON = PlayerTypesFactory.new()
-
-return PlayerTypesFactory
 

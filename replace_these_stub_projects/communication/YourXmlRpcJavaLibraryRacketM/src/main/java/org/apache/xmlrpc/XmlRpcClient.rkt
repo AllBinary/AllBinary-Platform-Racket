@@ -1,62 +1,44 @@
--- Generated Code Do Not Modify
--- package org.apache.xmlrpc
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.apache.xmlrpc
 
--- local IOException = require("java.io.IOException")
--- local MalformedURLException = require("java.net.MalformedURLException")
--- local URL = require("java.net.URL")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local CryptInterface = require("org.allbinary.init.crypt.jcehelper.CryptInterface")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local XmlRpcHandler = require("org.apache.xmlrpc.XmlRpcHandler")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/io/IOException.rkt"
+  "../../../java/net/MalformedURLException.rkt"
+  "../../../java/net/URL.rkt"
+  "./XmlRpcHandler.rkt")
+(lazy-require ["../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define XmlRpcClient%
+  (class JObject%
+    (super-new)
+    (field [f_url JR.null])
+    (define/public (jm_getURL_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_url this)))))
+    (define/public (jm_setBasicAuthentication_2 _user _password)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_execute_2 _method _params)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))))
+    (define/public (jm_executeWithCrypt_3 _method _params _cryptInterface)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))))))
+(define (XmlRpcClient.jclassValue) XmlRpcClient%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local XmlRpcClient = {}
-XmlRpcClient.__index = XmlRpcClient
-XmlRpcClient.className = "XmlRpcClient"
-
-function XmlRpcClient:_init_fields()
-    self.url = nil
-end
-
-
-function XmlRpcClient.new(url)
-    local self = setmetatable({}, XmlRpcClient)
-    self:_init_fields()
-        self.url = URL.new(url)
-    return self
-end
-
-
-function XmlRpcClient:getURL()
-        return self.url
-end
+(define (XmlRpcClient.jnew_1 _url)
+  (define this (new XmlRpcClient% [jclass "XmlRpcClient"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_url this (URL.jnew_1 _url))))
+  this)
 
 
-function XmlRpcClient:setBasicAuthentication(user, password)
-end
-
-
--- throws XmlRpcException, IOException
-function XmlRpcClient:execute(method, params)
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-
--- throws XmlRpcException, IOException
-function XmlRpcClient:executeWithCrypt(method, params, cryptInterface)
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-return XmlRpcClient
 

@@ -1,86 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.time
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.time
 
--- local Calendar = require("java.util.Calendar")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/util/Calendar.rkt"
+  "../../../java/lang/Integer.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TimeUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_setCalendar_5 _calendar _yearString _monthString _dayString _hourString)
+    (let ([_year JR.null][_month JR.null][_day JR.null][_hour JR.null])
+      (let/ec jreturn
+        (set! _year (send _yearString jm_intValue_0))
+        (set! _month (send _monthString jm_intValue_0))
+        (set! _day (send _dayString jm_intValue_0))
+        (set! _hour (send _hourString jm_intValue_0))
+        (send _calendar jm_set_5 _year _month _day _hour 0))))
+    (define/public (jm_setCalendarWithTime_7 _calendar _yearString _monthString _dayString _hourString _minuteString _secondString)
+    (let ([_year JR.null][_month JR.null][_day JR.null][_hour JR.null][_minute JR.null][_second JR.null])
+      (let/ec jreturn
+        (set! _year (send _yearString jm_intValue_0))
+        (set! _month (send _monthString jm_intValue_0))
+        (set! _day (send _dayString jm_intValue_0))
+        (set! _hour (send _hourString jm_intValue_0))
+        (set! _minute (send _minuteString jm_intValue_0))
+        (set! _second (send _secondString jm_intValue_0))
+        (send _calendar jm_set_6 _year _month _day _hour _minute _second))))
+    (define/public (jm_setExpirationCalendar_7 _calendar _yearsString _monthsString _daysString _hoursString _minutesString _secondsString)
+    (let ([_year JR.null][_month JR.null][_day JR.null][_hour JR.null][_minute JR.null][_second JR.null])
+      (let/ec jreturn
+        (set! _year (JR.i32 (+ (send _calendar jm_get_1 (Calendar.jstatic_YEAR)) (send _yearsString jm_intValue_0))))
+        (set! _month (JR.i32 (+ (send _calendar jm_get_1 (Calendar.jstatic_MONTH)) (send _monthsString jm_intValue_0))))
+        (set! _day (JR.i32 (+ (send _calendar jm_get_1 (Calendar.jstatic_DAY_OF_MONTH)) (send _daysString jm_intValue_0))))
+        (set! _hour (JR.i32 (+ (send _calendar jm_get_1 (Calendar.jstatic_HOUR)) (send _hoursString jm_intValue_0))))
+        (set! _minute (JR.i32 (+ (send _calendar jm_get_1 (Calendar.jstatic_MINUTE)) (send _minutesString jm_intValue_0))))
+        (set! _second (JR.i32 (+ (send _calendar jm_get_1 (Calendar.jstatic_SECOND)) (send _secondsString jm_intValue_0))))
+        (send _calendar jm_set_6 _year _month _day _hour _minute _second))))
+    (define/public (jm_getTotalTime_6 _yearString _monthString _dayString _hourString _minuteString _secondString)
+    (let ([_time JR.null][_timeDelta JR.null])
+      (let/ec jreturn
+        (set! _time (JR.className (TimeUtil.jstatic_calendar)))
+        (send this jm_setExpirationCalendar_7 (TimeUtil.jstatic_calendar) _yearString _monthString _dayString _hourString _minuteString _secondString)
+        (set! _timeDelta (JR.className (TimeUtil.jstatic_calendar)))
+        (jreturn (JR.i64 (- _timeDelta _time))))))))
+(define (TimeUtil.jclassValue) TimeUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define TimeUtil.jcell_instance 'jnone)
+(define (TimeUtil.jstatic_instance)
+  (when (eq? TimeUtil.jcell_instance 'jnone) (set! TimeUtil.jcell_instance (TimeUtil.jnew_0)))
+  TimeUtil.jcell_instance)
+(define (TimeUtil.jsetstatic_instance value) (set! TimeUtil.jcell_instance value))
 
-local TimeUtil = {}
-TimeUtil.__index = TimeUtil
-TimeUtil.className = "TimeUtil"
+(define TimeUtil.jcell_calendar 'jnone)
+(define (TimeUtil.jstatic_calendar)
+  (when (eq? TimeUtil.jcell_calendar 'jnone) (set! TimeUtil.jcell_calendar (Calendar.jm_getInstance_0)))
+  TimeUtil.jcell_calendar)
+(define (TimeUtil.jsetstatic_calendar value) (set! TimeUtil.jcell_calendar value))
 
-function TimeUtil.new()
-    local self = setmetatable({}, TimeUtil)
-    return self
-end
+(define (TimeUtil.jnew_0)
+  (define this (new TimeUtil% [jclass "TimeUtil"]))
+  this)
 
-
-function TimeUtil.getInstance()
-        return TimeUtil.instance
-end
-
-
-function TimeUtil:setCalendar(calendar, yearString, monthString, dayString, hourString)
-        local year = math.tointeger(yearString // 1)
-        local month = math.tointeger(monthString // 1)
-        local day = math.tointeger(dayString // 1)
-        local hour = math.tointeger(hourString // 1)
-        calendar:set(year, month, day, hour, 0)
-end
+(define (TimeUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TimeUtil.jstatic_instance)))))
 
 
-function TimeUtil:setCalendarWithTime(calendar, yearString, monthString, dayString, hourString, minuteString, secondString)
-        local year = math.tointeger(yearString // 1)
-        local month = math.tointeger(monthString // 1)
-        local day = math.tointeger(dayString // 1)
-        local hour = math.tointeger(hourString // 1)
-        local minute = math.tointeger(minuteString // 1)
-        local second = math.tointeger(secondString // 1)
-        calendar:set(year, month, day, hour, minute, second)
-end
-
-
-function TimeUtil:setExpirationCalendar(calendar, yearsString, monthsString, daysString, hoursString, minutesString, secondsString)
-        local year = calendar:get(Calendar.YEAR) + math.tointeger(yearsString // 1)
-        local month = calendar:get(Calendar.MONTH) + math.tointeger(monthsString // 1)
-        local day = calendar:get(Calendar.DAY_OF_MONTH) + math.tointeger(daysString // 1)
-        local hour = calendar:get(Calendar.HOUR) + math.tointeger(hoursString // 1)
-        local minute = calendar:get(Calendar.MINUTE) + math.tointeger(minutesString // 1)
-        local second = calendar:get(Calendar.SECOND) + math.tointeger(secondsString // 1)
-        calendar:set(year, month, day, hour, minute, second)
-end
-
-
-function TimeUtil:getTotalTime(yearString, monthString, dayString, hourString, minuteString, secondString)
-        local time = TimeUtil.calendar:getTimeInMillis()
-        self:setExpirationCalendar(TimeUtil.calendar, yearString, monthString, dayString, hourString, minuteString, secondString)
-        local timeDelta = TimeUtil.calendar:getTimeInMillis()
-        return timeDelta - time
-end
-
-TimeUtil.instance = TimeUtil.new()
-TimeUtil.calendar = Calendar.getInstance()
-
-return TimeUtil
 

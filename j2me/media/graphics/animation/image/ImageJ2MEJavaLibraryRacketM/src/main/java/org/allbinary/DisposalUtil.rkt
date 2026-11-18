@@ -1,58 +1,51 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Resource = require("org.eclipse.swt.graphics.Resource")
+(require racket/class racket/lazy-require
+  "../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DisposalUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_disposeImage_1 _image)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_disposeResource_1 _resource)
+    (let ()
+      (let/ec jreturn
+        (when (not (send _resource jm_isDisposed_0))
+            (begin
+            (send _resource jm_dispose_0))))))))
+(define (DisposalUtil.jclassValue) DisposalUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DisposalUtil.jcell_instance 'jnone)
+(define (DisposalUtil.jstatic_instance)
+  (when (eq? DisposalUtil.jcell_instance 'jnone) (set! DisposalUtil.jcell_instance (DisposalUtil.jnew_0)))
+  DisposalUtil.jcell_instance)
+(define (DisposalUtil.jsetstatic_instance value) (set! DisposalUtil.jcell_instance value))
 
-local DisposalUtil = {}
-DisposalUtil.__index = DisposalUtil
-DisposalUtil.className = "DisposalUtil"
+(define (DisposalUtil.jnew_0)
+  (define this (new DisposalUtil% [jclass "DisposalUtil"]))
+  this)
 
-function DisposalUtil.new()
-    local self = setmetatable({}, DisposalUtil)
-    return self
-end
-
-
-function DisposalUtil.getInstance()
-        return DisposalUtil.instance
-end
+(define (DisposalUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DisposalUtil.jstatic_instance)))))
 
 
-function DisposalUtil:disposeImage(image)
-end
-
-
-function DisposalUtil:disposeResource(resource)
-        if not resource:isDisposed() then
-            resource:dispose()
-        end
-end
-
-DisposalUtil.instance = DisposalUtil.new()
-
-return DisposalUtil
 

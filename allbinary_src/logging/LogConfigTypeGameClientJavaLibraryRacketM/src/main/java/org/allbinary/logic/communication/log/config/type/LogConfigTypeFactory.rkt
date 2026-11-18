@@ -26,11 +26,13 @@
     (field [f_NO_DESCRIPTION JR.null])
     (field [f_OS JR.null])
     (field [f_FACTORYERROR JR.null])))
+(define (LogConfigTypeFactory.jclassValue) LogConfigTypeFactory%)
 
 (define LogConfigTypeFactory.jcell_instance 'jnone)
 (define (LogConfigTypeFactory.jstatic_instance)
   (when (eq? LogConfigTypeFactory.jcell_instance 'jnone) (set! LogConfigTypeFactory.jcell_instance (LogConfigTypeFactory.jnew_0)))
   LogConfigTypeFactory.jcell_instance)
+(define (LogConfigTypeFactory.jsetstatic_instance value) (set! LogConfigTypeFactory.jcell_instance value))
 
 (define (LogConfigTypeFactory.jnew_0)
   (define this (new LogConfigTypeFactory% [jclass "LogConfigTypeFactory"]))

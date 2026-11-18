@@ -1,177 +1,137 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.audio
 
--- local Control = require("javax.microedition.media.Control")
--- local MediaException = require("javax.microedition.media.MediaException")
--- local Player = require("javax.microedition.media.Player")
--- local PlayerListener = require("javax.microedition.media.PlayerListener")
--- local TimeBase = require("javax.microedition.media.TimeBase")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local TimeBaseInterface = require("org.allbinary.media.audio.TimeBaseInterface")
-local Controllable2 = require("org.allbinary.media.audio.Controllable2")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../javax/microedition/media/Player.rkt"
+  "./TimeBaseInterface.rkt"
+  "./Controllable2.rkt")
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["./NullControl.rkt" (NullControl.jnew_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+;BasicPlayerMIDP2JavaLibrary
+(define BasicPlayer%
+  (class JObject%
+    (super-new)
+    (field [f_listenersList JR.null])
+    (field [f_timeBase JR.null])
+    (field [f_stateP 0])
+    (field [f_loopCountP 0])
+    (define/public (jm_getContentType_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))
+    (define/public (jm_getControl_1 _controlType)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullControl.jnew_0)))))
+    (define/public (jm_getControls_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.newArray JR.null 0)))))
+    (define/public (jm_close_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_addPlayerListener_1 _playerListener)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_listenersList this) jm_contains_1 _playerListener))
+            (begin
+            (send (get-field f_listenersList this) jm_add_1 _playerListener))))))
+    (define/public (jm_removePlayerListener_1 _playerListener)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_listenersList this) jm_remove_1 _playerListener))))
+    (define/public (jm_getState_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_stateP this)))))
+    (define/public (jm_setState_1 _state)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_stateP this _state))))
+    (define/public (jm_getDuration_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_getMediaTime_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_getTimeBase_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_timeBase this)))))
+    (define/public (jm_setTimeBase_1 _timeBase)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_timeBase this _timeBase))))
+    (define/public (jm_deallocate_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_prefetch_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_realize_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setLoopCount_1 _count)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_loopCountP this _count))))
+    (define/public (jm_getLoopCount_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_loopCountP this)))))
+    (define/public (jm_setMediaTime_1 _now)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_start_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setState_1 (Player.jstatic_STARTED)))))
+    (define/public (jm_stop_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setState_1 (Player.jstatic_PREFETCHED)))))
+    (define/public (jm_setVolume_2 _leftVolume _rightVolume)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (BasicPlayer.jclassValue) BasicPlayer%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicPlayer.jcell_CONTROL_TYPE 'jnone)
+(define (BasicPlayer.jstatic_CONTROL_TYPE)
+  (when (eq? BasicPlayer.jcell_CONTROL_TYPE 'jnone) (set! BasicPlayer.jcell_CONTROL_TYPE "ToneControl"))
+  BasicPlayer.jcell_CONTROL_TYPE)
+(define (BasicPlayer.jsetstatic_CONTROL_TYPE value) (set! BasicPlayer.jcell_CONTROL_TYPE value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
---BasicPlayerMIDP2JavaLibrary
-local BasicPlayer = {}
-BasicPlayer.__index = BasicPlayer
-BasicPlayer.className = "BasicPlayer"
-
-function BasicPlayer:_init_fields()
-    self.listenersList = BasicArrayListD.new()
-    self.timeBase = nil
-    self.stateP = 0
-    self.loopCountP = 0
-end
-
-
-function BasicPlayer.new()
-    local self = setmetatable({}, BasicPlayer)
-    self:_init_fields()
-        self:setLoopCount(0)
-        self:setState(Player.UNREALIZED)
-    return self
-end
-
-
-function BasicPlayer:getContentType()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function BasicPlayer:getControl(controlType)
-        return NullControl.new()
-end
-
-
-function BasicPlayer:getControls()
-        return java_new_array(nil, 0)
-end
-
-
-function BasicPlayer:close()
-end
-
-
-function BasicPlayer:addPlayerListener(playerListener)
-        if not self.listenersList:contains(playerListener) then
-            self.listenersList:add(playerListener)
-        end
-end
-
-
-function BasicPlayer:removePlayerListener(playerListener)
-        self.listenersList:remove(playerListener)
-end
-
-
-function BasicPlayer:getState()
-        return self.stateP
-end
-
-
-function BasicPlayer:setState(state)
-        self.stateP = state
-end
-
-
-function BasicPlayer:getDuration()
-        return 0
-end
-
-
-function BasicPlayer:getMediaTime()
-        return 0
-end
-
-
-function BasicPlayer:getTimeBase()
-        return self.timeBase
-end
-
-
-function BasicPlayer:setTimeBase(timeBase)
-        self.timeBase = timeBase
-end
-
-
-function BasicPlayer:deallocate()
-end
-
-
--- throws MediaException
-function BasicPlayer:prefetch()
-end
-
-
--- throws MediaException
-function BasicPlayer:realize()
-end
+(define (BasicPlayer.jnew_0)
+  (define this (new BasicPlayer% [jclass "BasicPlayer"]))
+    (set-field! f_listenersList this (BasicArrayListD.jnew_0))
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (send this jm_setLoopCount_1 0)
+        (send this jm_setState_1 (Player.jstatic_UNREALIZED))))
+  this)
 
 
-function BasicPlayer:setLoopCount(count)
-        self.loopCountP = count
-end
-
-
-function BasicPlayer:getLoopCount()
-        return self.loopCountP
-end
-
-
--- throws MediaException
-function BasicPlayer:setMediaTime(now)
-        return 0
-end
-
-
--- throws MediaException
-function BasicPlayer:start()
-        self:setState(Player.STARTED)
-end
-
-
--- throws MediaException
-function BasicPlayer:stop()
-        self:setState(Player.PREFETCHED)
-end
-
-
-function BasicPlayer:setVolume(leftVolume, rightVolume)
-end
-
-BasicPlayer.CONTROL_TYPE = "ToneControl"
-
-return BasicPlayer
 

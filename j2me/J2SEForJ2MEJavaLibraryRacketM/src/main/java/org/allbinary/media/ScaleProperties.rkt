@@ -1,57 +1,53 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.media
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../org/allbinary/string/CommonLabels.rkt" (CommonLabels.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ScaleProperties%
+  (class JObject%
+    (super-new)
+    (field [f_scaleX 0.0])
+    (field [f_scaleY 0.0])
+    (field [f_scaleWidth 0])
+    (field [f_scaleHeight 0])
+    (field [f_shouldScale #f])
+    (define/override (jm_toString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (send (send (send (send (send (send (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_COLON_SEP (CommonLabels.jm_getInstance_0))) jm_appendboolean_1 (get-field f_shouldScale this)) jm_append_1 "scaleX: ") jm_appendfloat_1 (get-field f_scaleX this)) jm_append_1 "scaleY: ") jm_appendfloat_1 (get-field f_scaleY this)) jm_append_1 "scaleWidth: ") jm_appendint_1 (get-field f_scaleWidth this)) jm_append_1 "scaleHeight: ") jm_appendint_1 (get-field f_scaleHeight this)) jm_toString_0)))))))
+(define (ScaleProperties.jclassValue) ScaleProperties%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ScaleProperties.jcell_instance 'jnone)
+(define (ScaleProperties.jstatic_instance)
+  (when (eq? ScaleProperties.jcell_instance 'jnone) (set! ScaleProperties.jcell_instance (ScaleProperties.jnew_0)))
+  ScaleProperties.jcell_instance)
+(define (ScaleProperties.jsetstatic_instance value) (set! ScaleProperties.jcell_instance value))
 
-local ScaleProperties = {}
-ScaleProperties.__index = ScaleProperties
-ScaleProperties.className = "ScaleProperties"
-
-function ScaleProperties:_init_fields()
-    self.scaleX = 0.0
-    self.scaleY = 0.0
-    self.scaleWidth = 0
-    self.scaleHeight = 0
-    self.shouldScale = false
-end
-
-function ScaleProperties.new()
-    local self = setmetatable({}, ScaleProperties)
-    self:_init_fields()
-    return self
-end
+(define (ScaleProperties.jnew_0)
+  (define this (new ScaleProperties% [jclass "ScaleProperties"]))
+    
+    
+    
+    
+    
+  this)
 
 
-function ScaleProperties:toString()
-        return tostring(StringMaker.new():append(CommonLabels.getInstance().COLON_SEP):appendboolean(self.shouldScale):append("scaleX: "):appendfloat(self.scaleX):append("scaleY: "):appendfloat(self.scaleY):append("scaleWidth: "):appendint(self.scaleWidth):append("scaleHeight: "):appendint(self.scaleHeight))
-end
-ScaleProperties.__tostring = function(self) return self:toString() end
-
-ScaleProperties.instance = ScaleProperties.new()
-
-return ScaleProperties
 

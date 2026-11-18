@@ -1,48 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local ArtificialIntelligenceInterfaceFactoryInterface = require("org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface.rkt")
+(lazy-require ["./LurchRotationAI.rkt" (LurchRotationAI.jnew_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LurchRotationAIFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_3 _hashtable _ownerLayerInterface _gameInput)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LurchRotationAI.jnew_2 _ownerLayerInterface _gameInput)))))))
+(define (LurchRotationAIFactory.jclassValue) LurchRotationAIFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LurchRotationAIFactory = {}
-LurchRotationAIFactory.__index = LurchRotationAIFactory
-LurchRotationAIFactory.className = "LurchRotationAIFactory"
-
-function LurchRotationAIFactory.new()
-    local self = setmetatable({}, LurchRotationAIFactory)
-    return self
-end
+(define (LurchRotationAIFactory.jnew_0)
+  (define this (new LurchRotationAIFactory% [jclass "LurchRotationAIFactory"]))
+  this)
 
 
-function LurchRotationAIFactory:getInstance(hashtable, ownerLayerInterface, gameInput)
-        return LurchRotationAI.new(ownerLayerInterface, gameInput)
-end
-
-return LurchRotationAIFactory
 

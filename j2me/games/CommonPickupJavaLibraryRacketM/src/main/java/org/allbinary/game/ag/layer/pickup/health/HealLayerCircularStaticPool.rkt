@@ -1,55 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup.health
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.pickup.health
 
-local HealthInterface = require("org.allbinary.game.health.HealthInterface")
-local HealthInterfaceCompositeInterface = require("org.allbinary.game.health.HealthInterfaceCompositeInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerCircularPool = require("org.allbinary.layer.AllBinaryLayerCircularPool")
-local AllBinaryLayerFactoryInterface = require("org.allbinary.layer.AllBinaryLayerFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../../allbinary_java.rkt"
+  "../../../../../../../org/allbinary/layer/AllBinaryLayerCircularPool.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HealLayerCircularStaticPool%
+  (class AllBinaryLayerCircularPool%
+    (super-new)
+    (define/public (jm_visit_1 _sourceLayerInterface)
+    (let ([_healLayer JR.null][_healthInterfaceCompositeInterface JR.null][_healthInterface JR.null])
+      (let/ec jreturn
+        (set! _healLayer (send this jm_getNextInstance_0))
+        (set! _healthInterfaceCompositeInterface _sourceLayerInterface)
+        (set! _healthInterface (send _healthInterfaceCompositeInterface jm_getHealthInterface_0))
+        (send _healLayer jm_visit_1 _healthInterface))))))
+(define (HealLayerCircularStaticPool.jclassValue) HealLayerCircularStaticPool%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local HealLayerCircularStaticPool = {}
-HealLayerCircularStaticPool.__index = HealLayerCircularStaticPool
-HealLayerCircularStaticPool.className = "HealLayerCircularStaticPool"
-setmetatable(HealLayerCircularStaticPool, {__index = AllBinaryLayerCircularPool})
-
-
-function HealLayerCircularStaticPool.new(allbinaryLayerFactoryInterface, total)
-    local self = setmetatable(AllBinaryLayerCircularPool.new(), HealLayerCircularStaticPool)
-        AllBinaryLayerCircularPool.initAllBinaryLayerCircularPool(self, allbinaryLayerFactoryInterface, total)
-    return self
-end
+(define (HealLayerCircularStaticPool.jnew_2 _allbinaryLayerFactoryInterface _total)
+  (define this (new HealLayerCircularStaticPool% [jclass "HealLayerCircularStaticPool"]))
+    (let ()
+      (let/ec jreturn
+        (send this jm_initAllBinaryLayerCircularPool_2 _allbinaryLayerFactoryInterface _total)))
+  this)
 
 
--- throws Exception
-function HealLayerCircularStaticPool:visit(sourceLayerInterface)
-        local healLayer = self:getNextInstance()
-        local healthInterfaceCompositeInterface = sourceLayerInterface
-        local healthInterface = healthInterfaceCompositeInterface:getHealthInterface()
-        healLayer:visit(healthInterface)
-end
-
-return HealLayerCircularStaticPool
 

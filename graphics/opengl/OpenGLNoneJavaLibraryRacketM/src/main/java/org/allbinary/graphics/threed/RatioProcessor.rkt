@@ -1,42 +1,34 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.threed
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.threed
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define RatioProcessor%
+  (class JObject%
+    (super-new)
+    (define/public (jm_setCustom_3 _width _height _ratio)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (RatioProcessor.jclassValue) RatioProcessor%)
+
+(define (RatioProcessor.jnew_0)
+  (define this (new RatioProcessor% [jclass "RatioProcessor"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local RatioProcessor = {}
-RatioProcessor.__index = RatioProcessor
-RatioProcessor.className = "RatioProcessor"
-
-function RatioProcessor.new()
-    local self = setmetatable({}, RatioProcessor)
-    return self
-end
-
-
-function RatioProcessor:setCustom(width, height, ratio)
-end
-
-return RatioProcessor
 

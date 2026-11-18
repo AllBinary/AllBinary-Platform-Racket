@@ -1,85 +1,106 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.commands
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.commands
 
--- local Command = require("javax.microedition.lcdui.Command")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/Command.rkt" (Command.jnew_4 Command.jstatic_STOP Command.jstatic_EXIT Command.jstatic_SCREEN)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/CanvasStrings.rkt" (CanvasStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameCommandsFactory%
+  (class JObject%
+    (super-new)
+    (field [f_TOGGLE_FULLSCREEN JR.null])
+    (field [f_TOGGLE_KEYBOARD JR.null])
+    (field [f_SET_MENU_DISPLAYABLE JR.null])
+    (field [f_APPLICATION_UPDATE JR.null])
+    (field [f_DISPLAY_ABOUT JR.null])
+    (field [f_OPEN_WEB_URL JR.null])
+    (field [f_CLOSE_OPTIONS JR.null])
+    (field [f_DISPLAY_OPTIONS JR.null])
+    (field [f_START_TRACE JR.null])
+    (field [f_STOP_TRACE JR.null])
+    (field [f_DEFAULT_OPTIONS JR.null])
+    (field [f_SHOW_GAME_CANVAS JR.null])
+    (field [f_CLOSE_AND_SHOW_GAME_CANVAS JR.null])
+    (field [f_QUIT_COMMAND JR.null])
+    (field [f_RESTART_COMMAND JR.null])
+    (field [f_DISPLAY_SAVE_FORM JR.null])
+    (field [f_SAVE JR.null])
+    (field [f_DISPLAY_LOAD_FORM JR.null])
+    (field [f_LOAD_FILE JR.null])
+    (field [f_DELETE_FILE JR.null])
+    (field [f_EXIT_COMMAND JR.null])
+    (field [f_EXIT_WITHOUT_PROGRESS_COMMAND JR.null])
+    (field [f_START_COMMAND JR.null])
+    (field [f_CONTINUE_COMMAND JR.null])
+    (field [f_SELECT_COMMAND JR.null])
+    (field [f_FEATURE_UPDATE JR.null])
+    (field [f_BUY_COMMAND JR.null])))
+(define (GameCommandsFactory.jclassValue) GameCommandsFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameCommandsFactory.jcell_instance 'jnone)
+(define (GameCommandsFactory.jstatic_instance)
+  (when (eq? GameCommandsFactory.jcell_instance 'jnone) (set! GameCommandsFactory.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  GameCommandsFactory.jcell_instance)
+(define (GameCommandsFactory.jsetstatic_instance value) (set! GameCommandsFactory.jcell_instance value))
 
-local GameCommandsFactory = {}
-GameCommandsFactory.__index = GameCommandsFactory
-GameCommandsFactory.className = "GameCommandsFactory"
+(define (GameCommandsFactory.jnew_0)
+  (define this (new GameCommandsFactory% [jclass "GameCommandsFactory"]))
+    (set-field! f_TOGGLE_FULLSCREEN this (Command.jnew_4 "Toggle FullScreen" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_TOGGLE_KEYBOARD this (Command.jnew_4 "Keyboard" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_SET_MENU_DISPLAYABLE this (Command.jnew_4 "Set Menu Displayable" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_APPLICATION_UPDATE this (Command.jnew_4 (get-field f_UPDATE (CommonStrings.jm_getInstance_0)) (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_DISPLAY_ABOUT this (Command.jnew_4 (get-field f_ABOUT (CanvasStrings.jm_getInstance_0)) (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 2))
+    (set-field! f_OPEN_WEB_URL this (Command.jnew_4 "Open Web URL" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 2))
+    (set-field! f_CLOSE_OPTIONS this (Command.jnew_4 "Back" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_DISPLAY_OPTIONS this (Command.jnew_4 (get-field f_OPTIONS (CanvasStrings.jm_getInstance_0)) (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 2))
+    (set-field! f_START_TRACE this (Command.jnew_4 "Start Trace" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_STOP_TRACE this (Command.jnew_4 "Stop Trace" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_DEFAULT_OPTIONS this (Command.jnew_4 "Default" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_SHOW_GAME_CANVAS this (Command.jnew_4 "Back to Game" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_CLOSE_AND_SHOW_GAME_CANVAS this (Command.jnew_4 "Back" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_QUIT_COMMAND this (Command.jnew_4 "Quit" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_STOP) 1))
+    (set-field! f_RESTART_COMMAND this (Command.jnew_4 "Restart" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 0))
+    (set-field! f_DISPLAY_SAVE_FORM this (Command.jnew_4 "Save To" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 3))
+    (set-field! f_SAVE this (Command.jnew_4 "Save" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 3))
+    (set-field! f_DISPLAY_LOAD_FORM this (Command.jnew_4 "Load" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 3))
+    (set-field! f_LOAD_FILE this (Command.jnew_4 "Load File" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 3))
+    (set-field! f_DELETE_FILE this (Command.jnew_4 "Delete File" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_EXIT_COMMAND this (Command.jnew_4 "Exit" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_EXIT) 2))
+    (set-field! f_EXIT_WITHOUT_PROGRESS_COMMAND this (Command.jnew_4 "Exit Without Progress" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_EXIT) 2))
+    (set-field! f_START_COMMAND this (Command.jnew_4 (get-field f_START (CommonStrings.jm_getInstance_0)) (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_CONTINUE_COMMAND this (Command.jnew_4 "Continue" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_SELECT_COMMAND this (Command.jnew_4 "Select" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_FEATURE_UPDATE this (Command.jnew_4 "Feature Update" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_BUY_COMMAND this (Command.jnew_4 "BUY" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function GameCommandsFactory:_init_fields()
-    self.TOGGLE_FULLSCREEN = Command.new("Toggle FullScreen", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.TOGGLE_KEYBOARD = Command.new("Keyboard", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.SET_MENU_DISPLAYABLE = Command.new("Set Menu Displayable", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.APPLICATION_UPDATE = Command.new(CommonStrings.getInstance().UPDATE, StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.DISPLAY_ABOUT = Command.new(CanvasStrings.getInstance().ABOUT, StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 2)
-    self.OPEN_WEB_URL = Command.new("Open Web URL", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 2)
-    self.CLOSE_OPTIONS = Command.new("Back", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.DISPLAY_OPTIONS = Command.new(CanvasStrings.getInstance().OPTIONS, StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 2)
-    self.START_TRACE = Command.new("Start Trace", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.STOP_TRACE = Command.new("Stop Trace", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.DEFAULT_OPTIONS = Command.new("Default", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.SHOW_GAME_CANVAS = Command.new("Back to Game", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.CLOSE_AND_SHOW_GAME_CANVAS = Command.new("Back", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.QUIT_COMMAND = Command.new("Quit", StringUtil.getInstance().EMPTY_STRING, Command.STOP, 1)
-    self.RESTART_COMMAND = Command.new("Restart", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 0)
-    self.DISPLAY_SAVE_FORM = Command.new("Save To", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 3)
-    self.SAVE = Command.new("Save", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 3)
-    self.DISPLAY_LOAD_FORM = Command.new("Load", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 3)
-    self.LOAD_FILE = Command.new("Load File", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 3)
-    self.DELETE_FILE = Command.new("Delete File", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.EXIT_COMMAND = Command.new("Exit", StringUtil.getInstance().EMPTY_STRING, Command.EXIT, 2)
-    self.EXIT_WITHOUT_PROGRESS_COMMAND = Command.new("Exit Without Progress", StringUtil.getInstance().EMPTY_STRING, Command.EXIT, 2)
-    self.START_COMMAND = Command.new(CommonStrings.getInstance().START, StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.CONTINUE_COMMAND = Command.new("Continue", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.SELECT_COMMAND = Command.new("Select", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.FEATURE_UPDATE = Command.new("Feature Update", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.BUY_COMMAND = Command.new("BUY", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-end
+(define (GameCommandsFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (GameCommandsFactory.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! GameCommandsFactory.jcell_instance (GameCommandsFactory.jnew_0))))
+        (jreturn (GameCommandsFactory.jstatic_instance)))))
 
 
-function GameCommandsFactory.getInstance()
-        if GameCommandsFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            GameCommandsFactory.instance = GameCommandsFactory.new()
-        end
-        return GameCommandsFactory.instance
-end
-
-
-function GameCommandsFactory.new()
-    local self = setmetatable({}, GameCommandsFactory)
-    self:_init_fields()
-    return self
-end
-
-GameCommandsFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return GameCommandsFactory
 

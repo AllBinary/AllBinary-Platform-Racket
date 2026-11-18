@@ -1,238 +1,420 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2026 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io.file
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define CommonDataFileStrings%
+  (class JObject%
+    (super-new)
+    (field [f_XML JR.null])
+    (field [f__XML JR.null])
+    (field [f_JSON JR.null])
+    (field [f__JSON JR.null])
+    (field [f_XSL JR.null])
+    (field [f__XSL JR.null])
+    (field [f_JAVA JR.null])
+    (field [f__JAVA JR.null])
+    (field [f_KT JR.null])
+    (field [f__KT JR.null])
+    (field [f_TS JR.null])
+    (field [f__TS JR.null])
+    (field [f_JS JR.null])
+    (field [f__JS JR.null])
+    (field [f_CPP JR.null])
+    (field [f__CPP JR.null])
+    (field [f_H JR.null])
+    (field [f__H JR.null])
+    (field [f_PY JR.null])
+    (field [f__PY JR.null])
+    (field [f_GO JR.null])
+    (field [f__GO JR.null])
+    (field [f_CS JR.null])
+    (field [f__CS JR.null])
+    (field [f_ADB JR.null])
+    (field [f__ADB JR.null])
+    (field [f_ADS JR.null])
+    (field [f__ADS JR.null])
+    (field [f_ADA JR.null])
+    (field [f__ADA JR.null])
+    (field [f_RUST JR.null])
+    (field [f__RUST JR.null])
+    (field [f_C JR.null])
+    (field [f__C JR.null])
+    (field [f_CSHARP JR.null])
+    (field [f__CSHARP JR.null])
+    (field [f_ERL JR.null])
+    (field [f__ERL JR.null])
+    (field [f_HS JR.null])
+    (field [f__HS JR.null])
+    (field [f_HX JR.null])
+    (field [f__HX JR.null])
+    (field [f_LUA JR.null])
+    (field [f__LUA JR.null])
+    (field [f_PAS JR.null])
+    (field [f__PAS JR.null])
+    (field [f_ML JR.null])
+    (field [f__ML JR.null])
+    (field [f_PL JR.null])
+    (field [f__PL JR.null])
+    (field [f_RB JR.null])
+    (field [f__RB JR.null])
+    (field [f_ZIG JR.null])
+    (field [f__ZIG JR.null])
+    (field [f_PM JR.null])
+    (field [f__PM JR.null])
+    (field [f_KTS JR.null])
+    (field [f__KTS JR.null])
+    (field [f_CBL JR.null])
+    (field [f__CBL JR.null])
+    (field [f_COB JR.null])
+    (field [f__COB JR.null])
+    (field [f_F90 JR.null])
+    (field [f__F90 JR.null])
+    (field [f_F JR.null])
+    (field [f__F JR.null])
+    (field [f_DART JR.null])
+    (field [f__DART JR.null])
+    (field [f_EX JR.null])
+    (field [f__EX JR.null])
+    (field [f_EXS JR.null])
+    (field [f__EXS JR.null])
+    (field [f_M JR.null])
+    (field [f__M JR.null])
+    (field [f_SWIFT JR.null])
+    (field [f__SWIFT JR.null])
+    (field [f_ASM JR.null])
+    (field [f__ASM JR.null])
+    (field [f_S JR.null])
+    (field [f__S JR.null])
+    (field [f_NIM JR.null])
+    (field [f__NIM JR.null])
+    (field [f_VALA JR.null])
+    (field [f__VALA JR.null])
+    (field [f_LISP JR.null])
+    (field [f__LISP JR.null])
+    (field [f_RKT JR.null])
+    (field [f__RKT JR.null])
+    (field [f_SCM JR.null])
+    (field [f__SCM JR.null])
+    (field [f_AS JR.null])
+    (field [f__AS JR.null])
+    (field [f_OBX JR.null])
+    (field [f__OBX JR.null])
+    (field [f_SCALA JR.null])
+    (field [f__SCALA JR.null])
+    (field [f_GROOVY JR.null])
+    (field [f__GROOVY JR.null])
+    (field [f_JL JR.null])
+    (field [f__JL JR.null])
+    (field [f_TCL JR.null])
+    (field [f__TCL JR.null])
+    (field [f_WREN JR.null])
+    (field [f__WREN JR.null])
+    (field [f_JANET JR.null])
+    (field [f__JANET JR.null])
+    (field [f_GR JR.null])
+    (field [f__GR JR.null])
+    (field [f_ELM JR.null])
+    (field [f__ELM JR.null])
+    (field [f_KOTLIN JR.null])
+    (field [f_TYPESCRIPT JR.null])
+    (field [f_JAVASCRIPT JR.null])
+    (field [f_C_PLUS_PLUS JR.null])
+    (field [f_PYTHON JR.null])
+    (field [f_C_SHARP JR.null])
+    (field [f_RUST_NAME JR.null])
+    (field [f_RUBY JR.null])
+    (field [f_PERL JR.null])
+    (field [f_OBJECT_PASCAL JR.null])
+    (field [f_OCAML JR.null])
+    (field [f_HASKELL JR.null])
+    (field [f_HAXE JR.null])
+    (field [f_ERLANG JR.null])
+    (field [f_COBOL JR.null])
+    (field [f_FORTRAN JR.null])
+    (field [f_ELIXIR JR.null])
+    (field [f_OBJECTIVE_C JR.null])
+    (field [f_RACKET JR.null])
+    (field [f_SCHEME JR.null])
+    (field [f_ACTIONSCRIPT JR.null])
+    (field [f_OBERON_PLUS JR.null])
+    (field [f_JULIA JR.null])
+    (field [f_GRAIN JR.null])
+    (field [f_CPLUSPLUS JR.null])
+    (field [f_GOLANG JR.null])
+    (field [f_CSHARP_ALIAS JR.null])
+    (field [f_C23 JR.null])
+    (field [f_PASCAL JR.null])
+    (field [f_OBJECT_PASCAL_ALIAS JR.null])
+    (field [f_OBJC JR.null])
+    (field [f_OBJECTIVE_C_ALIAS JR.null])
+    (field [f_ASSEMBLY JR.null])
+    (field [f_COMMON_LISP JR.null])
+    (field [f_OBERON JR.null])
+    (field [f_OBERON_PLUS_ALIAS JR.null])
+    (field [f_KT_SHORT_NAME JR.null])
+    (field [f_TS_SHORT_NAME JR.null])
+    (field [f_JS_SHORT_NAME JR.null])
+    (field [f_CPP_SHORT_NAME JR.null])
+    (field [f_PY_SHORT_NAME JR.null])
+    (field [f_GO_SHORT_NAME JR.null])
+    (field [f_CS_SHORT_NAME JR.null])
+    (field [f_ADA_SHORT_NAME JR.null])
+    (field [f_RUST_SHORT_NAME JR.null])
+    (field [f_LUA_SHORT_NAME JR.null])
+    (field [f_C_SHORT_NAME JR.null])
+    (field [f_ZIG_SHORT_NAME JR.null])
+    (field [f_RB_SHORT_NAME JR.null])
+    (field [f_PL_SHORT_NAME JR.null])
+    (field [f_PAS_SHORT_NAME JR.null])
+    (field [f_ML_SHORT_NAME JR.null])
+    (field [f_HS_SHORT_NAME JR.null])
+    (field [f_HX_SHORT_NAME JR.null])
+    (field [f_ERL_SHORT_NAME JR.null])
+    (field [f_CBL_SHORT_NAME JR.null])
+    (field [f_F90_SHORT_NAME JR.null])
+    (field [f_DART_SHORT_NAME JR.null])
+    (field [f_EX_SHORT_NAME JR.null])
+    (field [f_OBJC_SHORT_NAME JR.null])
+    (field [f_SWIFT_SHORT_NAME JR.null])
+    (field [f_ASM_SHORT_NAME JR.null])
+    (field [f_NIM_SHORT_NAME JR.null])
+    (field [f_VALA_SHORT_NAME JR.null])
+    (field [f_LISP_SHORT_NAME JR.null])
+    (field [f_RKT_SHORT_NAME JR.null])
+    (field [f_SCM_SHORT_NAME JR.null])
+    (field [f_AS_SHORT_NAME JR.null])
+    (field [f_OBX_SHORT_NAME JR.null])
+    (field [f_SCALA_SHORT_NAME JR.null])
+    (field [f_GROOVY_SHORT_NAME JR.null])
+    (field [f_JL_SHORT_NAME JR.null])
+    (field [f_TCL_SHORT_NAME JR.null])
+    (field [f_WREN_SHORT_NAME JR.null])
+    (field [f_JANET_SHORT_NAME JR.null])
+    (field [f_GR_SHORT_NAME JR.null])
+    (field [f_ELM_SHORT_NAME JR.null])
+    (field [f_UNCRYPTED_EXTENSION JR.null])
+    (field [f_ENCRYPTED_EXTENSION JR.null])))
+(define (CommonDataFileStrings.jclassValue) CommonDataFileStrings%)
+
+(define CommonDataFileStrings.jcell_instance 'jnone)
+(define (CommonDataFileStrings.jstatic_instance)
+  (when (eq? CommonDataFileStrings.jcell_instance 'jnone) (set! CommonDataFileStrings.jcell_instance (CommonDataFileStrings.jnew_0)))
+  CommonDataFileStrings.jcell_instance)
+(define (CommonDataFileStrings.jsetstatic_instance value) (set! CommonDataFileStrings.jcell_instance value))
+
+(define (CommonDataFileStrings.jnew_0)
+  (define this (new CommonDataFileStrings% [jclass "CommonDataFileStrings"]))
+    (set-field! f_XML this "xml")
+    (set-field! f__XML this ".xml")
+    (set-field! f_JSON this "json")
+    (set-field! f__JSON this ".json")
+    (set-field! f_XSL this "xsl")
+    (set-field! f__XSL this ".xsl")
+    (set-field! f_JAVA this "java")
+    (set-field! f__JAVA this ".java")
+    (set-field! f_KT this "kt")
+    (set-field! f__KT this ".kt")
+    (set-field! f_TS this "ts")
+    (set-field! f__TS this ".ts")
+    (set-field! f_JS this "js")
+    (set-field! f__JS this ".js")
+    (set-field! f_CPP this "cpp")
+    (set-field! f__CPP this ".cpp")
+    (set-field! f_H this "h")
+    (set-field! f__H this ".h")
+    (set-field! f_PY this "py")
+    (set-field! f__PY this ".py")
+    (set-field! f_GO this "go")
+    (set-field! f__GO this ".go")
+    (set-field! f_CS this "cs")
+    (set-field! f__CS this ".cs")
+    (set-field! f_ADB this "adb")
+    (set-field! f__ADB this ".adb")
+    (set-field! f_ADS this "ads")
+    (set-field! f__ADS this ".ads")
+    (set-field! f_ADA this "ada")
+    (set-field! f__ADA this ".ada")
+    (set-field! f_RUST this "rs")
+    (set-field! f__RUST this ".rs")
+    (set-field! f_C this "c")
+    (set-field! f__C this ".c")
+    (set-field! f_CSHARP this "cs")
+    (set-field! f__CSHARP this ".cs")
+    (set-field! f_ERL this "erl")
+    (set-field! f__ERL this ".erl")
+    (set-field! f_HS this "hs")
+    (set-field! f__HS this ".hs")
+    (set-field! f_HX this "hx")
+    (set-field! f__HX this ".hx")
+    (set-field! f_LUA this "lua")
+    (set-field! f__LUA this ".lua")
+    (set-field! f_PAS this "pas")
+    (set-field! f__PAS this ".pas")
+    (set-field! f_ML this "ml")
+    (set-field! f__ML this ".ml")
+    (set-field! f_PL this "pl")
+    (set-field! f__PL this ".pl")
+    (set-field! f_RB this "rb")
+    (set-field! f__RB this ".rb")
+    (set-field! f_ZIG this "zig")
+    (set-field! f__ZIG this ".zig")
+    (set-field! f_PM this "pm")
+    (set-field! f__PM this ".pm")
+    (set-field! f_KTS this "kts")
+    (set-field! f__KTS this ".kts")
+    (set-field! f_CBL this "cbl")
+    (set-field! f__CBL this ".cbl")
+    (set-field! f_COB this "cob")
+    (set-field! f__COB this ".cob")
+    (set-field! f_F90 this "f90")
+    (set-field! f__F90 this ".f90")
+    (set-field! f_F this "f")
+    (set-field! f__F this ".f")
+    (set-field! f_DART this "dart")
+    (set-field! f__DART this ".dart")
+    (set-field! f_EX this "ex")
+    (set-field! f__EX this ".ex")
+    (set-field! f_EXS this "exs")
+    (set-field! f__EXS this ".exs")
+    (set-field! f_M this "m")
+    (set-field! f__M this ".m")
+    (set-field! f_SWIFT this "swift")
+    (set-field! f__SWIFT this ".swift")
+    (set-field! f_ASM this "asm")
+    (set-field! f__ASM this ".asm")
+    (set-field! f_S this "s")
+    (set-field! f__S this ".s")
+    (set-field! f_NIM this "nim")
+    (set-field! f__NIM this ".nim")
+    (set-field! f_VALA this "vala")
+    (set-field! f__VALA this ".vala")
+    (set-field! f_LISP this "lisp")
+    (set-field! f__LISP this ".lisp")
+    (set-field! f_RKT this "rkt")
+    (set-field! f__RKT this ".rkt")
+    (set-field! f_SCM this "scm")
+    (set-field! f__SCM this ".scm")
+    (set-field! f_AS this "as")
+    (set-field! f__AS this ".as")
+    (set-field! f_OBX this "obx")
+    (set-field! f__OBX this ".obx")
+    (set-field! f_SCALA this "scala")
+    (set-field! f__SCALA this ".scala")
+    (set-field! f_GROOVY this "groovy")
+    (set-field! f__GROOVY this ".groovy")
+    (set-field! f_JL this "jl")
+    (set-field! f__JL this ".jl")
+    (set-field! f_TCL this "tcl")
+    (set-field! f__TCL this ".tcl")
+    (set-field! f_WREN this "wren")
+    (set-field! f__WREN this ".wren")
+    (set-field! f_JANET this "janet")
+    (set-field! f__JANET this ".janet")
+    (set-field! f_GR this "gr")
+    (set-field! f__GR this ".gr")
+    (set-field! f_ELM this "elm")
+    (set-field! f__ELM this ".elm")
+    (set-field! f_KOTLIN this "kotlin")
+    (set-field! f_TYPESCRIPT this "typescript")
+    (set-field! f_JAVASCRIPT this "javascript")
+    (set-field! f_C_PLUS_PLUS this "c++")
+    (set-field! f_PYTHON this "python")
+    (set-field! f_C_SHARP this "c#")
+    (set-field! f_RUST_NAME this "rust")
+    (set-field! f_RUBY this "ruby")
+    (set-field! f_PERL this "perl")
+    (set-field! f_OBJECT_PASCAL this "objectpascal")
+    (set-field! f_OCAML this "ocaml")
+    (set-field! f_HASKELL this "haskell")
+    (set-field! f_HAXE this "haxe")
+    (set-field! f_ERLANG this "erlang")
+    (set-field! f_COBOL this "cobol")
+    (set-field! f_FORTRAN this "fortran")
+    (set-field! f_ELIXIR this "elixir")
+    (set-field! f_OBJECTIVE_C this "objective-c")
+    (set-field! f_RACKET this "racket")
+    (set-field! f_SCHEME this "scheme")
+    (set-field! f_ACTIONSCRIPT this "actionscript")
+    (set-field! f_OBERON_PLUS this "oberon+")
+    (set-field! f_JULIA this "julia")
+    (set-field! f_GRAIN this "grain")
+    (set-field! f_CPLUSPLUS this "cplusplus")
+    (set-field! f_GOLANG this "golang")
+    (set-field! f_CSHARP_ALIAS this "csharp")
+    (set-field! f_C23 this "c23")
+    (set-field! f_PASCAL this "pascal")
+    (set-field! f_OBJECT_PASCAL_ALIAS this "object pascal")
+    (set-field! f_OBJC this "objc")
+    (set-field! f_OBJECTIVE_C_ALIAS this "objectivec")
+    (set-field! f_ASSEMBLY this "assembly")
+    (set-field! f_COMMON_LISP this "common lisp")
+    (set-field! f_OBERON this "oberon")
+    (set-field! f_OBERON_PLUS_ALIAS this "oberonplus")
+    (set-field! f_KT_SHORT_NAME this "Kt")
+    (set-field! f_TS_SHORT_NAME this "Ts")
+    (set-field! f_JS_SHORT_NAME this "Js")
+    (set-field! f_CPP_SHORT_NAME this "Cpp")
+    (set-field! f_PY_SHORT_NAME this "Py")
+    (set-field! f_GO_SHORT_NAME this "Go")
+    (set-field! f_CS_SHORT_NAME this "Cs")
+    (set-field! f_ADA_SHORT_NAME this "Ada")
+    (set-field! f_RUST_SHORT_NAME this "Rust")
+    (set-field! f_LUA_SHORT_NAME this "Lua")
+    (set-field! f_C_SHORT_NAME this "C")
+    (set-field! f_ZIG_SHORT_NAME this "Zig")
+    (set-field! f_RB_SHORT_NAME this "Rb")
+    (set-field! f_PL_SHORT_NAME this "Pl")
+    (set-field! f_PAS_SHORT_NAME this "Pas")
+    (set-field! f_ML_SHORT_NAME this "Ml")
+    (set-field! f_HS_SHORT_NAME this "Hs")
+    (set-field! f_HX_SHORT_NAME this "Hx")
+    (set-field! f_ERL_SHORT_NAME this "Erl")
+    (set-field! f_CBL_SHORT_NAME this "Cbl")
+    (set-field! f_F90_SHORT_NAME this "F90")
+    (set-field! f_DART_SHORT_NAME this "Dart")
+    (set-field! f_EX_SHORT_NAME this "Ex")
+    (set-field! f_OBJC_SHORT_NAME this "ObjC")
+    (set-field! f_SWIFT_SHORT_NAME this "Swift")
+    (set-field! f_ASM_SHORT_NAME this "Asm")
+    (set-field! f_NIM_SHORT_NAME this "Nim")
+    (set-field! f_VALA_SHORT_NAME this "Vala")
+    (set-field! f_LISP_SHORT_NAME this "Lisp")
+    (set-field! f_RKT_SHORT_NAME this "Rkt")
+    (set-field! f_SCM_SHORT_NAME this "Scm")
+    (set-field! f_AS_SHORT_NAME this "As")
+    (set-field! f_OBX_SHORT_NAME this "Obx")
+    (set-field! f_SCALA_SHORT_NAME this "Scala")
+    (set-field! f_GROOVY_SHORT_NAME this "Groovy")
+    (set-field! f_JL_SHORT_NAME this "Jl")
+    (set-field! f_TCL_SHORT_NAME this "Tcl")
+    (set-field! f_WREN_SHORT_NAME this "Wren")
+    (set-field! f_JANET_SHORT_NAME this "Janet")
+    (set-field! f_GR_SHORT_NAME this "Gr")
+    (set-field! f_ELM_SHORT_NAME this "Elm")
+    (set-field! f_UNCRYPTED_EXTENSION this (get-field f_XML this))
+    (set-field! f_ENCRYPTED_EXTENSION this "abd")
+  this)
+
+(define (CommonDataFileStrings.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (CommonDataFileStrings.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CommonDataFileStrings = {}
-CommonDataFileStrings.__index = CommonDataFileStrings
-CommonDataFileStrings.className = "CommonDataFileStrings"
-
-function CommonDataFileStrings:_init_fields()
-    self.XML = "xml"
-    self._XML = ".xml"
-    self.JSON = "json"
-    self._JSON = ".json"
-    self.XSL = "xsl"
-    self._XSL = ".xsl"
-    self.JAVA = "java"
-    self._JAVA = ".java"
-    self.KT = "kt"
-    self._KT = ".kt"
-    self.TS = "ts"
-    self._TS = ".ts"
-    self.JS = "js"
-    self._JS = ".js"
-    self.CPP = "cpp"
-    self._CPP = ".cpp"
-    self.H = "h"
-    self._H = ".h"
-    self.PY = "py"
-    self._PY = ".py"
-    self.GO = "go"
-    self._GO = ".go"
-    self.CS = "cs"
-    self._CS = ".cs"
-    self.ADB = "adb"
-    self._ADB = ".adb"
-    self.ADS = "ads"
-    self._ADS = ".ads"
-    self.ADA = "ada"
-    self._ADA = ".ada"
-    self.RUST = "rs"
-    self._RUST = ".rs"
-    self.C = "c"
-    self._C = ".c"
-    self.CSHARP = "cs"
-    self._CSHARP = ".cs"
-    self.ERL = "erl"
-    self._ERL = ".erl"
-    self.HS = "hs"
-    self._HS = ".hs"
-    self.HX = "hx"
-    self._HX = ".hx"
-    self.LUA = "lua"
-    self._LUA = ".lua"
-    self.PAS = "pas"
-    self._PAS = ".pas"
-    self.ML = "ml"
-    self._ML = ".ml"
-    self.PL = "pl"
-    self._PL = ".pl"
-    self.RB = "rb"
-    self._RB = ".rb"
-    self.ZIG = "zig"
-    self._ZIG = ".zig"
-    self.PM = "pm"
-    self._PM = ".pm"
-    self.KTS = "kts"
-    self._KTS = ".kts"
-    self.CBL = "cbl"
-    self._CBL = ".cbl"
-    self.COB = "cob"
-    self._COB = ".cob"
-    self.F90 = "f90"
-    self._F90 = ".f90"
-    self.F = "f"
-    self._F = ".f"
-    self.DART = "dart"
-    self._DART = ".dart"
-    self.EX = "ex"
-    self._EX = ".ex"
-    self.EXS = "exs"
-    self._EXS = ".exs"
-    self.M = "m"
-    self._M = ".m"
-    self.SWIFT = "swift"
-    self._SWIFT = ".swift"
-    self.ASM = "asm"
-    self._ASM = ".asm"
-    self.S = "s"
-    self._S = ".s"
-    self.NIM = "nim"
-    self._NIM = ".nim"
-    self.VALA = "vala"
-    self._VALA = ".vala"
-    self.LISP = "lisp"
-    self._LISP = ".lisp"
-    self.RKT = "rkt"
-    self._RKT = ".rkt"
-    self.SCM = "scm"
-    self._SCM = ".scm"
-    self.AS = "as"
-    self._AS = ".as"
-    self.OBX = "obx"
-    self._OBX = ".obx"
-    self.SCALA = "scala"
-    self._SCALA = ".scala"
-    self.GROOVY = "groovy"
-    self._GROOVY = ".groovy"
-    self.JL = "jl"
-    self._JL = ".jl"
-    self.TCL = "tcl"
-    self._TCL = ".tcl"
-    self.WREN = "wren"
-    self._WREN = ".wren"
-    self.JANET = "janet"
-    self._JANET = ".janet"
-    self.GR = "gr"
-    self._GR = ".gr"
-    self.ELM = "elm"
-    self._ELM = ".elm"
-    self.KOTLIN = "kotlin"
-    self.TYPESCRIPT = "typescript"
-    self.JAVASCRIPT = "javascript"
-    self.C_PLUS_PLUS = "c++"
-    self.PYTHON = "python"
-    self.C_SHARP = "c#"
-    self.RUST_NAME = "rust"
-    self.RUBY = "ruby"
-    self.PERL = "perl"
-    self.OBJECT_PASCAL = "objectpascal"
-    self.OCAML = "ocaml"
-    self.HASKELL = "haskell"
-    self.HAXE = "haxe"
-    self.ERLANG = "erlang"
-    self.COBOL = "cobol"
-    self.FORTRAN = "fortran"
-    self.ELIXIR = "elixir"
-    self.OBJECTIVE_C = "objective-c"
-    self.RACKET = "racket"
-    self.SCHEME = "scheme"
-    self.ACTIONSCRIPT = "actionscript"
-    self.OBERON_PLUS = "oberon+"
-    self.JULIA = "julia"
-    self.GRAIN = "grain"
-    self.CPLUSPLUS = "cplusplus"
-    self.GOLANG = "golang"
-    self.CSHARP_ALIAS = "csharp"
-    self.C23 = "c23"
-    self.PASCAL = "pascal"
-    self.OBJECT_PASCAL_ALIAS = "object pascal"
-    self.OBJC = "objc"
-    self.OBJECTIVE_C_ALIAS = "objectivec"
-    self.ASSEMBLY = "assembly"
-    self.COMMON_LISP = "common lisp"
-    self.OBERON = "oberon"
-    self.OBERON_PLUS_ALIAS = "oberonplus"
-    self.KT_SHORT_NAME = "Kt"
-    self.TS_SHORT_NAME = "Ts"
-    self.JS_SHORT_NAME = "Js"
-    self.CPP_SHORT_NAME = "Cpp"
-    self.PY_SHORT_NAME = "Py"
-    self.GO_SHORT_NAME = "Go"
-    self.CS_SHORT_NAME = "Cs"
-    self.ADA_SHORT_NAME = "Ada"
-    self.RUST_SHORT_NAME = "Rust"
-    self.LUA_SHORT_NAME = "Lua"
-    self.C_SHORT_NAME = "C"
-    self.ZIG_SHORT_NAME = "Zig"
-    self.RB_SHORT_NAME = "Rb"
-    self.PL_SHORT_NAME = "Pl"
-    self.PAS_SHORT_NAME = "Pas"
-    self.ML_SHORT_NAME = "Ml"
-    self.HS_SHORT_NAME = "Hs"
-    self.HX_SHORT_NAME = "Hx"
-    self.ERL_SHORT_NAME = "Erl"
-    self.CBL_SHORT_NAME = "Cbl"
-    self.F90_SHORT_NAME = "F90"
-    self.DART_SHORT_NAME = "Dart"
-    self.EX_SHORT_NAME = "Ex"
-    self.OBJC_SHORT_NAME = "ObjC"
-    self.SWIFT_SHORT_NAME = "Swift"
-    self.ASM_SHORT_NAME = "Asm"
-    self.NIM_SHORT_NAME = "Nim"
-    self.VALA_SHORT_NAME = "Vala"
-    self.LISP_SHORT_NAME = "Lisp"
-    self.RKT_SHORT_NAME = "Rkt"
-    self.SCM_SHORT_NAME = "Scm"
-    self.AS_SHORT_NAME = "As"
-    self.OBX_SHORT_NAME = "Obx"
-    self.SCALA_SHORT_NAME = "Scala"
-    self.GROOVY_SHORT_NAME = "Groovy"
-    self.JL_SHORT_NAME = "Jl"
-    self.TCL_SHORT_NAME = "Tcl"
-    self.WREN_SHORT_NAME = "Wren"
-    self.JANET_SHORT_NAME = "Janet"
-    self.GR_SHORT_NAME = "Gr"
-    self.ELM_SHORT_NAME = "Elm"
-    self.UNCRYPTED_EXTENSION = self.XML
-    self.ENCRYPTED_EXTENSION = "abd"
-end
-
-function CommonDataFileStrings.new()
-    local self = setmetatable({}, CommonDataFileStrings)
-    self:_init_fields()
-    return self
-end
-
-
-function CommonDataFileStrings.getInstance()
-        return CommonDataFileStrings.instance
-end
-
-CommonDataFileStrings.instance = CommonDataFileStrings.new()
-
-return CommonDataFileStrings
 

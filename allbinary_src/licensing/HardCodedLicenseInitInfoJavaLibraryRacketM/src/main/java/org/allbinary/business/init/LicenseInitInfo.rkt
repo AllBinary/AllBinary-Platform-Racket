@@ -1,97 +1,79 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.init
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.business.init
 
-local DebugFactory = require("org.allbinary.debug.DebugFactory")
-local NoDebug = require("org.allbinary.debug.NoDebug")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/debug/DebugFactory.rkt" (DebugFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/debug/NoDebug.rkt" (NoDebug.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LicenseInitInfo%
+  (class JObject%
+    (super-new)
+    (field [f_id JR.null])
+    (field [f_serverList JR.null])
+    (define/public (jm_getLicenseId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_id this)))))
+    (define/public (jm_getServer_1 _index)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_serverList this) jm_get_1 _index)))))
+    (define/public (jm_getNumberOfServers_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_serverList this) jm_size_0)))))
+    (define/public (jm_setLicenseId_1 _value)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_id this _value))))
+    (define/public (jm_clearServers_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_serverList this) jm_clear_0))))
+    (define/public (jm_setServer_2 _value _index)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_serverList this) jm_addAt_2 _index _value))))
+    (define/public (jm_addServer_1 _value)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_serverList this) jm_add_1 _value))))
+    (define/public (jm_getServerList_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_serverList this)))))
+    (define/public (jm_setServerList_1 _servers)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (DebugFactory.jm_getInstance_0) (NoDebug.jm_getInstance_0))
+            (begin
+            (set-field! f_serverList this _servers))))))))
+(define (LicenseInitInfo.jclassValue) LicenseInitInfo%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LicenseInitInfo = {}
-LicenseInitInfo.__index = LicenseInitInfo
-LicenseInitInfo.className = "LicenseInitInfo"
-
-function LicenseInitInfo:_init_fields()
-    self.id = StringUtil.getInstance().EMPTY_STRING
-    self.serverList = BasicArrayListD.new()
-end
-
-
-function LicenseInitInfo.new()
-    local self = setmetatable({}, LicenseInitInfo)
-    self:_init_fields()
-    return self
-end
-
-
-function LicenseInitInfo:getLicenseId()
-        return self.id
-end
-
-
-function LicenseInitInfo:getServer(index)
-        return self.serverList:get(index)
-end
-
-
-function LicenseInitInfo:getNumberOfServers()
-        return self.serverList:size()
-end
-
-
-function LicenseInitInfo:setLicenseId(value)
-        self.id = value
-end
-
-
-function LicenseInitInfo:clearServers()
-        self.serverList:clear()
-end
-
-
-function LicenseInitInfo:setServer(value, index)
-        self.serverList:addAt(index, value)
-end
-
-
-function LicenseInitInfo:addServer(value)
-        self.serverList:add(value)
-end
+(define (LicenseInitInfo.jnew_0)
+  (define this (new LicenseInitInfo% [jclass "LicenseInitInfo"]))
+    (set-field! f_id this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (set-field! f_serverList this (BasicArrayListD.jnew_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function LicenseInitInfo:getServerList()
-        return self.serverList
-end
-
-
-function LicenseInitInfo:setServerList(servers)
-        if DebugFactory.getInstance() == NoDebug.getInstance() then
-            self.serverList = servers
-        end
-end
-
-return LicenseInitInfo
 

@@ -1,64 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.pickup
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CountedPickedUpLayerInterfaceFactoryPool%
+  (class JObject%
+    (super-new)
+    (field [f_list JR.null])
+    (define/public (jm_getList_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_list this)))))))
+(define (CountedPickedUpLayerInterfaceFactoryPool.jclassValue) CountedPickedUpLayerInterfaceFactoryPool%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define CountedPickedUpLayerInterfaceFactoryPool.jcell_SINGLETON 'jnone)
+(define (CountedPickedUpLayerInterfaceFactoryPool.jstatic_SINGLETON)
+  (when (eq? CountedPickedUpLayerInterfaceFactoryPool.jcell_SINGLETON 'jnone) (set! CountedPickedUpLayerInterfaceFactoryPool.jcell_SINGLETON (CountedPickedUpLayerInterfaceFactoryPool.jnew_0)))
+  CountedPickedUpLayerInterfaceFactoryPool.jcell_SINGLETON)
+(define (CountedPickedUpLayerInterfaceFactoryPool.jsetstatic_SINGLETON value) (set! CountedPickedUpLayerInterfaceFactoryPool.jcell_SINGLETON value))
 
-local CountedPickedUpLayerInterfaceFactoryPool = {}
-CountedPickedUpLayerInterfaceFactoryPool.__index = CountedPickedUpLayerInterfaceFactoryPool
-CountedPickedUpLayerInterfaceFactoryPool.className = "CountedPickedUpLayerInterfaceFactoryPool"
+(define (CountedPickedUpLayerInterfaceFactoryPool.jnew_0)
+  (define this (new CountedPickedUpLayerInterfaceFactoryPool% [jclass "CountedPickedUpLayerInterfaceFactoryPool"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_list this (BasicArrayListD.jnew_0))))
+  this)
 
-function CountedPickedUpLayerInterfaceFactoryPool:_init_fields()
-    self.list = nil
-end
+(define (CountedPickedUpLayerInterfaceFactoryPool.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (CountedPickedUpLayerInterfaceFactoryPool.jstatic_SINGLETON)))))
 
-
-function CountedPickedUpLayerInterfaceFactoryPool.new()
-    local self = setmetatable({}, CountedPickedUpLayerInterfaceFactoryPool)
-    self:_init_fields()
-        self.list = BasicArrayListD.new()
-    return self
-end
-
-
-function CountedPickedUpLayerInterfaceFactoryPool:getList()
-        return self.list
-end
-
-
-function CountedPickedUpLayerInterfaceFactoryPool.getInstance()
-        return CountedPickedUpLayerInterfaceFactoryPool.SINGLETON
-end
+(define (CountedPickedUpLayerInterfaceFactoryPool.jm_init_0)
+    (let ()
+      (let/ec jreturn
+        (set! CountedPickedUpLayerInterfaceFactoryPool.jcell_SINGLETON (CountedPickedUpLayerInterfaceFactoryPool.jnew_0)))))
 
 
-function CountedPickedUpLayerInterfaceFactoryPool.init()
-        CountedPickedUpLayerInterfaceFactoryPool.SINGLETON = CountedPickedUpLayerInterfaceFactoryPool.new()
-end
-
-CountedPickedUpLayerInterfaceFactoryPool.SINGLETON = CountedPickedUpLayerInterfaceFactoryPool.new()
-
-return CountedPickedUpLayerInterfaceFactoryPool
 

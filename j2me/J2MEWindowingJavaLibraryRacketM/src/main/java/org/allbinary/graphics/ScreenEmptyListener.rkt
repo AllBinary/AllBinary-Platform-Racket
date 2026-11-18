@@ -28,6 +28,7 @@
     (define/public (jm_onFullScreenDisplay_0)
     (let ()
       (let/ec jreturn (void))))))
+(define (ScreenEmptyListener.jclassValue) ScreenEmptyListener%)
 
 (define (ScreenEmptyListener.jnew_0)
   (define this (new ScreenEmptyListener% [jclass "ScreenEmptyListener"]))

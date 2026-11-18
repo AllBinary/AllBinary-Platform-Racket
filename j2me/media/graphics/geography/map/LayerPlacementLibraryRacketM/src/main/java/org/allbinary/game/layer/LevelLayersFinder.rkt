@@ -1,76 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer
 
--- local Enumeration = require("java.util.Enumeration")
-local Layer = require("org.allbinary.layer.Layer")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local EnumerationUtil = require("org.allbinary.util.EnumerationUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/util/Enumeration.rkt"
+  "../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../org/allbinary/layer/Layer.rkt" (Layer.jstatic_ID)])
+(lazy-require ["../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.rkt" (SmallIntegerSingletonFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["../../../../org/allbinary/util/EnumerationUtil.rkt" (EnumerationUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LevelLayersFinder%
+  (class JObject%
+    (super-new)
+    (field [f_enumerationUtil JR.null])
+    (define/public (jm_get_1 _hashtable)
+    (let ([_smallIntegerSingletonFactory JR.null][_list JR.null][_enumeration JR.null][_layerHashtableCanBeNull JR.null][_integerCanBeNull JR.null][_cachedIntegerCanBeNull JR.null])
+      (let/ec jreturn
+        (set! _smallIntegerSingletonFactory (SmallIntegerSingletonFactory.jm_getInstance_0))
+        (set! _list (BasicArrayListD.jnew_0))
+        (set! _enumeration (send _hashtable jm_keys_0))
+        (set! _layerHashtableCanBeNull JR.null)
+        (set! _integerCanBeNull JR.null)
+        (set! _cachedIntegerCanBeNull JR.null)
+        (let/ec jbreak (let jloop () (when (send (get-field f_enumerationUtil this) jm_hasMoreElements_1 _enumeration)
+                (let/ec jcontinue
+            (set! _layerHashtableCanBeNull (send _hashtable jm_get_1 (send (get-field f_enumerationUtil this) jm_nextElement_1 _enumeration)))
+            (set! _integerCanBeNull (send _layerHashtableCanBeNull jm_get_1 (Layer.jstatic_ID)))
+            (set! _cachedIntegerCanBeNull (send _smallIntegerSingletonFactory jm_getAt_1 (send _integerCanBeNull jm_intValue_0)))
+            (when (not (send _list jm_contains_1 _cachedIntegerCanBeNull))
+                (begin
+                (send _list jm_add_1 _cachedIntegerCanBeNull)))) (jloop))))
+        (jreturn _list))))))
+(define (LevelLayersFinder.jclassValue) LevelLayersFinder%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LevelLayersFinder.jcell_instance 'jnone)
+(define (LevelLayersFinder.jstatic_instance)
+  (when (eq? LevelLayersFinder.jcell_instance 'jnone) (set! LevelLayersFinder.jcell_instance (LevelLayersFinder.jnew_0)))
+  LevelLayersFinder.jcell_instance)
+(define (LevelLayersFinder.jsetstatic_instance value) (set! LevelLayersFinder.jcell_instance value))
 
-local LevelLayersFinder = {}
-LevelLayersFinder.__index = LevelLayersFinder
-LevelLayersFinder.className = "LevelLayersFinder"
+(define (LevelLayersFinder.jnew_0)
+  (define this (new LevelLayersFinder% [jclass "LevelLayersFinder"]))
+    (set-field! f_enumerationUtil this (EnumerationUtil.jm_getInstance_0))
+  this)
 
-function LevelLayersFinder:_init_fields()
-    self.enumerationUtil = EnumerationUtil.getInstance()
-end
-
-function LevelLayersFinder.new()
-    local self = setmetatable({}, LevelLayersFinder)
-    self:_init_fields()
-    return self
-end
+(define (LevelLayersFinder.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LevelLayersFinder.jstatic_instance)))))
 
 
-function LevelLayersFinder.getInstance()
-        return LevelLayersFinder.instance
-end
-
-
-function LevelLayersFinder:get(hashtable)
-        local smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-        local list = BasicArrayListD.new()
-        local enumeration = hashtable:keys()
-        local layerHashtableCanBeNull = nil
-        local integerCanBeNull = nil
-        local cachedIntegerCanBeNull = nil
-        while self.enumerationUtil:hasMoreElements(enumeration) do
-            layerHashtableCanBeNull = hashtable:get(self.enumerationUtil:nextElement(enumeration))
-            integerCanBeNull = layerHashtableCanBeNull:get(Layer.ID)
-            cachedIntegerCanBeNull = smallIntegerSingletonFactory:getAt(math.tointeger(integerCanBeNull // 1))
-            if not list:contains(cachedIntegerCanBeNull) then
-                list:add(cachedIntegerCanBeNull)
-            end
-        end
-        return list
-end
-
-LevelLayersFinder.instance = LevelLayersFinder.new()
-
-return LevelLayersFinder
 

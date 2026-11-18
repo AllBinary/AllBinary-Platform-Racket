@@ -1,53 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local DirectionalInterface = require("org.allbinary.direction.DirectionalInterface")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local IndexedAnimationInterface = require("org.allbinary.animation.IndexedAnimationInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../org/allbinary/direction/DirectionalInterface.rkt"
+  "./IndexedAnimationInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define RotationAnimationInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getAngleInfoP_0)
+      (raise (JR.newException "AbstractMethodError" "getAngleInfoP")))
+    (define/public (jm_nextRotation_0)
+      (raise (JR.newException "AbstractMethodError" "nextRotation")))
+    (define/public (jm_previousRotation_0)
+      (raise (JR.newException "AbstractMethodError" "previousRotation")))))
+(define (RotationAnimationInterface.jclassValue) RotationAnimationInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local RotationAnimationInterface = {}
-RotationAnimationInterface.__index = RotationAnimationInterface
-RotationAnimationInterface.className = "RotationAnimationInterface"
-setmetatable(RotationAnimationInterface, {__index = IndexedAnimationInterface})
-
-
-function RotationAnimationInterface:getAngleInfoP()
-    error("abstract method getAngleInfoP")
-end
+(define (RotationAnimationInterface.jnew_0)
+  (define this (new RotationAnimationInterface% [jclass "RotationAnimationInterface"]))
+  this)
 
 
-function RotationAnimationInterface:nextRotation()
-    error("abstract method nextRotation")
-end
-
-
-function RotationAnimationInterface:previousRotation()
-    error("abstract method previousRotation")
-end
-
-return RotationAnimationInterface
 

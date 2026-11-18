@@ -1,141 +1,117 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local ImageAnimation = require("org.allbinary.animation.image.ImageAnimation")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./ImageAnimation.rkt")
+(lazy-require ["../../../../org/allbinary/util/CircularIndexUtil.rkt" (CircularIndexUtil.jm_createInstance_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageSegmentAnimation%
+  (class ImageAnimation%
+    (super-new)
+    (field [f_startX 0])
+    (field [f_startY 0])
+    (field [f_drawWidth 0])
+    (field [f_drawHeight 0])
+    (field [f_circularIndexUtil JR.null])
+    (field [f_sequenceArray JR.null])
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_circularIndexUtil this) jm_next_0))))
+    (define/override (jm_previousFrame_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_circularIndexUtil this) jm_previous_0))))
+    (define/override (jm_setFrame_1 _index)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_circularIndexUtil this) jm_setIndex_1 _index))))
+    (define/override (jm_getFrame_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_circularIndexUtil this) jm_getIndex_0)))))
+    (define/override (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_circularIndexUtil this) jm_getSize_0)))))
+    (define/override (jm_setSequence_1 _sequenceArray)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_sequenceArray this _sequenceArray))))
+    (define/override (jm_getSequence_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_sequenceArray this)))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getStartX_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_startX this)))))
+    (define/public (jm_setStartX_1 _startX)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_startX this _startX))))
+    (define/public (jm_getStartY_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_startY this)))))
+    (define/public (jm_setStartY_1 _startY)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_startY this _startY))))
+    (define/public (jm_getDrawWidth_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_drawWidth this)))))
+    (define/public (jm_setDrawWidth_1 _drawWidth)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_drawWidth this _drawWidth))))
+    (define/public (jm_getDrawHeight_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_drawHeight this)))))
+    (define/public (jm_setDrawHeight_1 _drawHeight)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_drawHeight this _drawHeight))))))
+(define (ImageSegmentAnimation.jclassValue) ImageSegmentAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageSegmentAnimation = {}
-ImageSegmentAnimation.__index = ImageSegmentAnimation
-ImageSegmentAnimation.className = "ImageSegmentAnimation"
-setmetatable(ImageSegmentAnimation, {__index = ImageAnimation})
-
-function ImageSegmentAnimation:_init_fields()
-    self.startX = nil
-    self.startY = nil
-    self.drawWidth = nil
-    self.drawHeight = nil
-    self.circularIndexUtil = nil
-    self.sequenceArray = nil
-end
-
-
-function ImageSegmentAnimation.new(image, sequenceArray, animationBehavior)
-    local self = setmetatable(ImageAnimation.new(image, animationBehavior), ImageSegmentAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.startX = 0
-        self.startY = 0
-        self.drawWidth = self:getImage():getWidth()
-        self.drawHeight = self:getImage():getHeight()
-        self.circularIndexUtil = CircularIndexUtil.createInstance(self.drawHeight)
-        self.sequenceArray = sequenceArray
-    return self
-end
-
-
-function ImageSegmentAnimation:nextFrame()
-        self.circularIndexUtil:next()
-end
-
-
-function ImageSegmentAnimation:previousFrame()
-        self.circularIndexUtil:previous()
-end
-
-
-function ImageSegmentAnimation:setFrame(index)
-        self.circularIndexUtil:setIndex(index)
-end
-
-
-function ImageSegmentAnimation:getFrame()
-        return self.circularIndexUtil:getIndex()
-end
-
-
-function ImageSegmentAnimation:getSize()
-        return self.circularIndexUtil:getSize()
-end
-
-
-function ImageSegmentAnimation:setSequence(sequenceArray)
-        self.sequenceArray = sequenceArray
-end
-
-
-function ImageSegmentAnimation:getSequence()
-        return self.sequenceArray
-end
-
-
-function ImageSegmentAnimation:paintXY(graphics, x, y)
-end
-
-
-function ImageSegmentAnimation:getStartX()
-        return self.startX
-end
-
-
-function ImageSegmentAnimation:setStartX(startX)
-        self.startX = startX
-end
-
-
-function ImageSegmentAnimation:getStartY()
-        return self.startY
-end
-
-
-function ImageSegmentAnimation:setStartY(startY)
-        self.startY = startY
-end
+(define (ImageSegmentAnimation.jnew_3 _image _sequenceArray _animationBehavior)
+  (define this (new ImageSegmentAnimation% [jclass "ImageSegmentAnimation"]))
+    
+    
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_startX this 0)
+        (set-field! f_startY this 0)
+        (set-field! f_drawWidth this (JR.className (send this jm_getImage_0)))
+        (set-field! f_drawHeight this (JR.className (send this jm_getImage_0)))
+        (set-field! f_circularIndexUtil this (CircularIndexUtil.jm_createInstance_1 (get-field f_drawHeight this)))
+        (set-field! f_sequenceArray this _sequenceArray)))
+  this)
 
 
-function ImageSegmentAnimation:getDrawWidth()
-        return self.drawWidth
-end
-
-
-function ImageSegmentAnimation:setDrawWidth(drawWidth)
-        self.drawWidth = drawWidth
-end
-
-
-function ImageSegmentAnimation:getDrawHeight()
-        return self.drawHeight
-end
-
-
-function ImageSegmentAnimation:setDrawHeight(drawHeight)
-        self.drawHeight = drawHeight
-end
-
-return ImageSegmentAnimation
 

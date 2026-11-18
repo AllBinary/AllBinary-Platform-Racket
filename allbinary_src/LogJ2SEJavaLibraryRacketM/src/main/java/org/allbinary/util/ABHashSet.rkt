@@ -22,6 +22,7 @@
 (define ABHashSet%
   (class HashSet%
     (super-new)))
+(define (ABHashSet.jclassValue) ABHashSet%)
 
 (define (ABHashSet.jnew_0)
   (define this (new ABHashSet% [jclass "ABHashSet"]))

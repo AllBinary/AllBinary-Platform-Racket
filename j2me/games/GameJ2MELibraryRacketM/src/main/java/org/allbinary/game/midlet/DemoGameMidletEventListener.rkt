@@ -1,51 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.midlet
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/EventListenerInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DemoGameMidletEventListener%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onDemoStart_0)
+      (raise (JR.newException "AbstractMethodError" "onDemoStart")))
+    (define/public (jm_onGameStart_0)
+      (raise (JR.newException "AbstractMethodError" "onGameStart")))
+    (define/public (jm_onDemoGameMidletEvent_1 _demoGameMidletEvent)
+      (raise (JR.newException "AbstractMethodError" "onDemoGameMidletEvent")))))
+(define (DemoGameMidletEventListener.jclassValue) DemoGameMidletEventListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local DemoGameMidletEventListener = {}
-DemoGameMidletEventListener.__index = DemoGameMidletEventListener
-DemoGameMidletEventListener.className = "DemoGameMidletEventListener"
-setmetatable(DemoGameMidletEventListener, {__index = EventListenerInterface})
-
-
-function DemoGameMidletEventListener:onDemoStart()
-    error("abstract method onDemoStart")
-end
+(define (DemoGameMidletEventListener.jnew_0)
+  (define this (new DemoGameMidletEventListener% [jclass "DemoGameMidletEventListener"]))
+  this)
 
 
-function DemoGameMidletEventListener:onGameStart()
-    error("abstract method onGameStart")
-end
-
-
-function DemoGameMidletEventListener:onDemoGameMidletEvent(demoGameMidletEvent)
-    error("abstract method onDemoGameMidletEvent")
-end
-
-return DemoGameMidletEventListener
 

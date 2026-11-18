@@ -43,11 +43,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (System.jm_getProperty_1 (get-field f_USER_HOME this))))))))
+(define (SystemProperties.jclassValue) SystemProperties%)
 
 (define SystemProperties.jcell_instance 'jnone)
 (define (SystemProperties.jstatic_instance)
   (when (eq? SystemProperties.jcell_instance 'jnone) (set! SystemProperties.jcell_instance (SystemProperties.jnew_0)))
   SystemProperties.jcell_instance)
+(define (SystemProperties.jsetstatic_instance value) (set! SystemProperties.jcell_instance value))
 
 (define (SystemProperties.jnew_0)
   (define this (new SystemProperties% [jclass "SystemProperties"]))

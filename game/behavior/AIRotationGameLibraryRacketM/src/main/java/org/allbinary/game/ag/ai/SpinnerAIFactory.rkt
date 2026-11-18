@@ -1,50 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local ArtificialIntelligenceInterfaceFactoryInterface = require("org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface.rkt")
+(lazy-require ["../../../../../javax/microedition/lcdui/Canvas.rkt" (Canvas.jstatic_LEFT)])
+(lazy-require ["./SpinnerAI.rkt" (SpinnerAI.jnew_3)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SpinnerAIFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_3 _hashtable _ownerLayerInterface _gameInput)
+    (let ([_direction JR.null])
+      (let/ec jreturn
+        (set! _direction (vector (Canvas.jstatic_LEFT)))
+        (jreturn (SpinnerAI.jnew_3 _direction _ownerLayerInterface _gameInput)))))))
+(define (SpinnerAIFactory.jclassValue) SpinnerAIFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SpinnerAIFactory = {}
-SpinnerAIFactory.__index = SpinnerAIFactory
-SpinnerAIFactory.className = "SpinnerAIFactory"
-
-function SpinnerAIFactory.new()
-    local self = setmetatable({}, SpinnerAIFactory)
-    return self
-end
+(define (SpinnerAIFactory.jnew_0)
+  (define this (new SpinnerAIFactory% [jclass "SpinnerAIFactory"]))
+  this)
 
 
-function SpinnerAIFactory:getInstance(hashtable, ownerLayerInterface, gameInput)
-        local direction = {Canvas.LEFT}
-        return SpinnerAI.new(direction, ownerLayerInterface, gameInput)
-end
-
-return SpinnerAIFactory
 

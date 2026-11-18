@@ -38,11 +38,13 @@
             (JR.println _osString)
             (send (get-field f_logUtil this) jm_putF_3 _osString this (get-field f_GET_INSTANCE _commonStrings)))
         (jreturn (get-field f_genericOperatingSystem this)))))))
+(define (OperatingSystemFactory.jclassValue) OperatingSystemFactory%)
 
 (define OperatingSystemFactory.jcell_instance 'jnone)
 (define (OperatingSystemFactory.jstatic_instance)
   (when (eq? OperatingSystemFactory.jcell_instance 'jnone) (set! OperatingSystemFactory.jcell_instance (OperatingSystemFactory.jnew_0)))
   OperatingSystemFactory.jcell_instance)
+(define (OperatingSystemFactory.jsetstatic_instance value) (set! OperatingSystemFactory.jcell_instance value))
 
 (define (OperatingSystemFactory.jnew_0)
   (define this (new OperatingSystemFactory% [jclass "OperatingSystemFactory"]))

@@ -1,51 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.audio
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./AllBinaryMediaManager.rkt" (AllBinaryMediaManager.jm_shutdown_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AllBinaryMediaManagerShutdown%
+  (class JObject%
+    (super-new)))
+(define (AllBinaryMediaManagerShutdown.jclassValue) AllBinaryMediaManagerShutdown%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AllBinaryMediaManagerShutdown.jcell_instance 'jnone)
+(define (AllBinaryMediaManagerShutdown.jstatic_instance)
+  (when (eq? AllBinaryMediaManagerShutdown.jcell_instance 'jnone) (set! AllBinaryMediaManagerShutdown.jcell_instance (AllBinaryMediaManagerShutdown.jnew_0)))
+  AllBinaryMediaManagerShutdown.jcell_instance)
+(define (AllBinaryMediaManagerShutdown.jsetstatic_instance value) (set! AllBinaryMediaManagerShutdown.jcell_instance value))
 
-local AllBinaryMediaManagerShutdown = {}
-AllBinaryMediaManagerShutdown.__index = AllBinaryMediaManagerShutdown
-AllBinaryMediaManagerShutdown.className = "AllBinaryMediaManagerShutdown"
+(define (AllBinaryMediaManagerShutdown.jnew_0)
+  (define this (new AllBinaryMediaManagerShutdown% [jclass "AllBinaryMediaManagerShutdown"]))
+  this)
 
-function AllBinaryMediaManagerShutdown.new()
-    local self = setmetatable({}, AllBinaryMediaManagerShutdown)
-    return self
-end
+(define (AllBinaryMediaManagerShutdown.jm_shutdown_1 _soundsFactoryInterface)
+    (let ([_logUtil JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (set! _logUtil (LogUtil.jm_getInstance_0))
+        (set! _commonStrings (CommonStrings.jm_getInstance_0))
+        (send _logUtil jm_putF_3 (get-field f_START _commonStrings) (AllBinaryMediaManagerShutdown.jstatic_instance) "shutdown")
+        (AllBinaryMediaManager.jm_shutdown_1 _soundsFactoryInterface))))
 
 
--- throws Exception
-function AllBinaryMediaManagerShutdown.shutdown(soundsFactoryInterface)
-        local logUtil = LogUtil.getInstance()
-        local commonStrings = CommonStrings.getInstance()
-        logUtil:putF(commonStrings.START, AllBinaryMediaManagerShutdown.instance, "shutdown")
-        AllBinaryMediaManager.shutdown(soundsFactoryInterface)
-end
-
-AllBinaryMediaManagerShutdown.instance = AllBinaryMediaManagerShutdown.new()
-
-return AllBinaryMediaManagerShutdown
 

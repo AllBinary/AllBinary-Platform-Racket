@@ -1,92 +1,76 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
-local BoundsVisitorInterface = require("org.allbinary.bounds.BoundsVisitorInterface")
-local VelocityInterface = require("org.allbinary.game.physics.velocity.VelocityInterface")
-local VelocityInterfaceCompositeInterface = require("org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface")
-local LayerInterface = require("org.allbinary.layer.LayerInterface")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/bounds/BoundsVisitorInterface.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ReverseVelocityBoundsVisitor%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_velocityInterface JR.null])
+    (field [f_layerInterface JR.null])
+    (define/public (jm_getX_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_layerInterface this) jm_getXP_0)))))
+    (define/public (jm_getY_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_layerInterface this) jm_getYP_0)))))
+    (define/public (jm_minX_0)
+    (let ()
+      (let/ec jreturn
+        (when (< (JR.className (send (get-field f_velocityInterface this) jm_getVelocityXBasicDecimalP_0)) 0)
+            (begin
+            (JR.className (send (get-field f_velocityInterface this) jm_getVelocityXBasicDecimalP_0)))))))
+    (define/public (jm_maxX_0)
+    (let ()
+      (let/ec jreturn
+        (when (> (JR.className (send (get-field f_velocityInterface this) jm_getVelocityXBasicDecimalP_0)) 0)
+            (begin
+            (JR.className (send (get-field f_velocityInterface this) jm_getVelocityXBasicDecimalP_0)))))))
+    (define/public (jm_minY_0)
+    (let ()
+      (let/ec jreturn
+        (when (< (JR.className (send (get-field f_velocityInterface this) jm_getVelocityYBasicDecimalP_0)) 0)
+            (begin
+            (JR.className (send (get-field f_velocityInterface this) jm_getVelocityYBasicDecimalP_0)))))))
+    (define/public (jm_maxY_0)
+    (let ()
+      (let/ec jreturn
+        (when (> (JR.className (send (get-field f_velocityInterface this) jm_getVelocityYBasicDecimalP_0)) 0)
+            (begin
+            (JR.className (send (get-field f_velocityInterface this) jm_getVelocityYBasicDecimalP_0)))))))))
+(define (ReverseVelocityBoundsVisitor.jclassValue) ReverseVelocityBoundsVisitor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ReverseVelocityBoundsVisitor = {}
-ReverseVelocityBoundsVisitor.__index = ReverseVelocityBoundsVisitor
-ReverseVelocityBoundsVisitor.className = "ReverseVelocityBoundsVisitor"
-
-function ReverseVelocityBoundsVisitor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.velocityInterface = nil
-    self.layerInterface = nil
-end
-
-
-function ReverseVelocityBoundsVisitor.new(layerInterface)
-    local self = setmetatable({}, ReverseVelocityBoundsVisitor)
-    self:_init_fields()
-        self.layerInterface = layerInterface
-        local velocityInterfaceCompositeInterface = layerInterface
-        self.velocityInterface = velocityInterfaceCompositeInterface:getVelocityProperties()
-    return self
-end
-
-
-function ReverseVelocityBoundsVisitor:getX()
-        return self.layerInterface:getXP()
-end
-
-
-function ReverseVelocityBoundsVisitor:getY()
-        return self.layerInterface:getYP()
-end
-
-
-function ReverseVelocityBoundsVisitor:minX()
-        if self.velocityInterface:getVelocityXBasicDecimalP():getUnscaled() < 0 then
-            self.velocityInterface:getVelocityXBasicDecimalP():multiplyint(-1)
-        end
-end
-
-
-function ReverseVelocityBoundsVisitor:maxX()
-        if self.velocityInterface:getVelocityXBasicDecimalP():getUnscaled() > 0 then
-            self.velocityInterface:getVelocityXBasicDecimalP():multiplyint(-1)
-        end
-end
+(define (ReverseVelocityBoundsVisitor.jnew_1 _layerInterface)
+  (define this (new ReverseVelocityBoundsVisitor% [jclass "ReverseVelocityBoundsVisitor"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    
+    
+    (let ([_velocityInterfaceCompositeInterface JR.null])
+      (let/ec jreturn
+        (set-field! f_layerInterface this _layerInterface)
+        (set! _velocityInterfaceCompositeInterface _layerInterface)
+        (set-field! f_velocityInterface this (send _velocityInterfaceCompositeInterface jm_getVelocityProperties_0))))
+  this)
 
 
-function ReverseVelocityBoundsVisitor:minY()
-        if self.velocityInterface:getVelocityYBasicDecimalP():getUnscaled() < 0 then
-            self.velocityInterface:getVelocityYBasicDecimalP():multiplyint(-1)
-        end
-end
-
-
-function ReverseVelocityBoundsVisitor:maxY()
-        if self.velocityInterface:getVelocityYBasicDecimalP():getUnscaled() > 0 then
-            self.velocityInterface:getVelocityYBasicDecimalP():multiplyint(-1)
-        end
-end
-
-return ReverseVelocityBoundsVisitor
 

@@ -39,11 +39,13 @@
     (let ()
       (let/ec jreturn
         (JR.className (get-field f_logUtil this)))))))
+(define (MusicThreadPool.jclassValue) MusicThreadPool%)
 
 (define MusicThreadPool.jcell_THREAD_POOL 'jnone)
 (define (MusicThreadPool.jstatic_THREAD_POOL)
   (when (eq? MusicThreadPool.jcell_THREAD_POOL 'jnone) (set! MusicThreadPool.jcell_THREAD_POOL (ThreadPool.jnew_3 "Music" 2 (ThreadPool.jstatic_NORMAL_PRIORITY))))
   MusicThreadPool.jcell_THREAD_POOL)
+(define (MusicThreadPool.jsetstatic_THREAD_POOL value) (set! MusicThreadPool.jcell_THREAD_POOL value))
 
 (define (MusicThreadPool.jnew_3 _poolName _numThreads _priority)
   (define this (new MusicThreadPool% [jclass "MusicThreadPool"]))

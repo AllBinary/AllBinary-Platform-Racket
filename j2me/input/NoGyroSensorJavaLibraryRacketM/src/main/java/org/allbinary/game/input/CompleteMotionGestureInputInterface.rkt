@@ -1,36 +1,32 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local NamedInterface = require("org.allbinary.layer.NamedInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/layer/NamedInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CompleteMotionGestureInputInterface%
+  (class JObject%
+    (super-new)))
+(define (CompleteMotionGestureInputInterface.jclassValue) CompleteMotionGestureInputInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (CompleteMotionGestureInputInterface.jnew_0)
+  (define this (new CompleteMotionGestureInputInterface% [jclass "CompleteMotionGestureInputInterface"]))
+  this)
 
--- Java interface
-local CompleteMotionGestureInputInterface = {}
-CompleteMotionGestureInputInterface.__index = CompleteMotionGestureInputInterface
-CompleteMotionGestureInputInterface.className = "CompleteMotionGestureInputInterface"
-setmetatable(CompleteMotionGestureInputInterface, {__index = NamedInterface})
 
-return CompleteMotionGestureInputInterface
 

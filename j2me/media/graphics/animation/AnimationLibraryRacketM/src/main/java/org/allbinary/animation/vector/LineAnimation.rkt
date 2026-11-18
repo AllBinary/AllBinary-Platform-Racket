@@ -1,105 +1,81 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.vector
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ColorCompositeInterface = require("org.allbinary.graphics.color.ColorCompositeInterface")
-local PositionInterface = require("org.allbinary.layer.PositionInterface")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/Animation.rkt"
+  "../../../../org/allbinary/graphics/color/ColorCompositeInterface.rkt"
+  "../../../../org/allbinary/layer/PositionInterface.rkt")
+(lazy-require ["../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define LineAnimation%
+  (class Animation%
+    (super-new)
+    (field [f_newLine JR.null])
+    (field [f_tempLine JR.null])
+    (field [f_line JR.null])
+    (define/public (jm_init_2 _x _y)
+    (let ()
+      (let/ec jreturn
+        (vector-set! (vector-ref (get-field f_newLine this) 0) 0 _x)
+        (vector-set! (vector-ref (get-field f_newLine this) 0) 1 _y)
+        (vector-set! (vector-ref (get-field f_newLine this) 1) 0 _x)
+        (vector-set! (vector-ref (get-field f_newLine this) 1) 1 _y)
+        (set-field! f_tempLine this (get-field f_line this))
+        (set-field! f_line this (get-field f_newLine this))
+        (set-field! f_newLine this (get-field f_tempLine this)))))
+    (define/public (jm_setPosition_3 _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (vector-set! (vector-ref (get-field f_newLine this) 0) 0 (vector-ref (vector-ref (get-field f_line this) 1) 0))
+        (vector-set! (vector-ref (get-field f_newLine this) 0) 1 (vector-ref (vector-ref (get-field f_line this) 1) 1))
+        (vector-set! (vector-ref (get-field f_newLine this) 1) 0 _x)
+        (vector-set! (vector-ref (get-field f_newLine this) 1) 1 _y)
+        (set-field! f_tempLine this (get-field f_line this))
+        (set-field! f_line this (get-field f_newLine this))
+        (set-field! f_newLine this (get-field f_tempLine this)))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ([_currentLine JR.null])
+      (let/ec jreturn
+        (set! _currentLine (get-field f_line this))
+        (JR.className (get-field f_basicSetColorUtil this))
+        (send _graphics jm_drawLine_4 (vector-ref (vector-ref _currentLine 0) 0) (vector-ref (vector-ref _currentLine 0) 1) (vector-ref (vector-ref _currentLine 1) 0) (vector-ref (vector-ref _currentLine 1) 1)))))
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_getBasicColorP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (super jm_getBasicColorP_0)))))
+    (define/override (jm_setBasicColorP_1 _basicColor)
+    (let ()
+      (let/ec jreturn
+        (super jm_setBasicColorP_1 _basicColor))))))
+(define (LineAnimation.jclassValue) LineAnimation%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LineAnimation = {}
-LineAnimation.__index = LineAnimation
-LineAnimation.className = "LineAnimation"
-setmetatable(LineAnimation, {__index = Animation})
-
-function LineAnimation:_init_fields()
-    self.newLine = java_new_array(0, 2, 2)
-    self.tempLine = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
-    self.line = java_new_array(0, 2, 2)
-end
-
-
-function LineAnimation.new(basicColor)
-    local self = setmetatable(Animation.new(), LineAnimation)
-    self:_init_fields()
-        self:setBasicColorP(basicColor)
-    return self
-end
-
-
-function LineAnimation:init(x, y)
-        self.newLine[1][1] = x
-        self.newLine[1][2] = y
-        self.newLine[2][1] = x
-        self.newLine[2][2] = y
-        self.tempLine = self.line
-        self.line = self.newLine
-        self.newLine = self.tempLine
-end
-
-
-function LineAnimation:setPosition(x, y, z)
-        self.newLine[1][1] = self.line[2][1]
-        self.newLine[1][2] = self.line[2][2]
-        self.newLine[2][1] = x
-        self.newLine[2][2] = y
-        self.tempLine = self.line
-        self.line = self.newLine
-        self.newLine = self.tempLine
-end
+(define (LineAnimation.jnew_1 _basicColor)
+  (define this (new LineAnimation% [jclass "LineAnimation"]))
+    (set-field! f_newLine this (JR.newArray 0 2 2))
+    (set-field! f_tempLine this (get-field f_NULL_INT_ARRAY_ARRAY (NullUtil.jm_getInstance_0)))
+    (set-field! f_line this (JR.newArray 0 2 2))
+    (let ()
+      (let/ec jreturn
+        (send this jm_setBasicColorP_1 _basicColor)))
+  this)
 
 
-function LineAnimation:paintXY(graphics, x, y)
-        local currentLine = self.line
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-        graphics:drawLine(currentLine[1][1], currentLine[1][2], currentLine[2][1], currentLine[2][2])
-end
-
-
-function LineAnimation:nextFrame()
-end
-
-
-function LineAnimation:getBasicColorP()
-        return Animation.getBasicColorP(self)
-end
-
-
-function LineAnimation:setBasicColorP(basicColor)
-        Animation.setBasicColorP(self, basicColor)
-end
-
-return LineAnimation
 

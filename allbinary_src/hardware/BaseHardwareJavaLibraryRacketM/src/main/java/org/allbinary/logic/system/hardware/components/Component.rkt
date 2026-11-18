@@ -26,6 +26,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_name this)))))))
+(define (Component.jclassValue) Component%)
 
 (define (Component.jnew_1 _componentName)
   (define this (new Component% [jclass "Component"]))

@@ -1,59 +1,51 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local SpriteFactoryInterface = require("org.allbinary.game.layer.SpriteFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./SpriteFactoryInterface.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/game/Sprite.rkt" (Sprite.jnew_3)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SpriteFactory%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/public (jm_createSprite_3 _image _frameWidth _frameHeight)
+    (let ()
+      (let/ec jreturn
+        (jreturn (Sprite.jnew_3 _image _frameWidth _frameHeight)))))))
+(define (SpriteFactory.jclassValue) SpriteFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define SpriteFactory.jcell_instance 'jnone)
+(define (SpriteFactory.jstatic_instance)
+  (when (eq? SpriteFactory.jcell_instance 'jnone) (set! SpriteFactory.jcell_instance (SpriteFactory.jnew_0)))
+  SpriteFactory.jcell_instance)
+(define (SpriteFactory.jsetstatic_instance value) (set! SpriteFactory.jcell_instance value))
 
-local SpriteFactory = {}
-SpriteFactory.__index = SpriteFactory
-SpriteFactory.className = "SpriteFactory"
+(define (SpriteFactory.jnew_0)
+  (define this (new SpriteFactory% [jclass "SpriteFactory"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+  this)
 
-function SpriteFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-function SpriteFactory.new()
-    local self = setmetatable({}, SpriteFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function SpriteFactory.getInstance()
-        return SpriteFactory.instance
-end
+(define (SpriteFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (SpriteFactory.jstatic_instance)))))
 
 
-function SpriteFactory:createSprite(image, frameWidth, frameHeight)
-        return Sprite.new(image, frameWidth, frameHeight)
-end
-
-SpriteFactory.instance = SpriteFactory.new()
-
-return SpriteFactory
 

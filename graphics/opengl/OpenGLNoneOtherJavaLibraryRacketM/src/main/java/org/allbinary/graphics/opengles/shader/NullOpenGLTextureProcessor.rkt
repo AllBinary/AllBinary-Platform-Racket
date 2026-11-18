@@ -1,45 +1,43 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.opengles.shader
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["./OpenGLObject3dProcessor.rkt" (OpenGLObject3dProcessor.jnew_0)])
+(provide (all-defined-out))
+
+(define NullOpenGLTextureProcessor%
+  (class JObject%
+    (super-new)))
+(define (NullOpenGLTextureProcessor.jclassValue) NullOpenGLTextureProcessor%)
+
+(define NullOpenGLTextureProcessor.jcell_instance 'jnone)
+(define (NullOpenGLTextureProcessor.jstatic_instance)
+  (when (eq? NullOpenGLTextureProcessor.jcell_instance 'jnone) (set! NullOpenGLTextureProcessor.jcell_instance (OpenGLObject3dProcessor.jnew_0)))
+  NullOpenGLTextureProcessor.jcell_instance)
+(define (NullOpenGLTextureProcessor.jsetstatic_instance value) (set! NullOpenGLTextureProcessor.jcell_instance value))
+
+(define (NullOpenGLTextureProcessor.jnew_0)
+  (define this (new NullOpenGLTextureProcessor% [jclass "NullOpenGLTextureProcessor"]))
+  this)
+
+(define (NullOpenGLTextureProcessor.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullOpenGLTextureProcessor.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local NullOpenGLTextureProcessor = {}
-NullOpenGLTextureProcessor.__index = NullOpenGLTextureProcessor
-NullOpenGLTextureProcessor.className = "NullOpenGLTextureProcessor"
-
-function NullOpenGLTextureProcessor.new()
-    local self = setmetatable({}, NullOpenGLTextureProcessor)
-    return self
-end
-
-
-function NullOpenGLTextureProcessor.getInstance()
-        return NullOpenGLTextureProcessor.instance
-end
-
-NullOpenGLTextureProcessor.instance = OpenGLObject3dProcessor.new()
-
-return NullOpenGLTextureProcessor
 

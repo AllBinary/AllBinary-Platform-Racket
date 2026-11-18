@@ -31,6 +31,7 @@
       (raise (JR.newException "AbstractMethodError" "removeAllListeners")))
     (define/public (jm_removeListener_1 _eventListenerInterface)
       (raise (JR.newException "AbstractMethodError" "removeListener")))))
+(define (BasicEventHandlerInterface.jclassValue) BasicEventHandlerInterface%)
 
 (define (BasicEventHandlerInterface.jnew_0)
   (define this (new BasicEventHandlerInterface% [jclass "BasicEventHandlerInterface"]))

@@ -1,52 +1,45 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.displayable.screen
 
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/paint/NullPaintable.rkt" (NullPaintable.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define FullScreenPaintableFactory%
+  (class JObject%
+    (super-new)
+    (field [f_paintable JR.null])))
+(define (FullScreenPaintableFactory.jclassValue) FullScreenPaintableFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define FullScreenPaintableFactory.jcell_instance 'jnone)
+(define (FullScreenPaintableFactory.jstatic_instance)
+  (when (eq? FullScreenPaintableFactory.jcell_instance 'jnone) (set! FullScreenPaintableFactory.jcell_instance (FullScreenPaintableFactory.jnew_0)))
+  FullScreenPaintableFactory.jcell_instance)
+(define (FullScreenPaintableFactory.jsetstatic_instance value) (set! FullScreenPaintableFactory.jcell_instance value))
 
-local FullScreenPaintableFactory = {}
-FullScreenPaintableFactory.__index = FullScreenPaintableFactory
-FullScreenPaintableFactory.className = "FullScreenPaintableFactory"
+(define (FullScreenPaintableFactory.jnew_0)
+  (define this (new FullScreenPaintableFactory% [jclass "FullScreenPaintableFactory"]))
+    (set-field! f_paintable this (NullPaintable.jm_getInstance_0))
+  this)
 
-function FullScreenPaintableFactory:_init_fields()
-    self.paintable = NullPaintable.getInstance()
-end
-
-function FullScreenPaintableFactory.new()
-    local self = setmetatable({}, FullScreenPaintableFactory)
-    self:_init_fields()
-    return self
-end
+(define (FullScreenPaintableFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (FullScreenPaintableFactory.jstatic_instance)))))
 
 
-function FullScreenPaintableFactory.getInstance()
-        return FullScreenPaintableFactory.instance
-end
-
-FullScreenPaintableFactory.instance = FullScreenPaintableFactory.new()
-
-return FullScreenPaintableFactory
 

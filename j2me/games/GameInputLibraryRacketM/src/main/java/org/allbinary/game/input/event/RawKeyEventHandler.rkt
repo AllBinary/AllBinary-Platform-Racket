@@ -1,154 +1,141 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input.event
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define RawKeyEventHandler%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_eventListenerInterfaceList JR.null])
+    (define/public (jm_removeAllListeners_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_eventListenerInterfaceList this (BasicArrayListD.jnew_0)))))
+    (define/public (jm_addListeners_1 _vector)
+    (let ([_eventListenerInterface JR.null][_size JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _eventListenerInterface JR.null)
+        (set! _size (send _vector jm_size_0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _eventListenerInterface (send _vector jm_get_1 _index))
+            (send this jm_addListener_1 _eventListenerInterface))
+                (set! _index (JR.i32 (+ _index 1))) (jloop))))))))
+    (define/public (jm_addListenerSingleThreaded_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_eventListenerInterfaceList this) jm_contains_1 _eventListenerInterface))
+            (begin
+            (send (get-field f_eventListenerInterfaceList this) jm_add_1 _eventListenerInterface))))))
+    (define/public (jm_addListener_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_eventListenerInterfaceList this) jm_contains_1 _eventListenerInterface))
+            (begin
+            (send (get-field f_eventListenerInterfaceList this) jm_add_1 _eventListenerInterface))))))
+    (define/public (jm_removeListenerSingleThreaded_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_eventListenerInterfaceList this) jm_remove_1 _eventListenerInterface))))
+    (define/public (jm_removeListener_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_eventListenerInterfaceList this) jm_remove_1 _eventListenerInterface))))
+    (define/public (jm_fireEvent_3 _keyCode _deviceId _repeated)
+    (let ([_eventListenerInterface JR.null][_index JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (set! _eventListenerInterface JR.null)
+        (set! _index 0)
+        (let/ec jbreak (let jloop () (when (< _index (send (get-field f_eventListenerInterfaceList this) jm_size_0))
+                (let/ec jcontinue
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (set! _commonStrings (CommonStrings.jm_getInstance_0))
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_FIRE_EVENT (EventStrings.jm_getInstance_0)) _e))])
+                (set! _eventListenerInterface (send (get-field f_eventListenerInterfaceList this) jm_get_1 _index))
+                (send this jm_process_4 _keyCode _deviceId _repeated _eventListenerInterface))
+            (set! _index (JR.i32 (+ _index 1)))) (jloop)))))))
+    (define/public (jm_process_4 _keyCode _deviceId _repeated _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (send _eventListenerInterface jm_onEventRaw_3 _keyCode _deviceId _repeated))))
+    (define/public (jm_getEventListenerInterfaceListP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_eventListenerInterfaceList this)))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null][_eventListenerInterface JR.null][_index JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 (RawKeyEventHandler.jstatic_TOTAL_LISTENERS))
+        (send _stringBuffer jm_appendint_1 (send (get-field f_eventListenerInterfaceList this) jm_size_0))
+        (set! _eventListenerInterface JR.null)
+        (set! _index 0)
+        (let/ec jbreak (let jloop () (when (< _index (send (get-field f_eventListenerInterfaceList this) jm_size_0))
+                (let/ec jcontinue
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (set! _commonStrings (CommonStrings.jm_getInstance_0))
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_TOSTRING _commonStrings) _e))])
+                (set! _eventListenerInterface (send (get-field f_eventListenerInterfaceList this) jm_get_1 _index))
+                (send _stringBuffer jm_append_1 (RawKeyEventHandler.jstatic_LISTENER_LABEL))
+                (send _stringBuffer jm_append_1 (send _eventListenerInterface jm_toString_0)))
+            (set! _index (JR.i32 (+ _index 1)))) (jloop))))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (RawKeyEventHandler.jclassValue) RawKeyEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define RawKeyEventHandler.jcell_instance 'jnone)
+(define (RawKeyEventHandler.jstatic_instance)
+  (when (eq? RawKeyEventHandler.jcell_instance 'jnone) (set! RawKeyEventHandler.jcell_instance (RawKeyEventHandler.jnew_0)))
+  RawKeyEventHandler.jcell_instance)
+(define (RawKeyEventHandler.jsetstatic_instance value) (set! RawKeyEventHandler.jcell_instance value))
 
-local RawKeyEventHandler = {}
-RawKeyEventHandler.__index = RawKeyEventHandler
-RawKeyEventHandler.className = "RawKeyEventHandler"
+(define RawKeyEventHandler.jcell_TOTAL_LISTENERS 'jnone)
+(define (RawKeyEventHandler.jstatic_TOTAL_LISTENERS)
+  (when (eq? RawKeyEventHandler.jcell_TOTAL_LISTENERS 'jnone) (set! RawKeyEventHandler.jcell_TOTAL_LISTENERS "Total Listeners: "))
+  RawKeyEventHandler.jcell_TOTAL_LISTENERS)
+(define (RawKeyEventHandler.jsetstatic_TOTAL_LISTENERS value) (set! RawKeyEventHandler.jcell_TOTAL_LISTENERS value))
 
-function RawKeyEventHandler:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.eventListenerInterfaceList = nil
-end
+(define RawKeyEventHandler.jcell_LISTENER_LABEL 'jnone)
+(define (RawKeyEventHandler.jstatic_LISTENER_LABEL)
+  (when (eq? RawKeyEventHandler.jcell_LISTENER_LABEL 'jnone) (set! RawKeyEventHandler.jcell_LISTENER_LABEL " Listener: "))
+  RawKeyEventHandler.jcell_LISTENER_LABEL)
+(define (RawKeyEventHandler.jsetstatic_LISTENER_LABEL value) (set! RawKeyEventHandler.jcell_LISTENER_LABEL value))
 
+(define (RawKeyEventHandler.jnew_0)
+  (define this (new RawKeyEventHandler% [jclass "RawKeyEventHandler"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_eventListenerInterfaceList this (BasicArrayListD.jnew_0))))
+  this)
 
-function RawKeyEventHandler.getInstance()
-        return RawKeyEventHandler.instance
-end
-
-
-function RawKeyEventHandler.new()
-    local self = setmetatable({}, RawKeyEventHandler)
-    self:_init_fields()
-        self.eventListenerInterfaceList = BasicArrayListD.new()
-    return self
-end
-
-
-function RawKeyEventHandler:removeAllListeners()
-        self.eventListenerInterfaceList = BasicArrayListD.new()
-end
-
-
-function RawKeyEventHandler:addListeners(vector)
-        local eventListenerInterface = nil
-        local size = vector:size()
-        for index = 0, size - 1 do
-            eventListenerInterface = vector:get(index)
-            self:addListener(eventListenerInterface)
-        end
-end
+(define (RawKeyEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (RawKeyEventHandler.jstatic_instance)))))
 
 
-function RawKeyEventHandler:addListenerSingleThreaded(eventListenerInterface)
-        if not self.eventListenerInterfaceList:contains(eventListenerInterface) then
-            self.eventListenerInterfaceList:add(eventListenerInterface)
-        end
-end
-
-
-function RawKeyEventHandler:addListener(eventListenerInterface)
-        if not self.eventListenerInterfaceList:contains(eventListenerInterface) then
-            self.eventListenerInterfaceList:add(eventListenerInterface)
-        end
-end
-
-
-function RawKeyEventHandler:removeListenerSingleThreaded(eventListenerInterface)
-        self.eventListenerInterfaceList:remove(eventListenerInterface)
-end
-
-
-function RawKeyEventHandler:removeListener(eventListenerInterface)
-        self.eventListenerInterfaceList:remove(eventListenerInterface)
-end
-
-
--- throws Exception
-function RawKeyEventHandler:fireEvent(keyCode, deviceId, repeated)
-        local eventListenerInterface = nil
-        local index = 0
-        while index < self.eventListenerInterfaceList:size() do
-            local try_ok, try_error = pcall(function()
-                eventListenerInterface = self.eventListenerInterfaceList:get(index)
-                self:process(keyCode, deviceId, repeated, eventListenerInterface)
-            end)
-            if not try_ok then
-                local e = try_error
-                local commonStrings = CommonStrings.getInstance()
-                self.logUtil:put(commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            index = index + 1
-        end
-end
-
-
--- throws Exception
-function RawKeyEventHandler:process(keyCode, deviceId, repeated, eventListenerInterface)
-        eventListenerInterface:onEventRaw(keyCode, deviceId, repeated)
-end
-
-
-function RawKeyEventHandler:getEventListenerInterfaceListP()
-        return self.eventListenerInterfaceList
-end
-
-
-function RawKeyEventHandler:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(RawKeyEventHandler.TOTAL_LISTENERS)
-        stringBuffer:appendint(self.eventListenerInterfaceList:size())
-        local eventListenerInterface = nil
-        local index = 0
-        while index < self.eventListenerInterfaceList:size() do
-            local try_ok, try_error = pcall(function()
-                eventListenerInterface = self.eventListenerInterfaceList:get(index)
-                stringBuffer:append(RawKeyEventHandler.LISTENER_LABEL)
-                stringBuffer:append(tostring(eventListenerInterface))
-            end)
-            if not try_ok then
-                local e = try_error
-                local commonStrings = CommonStrings.getInstance()
-                self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.TOSTRING, e)
-            end
-            index = index + 1
-        end
-        return tostring(stringBuffer)
-end
-RawKeyEventHandler.__tostring = function(self) return self:toString() end
-
-RawKeyEventHandler.instance = RawKeyEventHandler.new()
-RawKeyEventHandler.TOTAL_LISTENERS = "Total Listeners: "
-RawKeyEventHandler.LISTENER_LABEL = " Listener: "
-
-return RawKeyEventHandler
 

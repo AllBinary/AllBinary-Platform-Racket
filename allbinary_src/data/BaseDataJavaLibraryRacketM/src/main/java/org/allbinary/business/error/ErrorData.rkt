@@ -23,11 +23,13 @@
     (super-new)
     (field [f_NAME JR.null])
     (field [f_TEXT JR.null])))
+(define (ErrorData.jclassValue) ErrorData%)
 
 (define ErrorData.jcell_instance 'jnone)
 (define (ErrorData.jstatic_instance)
   (when (eq? ErrorData.jcell_instance 'jnone) (set! ErrorData.jcell_instance (ErrorData.jnew_0)))
   ErrorData.jcell_instance)
+(define (ErrorData.jsetstatic_instance value) (set! ErrorData.jcell_instance value))
 
 (define (ErrorData.jnew_0)
   (define this (new ErrorData% [jclass "ErrorData"]))

@@ -22,6 +22,7 @@
 (define ABHashMap%
   (class HashMap%
     (super-new)))
+(define (ABHashMap.jclassValue) ABHashMap%)
 
 (define (ABHashMap.jnew_0)
   (define this (new ABHashMap% [jclass "ABHashMap"]))

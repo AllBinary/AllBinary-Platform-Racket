@@ -24,11 +24,13 @@
     (field [f_ADD_TASK JR.null])
     (field [f_START_TASK JR.null])
     (field [f_COMPLETE_TASK JR.null])))
+(define (ThreadPoolStrings.jclassValue) ThreadPoolStrings%)
 
 (define ThreadPoolStrings.jcell_instance 'jnone)
 (define (ThreadPoolStrings.jstatic_instance)
   (when (eq? ThreadPoolStrings.jcell_instance 'jnone) (set! ThreadPoolStrings.jcell_instance (ThreadPoolStrings.jnew_0)))
   ThreadPoolStrings.jcell_instance)
+(define (ThreadPoolStrings.jsetstatic_instance value) (set! ThreadPoolStrings.jcell_instance value))
 
 (define (ThreadPoolStrings.jnew_0)
   (define this (new ThreadPoolStrings% [jclass "ThreadPoolStrings"]))

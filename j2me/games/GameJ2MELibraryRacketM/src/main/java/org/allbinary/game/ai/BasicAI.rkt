@@ -1,135 +1,112 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ai
 
-local ArtificialIntelligence = require("org.allbinary.ai.ArtificialIntelligence")
-local CanvasUtil = require("org.allbinary.game.displayable.canvas.CanvasUtil")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local GameKeyEventSourceInterface = require("org.allbinary.game.input.GameKeyEventSourceInterface")
-local GameKeyEventFactory = require("org.allbinary.game.input.event.GameKeyEventFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/ai/ArtificialIntelligence.rkt"
+  "../../../../org/allbinary/game/input/GameKeyEventSourceInterface.rkt"
+  "../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../org/allbinary/game/displayable/canvas/CanvasUtil.rkt" (CanvasUtil.jm_getKeyName_1)])
+(lazy-require ["../../../../org/allbinary/game/input/event/GameKeyEventFactory.rkt" (GameKeyEventFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.rkt" (SmallIntegerSingletonFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define BasicAI%
+  (class ArtificialIntelligence%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_gameKeyEventFactory JR.null])
+    (field [f_ownerLayerInterface JR.null])
+    (field [f_gameInput JR.null])
+    (field [f_lastKey 0])
+    (define/override (jm_processAI_1 _allBinaryLayerManager)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_processKeyAI_1 _key)
+    (let ()
+      (let/ec jreturn
+        (when (not (= _key (JR.i32 (- 1))))
+            (begin
+            (send (get-field f_gameInput this) jm_add_1 (send (get-field f_gameKeyEventFactory this) jm_getInstanceForKey_2 this _key)))))))
+    (define/public (jm_setLastKey_1 _lastKey)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_lastKey this _lastKey))))
+    (define/public (jm_getLastKey_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_lastKey this)))))
+    (define/public (jm_getOwnerLayerInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_ownerLayerInterface this)))))
+    (define/public (jm_getGameInput_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameInput this)))))
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className this)))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 (get-field f_NEW_LINE (CommonSeps.jm_getInstance_0)))
+        (send _stringBuffer jm_append_1 (send this jm_getName_0))
+        (send _stringBuffer jm_append_1 " LastKey: ")
+        (send _stringBuffer jm_append_1 (CanvasUtil.jm_getKeyName_1 (send this jm_getLastKey_0)))
+        (jreturn (send _stringBuffer jm_toString_0)))))
+    (define/public (jm_getSourceId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 1))))))
+(define (BasicAI.jclassValue) BasicAI%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicAI.jcell_AI_VISITOR 'jnone)
+(define (BasicAI.jstatic_AI_VISITOR)
+  (when (eq? BasicAI.jcell_AI_VISITOR 'jnone) (set! BasicAI.jcell_AI_VISITOR (send (SmallIntegerSingletonFactory.jm_getInstance_0) jm_getAt_1 2)))
+  BasicAI.jcell_AI_VISITOR)
+(define (BasicAI.jsetstatic_AI_VISITOR value) (set! BasicAI.jcell_AI_VISITOR value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define BasicAI.jcell_ID 'jnone)
+(define (BasicAI.jstatic_ID)
+  (when (eq? BasicAI.jcell_ID 'jnone) (set! BasicAI.jcell_ID (send (SmallIntegerSingletonFactory.jm_getInstance_0) jm_getAt_1 1)))
+  BasicAI.jcell_ID)
+(define (BasicAI.jsetstatic_ID value) (set! BasicAI.jcell_ID value))
 
-local BasicAI = {}
-BasicAI.__index = BasicAI
-BasicAI.className = "BasicAI"
-setmetatable(BasicAI, {__index = ArtificialIntelligence})
-
-function BasicAI:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.gameKeyEventFactory = GameKeyEventFactory.getInstance()
-    self.ownerLayerInterface = nil
-    self.gameInput = nil
-    self.lastKey = -1
-end
-
-
-function BasicAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(ArtificialIntelligence.new(), BasicAI)
-    self:_init_fields()
-        self.ownerLayerInterface = ownerLayerInterface
-        self.gameInput = gameInput
-    return self
-end
-
-
--- throws Exception
-function BasicAI:processAI(allBinaryLayerManager)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function BasicAI:processKeyAI(key)
-        if key ~= -1 then
-            self.gameInput:add(self.gameKeyEventFactory:getInstanceForKey(self, key))
-        end
-end
-
-
-function BasicAI:setLastKey(lastKey)
-        self.lastKey = lastKey
-end
-
-
-function BasicAI:getLastKey()
-        return self.lastKey
-end
-
-
-function BasicAI:getOwnerLayerInterface()
-        return self.ownerLayerInterface
-end
-
-
-function BasicAI:getGameInput()
-        return self.gameInput
-end
-
-
-function BasicAI:getName()
-        return getmetatable(self).className
-end
+(define (BasicAI.jnew_2 _ownerLayerInterface _gameInput)
+  (define this (new BasicAI% [jclass "BasicAI"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_gameKeyEventFactory this (GameKeyEventFactory.jm_getInstance_0))
+    
+    
+    (set-field! f_lastKey this (JR.i32 (- 1)))
+    (let ()
+      (let/ec jreturn
+        (set-field! f_ownerLayerInterface this _ownerLayerInterface)
+        (set-field! f_gameInput this _gameInput)))
+  this)
 
 
-function BasicAI:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(CommonSeps.getInstance().NEW_LINE)
-        stringBuffer:append(self:getName())
-        stringBuffer:append(" LastKey: ")
-        stringBuffer:append(CanvasUtil.getKeyName(self:getLastKey()))
-        return tostring(stringBuffer)
-end
-BasicAI.__tostring = function(self) return self:toString() end
-
-
-function BasicAI:getSourceId()
-        return 1
-end
-
-BasicAI.AI_VISITOR = SmallIntegerSingletonFactory.getInstance():getAt(2)
-BasicAI.ID = SmallIntegerSingletonFactory.getInstance():getAt(1)
-
-return BasicAI
 

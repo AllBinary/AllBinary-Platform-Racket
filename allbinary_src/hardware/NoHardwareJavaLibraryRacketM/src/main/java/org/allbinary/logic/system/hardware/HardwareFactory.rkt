@@ -29,11 +29,13 @@
         (with-handlers ([(lambda (jerror) #t) (lambda (_e)
             (raise _e))])
             (jreturn (get-field f_SINGLETON this))))))))
+(define (HardwareFactory.jclassValue) HardwareFactory%)
 
 (define HardwareFactory.jcell_instance 'jnone)
 (define (HardwareFactory.jstatic_instance)
   (when (eq? HardwareFactory.jcell_instance 'jnone) (set! HardwareFactory.jcell_instance (HardwareFactory.jnew_0)))
   HardwareFactory.jcell_instance)
+(define (HardwareFactory.jsetstatic_instance value) (set! HardwareFactory.jcell_instance value))
 
 (define (HardwareFactory.jnew_0)
   (define this (new HardwareFactory% [jclass "HardwareFactory"]))

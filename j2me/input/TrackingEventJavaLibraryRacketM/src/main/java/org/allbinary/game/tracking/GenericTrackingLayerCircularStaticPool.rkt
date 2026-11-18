@@ -1,48 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.tracking
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.tracking
 
-local AllBinaryLayerCircularPool = require("org.allbinary.layer.AllBinaryLayerCircularPool")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/layer/AllBinaryLayerCircularPool.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GenericTrackingLayerCircularStaticPool%
+  (class AllBinaryLayerCircularPool%
+    (super-new)))
+(define (GenericTrackingLayerCircularStaticPool.jclassValue) GenericTrackingLayerCircularStaticPool%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GenericTrackingLayerCircularStaticPool.jcell_SINGLETON 'jnone)
+(define (GenericTrackingLayerCircularStaticPool.jstatic_SINGLETON)
+  (when (eq? GenericTrackingLayerCircularStaticPool.jcell_SINGLETON 'jnone) (set! GenericTrackingLayerCircularStaticPool.jcell_SINGLETON (GenericTrackingLayerCircularStaticPool.jnew_0)))
+  GenericTrackingLayerCircularStaticPool.jcell_SINGLETON)
+(define (GenericTrackingLayerCircularStaticPool.jsetstatic_SINGLETON value) (set! GenericTrackingLayerCircularStaticPool.jcell_SINGLETON value))
 
-local GenericTrackingLayerCircularStaticPool = {}
-GenericTrackingLayerCircularStaticPool.__index = GenericTrackingLayerCircularStaticPool
-GenericTrackingLayerCircularStaticPool.className = "GenericTrackingLayerCircularStaticPool"
-setmetatable(GenericTrackingLayerCircularStaticPool, {__index = AllBinaryLayerCircularPool})
+(define (GenericTrackingLayerCircularStaticPool.jnew_0)
+  (define this (new GenericTrackingLayerCircularStaticPool% [jclass "GenericTrackingLayerCircularStaticPool"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
+
+(define (GenericTrackingLayerCircularStaticPool.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GenericTrackingLayerCircularStaticPool.jstatic_SINGLETON)))))
 
 
-function GenericTrackingLayerCircularStaticPool.new()
-    local self = setmetatable(AllBinaryLayerCircularPool.new(), GenericTrackingLayerCircularStaticPool)
-    return self
-end
-
-
-function GenericTrackingLayerCircularStaticPool.getInstance()
-        return GenericTrackingLayerCircularStaticPool.SINGLETON
-end
-
-GenericTrackingLayerCircularStaticPool.SINGLETON = GenericTrackingLayerCircularStaticPool.new()
-
-return GenericTrackingLayerCircularStaticPool
 

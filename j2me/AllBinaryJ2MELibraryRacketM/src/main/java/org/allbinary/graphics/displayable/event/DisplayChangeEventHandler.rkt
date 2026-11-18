@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.displayable.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DisplayChangeEventHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_displayChangeEventListener JR.null])
+      (let/ec jreturn
+        (set! _displayChangeEventListener _eventListenerInterface)
+        (send _displayChangeEventListener jm_onDisplayChangeEvent_1 _eventObject))))))
+(define (DisplayChangeEventHandler.jclassValue) DisplayChangeEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DisplayChangeEventHandler.jcell_SINGLETON 'jnone)
+(define (DisplayChangeEventHandler.jstatic_SINGLETON)
+  (when (eq? DisplayChangeEventHandler.jcell_SINGLETON 'jnone) (set! DisplayChangeEventHandler.jcell_SINGLETON (DisplayChangeEventHandler.jnew_0)))
+  DisplayChangeEventHandler.jcell_SINGLETON)
+(define (DisplayChangeEventHandler.jsetstatic_SINGLETON value) (set! DisplayChangeEventHandler.jcell_SINGLETON value))
 
-local DisplayChangeEventHandler = {}
-DisplayChangeEventHandler.__index = DisplayChangeEventHandler
-DisplayChangeEventHandler.className = "DisplayChangeEventHandler"
-setmetatable(DisplayChangeEventHandler, {__index = BasicEventHandler})
+(define (DisplayChangeEventHandler.jnew_0)
+  (define this (new DisplayChangeEventHandler% [jclass "DisplayChangeEventHandler"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function DisplayChangeEventHandler.getInstance()
-        return DisplayChangeEventHandler.SINGLETON
-end
-
-
-function DisplayChangeEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), DisplayChangeEventHandler)
-    return self
-end
+(define (DisplayChangeEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DisplayChangeEventHandler.jstatic_SINGLETON)))))
 
 
--- throws Exception
-function DisplayChangeEventHandler:process(eventObject, eventListenerInterface)
-        local displayChangeEventListener = (eventListenerInterface)
-        displayChangeEventListener:onDisplayChangeEvent(eventObject)
-end
-
-DisplayChangeEventHandler.SINGLETON = DisplayChangeEventHandler.new()
-
-return DisplayChangeEventHandler
 

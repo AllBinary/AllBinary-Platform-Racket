@@ -1,69 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CommandForm = require("org.allbinary.graphics.displayable.screen.CommandForm")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/graphics/displayable/screen/CommandForm.rkt" (CommandForm.jm_getNullCommandForm_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./GameOptionsForm.rkt" (GameOptionsForm.jnew_4)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameOptionsFormFactory%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/public (jm_init_4 _commandListener _title _backgrounBasicColor _foregroundBasicColor)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_INIT _commonStrings) _e)
+            (jreturn (CommandForm.jm_getNullCommandForm_0)))])
+            (jreturn (GameOptionsForm.jnew_4 _commandListener _title _backgrounBasicColor _foregroundBasicColor))))))))
+(define (GameOptionsFormFactory.jclassValue) GameOptionsFormFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameOptionsFormFactory.jcell_instance 'jnone)
+(define (GameOptionsFormFactory.jstatic_instance)
+  (when (eq? GameOptionsFormFactory.jcell_instance 'jnone) (set! GameOptionsFormFactory.jcell_instance (GameOptionsFormFactory.jnew_0)))
+  GameOptionsFormFactory.jcell_instance)
+(define (GameOptionsFormFactory.jsetstatic_instance value) (set! GameOptionsFormFactory.jcell_instance value))
 
-local GameOptionsFormFactory = {}
-GameOptionsFormFactory.__index = GameOptionsFormFactory
-GameOptionsFormFactory.className = "GameOptionsFormFactory"
+(define (GameOptionsFormFactory.jnew_0)
+  (define this (new GameOptionsFormFactory% [jclass "GameOptionsFormFactory"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function GameOptionsFormFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-
-function GameOptionsFormFactory.new()
-    local self = setmetatable({}, GameOptionsFormFactory)
-    self:_init_fields()
-    return self
-end
+(define (GameOptionsFormFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameOptionsFormFactory.jstatic_instance)))))
 
 
-function GameOptionsFormFactory.getInstance()
-        return GameOptionsFormFactory.instance
-end
-
-
-function GameOptionsFormFactory:init(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-        local try_ok, try_error = pcall(function()
-            return GameOptionsForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.INIT, e)
-            return CommandForm.getNullCommandForm()
-        end
-end
-
-GameOptionsFormFactory.instance = GameOptionsFormFactory.new()
-
-return GameOptionsFormFactory
 

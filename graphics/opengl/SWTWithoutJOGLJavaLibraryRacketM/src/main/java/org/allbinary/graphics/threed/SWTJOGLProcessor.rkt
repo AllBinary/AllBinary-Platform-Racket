@@ -1,157 +1,110 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.threed
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.threed
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/lang/Runnable.rkt")
+(lazy-require ["./GLHolder.rkt" (GLHolder.jnew_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+;SWTWithoutJOGL
+(define SWTJOGLProcessor%
+  (class JObject%
+    (super-new)
+    (field [f_glHolder JR.null])
+    (define/public (jm_init_2 _display _comp)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isHolderCreated_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_isCreated (get-field f_glHolder this))))))
+    (define/public (jm_setRenderer_1 _renderer)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isJOGL_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_createSurface_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onSurfaceCreated_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onSurfaceChangedForEvent_1 _event)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onSurfaceChanged_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onSurfaceChangedWH_2 _width _height)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_addListener_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_addListeners_1 _midlet)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_run_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_clear_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setCustom_3 _width _height _ratio)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setRatioProcessor_1 _ratioProcessor)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_charWidth_2 _font _ch)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_charsWidth_4 _font _ch _offset _length)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_stringWidth_2 _font _str)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_substringWidth_4 _font _str _offset _len)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))))
+(define (SWTJOGLProcessor.jclassValue) SWTJOGLProcessor%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SWTJOGLProcessor.jcell_instance 'jnone)
+(define (SWTJOGLProcessor.jstatic_instance)
+  (when (eq? SWTJOGLProcessor.jcell_instance 'jnone) (set! SWTJOGLProcessor.jcell_instance (SWTJOGLProcessor.jnew_0)))
+  SWTJOGLProcessor.jcell_instance)
+(define (SWTJOGLProcessor.jsetstatic_instance value) (set! SWTJOGLProcessor.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (SWTJOGLProcessor.jnew_0)
+  (define this (new SWTJOGLProcessor% [jclass "SWTJOGLProcessor"]))
+    (set-field! f_glHolder this (GLHolder.jnew_0))
+  this)
 
---SWTWithoutJOGL
-local SWTJOGLProcessor = {}
-SWTJOGLProcessor.__index = SWTJOGLProcessor
-SWTJOGLProcessor.className = "SWTJOGLProcessor"
-
-function SWTJOGLProcessor:_init_fields()
-    self.glHolder = (function()
-        local o = GLHolder.new and GLHolder.new() or setmetatable({}, {__index = GLHolder})
-        
-
-        function o:run(renderer)
-        end
-        return o
-    end)()
-end
-
-function SWTJOGLProcessor.new()
-    local self = setmetatable({}, SWTJOGLProcessor)
-    self:_init_fields()
-    return self
-end
-
-
-function SWTJOGLProcessor.getInstance()
-        return SWTJOGLProcessor.instance
-end
-
-
-function SWTJOGLProcessor:init(display, comp)
-end
-
-
-function SWTJOGLProcessor:isHolderCreated()
-        return self.glHolder.isCreated
-end
-
-
-function SWTJOGLProcessor:setRenderer(renderer)
-end
-
-
-function SWTJOGLProcessor:isJOGL()
-        return false
-end
-
-
-function SWTJOGLProcessor:createSurface()
-end
-
-
-function SWTJOGLProcessor:onSurfaceCreated()
-end
-
-
-function SWTJOGLProcessor:onSurfaceChangedForEvent(event)
-end
-
-
-function SWTJOGLProcessor:onSurfaceChanged()
-end
-
-
-function SWTJOGLProcessor:onSurfaceChangedWH(width, height)
-end
-
-
-function SWTJOGLProcessor:addListener()
-end
+(define (SWTJOGLProcessor.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (SWTJOGLProcessor.jstatic_instance)))))
 
 
-function SWTJOGLProcessor:addListeners(midlet)
-end
-
-
-function SWTJOGLProcessor:run()
-end
-
-
-function SWTJOGLProcessor:clear()
-end
-
-
-function SWTJOGLProcessor:setCustom(width, height, ratio)
-end
-
-
-function SWTJOGLProcessor:setRatioProcessor(ratioProcessor)
-end
-
-
-function SWTJOGLProcessor:charWidth(font, ch)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function SWTJOGLProcessor:charsWidth(font, ch, offset, length)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function SWTJOGLProcessor:stringWidth(font, str)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function SWTJOGLProcessor:substringWidth(font, str, offset, len)
-        error(java_exception("RuntimeException"), 0)
-end
-
-SWTJOGLProcessor.instance = SWTJOGLProcessor.new()
-
-return SWTJOGLProcessor
 

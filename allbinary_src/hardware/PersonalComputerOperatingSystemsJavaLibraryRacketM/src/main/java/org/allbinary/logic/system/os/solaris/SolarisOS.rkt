@@ -26,6 +26,7 @@
     (let ()
       (let/ec jreturn
         (jreturn #t))))))
+(define (SolarisOS.jclassValue) SolarisOS%)
 
 (define (SolarisOS.jnew_0)
   (define this (new SolarisOS% [jclass "SolarisOS"]))

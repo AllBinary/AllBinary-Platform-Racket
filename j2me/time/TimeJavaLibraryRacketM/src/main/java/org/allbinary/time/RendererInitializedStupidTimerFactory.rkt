@@ -22,11 +22,13 @@
 (define RendererInitializedStupidTimerFactory%
   (class JObject%
     (super-new)))
+(define (RendererInitializedStupidTimerFactory.jclassValue) RendererInitializedStupidTimerFactory%)
 
 (define RendererInitializedStupidTimerFactory.jcell_instance 'jnone)
 (define (RendererInitializedStupidTimerFactory.jstatic_instance)
   (when (eq? RendererInitializedStupidTimerFactory.jcell_instance 'jnone) (set! RendererInitializedStupidTimerFactory.jcell_instance (StupidTimer.jnew_0)))
   RendererInitializedStupidTimerFactory.jcell_instance)
+(define (RendererInitializedStupidTimerFactory.jsetstatic_instance value) (set! RendererInitializedStupidTimerFactory.jcell_instance value))
 
 (define (RendererInitializedStupidTimerFactory.jnew_0)
   (define this (new RendererInitializedStupidTimerFactory% [jclass "RendererInitializedStupidTimerFactory"]))

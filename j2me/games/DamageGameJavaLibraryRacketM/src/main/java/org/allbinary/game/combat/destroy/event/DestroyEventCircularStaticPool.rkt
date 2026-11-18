@@ -1,67 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.destroy.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.combat.destroy.event
 
-local AllBinaryGameCanvas = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvas")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryEventCircularPool = require("org.allbinary.logic.util.event.AllBinaryEventCircularPool")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../../org/allbinary/logic/util/event/AllBinaryEventCircularPool.rkt" (AllBinaryEventCircularPool.jnew_1)])
+(lazy-require ["./DestroyEventFactory.rkt" (DestroyEventFactory.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DestroyEventCircularStaticPool%
+  (class JObject%
+    (super-new)
+    (field [f_EVENT_POOL JR.null])
+    (define/public (jm_init_1 _combatGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_EVENT_POOL this) jm_initAllBinaryEventCircularPool_1 (DestroyEventFactory.jnew_1 _combatGameCanvas)))))
+    (define/public (jm_getInstanceForLayer_1 _layerInterface)
+    (let ([_destroyedEvent JR.null])
+      (let/ec jreturn
+        (set! _destroyedEvent (send (get-field f_EVENT_POOL this) jm_getNextInstance_0))
+        (send _destroyedEvent jm_setLayerInterfaceForCircularStaticPool_1 _layerInterface)
+        (jreturn _destroyedEvent))))))
+(define (DestroyEventCircularStaticPool.jclassValue) DestroyEventCircularStaticPool%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DestroyEventCircularStaticPool.jcell_instance 'jnone)
+(define (DestroyEventCircularStaticPool.jstatic_instance)
+  (when (eq? DestroyEventCircularStaticPool.jcell_instance 'jnone) (set! DestroyEventCircularStaticPool.jcell_instance (DestroyEventCircularStaticPool.jnew_0)))
+  DestroyEventCircularStaticPool.jcell_instance)
+(define (DestroyEventCircularStaticPool.jsetstatic_instance value) (set! DestroyEventCircularStaticPool.jcell_instance value))
 
-local DestroyEventCircularStaticPool = {}
-DestroyEventCircularStaticPool.__index = DestroyEventCircularStaticPool
-DestroyEventCircularStaticPool.className = "DestroyEventCircularStaticPool"
+(define (DestroyEventCircularStaticPool.jnew_0)
+  (define this (new DestroyEventCircularStaticPool% [jclass "DestroyEventCircularStaticPool"]))
+    (set-field! f_EVENT_POOL this (AllBinaryEventCircularPool.jnew_1 20))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function DestroyEventCircularStaticPool:_init_fields()
-    self.EVENT_POOL = AllBinaryEventCircularPool.new(20)
-end
-
-
-function DestroyEventCircularStaticPool.getInstance()
-        return DestroyEventCircularStaticPool.instance
-end
-
-
-function DestroyEventCircularStaticPool.new()
-    local self = setmetatable({}, DestroyEventCircularStaticPool)
-    self:_init_fields()
-    return self
-end
-
-
-function DestroyEventCircularStaticPool:init(combatGameCanvas)
-        self.EVENT_POOL:initAllBinaryEventCircularPool(DestroyEventFactory.new(combatGameCanvas))
-end
+(define (DestroyEventCircularStaticPool.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DestroyEventCircularStaticPool.jstatic_instance)))))
 
 
--- throws Exception
-function DestroyEventCircularStaticPool:getInstanceForLayer(layerInterface)
-        local destroyedEvent = self.EVENT_POOL:getNextInstance()
-        destroyedEvent:setLayerInterfaceForCircularStaticPool(layerInterface)
-        return destroyedEvent
-end
-
-DestroyEventCircularStaticPool.instance = DestroyEventCircularStaticPool.new()
-
-return DestroyEventCircularStaticPool
 

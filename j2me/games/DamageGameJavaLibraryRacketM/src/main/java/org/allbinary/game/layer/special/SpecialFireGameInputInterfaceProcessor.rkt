@@ -1,50 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.special
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SpecialGameInputInterfaceProcessor = require("org.allbinary.game.layer.special.SpecialGameInputInterfaceProcessor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./SpecialGameInputInterfaceProcessor.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SpecialFireGameInputInterfaceProcessor%
+  (class SpecialGameInputInterfaceProcessor%
+    (super-new)
+    (define/override (jm_processEvent_2 _allbinaryLayerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_specialGameInputInterface this)))))))
+(define (SpecialFireGameInputInterfaceProcessor.jclassValue) SpecialFireGameInputInterfaceProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SpecialFireGameInputInterfaceProcessor = {}
-SpecialFireGameInputInterfaceProcessor.__index = SpecialFireGameInputInterfaceProcessor
-SpecialFireGameInputInterfaceProcessor.className = "SpecialFireGameInputInterfaceProcessor"
-setmetatable(SpecialFireGameInputInterfaceProcessor, {__index = SpecialGameInputInterfaceProcessor})
-
-
-function SpecialFireGameInputInterfaceProcessor.new(collidableDestroyableDamageableLayer)
-    local self = setmetatable(SpecialGameInputInterfaceProcessor.new(collidableDestroyableDamageableLayer), SpecialFireGameInputInterfaceProcessor)
-        -- super(...) made self above
-    return self
-end
+(define (SpecialFireGameInputInterfaceProcessor.jnew_1 _collidableDestroyableDamageableLayer)
+  (define this (new SpecialFireGameInputInterfaceProcessor% [jclass "SpecialFireGameInputInterfaceProcessor"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
--- throws Exception
-function SpecialFireGameInputInterfaceProcessor:processEvent(allbinaryLayerManager, gameKeyEvent)
-        self.specialGameInputInterface:fire(allbinaryLayerManager, gameKeyEvent)
-end
-
-return SpecialFireGameInputInterfaceProcessor
 

@@ -1,155 +1,136 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local ArtificialIntelligence = require("org.allbinary.ai.ArtificialIntelligence")
-local ArtificialIntelligenceTransitionInterface = require("org.allbinary.ai.ArtificialIntelligenceTransitionInterface")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local RotationAnimationInterface = require("org.allbinary.animation.RotationAnimationInterface")
-local RotationAnimationInterfaceCompositeInterface = require("org.allbinary.animation.RotationAnimationInterfaceCompositeInterface")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
-local VelocityInterface = require("org.allbinary.game.physics.velocity.VelocityInterface")
-local VelocityInterfaceCompositeInterface = require("org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local AngleIncrementInfo = require("org.allbinary.math.AngleIncrementInfo")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/ai/ArtificialIntelligenceTransitionInterface.rkt"
+  "../../../../../org/allbinary/game/ai/BasicAI.rkt"
+  "../../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../../javax/microedition/lcdui/Canvas.rkt" (Canvas.jstatic_UP Canvas.jstatic_KEY_POUND Canvas.jstatic_KEY_NUM0)])
+(lazy-require ["../../../../../org/allbinary/ai/ArtificialIntelligence.rkt" (ArtificialIntelligence.jstatic_AI_ID)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/util/CircularIndexUtil.rkt" (CircularIndexUtil.jm_createInstanceAt_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HorizontaRotationManeuverAI%
+  (class BasicAI%
+    (super-new)
+    (inherit/super jm_processKeyAI_1)
+    (field [f_circularIndexUtil JR.null])
+    (field [f_currentSpeedDivisor 0])
+    (field [f_rotationAnimationInterface JR.null])
+    (field [f_baseVelocityInterface JR.null])
+    (field [f_velocityInterface JR.null])
+    (define/public (jm_transition_0)
+    (let ([_rotationAnimationInterface JR.null][_angleIncrementInfo JR.null][_rotationAnimationInterfaceCompositeInterface JR.null][_allbinaryLayer JR.null])
+      (let/ec jreturn
+        (set! _rotationAnimationInterface (get-field f_rotationAnimationInterface this))
+        (set! _angleIncrementInfo (JR.className (send _rotationAnimationInterface jm_getAngleInfoP_0)))
+        (set! _rotationAnimationInterfaceCompositeInterface (send this jm_getOwnerLayerInterface_0))
+        (send _rotationAnimationInterfaceCompositeInterface jm_setFrame_1 (JR.className (get-field f_RIGHT_FRAME _angleIncrementInfo)))
+        (set! _allbinaryLayer (send this jm_getOwnerLayerInterface_0))
+        (send _allbinaryLayer jm_setPosition_3 (send _allbinaryLayer jm_getXP_0) 1 (send _allbinaryLayer jm_getZP_0)))))
+    (define/override (jm_processAI_1 _allBinaryLayerManager)
+    (let ([_rotationAnimationInterface JR.null][_angleIncrementInfo JR.null][_frame JR.null][_ownerLayerInterface JR.null][_displayInfo JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _rotationAnimationInterface (get-field f_rotationAnimationInterface this))
+        (set! _angleIncrementInfo (JR.className (send _rotationAnimationInterface jm_getAngleInfoP_0)))
+        (set! _frame (send (get-field f_rotationAnimationInterface this) jm_getFrame_0))
+        (set! _ownerLayerInterface (send this jm_getOwnerLayerInterface_0))
+        (when (and (<= (JR.i32 (- (send _ownerLayerInterface jm_getXP_0) (send _ownerLayerInterface jm_getWidth_0))) 0) (= _frame (JR.className (get-field f_LEFT_FRAME _angleIncrementInfo))))
+            (begin
+            (send this jm_reverse_0)
+            (send this jm_drop_0)))
+        (set! _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (when (and (> (JR.i32 (+ (send _ownerLayerInterface jm_getX2_0) (send _ownerLayerInterface jm_getWidth_0))) (send _displayInfo jm_getLastWidth_0)) (= _frame (JR.className (get-field f_RIGHT_FRAME _angleIncrementInfo))))
+            (begin
+            (send this jm_reverse_0)
+            (send this jm_accelerate_0)
+            (send this jm_drop_0)))
+        (set! _index (send (get-field f_circularIndexUtil this) jm_getIndex_0))
+        (when (and (= (remainder _index (get-field f_currentSpeedDivisor this)) 0) (= (remainder _index 2) 0))
+            (begin
+            (super jm_processKeyAI_1 (Canvas.jstatic_UP))
+            (send (get-field f_velocityInterface this) jm_limitMaxXYVelocity_1 (JR.idiv (send (get-field f_velocityInterface this) jm_getMaxForwardVelocity_0) (get-field f_currentSpeedDivisor this)))))
+        (send (get-field f_circularIndexUtil this) jm_next_0)
+        (if (= _frame (JR.className (get-field f_LEFT_FRAME _angleIncrementInfo)))
+            (begin
+            (super jm_processKeyAI_1 (Canvas.jstatic_KEY_NUM0)))
+            (when (= _frame (JR.className (get-field f_RIGHT_FRAME _angleIncrementInfo)))
+            (begin
+            (super jm_processKeyAI_1 (Canvas.jstatic_KEY_POUND))))))))
+    (define/public (jm_reverse_0)
+    (let ([_rotationAnimationInterface JR.null][_angleIncrementInfo JR.null][_frame JR.null][_rotationAnimationInterfaceCompositeInterface JR.null])
+      (let/ec jreturn
+        (set! _rotationAnimationInterface (get-field f_rotationAnimationInterface this))
+        (set! _angleIncrementInfo (JR.className (send _rotationAnimationInterface jm_getAngleInfoP_0)))
+        (set! _frame (send (get-field f_rotationAnimationInterface this) jm_getFrame_0))
+        (if (= _frame (JR.className (get-field f_LEFT_FRAME _angleIncrementInfo)))
+            (begin
+            (set! _rotationAnimationInterfaceCompositeInterface (send this jm_getOwnerLayerInterface_0))
+            (send _rotationAnimationInterfaceCompositeInterface jm_setFrame_1 (JR.className (get-field f_RIGHT_FRAME _angleIncrementInfo)))
+            (send (get-field f_baseVelocityInterface this) jm_zero_0))
+            (when (= _frame (JR.className (get-field f_RIGHT_FRAME _angleIncrementInfo)))
+            (begin
+            (set! _rotationAnimationInterfaceCompositeInterface (send this jm_getOwnerLayerInterface_0))
+            (send _rotationAnimationInterfaceCompositeInterface jm_setFrame_1 (JR.className (get-field f_LEFT_FRAME _angleIncrementInfo)))
+            (send (get-field f_baseVelocityInterface this) jm_zero_0)))))))
+    (define/public (jm_accelerate_0)
+    (let ()
+      (let/ec jreturn
+        (when (> (get-field f_currentSpeedDivisor this) 1)
+            (begin
+            (set-field! f_currentSpeedDivisor this (JR.i32 (- (get-field f_currentSpeedDivisor this) 1))))))))
+    (define/public (jm_drop_0)
+    (let ([_displayInfo JR.null][_ownerLayerInterface JR.null][_y JR.null])
+      (let/ec jreturn
+        (set! _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (set! _ownerLayerInterface (send this jm_getOwnerLayerInterface_0))
+        (set! _y (send _ownerLayerInterface jm_getYP_0))
+        (if (> (JR.i32 (+ (send _ownerLayerInterface jm_getY2_0) (send _ownerLayerInterface jm_getHeight_0))) (send _displayInfo jm_getLastHeight_0))
+            (begin
+            (set! _y 0))
+            (begin
+            (set! _y (JR.i32 (+ _y (JR.i32 (+ (send _ownerLayerInterface jm_getHeight_0) 1)))))))
+        (send _ownerLayerInterface jm_setPosition_3 (send _ownerLayerInterface jm_getXP_0) _y (send _ownerLayerInterface jm_getZP_0)))))
+    (define/override (jm_getId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ArtificialIntelligence.jstatic_AI_ID)))))))
+(define (HorizontaRotationManeuverAI.jclassValue) HorizontaRotationManeuverAI%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local HorizontaRotationManeuverAI = {}
-HorizontaRotationManeuverAI.__index = HorizontaRotationManeuverAI
-HorizontaRotationManeuverAI.className = "HorizontaRotationManeuverAI"
-setmetatable(HorizontaRotationManeuverAI, {__index = BasicAI})
-
-function HorizontaRotationManeuverAI:_init_fields()
-    self.circularIndexUtil = CircularIndexUtil.createInstanceAt(10, Integer.MAX_VALUE)
-    self.currentSpeedDivisor = 5
-    self.rotationAnimationInterface = nil
-    self.baseVelocityInterface = nil
-    self.velocityInterface = nil
-end
-
-
-function HorizontaRotationManeuverAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), HorizontaRotationManeuverAI)
-    self:_init_fields()
-        -- super(...) made self above
-        local rotationAnimationInterfaceCompositeInterface = self:getOwnerLayerInterface()
-        self.rotationAnimationInterface = rotationAnimationInterfaceCompositeInterface:getRotationAnimationInterface()
-        local velocityInterfaceCompositeInterface = self:getOwnerLayerInterface()
-        self.baseVelocityInterface = velocityInterfaceCompositeInterface:getVelocityProperties()
-        self.velocityInterface = self.baseVelocityInterface
-        local rotationAnimationInterface = self.rotationAnimationInterface
-        local angleIncrementInfo = rotationAnimationInterface:getAngleInfoP():getAngleIncrementInfo()
-        rotationAnimationInterfaceCompositeInterface:setFrame(math.tointeger(angleIncrementInfo.RIGHT_FRAME // 1))
-    return self
-end
-
-
-function HorizontaRotationManeuverAI:transition()
-        local rotationAnimationInterface = self.rotationAnimationInterface
-        local angleIncrementInfo = rotationAnimationInterface:getAngleInfoP():getAngleIncrementInfo()
-        local rotationAnimationInterfaceCompositeInterface = self:getOwnerLayerInterface()
-        rotationAnimationInterfaceCompositeInterface:setFrame(math.tointeger(angleIncrementInfo.RIGHT_FRAME // 1))
-        local allbinaryLayer = self:getOwnerLayerInterface()
-        allbinaryLayer:setPosition(allbinaryLayer:getXP(), 1, allbinaryLayer:getZP())
-end
-
-
--- throws Exception
-function HorizontaRotationManeuverAI:processAI(allBinaryLayerManager)
-        local rotationAnimationInterface = (self.rotationAnimationInterface)
-        local angleIncrementInfo = rotationAnimationInterface:getAngleInfoP():getAngleIncrementInfo()
-        local frame = self.rotationAnimationInterface:getFrame()
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        if ownerLayerInterface:getXP() - ownerLayerInterface:getWidth() <= 0 and frame == math.tointeger(angleIncrementInfo.LEFT_FRAME // 1) then
-            self:reverse()
-            self:drop()
-        end
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        if ownerLayerInterface:getX2() + ownerLayerInterface:getWidth() > displayInfo:getLastWidth() and frame == math.tointeger(angleIncrementInfo.RIGHT_FRAME // 1) then
-            self:reverse()
-            self:accelerate()
-            self:drop()
-        end
-        local index = self.circularIndexUtil:getIndex()
-        if math.fmod(index, self.currentSpeedDivisor) == 0 and math.fmod(index, 2) == 0 then
-            BasicAI.processKeyAI(self, Canvas.UP)
-            self.velocityInterface:limitMaxXYVelocity(self.velocityInterface:getMaxForwardVelocity() / self.currentSpeedDivisor)
-        end
-        self.circularIndexUtil:next()
-        if frame == math.tointeger(angleIncrementInfo.LEFT_FRAME // 1) then
-            BasicAI.processKeyAI(self, Canvas.KEY_NUM0)
-        elseif frame == math.tointeger(angleIncrementInfo.RIGHT_FRAME // 1) then
-            BasicAI.processKeyAI(self, Canvas.KEY_POUND)
-        end
-end
-
-
-function HorizontaRotationManeuverAI:reverse()
-        local rotationAnimationInterface = self.rotationAnimationInterface
-        local angleIncrementInfo = rotationAnimationInterface:getAngleInfoP():getAngleIncrementInfo()
-        local frame = self.rotationAnimationInterface:getFrame()
-        if frame == math.tointeger(angleIncrementInfo.LEFT_FRAME // 1) then
-            local rotationAnimationInterfaceCompositeInterface = self:getOwnerLayerInterface()
-            rotationAnimationInterfaceCompositeInterface:setFrame(math.tointeger(angleIncrementInfo.RIGHT_FRAME // 1))
-            self.baseVelocityInterface:zero()
-        elseif frame == math.tointeger(angleIncrementInfo.RIGHT_FRAME // 1) then
-            local rotationAnimationInterfaceCompositeInterface = self:getOwnerLayerInterface()
-            rotationAnimationInterfaceCompositeInterface:setFrame(math.tointeger(angleIncrementInfo.LEFT_FRAME // 1))
-            self.baseVelocityInterface:zero()
-        end
-end
-
-
-function HorizontaRotationManeuverAI:accelerate()
-        if self.currentSpeedDivisor > 1 then
-            self.currentSpeedDivisor = self.currentSpeedDivisor - 1
-        end
-end
-
-
-function HorizontaRotationManeuverAI:drop()
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local y = ownerLayerInterface:getYP()
-        if ownerLayerInterface:getY2() + ownerLayerInterface:getHeight() > displayInfo:getLastHeight() then
-            y = 0
-        else
-            y = y + (ownerLayerInterface:getHeight() + 1)
-        end
-        ownerLayerInterface:setPosition(ownerLayerInterface:getXP(), y, ownerLayerInterface:getZP())
-end
+(define (HorizontaRotationManeuverAI.jnew_2 _ownerLayerInterface _gameInput)
+  (define this (new HorizontaRotationManeuverAI% [jclass "HorizontaRotationManeuverAI"]))
+    (set-field! f_circularIndexUtil this (CircularIndexUtil.jm_createInstanceAt_2 10 (Integer.jstatic_MAX_VALUE)))
+    (set-field! f_currentSpeedDivisor this 5)
+    
+    
+    
+    (let ([_rotationAnimationInterfaceCompositeInterface JR.null][_velocityInterfaceCompositeInterface JR.null][_rotationAnimationInterface JR.null][_angleIncrementInfo JR.null])
+      (let/ec jreturn
+        (void)
+        (set! _rotationAnimationInterfaceCompositeInterface (send this jm_getOwnerLayerInterface_0))
+        (set-field! f_rotationAnimationInterface this (send _rotationAnimationInterfaceCompositeInterface jm_getRotationAnimationInterface_0))
+        (set! _velocityInterfaceCompositeInterface (send this jm_getOwnerLayerInterface_0))
+        (set-field! f_baseVelocityInterface this (send _velocityInterfaceCompositeInterface jm_getVelocityProperties_0))
+        (set-field! f_velocityInterface this (get-field f_baseVelocityInterface this))
+        (set! _rotationAnimationInterface (get-field f_rotationAnimationInterface this))
+        (set! _angleIncrementInfo (JR.className (send _rotationAnimationInterface jm_getAngleInfoP_0)))
+        (send _rotationAnimationInterfaceCompositeInterface jm_setFrame_1 (JR.className (get-field f_RIGHT_FRAME _angleIncrementInfo)))))
+  this)
 
 
-function HorizontaRotationManeuverAI:getId()
-        return ArtificialIntelligence.AI_ID
-end
-
-return HorizontaRotationManeuverAI
 

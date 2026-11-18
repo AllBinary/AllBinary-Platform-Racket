@@ -1,54 +1,48 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.canvas
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local NullCanvas = require("javax.microedition.lcdui.NullCanvas")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/NullCanvas.rkt" (NullCanvas.jstatic_NULL_CANVAS)])
+(lazy-require ["../../../../org/allbinary/game/layer/AllBinaryGameLayerManager.rkt" (AllBinaryGameLayerManager.jm_getNullInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ABToGBUtil%
+  (class JObject%
+    (super-new)
+    (field [f_abCanvas JR.null])
+    (field [f_allBinaryGameLayerManager JR.null])))
+(define (ABToGBUtil.jclassValue) ABToGBUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ABToGBUtil.jcell_instance 'jnone)
+(define (ABToGBUtil.jstatic_instance)
+  (when (eq? ABToGBUtil.jcell_instance 'jnone) (set! ABToGBUtil.jcell_instance (ABToGBUtil.jnew_0)))
+  ABToGBUtil.jcell_instance)
+(define (ABToGBUtil.jsetstatic_instance value) (set! ABToGBUtil.jcell_instance value))
 
-local ABToGBUtil = {}
-ABToGBUtil.__index = ABToGBUtil
-ABToGBUtil.className = "ABToGBUtil"
+(define (ABToGBUtil.jnew_0)
+  (define this (new ABToGBUtil% [jclass "ABToGBUtil"]))
+    (set-field! f_abCanvas this (NullCanvas.jstatic_NULL_CANVAS))
+    (set-field! f_allBinaryGameLayerManager this (AllBinaryGameLayerManager.jm_getNullInstance_0))
+  this)
 
-function ABToGBUtil:_init_fields()
-    self.abCanvas = NullCanvas.NULL_CANVAS
-    self.allBinaryGameLayerManager = AllBinaryGameLayerManager.getNullInstance()
-end
-
-function ABToGBUtil.new()
-    local self = setmetatable({}, ABToGBUtil)
-    self:_init_fields()
-    return self
-end
+(define (ABToGBUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ABToGBUtil.jstatic_instance)))))
 
 
-function ABToGBUtil.getInstance()
-        return ABToGBUtil.instance
-end
-
-ABToGBUtil.instance = ABToGBUtil.new()
-
-return ABToGBUtil
 

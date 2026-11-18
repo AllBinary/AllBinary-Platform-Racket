@@ -1,109 +1,86 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local HashtableUtil = require("org.allbinary.util.HashtableUtil")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/ai/BasicAI.rkt"
+  "../../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../../org/allbinary/util/HashtableUtil.rkt" (HashtableUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define KeyPressesAI%
+  (class BasicAI%
+    (super-new)
+    (inherit/super jm_processKeyAI_1)
+    (field [f_on #f])
+    (field [f_keys JR.null])
+    (define/override (jm_processAI_1 _allBinaryLayerManager)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (when (get-field f_on this)
+            (begin
+            (begin
+                (set! _index 0)
+                (let/ec jbreak (let jloop () (when (< _index (vector-length (get-field f_keys this)))
+                    (let/ec jcontinue
+                (super jm_processKeyAI_1 (JR.className (vector-ref (get-field f_keys this) _index))))
+                    (set! _index (JR.i32 (+ _index 1))) (jloop))))))))))
+    (define/public (jm_toggle_0)
+    (let ()
+      (let/ec jreturn
+        (if (send this jm_isOn_0)
+            (begin
+            (send this jm_setOn_1 #f))
+            (begin
+            (send this jm_setOn_1 #t))))))
+    (define/public (jm_disable_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setOn_1 #f))))
+    (define/public (jm_enable_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setOn_1 #t))))
+    (define/public (jm_setOn_1 _on)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_on this _on))))
+    (define/public (jm_isOn_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_on this)))))))
+(define (KeyPressesAI.jclassValue) KeyPressesAI%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local KeyPressesAI = {}
-KeyPressesAI.__index = KeyPressesAI
-KeyPressesAI.className = "KeyPressesAI"
-setmetatable(KeyPressesAI, {__index = BasicAI})
-
-function KeyPressesAI:_init_fields()
-    self.on = true
-    self.keys = nil
-end
-
-
-function KeyPressesAI.new(hashtable, ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), KeyPressesAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.keys = java_new_array(nil, hashtable:size())
-        local objectArray = HashtableUtil.getInstance():getKeysAsArray(hashtable)
-        local size = (objectArray.n or #objectArray)
-        for index = 0, size - 1 do
-            self.keys[index + 1] = hashtable:get(objectArray[index + 1])
-        end
-    return self
-end
-
-
--- throws Exception
-function KeyPressesAI:processAI(allBinaryLayerManager)
-        if self.on then
-            for index = 0, (self.keys.n or #self.keys) - 1 do
-                BasicAI.processKeyAI(self, math.tointeger(self.keys[index + 1] // 1))
-            end
-        end
-end
-
-
--- throws Exception
-function KeyPressesAI:toggle()
-        if self:isOn() then
-            self:setOn(false)
-        else
-            self:setOn(true)
-        end
-end
-
-
--- throws Exception
-function KeyPressesAI:disable()
-        self:setOn(false)
-end
+(define (KeyPressesAI.jnew_3 _hashtable _ownerLayerInterface _gameInput)
+  (define this (new KeyPressesAI% [jclass "KeyPressesAI"]))
+    (set-field! f_on this #t)
+    
+    (let ([_objectArray JR.null][_size JR.null][_index JR.null])
+      (let/ec jreturn
+        (void)
+        (set-field! f_keys this (JR.newArray JR.null (send _hashtable jm_size_0)))
+        (set! _objectArray (send (HashtableUtil.jm_getInstance_0) jm_getKeysAsArray_1 _hashtable))
+        (set! _size (vector-length _objectArray))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (vector-set! (get-field f_keys this) _index (send _hashtable jm_get_1 (vector-ref _objectArray _index))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))))
+  this)
 
 
--- throws Exception
-function KeyPressesAI:enable()
-        self:setOn(true)
-end
-
-
-function KeyPressesAI:setOn(on)
-        self.on = on
-end
-
-
-function KeyPressesAI:isOn()
-        return self.on
-end
-
-return KeyPressesAI
 

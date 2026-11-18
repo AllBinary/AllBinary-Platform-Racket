@@ -48,11 +48,13 @@
                     (let/ec jcontinue
                 (set! _currentAngle (JR.i32 (+ _currentAngle (get-field f_TOTAL_ANGLE _angleFactory))))) (jloop))))))
         (jreturn _currentAngle))))))
+(define (FrameUtil.jclassValue) FrameUtil%)
 
 (define FrameUtil.jcell_instance 'jnone)
 (define (FrameUtil.jstatic_instance)
   (when (eq? FrameUtil.jcell_instance 'jnone) (set! FrameUtil.jcell_instance (FrameUtil.jnew_0)))
   FrameUtil.jcell_instance)
+(define (FrameUtil.jsetstatic_instance value) (set! FrameUtil.jcell_instance value))
 
 (define (FrameUtil.jnew_0)
   (define this (new FrameUtil% [jclass "FrameUtil"]))

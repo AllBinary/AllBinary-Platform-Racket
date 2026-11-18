@@ -41,6 +41,7 @@
       (raise (JR.newException "AbstractMethodError" "isAutoHide")))
     (define/override (jm_toString_0)
       (raise (JR.newException "AbstractMethodError" "toString")))))
+(define (OperatingSystemInterface.jclassValue) OperatingSystemInterface%)
 
 (define (OperatingSystemInterface.jnew_0)
   (define this (new OperatingSystemInterface% [jclass "OperatingSystemInterface"]))

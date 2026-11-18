@@ -1,106 +1,98 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.damage
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.combat.damage
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local MyRandomFactory = require("org.allbinary.game.rand.MyRandomFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorArrayIndexer = require("org.allbinary.graphics.color.BasicColorArrayIndexer")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local CharArrayFactory = require("org.allbinary.logic.java.character.CharArrayFactory")
-local PrimitiveLongUtil = require("org.allbinary.logic.math.PrimitiveLongUtil")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local ViewPosition = require("org.allbinary.view.ViewPosition")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local DamageFloaters = require("org.allbinary.game.combat.damage.DamageFloaters")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./DamageFloaters.rkt")
+(lazy-require ["../../../../../org/allbinary/game/rand/MyRandomFactory.rkt" (MyRandomFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/color/BasicColorArrayIndexer.rkt" (BasicColorArrayIndexer.jnew_1)])
+(lazy-require ["../../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/color/BasicColorSetUtil.rkt" (BasicColorSetUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/java/character/CharArrayFactory.rkt" (CharArrayFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/math/PrimitiveLongUtil.rkt" (PrimitiveLongUtil.jm_createPowerOfTen_1)])
+(lazy-require ["../../../../../org/allbinary/util/CircularIndexUtil.rkt" (CircularIndexUtil.jm_createInstance_1)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define PtsDamageFloaters%
+  (class DamageFloaters%
+    (super-new)
+    (field [f_basicSetColorUtil JR.null])
+    (field [f_layerInterface JR.null])
+    (field [f_lastDamage JR.null])
+    (field [f_lastDamageString JR.null])
+    (field [f_lastDamageStringSizeArray JR.null])
+    (field [f_circularIndexUtil JR.null])
+    (field [f_primitiveLongUtil JR.null])
+    (field [f_myRandomFactory JR.null])
+    (define/override (jm_add_1 _damage)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (set! _index (send (get-field f_circularIndexUtil this) jm_getIndex_0))
+        (vector-set! (get-field f_lastDamage this) _index _damage)
+        (vector-set! (get-field f_lastDamageString this) _index (send (get-field f_primitiveLongUtil this) jm_getCharArray_1 (vector-ref (get-field f_lastDamage this) _index)))
+        (vector-set! (get-field f_lastDamageStringSizeArray this) _index (send (get-field f_primitiveLongUtil this) jm_getCurrentTotalDigits_0))
+        (send (get-field f_circularIndexUtil this) jm_next_0))))
+    (define/override (jm_paint_1 _graphics)
+    (let ([_viewPosition JR.null][_x JR.null][_y JR.null][_delta JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _viewPosition (send (get-field f_layerInterface this) jm_getViewPosition_0))
+        (set! _x (send _viewPosition jm_getX_0))
+        (set! _y (send _viewPosition jm_getY_0))
+        (begin
+            (set! _index (JR.i32 (- (vector-length (get-field f_lastDamage this)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (when (not (= (vector-ref (get-field f_lastDamage this) _index) 0))
+                (begin
+                (set! _delta (JR.i32 (* 10 (JR.i32 (+ _index 2)))))
+                (send (get-field f_basicSetColorUtil this) jm_setBasicColorP_2 _graphics (JR.className (PtsDamageFloaters.jstatic_basicColorArrayIndexer)))
+                (send _graphics jm_drawChars_6 (vector-ref (get-field f_lastDamageString this) _index) 0 (vector-ref (get-field f_lastDamageStringSizeArray this) _index) (JR.i32 (- _x (send (get-field f_myRandomFactory this) jm_getNextInt_1 _delta))) (JR.i32 (- _y _delta)) 0)
+                (JR.className (PtsDamageFloaters.jstatic_basicColorArrayIndexer))))
+            (vector-set! (get-field f_lastDamage this) _index 0))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))))
+(define (PtsDamageFloaters.jclassValue) PtsDamageFloaters%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PtsDamageFloaters.jcell_basicColorArrayIndexer 'jnone)
+(define (PtsDamageFloaters.jstatic_basicColorArrayIndexer)
+  (when (eq? PtsDamageFloaters.jcell_basicColorArrayIndexer 'jnone) (set! PtsDamageFloaters.jcell_basicColorArrayIndexer (BasicColorArrayIndexer.jnew_1 (vector (get-field f_WHITE (BasicColorFactory.jm_getInstance_0)) (get-field f_RED (BasicColorFactory.jm_getInstance_0)) (get-field f_YELLOW (BasicColorFactory.jm_getInstance_0)) (get-field f_BLUE (BasicColorFactory.jm_getInstance_0))))))
+  PtsDamageFloaters.jcell_basicColorArrayIndexer)
+(define (PtsDamageFloaters.jsetstatic_basicColorArrayIndexer value) (set! PtsDamageFloaters.jcell_basicColorArrayIndexer value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PtsDamageFloaters = {}
-PtsDamageFloaters.__index = PtsDamageFloaters
-PtsDamageFloaters.className = "PtsDamageFloaters"
-setmetatable(PtsDamageFloaters, {__index = DamageFloaters})
-
-function PtsDamageFloaters:_init_fields()
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.layerInterface = nil
-    self.lastDamage = java_new_array(0, 5)
-    self.lastDamageString = java_new_array("\0", 5, 0)
-    self.lastDamageStringSizeArray = java_new_array(0, 5)
-    self.circularIndexUtil = CircularIndexUtil.createInstance(5)
-    self.primitiveLongUtil = nil
-    self.myRandomFactory = MyRandomFactory.getInstance()
-end
-
-
-function PtsDamageFloaters.new(layerInterface)
-    local self = setmetatable(DamageFloaters.new(), PtsDamageFloaters)
-    self:_init_fields()
-        self.primitiveLongUtil = PrimitiveLongUtil.createPowerOfTen(100000)
-        self.layerInterface = layerInterface
-        local CHAR_ARRAY = CharArrayFactory.getInstance():getZeroCharArray()
-        for index = (self.lastDamageString.n or #self.lastDamageString) - 1, 0, -1 do
-            self.lastDamageString[index + 1] = CHAR_ARRAY
-        end
-    return self
-end
+(define (PtsDamageFloaters.jnew_1 _layerInterface)
+  (define this (new PtsDamageFloaters% [jclass "PtsDamageFloaters"]))
+    (set-field! f_basicSetColorUtil this (BasicColorSetUtil.jm_getInstance_0))
+    
+    (set-field! f_lastDamage this (JR.newArray 0 5))
+    (set-field! f_lastDamageString this (JR.newArray 0 5 0))
+    (set-field! f_lastDamageStringSizeArray this (JR.newArray 0 5))
+    (set-field! f_circularIndexUtil this (CircularIndexUtil.jm_createInstance_1 5))
+    
+    (set-field! f_myRandomFactory this (MyRandomFactory.jm_getInstance_0))
+    (let ([_CHAR_ARRAY JR.null][_index JR.null])
+      (let/ec jreturn
+        (set-field! f_primitiveLongUtil this (PrimitiveLongUtil.jm_createPowerOfTen_1 100000))
+        (set-field! f_layerInterface this _layerInterface)
+        (set! _CHAR_ARRAY (send (CharArrayFactory.jm_getInstance_0) jm_getZeroCharArray_0))
+        (begin
+            (set! _index (JR.i32 (- (vector-length (get-field f_lastDamageString this)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (vector-set! (get-field f_lastDamageString this) _index _CHAR_ARRAY))
+                (set! _index (JR.i32 (- _index 1))) (jloop)))))))
+  this)
 
 
-function PtsDamageFloaters:add(damage)
-        local index = self.circularIndexUtil:getIndex()
-        self.lastDamage[index + 1] = damage
-        self.lastDamageString[index + 1] = self.primitiveLongUtil:getCharArray(self.lastDamage[index + 1])
-        self.lastDamageStringSizeArray[index + 1] = self.primitiveLongUtil:getCurrentTotalDigits()
-        self.circularIndexUtil:next()
-end
-
-
-function PtsDamageFloaters:paint(graphics)
-        local viewPosition = self.layerInterface:getViewPosition()
-        local x = viewPosition:getX()
-        local y = viewPosition:getY()
-        for index = (self.lastDamage.n or #self.lastDamage) - 1, 0, -1 do
-            if self.lastDamage[index + 1] ~= 0 then
-                local delta = 10 * (index + 2)
-                self.basicSetColorUtil:setBasicColorP(graphics, PtsDamageFloaters.basicColorArrayIndexer:get())
-                graphics:drawChars(self.lastDamageString[index + 1], 0, self.lastDamageStringSizeArray[index + 1], x - self.myRandomFactory:getNextInt(delta), y - delta, 0)
-                PtsDamageFloaters.basicColorArrayIndexer:next()
-            end
-            self.lastDamage[index + 1] = 0
-        end
-end
-
-PtsDamageFloaters.basicColorArrayIndexer = BasicColorArrayIndexer.new({BasicColorFactory.getInstance().WHITE, BasicColorFactory.getInstance().RED, BasicColorFactory.getInstance().YELLOW, BasicColorFactory.getInstance().BLUE})
-
-return PtsDamageFloaters
 

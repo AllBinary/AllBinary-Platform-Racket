@@ -28,11 +28,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_NULL_OBJECT (get-field f_nullUtil this))))))))
+(define (Visitor.jclassValue) Visitor%)
 
 (define Visitor.jcell_instance 'jnone)
 (define (Visitor.jstatic_instance)
   (when (eq? Visitor.jcell_instance 'jnone) (set! Visitor.jcell_instance (Visitor.jnew_0)))
   Visitor.jcell_instance)
+(define (Visitor.jsetstatic_instance value) (set! Visitor.jcell_instance value))
 
 (define (Visitor.jnew_0)
   (define this (new Visitor% [jclass "Visitor"]))

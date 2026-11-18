@@ -1,106 +1,95 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.sprite
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.image.sprite
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local SpriteFactory = require("org.allbinary.game.layer.SpriteFactory")
-local OpenGLUtil = require("org.allbinary.graphics.opengles.OpenGLUtil")
-local ImageCache = require("org.allbinary.image.ImageCache")
-local ImageCacheFactory = require("org.allbinary.image.ImageCacheFactory")
-local OpenGLESImageExclusionUtil = require("org.allbinary.image.opengles.OpenGLESImageExclusionUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local J2SEMath = require("org.allbinary.logic.math.J2SEMath")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local ImageScaleUtil = require("org.allbinary.media.image.ImageScaleUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/game/layer/SpriteFactory.rkt" (SpriteFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/opengles/OpenGLUtil.rkt" (OpenGLUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/image/ImageCacheFactory.rkt" (ImageCacheFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/image/opengles/OpenGLESImageExclusionUtil.rkt" (OpenGLESImageExclusionUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/math/J2SEMath.rkt" (J2SEMath.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/media/image/ImageScaleUtil.rkt" (ImageScaleUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AnimationFactorySpriteScaleUtil%
+  (class JObject%
+    (super-new)
+    (field [f_imageCache JR.null])
+    (field [f_imageScaleUtil JR.null])
+    (field [f_openGLUtil JR.null])
+    (field [f_j2seMath JR.null])
+    (field [f_openGLESImageExclusionUtil JR.null])
+    (define/public (jm_createImage_5 _image _width _height _scaleWidth _scaleHeight)
+    (let ([_spriteFactory JR.null][_sprite JR.null][_scaledImage JR.null][_scaleX JR.null][_scaleY JR.null][_width2 JR.null][_height2 JR.null][_multiplesOf16Width JR.null][_by16Width JR.null][_multiplesOf16Height JR.null][_by16Height JR.null])
+      (let/ec jreturn
+        (set! _spriteFactory (SpriteFactory.jm_getInstance_0))
+        (set! _sprite JR.null)
+        (set! _scaledImage JR.null)
+        (if (and (not (= _scaleWidth 0)) (not (= _scaleHeight 0)))
+            (begin
+            (set! _scaleX (/ (JR.toDouble _scaleWidth) (JR.toDouble _width)))
+            (set! _scaleY (/ (JR.toDouble _scaleHeight) (JR.toDouble _height)))
+            (if (or (and (= _scaleX 1.0) (= _scaleY 1.0)) (or (= _scaleX 0.0) (= _scaleY 0.0)))
+                (begin
+                (set! _scaledImage (send (get-field f_openGLUtil this) jm_addImage_1 _image))
+                (set! _sprite (send _spriteFactory jm_createSprite_3 _scaledImage _width _height)))
+                (begin
+                (when (send (get-field f_openGLESImageExclusionUtil this) jm_isCustomScaling_1 _image)
+                    (begin
+                    (set! _width2 (send (get-field f_j2seMath this) jm_round_1 (- (JR.toDouble _scaleWidth) 0.5)))
+                    (set! _height2 (send (get-field f_j2seMath this) jm_round_1 (- (JR.toDouble _scaleHeight) 0.5)))
+                    (set! _multiplesOf16Width (JR.idiv _width2 16))
+                    (set! _by16Width (JR.i32 (* _multiplesOf16Width 16)))
+                    (set! _scaleX (/ (JR.toDouble _by16Width) (JR.toDouble _width)))
+                    (set! _multiplesOf16Height (JR.idiv _height2 16))
+                    (set! _by16Height (JR.i32 (* _multiplesOf16Height 16)))
+                    (set! _scaleY (/ (JR.toDouble _by16Height) (JR.toDouble _height)))
+                    (when (< _scaleWidth _width)
+                        (begin
+                        (set! _scaleX (* _scaleX 2.35))))
+                    (when (< _scaleHeight _height)
+                        (begin
+                        (set! _scaleY (* _scaleY 2.35))))))
+                (set! _scaledImage (send (get-field f_imageScaleUtil this) jm_createImage2_7 (get-field f_imageCache this) _image _scaleX 1.0 _scaleY 1.0 #t))
+                (set! _sprite (send _spriteFactory jm_createSprite_3 _scaledImage (JR.d2i (* (JR.toDouble _width) _scaleX)) (JR.d2i (* (JR.toDouble _height) _scaleY)))))))
+            (begin
+            (set! _scaledImage (send (get-field f_openGLUtil this) jm_addImage_1 _image))
+            (set! _sprite (send _spriteFactory jm_createSprite_3 _scaledImage _width _height))))
+        (jreturn _sprite))))))
+(define (AnimationFactorySpriteScaleUtil.jclassValue) AnimationFactorySpriteScaleUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AnimationFactorySpriteScaleUtil.jcell_instance 'jnone)
+(define (AnimationFactorySpriteScaleUtil.jstatic_instance)
+  (when (eq? AnimationFactorySpriteScaleUtil.jcell_instance 'jnone) (set! AnimationFactorySpriteScaleUtil.jcell_instance (AnimationFactorySpriteScaleUtil.jnew_0)))
+  AnimationFactorySpriteScaleUtil.jcell_instance)
+(define (AnimationFactorySpriteScaleUtil.jsetstatic_instance value) (set! AnimationFactorySpriteScaleUtil.jcell_instance value))
 
-local AnimationFactorySpriteScaleUtil = {}
-AnimationFactorySpriteScaleUtil.__index = AnimationFactorySpriteScaleUtil
-AnimationFactorySpriteScaleUtil.className = "AnimationFactorySpriteScaleUtil"
+(define (AnimationFactorySpriteScaleUtil.jnew_0)
+  (define this (new AnimationFactorySpriteScaleUtil% [jclass "AnimationFactorySpriteScaleUtil"]))
+    (set-field! f_imageCache this (ImageCacheFactory.jm_getInstance_0))
+    (set-field! f_imageScaleUtil this (ImageScaleUtil.jm_getInstance_0))
+    (set-field! f_openGLUtil this (OpenGLUtil.jm_getInstance_0))
+    (set-field! f_j2seMath this (J2SEMath.jm_getInstance_0))
+    (set-field! f_openGLESImageExclusionUtil this (OpenGLESImageExclusionUtil.jm_getInstance_0))
+  this)
 
-function AnimationFactorySpriteScaleUtil:_init_fields()
-    self.imageCache = ImageCacheFactory.getInstance()
-    self.imageScaleUtil = ImageScaleUtil.getInstance()
-    self.openGLUtil = OpenGLUtil.getInstance()
-    self.j2seMath = J2SEMath.getInstance()
-    self.openGLESImageExclusionUtil = OpenGLESImageExclusionUtil.getInstance()
-end
-
-function AnimationFactorySpriteScaleUtil.new()
-    local self = setmetatable({}, AnimationFactorySpriteScaleUtil)
-    self:_init_fields()
-    return self
-end
+(define (AnimationFactorySpriteScaleUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AnimationFactorySpriteScaleUtil.jstatic_instance)))))
 
 
-function AnimationFactorySpriteScaleUtil.getInstance()
-        return AnimationFactorySpriteScaleUtil.instance
-end
-
-
--- throws Exception
-function AnimationFactorySpriteScaleUtil:createImage(image, width, height, scaleWidth, scaleHeight)
-        local spriteFactory = SpriteFactory.getInstance()
-        local sprite = nil
-        local scaledImage = nil
-        if scaleWidth ~= 0 and scaleHeight ~= 0 then
-            local scaleX = ((scaleWidth + 0.0)) / ((width + 0.0))
-            local scaleY = ((scaleHeight + 0.0)) / ((height + 0.0))
-            if (scaleX == 1.0 and scaleY == 1.0) or (scaleX == 0.0 or scaleY == 0.0) then
-                scaledImage = self.openGLUtil:addImage(image)
-                sprite = spriteFactory:createSprite(scaledImage, width, height)
-            else
-                if self.openGLESImageExclusionUtil:isCustomScaling(image) then
-                    local width2 = self.j2seMath:round(((scaleWidth) + 0.0) - 0.5)
-                    local height2 = self.j2seMath:round(((scaleHeight) + 0.0) - 0.5)
-                    local multiplesOf16Width = java_idiv(width2, 16)
-                    local by16Width = multiplesOf16Width * 16
-                    scaleX = ((by16Width + 0.0)) / (width + 0.0)
-                    local multiplesOf16Height = java_idiv(height2, 16)
-                    local by16Height = multiplesOf16Height * 16
-                    scaleY = ((by16Height + 0.0)) / (height + 0.0)
-                    if scaleWidth < width then
-                        scaleX = scaleX * 2.35
-                    end
-                    if scaleHeight < height then
-                        scaleY = scaleY * 2.35
-                    end
-                end
-                scaledImage = self.imageScaleUtil:createImage2(self.imageCache, image, scaleX, 1.0, scaleY, 1.0, true)
-                sprite = spriteFactory:createSprite(scaledImage, java_int(((width + 0.0) * scaleX)), java_int(((height + 0.0) * scaleY)))
-            end
-        else
-            scaledImage = self.openGLUtil:addImage(image)
-            sprite = spriteFactory:createSprite(scaledImage, width, height)
-        end
-        return sprite
-end
-
-AnimationFactorySpriteScaleUtil.instance = AnimationFactorySpriteScaleUtil.new()
-
-return AnimationFactorySpriteScaleUtil
 

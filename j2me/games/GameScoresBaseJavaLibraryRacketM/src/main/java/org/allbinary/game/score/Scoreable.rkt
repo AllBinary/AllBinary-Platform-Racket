@@ -1,69 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local ScoreableInterface = require("org.allbinary.game.score.ScoreableInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/lang/Integer.rkt"
+  "./ScoreableInterface.rkt")
+(lazy-require ["../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.rkt" (SmallIntegerSingletonFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Scoreable%
+  (class JObject%
+    (super-new)
+    (field [f_points 0])
+    (define/public (jm_addPoints_1 _points)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_points this (JR.i32 (+ (get-field f_points this) _points))))))
+    (define/public (jm_removePoints_1 _points)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_points this (JR.i32 (- (get-field f_points this) _points))))))
+    (define/public (jm_setPoints_1 _points)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_points this _points))))
+    (define/public (jm_getPoints_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_points this)))))))
+(define (Scoreable.jclassValue) Scoreable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define Scoreable.jcell_ID 'jnone)
+(define (Scoreable.jstatic_ID)
+  (when (eq? Scoreable.jcell_ID 'jnone) (set! Scoreable.jcell_ID (send (SmallIntegerSingletonFactory.jm_getInstance_0) jm_getAt_1 3)))
+  Scoreable.jcell_ID)
+(define (Scoreable.jsetstatic_ID value) (set! Scoreable.jcell_ID value))
 
-local Scoreable = {}
-Scoreable.__index = Scoreable
-Scoreable.className = "Scoreable"
-
-function Scoreable:_init_fields()
-    self.points = nil
-end
-
-
-function Scoreable.new(points)
-    local self = setmetatable({}, Scoreable)
-    self:_init_fields()
-        self.points = points
-    return self
-end
-
-
-function Scoreable:addPoints(points)
-        self.points = self.points + (points)
-end
-
-
-function Scoreable:removePoints(points)
-        self.points = self.points - (points)
-end
-
-
-function Scoreable:setPoints(points)
-        self.points = points
-end
+(define (Scoreable.jnew_1 _points)
+  (define this (new Scoreable% [jclass "Scoreable"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_points this _points)))
+  this)
 
 
-function Scoreable:getPoints()
-        return self.points
-end
-
-Scoreable.ID = SmallIntegerSingletonFactory.getInstance():getAt(3)
-
-return Scoreable
 

@@ -1,48 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.path
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io.path
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AbPath = require("org.allbinary.logic.io.path.AbPath")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./AbPath.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["./AbPathData.rkt" (AbPathData.jm_getInstance_0)])
+(lazy-require ["./PathUtil.rkt" (PathUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AbFilePath%
+  (class AbPath%
+    (super-new)))
+(define (AbFilePath.jclassValue) AbFilePath%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (AbFilePath.jnew_1 _aPath)
+  (define this (new AbFilePath% [jclass "AbFilePath"]))
+    (let ([_pathData JR.null][_abPathUtil JR.null])
+      (let/ec jreturn
+        (void)
+        (set! _pathData (AbPathData.jm_getInstance_0))
+        (set! _abPathUtil (PathUtil.jm_getInstance_0))
+        (set-field! f_schema this (send this jm_getSchema_1 _aPath))
+        (send this jm_setName_1 (send _pathData jm_getNameFromPath_1 _aPath))
+        (send this jm_setPath_1 (send _abPathUtil jm_adjust_1 (send this jm_getPathFromPath_1 (JR.toString (send _abPathUtil jm_removeNameFromPath_1 _aPath)))))))
+  this)
 
-local AbFilePath = {}
-AbFilePath.__index = AbFilePath
-AbFilePath.className = "AbFilePath"
-setmetatable(AbFilePath, {__index = AbPath})
 
-
-function AbFilePath.new(aPath)
-    local self = setmetatable(AbPath.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING), AbFilePath)
-        -- super(...) made self above
-        local pathData = AbPathData.getInstance()
-        local abPathUtil = PathUtil.getInstance()
-        self.schema = self:getSchema(aPath)
-        self:setName(pathData:getNameFromPath(aPath))
-        self:setPath(abPathUtil:adjust(self:getPathFromPath(tostring(abPathUtil:removeNameFromPath(aPath)))))
-    return self
-end
-
-return AbFilePath
 

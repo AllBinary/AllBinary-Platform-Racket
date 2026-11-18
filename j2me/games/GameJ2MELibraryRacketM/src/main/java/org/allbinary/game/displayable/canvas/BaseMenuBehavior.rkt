@@ -1,76 +1,62 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local DisplayChangeEvent = require("org.allbinary.graphics.displayable.event.DisplayChangeEvent")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/paint/NullPaintable.rkt" (NullPaintable.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BaseMenuBehavior%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onDisplayChangeEvent_2 _allBinaryGameCanvas _displayChangeEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_initSpecialPaint_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_setNonBotPaintableP_1 (NullPaintable.jm_getInstance_0)))))
+    (define/public (jm_initMenu_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_updateMenu_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_popupMenu_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_closeMenu_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (BaseMenuBehavior.jclassValue) BaseMenuBehavior%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define BaseMenuBehavior.jcell_instance 'jnone)
+(define (BaseMenuBehavior.jstatic_instance)
+  (when (eq? BaseMenuBehavior.jcell_instance 'jnone) (set! BaseMenuBehavior.jcell_instance (BaseMenuBehavior.jnew_0)))
+  BaseMenuBehavior.jcell_instance)
+(define (BaseMenuBehavior.jsetstatic_instance value) (set! BaseMenuBehavior.jcell_instance value))
 
-local BaseMenuBehavior = {}
-BaseMenuBehavior.__index = BaseMenuBehavior
-BaseMenuBehavior.className = "BaseMenuBehavior"
+(define (BaseMenuBehavior.jnew_0)
+  (define this (new BaseMenuBehavior% [jclass "BaseMenuBehavior"]))
+  this)
 
-function BaseMenuBehavior.new()
-    local self = setmetatable({}, BaseMenuBehavior)
-    return self
-end
-
-
-function BaseMenuBehavior.getInstance()
-        return BaseMenuBehavior.instance
-end
-
-
--- throws Exception
-function BaseMenuBehavior:onDisplayChangeEvent(allBinaryGameCanvas, displayChangeEvent)
-end
-
-
-function BaseMenuBehavior:initSpecialPaint(allBinaryGameCanvas)
-        allBinaryGameCanvas:setNonBotPaintableP(NullPaintable.getInstance())
-end
-
-
--- throws Exception
-function BaseMenuBehavior:initMenu(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function BaseMenuBehavior:updateMenu(allBinaryGameCanvas)
-end
+(define (BaseMenuBehavior.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (BaseMenuBehavior.jstatic_instance)))))
 
 
--- throws Exception
-function BaseMenuBehavior:popupMenu(allBinaryGameCanvas)
-end
-
-
-function BaseMenuBehavior:closeMenu(allBinaryGameCanvas)
-end
-
-BaseMenuBehavior.instance = BaseMenuBehavior.new()
-
-return BaseMenuBehavior
 

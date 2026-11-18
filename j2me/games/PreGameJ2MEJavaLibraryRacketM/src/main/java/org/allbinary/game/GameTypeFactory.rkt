@@ -1,63 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["./GameType.rkt" (GameType.jnew_1)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define GameTypeFactory%
+  (class JObject%
+    (super-new)
+    (field [f_NULL_GAME_TYPE_ARRAY JR.null])
+    (field [f_NONE JR.null])
+    (field [f_SINGLE_PLAYER JR.null])
+    (field [f_MULTI_PLAYER JR.null])
+    (field [f_BOT JR.null])))
+(define (GameTypeFactory.jclassValue) GameTypeFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameTypeFactory.jcell_instance 'jnone)
+(define (GameTypeFactory.jstatic_instance)
+  (when (eq? GameTypeFactory.jcell_instance 'jnone) (set! GameTypeFactory.jcell_instance (GameTypeFactory.jnew_0)))
+  GameTypeFactory.jcell_instance)
+(define (GameTypeFactory.jsetstatic_instance value) (set! GameTypeFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (GameTypeFactory.jnew_0)
+  (define this (new GameTypeFactory% [jclass "GameTypeFactory"]))
+    (set-field! f_NULL_GAME_TYPE_ARRAY this (JR.newArray JR.null 0))
+    (set-field! f_NONE this (GameType.jnew_1 (get-field f_NULL_STRING (StringUtil.jm_getInstance_0))))
+    (set-field! f_SINGLE_PLAYER this (GameType.jnew_1 "Single Player"))
+    (set-field! f_MULTI_PLAYER this (GameType.jnew_1 "Multi Player"))
+    (set-field! f_BOT this (GameType.jnew_1 "Artificial Player"))
+  this)
 
-local GameTypeFactory = {}
-GameTypeFactory.__index = GameTypeFactory
-GameTypeFactory.className = "GameTypeFactory"
-
-function GameTypeFactory:_init_fields()
-    self.NULL_GAME_TYPE_ARRAY = java_new_array(nil, 0)
-    self.NONE = GameType.new(StringUtil.getInstance().NULL_STRING)
-    self.SINGLE_PLAYER = GameType.new("Single Player")
-    self.MULTI_PLAYER = GameType.new("Multi Player")
-    self.BOT = GameType.new("Artificial Player")
-end
-
-function GameTypeFactory.new()
-    local self = setmetatable({}, GameTypeFactory)
-    self:_init_fields()
-    return self
-end
+(define (GameTypeFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameTypeFactory.jstatic_instance)))))
 
 
-function GameTypeFactory.getInstance()
-        return GameTypeFactory.instance
-end
-
-GameTypeFactory.instance = GameTypeFactory.new()
-
-return GameTypeFactory
 

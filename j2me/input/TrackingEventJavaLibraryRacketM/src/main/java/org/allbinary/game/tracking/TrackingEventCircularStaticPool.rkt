@@ -1,65 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.tracking
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.tracking
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryEventCircularPool = require("org.allbinary.logic.util.event.AllBinaryEventCircularPool")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/util/event/AllBinaryEventCircularPool.rkt" (AllBinaryEventCircularPool.jnew_1)])
+(lazy-require ["./TrackingEventFactory.rkt" (TrackingEventFactory.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TrackingEventCircularStaticPool%
+  (class JObject%
+    (super-new)
+    (field [f_EVENT_POOL JR.null])
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_EVENT_POOL this) jm_initAllBinaryEventCircularPool_1 (TrackingEventFactory.jnew_0)))))
+    (define/public (jm_getNextInstance_1 _layerInterface)
+    (let ([_trackingEvent JR.null])
+      (let/ec jreturn
+        (set! _trackingEvent (send (get-field f_EVENT_POOL this) jm_getNextInstance_0))
+        (send _trackingEvent jm_setLayerInterfaceForCircularStaticPool_1 _layerInterface)
+        (jreturn _trackingEvent))))))
+(define (TrackingEventCircularStaticPool.jclassValue) TrackingEventCircularStaticPool%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define TrackingEventCircularStaticPool.jcell_instance 'jnone)
+(define (TrackingEventCircularStaticPool.jstatic_instance)
+  (when (eq? TrackingEventCircularStaticPool.jcell_instance 'jnone) (set! TrackingEventCircularStaticPool.jcell_instance (TrackingEventCircularStaticPool.jnew_0)))
+  TrackingEventCircularStaticPool.jcell_instance)
+(define (TrackingEventCircularStaticPool.jsetstatic_instance value) (set! TrackingEventCircularStaticPool.jcell_instance value))
 
-local TrackingEventCircularStaticPool = {}
-TrackingEventCircularStaticPool.__index = TrackingEventCircularStaticPool
-TrackingEventCircularStaticPool.className = "TrackingEventCircularStaticPool"
+(define (TrackingEventCircularStaticPool.jnew_0)
+  (define this (new TrackingEventCircularStaticPool% [jclass "TrackingEventCircularStaticPool"]))
+    (set-field! f_EVENT_POOL this (AllBinaryEventCircularPool.jnew_1 20))
+  this)
 
-function TrackingEventCircularStaticPool:_init_fields()
-    self.EVENT_POOL = AllBinaryEventCircularPool.new(20)
-end
-
-function TrackingEventCircularStaticPool.new()
-    local self = setmetatable({}, TrackingEventCircularStaticPool)
-    self:_init_fields()
-    return self
-end
-
-
-function TrackingEventCircularStaticPool.getInstance()
-        return TrackingEventCircularStaticPool.instance
-end
-
-
-function TrackingEventCircularStaticPool:init()
-        self.EVENT_POOL:initAllBinaryEventCircularPool(TrackingEventFactory.new())
-end
+(define (TrackingEventCircularStaticPool.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TrackingEventCircularStaticPool.jstatic_instance)))))
 
 
--- throws Exception
-function TrackingEventCircularStaticPool:getNextInstance(layerInterface)
-        local trackingEvent = self.EVENT_POOL:getNextInstance()
-        trackingEvent:setLayerInterfaceForCircularStaticPool(layerInterface)
-        return trackingEvent
-end
-
-TrackingEventCircularStaticPool.instance = TrackingEventCircularStaticPool.new()
-
-return TrackingEventCircularStaticPool
 

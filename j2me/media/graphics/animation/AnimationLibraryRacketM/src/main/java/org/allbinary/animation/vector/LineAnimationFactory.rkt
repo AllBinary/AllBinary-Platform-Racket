@@ -1,59 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.vector
 
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/AnimationInterfaceFactoryInterface.rkt")
+(lazy-require ["./LineAnimation.rkt" (LineAnimation.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LineAnimationFactory%
+  (class JObject%
+    (super-new)
+    (field [f_basicColor JR.null])
+    (define/public (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LineAnimation.jnew_1 (get-field f_basicColor this))))))
+    (define/public (jm_setInitialScale_1 _scaleProperties)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (LineAnimationFactory.jclassValue) LineAnimationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LineAnimationFactory = {}
-LineAnimationFactory.__index = LineAnimationFactory
-LineAnimationFactory.className = "LineAnimationFactory"
-
-function LineAnimationFactory:_init_fields()
-    self.basicColor = nil
-end
-
-
-function LineAnimationFactory.new(basicColor)
-    local self = setmetatable({}, LineAnimationFactory)
-    self:_init_fields()
-        self.basicColor = basicColor
-    return self
-end
+(define (LineAnimationFactory.jnew_1 _basicColor)
+  (define this (new LineAnimationFactory% [jclass "LineAnimationFactory"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_basicColor this _basicColor)))
+  this)
 
 
--- throws Exception
-function LineAnimationFactory:getInstance(instanceId)
-        return LineAnimation.new(self.basicColor)
-end
-
-
-function LineAnimationFactory:setInitialScale(scaleProperties)
-end
-
-return LineAnimationFactory
 

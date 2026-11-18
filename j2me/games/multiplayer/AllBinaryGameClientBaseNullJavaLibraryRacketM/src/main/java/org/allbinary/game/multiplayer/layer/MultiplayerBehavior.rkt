@@ -1,55 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.multiplayer.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.multiplayer.layer
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MultiplayerBehavior%
+  (class JObject%
+    (super-new)
+    (define/public (jm_startTick_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_endTick_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getApproximateElapsed_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))))
+(define (MultiplayerBehavior.jclassValue) MultiplayerBehavior%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR 'jnone)
+(define (MultiplayerBehavior.jstatic_NULL_MULTIPLAYER_BEHAVIOR)
+  (when (eq? MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR 'jnone) (set! MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR (MultiplayerBehavior.jnew_1 (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))))
+  MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR)
+(define (MultiplayerBehavior.jsetstatic_NULL_MULTIPLAYER_BEHAVIOR value) (set! MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR value))
 
-local MultiplayerBehavior = {}
-MultiplayerBehavior.__index = MultiplayerBehavior
-MultiplayerBehavior.className = "MultiplayerBehavior"
-
-
-function MultiplayerBehavior.new(username)
-    local self = setmetatable({}, MultiplayerBehavior)
-    return self
-end
-
-
-function MultiplayerBehavior:startTick()
-end
-
-
-function MultiplayerBehavior:endTick()
-end
+(define (MultiplayerBehavior.jnew_1 _username)
+  (define this (new MultiplayerBehavior% [jclass "MultiplayerBehavior"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function MultiplayerBehavior:getApproximateElapsed()
-        return 0
-end
-
-MultiplayerBehavior.NULL_MULTIPLAYER_BEHAVIOR = MultiplayerBehavior.new(StringUtil.getInstance().EMPTY_STRING)
-
-return MultiplayerBehavior
 

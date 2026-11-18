@@ -1,76 +1,49 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;; 
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;; 
+;; Created By: Travis Berthelot 
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io
 
--- local IOException = require("java.io.IOException")
--- local Writer = require("java.io.Writer")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/IOException.rkt"
+  "../../../../java/io/Writer.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullWriter%
+  (class Writer%
+    (super-new)
+    (define/override (jm_write_1 jp1)
+      (cond))
+    (define/override (jm_write_3 jp1 jp2 jp3)
+      (cond))
+    (define/override (jm_flush_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_close_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullWriter.jclassValue) NullWriter%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullWriter.jcell_NULL_WRITER 'jnone)
+(define (NullWriter.jstatic_NULL_WRITER)
+  (when (eq? NullWriter.jcell_NULL_WRITER 'jnone) (set! NullWriter.jcell_NULL_WRITER (NullWriter.jnew_0)))
+  NullWriter.jcell_NULL_WRITER)
+(define (NullWriter.jsetstatic_NULL_WRITER value) (set! NullWriter.jcell_NULL_WRITER value))
 
-local NullWriter = {}
-NullWriter.__index = NullWriter
-NullWriter.className = "NullWriter"
-setmetatable(NullWriter, {__index = Writer})
-
-function NullWriter.new()
-    local self = setmetatable(Writer.new(), NullWriter)
-    return self
-end
-
-
--- throws IOException
-function NullWriter:write(c)
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullWriter:write(cbuf, off, len)
-end
+(define (NullWriter.jnew_0)
+  (define this (new NullWriter% [jclass "NullWriter"]))
+  this)
 
 
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullWriter:write(str)
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullWriter:write(str, off, len)
-end
-
-
--- throws IOException
-function NullWriter:flush()
-end
-
-
--- throws IOException
-function NullWriter:close()
-end
-
-NullWriter.NULL_WRITER = NullWriter.new()
-
-return NullWriter
 

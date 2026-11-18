@@ -1,47 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.pickup
 
-local RemoteInfo = require("org.allbinary.game.multiplayer.layer.RemoteInfo")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerFactoryInterface = require("org.allbinary.layer.AllBinaryLayerFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/layer/AllBinaryLayerFactoryInterface.rkt")
+(lazy-require ["../../../../../../org/allbinary/game/multiplayer/layer/RemoteInfo.rkt" (RemoteInfo.jstatic_REMOTE_INFO)])
+(lazy-require ["./FallingPickupLayer.rkt" (FallingPickupLayer.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define FallingPickupLayerFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (FallingPickupLayer.jnew_1 (RemoteInfo.jstatic_REMOTE_INFO))))))))
+(define (FallingPickupLayerFactory.jclassValue) FallingPickupLayerFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local FallingPickupLayerFactory = {}
-FallingPickupLayerFactory.__index = FallingPickupLayerFactory
-FallingPickupLayerFactory.className = "FallingPickupLayerFactory"
-
-function FallingPickupLayerFactory.new()
-    local self = setmetatable({}, FallingPickupLayerFactory)
-    return self
-end
+(define (FallingPickupLayerFactory.jnew_0)
+  (define this (new FallingPickupLayerFactory% [jclass "FallingPickupLayerFactory"]))
+  this)
 
 
--- throws Exception
-function FallingPickupLayerFactory:getInstance()
-        return FallingPickupLayer.new(RemoteInfo.REMOTE_INFO)
-end
-
-return FallingPickupLayerFactory
 

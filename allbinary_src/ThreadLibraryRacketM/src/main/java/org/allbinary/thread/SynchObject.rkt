@@ -21,6 +21,7 @@
 (define SynchObject%
   (class JObject%
     (super-new)))
+(define (SynchObject.jclassValue) SynchObject%)
 
 (define (SynchObject.jnew_0)
   (define this (new SynchObject% [jclass "SynchObject"]))

@@ -1,65 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.resources
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.resources
 
-local BaseResourceAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory")
-local ImageCache = require("org.allbinary.image.ImageCache")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OnDemandResources%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/public (jm_waitFor_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_initAt_5 _imageCache _resourceAnimationInterfaceFactoryInterfaceFactory _portion _loadingString _index)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))))
+(define (OnDemandResources.jclassValue) OnDemandResources%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES 'jnone)
+(define (OnDemandResources.jstatic_NULL_ON_DEMAND_RESOURCES)
+  (when (eq? OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES 'jnone) (set! OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES (OnDemandResources.jnew_0)))
+  OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES)
+(define (OnDemandResources.jsetstatic_NULL_ON_DEMAND_RESOURCES value) (set! OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES value))
 
-local OnDemandResources = {}
-OnDemandResources.__index = OnDemandResources
-OnDemandResources.className = "OnDemandResources"
-
-function OnDemandResources:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-
-function OnDemandResources.new()
-    local self = setmetatable({}, OnDemandResources)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function OnDemandResources:waitFor()
-end
-
-
--- throws Exception
-function OnDemandResources:init()
-end
+(define (OnDemandResources.jnew_0)
+  (define this (new OnDemandResources% [jclass "OnDemandResources"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
--- throws Exception
-function OnDemandResources:initAt(imageCache, resourceAnimationInterfaceFactoryInterfaceFactory, portion, loadingString, index)
-        return 0
-end
-
-OnDemandResources.NULL_ON_DEMAND_RESOURCES = OnDemandResources.new()
-
-return OnDemandResources
 

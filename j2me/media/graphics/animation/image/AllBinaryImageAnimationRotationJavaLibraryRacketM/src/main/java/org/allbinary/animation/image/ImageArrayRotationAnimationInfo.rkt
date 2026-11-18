@@ -1,100 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/math/AngleInfo.rkt" (AngleInfo.jm_getInstance_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageArrayRotationAnimationInfo%
+  (class JObject%
+    (super-new)
+    (field [f_imageArray JR.null])
+    (field [f_angleIncrement 0])
+    (field [f_totalAngle 0])
+    (field [f_dx 0])
+    (field [f_dy 0])
+    (define/public (jm_setImageArray_1 _imageArray)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_imageArray this _imageArray))))
+    (define/public (jm_getImageArray_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_imageArray this)))))
+    (define/public (jm_getAngleInfoP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AngleInfo.jm_getInstance_1 (JR.i16 (get-field f_angleIncrement this)))))))
+    (define/public (jm_setTotalAngle_1 _totalAngle)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_totalAngle this _totalAngle))))
+    (define/public (jm_getTotalAngle_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_totalAngle this)))))
+    (define/public (jm_setDx_1 _dx)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_dx this _dx))))
+    (define/public (jm_getDx_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_dx this)))))
+    (define/public (jm_setDy_1 _dy)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_dy this _dy))))
+    (define/public (jm_getDy_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_dy this)))))))
+(define (ImageArrayRotationAnimationInfo.jclassValue) ImageArrayRotationAnimationInfo%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageArrayRotationAnimationInfo = {}
-ImageArrayRotationAnimationInfo.__index = ImageArrayRotationAnimationInfo
-ImageArrayRotationAnimationInfo.className = "ImageArrayRotationAnimationInfo"
-
-function ImageArrayRotationAnimationInfo:_init_fields()
-    self.imageArray = nil
-    self.angleIncrement = nil
-    self.totalAngle = nil
-    self.dx = nil
-    self.dy = nil
-end
-
-
-function ImageArrayRotationAnimationInfo.new(imageArray, angleIncrement, totalAngle, dx, dy)
-    local self = setmetatable({}, ImageArrayRotationAnimationInfo)
-    self:_init_fields()
-        self.imageArray = imageArray
-        self.angleIncrement = angleIncrement
-        self.totalAngle = totalAngle
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
-function ImageArrayRotationAnimationInfo:setImageArray(imageArray)
-        self.imageArray = imageArray
-end
-
-
-function ImageArrayRotationAnimationInfo:getImageArray()
-        return self.imageArray
-end
-
-
-function ImageArrayRotationAnimationInfo:getAngleInfoP()
-        return AngleInfo.getInstance(self.angleIncrement)
-end
-
-
-function ImageArrayRotationAnimationInfo:setTotalAngle(totalAngle)
-        self.totalAngle = totalAngle
-end
-
-
-function ImageArrayRotationAnimationInfo:getTotalAngle()
-        return self.totalAngle
-end
-
-
-function ImageArrayRotationAnimationInfo:setDx(dx)
-        self.dx = dx
-end
-
-
-function ImageArrayRotationAnimationInfo:getDx()
-        return self.dx
-end
+(define (ImageArrayRotationAnimationInfo.jnew_5 _imageArray _angleIncrement _totalAngle _dx _dy)
+  (define this (new ImageArrayRotationAnimationInfo% [jclass "ImageArrayRotationAnimationInfo"]))
+    
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_imageArray this _imageArray)
+        (set-field! f_angleIncrement this _angleIncrement)
+        (set-field! f_totalAngle this _totalAngle)
+        (set-field! f_dx this _dx)
+        (set-field! f_dy this _dy)))
+  this)
 
 
-function ImageArrayRotationAnimationInfo:setDy(dy)
-        self.dy = dy
-end
-
-
-function ImageArrayRotationAnimationInfo:getDy()
-        return self.dy
-end
-
-return ImageArrayRotationAnimationInfo
 

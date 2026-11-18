@@ -1,73 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.feature
 
-local ChangedGameFeatureListener = require("org.allbinary.game.configuration.event.ChangedGameFeatureListener")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/game/configuration/event/ChangedGameFeatureListener.rkt" (ChangedGameFeatureListener.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Feature%
+  (class JObject%
+    (super-new)
+    (field [f_name JR.null])
+    (define/override (jm_toString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getName_0)))))
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_name this)))))))
+(define (Feature.jclassValue) Feature%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define Feature.jcell_hashtable 'jnone)
+(define (Feature.jstatic_hashtable)
+  (when (eq? Feature.jcell_hashtable 'jnone) (set! Feature.jcell_hashtable (send (StdUtil.jm_getInstance_0) jm_createHashtable_0)))
+  Feature.jcell_hashtable)
+(define (Feature.jsetstatic_hashtable value) (set! Feature.jcell_hashtable value))
 
-local Feature = {}
-Feature.__index = Feature
-Feature.className = "Feature"
+(define (Feature.jnew_1 _name)
+  (define this (new Feature% [jclass "Feature"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_name this _name)
+        (Feature.jm_add_2 _name this)
+        (send (ChangedGameFeatureListener.jm_getInstance_0) jm_add_1 this)))
+  this)
 
-function Feature:_init_fields()
-    self.name = nil
-end
+(define (Feature.jm_getInstance_1 _name)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (Feature.jstatic_hashtable))))))
 
-
-function Feature.new(name)
-    local self = setmetatable({}, Feature)
-    self:_init_fields()
-        self.name = name
-        Feature.add(name, self)
-        ChangedGameFeatureListener.getInstance():add(self)
-    return self
-end
-
-
-function Feature.getInstance(name)
-        return Feature.hashtable:get(name)
-end
-
-
-function Feature.add(name, gameFeature)
-        Feature.hashtable:put(name, gameFeature)
-end
-
-
-function Feature:toString()
-        return self:getName()
-end
-Feature.__tostring = function(self) return self:toString() end
+(define (Feature.jm_add_2 _name _gameFeature)
+    (let ()
+      (let/ec jreturn
+        (JR.className (Feature.jstatic_hashtable)))))
 
 
-function Feature:getName()
-        return self.name
-end
-
-Feature.hashtable = StdUtil.getInstance():createHashtable()
-
-return Feature
 

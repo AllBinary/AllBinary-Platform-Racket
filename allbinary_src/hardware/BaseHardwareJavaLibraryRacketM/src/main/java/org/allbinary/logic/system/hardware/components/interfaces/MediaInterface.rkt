@@ -21,6 +21,7 @@
 (define MediaInterface%
   (class JObject%
     (super-new)))
+(define (MediaInterface.jclassValue) MediaInterface%)
 
 (define (MediaInterface.jnew_0)
   (define this (new MediaInterface% [jclass "MediaInterface"]))

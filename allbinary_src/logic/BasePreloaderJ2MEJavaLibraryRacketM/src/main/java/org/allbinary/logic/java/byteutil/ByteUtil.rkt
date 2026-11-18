@@ -115,11 +115,13 @@
             (vector-set! _stats 1 (JR.i32 (+ (vector-ref _stats 1) 1))))
                 (set! _index (JR.i32 (+ _index 1))) (jloop)))))
         (jreturn #t))))))
+(define (ByteUtil.jclassValue) ByteUtil%)
 
 (define ByteUtil.jcell_instance 'jnone)
 (define (ByteUtil.jstatic_instance)
   (when (eq? ByteUtil.jcell_instance 'jnone) (set! ByteUtil.jcell_instance (ByteUtil.jnew_0)))
   ByteUtil.jcell_instance)
+(define (ByteUtil.jsetstatic_instance value) (set! ByteUtil.jcell_instance value))
 
 (define (ByteUtil.jnew_0)
   (define this (new ByteUtil% [jclass "ByteUtil"]))

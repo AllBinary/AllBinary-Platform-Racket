@@ -32,11 +32,13 @@
         (send _e jm_printStackTrace_0)
         (set! _output (send _bs jm_toString_0))
         (jreturn _output))))))
+(define (ExceptionUtil.jclassValue) ExceptionUtil%)
 
 (define ExceptionUtil.jcell_instance 'jnone)
 (define (ExceptionUtil.jstatic_instance)
   (when (eq? ExceptionUtil.jcell_instance 'jnone) (set! ExceptionUtil.jcell_instance (ExceptionUtil.jnew_0)))
   ExceptionUtil.jcell_instance)
+(define (ExceptionUtil.jsetstatic_instance value) (set! ExceptionUtil.jcell_instance value))
 
 (define (ExceptionUtil.jnew_0)
   (define this (new ExceptionUtil% [jclass "ExceptionUtil"]))

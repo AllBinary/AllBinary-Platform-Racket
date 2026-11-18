@@ -84,6 +84,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_NULL_TABLE (StdUtil.jm_getInstance_0))))))))
+(define (WindowsHardware.jclassValue) WindowsHardware%)
 
 (define (WindowsHardware.jnew_0)
   (define this (new WindowsHardware% [jclass "WindowsHardware"]))

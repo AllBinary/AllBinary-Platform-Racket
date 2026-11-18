@@ -1,53 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.canvas.transition.progress
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;;
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;
+;; Created By: Travis Berthelot
+;; 
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.canvas.transition.progress
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/graphics/paint/Paintable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ProgressPaintable%
+  (class Paintable%
+    (super-new)
+    (field [f_progressCanvas JR.null])
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_progressCanvas this) jm_paint2_1 _graphics))))))
+(define (ProgressPaintable.jclassValue) ProgressPaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ProgressPaintable = {}
-ProgressPaintable.__index = ProgressPaintable
-ProgressPaintable.className = "ProgressPaintable"
-setmetatable(ProgressPaintable, {__index = Paintable})
-
-function ProgressPaintable:_init_fields()
-    self.progressCanvas = nil
-end
-
-
-function ProgressPaintable.new(progressCanvas)
-    local self = setmetatable(Paintable.new(), ProgressPaintable)
-    self:_init_fields()
-        self.progressCanvas = progressCanvas
-    return self
-end
+(define (ProgressPaintable.jnew_1 _progressCanvas)
+  (define this (new ProgressPaintable% [jclass "ProgressPaintable"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_progressCanvas this _progressCanvas)))
+  this)
 
 
-function ProgressPaintable:paint(graphics)
-        self.progressCanvas:paint2(graphics)
-end
-
-return ProgressPaintable
 

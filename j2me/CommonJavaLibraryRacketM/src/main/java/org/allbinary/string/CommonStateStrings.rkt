@@ -33,11 +33,13 @@
     (field [f_BIND JR.null])
     (field [f_ON_SAVE_INSTANCE_STATE JR.null])
     (field [f_ON_START_COMMAND JR.null])))
+(define (CommonStateStrings.jclassValue) CommonStateStrings%)
 
 (define CommonStateStrings.jcell_instance 'jnone)
 (define (CommonStateStrings.jstatic_instance)
   (when (eq? CommonStateStrings.jcell_instance 'jnone) (set! CommonStateStrings.jcell_instance (CommonStateStrings.jnew_0)))
   CommonStateStrings.jcell_instance)
+(define (CommonStateStrings.jsetstatic_instance value) (set! CommonStateStrings.jcell_instance value))
 
 (define (CommonStateStrings.jnew_0)
   (define this (new CommonStateStrings% [jclass "CommonStateStrings"]))

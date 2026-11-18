@@ -1,51 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.midlet
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MidletCompositeInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_setMidlet_1 _midlet)
+      (raise (JR.newException "AbstractMethodError" "setMidlet")))
+    (define/public (jm_getMidlet_0)
+      (raise (JR.newException "AbstractMethodError" "getMidlet")))
+    (define/public (jm_getDisplayable_0)
+      (raise (JR.newException "AbstractMethodError" "getDisplayable")))))
+(define (MidletCompositeInterface.jclassValue) MidletCompositeInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local MidletCompositeInterface = {}
-MidletCompositeInterface.__index = MidletCompositeInterface
-MidletCompositeInterface.className = "MidletCompositeInterface"
-
-
-function MidletCompositeInterface:setMidlet(midlet)
-    error("abstract method setMidlet")
-end
+(define (MidletCompositeInterface.jnew_0)
+  (define this (new MidletCompositeInterface% [jclass "MidletCompositeInterface"]))
+  this)
 
 
-function MidletCompositeInterface:getMidlet()
-    error("abstract method getMidlet")
-end
-
-
-function MidletCompositeInterface:getDisplayable()
-    error("abstract method getDisplayable")
-end
-
-return MidletCompositeInterface
 

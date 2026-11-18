@@ -1,64 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./AnimationInterfaceFactoryInterface.rkt"
+  "./ProceduralAnimationInterfaceFactoryInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SingletonAnimationInterfaceFactory%
+  (class JObject%
+    (super-new)
+    (field [f_animationInterface JR.null])
+    (define/public (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_animationInterface this)))))
+    (define/public (jm_getInstanceAnimation_1 _animationInterface)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_animationInterface this)))))
+    (define/public (jm_setInitialScale_1 _scaleProperties)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (SingletonAnimationInterfaceFactory.jclassValue) SingletonAnimationInterfaceFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SingletonAnimationInterfaceFactory = {}
-SingletonAnimationInterfaceFactory.__index = SingletonAnimationInterfaceFactory
-SingletonAnimationInterfaceFactory.className = "SingletonAnimationInterfaceFactory"
-
-function SingletonAnimationInterfaceFactory:_init_fields()
-    self.animationInterface = nil
-end
-
-
-function SingletonAnimationInterfaceFactory.new(animationInterface)
-    local self = setmetatable({}, SingletonAnimationInterfaceFactory)
-    self:_init_fields()
-        self.animationInterface = animationInterface
-    return self
-end
-
-
--- throws Exception
-function SingletonAnimationInterfaceFactory:getInstance(instanceId)
-        return self.animationInterface
-end
+(define (SingletonAnimationInterfaceFactory.jnew_1 _animationInterface)
+  (define this (new SingletonAnimationInterfaceFactory% [jclass "SingletonAnimationInterfaceFactory"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_animationInterface this _animationInterface)))
+  this)
 
 
--- throws Exception
-function SingletonAnimationInterfaceFactory:getInstanceAnimation(animationInterface)
-        return self.animationInterface
-end
-
-
-function SingletonAnimationInterfaceFactory:setInitialScale(scaleProperties)
-end
-
-return SingletonAnimationInterfaceFactory
 

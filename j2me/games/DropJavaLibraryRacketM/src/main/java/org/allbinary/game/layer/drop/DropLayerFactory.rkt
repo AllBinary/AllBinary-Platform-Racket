@@ -1,81 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.drop
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.drop
 
-local PickedUpLayerInterfaceFactoryInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListUtil.rkt" (BasicArrayListUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DropLayerFactory%
+  (class JObject%
+    (super-new)
+    (field [f_list JR.null])
+    (field [f_basicArrayListUtil JR.null])
+    (define/public (jm_clear_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_list this) jm_clear_0))))
+    (define/public (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_list this) jm_size_0)))))
+    (define/public (jm_getRandomInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_basicArrayListUtil this) jm_getRandom_1 (get-field f_list this))))))
+    (define/public (jm_add_1 _layerInterfaceFactoryInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_list this) jm_add_1 _layerInterfaceFactoryInterface))))
+    (define/public (jm_getList_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_list this)))))))
+(define (DropLayerFactory.jclassValue) DropLayerFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DropLayerFactory.jcell_DROP_LAYER_FACTORY 'jnone)
+(define (DropLayerFactory.jstatic_DROP_LAYER_FACTORY)
+  (when (eq? DropLayerFactory.jcell_DROP_LAYER_FACTORY 'jnone) (set! DropLayerFactory.jcell_DROP_LAYER_FACTORY (DropLayerFactory.jnew_0)))
+  DropLayerFactory.jcell_DROP_LAYER_FACTORY)
+(define (DropLayerFactory.jsetstatic_DROP_LAYER_FACTORY value) (set! DropLayerFactory.jcell_DROP_LAYER_FACTORY value))
 
-local DropLayerFactory = {}
-DropLayerFactory.__index = DropLayerFactory
-DropLayerFactory.className = "DropLayerFactory"
+(define (DropLayerFactory.jnew_0)
+  (define this (new DropLayerFactory% [jclass "DropLayerFactory"]))
+    (set-field! f_list this (BasicArrayListD.jnew_0))
+    (set-field! f_basicArrayListUtil this (BasicArrayListUtil.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function DropLayerFactory:_init_fields()
-    self.list = BasicArrayListD.new()
-    self.basicArrayListUtil = BasicArrayListUtil.getInstance()
-end
-
-
-function DropLayerFactory.new()
-    local self = setmetatable({}, DropLayerFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function DropLayerFactory:clear()
-        self.list:clear()
-end
-
-
-function DropLayerFactory.getInstance()
-        return DropLayerFactory.DROP_LAYER_FACTORY
-end
-
-
-function DropLayerFactory:getSize()
-        return self.list:size()
-end
-
-
-function DropLayerFactory:getRandomInstance()
-        return self.basicArrayListUtil:getRandom(self.list)
-end
-
-
-function DropLayerFactory:add(layerInterfaceFactoryInterface)
-        self.list:add(layerInterfaceFactoryInterface)
-end
+(define (DropLayerFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DropLayerFactory.jstatic_DROP_LAYER_FACTORY)))))
 
 
-function DropLayerFactory:getList()
-        return self.list
-end
-
-DropLayerFactory.DROP_LAYER_FACTORY = DropLayerFactory.new()
-
-return DropLayerFactory
 

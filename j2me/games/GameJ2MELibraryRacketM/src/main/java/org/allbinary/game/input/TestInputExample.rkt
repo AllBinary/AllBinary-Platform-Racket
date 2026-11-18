@@ -1,79 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local TestInputInterface = require("org.allbinary.game.input.TestInputInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./TestInputInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TestInputExample%
+  (class JObject%
+    (super-new)
+    (field [f_testValue 0])
+    (define/public (jm_up_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_down_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_left_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_testValue this (JR.i32 (+ (get-field f_testValue this) 1))))))
+    (define/public (jm_right_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_testValue this (JR.i32 (- (get-field f_testValue this) 1))))))
+    (define/public (jm_strafeLeft_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_strafeRight_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_paintThreed_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (TestInputExample.jclassValue) TestInputExample%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TestInputExample = {}
-TestInputExample.__index = TestInputExample
-TestInputExample.className = "TestInputExample"
-
-function TestInputExample:_init_fields()
-    self.testValue = 0
-end
-
-function TestInputExample.new()
-    local self = setmetatable({}, TestInputExample)
-    self:_init_fields()
-    return self
-end
-
-
-function TestInputExample:up()
-end
-
-
-function TestInputExample:down()
-end
-
-
-function TestInputExample:left()
-        self.testValue = self.testValue + 1
-end
-
-
-function TestInputExample:right()
-        self.testValue = self.testValue - 1
-end
+(define (TestInputExample.jnew_0)
+  (define this (new TestInputExample% [jclass "TestInputExample"]))
+    
+  this)
 
 
-function TestInputExample:strafeLeft()
-end
-
-
-function TestInputExample:strafeRight()
-end
-
-
-function TestInputExample:paint(graphics)
-end
-
-
-function TestInputExample:paintThreed(graphics)
-end
-
-return TestInputExample
 

@@ -1,42 +1,34 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.util.cache
 
-local CacheInterface = require("org.allbinary.logic.util.cache.CacheInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./CacheInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PoolInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_remove_1 _key)
+      (raise (JR.newException "AbstractMethodError" "remove")))))
+(define (PoolInterface.jclassValue) PoolInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local PoolInterface = {}
-PoolInterface.__index = PoolInterface
-PoolInterface.className = "PoolInterface"
-setmetatable(PoolInterface, {__index = CacheInterface})
+(define (PoolInterface.jnew_0)
+  (define this (new PoolInterface% [jclass "PoolInterface"]))
+  this)
 
 
--- throws Exception
-function PoolInterface:remove(key)
-    error("abstract method remove")
-end
-
-return PoolInterface
 

@@ -1,49 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
-local TouchButtonResource = require("org.allbinary.input.motion.button.TouchButtonResource")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./TouchButtonResource.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TouchButtonBlankResource%
+  (class TouchButtonResource%
+    (super-new)))
+(define (TouchButtonBlankResource.jclassValue) TouchButtonBlankResource%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define TouchButtonBlankResource.jcell_instance 'jnone)
+(define (TouchButtonBlankResource.jstatic_instance)
+  (when (eq? TouchButtonBlankResource.jcell_instance 'jnone) (set! TouchButtonBlankResource.jcell_instance (TouchButtonBlankResource.jnew_0)))
+  TouchButtonBlankResource.jcell_instance)
+(define (TouchButtonBlankResource.jsetstatic_instance value) (set! TouchButtonBlankResource.jcell_instance value))
 
-local TouchButtonBlankResource = {}
-TouchButtonBlankResource.__index = TouchButtonBlankResource
-TouchButtonBlankResource.className = "TouchButtonBlankResource"
-setmetatable(TouchButtonBlankResource, {__index = TouchButtonResource})
+(define (TouchButtonBlankResource.jnew_0)
+  (define this (new TouchButtonBlankResource% [jclass "TouchButtonBlankResource"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
+
+(define (TouchButtonBlankResource.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TouchButtonBlankResource.jstatic_instance)))))
 
 
-function TouchButtonBlankResource.getInstance()
-        return TouchButtonBlankResource.instance
-end
-
-
-function TouchButtonBlankResource.new()
-    local self = setmetatable(TouchButtonResource.new("/touch_button_64_by_64.png", "/touch_button_hint_64_by_64.png"), TouchButtonBlankResource)
-        -- super(...) made self above
-    return self
-end
-
-TouchButtonBlankResource.instance = TouchButtonBlankResource.new()
-
-return TouchButtonBlankResource
 

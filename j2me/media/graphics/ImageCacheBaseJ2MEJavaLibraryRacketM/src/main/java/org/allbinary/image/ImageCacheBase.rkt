@@ -1,192 +1,167 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.image
 
--- local InputStream = require("java.io.InputStream")
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/io/InputStream.rkt")
+(lazy-require ["../../../javax/microedition/lcdui/NullImage.rkt" (NullImage.jstatic_NULL_IMAGE)])
+(lazy-require ["../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../org/allbinary/string/CommonLabels.rkt" (CommonLabels.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["./ImageFactory.rkt" (ImageFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define ImageCacheBase%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_imageFactory JR.null])
+    (field [f_hashtable JR.null])
+    (field [f_SIZE 0])
+    (field [f_widths JR.null])
+    (field [f_heights JR.null])
+    (field [f_listOfList JR.null])
+    (field [f_availableListOfList JR.null])
+    (field [f_volume 0])
+    (field [f_nextIndex 0])
+    (define/public (jm_getImage_1 _resourceId)
+    (let ([_imageCanBeNull JR.null])
+      (let/ec jreturn
+        (set! _imageCanBeNull (send (get-field f_hashtable this) jm_get_1 _resourceId))
+        (when (JR.null? _imageCanBeNull)
+            (begin
+            (jreturn (NullImage.jstatic_NULL_IMAGE))))
+        (jreturn _imageCanBeNull))))
+    (define/public (jm_releaseAll_0)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (JR.i32 (- (vector-length (get-field f_listOfList this)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (JR.className (vector-ref (get-field f_availableListOfList this) _index))
+            (JR.className (vector-ref (get-field f_availableListOfList this) _index)))
+                (set! _index (JR.i32 (- _index 1))) (jloop)))))
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "ImageCache: ") jm_append_1 (send this jm_toString_0)) jm_toString_0) this "releaseAll"))))
+    (define/public (jm_getIndexWH_2 _width _height)
+    (let ([_foundIndex JR.null][_size JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _foundIndex (JR.i32 (- 1)))
+        (set! _size (vector-length (get-field f_widths this)))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (when (and (= (vector-ref (get-field f_widths this) _index) _width) (= (vector-ref (get-field f_heights this) _index) _height))
+                (begin
+                (set! _foundIndex _index)
+                (jreturn _foundIndex))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (jreturn _foundIndex))))
+    (define/public (jm_getFromAvailable_3 _foundIndex _width _height)
+    (let ([_list JR.null])
+      (let/ec jreturn
+        (when (not (= _foundIndex (JR.i32 (- 1))))
+            (begin
+            (when (> (JR.className (vector-ref (get-field f_availableListOfList this) _foundIndex)) 0)
+                (begin
+                (set! _list (vector-ref (get-field f_availableListOfList this) _foundIndex))
+                (jreturn (send _list jm_removeAt_1 (JR.i32 (- (send _list jm_size_0) 1))))))))
+        (jreturn (NullImage.jstatic_NULL_IMAGE)))))
+    (define/public (jm_get_3 _caller _width _height)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_getWithKey_1 _key)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_createImage_3 _caller _width _height)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_imageFactory this) jm_createImage_3 _caller _width _height)))))
+    (define/public (jm_createImageFromInputStream_2 _key _inputStream)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_imageFactory this) jm_createImageFromInputStream_2 _key _inputStream)))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null][_width JR.null][_height JR.null][_total JR.null][_totalAvailable JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (begin
+            (set! _index (JR.i32 (- (get-field f_nextIndex this) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (set! _width (vector-ref (get-field f_widths this) _index))
+            (set! _height (vector-ref (get-field f_heights this) _index))
+            (set! _total (JR.className (vector-ref (get-field f_listOfList this) _index)))
+            (set! _totalAvailable (JR.className (vector-ref (get-field f_availableListOfList this) _index)))
+            (send _stringBuffer jm_append_1 " w: ")
+            (send _stringBuffer jm_appendint_1 _width)
+            (send _stringBuffer jm_append_1 " h: ")
+            (send _stringBuffer jm_appendint_1 _height)
+            (send _stringBuffer jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0)))
+            (send _stringBuffer jm_append_1 (get-field f_TOTAL_LABEL (CommonLabels.jm_getInstance_0)))
+            (send _stringBuffer jm_appendint_1 _total)
+            (send _stringBuffer jm_append_1 " available: ")
+            (send _stringBuffer jm_appendint_1 _totalAvailable))
+                (set! _index (JR.i32 (- _index 1))) (jloop)))))
+        (jreturn (send _stringBuffer jm_toString_0)))))
+    (define/public (jm_getHashtableP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_hashtable this)))))
+    (define/public (jm_init_1 _image)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_initProgress_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ImageCacheBase.jclassValue) ImageCacheBase%)
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
-
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageCacheBase = {}
-ImageCacheBase.__index = ImageCacheBase
-ImageCacheBase.className = "ImageCacheBase"
-
-function ImageCacheBase:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.imageFactory = ImageFactory.getInstance()
-    self.hashtable = StdUtil.getInstance():createHashtable()
-    self.SIZE = 128
-    self.widths = java_new_array(0, self.SIZE)
-    self.heights = java_new_array(0, self.SIZE)
-    self.listOfList = java_new_array(nil, self.SIZE)
-    self.availableListOfList = java_new_array(nil, self.SIZE)
-    self.volume = 0
-    self.nextIndex = 0
-end
-
-
-function ImageCacheBase.new()
-    local self = setmetatable({}, ImageCacheBase)
-    self:_init_fields()
-        for index = (self.listOfList.n or #self.listOfList) - 1, 0, -1 do
-            self.listOfList[index + 1] = BasicArrayListD.new()
-        end
-        for index = (self.availableListOfList.n or #self.availableListOfList) - 1, 0, -1 do
-            self.availableListOfList[index + 1] = BasicArrayListD.new()
-        end
-    return self
-end
-
-
-function ImageCacheBase:getImage(resourceId)
-        local imageCanBeNull = self.hashtable:get(resourceId)
-        if imageCanBeNull == nil then
-            return NullImage.NULL_IMAGE
-        end
-        return imageCanBeNull
-end
-
-
-function ImageCacheBase:releaseAll()
-        for index = (self.listOfList.n or #self.listOfList) - 1, 0, -1 do
-            self.availableListOfList[index + 1]:clear()
-            self.availableListOfList[index + 1]:addAllList(self.listOfList[index + 1])
-        end
-        self.logUtil:putF(tostring(StringMaker.new():append("ImageCache: "):append(tostring(self))), self, "releaseAll")
-end
-
-
-function ImageCacheBase:getIndexWH(width, height)
-        local foundIndex = -1
-        local size = (self.widths.n or #self.widths)
-        for index = 0, size - 1 do
-            if self.widths[index + 1] == width and self.heights[index + 1] == height then
-                foundIndex = index
-                return foundIndex
-            end
-        end
-        return foundIndex
-end
-
-
-function ImageCacheBase:getFromAvailable(foundIndex, width, height)
-        if foundIndex ~= -1 then
-            if self.availableListOfList[foundIndex + 1]:size() > 0 then
-                local list = self.availableListOfList[foundIndex + 1]
-                return list:removeAt(list:size() - 1)
-            end
-        end
-        return NullImage.NULL_IMAGE
-end
-
-
--- throws Exception
-function ImageCacheBase:get(caller, width, height)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
--- throws Exception
-function ImageCacheBase:getWithKey(key)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
--- throws Exception
-function ImageCacheBase:createImage(caller, width, height)
-        return self.imageFactory:createImage(caller, width, height)
-end
-
-
--- throws Exception
-function ImageCacheBase:createImageFromInputStream(key, inputStream)
-        return self.imageFactory:createImageFromInputStream(key, inputStream)
-end
-
-
-function ImageCacheBase:toString()
-        local stringBuffer = StringMaker.new()
-        for index = self.nextIndex - 1, 0, -1 do
-            local width = self.widths[index + 1]
-            local height = self.heights[index + 1]
-            local total = self.listOfList[index + 1]:size()
-            local totalAvailable = self.availableListOfList[index + 1]:size()
-            stringBuffer:append(" w: ")
-            stringBuffer:appendint(width)
-            stringBuffer:append(" h: ")
-            stringBuffer:appendint(height)
-            stringBuffer:append(CommonSeps.getInstance().SPACE)
-            stringBuffer:append(CommonLabels.getInstance().TOTAL_LABEL)
-            stringBuffer:appendint(total)
-            stringBuffer:append(" available: ")
-            stringBuffer:appendint(totalAvailable)
-        end
-        return tostring(stringBuffer)
-end
-ImageCacheBase.__tostring = function(self) return self:toString() end
+(define (ImageCacheBase.jnew_0)
+  (define this (new ImageCacheBase% [jclass "ImageCacheBase"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_imageFactory this (ImageFactory.jm_getInstance_0))
+    (set-field! f_hashtable this (send (StdUtil.jm_getInstance_0) jm_createHashtable_0))
+    (set-field! f_SIZE this 128)
+    (set-field! f_widths this (JR.newArray 0 (get-field f_SIZE this)))
+    (set-field! f_heights this (JR.newArray 0 (get-field f_SIZE this)))
+    (set-field! f_listOfList this (JR.newArray JR.null (get-field f_SIZE this)))
+    (set-field! f_availableListOfList this (JR.newArray JR.null (get-field f_SIZE this)))
+    (set-field! f_volume this 0)
+    (set-field! f_nextIndex this 0)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (JR.i32 (- (vector-length (get-field f_listOfList this)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (vector-set! (get-field f_listOfList this) _index (BasicArrayListD.jnew_0)))
+                (set! _index (JR.i32 (- _index 1))) (jloop)))))
+        (begin
+            (set! _index (JR.i32 (- (vector-length (get-field f_availableListOfList this)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (vector-set! (get-field f_availableListOfList this) _index (BasicArrayListD.jnew_0)))
+                (set! _index (JR.i32 (- _index 1))) (jloop)))))))
+  this)
 
 
-function ImageCacheBase:getHashtableP()
-        return self.hashtable
-end
-
-
-function ImageCacheBase:init(image)
-end
-
-
-function ImageCacheBase:initProgress()
-end
-
-return ImageCacheBase
 

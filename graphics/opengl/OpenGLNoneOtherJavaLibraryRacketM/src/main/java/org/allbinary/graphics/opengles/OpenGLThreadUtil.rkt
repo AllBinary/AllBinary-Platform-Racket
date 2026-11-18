@@ -1,45 +1,39 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.opengles
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define OpenGLThreadUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_set_1 _glSurfaceView)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onPause_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onResume_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (OpenGLThreadUtil.jclassValue) OpenGLThreadUtil%)
+
+(define OpenGLThreadUtil.jcell_instance 'jnone)
+(define (OpenGLThreadUtil.jstatic_instance)
+  (when (eq? OpenGLThreadUtil.jcell_instance 'jnone) (set! OpenGLThreadUtil.jcell_instance (OpenGLThreadUtil.jnew_0)))
+  OpenGLThreadUtil.jcell_instance)
+(define (OpenGLThreadUtil.jsetstatic_instance value) (set! OpenGLThreadUtil.jcell_instance value))
+
+(define (OpenGLThreadUtil.jnew_0)
+  (define this (new OpenGLThreadUtil% [jclass "OpenGLThreadUtil"]))
+  this)
+
+(define (OpenGLThreadUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (OpenGLThreadUtil.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLThreadUtil = {}
-OpenGLThreadUtil.__index = OpenGLThreadUtil
-OpenGLThreadUtil.className = "OpenGLThreadUtil"
-
-function OpenGLThreadUtil.new()
-    local self = setmetatable({}, OpenGLThreadUtil)
-    return self
-end
-
-
-function OpenGLThreadUtil.getInstance()
-        return OpenGLThreadUtil.instance
-end
-
-
-function OpenGLThreadUtil:set(glSurfaceView)
-end
-
-
-function OpenGLThreadUtil:onPause()
-end
-
-
-function OpenGLThreadUtil:onResume()
-end
-
-OpenGLThreadUtil.instance = OpenGLThreadUtil.new()
-
-return OpenGLThreadUtil
 

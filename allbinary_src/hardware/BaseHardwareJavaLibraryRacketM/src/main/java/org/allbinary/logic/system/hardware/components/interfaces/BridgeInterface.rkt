@@ -21,6 +21,7 @@
 (define BridgeInterface%
   (class JObject%
     (super-new)))
+(define (BridgeInterface.jclassValue) BridgeInterface%)
 
 (define (BridgeInterface.jnew_0)
   (define this (new BridgeInterface% [jclass "BridgeInterface"]))

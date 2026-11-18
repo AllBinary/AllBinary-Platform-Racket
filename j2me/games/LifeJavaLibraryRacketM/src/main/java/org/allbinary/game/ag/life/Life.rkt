@@ -1,149 +1,119 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.life
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.life
 
-local LifeInterface = require("org.allbinary.game.ag.life.LifeInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./LifeInterface.rkt")
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define Life%
+  (class JObject%
+    (super-new)
+    (field [f_lives 0])
+    (field [f_startLives 0])
+    (field [f_maxlives 0])
+    (define/public (jm_get_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_lives this)))))
+    (define/public (jm_set_1 _lives)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_lives this _lives))))
+    (define/public (jm_reset_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_lives this (get-field f_startLives this)))))
+    (define/public (jm_add_1 _lives)
+    (let ()
+      (let/ec jreturn
+        (when (not (send this jm_reachedLimit_0))
+            (begin
+            (if (<= (JR.i32 (+ (get-field f_lives this) _lives)) (send this jm_getMaxlives_0))
+                (begin
+                (set-field! f_lives this (JR.i16 (JR.i32 (+ (get-field f_lives this) _lives)))))
+                (begin
+                (set-field! f_lives this (send this jm_getMaxlives_0)))))))))
+    (define/public (jm_isAlive_0)
+    (let ()
+      (let/ec jreturn
+        (if (<= (get-field f_lives this) 0)
+            (begin
+            (jreturn #f))
+            (begin
+            (jreturn #t))))))
+    (define/public (jm_getMaxlives_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_maxlives this)))))
+    (define/public (jm_reachedLimit_0)
+    (let ()
+      (let/ec jreturn
+        (if (or (> (get-field f_lives this) (get-field f_maxlives this)) (< (get-field f_lives this) 0))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))
+    (define/public (jm_deaths_1 _lives)
+    (let ()
+      (let/ec jreturn
+        (when (not (send this jm_reachedLimit_0))
+            (begin
+            (if (>= (JR.i32 (- (get-field f_lives this) _lives)) 0)
+                (begin
+                (set-field! f_lives this (JR.i16 (JR.i32 (- (get-field f_lives this) _lives)))))
+                (begin
+                (set-field! f_lives this 0))))))))
+    (define/public (jm_getStartLives_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_startLives this)))))
+    (define/public (jm_setStartLives_1 _startLives)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_startLives this _startLives))))))
+(define (Life.jclassValue) Life%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Life.jcell_NO_LIFE 'jnone)
+(define (Life.jstatic_NO_LIFE)
+  (when (eq? Life.jcell_NO_LIFE 'jnone) (set! Life.jcell_NO_LIFE (Life.jm_createLife_0)))
+  Life.jcell_NO_LIFE)
+(define (Life.jsetstatic_NO_LIFE value) (set! Life.jcell_NO_LIFE value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (Life.jnew_2 _lives _maxlives)
+  (define this (new Life% [jclass "Life"]))
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_maxlives this _maxlives)
+        (when (> _lives (get-field f_maxlives this))
+            (begin
+            (raise (JR.newException "Exception" "To Many Lives"))))
+        (set-field! f_lives this _lives)
+        (set-field! f_startLives this _lives)))
+  this)
 
-local Life = {}
-Life.__index = Life
-Life.className = "Life"
-
-function Life:_init_fields()
-    self.lives = nil
-    self.startLives = nil
-    self.maxlives = nil
-end
-
-
-function Life.createLife()
-        local try_ok, try_error = pcall(function()
-            return Life.new(0, 0)
-        end)
-        if not try_ok then
-            local e = try_error
-            error(java_exception("RuntimeException"), 0)
-        end
-end
-
-
-function Life.new(lives, maxlives)
-    local self = setmetatable({}, Life)
-    self:_init_fields()
-        self.maxlives = maxlives
-        if lives > self.maxlives then
-            error(java_exception("Exception", "To Many Lives"), 0)
-        end
-        self.lives = lives
-        self.startLives = lives
-    return self
-end
-
-
-function Life:get()
-        return self.lives
-end
-
-
-function Life:set(lives)
-        self.lives = lives
-end
-
-
-function Life:reset()
-        self.lives = self.startLives
-end
-
-
-function Life:add(lives)
-        if not self:reachedLimit() then
-            if self.lives + lives <= self:getMaxlives() then
-                self.lives = (self.lives + lives)
-            else
-                self.lives = self:getMaxlives()
-            end
-        end
-end
-
-
-function Life:isAlive()
-        if self.lives <= 0 then
-            return false
-        else
-            return true
-        end
-end
-
-
-function Life:getMaxlives()
-        return self.maxlives
-end
-
-
-function Life:reachedLimit()
-        if self.lives > self.maxlives or self.lives < 0 then
-            return true
-        else
-            return false
-        end
-end
+(define (Life.jm_createLife_0)
+    (let ()
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (raise (JR.newException "RuntimeException")))])
+            (jreturn (Life.jnew_2 (JR.i16 0) (JR.i16 0)))))))
 
 
-function Life:deaths(lives)
-        if not self:reachedLimit() then
-            if self.lives - lives >= 0 then
-                self.lives = (self.lives - lives)
-            else
-                self.lives = 0
-            end
-        end
-end
-
-
-function Life:getStartLives()
-        return self.startLives
-end
-
-
-function Life:setStartLives(startLives)
-        self.startLives = startLives
-end
-
-Life.NO_LIFE = Life.createLife()
-
-return Life
 

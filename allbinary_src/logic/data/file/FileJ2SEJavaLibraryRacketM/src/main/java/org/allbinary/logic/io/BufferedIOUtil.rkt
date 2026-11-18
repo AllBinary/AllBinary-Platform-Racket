@@ -1,59 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io
 
--- local BufferedReader = require("java.io.BufferedReader")
--- local BufferedWriter = require("java.io.BufferedWriter")
--- local FileReader = require("java.io.FileReader")
--- local FileWriter = require("java.io.FileWriter")
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
-local AbFileNativeUtil = require("org.allbinary.logic.io.file.AbFileNativeUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/BufferedReader.rkt"
+  "../../../../java/io/BufferedWriter.rkt"
+  "../../../../java/io/FileReader.rkt"
+  "../../../../java/io/FileWriter.rkt")
+(lazy-require ["../../../../org/allbinary/logic/io/file/AbFileNativeUtil.rkt" (AbFileNativeUtil.jm_get_1)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BufferedIOUtil%
+  (class JObject%
+    (super-new)))
+(define (BufferedIOUtil.jclassValue) BufferedIOUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (BufferedIOUtil.jnew_0)
+  (define this (new BufferedIOUtil% [jclass "BufferedIOUtil"]))
+  this)
 
-local BufferedIOUtil = {}
-BufferedIOUtil.__index = BufferedIOUtil
-BufferedIOUtil.className = "BufferedIOUtil"
+(define (BufferedIOUtil.jm_copy_2 _backupFile _backupFileBak)
+    (let ([_line JR.null][_tmpOut JR.null][_tmpIn JR.null])
+      (let/ec jreturn
+        (set! _line (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+        (set! _tmpOut (BufferedWriter.jnew_1 (FileWriter.jnew_1 (AbFileNativeUtil.jm_get_1 _backupFileBak))))
+        (set! _tmpIn (BufferedReader.jnew_1 (FileReader.jnew_1 (AbFileNativeUtil.jm_get_1 _backupFile))))
+        (let/ec jbreak (let jloop () (when (send _tmpIn jm_ready_0)
+                (let/ec jcontinue
+            (set! _line (send _tmpIn jm_readLine_0))
+            (send _tmpOut jm_write_3 _line 0 (string-length _line))
+            (send _tmpOut jm_newLine_0)) (jloop))))
+        (send _tmpOut jm_flush_0))))
 
-function BufferedIOUtil.new()
-    local self = setmetatable({}, BufferedIOUtil)
-    return self
-end
 
-
--- throws Exception
-function BufferedIOUtil.copy(backupFile, backupFileBak)
-        local line = StringUtil.getInstance().EMPTY_STRING
-        local tmpOut = BufferedWriter.new(FileWriter.new(AbFileNativeUtil.get(backupFileBak)))
-        local tmpIn = BufferedReader.new(FileReader.new(AbFileNativeUtil.get(backupFile)))
-        while tmpIn:ready() do
-            line = tmpIn:readLine()
-            tmpOut:write(line, 0, #line)
-            tmpOut:newLine()
-        end
-        tmpOut:flush()
-end
-
-return BufferedIOUtil
 

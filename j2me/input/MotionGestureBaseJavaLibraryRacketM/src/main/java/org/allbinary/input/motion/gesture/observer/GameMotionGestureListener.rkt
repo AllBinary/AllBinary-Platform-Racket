@@ -1,155 +1,127 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.gesture.observer
 
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local MotionGestureEventListener = require("org.allbinary.input.motion.gesture.observer.MotionGestureEventListener")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "./MotionGestureEventListener.rkt")
+(lazy-require ["../../../../../../org/allbinary/input/motion/gesture/TouchMotionGestureFactory.rkt" (TouchMotionGestureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(lazy-require ["../../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameMotionGestureListener%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_motionGestureCollection JR.null])
+    (field [f_touchGestureCollection JR.null])
+    (field [f_signed JR.null])
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)) this))))
+    (define/public (jm_onUpMotionGestureEvent_1 _ev)
+    (let ()
+      (let/ec jreturn
+        (send this jm_onMotionGestureEvent_1 _ev))))
+    (define/public (jm_onDownMotionGestureEvent_1 _ev)
+    (let ()
+      (let/ec jreturn
+        (send this jm_onMotionGestureEvent_1 _ev))))
+    (define/public (jm_onLeftMotionGestureEvent_1 _ev)
+    (let ()
+      (let/ec jreturn
+        (send this jm_onMotionGestureEvent_1 _ev))))
+    (define/public (jm_onRightMotionGestureEvent_1 _ev)
+    (let ()
+      (let/ec jreturn
+        (send this jm_onMotionGestureEvent_1 _ev))))
+    (define/public (jm_onDiagonalDownRightMotionGestureEvent_1 _ev)
+    (let ()
+      (let/ec jreturn
+        (send this jm_onMotionGestureEvent_1 _ev))))
+    (define/public (jm_onDiagonalDownLeftMotionGestureEvent_1 _ev)
+    (let ()
+      (let/ec jreturn
+        (send this jm_onMotionGestureEvent_1 _ev))))
+    (define/public (jm_onDiagonalUpRightMotionGestureEvent_1 _ev)
+    (let ()
+      (let/ec jreturn
+        (send this jm_onMotionGestureEvent_1 _ev))))
+    (define/public (jm_onDiagonalUpLeftMotionGestureEvent_1 _ev)
+    (let ()
+      (let/ec jreturn
+        (send this jm_onMotionGestureEvent_1 _ev))))
+    (define/public (jm_onPressedMotionGestureEvent_1 _ev)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_touchGestureCollection this) jm_add_1 (send _ev jm_getMotionGesture_0)))))
+    (define/public (jm_released_1 _ev)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _stringBuffer (StringMaker.jnew_0))
+            (send _stringBuffer jm_append_1 (get-field f_EXCEPTION_LABEL (get-field f_commonStrings this)))
+            (send _stringBuffer jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 (send _ev jm_getMotionGesture_0)))
+            (send (get-field f_logUtil this) jm_put_4 (send _stringBuffer jm_toString_0) this "release" _e))])
+            (send (get-field f_touchGestureCollection this) jm_add_1 (send _ev jm_getMotionGesture_0))
+            (send (get-field f_signed this) jm_onMotionGestureCompleted_1 (get-field f_touchGestureCollection this))
+            (send (get-field f_touchGestureCollection this) jm_clear_0)))))
+    (define/public (jm_onScrolledMotionGestureEvent_1 _motionGestureEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onMotionGestureEvent_1 _ev)
+    (let ([_motionGestureInput JR.null][_stringBuffer JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _stringBuffer (StringMaker.jnew_0))
+            (send _stringBuffer jm_append_1 (get-field f_EXCEPTION_LABEL (get-field f_commonStrings this)))
+            (send _stringBuffer jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 (send _ev jm_getMotionGesture_0)))
+            (send (get-field f_logUtil this) jm_put_4 (send _stringBuffer jm_toString_0) this "onMotionGestureEvent" _e))])
+            (set! _motionGestureInput (send _ev jm_getMotionGesture_0))
+            (if (eq? _motionGestureInput (get-field f_PRESSED (TouchMotionGestureFactory.jm_getInstance_0)))
+                (begin
+                (send this jm_onPressedMotionGestureEvent_1 _ev))
+                (if (eq? _motionGestureInput (get-field f_RELEASED (TouchMotionGestureFactory.jm_getInstance_0)))
+                (begin
+                (send this jm_released_1 _ev))
+                (begin
+                (send (get-field f_motionGestureCollection this) jm_add_1 _motionGestureInput)
+                (send (get-field f_signed this) jm_onMotionGestureCompleted_1 (get-field f_motionGestureCollection this))
+                (send (get-field f_motionGestureCollection this) jm_clear_0)
+                (send (get-field f_touchGestureCollection this) jm_clear_0))))))))))
+(define (GameMotionGestureListener.jclassValue) GameMotionGestureListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameMotionGestureListener = {}
-GameMotionGestureListener.__index = GameMotionGestureListener
-GameMotionGestureListener.className = "GameMotionGestureListener"
-
-function GameMotionGestureListener:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.motionGestureCollection = BasicArrayListD.new()
-    self.touchGestureCollection = BasicArrayListD.new()
-    self.signed = nil
-end
-
-
-function GameMotionGestureListener.new(signed)
-    local self = setmetatable({}, GameMotionGestureListener)
-    self:_init_fields()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        self.signed = signed
-    return self
-end
-
-
-function GameMotionGestureListener:onEvent(eventObject)
-        ForcedLogUtil.log(self.commonStrings.NOT_IMPLEMENTED, self)
-end
-
-
-function GameMotionGestureListener:onUpMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function GameMotionGestureListener:onDownMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function GameMotionGestureListener:onLeftMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function GameMotionGestureListener:onRightMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function GameMotionGestureListener:onDiagonalDownRightMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function GameMotionGestureListener:onDiagonalDownLeftMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function GameMotionGestureListener:onDiagonalUpRightMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function GameMotionGestureListener:onDiagonalUpLeftMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function GameMotionGestureListener:onPressedMotionGestureEvent(ev)
-        self.touchGestureCollection:add(ev:getMotionGesture())
-end
-
-
-function GameMotionGestureListener:released(ev)
-        local try_ok, try_error = pcall(function()
-            self.touchGestureCollection:add(ev:getMotionGesture())
-            self.signed:onMotionGestureCompleted(self.touchGestureCollection)
-            self.touchGestureCollection:clear()
-        end)
-        if not try_ok then
-            local e = try_error
-            local stringBuffer = StringMaker.new()
-            stringBuffer:append(self.commonStrings.EXCEPTION_LABEL)
-            stringBuffer:append(StringUtil.getInstance():toString(ev:getMotionGesture()))
-            self.logUtil:put(tostring(stringBuffer), self, "release", e)
-        end
-end
-
-
-function GameMotionGestureListener:onScrolledMotionGestureEvent(motionGestureEvent)
-end
+(define (GameMotionGestureListener.jnew_1 _signed)
+  (define this (new GameMotionGestureListener% [jclass "GameMotionGestureListener"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_motionGestureCollection this (BasicArrayListD.jnew_0))
+    (set-field! f_touchGestureCollection this (BasicArrayListD.jnew_0))
+    
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 (get-field f_START (get-field f_commonStrings this)) this (get-field f_CONSTRUCTOR (get-field f_commonStrings this)))
+        (set-field! f_signed this _signed)))
+  this)
 
 
-function GameMotionGestureListener:onMotionGestureEvent(ev)
-        local try_ok, try_error = pcall(function()
-            local motionGestureInput = ev:getMotionGesture()
-            if motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED then
-                self:onPressedMotionGestureEvent(ev)
-            elseif motionGestureInput == TouchMotionGestureFactory.getInstance().RELEASED then
-                self:released(ev)
-            else
-                self.motionGestureCollection:add(motionGestureInput)
-                self.signed:onMotionGestureCompleted(self.motionGestureCollection)
-                self.motionGestureCollection:clear()
-                self.touchGestureCollection:clear()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local stringBuffer = StringMaker.new()
-            stringBuffer:append(self.commonStrings.EXCEPTION_LABEL)
-            stringBuffer:append(StringUtil.getInstance():toString(ev:getMotionGesture()))
-            self.logUtil:put(tostring(stringBuffer), self, "onMotionGestureEvent", e)
-        end
-end
-
-return GameMotionGestureListener
 

@@ -77,6 +77,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_alphaComponent this)))))))
+(define (BasicColor.jclassValue) BasicColor%)
 
 (define (BasicColor.jnew_3 _alphaValue _value _name)
   (define this (new BasicColor% [jclass "BasicColor"]))

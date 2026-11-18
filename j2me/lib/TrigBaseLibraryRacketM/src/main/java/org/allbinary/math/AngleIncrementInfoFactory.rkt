@@ -38,11 +38,13 @@
             (begin
             (set! _angleIncrementInfo _angleIncrementInfoCanBeNull)))
         (jreturn _angleIncrementInfo))))))
+(define (AngleIncrementInfoFactory.jclassValue) AngleIncrementInfoFactory%)
 
 (define AngleIncrementInfoFactory.jcell_instance 'jnone)
 (define (AngleIncrementInfoFactory.jstatic_instance)
   (when (eq? AngleIncrementInfoFactory.jcell_instance 'jnone) (set! AngleIncrementInfoFactory.jcell_instance (AngleIncrementInfoFactory.jnew_0)))
   AngleIncrementInfoFactory.jcell_instance)
+(define (AngleIncrementInfoFactory.jsetstatic_instance value) (set! AngleIncrementInfoFactory.jcell_instance value))
 
 (define (AngleIncrementInfoFactory.jnew_0)
   (define this (new AngleIncrementInfoFactory% [jclass "AngleIncrementInfoFactory"]))

@@ -1,114 +1,87 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local DisposalUtil = require("org.allbinary.DisposalUtil")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/IndexedAnimation.rkt")
+(lazy-require ["../../../../org/allbinary/DisposalUtil.rkt" (DisposalUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/Anchor.rkt" (Anchor.jstatic_TOP_LEFT)])
+(lazy-require ["../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageAnimation%
+  (class IndexedAnimation%
+    (super-new)
+    (field [f_image JR.null])
+    (field [f_anchor 0])
+    (define/override (jm_getAnimationSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getSize_0)))))
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_previousFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_setFrame_1 _index)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_getFrame_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/override (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 1))))
+    (define/override (jm_setSequence_1 _sequence)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_getSequence_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PrimitiveIntUtil.jm_getArrayInstance_0)))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (send _graphics jm_drawImage_4 (get-field f_image this) _x _y (get-field f_anchor this)))))
+    (define/public (jm_getImage_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_image this)))))
+    (define/public (jm_close_0)
+    (let ()
+      (let/ec jreturn
+        (send (DisposalUtil.jm_getInstance_0) jm_disposeImage_1 (get-field f_image this)))))
+    (define/public (jm_finalize_0)
+    (let ()
+      (let/ec jreturn
+        (send (DisposalUtil.jm_getInstance_0) jm_disposeImage_1 (get-field f_image this)))))))
+(define (ImageAnimation.jclassValue) ImageAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageAnimation = {}
-ImageAnimation.__index = ImageAnimation
-ImageAnimation.className = "ImageAnimation"
-setmetatable(ImageAnimation, {__index = IndexedAnimation})
-
-function ImageAnimation:_init_fields()
-    self.image = nil
-    self.anchor = Anchor.TOP_LEFT
-end
-
-
-function ImageAnimation.new(image, animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), ImageAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.image = image
-    return self
-end
-
-
--- throws Exception
-function ImageAnimation:getAnimationSize()
-        return self:getSize()
-end
-
-
-function ImageAnimation:nextFrame()
-end
-
-
-function ImageAnimation:previousFrame()
-end
-
-
-function ImageAnimation:setFrame(index)
-end
-
-
-function ImageAnimation:getFrame()
-        return 0
-end
-
-
-function ImageAnimation:getSize()
-        return 1
-end
-
-
-function ImageAnimation:setSequence(sequence)
-end
-
-
-function ImageAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
+(define (ImageAnimation.jnew_2 _image _animationBehavior)
+  (define this (new ImageAnimation% [jclass "ImageAnimation"]))
+    
+    (set-field! f_anchor this (Anchor.jstatic_TOP_LEFT))
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_image this _image)))
+  this)
 
 
-function ImageAnimation:paintXY(graphics, x, y)
-        graphics:drawImage(self.image, x, y, self.anchor)
-end
-
-
-function ImageAnimation:getImage()
-        return self.image
-end
-
-
--- throws Exception
-function ImageAnimation:close()
-        DisposalUtil.getInstance():disposeImage(self.image)
-end
-
-
--- throws Throwable
-function ImageAnimation:finalize()
-        DisposalUtil.getInstance():disposeImage(self.image)
-end
-
-return ImageAnimation
 

@@ -1,66 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/paint/Paintable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MainGameDemoStatePaintable%
+  (class Paintable%
+    (super-new)
+    (field [f_ownershipPaintableInterface JR.null])
+    (field [f_menuPaintableInterface JR.null])
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_menuPaintableInterface this) jm_paint_1 _graphics)
+        (send (get-field f_ownershipPaintableInterface this) jm_paint_1 _graphics))))
+    (define/public (jm_getOwnershipPaintableInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_ownershipPaintableInterface this)))))
+    (define/public (jm_getMenuPaintableInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_menuPaintableInterface this)))))))
+(define (MainGameDemoStatePaintable.jclassValue) MainGameDemoStatePaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local MainGameDemoStatePaintable = {}
-MainGameDemoStatePaintable.__index = MainGameDemoStatePaintable
-MainGameDemoStatePaintable.className = "MainGameDemoStatePaintable"
-setmetatable(MainGameDemoStatePaintable, {__index = Paintable})
-
-function MainGameDemoStatePaintable:_init_fields()
-    self.ownershipPaintableInterface = nil
-    self.menuPaintableInterface = nil
-end
-
-
-function MainGameDemoStatePaintable.new(ownershipPaintableInterface, menuPaintableInterface)
-    local self = setmetatable(Paintable.new(), MainGameDemoStatePaintable)
-    self:_init_fields()
-        self.ownershipPaintableInterface = ownershipPaintableInterface
-        self.menuPaintableInterface = menuPaintableInterface
-    return self
-end
-
-
-function MainGameDemoStatePaintable:paint(graphics)
-        self.menuPaintableInterface:paint(graphics)
-        self.ownershipPaintableInterface:paint(graphics)
-end
+(define (MainGameDemoStatePaintable.jnew_2 _ownershipPaintableInterface _menuPaintableInterface)
+  (define this (new MainGameDemoStatePaintable% [jclass "MainGameDemoStatePaintable"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_ownershipPaintableInterface this _ownershipPaintableInterface)
+        (set-field! f_menuPaintableInterface this _menuPaintableInterface)))
+  this)
 
 
-function MainGameDemoStatePaintable:getOwnershipPaintableInterface()
-        return self.ownershipPaintableInterface
-end
-
-
-function MainGameDemoStatePaintable:getMenuPaintableInterface()
-        return self.menuPaintableInterface
-end
-
-return MainGameDemoStatePaintable
 

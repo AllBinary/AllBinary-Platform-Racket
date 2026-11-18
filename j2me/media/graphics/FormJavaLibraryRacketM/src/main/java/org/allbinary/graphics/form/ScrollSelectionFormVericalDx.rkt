@@ -1,54 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form
 
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local ItemIndexDx = require("org.allbinary.graphics.form.ItemIndexDx")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./ItemIndexDx.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ScrollSelectionFormVericalDx%
+  (class ItemIndexDx%
+    (super-new)
+    (field [f_scrollSelectionForm JR.null])
+    (define/override (jm_getDx_4 _index _item _dx _dy)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_scrollSelectionForm this) jm_getSelectedIndexForPointVerticalDx_4 _index _item _dx _dy)))))))
+(define (ScrollSelectionFormVericalDx.jclassValue) ScrollSelectionFormVericalDx%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ScrollSelectionFormVericalDx = {}
-ScrollSelectionFormVericalDx.__index = ScrollSelectionFormVericalDx
-ScrollSelectionFormVericalDx.className = "ScrollSelectionFormVericalDx"
-setmetatable(ScrollSelectionFormVericalDx, {__index = ItemIndexDx})
-
-function ScrollSelectionFormVericalDx:_init_fields()
-    self.scrollSelectionForm = nil
-end
-
-
-function ScrollSelectionFormVericalDx.new(scrollSelectionForm)
-    local self = setmetatable(ItemIndexDx.new(), ScrollSelectionFormVericalDx)
-    self:_init_fields()
-        self.scrollSelectionForm = scrollSelectionForm
-    return self
-end
+(define (ScrollSelectionFormVericalDx.jnew_1 _scrollSelectionForm)
+  (define this (new ScrollSelectionFormVericalDx% [jclass "ScrollSelectionFormVericalDx"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_scrollSelectionForm this _scrollSelectionForm)))
+  this)
 
 
--- throws Exception
-function ScrollSelectionFormVericalDx:getDx(index, item, dx, dy)
-        return self.scrollSelectionForm:getSelectedIndexForPointVerticalDx(index, item, dx, dy)
-end
-
-return ScrollSelectionFormVericalDx
 

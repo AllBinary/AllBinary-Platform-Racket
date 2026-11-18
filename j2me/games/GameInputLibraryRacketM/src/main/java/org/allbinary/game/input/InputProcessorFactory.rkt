@@ -1,55 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["./InputProcessor.rkt" (InputProcessor.jnew_0)])
+(provide (all-defined-out))
+
+(define InputProcessorFactory%
+  (class JObject%
+    (super-new)
+    (field [f_inputProcessor JR.null])
+    (define/public (jm_getInputProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_inputProcessor this)))))))
+(define (InputProcessorFactory.jclassValue) InputProcessorFactory%)
+
+(define InputProcessorFactory.jcell_instance 'jnone)
+(define (InputProcessorFactory.jstatic_instance)
+  (when (eq? InputProcessorFactory.jcell_instance 'jnone) (set! InputProcessorFactory.jcell_instance (InputProcessorFactory.jnew_0)))
+  InputProcessorFactory.jcell_instance)
+(define (InputProcessorFactory.jsetstatic_instance value) (set! InputProcessorFactory.jcell_instance value))
+
+(define (InputProcessorFactory.jnew_0)
+  (define this (new InputProcessorFactory% [jclass "InputProcessorFactory"]))
+    (set-field! f_inputProcessor this (InputProcessor.jnew_0))
+  this)
+
+(define (InputProcessorFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (InputProcessorFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local InputProcessorFactory = {}
-InputProcessorFactory.__index = InputProcessorFactory
-InputProcessorFactory.className = "InputProcessorFactory"
-
-function InputProcessorFactory:_init_fields()
-    self.inputProcessor = InputProcessor.new()
-end
-
-function InputProcessorFactory.new()
-    local self = setmetatable({}, InputProcessorFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function InputProcessorFactory.getInstance()
-        return InputProcessorFactory.instance
-end
-
-
-function InputProcessorFactory:getInputProcessor()
-        return self.inputProcessor
-end
-
-InputProcessorFactory.instance = InputProcessorFactory.new()
-
-return InputProcessorFactory
 

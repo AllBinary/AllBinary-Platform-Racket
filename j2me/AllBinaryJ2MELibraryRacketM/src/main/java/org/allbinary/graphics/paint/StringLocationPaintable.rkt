@@ -1,53 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local LocationPaintable = require("org.allbinary.graphics.paint.LocationPaintable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./LocationPaintable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define StringLocationPaintable%
+  (class LocationPaintable%
+    (super-new)
+    (field [f_value JR.null])
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (send _graphics jm_drawString_4 (get-field f_value this) _x _y 0))))))
+(define (StringLocationPaintable.jclassValue) StringLocationPaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local StringLocationPaintable = {}
-StringLocationPaintable.__index = StringLocationPaintable
-StringLocationPaintable.className = "StringLocationPaintable"
-setmetatable(StringLocationPaintable, {__index = LocationPaintable})
-
-function StringLocationPaintable:_init_fields()
-    self.value = nil
-end
-
-
-function StringLocationPaintable.new(value)
-    local self = setmetatable(LocationPaintable.new(), StringLocationPaintable)
-    self:_init_fields()
-        self.value = value
-    return self
-end
+(define (StringLocationPaintable.jnew_1 _value)
+  (define this (new StringLocationPaintable% [jclass "StringLocationPaintable"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_value this _value)))
+  this)
 
 
-function StringLocationPaintable:paintXY(graphics, x, y)
-        graphics:drawString(self.value, x, y, 0)
-end
-
-return StringLocationPaintable
 

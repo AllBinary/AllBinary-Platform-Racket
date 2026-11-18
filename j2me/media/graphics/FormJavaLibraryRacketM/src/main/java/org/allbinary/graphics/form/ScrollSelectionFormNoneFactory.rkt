@@ -1,43 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["./ScrollSelectionForm.rkt" (ScrollSelectionForm.jm_getNullScrollSelectionFormHorizontal_0)])
+(provide (all-defined-out))
+
+(define ScrollSelectionFormNoneFactory%
+  (class JObject%
+    (super-new)))
+(define (ScrollSelectionFormNoneFactory.jclassValue) ScrollSelectionFormNoneFactory%)
+
+(define (ScrollSelectionFormNoneFactory.jnew_0)
+  (define this (new ScrollSelectionFormNoneFactory% [jclass "ScrollSelectionFormNoneFactory"]))
+  this)
+
+(define (ScrollSelectionFormNoneFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ScrollSelectionForm.jm_getNullScrollSelectionFormHorizontal_0)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ScrollSelectionFormNoneFactory = {}
-ScrollSelectionFormNoneFactory.__index = ScrollSelectionFormNoneFactory
-ScrollSelectionFormNoneFactory.className = "ScrollSelectionFormNoneFactory"
-
-function ScrollSelectionFormNoneFactory.new()
-    local self = setmetatable({}, ScrollSelectionFormNoneFactory)
-    return self
-end
-
-
-function ScrollSelectionFormNoneFactory.getInstance()
-        return ScrollSelectionForm.getNullScrollSelectionFormHorizontal()
-end
-
-return ScrollSelectionFormNoneFactory
 

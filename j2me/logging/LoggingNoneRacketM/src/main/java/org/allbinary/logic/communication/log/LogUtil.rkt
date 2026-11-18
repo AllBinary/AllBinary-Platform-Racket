@@ -34,11 +34,13 @@
     (define/public (jm_put_4 _specialMessage _anyType _functionName _exception)
     (let ()
       (let/ec jreturn (void))))))
+(define (LogUtil.jclassValue) LogUtil%)
 
 (define LogUtil.jcell_instance 'jnone)
 (define (LogUtil.jstatic_instance)
   (when (eq? LogUtil.jcell_instance 'jnone) (set! LogUtil.jcell_instance (LogUtil.jnew_0)))
   LogUtil.jcell_instance)
+(define (LogUtil.jsetstatic_instance value) (set! LogUtil.jcell_instance value))
 
 (define (LogUtil.jnew_0)
   (define this (new LogUtil% [jclass "LogUtil"]))

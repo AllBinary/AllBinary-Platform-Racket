@@ -55,6 +55,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (send this jm_getRole_0)))))))
+(define (BasicUserRole.jclassValue) BasicUserRole%)
 
 (define (BasicUserRole.jnew_4 _aRole _a_int_RoleId _aSessionTimeout _aSessionInactivityTimeout)
   (define this (new BasicUserRole% [jclass "BasicUserRole"]))

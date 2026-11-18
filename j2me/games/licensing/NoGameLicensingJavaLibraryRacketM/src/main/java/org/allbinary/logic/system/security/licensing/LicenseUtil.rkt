@@ -1,64 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system.security.licensing
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LicenseUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isRunning_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_setRunning_1 _running)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_shouldWait_1 _commandListener)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_isRunning_0)))))))
+(define (LicenseUtil.jclassValue) LicenseUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LicenseUtil.jcell_instance 'jnone)
+(define (LicenseUtil.jstatic_instance)
+  (when (eq? LicenseUtil.jcell_instance 'jnone) (set! LicenseUtil.jcell_instance (LicenseUtil.jnew_0)))
+  LicenseUtil.jcell_instance)
+(define (LicenseUtil.jsetstatic_instance value) (set! LicenseUtil.jcell_instance value))
 
-local LicenseUtil = {}
-LicenseUtil.__index = LicenseUtil
-LicenseUtil.className = "LicenseUtil"
+(define (LicenseUtil.jnew_0)
+  (define this (new LicenseUtil% [jclass "LicenseUtil"]))
+  this)
 
-function LicenseUtil.new()
-    local self = setmetatable({}, LicenseUtil)
-    return self
-end
-
-
-function LicenseUtil.getInstance()
-        return LicenseUtil.instance
-end
-
-
-function LicenseUtil:init()
-end
-
-
-function LicenseUtil:isRunning()
-        return false
-end
-
-
-function LicenseUtil:setRunning(running)
-end
+(define (LicenseUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LicenseUtil.jstatic_instance)))))
 
 
-function LicenseUtil:shouldWait(commandListener)
-        return self:isRunning()
-end
-
-LicenseUtil.instance = LicenseUtil.new()
-
-return LicenseUtil
 

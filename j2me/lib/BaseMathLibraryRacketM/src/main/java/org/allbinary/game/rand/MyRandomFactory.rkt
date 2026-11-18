@@ -97,11 +97,13 @@
             (vector-set! _intArray2 _randomIndex (vector-ref _intArray2 _randomIndex2))
             (vector-set! _intArray2 _randomIndex2 _value2))
                 (set! _index (JR.i32 (+ _index 1))) (jloop))))))))))
+(define (MyRandomFactory.jclassValue) MyRandomFactory%)
 
 (define MyRandomFactory.jcell_instance 'jnone)
 (define (MyRandomFactory.jstatic_instance)
   (when (eq? MyRandomFactory.jcell_instance 'jnone) (set! MyRandomFactory.jcell_instance (MyRandomFactory.jnew_0)))
   MyRandomFactory.jcell_instance)
+(define (MyRandomFactory.jsetstatic_instance value) (set! MyRandomFactory.jcell_instance value))
 
 (define (MyRandomFactory.jnew_0)
   (define this (new MyRandomFactory% [jclass "MyRandomFactory"]))

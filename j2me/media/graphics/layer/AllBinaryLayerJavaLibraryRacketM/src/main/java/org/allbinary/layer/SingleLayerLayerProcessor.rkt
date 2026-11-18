@@ -1,49 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer
 
-local LayerProcessor = require("org.allbinary.layer.LayerProcessor")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./LayerProcessor.rkt")
+(lazy-require ["./SingleLayerLayerManager.rkt" (SingleLayerLayerManager.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SingleLayerLayerProcessor%
+  (class LayerProcessor%
+    (super-new)
+    (define/override (jm_process_1 _allBinaryLayerManager)
+    (let ([_layerManager JR.null])
+      (let/ec jreturn
+        (set! _layerManager (send this jm_getLayerManager_0))
+        (send this jm_processAt_3 _allBinaryLayerManager (send _layerManager jm_getLayerAt_1 0) 0))))))
+(define (SingleLayerLayerProcessor.jclassValue) SingleLayerLayerProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SingleLayerLayerProcessor = {}
-SingleLayerLayerProcessor.__index = SingleLayerLayerProcessor
-SingleLayerLayerProcessor.className = "SingleLayerLayerProcessor"
-setmetatable(SingleLayerLayerProcessor, {__index = LayerProcessor})
-
-
-function SingleLayerLayerProcessor.new()
-    local self = setmetatable(LayerProcessor.new(SingleLayerLayerManager.new()), SingleLayerLayerProcessor)
-        -- super(...) made self above
-    return self
-end
+(define (SingleLayerLayerProcessor.jnew_0)
+  (define this (new SingleLayerLayerProcessor% [jclass "SingleLayerLayerProcessor"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
--- throws Exception
-function SingleLayerLayerProcessor:process(allBinaryLayerManager)
-        local layerManager = self:getLayerManager()
-        self:processAt(allBinaryLayerManager, layerManager:getLayerAt(0), 0)
-end
-
-return SingleLayerLayerProcessor
 

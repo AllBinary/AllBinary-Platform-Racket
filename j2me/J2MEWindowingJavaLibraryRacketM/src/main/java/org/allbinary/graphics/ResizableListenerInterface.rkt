@@ -23,6 +23,7 @@
     (super-new)
     (define/public (jm_onResizable_1 _isResizable)
       (raise (JR.newException "AbstractMethodError" "onResizable")))))
+(define (ResizableListenerInterface.jclassValue) ResizableListenerInterface%)
 
 (define (ResizableListenerInterface.jnew_0)
   (define this (new ResizableListenerInterface% [jclass "ResizableListenerInterface"]))

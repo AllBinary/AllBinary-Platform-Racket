@@ -1,64 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.hud.basic.score
 
-local Scoreable = require("org.allbinary.game.score.Scoreable")
+(require racket/class racket/lazy-require
+  "../../../../../../../../allbinary_java.rkt"
+  "../../../../../../../../org/allbinary/game/score/Scoreable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ScoreableAddOnlyForHud%
+  (class Scoreable%
+    (super-new)
+    (field [f_scoreHudWidget JR.null])
+    (define/override (jm_removePoints_1 _points)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_addPoints_1 _points)
+    (let ()
+      (let/ec jreturn
+        (super jm_addPoints_1 _points)
+        (send (send this jm_getScoreHudWidget_0) jm_add_1 _points))))
+    (define/public (jm_getScoreHudWidget_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_scoreHudWidget this)))))))
+(define (ScoreableAddOnlyForHud.jclassValue) ScoreableAddOnlyForHud%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ScoreableAddOnlyForHud = {}
-ScoreableAddOnlyForHud.__index = ScoreableAddOnlyForHud
-ScoreableAddOnlyForHud.className = "ScoreableAddOnlyForHud"
-setmetatable(ScoreableAddOnlyForHud, {__index = Scoreable})
-
-function ScoreableAddOnlyForHud:_init_fields()
-    self.scoreHudWidget = nil
-end
-
-
-function ScoreableAddOnlyForHud.new(scoreVectorGraphic)
-    local self = setmetatable(Scoreable.new(0), ScoreableAddOnlyForHud)
-    self:_init_fields()
-        -- super(...) made self above
-        self.scoreHudWidget = scoreVectorGraphic
-        self:getScoreHudWidget():set(0)
-    return self
-end
-
-
-function ScoreableAddOnlyForHud:removePoints(points)
-end
+(define (ScoreableAddOnlyForHud.jnew_1 _scoreVectorGraphic)
+  (define this (new ScoreableAddOnlyForHud% [jclass "ScoreableAddOnlyForHud"]))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_scoreHudWidget this _scoreVectorGraphic)
+        (send (send this jm_getScoreHudWidget_0) jm_set_1 0)))
+  this)
 
 
-function ScoreableAddOnlyForHud:addPoints(points)
-        Scoreable.addPoints(self, points)
-        self:getScoreHudWidget():add(points)
-end
-
-
-function ScoreableAddOnlyForHud:getScoreHudWidget()
-        return self.scoreHudWidget
-end
-
-return ScoreableAddOnlyForHud
 

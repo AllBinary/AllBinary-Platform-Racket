@@ -1,39 +1,28 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OpenGLProcessor%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (define/public (jm_process_1 _gl)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (OpenGLProcessor.jclassValue) OpenGLProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLProcessor = {}
-OpenGLProcessor.__index = OpenGLProcessor
-OpenGLProcessor.className = "OpenGLProcessor"
-
-function OpenGLProcessor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-end
-
-function OpenGLProcessor.new()
-    local self = setmetatable({}, OpenGLProcessor)
-    self:_init_fields()
-    return self
-end
+(define (OpenGLProcessor.jnew_0)
+  (define this (new OpenGLProcessor% [jclass "OpenGLProcessor"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+  this)
 
 
-function OpenGLProcessor:process(gl)
-end
-
-return OpenGLProcessor
 

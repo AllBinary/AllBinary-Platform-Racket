@@ -1,58 +1,38 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2007 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2007 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.util.cache
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define AutomaticCacheInterfaceFactory%
+  (class JObject%
+    (super-new)))
+(define (AutomaticCacheInterfaceFactory.jclassValue) AutomaticCacheInterfaceFactory%)
+
+(define (AutomaticCacheInterfaceFactory.jnew_0)
+  (define this (new AutomaticCacheInterfaceFactory% [jclass "AutomaticCacheInterfaceFactory"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
+
+(define (AutomaticCacheInterfaceFactory.jm_getInstance_3 _cacheableInterfaceFactoryInterface _cacheType _cachePolicy)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (JR.concat "No such " (send _cacheType jm_toString_0)))))))
 
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
-
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AutomaticCacheInterfaceFactory = {}
-AutomaticCacheInterfaceFactory.__index = AutomaticCacheInterfaceFactory
-AutomaticCacheInterfaceFactory.className = "AutomaticCacheInterfaceFactory"
-
-
-function AutomaticCacheInterfaceFactory.new()
-    local self = setmetatable({}, AutomaticCacheInterfaceFactory)
-    return self
-end
-
-
--- throws Exception
-function AutomaticCacheInterfaceFactory.getInstance(cacheableInterfaceFactoryInterface, cacheType, cachePolicy)
-        error(java_exception("Exception", "No such " .. tostring(cacheType)), 0)
-end
-
-return AutomaticCacheInterfaceFactory
 

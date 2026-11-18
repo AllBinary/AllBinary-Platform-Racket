@@ -1,80 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local HighScoresHelperBase = require("org.allbinary.game.score.HighScoresHelperBase")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./HighScoresHelperBase.rkt")
+(lazy-require ["../../../../org/allbinary/util/CircularIndexUtil.rkt" (CircularIndexUtil.jm_createInstanceAt_2)])
+(lazy-require ["./NullHighScoresSingletonFactory.rkt" (NullHighScoresSingletonFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HighScoresHelper2%
+  (class HighScoresHelperBase%
+    (super-new)
+    (field [f_circularIndexUtil JR.null])
+    (field [f_selectedHighScores JR.null])
+    (define/override (jm_setSelectedHighScores_1 _selectedHighScores)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_selectedHighScores this _selectedHighScores))))
+    (define/override (jm_getSelectedHighScores_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_selectedHighScores this)))))
+    (define/override (jm_setHighScoresArray_1 _highScoresArrayP)
+    (let ()
+      (let/ec jreturn
+        (super jm_setHighScoresArray_1 _highScoresArrayP)
+        (send (get-field f_circularIndexUtil this) jm_setSize_1 (vector-length (get-field f_highScoresArrayP this)))
+        (send this jm_selectHighScores_0))))
+    (define/override (jm_selectHighScores_0)
+    (let ([_highScores JR.null][_index JR.null])
+      (let/ec jreturn
+        (when (= (vector-length (get-field f_highScoresArrayP this)) 0)
+            (begin
+            (send this jm_setSelectedHighScores_1 (NullHighScoresSingletonFactory.jm_getInstance_0))
+            (jreturn (void))))
+        (send (get-field f_circularIndexUtil this) jm_next_0)
+        (set! _highScores (vector-ref (get-field f_highScoresArrayP this) (send (get-field f_circularIndexUtil this) jm_getIndex_0)))
+        (set! _index 0)
+        (let/ec jbreak (let jloop () (when (and (< (send _highScores jm_getTotal_0) 1) (< _index (vector-length (get-field f_highScoresArrayP this))))
+                (let/ec jcontinue
+            (set! _highScores (vector-ref (get-field f_highScoresArrayP this) (send (get-field f_circularIndexUtil this) jm_next_0)))
+            (set! _index (JR.i32 (+ _index 1)))) (jloop))))
+        (send this jm_setSelectedHighScores_1 _highScores))))))
+(define (HighScoresHelper2.jclassValue) HighScoresHelper2%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local HighScoresHelper2 = {}
-HighScoresHelper2.__index = HighScoresHelper2
-HighScoresHelper2.className = "HighScoresHelper2"
-setmetatable(HighScoresHelper2, {__index = HighScoresHelperBase})
-
-function HighScoresHelper2:_init_fields()
-    self.circularIndexUtil = CircularIndexUtil.createInstanceAt(0, 0)
-    self.selectedHighScores = NullHighScoresSingletonFactory.getInstance()
-end
-
-function HighScoresHelper2.new()
-    local self = setmetatable(HighScoresHelperBase.new(), HighScoresHelper2)
-    self:_init_fields()
-    return self
-end
-
-
-function HighScoresHelper2:setSelectedHighScores(selectedHighScores)
-        self.selectedHighScores = selectedHighScores
-end
-
-
-function HighScoresHelper2:getSelectedHighScores()
-        return self.selectedHighScores
-end
-
-
-function HighScoresHelper2:setHighScoresArray(highScoresArrayP)
-        HighScoresHelperBase.setHighScoresArray(self, highScoresArrayP)
-        self.circularIndexUtil:setSize((self.highScoresArrayP.n or #self.highScoresArrayP))
-        self:selectHighScores()
-end
+(define (HighScoresHelper2.jnew_0)
+  (define this (new HighScoresHelper2% [jclass "HighScoresHelper2"]))
+    (set-field! f_circularIndexUtil this (CircularIndexUtil.jm_createInstanceAt_2 0 0))
+    (set-field! f_selectedHighScores this (NullHighScoresSingletonFactory.jm_getInstance_0))
+  this)
 
 
-function HighScoresHelper2:selectHighScores()
-        if (self.highScoresArrayP.n or #self.highScoresArrayP) == 0 then
-            self:setSelectedHighScores(NullHighScoresSingletonFactory.getInstance())
-            return
-        end
-        self.circularIndexUtil:next()
-        local highScores = self.highScoresArrayP[self.circularIndexUtil:getIndex() + 1]
-        local index = 0
-        while highScores:getTotal() < 1 and index < (self.highScoresArrayP.n or #self.highScoresArrayP) do
-            highScores = self.highScoresArrayP[self.circularIndexUtil:next() + 1]
-            index = index + 1
-        end
-        self:setSelectedHighScores(highScores)
-end
-
-return HighScoresHelper2
 

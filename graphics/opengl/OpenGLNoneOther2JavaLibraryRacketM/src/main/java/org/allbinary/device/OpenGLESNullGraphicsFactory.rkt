@@ -1,33 +1,31 @@
--- Generated Code Do Not Modify
--- package org.allbinary.device
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.device
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["./OpenGLESGraphics.rkt" (OpenGLESGraphics.jnew_0)])
+(provide (all-defined-out))
+
+(define OpenGLESNullGraphicsFactory%
+  (class JObject%
+    (super-new)))
+(define (OpenGLESNullGraphicsFactory.jclassValue) OpenGLESNullGraphicsFactory%)
+
+(define OpenGLESNullGraphicsFactory.jcell_instance 'jnone)
+(define (OpenGLESNullGraphicsFactory.jstatic_instance)
+  (when (eq? OpenGLESNullGraphicsFactory.jcell_instance 'jnone) (set! OpenGLESNullGraphicsFactory.jcell_instance (OpenGLESGraphics.jnew_0)))
+  OpenGLESNullGraphicsFactory.jcell_instance)
+(define (OpenGLESNullGraphicsFactory.jsetstatic_instance value) (set! OpenGLESNullGraphicsFactory.jcell_instance value))
+
+(define (OpenGLESNullGraphicsFactory.jnew_0)
+  (define this (new OpenGLESNullGraphicsFactory% [jclass "OpenGLESNullGraphicsFactory"]))
+  this)
+
+(define (OpenGLESNullGraphicsFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (OpenGLESNullGraphicsFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLESNullGraphicsFactory = {}
-OpenGLESNullGraphicsFactory.__index = OpenGLESNullGraphicsFactory
-OpenGLESNullGraphicsFactory.className = "OpenGLESNullGraphicsFactory"
-
-function OpenGLESNullGraphicsFactory.new()
-    local self = setmetatable({}, OpenGLESNullGraphicsFactory)
-    return self
-end
-
-
-function OpenGLESNullGraphicsFactory.getInstance()
-        return OpenGLESNullGraphicsFactory.instance
-end
-
-OpenGLESNullGraphicsFactory.instance = OpenGLESGraphics.new()
-
-return OpenGLESNullGraphicsFactory
 

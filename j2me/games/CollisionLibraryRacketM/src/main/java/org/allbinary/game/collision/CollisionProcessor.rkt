@@ -1,32 +1,23 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.collision
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CollisionProcessor%
+  (class JObject%
+    (super-new)
+    (define/public (jm_isCollision_2 _myLayer _myLayer2)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))))
+(define (CollisionProcessor.jclassValue) CollisionProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CollisionProcessor = {}
-CollisionProcessor.__index = CollisionProcessor
-CollisionProcessor.className = "CollisionProcessor"
-
-function CollisionProcessor.new()
-    local self = setmetatable({}, CollisionProcessor)
-    return self
-end
+(define (CollisionProcessor.jnew_0)
+  (define this (new CollisionProcessor% [jclass "CollisionProcessor"]))
+  this)
 
 
-function CollisionProcessor:isCollision(myLayer, myLayer2)
-        return false
-end
-
-return CollisionProcessor
 

@@ -1,38 +1,35 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.feature
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define MultiPlayerGameFeatureFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_addCommands_1 _anyType)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (MultiPlayerGameFeatureFactory.jclassValue) MultiPlayerGameFeatureFactory%)
+
+(define MultiPlayerGameFeatureFactory.jcell_instance 'jnone)
+(define (MultiPlayerGameFeatureFactory.jstatic_instance)
+  (when (eq? MultiPlayerGameFeatureFactory.jcell_instance 'jnone) (set! MultiPlayerGameFeatureFactory.jcell_instance (MultiPlayerGameFeatureFactory.jnew_0)))
+  MultiPlayerGameFeatureFactory.jcell_instance)
+(define (MultiPlayerGameFeatureFactory.jsetstatic_instance value) (set! MultiPlayerGameFeatureFactory.jcell_instance value))
+
+(define (MultiPlayerGameFeatureFactory.jnew_0)
+  (define this (new MultiPlayerGameFeatureFactory% [jclass "MultiPlayerGameFeatureFactory"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
+
+(define (MultiPlayerGameFeatureFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (MultiPlayerGameFeatureFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local MultiPlayerGameFeatureFactory = {}
-MultiPlayerGameFeatureFactory.__index = MultiPlayerGameFeatureFactory
-MultiPlayerGameFeatureFactory.className = "MultiPlayerGameFeatureFactory"
-
-
-function MultiPlayerGameFeatureFactory.getInstance()
-        return MultiPlayerGameFeatureFactory.instance
-end
-
-
-function MultiPlayerGameFeatureFactory.new()
-    local self = setmetatable({}, MultiPlayerGameFeatureFactory)
-    return self
-end
-
-
-function MultiPlayerGameFeatureFactory:addCommands(anyType)
-end
-
-MultiPlayerGameFeatureFactory.instance = MultiPlayerGameFeatureFactory.new()
-
-return MultiPlayerGameFeatureFactory
 

@@ -1,67 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.special
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local GameInputProcessor = require("org.allbinary.game.input.GameInputProcessor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../javax/microedition/lcdui/Canvas.rkt" (Canvas.jstatic_UP Canvas.jstatic_DOWN Canvas.jstatic_RIGHT Canvas.jstatic_LEFT Canvas.jstatic_KEY_NUM0 Canvas.jstatic_KEY_NUM5)])
+(lazy-require ["./SpecialUpGameInputProcessor.rkt" (SpecialUpGameInputProcessor.jnew_1)])
+(lazy-require ["./SpecialDownGameInputProcessor.rkt" (SpecialDownGameInputProcessor.jnew_1)])
+(lazy-require ["./SpecialRightGameInputProcessor.rkt" (SpecialRightGameInputProcessor.jnew_1)])
+(lazy-require ["./SpecialLeftGameInputProcessor.rkt" (SpecialLeftGameInputProcessor.jnew_1)])
+(lazy-require ["./Special1GameInputProcessor.rkt" (Special1GameInputProcessor.jnew_1)])
+(lazy-require ["./Special3GameInputProcessor.rkt" (Special3GameInputProcessor.jnew_1)])
+(lazy-require ["./SpecialAnalogUpGameInputProcessor.rkt" (SpecialAnalogUpGameInputProcessor.jnew_1)])
+(lazy-require ["./SpecialAnalogDownGameInputProcessor.rkt" (SpecialAnalogDownGameInputProcessor.jnew_1)])
+(lazy-require ["./SpecialAnalogRightGameInputProcessor.rkt" (SpecialAnalogRightGameInputProcessor.jnew_1)])
+(lazy-require ["./SpecialAnalogLeftGameInputProcessor.rkt" (SpecialAnalogLeftGameInputProcessor.jnew_1)])
+(lazy-require ["./SpecialAnalogLeftTriggerGameInputProcessor.rkt" (SpecialAnalogLeftTriggerGameInputProcessor.jnew_1)])
+(lazy-require ["./SpecialAnalogRightTriggerGameInputProcessor.rkt" (SpecialAnalogRightTriggerGameInputProcessor.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AnalogInputBuilder%
+  (class JObject%
+    (super-new)
+    (define/public (jm_disable_2 _inputProcessorArray _collidableDestroyableDamageableLayer)
+    (let ()
+      (let/ec jreturn
+        (vector-set! _inputProcessorArray (Canvas.jstatic_UP) (SpecialUpGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_DOWN) (SpecialDownGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_RIGHT) (SpecialRightGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_LEFT) (SpecialLeftGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_KEY_NUM0) (Special1GameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_KEY_NUM5) (Special3GameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer)))))
+    (define/public (jm_enable_2 _inputProcessorArray _collidableDestroyableDamageableLayer)
+    (let ()
+      (let/ec jreturn
+        (vector-set! _inputProcessorArray (Canvas.jstatic_UP) (SpecialAnalogUpGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_DOWN) (SpecialAnalogDownGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_RIGHT) (SpecialAnalogRightGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_LEFT) (SpecialAnalogLeftGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_KEY_NUM0) (SpecialAnalogLeftTriggerGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer))
+        (vector-set! _inputProcessorArray (Canvas.jstatic_KEY_NUM5) (SpecialAnalogRightTriggerGameInputProcessor.jnew_1 _collidableDestroyableDamageableLayer)))))))
+(define (AnalogInputBuilder.jclassValue) AnalogInputBuilder%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AnalogInputBuilder.jcell_instance 'jnone)
+(define (AnalogInputBuilder.jstatic_instance)
+  (when (eq? AnalogInputBuilder.jcell_instance 'jnone) (set! AnalogInputBuilder.jcell_instance (AnalogInputBuilder.jnew_0)))
+  AnalogInputBuilder.jcell_instance)
+(define (AnalogInputBuilder.jsetstatic_instance value) (set! AnalogInputBuilder.jcell_instance value))
 
-local AnalogInputBuilder = {}
-AnalogInputBuilder.__index = AnalogInputBuilder
-AnalogInputBuilder.className = "AnalogInputBuilder"
+(define (AnalogInputBuilder.jnew_0)
+  (define this (new AnalogInputBuilder% [jclass "AnalogInputBuilder"]))
+  this)
 
-function AnalogInputBuilder.new()
-    local self = setmetatable({}, AnalogInputBuilder)
-    return self
-end
-
-
-function AnalogInputBuilder.getInstance()
-        return AnalogInputBuilder.instance
-end
+(define (AnalogInputBuilder.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AnalogInputBuilder.jstatic_instance)))))
 
 
-function AnalogInputBuilder:disable(inputProcessorArray, collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.UP + 1] = SpecialUpGameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.DOWN + 1] = SpecialDownGameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.RIGHT + 1] = SpecialRightGameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.LEFT + 1] = SpecialLeftGameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.KEY_NUM0 + 1] = Special1GameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.KEY_NUM5 + 1] = Special3GameInputProcessor.new(collidableDestroyableDamageableLayer)
-end
-
-
-function AnalogInputBuilder:enable(inputProcessorArray, collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.UP + 1] = SpecialAnalogUpGameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.DOWN + 1] = SpecialAnalogDownGameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.RIGHT + 1] = SpecialAnalogRightGameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.LEFT + 1] = SpecialAnalogLeftGameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.KEY_NUM0 + 1] = SpecialAnalogLeftTriggerGameInputProcessor.new(collidableDestroyableDamageableLayer)
-        inputProcessorArray[Canvas.KEY_NUM5 + 1] = SpecialAnalogRightTriggerGameInputProcessor.new(collidableDestroyableDamageableLayer)
-end
-
-AnalogInputBuilder.instance = AnalogInputBuilder.new()
-
-return AnalogInputBuilder
 

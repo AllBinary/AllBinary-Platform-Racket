@@ -1,77 +1,61 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.text
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local CustomTextAnimation = require("org.allbinary.animation.text.CustomTextAnimation")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./CustomTextAnimation.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AdjustCustomTextAnimation%
+  (class CustomTextAnimation%
+    (super-new)
+    (field [f_dx 0])
+    (field [f_dy 0])
+    (define/override (jm_getDx_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_dx this)))))
+    (define/override (jm_setDx_1 _dx)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_dx this _dx))))
+    (define/override (jm_getDy_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_dy this)))))
+    (define/override (jm_setDy_1 _dy)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_dy this _dy))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (super jm_paintXY_3 _graphics (JR.i32 (+ _x (get-field f_dx this))) (JR.i32 (+ _y (get-field f_dy this)))))))))
+(define (AdjustCustomTextAnimation.jclassValue) AdjustCustomTextAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AdjustCustomTextAnimation = {}
-AdjustCustomTextAnimation.__index = AdjustCustomTextAnimation
-AdjustCustomTextAnimation.className = "AdjustCustomTextAnimation"
-setmetatable(AdjustCustomTextAnimation, {__index = CustomTextAnimation})
-
-function AdjustCustomTextAnimation:_init_fields()
-    self.dx = nil
-    self.dy = nil
-end
-
-
-function AdjustCustomTextAnimation.new(text, fontSize, dx, dy, animationBehavior)
-    local self = setmetatable(CustomTextAnimation.new(text, fontSize, animationBehavior), AdjustCustomTextAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
-function AdjustCustomTextAnimation:getDx()
-        return self.dx
-end
-
-
-function AdjustCustomTextAnimation:setDx(dx)
-        self.dx = dx
-end
-
-
-function AdjustCustomTextAnimation:getDy()
-        return self.dy
-end
+(define (AdjustCustomTextAnimation.jnew_5 _text _fontSize _dx _dy _animationBehavior)
+  (define this (new AdjustCustomTextAnimation% [jclass "AdjustCustomTextAnimation"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_dx this _dx)
+        (set-field! f_dy this _dy)))
+  this)
 
 
-function AdjustCustomTextAnimation:setDy(dy)
-        self.dy = dy
-end
-
-
-function AdjustCustomTextAnimation:paintXY(graphics, x, y)
-        CustomTextAnimation.paintXY(self, graphics, x + self.dx, y + self.dy)
-end
-
-return AdjustCustomTextAnimation
 

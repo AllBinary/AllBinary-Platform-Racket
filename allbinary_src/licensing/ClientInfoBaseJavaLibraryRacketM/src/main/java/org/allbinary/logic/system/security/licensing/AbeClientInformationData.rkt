@@ -1,66 +1,76 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2011 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system.security.licensing
+
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define AbeClientInformationData%
+  (class JObject%
+    (super-new)
+    (field [f_KEY JR.null])
+    (field [f_NAME JR.null])
+    (field [f_VERSION JR.null])
+    (field [f_SPECIALNAME JR.null])
+    (field [f_LICENSEID JR.null])
+    (field [f_LICENSE_TYPE JR.null])
+    (field [f_PREVIOUSLICENSEID JR.null])
+    (field [f_OSNAME JR.null])
+    (field [f_OSARCH JR.null])
+    (field [f_OSVERSION JR.null])
+    (field [f_OS JR.null])
+    (field [f_HARDWARE JR.null])
+    (field [f_LICENSESERVERS JR.null])
+    (field [f_NEWLICENSE JR.null])
+    (field [f_ISNEW JR.null])
+    (field [f_SPECIAL JR.null])))
+(define (AbeClientInformationData.jclassValue) AbeClientInformationData%)
+
+(define AbeClientInformationData.jcell_instance 'jnone)
+(define (AbeClientInformationData.jstatic_instance)
+  (when (eq? AbeClientInformationData.jcell_instance 'jnone) (set! AbeClientInformationData.jcell_instance (AbeClientInformationData.jnew_0)))
+  AbeClientInformationData.jcell_instance)
+(define (AbeClientInformationData.jsetstatic_instance value) (set! AbeClientInformationData.jcell_instance value))
+
+(define (AbeClientInformationData.jnew_0)
+  (define this (new AbeClientInformationData% [jclass "AbeClientInformationData"]))
+    (set-field! f_KEY this "KEY")
+    (set-field! f_NAME this "NAME")
+    (set-field! f_VERSION this "VERSION")
+    (set-field! f_SPECIALNAME this "SPECIALNAME")
+    (set-field! f_LICENSEID this "LICENSEID")
+    (set-field! f_LICENSE_TYPE this "LICENSETYPE")
+    (set-field! f_PREVIOUSLICENSEID this "PREVIOUSLICENSEID")
+    (set-field! f_OSNAME this "OSNAME")
+    (set-field! f_OSARCH this "OSARCH")
+    (set-field! f_OSVERSION this "OSVERSION")
+    (set-field! f_OS this "OS")
+    (set-field! f_HARDWARE this "HARDWARE")
+    (set-field! f_LICENSESERVERS this "LICENSESERVERS")
+    (set-field! f_NEWLICENSE this "NEWLICENSE")
+    (set-field! f_ISNEW this "ISNEW")
+    (set-field! f_SPECIAL this "SPECIAL")
+    (let ()
+      (let/ec jreturn (void)))
+  this)
+
+(define (AbeClientInformationData.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AbeClientInformationData.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AbeClientInformationData = {}
-AbeClientInformationData.__index = AbeClientInformationData
-AbeClientInformationData.className = "AbeClientInformationData"
-
-function AbeClientInformationData:_init_fields()
-    self.KEY = "KEY"
-    self.NAME = "NAME"
-    self.VERSION = "VERSION"
-    self.SPECIALNAME = "SPECIALNAME"
-    self.LICENSEID = "LICENSEID"
-    self.LICENSE_TYPE = "LICENSETYPE"
-    self.PREVIOUSLICENSEID = "PREVIOUSLICENSEID"
-    self.OSNAME = "OSNAME"
-    self.OSARCH = "OSARCH"
-    self.OSVERSION = "OSVERSION"
-    self.OS = "OS"
-    self.HARDWARE = "HARDWARE"
-    self.LICENSESERVERS = "LICENSESERVERS"
-    self.NEWLICENSE = "NEWLICENSE"
-    self.ISNEW = "ISNEW"
-    self.SPECIAL = "SPECIAL"
-end
-
-
-function AbeClientInformationData.getInstance()
-        return AbeClientInformationData.instance
-end
-
-
-function AbeClientInformationData.new()
-    local self = setmetatable({}, AbeClientInformationData)
-    self:_init_fields()
-    return self
-end
-
-AbeClientInformationData.instance = AbeClientInformationData.new()
-
-return AbeClientInformationData
 

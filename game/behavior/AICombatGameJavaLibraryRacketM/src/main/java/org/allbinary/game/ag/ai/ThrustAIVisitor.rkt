@@ -1,66 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/logic/util/visitor/Visitor.rkt"
+  "../../../../../java/lang/Boolean.rkt")
+(lazy-require ["../../../../../javax/microedition/lcdui/Canvas.rkt" (Canvas.jstatic_UP)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/java/bool/BooleanFactory.rkt" (BooleanFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ThrustAIVisitor%
+  (class Visitor%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_TRUE JR.null])
+    (define/override (jm_visit_1 _anyType)
+    (let ([_basicAI JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_VISIT _commonStrings) _e))])
+            (set! _basicAI _anyType)
+            (send _basicAI jm_processKeyAI_1 (Canvas.jstatic_UP)))
+        (jreturn (get-field f_TRUE this)))))))
+(define (ThrustAIVisitor.jclassValue) ThrustAIVisitor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ThrustAIVisitor = {}
-ThrustAIVisitor.__index = ThrustAIVisitor
-ThrustAIVisitor.className = "ThrustAIVisitor"
-setmetatable(ThrustAIVisitor, {__index = Visitor})
-
-function ThrustAIVisitor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.TRUE = BooleanFactory.getInstance().TRUE
-end
-
-
-function ThrustAIVisitor.new()
-    local self = setmetatable(Visitor.new(), ThrustAIVisitor)
-    self:_init_fields()
-    return self
-end
+(define (ThrustAIVisitor.jnew_0)
+  (define this (new ThrustAIVisitor% [jclass "ThrustAIVisitor"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_TRUE this (get-field f_TRUE (BooleanFactory.jm_getInstance_0)))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function ThrustAIVisitor:visit(anyType)
-        local try_ok, try_error = pcall(function()
-            local basicAI = anyType
-            basicAI:processKeyAI(Canvas.UP)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.VISIT, e)
-        end
-        return self.TRUE
-end
-
-return ThrustAIVisitor
 

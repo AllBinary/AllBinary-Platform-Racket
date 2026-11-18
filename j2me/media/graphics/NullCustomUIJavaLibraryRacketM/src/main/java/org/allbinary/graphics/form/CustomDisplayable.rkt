@@ -1,30 +1,22 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define CustomDisplayable%
+  (class JObject%
+    (super-new)
+    (define/public (jm_setTitle_1 _title)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (CustomDisplayable.jclassValue) CustomDisplayable%)
+
+(define (CustomDisplayable.jnew_0)
+  (define this (new CustomDisplayable% [jclass "CustomDisplayable"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CustomDisplayable = {}
-CustomDisplayable.__index = CustomDisplayable
-CustomDisplayable.className = "CustomDisplayable"
-
-function CustomDisplayable.new()
-    local self = setmetatable({}, CustomDisplayable)
-    return self
-end
-
-
-function CustomDisplayable:setTitle(title)
-end
-
-return CustomDisplayable
 

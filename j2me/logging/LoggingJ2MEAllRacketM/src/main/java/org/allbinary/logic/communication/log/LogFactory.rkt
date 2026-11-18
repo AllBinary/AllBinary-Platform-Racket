@@ -25,6 +25,7 @@
 (define LogFactory%
   (class JObject%
     (super-new)))
+(define (LogFactory.jclassValue) LogFactory%)
 
 (define (LogFactory.jnew_0)
   (define this (new LogFactory% [jclass "LogFactory"]))

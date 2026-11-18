@@ -1,51 +1,48 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2026 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PropertyInitUtil%
+  (class JObject%
+    (super-new)))
+(define (PropertyInitUtil.jclassValue) PropertyInitUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define PropertyInitUtil.jcell_instance 'jnone)
+(define (PropertyInitUtil.jstatic_instance)
+  (when (eq? PropertyInitUtil.jcell_instance 'jnone) (set! PropertyInitUtil.jcell_instance (PropertyInitUtil.jnew_0)))
+  PropertyInitUtil.jcell_instance)
+(define (PropertyInitUtil.jsetstatic_instance value) (set! PropertyInitUtil.jcell_instance value))
 
-local PropertyInitUtil = {}
-PropertyInitUtil.__index = PropertyInitUtil
-PropertyInitUtil.className = "PropertyInitUtil"
+(define (PropertyInitUtil.jnew_0)
+  (define this (new PropertyInitUtil% [jclass "PropertyInitUtil"]))
+  this)
 
-function PropertyInitUtil.new()
-    local self = setmetatable({}, PropertyInitUtil)
-    return self
-end
+(define (PropertyInitUtil.jm_getInstance_1 _value)
+    (let ([_commonStrings JR.null][_logUtil JR.null])
+      (let/ec jreturn
+        (set! _commonStrings (CommonStrings.jm_getInstance_0))
+        (set! _logUtil (LogUtil.jm_getInstance_0))
+        (send _logUtil jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "PropertyInitUtil: ") jm_appendint_1 _value) jm_toString_0) _logUtil (get-field f_CONSTRUCTOR _commonStrings))
+        (jreturn (PropertyInitUtil.jstatic_instance)))))
 
 
-function PropertyInitUtil.getInstance(value)
-        local commonStrings = CommonStrings.getInstance()
-        local logUtil = LogUtil.getInstance()
-        logUtil:putF(tostring(StringMaker.new():append("PropertyInitUtil: "):appendint(value)), logUtil, commonStrings.CONSTRUCTOR)
-        return PropertyInitUtil.instance
-end
-
-PropertyInitUtil.instance = PropertyInitUtil.new()
-
-return PropertyInitUtil
 

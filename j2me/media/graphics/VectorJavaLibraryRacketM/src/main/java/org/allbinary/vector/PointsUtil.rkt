@@ -1,94 +1,88 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.vector
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.vector
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define PointsUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_adjustXY_3 _points _x _y)
+    (let ([_size JR.null][_newPoints JR.null][_size2 JR.null][_index2 JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _size (vector-length _points))
+        (set! _newPoints (JR.newArray 0 _size 0 0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _size2 (vector-length (vector-ref _points _index)))
+            (vector-set! _newPoints _index (JR.newArray 0 _size2 2))
+            (begin
+                (set! _index2 0)
+                (let/ec jbreak (let jloop () (when (< _index2 _size2)
+                    (let/ec jcontinue
+                (if (not (eq? (vector-ref (vector-ref (vector-ref _points _index) _index2) 0) 1000))
+                    (begin
+                    (vector-set! (vector-ref (vector-ref _newPoints _index) _index2) 0 (JR.i32 (+ (vector-ref (vector-ref (vector-ref _points _index) _index2) 0) _x)))
+                    (vector-set! (vector-ref (vector-ref _newPoints _index) _index2) 1 (JR.i32 (+ (vector-ref (vector-ref (vector-ref _points _index) _index2) 1) _y))))
+                    (begin
+                    (vector-set! (vector-ref (vector-ref _newPoints _index) _index2) 0 1000)
+                    (vector-set! (vector-ref (vector-ref _newPoints _index) _index2) 1 1000))))
+                    (set! _index2 (JR.i32 (+ _index2 1))) (jloop))))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (jreturn _newPoints))))
+    (define/public (jm_adjust_2 _points _both)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_adjust_3 _points _both _both)))))
+    (define/public (jm_adjust_3 _points _x _y)
+    (let ([_newPoints JR.null][_index2 JR.null])
+      (let/ec jreturn
+        (set! _newPoints (JR.newArray 0 (vector-length _points) 2))
+        (begin
+            (set! _index2 0)
+            (let/ec jbreak (let jloop () (when (< _index2 (vector-length _points))
+                (let/ec jcontinue
+            (if (not (eq? (vector-ref (vector-ref _points _index2) 0) 1000))
+                (begin
+                (vector-set! (vector-ref _newPoints _index2) 0 (JR.i32 (+ (vector-ref (vector-ref _points _index2) 0) _x)))
+                (vector-set! (vector-ref _newPoints _index2) 1 (JR.i32 (+ (vector-ref (vector-ref _points _index2) 1) _y))))
+                (begin
+                (vector-set! (vector-ref _newPoints _index2) 0 1000)
+                (vector-set! (vector-ref _newPoints _index2) 1 1000))))
+                (set! _index2 (JR.i32 (+ _index2 1))) (jloop)))))
+        (jreturn _newPoints))))))
+(define (PointsUtil.jclassValue) PointsUtil%)
+
+(define PointsUtil.jcell_instance 'jnone)
+(define (PointsUtil.jstatic_instance)
+  (when (eq? PointsUtil.jcell_instance 'jnone) (set! PointsUtil.jcell_instance (PointsUtil.jnew_0)))
+  PointsUtil.jcell_instance)
+(define (PointsUtil.jsetstatic_instance value) (set! PointsUtil.jcell_instance value))
+
+(define (PointsUtil.jnew_0)
+  (define this (new PointsUtil% [jclass "PointsUtil"]))
+  this)
+
+(define (PointsUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PointsUtil.jstatic_instance)))))
 
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
-
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PointsUtil = {}
-PointsUtil.__index = PointsUtil
-PointsUtil.className = "PointsUtil"
-
-function PointsUtil.new()
-    local self = setmetatable({}, PointsUtil)
-    return self
-end
-
-
-function PointsUtil.getInstance()
-        return PointsUtil.instance
-end
-
-
-function PointsUtil:adjustXY(points, x, y)
-        local size = (points.n or #points)
-        local newPoints = java_new_array(0, size, 0, 0)
-        for index = 0, size - 1 do
-            local size2 = (points[index + 1].n or #points[index + 1])
-            newPoints[index + 1] = java_new_array(0, size2, 2)
-            for index2 = 0, size2 - 1 do
-                if points[index + 1][index2 + 1][1] ~= 1000 then
-                    newPoints[index + 1][index2 + 1][1] = points[index + 1][index2 + 1][1] + x
-                    newPoints[index + 1][index2 + 1][2] = points[index + 1][index2 + 1][2] + y
-                else
-                    newPoints[index + 1][index2 + 1][1] = 1000
-                    newPoints[index + 1][index2 + 1][2] = 1000
-                end
-            end
-        end
-        return newPoints
-end
-
-
-function PointsUtil:adjust(points, both)
-        return self:adjust(points, both, both)
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function PointsUtil:adjust(points, x, y)
-        local newPoints = java_new_array(0, (points.n or #points), 2)
-        for index2 = 0, (points.n or #points) - 1 do
-            if points[index2 + 1][1] ~= 1000 then
-                newPoints[index2 + 1][1] = points[index2 + 1][1] + x
-                newPoints[index2 + 1][2] = points[index2 + 1][2] + y
-            else
-                newPoints[index2 + 1][1] = 1000
-                newPoints[index2 + 1][2] = 1000
-            end
-        end
-        return newPoints
-end
-
-PointsUtil.instance = PointsUtil.new()
-
-return PointsUtil
 

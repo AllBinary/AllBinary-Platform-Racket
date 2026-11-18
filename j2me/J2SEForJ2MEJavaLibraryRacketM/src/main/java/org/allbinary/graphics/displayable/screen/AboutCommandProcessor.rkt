@@ -1,53 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2022 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2022 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;; 
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.displayable.screen
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AboutCommandProcessor%
+  (class JObject%
+    (super-new)
+    (define/public (jm_process_3 _midletCommandListener _command _canvas)
+    (let ()
+      (let/ec jreturn
+        (send _midletCommandListener jm_commandAction_2 _command _canvas))))))
+(define (AboutCommandProcessor.jclassValue) AboutCommandProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AboutCommandProcessor.jcell_instance 'jnone)
+(define (AboutCommandProcessor.jstatic_instance)
+  (when (eq? AboutCommandProcessor.jcell_instance 'jnone) (set! AboutCommandProcessor.jcell_instance (AboutCommandProcessor.jnew_0)))
+  AboutCommandProcessor.jcell_instance)
+(define (AboutCommandProcessor.jsetstatic_instance value) (set! AboutCommandProcessor.jcell_instance value))
 
-local AboutCommandProcessor = {}
-AboutCommandProcessor.__index = AboutCommandProcessor
-AboutCommandProcessor.className = "AboutCommandProcessor"
+(define (AboutCommandProcessor.jnew_0)
+  (define this (new AboutCommandProcessor% [jclass "AboutCommandProcessor"]))
+  this)
 
-function AboutCommandProcessor.new()
-    local self = setmetatable({}, AboutCommandProcessor)
-    return self
-end
-
-
-function AboutCommandProcessor.getInstance()
-        return AboutCommandProcessor.instance
-end
+(define (AboutCommandProcessor.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AboutCommandProcessor.jstatic_instance)))))
 
 
-function AboutCommandProcessor:process(midletCommandListener, command, canvas)
-        midletCommandListener:commandAction(command, canvas)
-end
-
-AboutCommandProcessor.instance = AboutCommandProcessor.new()
-
-return AboutCommandProcessor
 

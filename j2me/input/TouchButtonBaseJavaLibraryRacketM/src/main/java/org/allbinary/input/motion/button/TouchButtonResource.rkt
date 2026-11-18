@@ -1,39 +1,31 @@
--- 
--- To change this license header, choose License Headers in Project Properties. 
--- To change this template file, choose Tools | Templates 
--- and open the template in the editor.  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;; 
+;; To change this license header, choose License Headers in Project Properties. 
+;; To change this template file, choose Tools | Templates 
+;; and open the template in the editor.  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define TouchButtonResource%
+  (class JObject%
+    (super-new)
+    (field [f_RESOURCE JR.null])
+    (field [f_HINT JR.null])))
+(define (TouchButtonResource.jclassValue) TouchButtonResource%)
+
+(define (TouchButtonResource.jnew_2 _resource _hint)
+  (define this (new TouchButtonResource% [jclass "TouchButtonResource"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_RESOURCE this _resource)
+        (set-field! f_HINT this _hint)))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TouchButtonResource = {}
-TouchButtonResource.__index = TouchButtonResource
-TouchButtonResource.className = "TouchButtonResource"
-
-function TouchButtonResource:_init_fields()
-    self.RESOURCE = nil
-    self.HINT = nil
-end
-
-
-function TouchButtonResource.new(resource, hint)
-    local self = setmetatable({}, TouchButtonResource)
-    self:_init_fields()
-        self.RESOURCE = resource
-        self.HINT = hint
-    return self
-end
-
-return TouchButtonResource
 

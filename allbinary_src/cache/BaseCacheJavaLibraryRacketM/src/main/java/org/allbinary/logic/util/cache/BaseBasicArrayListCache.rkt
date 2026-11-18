@@ -31,6 +31,7 @@
         (send _stringBuffer jm_append_1 "S: ")
         (send _stringBuffer jm_appendint_1 (send (get-field f_list this) jm_size_0))
         (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (BaseBasicArrayListCache.jclassValue) BaseBasicArrayListCache%)
 
 (define (BaseBasicArrayListCache.jnew_0)
   (define this (new BaseBasicArrayListCache% [jclass "BaseBasicArrayListCache"]))

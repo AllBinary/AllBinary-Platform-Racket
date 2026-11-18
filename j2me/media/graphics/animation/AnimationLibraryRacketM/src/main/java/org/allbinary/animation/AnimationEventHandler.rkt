@@ -1,48 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AnimationEventHandler%
+  (class BasicEventHandler%
+    (super-new)))
+(define (AnimationEventHandler.jclassValue) AnimationEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AnimationEventHandler.jcell_eventHandler 'jnone)
+(define (AnimationEventHandler.jstatic_eventHandler)
+  (when (eq? AnimationEventHandler.jcell_eventHandler 'jnone) (set! AnimationEventHandler.jcell_eventHandler (AnimationEventHandler.jnew_0)))
+  AnimationEventHandler.jcell_eventHandler)
+(define (AnimationEventHandler.jsetstatic_eventHandler value) (set! AnimationEventHandler.jcell_eventHandler value))
 
-local AnimationEventHandler = {}
-AnimationEventHandler.__index = AnimationEventHandler
-AnimationEventHandler.className = "AnimationEventHandler"
-setmetatable(AnimationEventHandler, {__index = BasicEventHandler})
+(define (AnimationEventHandler.jnew_0)
+  (define this (new AnimationEventHandler% [jclass "AnimationEventHandler"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
+
+(define (AnimationEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AnimationEventHandler.jstatic_eventHandler)))))
 
 
-function AnimationEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), AnimationEventHandler)
-    return self
-end
-
-
-function AnimationEventHandler.getInstance()
-        return AnimationEventHandler.eventHandler
-end
-
-AnimationEventHandler.eventHandler = AnimationEventHandler.new()
-
-return AnimationEventHandler
 

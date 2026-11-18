@@ -25,6 +25,7 @@
       (raise (JR.newException "AbstractMethodError" "getEventHandler")))
     (define/public (jm_setEventHandler_1 _basicEventHandlerInterface)
       (raise (JR.newException "AbstractMethodError" "setEventHandler")))))
+(define (BasicCompositeEventHandlerInterface.jclassValue) BasicCompositeEventHandlerInterface%)
 
 (define (BasicCompositeEventHandlerInterface.jnew_0)
   (define this (new BasicCompositeEventHandlerInterface% [jclass "BasicCompositeEventHandlerInterface"]))

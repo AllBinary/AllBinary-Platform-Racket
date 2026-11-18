@@ -1,75 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.vector
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ColorCompositeInterface = require("org.allbinary.graphics.color.ColorCompositeInterface")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/Animation.rkt"
+  "../../../../org/allbinary/graphics/color/ColorCompositeInterface.rkt")
+(lazy-require ["../../../../org/allbinary/math/AngleFactory.rkt" (AngleFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CircleAnimation%
+  (class Animation%
+    (super-new)
+    (field [f_TOTAL_ANGLE 0])
+    (field [f_width 0])
+    (field [f_height 0])
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_basicSetColorUtil this))
+        (send _graphics jm_drawArc_6 _x _y (get-field f_width this) (get-field f_height this) 0 (get-field f_TOTAL_ANGLE this)))))
+    (define/override (jm_getBasicColorP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (super jm_getBasicColorP_0)))))
+    (define/override (jm_setBasicColorP_1 _basicColor)
+    (let ()
+      (let/ec jreturn
+        (super jm_setBasicColorP_1 _basicColor))))))
+(define (CircleAnimation.jclassValue) CircleAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CircleAnimation = {}
-CircleAnimation.__index = CircleAnimation
-CircleAnimation.className = "CircleAnimation"
-setmetatable(CircleAnimation, {__index = Animation})
-
-function CircleAnimation:_init_fields()
-    self.TOTAL_ANGLE = java_int(AngleFactory.getInstance().TOTAL_ANGLE)
-    self.width = nil
-    self.height = nil
-end
-
-
-function CircleAnimation.new(width, height, basicColor)
-    local self = setmetatable(Animation.new(), CircleAnimation)
-    self:_init_fields()
-        self.width = width
-        self.height = height
-        self:setBasicColorP(basicColor)
-    return self
-end
-
-
-function CircleAnimation:nextFrame()
-end
-
-
-function CircleAnimation:paintXY(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-        graphics:drawArc(x, y, self.width, self.height, 0, self.TOTAL_ANGLE)
-end
+(define (CircleAnimation.jnew_3 _width _height _basicColor)
+  (define this (new CircleAnimation% [jclass "CircleAnimation"]))
+    (set-field! f_TOTAL_ANGLE this (get-field f_TOTAL_ANGLE (AngleFactory.jm_getInstance_0)))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_width this _width)
+        (set-field! f_height this _height)
+        (send this jm_setBasicColorP_1 _basicColor)))
+  this)
 
 
-function CircleAnimation:getBasicColorP()
-        return Animation.getBasicColorP(self)
-end
-
-
-function CircleAnimation:setBasicColorP(basicColor)
-        Animation.setBasicColorP(self, basicColor)
-end
-
-return CircleAnimation
 

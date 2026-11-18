@@ -55,11 +55,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (GPoint.jm_toStringStatic_3 (send this jm_getX_0) (send this jm_getY_0) (send this jm_getZ_0))))))))
+(define (GPoint.jclassValue) GPoint%)
 
 (define GPoint.jcell_POINT_LABEL 'jnone)
 (define (GPoint.jstatic_POINT_LABEL)
   (when (eq? GPoint.jcell_POINT_LABEL 'jnone) (set! GPoint.jcell_POINT_LABEL "Point: "))
   GPoint.jcell_POINT_LABEL)
+(define (GPoint.jsetstatic_POINT_LABEL value) (set! GPoint.jcell_POINT_LABEL value))
 
 (define (GPoint.jnew_3 _x _y _z)
   (define this (new GPoint% [jclass "GPoint"]))

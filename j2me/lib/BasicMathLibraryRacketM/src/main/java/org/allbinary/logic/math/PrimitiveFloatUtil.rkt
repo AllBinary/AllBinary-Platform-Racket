@@ -21,6 +21,7 @@
 (define PrimitiveFloatUtil%
   (class JObject%
     (super-new)))
+(define (PrimitiveFloatUtil.jclassValue) PrimitiveFloatUtil%)
 
 (define (PrimitiveFloatUtil.jnew_0)
   (define this (new PrimitiveFloatUtil% [jclass "PrimitiveFloatUtil"]))

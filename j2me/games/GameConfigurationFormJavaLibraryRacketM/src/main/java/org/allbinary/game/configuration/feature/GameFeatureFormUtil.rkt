@@ -1,125 +1,114 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.feature
 
--- local ChoiceGroup = require("javax.microedition.lcdui.ChoiceGroup")
--- local Item = require("javax.microedition.lcdui.Item")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local MIDPUtil = require("org.allbinary.MIDPUtil")
-local GameConfigurationGauge = require("org.allbinary.game.configuration.GameConfigurationGauge")
-local GameConfigurationUtil = require("org.allbinary.game.configuration.GameConfigurationUtil")
-local CommandForm = require("org.allbinary.graphics.displayable.screen.CommandForm")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local HashtableUtil = require("org.allbinary.util.HashtableUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../javax/microedition/lcdui/ChoiceGroup.rkt")
+(lazy-require ["../../../../../javax/microedition/lcdui/NullImage.rkt" (NullImage.jstatic_NULL_IMAGE_ARRAY NullImage.jstatic_NULL_IMAGE)])
+(lazy-require ["../../../../../org/allbinary/MIDPUtil.rkt" (MIDPUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/GameConfigurationGauge.rkt" (GameConfigurationGauge.jclassValue)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/GameConfigurationUtil.rkt" (GameConfigurationUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/util/HashtableUtil.rkt" (HashtableUtil.jm_getInstance_0)])
+(lazy-require ["./Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["./GameFeatureUtil.rkt" (GameFeatureUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_instanceof(object, class)
-    local metatable = getmetatable(object)
-    while metatable do
-        if metatable == class then return true end
-        local parent = getmetatable(metatable)
-        metatable = parent and parent.__index
-    end
-    return false
-end
+(define GameFeatureFormUtil%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_meUtil JR.null])
+    (define/public (jm_getChoiceGroup_3 _hashtable _name _option)
+    (let ([_stringMaker JR.null][_choiceGroup JR.null][_list JR.null][_features JR.null][_ADD_CHOICE JR.null][_GET_CHOICE_GROUP JR.null][_size JR.null][_gameFeature JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _stringMaker (StringMaker.jnew_0))
+        (set! _choiceGroup (ChoiceGroup.jnew_4 _name _option (send (StringUtil.jm_getInstance_0) jm_getArrayInstance_0) (NullImage.jstatic_NULL_IMAGE_ARRAY)))
+        (set! _list (send _hashtable jm_get_1 _name))
+        (set! _features (Features.jm_getInstance_0))
+        (set! _ADD_CHOICE ": Adding Choice: ")
+        (set! _GET_CHOICE_GROUP "getChoiceGroup")
+        (set! _size (send _list jm_size_0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _gameFeature (vector-ref (get-field f_objectArray _list) _index))
+            (send _stringMaker jm_delete_2 0 (send _stringMaker jm_length_0))
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send _stringMaker jm_append_1 _name) jm_append_1 _ADD_CHOICE) jm_append_1 (send _gameFeature jm_toString_0)) jm_toString_0) this _GET_CHOICE_GROUP)
+            (send _choiceGroup jm_append_2 (send _gameFeature jm_toString_0) (NullImage.jstatic_NULL_IMAGE))
+            (when (send _features jm_isFeature_1 _gameFeature)
+                (begin
+                (send _choiceGroup jm_setSelectedIndex_2 _index #t))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (jreturn _choiceGroup))))
+    (define/public (jm_addChoiceGroup_3 _form _hashtable _option)
+    (let ([_stringMaker JR.null][_ADDING_CHOICE_GROUP JR.null][_ADD_CHOICE_GROUP JR.null][_size JR.null][_objectArray JR.null][_name JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _stringMaker (StringMaker.jnew_0))
+        (set! _ADDING_CHOICE_GROUP "Adding Choice Group: ")
+        (set! _ADD_CHOICE_GROUP "addChoiceGroup")
+        (set! _size (send _hashtable jm_size_0))
+        (set! _objectArray (send (HashtableUtil.jm_getInstance_0) jm_getKeysAsArray_1 _hashtable))
+        (set! _name JR.null)
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _name (vector-ref _objectArray _index))
+            (send _stringMaker jm_delete_2 0 (send _stringMaker jm_length_0))
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send _stringMaker jm_append_1 _ADDING_CHOICE_GROUP) jm_append_1 _name) jm_toString_0) this _ADD_CHOICE_GROUP)
+            (send (get-field f_meUtil this) jm_appendItem_2 _form (send this jm_getChoiceGroup_3 _hashtable _name _option)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop))))))))
+    (define/public (jm_setDefault_1 _form)
+    (let ([_size JR.null][_item JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _size (send _form jm_size_0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _item (send _form jm_get_1 _index))
+            (if (is-a? _item (GameConfigurationGauge.jclassValue))
+                (begin
+                (send (GameConfigurationUtil.jm_getInstance_0) jm_setDefault_1 _item))
+                (when (is-a? _item ChoiceGroup%)
+                (begin
+                (send (GameFeatureUtil.jm_getInstance_0) jm_setDefault_1 _item)))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop))))))))))
+(define (GameFeatureFormUtil.jclassValue) GameFeatureFormUtil%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameFeatureFormUtil.jcell_instance 'jnone)
+(define (GameFeatureFormUtil.jstatic_instance)
+  (when (eq? GameFeatureFormUtil.jcell_instance 'jnone) (set! GameFeatureFormUtil.jcell_instance (GameFeatureFormUtil.jnew_0)))
+  GameFeatureFormUtil.jcell_instance)
+(define (GameFeatureFormUtil.jsetstatic_instance value) (set! GameFeatureFormUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (GameFeatureFormUtil.jnew_0)
+  (define this (new GameFeatureFormUtil% [jclass "GameFeatureFormUtil"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_meUtil this (MIDPUtil.jm_getInstance_0))
+  this)
 
-local GameFeatureFormUtil = {}
-GameFeatureFormUtil.__index = GameFeatureFormUtil
-GameFeatureFormUtil.className = "GameFeatureFormUtil"
-
-function GameFeatureFormUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.meUtil = MIDPUtil.getInstance()
-end
-
-function GameFeatureFormUtil.new()
-    local self = setmetatable({}, GameFeatureFormUtil)
-    self:_init_fields()
-    return self
-end
+(define (GameFeatureFormUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameFeatureFormUtil.jstatic_instance)))))
 
 
-function GameFeatureFormUtil.getInstance()
-        return GameFeatureFormUtil.instance
-end
-
-
-function GameFeatureFormUtil:getChoiceGroup(hashtable, name, option)
-        local stringMaker = StringMaker.new()
-        local choiceGroup = ChoiceGroup.new(name, option, StringUtil.getInstance():getArrayInstance(), NullImage.NULL_IMAGE_ARRAY)
-        local list = hashtable:get(name)
-        local features = Features.getInstance()
-        local ADD_CHOICE = ": Adding Choice: "
-        local GET_CHOICE_GROUP = "getChoiceGroup"
-        local size = list:size()
-        for index = 0, size - 1 do
-            local gameFeature = list.objectArray[index + 1]
-            stringMaker:delete(0, stringMaker:length())
-            self.logUtil:putF(tostring(stringMaker:append(name):append(ADD_CHOICE):append(tostring(gameFeature))), self, GET_CHOICE_GROUP)
-            choiceGroup:append(tostring(gameFeature), NullImage.NULL_IMAGE)
-            if features:isFeature(gameFeature) then
-                choiceGroup:setSelectedIndex(index, true)
-            end
-        end
-        return choiceGroup
-end
-
-
-function GameFeatureFormUtil:addChoiceGroup(form, hashtable, option)
-        local stringMaker = StringMaker.new()
-        local ADDING_CHOICE_GROUP = "Adding Choice Group: "
-        local ADD_CHOICE_GROUP = "addChoiceGroup"
-        local size = hashtable:size()
-        local objectArray = HashtableUtil.getInstance():getKeysAsArray(hashtable)
-        local name = nil
-        for index = 0, size - 1 do
-            name = objectArray[index + 1]
-            stringMaker:delete(0, stringMaker:length())
-            self.logUtil:putF(tostring(stringMaker:append(ADDING_CHOICE_GROUP):append(name)), self, ADD_CHOICE_GROUP)
-            self.meUtil:appendItem(form, self:getChoiceGroup(hashtable, name, option))
-        end
-end
-
-
--- throws Exception
-function GameFeatureFormUtil:setDefault(form)
-        local size = form:size()
-        for index = 0, size - 1 do
-            local item = form:get(index)
-            if java_instanceof(item, GameConfigurationGauge) then
-                GameConfigurationUtil.getInstance():setDefault(item)
-            elseif java_instanceof(item, ChoiceGroup) then
-                GameFeatureUtil.getInstance():setDefault(item)
-            end
-        end
-end
-
-GameFeatureFormUtil.instance = GameFeatureFormUtil.new()
-
-return GameFeatureFormUtil
 

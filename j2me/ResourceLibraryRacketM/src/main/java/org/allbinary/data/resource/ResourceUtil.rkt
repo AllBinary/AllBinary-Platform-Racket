@@ -1,122 +1,104 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.data.resource
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.data.resource
 
--- local InputStream = require("java.io.InputStream")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/InputStream.rkt"
+  "../../../../java/lang/Integer.rkt"
+  "../../../../java/lang/Thread.rkt")
+(lazy-require ["../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+;J2SE - J2ME
+(define ResourceUtil%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/public (jm_setLoadingPaths_2 _path _ext)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 (get-field f_NOT_IMPLEMENTED (CommonStrings.jm_getInstance_0)) this "setLoadingPaths"))))
+    (define/public (jm_setClassLoader_1 _classLoader)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "Resource Loader: ") jm_append_1 (JR.className _classLoader)) jm_toString_0) this "setClassLoader")
+        (set! ResourceUtil.jcell_classLoader _classLoader))))
+    (define/public (jm_getResourceAsStream_1 _resource)
+    (let ([_inputStream JR.null])
+      (let/ec jreturn
+        (set! _inputStream (send this jm_getResourceAsStreamAtStart_2 _resource 2))
+        (when (JR.null? _inputStream)
+            (begin
+            (set! _inputStream (send this jm_getResourceAsStreamAtStart_2 _resource 1))
+            (when (JR.null? _inputStream)
+                (begin
+                (raise (JR.newException "Exception" (send (send (send (StringMaker.jnew_0) jm_append_1 "Unable to obtain: ") jm_append_1 _resource) jm_toString_0)))))))
+        (jreturn _inputStream))))
+    (define/public (jm_getResourceAsStreamAtStart_2 _resource _startIndex)
+    (let ([_commonSeps JR.null][_index JR.null][_resourcePath JR.null][_inputStream JR.null][_classLoader JR.null])
+      (let/ec jreturn
+        (set! _commonSeps (CommonSeps.jm_getInstance_0))
+        (set! _index (JR.indexOf _resource (get-field f_COLON _commonSeps)))
+        (set! _resourcePath (JR.substring _resource (JR.i32 (+ _index _startIndex))))
+        (set! _inputStream (JR.className (JR.className _resource)))
+        (when (not (JR.null? _inputStream))
+            (begin
+            (jreturn _inputStream)))
+        (set! _classLoader (ResourceUtil.jstatic_classLoader))
+        (set! _inputStream (send _classLoader jm_getResourceAsStream_1 _resourcePath))
+        (when (not (JR.null? _inputStream))
+            (begin
+            (jreturn _inputStream)))
+        (set! _inputStream (JR.className (JR.className (Thread.jm_currentThread_0))))
+        (when (not (JR.null? _inputStream))
+            (begin
+            (jreturn _inputStream)))
+        (jreturn _inputStream))))
+    (define/public (jm_addResource_2 _resource _value)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ResourceUtil.jclassValue) ResourceUtil%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ResourceUtil.jcell_classLoader 'jnone)
+(define (ResourceUtil.jstatic_classLoader)
+  (when (eq? ResourceUtil.jcell_classLoader 'jnone) (set! ResourceUtil.jcell_classLoader (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  ResourceUtil.jcell_classLoader)
+(define (ResourceUtil.jsetstatic_classLoader value) (set! ResourceUtil.jcell_classLoader value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ResourceUtil.jcell_instance 'jnone)
+(define (ResourceUtil.jstatic_instance)
+  (when (eq? ResourceUtil.jcell_instance 'jnone) (set! ResourceUtil.jcell_instance (ResourceUtil.jnew_0)))
+  ResourceUtil.jcell_instance)
+(define (ResourceUtil.jsetstatic_instance value) (set! ResourceUtil.jcell_instance value))
 
---J2SE - J2ME
-local ResourceUtil = {}
-ResourceUtil.__index = ResourceUtil
-ResourceUtil.className = "ResourceUtil"
+(define (ResourceUtil.jnew_0)
+  (define this (new ResourceUtil% [jclass "ResourceUtil"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function ResourceUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-
-function ResourceUtil.getInstance()
-        return ResourceUtil.instance
-end
-
-
-function ResourceUtil.new()
-    local self = setmetatable({}, ResourceUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function ResourceUtil:setLoadingPaths(path, ext)
-        self.logUtil:putF(CommonStrings.getInstance().NOT_IMPLEMENTED, self, "setLoadingPaths")
-end
-
-
-function ResourceUtil:setClassLoader(classLoader)
-        self.logUtil:putF(tostring(StringMaker.new():append("Resource Loader: "):append(getmetatable(classLoader).className)), self, "setClassLoader")
-        ResourceUtil.classLoader = classLoader
-end
-
-
--- throws Exception
-function ResourceUtil:getResourceAsStream(resource)
-        local inputStream = self:getResourceAsStreamAtStart(resource, 2)
-        if inputStream == nil then
-            inputStream = self:getResourceAsStreamAtStart(resource, 1)
-            if inputStream == nil then
-                error(java_exception("Exception", tostring(StringMaker.new():append("Unable to obtain: "):append(resource))), 0)
-            end
-        end
-        return inputStream
-end
-
-
--- throws Exception
-function ResourceUtil:getResourceAsStreamAtStart(resource, startIndex)
-        local commonSeps = CommonSeps.getInstance()
-        local index = ((string.find(resource, commonSeps.COLON, 1, true) or 0) - 1)
-        local resourcePath = string.sub(resource, (index + startIndex) + 1)
-        local inputStream = getmetatable(resource):getResourceAsStream(resourcePath)
-        if inputStream ~= nil then
-            return inputStream
-        end
-        local classLoader = ResourceUtil.classLoader
-        inputStream = classLoader:getResourceAsStream(resourcePath)
-        if inputStream ~= nil then
-            return inputStream
-        end
-        inputStream = Thread.currentThread():getContextClassLoader():getResourceAsStream(resourcePath)
-        if inputStream ~= nil then
-            return inputStream
-        end
-        return inputStream
-end
+(define (ResourceUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ResourceUtil.jstatic_instance)))))
 
 
-function ResourceUtil:addResource(resource, value)
-end
-
-ResourceUtil.classLoader = NullUtil.getInstance().NULL_OBJECT
-ResourceUtil.instance = ResourceUtil.new()
-
-return ResourceUtil
 

@@ -1,49 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.transition
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define AnimationListenerInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onPlatformAnimationStart_0)
+      (raise (JR.newException "AbstractMethodError" "onPlatformAnimationStart")))
+    (define/public (jm_onPlatformAnimationEnd_0)
+      (raise (JR.newException "AbstractMethodError" "onPlatformAnimationEnd")))
+    (define/public (jm_onPlatformAnimationRepeat_0)
+      (raise (JR.newException "AbstractMethodError" "onPlatformAnimationRepeat")))))
+(define (AnimationListenerInterface.jclassValue) AnimationListenerInterface%)
+
+(define (AnimationListenerInterface.jnew_0)
+  (define this (new AnimationListenerInterface% [jclass "AnimationListenerInterface"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local AnimationListenerInterface = {}
-AnimationListenerInterface.__index = AnimationListenerInterface
-AnimationListenerInterface.className = "AnimationListenerInterface"
-
-
-function AnimationListenerInterface:onPlatformAnimationStart()
-    error("abstract method onPlatformAnimationStart")
-end
-
-
-function AnimationListenerInterface:onPlatformAnimationEnd()
-    error("abstract method onPlatformAnimationEnd")
-end
-
-
-function AnimationListenerInterface:onPlatformAnimationRepeat()
-    error("abstract method onPlatformAnimationRepeat")
-end
-
-return AnimationListenerInterface
 

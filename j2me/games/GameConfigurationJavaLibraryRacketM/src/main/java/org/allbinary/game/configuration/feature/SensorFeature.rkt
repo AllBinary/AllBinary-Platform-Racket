@@ -1,42 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.feature
 
-local Feature = require("org.allbinary.game.configuration.feature.Feature")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./Feature.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SensorFeature%
+  (class Feature%
+    (super-new)))
+(define (SensorFeature.jclassValue) SensorFeature%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SensorFeature = {}
-SensorFeature.__index = SensorFeature
-SensorFeature.className = "SensorFeature"
-setmetatable(SensorFeature, {__index = Feature})
+(define (SensorFeature.jnew_1 _name)
+  (define this (new SensorFeature% [jclass "SensorFeature"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function SensorFeature.new(name)
-    local self = setmetatable(Feature.new(name), SensorFeature)
-        -- super(...) made self above
-    return self
-end
-
-return SensorFeature
 

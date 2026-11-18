@@ -1,43 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.debug
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.debug
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["./NoDebug.rkt" (NoDebug.jm_getInstance_0)])
+(provide (all-defined-out))
+
+(define DebugFactory%
+  (class JObject%
+    (super-new)))
+(define (DebugFactory.jclassValue) DebugFactory%)
+
+(define (DebugFactory.jnew_0)
+  (define this (new DebugFactory% [jclass "DebugFactory"]))
+  this)
+
+(define (DebugFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NoDebug.jm_getInstance_0)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local DebugFactory = {}
-DebugFactory.__index = DebugFactory
-DebugFactory.className = "DebugFactory"
-
-function DebugFactory.new()
-    local self = setmetatable({}, DebugFactory)
-    return self
-end
-
-
-function DebugFactory.getInstance()
-        return NoDebug.getInstance()
-end
-
-return DebugFactory
 

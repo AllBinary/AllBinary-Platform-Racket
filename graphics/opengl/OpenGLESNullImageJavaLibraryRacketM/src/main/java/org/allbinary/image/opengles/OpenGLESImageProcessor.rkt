@@ -1,62 +1,54 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.image.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OpenGLESImageProcessor%
+  (class JObject%
+    (super-new)
+    (define/public (jm_translate_3 _gl _translateX _translateY)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_rotate_2 _gl _angle)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_scale_3 _gl _scaleX _scaleY)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_colorMask_5 _gl _red _green _blue _alpha)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (OpenGLESImageProcessor.jclassValue) OpenGLESImageProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define OpenGLESImageProcessor.jcell_instance 'jnone)
+(define (OpenGLESImageProcessor.jstatic_instance)
+  (when (eq? OpenGLESImageProcessor.jcell_instance 'jnone) (set! OpenGLESImageProcessor.jcell_instance (OpenGLESImageProcessor.jnew_0)))
+  OpenGLESImageProcessor.jcell_instance)
+(define (OpenGLESImageProcessor.jsetstatic_instance value) (set! OpenGLESImageProcessor.jcell_instance value))
 
-local OpenGLESImageProcessor = {}
-OpenGLESImageProcessor.__index = OpenGLESImageProcessor
-OpenGLESImageProcessor.className = "OpenGLESImageProcessor"
+(define (OpenGLESImageProcessor.jnew_0)
+  (define this (new OpenGLESImageProcessor% [jclass "OpenGLESImageProcessor"]))
+  this)
 
-function OpenGLESImageProcessor.new()
-    local self = setmetatable({}, OpenGLESImageProcessor)
-    return self
-end
-
-
-function OpenGLESImageProcessor.getInstance()
-        return OpenGLESImageProcessor.instance
-end
-
-
-function OpenGLESImageProcessor:translate(gl, translateX, translateY)
-end
-
-
-function OpenGLESImageProcessor:rotate(gl, angle)
-end
-
-
-function OpenGLESImageProcessor:scale(gl, scaleX, scaleY)
-end
+(define (OpenGLESImageProcessor.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (OpenGLESImageProcessor.jstatic_instance)))))
 
 
-function OpenGLESImageProcessor:colorMask(gl, red, green, blue, alpha)
-end
-
-OpenGLESImageProcessor.instance = OpenGLESImageProcessor.new()
-
-return OpenGLESImageProcessor
 

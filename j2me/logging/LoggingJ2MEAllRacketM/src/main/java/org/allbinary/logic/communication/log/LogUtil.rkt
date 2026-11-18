@@ -67,11 +67,13 @@
         (set! _message (send (get-field f_logFormatUtil this) jm_get_4 _className _functionName _specialMessage _exception))
         (JR.print (get-field f_LOG_SUCCESS this))
         (JR.println _message))))))
+(define (LogUtil.jclassValue) LogUtil%)
 
 (define LogUtil.jcell_instance 'jnone)
 (define (LogUtil.jstatic_instance)
   (when (eq? LogUtil.jcell_instance 'jnone) (set! LogUtil.jcell_instance (LogUtil.jnew_0)))
   LogUtil.jcell_instance)
+(define (LogUtil.jsetstatic_instance value) (set! LogUtil.jcell_instance value))
 
 (define (LogUtil.jnew_0)
   (define this (new LogUtil% [jclass "LogUtil"]))

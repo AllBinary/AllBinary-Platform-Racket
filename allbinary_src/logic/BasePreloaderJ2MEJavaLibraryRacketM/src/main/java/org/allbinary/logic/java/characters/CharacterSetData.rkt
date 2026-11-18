@@ -27,11 +27,13 @@
     (field [f_UTF_16 JR.null])
     (field [f_UTF_16BE JR.null])
     (field [f_UTF_16LE JR.null])))
+(define (CharacterSetData.jclassValue) CharacterSetData%)
 
 (define CharacterSetData.jcell_instance 'jnone)
 (define (CharacterSetData.jstatic_instance)
   (when (eq? CharacterSetData.jcell_instance 'jnone) (set! CharacterSetData.jcell_instance (CharacterSetData.jnew_0)))
   CharacterSetData.jcell_instance)
+(define (CharacterSetData.jsetstatic_instance value) (set! CharacterSetData.jcell_instance value))
 
 (define (CharacterSetData.jnew_0)
   (define this (new CharacterSetData% [jclass "CharacterSetData"]))

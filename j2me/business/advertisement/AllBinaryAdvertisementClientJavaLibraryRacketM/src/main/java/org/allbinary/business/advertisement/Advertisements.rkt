@@ -1,130 +1,109 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.business.advertisement
 
-local MyRandomFactory = require("org.allbinary.game.rand.MyRandomFactory")
-local LockedUtil = require("org.allbinary.logic.system.security.licensing.LockedUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/game/rand/MyRandomFactory.rkt" (MyRandomFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/system/security/licensing/LockedUtil.rkt" (LockedUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Advertisements%
+  (class JObject%
+    (super-new)
+    (field [f_bannerList JR.null])
+    (field [f_pageList JR.null])
+    (field [f_myRandomFactory JR.null])
+    (define/public (jm_addPage_1 _advertisementProcessorInterface)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_pageList this) jm_contains_1 _advertisementProcessorInterface))
+            (begin
+            (send (get-field f_pageList this) jm_add_1 _advertisementProcessorInterface))))))
+    (define/public (jm_startRandomPage_0)
+    (let ([_size JR.null][_random JR.null][_advertisementProcessorInterface JR.null])
+      (let/ec jreturn
+        (set! _size (send (get-field f_pageList this) jm_size_0))
+        (when (> _size 0)
+            (begin
+            (set! _random (send (get-field f_myRandomFactory this) jm_getAbsoluteNextInt_1 _size))
+            (set! _advertisementProcessorInterface (vector-ref (get-field f_objectArray (get-field f_pageList this)) _random))
+            (send _advertisementProcessorInterface jm_start_0))))))
+    (define/public (jm_processRandomPage_0)
+    (let ([_size JR.null][_random JR.null][_advertisementProcessorInterface JR.null])
+      (let/ec jreturn
+        (when (send (LockedUtil.jm_getInstance_0) jm_isLocked_0)
+            (begin
+            (set! _size (send (get-field f_pageList this) jm_size_0))
+            (when (> _size 0)
+                (begin
+                (set! _random (send (get-field f_myRandomFactory this) jm_getAbsoluteNextInt_1 _size))
+                (set! _advertisementProcessorInterface (vector-ref (get-field f_objectArray (get-field f_pageList this)) _random))
+                (send _advertisementProcessorInterface jm_process_0))))))))
+    (define/public (jm_stopAllPage_0)
+    (let ([_advertisementProcessorInterface JR.null][_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (send (get-field f_pageList this) jm_size_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (set! _advertisementProcessorInterface (vector-ref (get-field f_objectArray (get-field f_pageList this)) _index))
+            (send _advertisementProcessorInterface jm_stop_0)) (jloop))))))))
+    (define/public (jm_addBanner_1 _advertisementProcessorInterface)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_bannerList this) jm_contains_1 _advertisementProcessorInterface))
+            (begin
+            (send (get-field f_bannerList this) jm_add_1 _advertisementProcessorInterface))))))
+    (define/public (jm_startAll_0)
+    (let ([_advertisementProcessorInterface JR.null][_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (send (get-field f_bannerList this) jm_size_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (set! _advertisementProcessorInterface (vector-ref (get-field f_objectArray (get-field f_bannerList this)) _index))
+            (send _advertisementProcessorInterface jm_start_0)) (jloop))))))))
+    (define/public (jm_stopAllBanner_0)
+    (let ([_advertisementProcessorInterface JR.null][_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (send (get-field f_bannerList this) jm_size_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (set! _advertisementProcessorInterface (vector-ref (get-field f_objectArray (get-field f_bannerList this)) _index))
+            (send _advertisementProcessorInterface jm_stop_0)) (jloop))))))))
+    (define/public (jm_getBanner_1 _index)
+    (let ([_advertisementProcessorInterface JR.null])
+      (let/ec jreturn
+        (set! _advertisementProcessorInterface (vector-ref (get-field f_objectArray (get-field f_bannerList this)) _index))
+        (jreturn _advertisementProcessorInterface))))
+    (define/public (jm_stopAll_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_stopAllBanner_0)
+        (send this jm_stopAllPage_0))))))
+(define (Advertisements.jclassValue) Advertisements%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local Advertisements = {}
-Advertisements.__index = Advertisements
-Advertisements.className = "Advertisements"
-
-function Advertisements:_init_fields()
-    self.bannerList = BasicArrayListD.new()
-    self.pageList = BasicArrayListD.new()
-    self.myRandomFactory = MyRandomFactory.getInstance()
-end
-
-function Advertisements.new()
-    local self = setmetatable({}, Advertisements)
-    self:_init_fields()
-    return self
-end
-
-
-function Advertisements:addPage(advertisementProcessorInterface)
-        if not self.pageList:contains(advertisementProcessorInterface) then
-            self.pageList:add(advertisementProcessorInterface)
-        end
-end
-
-
-function Advertisements:startRandomPage()
-        local size = self.pageList:size()
-        if size > 0 then
-            local random = self.myRandomFactory:getAbsoluteNextInt(size)
-            local advertisementProcessorInterface = self.pageList.objectArray[random + 1]
-            advertisementProcessorInterface:start()
-        end
-end
-
-
-function Advertisements:processRandomPage()
-        if LockedUtil.getInstance():isLocked() then
-            local size = self.pageList:size()
-            if size > 0 then
-                local random = self.myRandomFactory:getAbsoluteNextInt(size)
-                local advertisementProcessorInterface = self.pageList.objectArray[random + 1]
-                advertisementProcessorInterface:process()
-            end
-        end
-end
-
-
-function Advertisements:stopAllPage()
-        do
-            local index = self.pageList:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local advertisementProcessorInterface = self.pageList.objectArray[index + 1]
-            advertisementProcessorInterface:stop()
-            end
-        end
-end
-
-
-function Advertisements:addBanner(advertisementProcessorInterface)
-        if not self.bannerList:contains(advertisementProcessorInterface) then
-            self.bannerList:add(advertisementProcessorInterface)
-        end
-end
-
-
-function Advertisements:startAll()
-        do
-            local index = self.bannerList:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local advertisementProcessorInterface = self.bannerList.objectArray[index + 1]
-            advertisementProcessorInterface:start()
-            end
-        end
-end
-
-
-function Advertisements:stopAllBanner()
-        do
-            local index = self.bannerList:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local advertisementProcessorInterface = self.bannerList.objectArray[index + 1]
-            advertisementProcessorInterface:stop()
-            end
-        end
-end
+(define (Advertisements.jnew_0)
+  (define this (new Advertisements% [jclass "Advertisements"]))
+    (set-field! f_bannerList this (BasicArrayListD.jnew_0))
+    (set-field! f_pageList this (BasicArrayListD.jnew_0))
+    (set-field! f_myRandomFactory this (MyRandomFactory.jm_getInstance_0))
+  this)
 
 
-function Advertisements:getBanner(index)
-        local advertisementProcessorInterface = self.bannerList.objectArray[index + 1]
-        return advertisementProcessorInterface
-end
-
-
-function Advertisements:stopAll()
-        self:stopAllBanner()
-        self:stopAllPage()
-end
-
-return Advertisements
 

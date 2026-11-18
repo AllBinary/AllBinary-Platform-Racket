@@ -1,57 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition.shake
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.transition.shake
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["./ShakeEvent.rkt" (ShakeEvent.jnew_0)])
+(provide (all-defined-out))
+
+(define ShakeEventFactory%
+  (class JObject%
+    (super-new)
+    (field [f_MICRO JR.null])
+    (field [f_SMALL JR.null])
+    (field [f_MEDIUM JR.null])
+    (field [f_LARGE JR.null])
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ShakeEventFactory.jclassValue) ShakeEventFactory%)
+
+(define ShakeEventFactory.jcell_instance 'jnone)
+(define (ShakeEventFactory.jstatic_instance)
+  (when (eq? ShakeEventFactory.jcell_instance 'jnone) (set! ShakeEventFactory.jcell_instance (ShakeEventFactory.jnew_0)))
+  ShakeEventFactory.jcell_instance)
+(define (ShakeEventFactory.jsetstatic_instance value) (set! ShakeEventFactory.jcell_instance value))
+
+(define (ShakeEventFactory.jnew_0)
+  (define this (new ShakeEventFactory% [jclass "ShakeEventFactory"]))
+    (set-field! f_MICRO this (ShakeEvent.jnew_0))
+    (set-field! f_SMALL this (ShakeEvent.jnew_0))
+    (set-field! f_MEDIUM this (ShakeEvent.jnew_0))
+    (set-field! f_LARGE this (ShakeEvent.jnew_0))
+  this)
+
+(define (ShakeEventFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ShakeEventFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ShakeEventFactory = {}
-ShakeEventFactory.__index = ShakeEventFactory
-ShakeEventFactory.className = "ShakeEventFactory"
-
-function ShakeEventFactory:_init_fields()
-    self.MICRO = ShakeEvent.new()
-    self.SMALL = ShakeEvent.new()
-    self.MEDIUM = ShakeEvent.new()
-    self.LARGE = ShakeEvent.new()
-end
-
-function ShakeEventFactory.new()
-    local self = setmetatable({}, ShakeEventFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function ShakeEventFactory.getInstance()
-        return ShakeEventFactory.instance
-end
-
-
-function ShakeEventFactory:init()
-end
-
-ShakeEventFactory.instance = ShakeEventFactory.new()
-
-return ShakeEventFactory
 

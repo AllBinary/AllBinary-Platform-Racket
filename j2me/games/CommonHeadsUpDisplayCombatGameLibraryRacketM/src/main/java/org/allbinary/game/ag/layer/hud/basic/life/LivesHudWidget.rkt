@@ -1,110 +1,86 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.life
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.hud.basic.life
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local Life = require("org.allbinary.game.ag.life.Life")
-local BasicHud = require("org.allbinary.game.graphics.hud.BasicHud")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local DisplayChangeEvent = require("org.allbinary.graphics.displayable.event.DisplayChangeEvent")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../../../allbinary_java.rkt"
+  "../../../../../../../../org/allbinary/game/graphics/hud/BasicHud.rkt"
+  "../../../../../../../../org/allbinary/graphics/paint/PaintableInterface.rkt")
+(lazy-require ["../../../../../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define LivesHudWidget%
+  (class BasicHud%
+    (super-new)
+    (field [f_lifeInterface JR.null])
+    (field [f_xArray JR.null])
+    (field [f_animationInterface JR.null])
+    (define/override (jm_updateMeasurement_1 _graphics)
+    (let ([_maxLives JR.null][_index JR.null])
+      (let/ec jreturn
+        (super jm_updateMeasurement_1 _graphics)
+        (set! _maxLives (send (send this jm_getLifeInterface_0) jm_getMaxlives_0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _maxLives)
+                (let/ec jcontinue
+            (vector-set! (get-field f_xArray this) _index (JR.i32 (+ (send this jm_getX_0) (JR.i32 (* _index 16))))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop))))))))
+    (define/override (jm_onDisplayChangeEvent_1 _displayChangeEvent)
+    (let ()
+      (let/ec jreturn
+        (super jm_onDisplayChangeEvent_1 _displayChangeEvent)
+        (set-field! f_myFontProcessor this (get-field f_updateMyFontProcessor this)))))
+    (define/override (jm_setX_1 _x)
+    (let ()
+      (let/ec jreturn
+        (super jm_setX_1 _x)
+        (set-field! f_myFontProcessor this (get-field f_updateMyFontProcessor this)))))
+    (define/public (jm_paint_1 _graphics)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_myFontProcessor this))
+        (begin
+            (set! _index (send (send this jm_getLifeInterface_0) jm_get_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (send (get-field f_animationInterface this) jm_paintXY_3 _graphics (vector-ref (get-field f_xArray this) _index) (send this jm_getY_0))) (jloop))))))))
+    (define/public (jm_paintThreed_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getLifeInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_lifeInterface this)))))))
+(define (LivesHudWidget.jclassValue) LivesHudWidget%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LivesHudWidget = {}
-LivesHudWidget.__index = LivesHudWidget
-LivesHudWidget.className = "LivesHudWidget"
-setmetatable(LivesHudWidget, {__index = BasicHud})
-
-function LivesHudWidget:_init_fields()
-    self.lifeInterface = nil
-    self.xArray = nil
-    self.animationInterface = nil
-end
-
-
-function LivesHudWidget.new(animationInterface, lifeInterface, location, direction)
-    local self = setmetatable(BasicHud.new(location, direction, 2, BasicColorFactory.getInstance().WHITE), LivesHudWidget)
-    self:_init_fields()
-        -- super(...) made self above
-        self.lifeInterface = lifeInterface
-        local size = java_int(self:getLifeInterface():getMaxlives())
-        self.xArray = java_new_array(0, size)
-        self.animationInterface = animationInterface
-        self.updateMaxWidth = self.lifeInterface:getMaxlives() * 16
-        self.updateMaxHeight = 16
-    return self
-end
-
-
-function LivesHudWidget:updateMeasurement(graphics)
-        BasicHud.updateMeasurement(self, graphics)
-        local maxLives = java_int(self:getLifeInterface():getMaxlives())
-        for index = 0, maxLives - 1 do
-            self.xArray[index + 1] = self:getX() + (index * 16)
-        end
-end
-
-
-function LivesHudWidget:onDisplayChangeEvent(displayChangeEvent)
-        BasicHud.onDisplayChangeEvent(self, displayChangeEvent)
-        self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function LivesHudWidget:setX(x)
-        BasicHud.setX(self, x)
-        self.myFontProcessor = self.updateMyFontProcessor
-end
+(define (LivesHudWidget.jnew_4 _animationInterface _lifeInterface _location _direction)
+  (define this (new LivesHudWidget% [jclass "LivesHudWidget"]))
+    
+    
+    
+    (let ([_size JR.null])
+      (let/ec jreturn
+        (void)
+        (set-field! f_lifeInterface this _lifeInterface)
+        (set! _size (send (send this jm_getLifeInterface_0) jm_getMaxlives_0))
+        (set-field! f_xArray this (JR.newArray 0 _size))
+        (set-field! f_animationInterface this _animationInterface)
+        (set-field! f_updateMaxWidth this (JR.i32 (* (send (get-field f_lifeInterface this) jm_getMaxlives_0) 16)))
+        (set-field! f_updateMaxHeight this 16)))
+  this)
 
 
-function LivesHudWidget:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        do
-            local index = java_int(self:getLifeInterface():get())
-            while (function() index = index - 1 return index end)() >= 0 do
-            self.animationInterface:paintXY(graphics, self.xArray[index + 1], self:getY())
-            end
-        end
-end
-
-
-function LivesHudWidget:paintThreed(graphics)
-end
-
-
-function LivesHudWidget:getLifeInterface()
-        return self.lifeInterface
-end
-
-return LivesHudWidget
 

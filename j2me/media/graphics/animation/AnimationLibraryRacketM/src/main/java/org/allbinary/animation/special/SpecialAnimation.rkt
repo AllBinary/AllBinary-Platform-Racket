@@ -1,79 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.special
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.special
 
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local IndexedAnimationBehavior = require("org.allbinary.animation.IndexedAnimationBehavior")
-local SpecialAnimationInterface = require("org.allbinary.animation.special.SpecialAnimationInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/IndexedAnimation.rkt"
+  "./SpecialAnimationInterface.rkt")
+(lazy-require ["../../../../org/allbinary/animation/IndexedAnimationBehavior.rkt" (IndexedAnimationBehavior.jnew_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SpecialAnimation%
+  (class IndexedAnimation%
+    (super-new)
+    (define/override (jm_nextFrame_0)
+    (let ([_indexedAnimationBehavior JR.null])
+      (let/ec jreturn
+        (set! _indexedAnimationBehavior (get-field f_animationBehaviorP this))
+        (set-field! f_loopIndex _indexedAnimationBehavior (JR.i32 (+ (get-field f_loopIndex _indexedAnimationBehavior) 1))))))
+    (define/public (jm_setLastFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isComplete_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_open_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_close_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_process_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (SpecialAnimation.jclassValue) SpecialAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define SpecialAnimation.jcell_NULL_SPECIAL_ANIMATION 'jnone)
+(define (SpecialAnimation.jstatic_NULL_SPECIAL_ANIMATION)
+  (when (eq? SpecialAnimation.jcell_NULL_SPECIAL_ANIMATION 'jnone) (set! SpecialAnimation.jcell_NULL_SPECIAL_ANIMATION (SpecialAnimation.jnew_1 (IndexedAnimationBehavior.jnew_2 1 250))))
+  SpecialAnimation.jcell_NULL_SPECIAL_ANIMATION)
+(define (SpecialAnimation.jsetstatic_NULL_SPECIAL_ANIMATION value) (set! SpecialAnimation.jcell_NULL_SPECIAL_ANIMATION value))
 
-local SpecialAnimation = {}
-SpecialAnimation.__index = SpecialAnimation
-SpecialAnimation.className = "SpecialAnimation"
-setmetatable(SpecialAnimation, {__index = IndexedAnimation})
+(define (SpecialAnimation.jnew_1 _animationBehavior)
+  (define this (new SpecialAnimation% [jclass "SpecialAnimation"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-
-function SpecialAnimation.getInstance()
-        return SpecialAnimation.NULL_SPECIAL_ANIMATION
-end
-
-
-function SpecialAnimation.new(animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), SpecialAnimation)
-        -- super(...) made self above
-    return self
-end
-
-
-function SpecialAnimation:nextFrame()
-        local indexedAnimationBehavior = (self.animationBehaviorP)
-        indexedAnimationBehavior.loopIndex = indexedAnimationBehavior.loopIndex + 1
-end
-
-
-function SpecialAnimation:setLastFrame()
-end
-
-
-function SpecialAnimation:isComplete()
-        return false
-end
-
-
-function SpecialAnimation:open()
-end
-
-
-function SpecialAnimation:close()
-end
+(define (SpecialAnimation.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (SpecialAnimation.jstatic_NULL_SPECIAL_ANIMATION)))))
 
 
-function SpecialAnimation:process()
-end
-
-SpecialAnimation.NULL_SPECIAL_ANIMATION = SpecialAnimation.new(IndexedAnimationBehavior.new(1, 250))
-
-return SpecialAnimation
 

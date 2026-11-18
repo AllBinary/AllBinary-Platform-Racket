@@ -1,75 +1,65 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.caption
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.caption
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/Animation.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CaptionAnimation%
+  (class Animation%
+    (super-new)
+    (field [f_animationInterface JR.null])
+    (field [f_overlayAnimationInterface JR.null])
+    (field [f_captionDx 0])
+    (field [f_captionDy 0])
+    (field [f_dx 0])
+    (field [f_dy 0])
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationInterface this) jm_paintXY_3 _graphics (JR.i32 (+ _x (get-field f_captionDx this))) (JR.i32 (+ _y (get-field f_captionDy this))))
+        (send (get-field f_overlayAnimationInterface this) jm_paintXY_3 _graphics (JR.i32 (+ (JR.i32 (+ _x (get-field f_captionDx this))) (get-field f_dx this))) (JR.i32 (+ (JR.i32 (+ _y (get-field f_captionDy this))) (get-field f_dy this)))))))
+    (define/override (jm_paintThreedXYZ_4 _graphics _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationInterface this) jm_paintThreedXYZ_4 _graphics (JR.i32 (+ _x (get-field f_captionDx this))) (JR.i32 (+ _y (get-field f_captionDy this))) _z)
+        (send (get-field f_overlayAnimationInterface this) jm_paintThreedXYZ_4 _graphics (JR.i32 (+ (JR.i32 (+ _x (get-field f_captionDx this))) (get-field f_dx this))) (JR.i32 (+ (JR.i32 (+ _y (get-field f_captionDy this))) (get-field f_dy this))) _z))))))
+(define (CaptionAnimation.jclassValue) CaptionAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CaptionAnimation = {}
-CaptionAnimation.__index = CaptionAnimation
-CaptionAnimation.className = "CaptionAnimation"
-setmetatable(CaptionAnimation, {__index = Animation})
-
-function CaptionAnimation:_init_fields()
-    self.animationInterface = nil
-    self.overlayAnimationInterface = nil
-    self.captionDx = nil
-    self.captionDy = nil
-    self.dx = nil
-    self.dy = nil
-end
-
-
-function CaptionAnimation.new(animationInterface, overlayAnimationInterface, captionDx, captionDy, dx, dy)
-    local self = setmetatable(Animation.new(), CaptionAnimation)
-    self:_init_fields()
-        self.animationInterface = animationInterface
-        self.overlayAnimationInterface = overlayAnimationInterface
-        self.captionDx = captionDx
-        self.captionDy = captionDy
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
--- throws Exception
-function CaptionAnimation:nextFrame()
-end
-
-
-function CaptionAnimation:paintXY(graphics, x, y)
-        self.animationInterface:paintXY(graphics, x + self.captionDx, y + self.captionDy)
-        self.overlayAnimationInterface:paintXY(graphics, x + self.captionDx + self.dx, y + self.captionDy + self.dy)
-end
+(define (CaptionAnimation.jnew_6 _animationInterface _overlayAnimationInterface _captionDx _captionDy _dx _dy)
+  (define this (new CaptionAnimation% [jclass "CaptionAnimation"]))
+    
+    
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_animationInterface this _animationInterface)
+        (set-field! f_overlayAnimationInterface this _overlayAnimationInterface)
+        (set-field! f_captionDx this _captionDx)
+        (set-field! f_captionDy this _captionDy)
+        (set-field! f_dx this _dx)
+        (set-field! f_dy this _dy)))
+  this)
 
 
-function CaptionAnimation:paintThreedXYZ(graphics, x, y, z)
-        self.animationInterface:paintThreedXYZ(graphics, x + self.captionDx, y + self.captionDy, z)
-        self.overlayAnimationInterface:paintThreedXYZ(graphics, x + self.captionDx + self.dx, y + self.captionDy + self.dy, z)
-end
-
-return CaptionAnimation
 

@@ -1,62 +1,54 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local PlayerGameInputCompositeInterface = require("org.allbinary.game.input.PlayerGameInputCompositeInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./PlayerGameInputCompositeInterface.rkt")
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["./NoPlayerGameInput.rkt" (NoPlayerGameInput.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullPlayerGameInputComposite%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))
+    (define/public (jm_processInput_1 _layerManager)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_initInputProcessors_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getPlayerGameInput_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NoPlayerGameInput.jm_getInstance_0)))))))
+(define (NullPlayerGameInputComposite.jclassValue) NullPlayerGameInputComposite%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullPlayerGameInputComposite.jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE 'jnone)
+(define (NullPlayerGameInputComposite.jstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE)
+  (when (eq? NullPlayerGameInputComposite.jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE 'jnone) (set! NullPlayerGameInputComposite.jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE (NullPlayerGameInputComposite.jnew_0)))
+  NullPlayerGameInputComposite.jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE)
+(define (NullPlayerGameInputComposite.jsetstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE value) (set! NullPlayerGameInputComposite.jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE value))
 
-local NullPlayerGameInputComposite = {}
-NullPlayerGameInputComposite.__index = NullPlayerGameInputComposite
-NullPlayerGameInputComposite.className = "NullPlayerGameInputComposite"
-
-function NullPlayerGameInputComposite.new()
-    local self = setmetatable({}, NullPlayerGameInputComposite)
-    return self
-end
-
-
-function NullPlayerGameInputComposite:getName()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
--- throws Exception
-function NullPlayerGameInputComposite:processInput(layerManager)
-end
-
-
-function NullPlayerGameInputComposite:initInputProcessors()
-end
+(define (NullPlayerGameInputComposite.jnew_0)
+  (define this (new NullPlayerGameInputComposite% [jclass "NullPlayerGameInputComposite"]))
+  this)
 
 
-function NullPlayerGameInputComposite:getPlayerGameInput()
-        return NoPlayerGameInput.getInstance()
-end
-
-NullPlayerGameInputComposite.NULL_PLAYER_GAME_INPUT_COMPOSITE = NullPlayerGameInputComposite.new()
-
-return NullPlayerGameInputComposite
 

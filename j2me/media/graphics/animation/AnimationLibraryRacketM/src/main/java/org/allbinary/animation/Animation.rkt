@@ -1,147 +1,119 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
--- local GL = require("javax.microedition.khronos.opengles.GL")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local OpenGLSurfaceChangedInterface = require("org.allbinary.image.opengles.OpenGLSurfaceChangedInterface")
-local AnimationInterface = require("org.allbinary.animation.AnimationInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../org/allbinary/image/opengles/OpenGLSurfaceChangedInterface.rkt"
+  "./AnimationInterface.rkt")
+(lazy-require ["../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/graphics/color/BasicColorSetUtil.rkt" (BasicColorSetUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Animation%
+  (class JObject%
+    (super-new)
+    (field [f_basicSetColorUtil JR.null])
+    (field [f_basicColor JR.null])
+    (field [f_colorP 0])
+    (field [f_changeBasicColorP JR.null])
+    (field [f_changeColorP 0])
+    (field [f_alphaP 0])
+    (define/public (jm_setAlpha_1 _alpha)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_alphaP this _alpha))))
+    (define/public (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_basicSetColorUtil this) jm_setBasicColorP3_3 _graphics (send this jm_getBasicColorP_0) (send this jm_getColor_0)))))
+    (define/public (jm_paintThreedXYZ_4 _graphics _x _y _z)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isThreed_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_getBasicColorP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_basicColor this)))))
+    (define/public (jm_setBasicColorP_1 _basicColor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_basicColor this _basicColor)
+        (set-field! f_colorP this (send (get-field f_basicColor this) jm_intValue_0)))))
+    (define/public (jm_setBackgroundBasicColorP_1 _basicColor)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getChangeBasicColor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_changeBasicColorP this)))))
+    (define/public (jm_changeBasicColor_1 _basicColor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_changeBasicColorP this _basicColor)
+        (set-field! f_changeColorP this (send (get-field f_changeBasicColorP this) jm_intValue_0)))))
+    (define/public (jm_getChangeColor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_changeColorP this)))))
+    (define/public (jm_getColor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_colorP this)))))
+    (define/public (jm_setScale_2 _scaleX _scaleY)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setMaxScale_2 _maxScaleX _maxScaleY)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_set_1 _gl)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setDx_1 _dx)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getDx_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_setDy_1 _dy)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getDy_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))))
+(define (Animation.jclassValue) Animation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local Animation = {}
-Animation.__index = Animation
-Animation.className = "Animation"
-
-function Animation:_init_fields()
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.basicColor = BasicColorFactory.getInstance().WHITE
-    self.colorP = 0
-    self.changeBasicColorP = BasicColorFactory.getInstance().NULL_COLOR
-    self.changeColorP = 0
-    self.alphaP = 0
-end
-
-
-function Animation.new()
-    local self = setmetatable({}, Animation)
-    self:_init_fields()
-    return self
-end
-
-
-function Animation:setAlpha(alpha)
-        self.alphaP = alpha
-end
-
-
--- throws Exception
-function Animation:nextFrame()
-end
-
-
-function Animation:paintXY(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-end
-
-
-function Animation:paintThreedXYZ(graphics, x, y, z)
-end
-
-
-function Animation:isThreed()
-        return false
-end
-
-
-function Animation:getBasicColorP()
-        return self.basicColor
-end
-
-
-function Animation:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-        self.colorP = math.tointeger(self.basicColor // 1)
-end
-
-
-function Animation:setBackgroundBasicColorP(basicColor)
-end
-
-
-function Animation:getChangeBasicColor()
-        return self.changeBasicColorP
-end
-
-
-function Animation:changeBasicColor(basicColor)
-        self.changeBasicColorP = basicColor
-        self.changeColorP = math.tointeger(self.changeBasicColorP // 1)
-end
-
-
-function Animation:getChangeColor()
-        return self.changeColorP
-end
-
-
-function Animation:getColor()
-        return self.colorP
-end
-
-
-function Animation:setScale(scaleX, scaleY)
-end
-
-
-function Animation:setMaxScale(maxScaleX, maxScaleY)
-end
+(define (Animation.jnew_0)
+  (define this (new Animation% [jclass "Animation"]))
+    (set-field! f_basicSetColorUtil this (BasicColorSetUtil.jm_getInstance_0))
+    (set-field! f_basicColor this (get-field f_WHITE (BasicColorFactory.jm_getInstance_0)))
+    
+    (set-field! f_changeBasicColorP this (get-field f_NULL_COLOR (BasicColorFactory.jm_getInstance_0)))
+    
+    
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
--- throws Exception
-function Animation:set(gl)
-end
-
-
-function Animation:setDx(dx)
-end
-
-
-function Animation:getDx()
-        return 0
-end
-
-
-function Animation:setDy(dy)
-end
-
-
-function Animation:getDy()
-        return 0
-end
-
-return Animation
 

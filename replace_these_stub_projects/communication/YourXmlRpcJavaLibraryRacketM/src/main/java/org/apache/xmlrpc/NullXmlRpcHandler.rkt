@@ -1,50 +1,43 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.apache.xmlrpc
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.apache.xmlrpc
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local XmlRpcHandler = require("org.apache.xmlrpc.XmlRpcHandler")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./XmlRpcHandler.rkt")
+(lazy-require ["../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullXmlRpcHandler%
+  (class JObject%
+    (super-new)
+    (define/public (jm_execute_2 _method _params)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))))))
+(define (NullXmlRpcHandler.jclassValue) NullXmlRpcHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER 'jnone)
+(define (NullXmlRpcHandler.jstatic_NULL_XML_RPC_HANDLER)
+  (when (eq? NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER 'jnone) (set! NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER (NullXmlRpcHandler.jnew_0)))
+  NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER)
+(define (NullXmlRpcHandler.jsetstatic_NULL_XML_RPC_HANDLER value) (set! NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER value))
 
-local NullXmlRpcHandler = {}
-NullXmlRpcHandler.__index = NullXmlRpcHandler
-NullXmlRpcHandler.className = "NullXmlRpcHandler"
-
-function NullXmlRpcHandler.new()
-    local self = setmetatable({}, NullXmlRpcHandler)
-    return self
-end
+(define (NullXmlRpcHandler.jnew_0)
+  (define this (new NullXmlRpcHandler% [jclass "NullXmlRpcHandler"]))
+  this)
 
 
--- throws Exception
-function NullXmlRpcHandler:execute(method, params)
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-NullXmlRpcHandler.NULL_XML_RPC_HANDLER = NullXmlRpcHandler.new()
-
-return NullXmlRpcHandler
 

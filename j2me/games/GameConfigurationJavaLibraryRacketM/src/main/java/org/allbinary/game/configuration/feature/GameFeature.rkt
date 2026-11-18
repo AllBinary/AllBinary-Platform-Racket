@@ -1,42 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.feature
 
-local Feature = require("org.allbinary.game.configuration.feature.Feature")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./Feature.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameFeature%
+  (class Feature%
+    (super-new)))
+(define (GameFeature.jclassValue) GameFeature%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameFeature = {}
-GameFeature.__index = GameFeature
-GameFeature.className = "GameFeature"
-setmetatable(GameFeature, {__index = Feature})
+(define (GameFeature.jnew_1 _name)
+  (define this (new GameFeature% [jclass "GameFeature"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function GameFeature.new(name)
-    local self = setmetatable(Feature.new(name), GameFeature)
-        -- super(...) made self above
-    return self
-end
-
-return GameFeature
 

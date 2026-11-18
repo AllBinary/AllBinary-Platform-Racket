@@ -1,355 +1,281 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.special
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/combat/damage/DamageableInterface.rkt"
+  "../../../../../org/allbinary/game/combat/destroy/DestroyableInterface.rkt"
+  "../../../../../org/allbinary/game/layer/CollidableCompositeLayer.rkt"
+  "../../../../../org/allbinary/game/layer/pickup/PickupCompositeInterface.rkt"
+  "./SpecialGameInputInterface.rkt")
+(lazy-require ["../../../../../org/allbinary/game/collision/CollidableNeverCollideBehaviorFactory.rkt" (CollidableNeverCollideBehaviorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/identification/BasicGroupFactory.rkt" (BasicGroupFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/layer/AllBinaryGameLayerManager.rkt" (AllBinaryGameLayerManager.jm_getNullInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/layer/pickup/PickupBehavior.rkt" (PickupBehavior.jm_getNullInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/part/PartInterfaceUtil.rkt" (PartInterfaceUtil.jm_getZeroArray_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/RectangleFactory.rkt" (RectangleFactory.jstatic_SINGLETON)])
+(lazy-require ["../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/math/PositionStrings.rkt" (PositionStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/view/ViewPositionBase.rkt" (ViewPositionBase.jstatic_NULL_VIEW_POSITION)])
+(provide (all-defined-out))
+
+(define CollidableDestroyableDamageableLayer%
+  (class CollidableCompositeLayer%
+    (super-new)
+    (field [f_groupInterface JR.null])
+    (field [f_readyForExplosion #f])
+    (field [f_initWidth 0])
+    (field [f_initHeight 0])
+    (field [f_initX 0])
+    (field [f_initY 0])
+    (field [f_initZ 0])
+    (field [f_partInterfaceArrayP JR.null])
+    (field [f_pickupBehavior JR.null])
+    (field [f_allBinaryGameLayerManagerP JR.null])
+    (field [f_isDraggable #f])
+    (field [f_isDragged #f])
+    (field [f_isDropped #f])
+    (define/public (jm_initPosition_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setPosition_3 (get-field f_initX this) (get-field f_initY this) (get-field f_initZ this)))))
+    (define/public (jm_initPositionXYZ_3 _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_initX this _x)
+        (set-field! f_initY this _y)
+        (set-field! f_initZ this _z))))
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (super jm_paint_1 _graphics))))
+    (define/public (jm_damage_2 _damage _damageType)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_getDamage_1 _damageType)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_isDestroyed_0)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/override (jm_getGroupInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_groupInterface this)))))
+    (define/public (jm_setGroupInterface_1 _teamInterface)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_groupInterface this _teamInterface))))
+    (define/public (jm_setAllBinaryGameLayerManager_1 _allBinaryGameLayerManager)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_allBinaryGameLayerManagerP this _allBinaryGameLayerManager)
+        (when (JR.null? (get-field f_allBinaryGameLayerManagerP this))
+            (begin
+            (raise (JR.newException "RuntimeException")))))))
+    (define/public (jm_isReadyForExplosion_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_readyForExplosion this)))))
+    (define/public (jm_setReadyForExplosion_1 _isReadyForExplosion)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_readyForExplosion this _isReadyForExplosion))))
+    (define/public (jm_getInitWidth_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_initWidth this)))))
+    (define/public (jm_getInitHeight_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_initHeight this)))))
+    (define/public (jm_getInitX_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_initX this)))))
+    (define/public (jm_getInitY_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_initY this)))))
+    (define/public (jm_up_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_down_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_right_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_left_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_strafeLeft_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_strafeRight_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_fire_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special1_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special2_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special3_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special4_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special5_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_upAnalog_1 _yAnalogValue)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_downAnalog_1 _yAnalogValue)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_rightAnalog_1 _xAnalogValue)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_leftAnalog_1 _xAnalogValue)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_rightTrigger_3 _layerManager _gameKeyEvent _xAnalogValue)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_leftTrigger_3 _layerManager _gameKeyEvent _xAnalogValue)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onDestroyed_1 _destroyedEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getPickupBehavior_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_pickupBehavior this)))))
+    (define/public (jm_setPickupBehavior_1 _pickupBehavior)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_pickupBehavior this _pickupBehavior))))
+    (define/public (jm_addPart_1 _pickedUpLayerInterfaceFactoryInterface)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setPartInterfaceArray_1 _partInterfaceArray)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_partInterfaceArrayP this _partInterfaceArray))))
+    (define/public (jm_getPartInterfaceArray_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_partInterfaceArrayP this)))))
+    (define/override (jm_toStringAppend_1 _stringBuffer)
+    (let ([_commonSeps JR.null][_positionStrings JR.null][_groupInterfaceArray JR.null][_size JR.null][_index JR.null][_pickupBehavior JR.null])
+      (let/ec jreturn
+        (set! _commonSeps (CommonSeps.jm_getInstance_0))
+        (set! _positionStrings (PositionStrings.jm_getInstance_0))
+        (super jm_toStringAppend_1 _stringBuffer)
+        (send _stringBuffer jm_append_1 (get-field f_NEW_LINE _commonSeps))
+        (set! _groupInterfaceArray (send this jm_getGroupInterface_0))
+        (set! _size (vector-length _groupInterfaceArray))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (send _stringBuffer jm_append_1 (JR.toString (vector-ref _groupInterfaceArray _index)))
+            (send _stringBuffer jm_append_1 (get-field f_COMMA _commonSeps)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (set! _pickupBehavior (send this jm_getPickupBehavior_0))
+        (when (not (JR.null? _pickupBehavior))
+            (begin
+            (send _stringBuffer jm_append_1 (get-field f_NEW_LINE _commonSeps))
+            (send _stringBuffer jm_append_1 (send _pickupBehavior jm_toString_0))))
+        (send _stringBuffer jm_append_1 (get-field f_NEW_LINE _commonSeps))
+        (send _stringBuffer jm_append_1 (CollidableDestroyableDamageableLayer.jstatic_READYFOREXPLOSION))
+        (send _stringBuffer jm_appendboolean_1 (get-field f_readyForExplosion this))
+        (send _stringBuffer jm_append_1 (get-field f_NEW_LINE _commonSeps))
+        (send _stringBuffer jm_append_1 (get-field f_INIT (get-field f_commonStrings this)))
+        (send _stringBuffer jm_append_1 (get-field f_SPACE _commonSeps))
+        (send _stringBuffer jm_append_1 (get-field f_X_LABEL _positionStrings))
+        (send _stringBuffer jm_appendint_1 (get-field f_initX this))
+        (send _stringBuffer jm_append_1 (get-field f_Y_LABEL _positionStrings))
+        (send _stringBuffer jm_appendint_1 (get-field f_initX this))
+        (send _stringBuffer jm_append_1 (get-field f_Z_LABEL _positionStrings))
+        (send _stringBuffer jm_appendint_1 (get-field f_initZ this)))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send this jm_toStringAppend_1 _stringBuffer)
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (CollidableDestroyableDamageableLayer.jclassValue) CollidableDestroyableDamageableLayer%)
+
+(define CollidableDestroyableDamageableLayer.jcell_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER 'jnone)
+(define (CollidableDestroyableDamageableLayer.jstatic_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
+  (when (eq? CollidableDestroyableDamageableLayer.jcell_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER 'jnone) (set! CollidableDestroyableDamageableLayer.jcell_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  CollidableDestroyableDamageableLayer.jcell_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
+(define (CollidableDestroyableDamageableLayer.jsetstatic_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER value) (set! CollidableDestroyableDamageableLayer.jcell_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER value))
+
+(define CollidableDestroyableDamageableLayer.jcell_READYFOREXPLOSION 'jnone)
+(define (CollidableDestroyableDamageableLayer.jstatic_READYFOREXPLOSION)
+  (when (eq? CollidableDestroyableDamageableLayer.jcell_READYFOREXPLOSION 'jnone) (set! CollidableDestroyableDamageableLayer.jcell_READYFOREXPLOSION "ReadyForExplosion: "))
+  CollidableDestroyableDamageableLayer.jcell_READYFOREXPLOSION)
+(define (CollidableDestroyableDamageableLayer.jsetstatic_READYFOREXPLOSION value) (set! CollidableDestroyableDamageableLayer.jcell_READYFOREXPLOSION value))
+
+(define (CollidableDestroyableDamageableLayer.jnew_4 _groupInterface _name _layerInfo _viewPosition)
+  (define this (new CollidableDestroyableDamageableLayer% [jclass "CollidableDestroyableDamageableLayer"]))
+    
+    
+    
+    
+    
+    
+    
+    (set-field! f_partInterfaceArrayP this (PartInterfaceUtil.jm_getZeroArray_0))
+    
+    (set-field! f_allBinaryGameLayerManagerP this (AllBinaryGameLayerManager.jm_getNullInstance_0))
+    (set-field! f_isDraggable this #f)
+    (set-field! f_isDragged this #f)
+    (set-field! f_isDropped this #f)
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_initWidth this (send _layerInfo jm_getWidth_0))
+        (set-field! f_initHeight this (send _layerInfo jm_getHeight_0))
+        (set-field! f_groupInterface this _groupInterface)
+        (set-field! f_pickupBehavior this (PickupBehavior.jm_getNullInstance_0))))
+  this)
+
+(define (CollidableDestroyableDamageableLayer.jm_getNullInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (CollidableDestroyableDamageableLayer.jstatic_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! CollidableDestroyableDamageableLayer.jcell_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER (CollidableDestroyableDamageableLayer.jnew_4 (get-field f_NONE_ARRAY (BasicGroupFactory.jm_getInstance_0)) (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (RectangleFactory.jstatic_SINGLETON) (ViewPositionBase.jstatic_NULL_VIEW_POSITION)))))
+        (jreturn (CollidableDestroyableDamageableLayer.jstatic_NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)))))
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local CollidableNeverCollideBehaviorFactory = require("org.allbinary.game.collision.CollidableNeverCollideBehaviorFactory")
-local DamageableInterface = require("org.allbinary.game.combat.damage.DamageableInterface")
-local DestroyableInterface = require("org.allbinary.game.combat.destroy.DestroyableInterface")
-local DestroyedEvent = require("org.allbinary.game.combat.destroy.event.DestroyedEvent")
-local BasicGroupFactory = require("org.allbinary.game.identification.BasicGroupFactory")
-local Group = require("org.allbinary.game.identification.Group")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local PickedUpLayerInterfaceFactoryInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface")
-local PickupBehavior = require("org.allbinary.game.layer.pickup.PickupBehavior")
-local PickupCompositeInterface = require("org.allbinary.game.layer.pickup.PickupCompositeInterface")
-local PartInterface = require("org.allbinary.game.part.PartInterface")
-local PartInterfaceUtil = require("org.allbinary.game.part.PartInterfaceUtil")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local RectangleFactory = require("org.allbinary.graphics.RectangleFactory")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local PositionStrings = require("org.allbinary.math.PositionStrings")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local SpecialGameInputInterface = require("org.allbinary.game.layer.special.SpecialGameInputInterface")
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
-
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CollidableDestroyableDamageableLayer = {}
-CollidableDestroyableDamageableLayer.__index = CollidableDestroyableDamageableLayer
-CollidableDestroyableDamageableLayer.className = "CollidableDestroyableDamageableLayer"
-setmetatable(CollidableDestroyableDamageableLayer, {__index = CollidableCompositeLayer})
-
-function CollidableDestroyableDamageableLayer:_init_fields()
-    self.groupInterface = nil
-    self.readyForExplosion = false
-    self.initWidth = nil
-    self.initHeight = nil
-    self.initX = 0
-    self.initY = 0
-    self.initZ = 0
-    self.partInterfaceArrayP = PartInterfaceUtil.getZeroArray()
-    self.pickupBehavior = nil
-    self.allBinaryGameLayerManagerP = AllBinaryGameLayerManager.getNullInstance()
-    self.isDraggable = false
-    self.isDragged = false
-    self.isDropped = false
-end
-
-
-function CollidableDestroyableDamageableLayer.getNullInstance()
-        if CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER == NullUtil.getInstance().NULL_OBJECT then
-            CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER = CollidableDestroyableDamageableLayer.new(BasicGroupFactory.getInstance().NONE_ARRAY, StringUtil.getInstance().EMPTY_STRING, RectangleFactory.SINGLETON, ViewPositionBase.NULL_VIEW_POSITION)
-        end
-        return CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER
-end
-
-
-function CollidableDestroyableDamageableLayer.new(groupInterface, name, layerInfo, viewPosition)
-    local self = setmetatable(CollidableCompositeLayer.new(name, layerInfo, viewPosition, CollidableNeverCollideBehaviorFactory.getInstance()), CollidableDestroyableDamageableLayer)
-    self:_init_fields()
-        -- super(...) made self above
-        self.initWidth = layerInfo:getWidth()
-        self.initHeight = layerInfo:getHeight()
-        self.groupInterface = groupInterface
-        self.pickupBehavior = PickupBehavior.getNullInstance()
-    return self
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:initPosition()
-        self:setPosition(self.initX, self.initY, self.initZ)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:initPositionXYZ(x, y, z)
-        self.initX = x
-        self.initY = y
-        self.initZ = z
-end
-
-
-function CollidableDestroyableDamageableLayer:paint(graphics)
-        CollidableCompositeLayer.paint(self, graphics)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:damage(damage, damageType)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:getDamage(damageType)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:isDestroyed()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
-function CollidableDestroyableDamageableLayer:getGroupInterface()
-        return self.groupInterface
-end
-
-
-function CollidableDestroyableDamageableLayer:setGroupInterface(teamInterface)
-        self.groupInterface = teamInterface
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:setAllBinaryGameLayerManager(allBinaryGameLayerManager)
-        self.allBinaryGameLayerManagerP = allBinaryGameLayerManager
-        if self.allBinaryGameLayerManagerP == nil then
-            error(java_exception("RuntimeException"), 0)
-        end
-end
-
-
-function CollidableDestroyableDamageableLayer:isReadyForExplosion()
-        return self.readyForExplosion
-end
-
-
-function CollidableDestroyableDamageableLayer:setReadyForExplosion(isReadyForExplosion)
-        self.readyForExplosion = isReadyForExplosion
-end
-
-
-function CollidableDestroyableDamageableLayer:getInitWidth()
-        return self.initWidth
-end
-
-
-function CollidableDestroyableDamageableLayer:getInitHeight()
-        return self.initHeight
-end
-
-
-function CollidableDestroyableDamageableLayer:getInitX()
-        return self.initX
-end
-
-
-function CollidableDestroyableDamageableLayer:getInitY()
-        return self.initY
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:up()
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:down()
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:right()
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:left()
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:strafeLeft()
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:strafeRight()
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:fire(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:special1(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:special2(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:special3(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:special4(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:special5(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:upAnalog(yAnalogValue)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:downAnalog(yAnalogValue)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:rightAnalog(xAnalogValue)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:leftAnalog(xAnalogValue)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:rightTrigger(layerManager, gameKeyEvent, xAnalogValue)
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:leftTrigger(layerManager, gameKeyEvent, xAnalogValue)
-end
-
-
-function CollidableDestroyableDamageableLayer:onDestroyed(destroyedEvent)
-end
-
-
-function CollidableDestroyableDamageableLayer:getPickupBehavior()
-        return self.pickupBehavior
-end
-
-
-function CollidableDestroyableDamageableLayer:setPickupBehavior(pickupBehavior)
-        self.pickupBehavior = pickupBehavior
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableLayer:addPart(pickedUpLayerInterfaceFactoryInterface)
-end
-
-
-function CollidableDestroyableDamageableLayer:setPartInterfaceArray(partInterfaceArray)
-        self.partInterfaceArrayP = partInterfaceArray
-end
-
-
-function CollidableDestroyableDamageableLayer:getPartInterfaceArray()
-        return self.partInterfaceArrayP
-end
-
-
-function CollidableDestroyableDamageableLayer:toStringAppend(stringBuffer)
-        local commonSeps = CommonSeps.getInstance()
-        local positionStrings = PositionStrings.getInstance()
-        CollidableCompositeLayer.toStringAppend(self, stringBuffer)
-        stringBuffer:append(commonSeps.NEW_LINE)
-        local groupInterfaceArray = self:getGroupInterface()
-        local size = (groupInterfaceArray.n or #groupInterfaceArray)
-        for index = 0, size - 1 do
-            stringBuffer:append(tostring(groupInterfaceArray[index + 1]))
-            stringBuffer:append(commonSeps.COMMA)
-        end
-        local pickupBehavior = self:getPickupBehavior()
-        if pickupBehavior ~= nil then
-            stringBuffer:append(commonSeps.NEW_LINE)
-            stringBuffer:append(tostring(pickupBehavior))
-        end
-        stringBuffer:append(commonSeps.NEW_LINE)
-        stringBuffer:append(CollidableDestroyableDamageableLayer.READYFOREXPLOSION)
-        stringBuffer:appendboolean(self.readyForExplosion)
-        stringBuffer:append(commonSeps.NEW_LINE)
-        stringBuffer:append(self.commonStrings.INIT)
-        stringBuffer:append(commonSeps.SPACE)
-        stringBuffer:append(positionStrings.X_LABEL)
-        stringBuffer:appendint(self.initX)
-        stringBuffer:append(positionStrings.Y_LABEL)
-        stringBuffer:appendint(self.initX)
-        stringBuffer:append(positionStrings.Z_LABEL)
-        stringBuffer:appendint(self.initZ)
-end
-
-
-function CollidableDestroyableDamageableLayer:toString()
-        local stringBuffer = StringMaker.new()
-        self:toStringAppend(stringBuffer)
-        return tostring(stringBuffer)
-end
-CollidableDestroyableDamageableLayer.__tostring = function(self) return self:toString() end
-
-CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER = NullUtil.getInstance().NULL_OBJECT
-CollidableDestroyableDamageableLayer.READYFOREXPLOSION = "ReadyForExplosion: "
-
-return CollidableDestroyableDamageableLayer
 

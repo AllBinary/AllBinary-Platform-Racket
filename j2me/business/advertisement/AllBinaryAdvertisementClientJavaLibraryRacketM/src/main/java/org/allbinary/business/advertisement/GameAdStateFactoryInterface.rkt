@@ -1,41 +1,33 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.business.advertisement
 
-local SoftwareInformation = require("org.allbinary.logic.system.SoftwareInformation")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameAdStateFactoryInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstanceForApp_1 _softwareInformation)
+      (raise (JR.newException "AbstractMethodError" "getInstanceForApp")))))
+(define (GameAdStateFactoryInterface.jclassValue) GameAdStateFactoryInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local GameAdStateFactoryInterface = {}
-GameAdStateFactoryInterface.__index = GameAdStateFactoryInterface
-GameAdStateFactoryInterface.className = "GameAdStateFactoryInterface"
+(define (GameAdStateFactoryInterface.jnew_0)
+  (define this (new GameAdStateFactoryInterface% [jclass "GameAdStateFactoryInterface"]))
+  this)
 
 
--- throws Exception
-function GameAdStateFactoryInterface:getInstanceForApp(softwareInformation)
-    error("abstract method getInstanceForApp")
-end
-
-return GameAdStateFactoryInterface
 

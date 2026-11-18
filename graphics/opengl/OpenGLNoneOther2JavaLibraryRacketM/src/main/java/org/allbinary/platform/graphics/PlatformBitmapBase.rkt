@@ -1,65 +1,55 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.platform.graphics
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.platform.graphics
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/NullImage.rkt" (NullImage.jstatic_NULL_IMAGE)])
+(lazy-require ["../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PlatformBitmapBase%
+  (class JObject%
+    (super-new)
+    (field [f_alpha 0])
+    (field [f_basicColor JR.null])
+    (define/public (jm_getWidth_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_getHeight_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_getImage_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullImage.jstatic_NULL_IMAGE)))))))
+(define (PlatformBitmapBase.jclassValue) PlatformBitmapBase%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define PlatformBitmapBase.jcell_NULL_PLATFORM_BITMAP_BASE 'jnone)
+(define (PlatformBitmapBase.jstatic_NULL_PLATFORM_BITMAP_BASE)
+  (when (eq? PlatformBitmapBase.jcell_NULL_PLATFORM_BITMAP_BASE 'jnone) (set! PlatformBitmapBase.jcell_NULL_PLATFORM_BITMAP_BASE (PlatformBitmapBase.jnew_0)))
+  PlatformBitmapBase.jcell_NULL_PLATFORM_BITMAP_BASE)
+(define (PlatformBitmapBase.jsetstatic_NULL_PLATFORM_BITMAP_BASE value) (set! PlatformBitmapBase.jcell_NULL_PLATFORM_BITMAP_BASE value))
 
-local PlatformBitmapBase = {}
-PlatformBitmapBase.__index = PlatformBitmapBase
-PlatformBitmapBase.className = "PlatformBitmapBase"
-
-function PlatformBitmapBase:_init_fields()
-    self.alpha = 255
-    self.basicColor = BasicColorFactory.getInstance().NULL_COLOR
-end
-
-function PlatformBitmapBase.new()
-    local self = setmetatable({}, PlatformBitmapBase)
-    self:_init_fields()
-    return self
-end
-
-
-function PlatformBitmapBase:getWidth()
-        return 0
-end
-
-
-function PlatformBitmapBase:getHeight()
-        return 0
-end
+(define (PlatformBitmapBase.jnew_0)
+  (define this (new PlatformBitmapBase% [jclass "PlatformBitmapBase"]))
+    (set-field! f_alpha this 255)
+    (set-field! f_basicColor this (get-field f_NULL_COLOR (BasicColorFactory.jm_getInstance_0)))
+  this)
 
 
-function PlatformBitmapBase:getImage()
-        return NullImage.NULL_IMAGE
-end
-
-PlatformBitmapBase.NULL_PLATFORM_BITMAP_BASE = PlatformBitmapBase.new()
-
-return PlatformBitmapBase
 

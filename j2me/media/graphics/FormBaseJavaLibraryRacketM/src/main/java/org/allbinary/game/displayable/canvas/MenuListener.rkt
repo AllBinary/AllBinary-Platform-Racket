@@ -1,47 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local GameKeyEventSourceInterface = require("org.allbinary.game.input.GameKeyEventSourceInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/input/GameKeyEventSourceInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MenuListener%
+  (class JObject%
+    (super-new)
+    (define/public (jm_open_0)
+      (raise (JR.newException "AbstractMethodError" "open")))
+    (define/public (jm_close_0)
+      (raise (JR.newException "AbstractMethodError" "close")))))
+(define (MenuListener.jclassValue) MenuListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local MenuListener = {}
-MenuListener.__index = MenuListener
-MenuListener.className = "MenuListener"
-setmetatable(MenuListener, {__index = GameKeyEventSourceInterface})
-
-
-function MenuListener:open()
-    error("abstract method open")
-end
+(define (MenuListener.jnew_0)
+  (define this (new MenuListener% [jclass "MenuListener"]))
+  this)
 
 
--- throws Exception
-function MenuListener:close()
-    error("abstract method close")
-end
-
-return MenuListener
 

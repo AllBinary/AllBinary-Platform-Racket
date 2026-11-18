@@ -1,75 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.destroy
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.combat.destroy
 
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local DestroyableInterface = require("org.allbinary.game.combat.destroy.DestroyableInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./DestroyableInterface.rkt")
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define DestroyableBaseBehavior%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className this)))))
+    (define/public (jm_isDestroyed_0)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (CommonStrings.jm_getInstance_0)))))))
+    (define/public (jm_setDestroyed_1 _destroyed)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (DestroyableBaseBehavior.jclassValue) DestroyableBaseBehavior%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DestroyableBaseBehavior.jcell_instance 'jnone)
+(define (DestroyableBaseBehavior.jstatic_instance)
+  (when (eq? DestroyableBaseBehavior.jcell_instance 'jnone) (set! DestroyableBaseBehavior.jcell_instance (DestroyableBaseBehavior.jnew_0)))
+  DestroyableBaseBehavior.jcell_instance)
+(define (DestroyableBaseBehavior.jsetstatic_instance value) (set! DestroyableBaseBehavior.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (DestroyableBaseBehavior.jnew_0)
+  (define this (new DestroyableBaseBehavior% [jclass "DestroyableBaseBehavior"]))
+  this)
 
-local DestroyableBaseBehavior = {}
-DestroyableBaseBehavior.__index = DestroyableBaseBehavior
-DestroyableBaseBehavior.className = "DestroyableBaseBehavior"
-
-function DestroyableBaseBehavior.new()
-    local self = setmetatable({}, DestroyableBaseBehavior)
-    return self
-end
-
-
-function DestroyableBaseBehavior.getInstance()
-        return DestroyableBaseBehavior.instance
-end
+(define (DestroyableBaseBehavior.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DestroyableBaseBehavior.jstatic_instance)))))
 
 
-function DestroyableBaseBehavior:getName()
-        return getmetatable(self).className
-end
-
-
--- throws Exception
-function DestroyableBaseBehavior:isDestroyed()
-        error(java_exception("Exception", CommonStrings.getInstance().NOT_IMPLEMENTED), 0)
-end
-
-
-function DestroyableBaseBehavior:setDestroyed(destroyed)
-end
-
-DestroyableBaseBehavior.instance = DestroyableBaseBehavior.new()
-
-return DestroyableBaseBehavior
 

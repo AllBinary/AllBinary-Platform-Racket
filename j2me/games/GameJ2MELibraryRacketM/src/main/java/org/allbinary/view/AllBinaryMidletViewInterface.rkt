@@ -1,42 +1,29 @@
--- Generated Code Do Not Modify
--- package org.allbinary.view
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.view
 
-local GameInitializedListenerInterface = require("org.allbinary.game.configuration.event.GameInitializedListenerInterface")
-local DemoGameMidletEventListener = require("org.allbinary.game.midlet.DemoGameMidletEventListener")
-local MidletCompositeInterface = require("org.allbinary.midlet.MidletCompositeInterface")
-local EmulatorViewInterface = require("org.allbinary.view.EmulatorViewInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../org/allbinary/game/configuration/event/GameInitializedListenerInterface.rkt"
+  "../../../org/allbinary/game/midlet/DemoGameMidletEventListener.rkt"
+  "../../../org/allbinary/midlet/MidletCompositeInterface.rkt"
+  "./EmulatorViewInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AllBinaryMidletViewInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onResume_0)
+      (raise (JR.newException "AbstractMethodError" "onResume")))
+    (define/public (jm_onPause_0)
+      (raise (JR.newException "AbstractMethodError" "onPause")))
+    (define/public (jm_onDestroy_0)
+      (raise (JR.newException "AbstractMethodError" "onDestroy")))))
+(define (AllBinaryMidletViewInterface.jclassValue) AllBinaryMidletViewInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local AllBinaryMidletViewInterface = {}
-AllBinaryMidletViewInterface.__index = AllBinaryMidletViewInterface
-AllBinaryMidletViewInterface.className = "AllBinaryMidletViewInterface"
-setmetatable(AllBinaryMidletViewInterface, {__index = MidletCompositeInterface})
-
-
-function AllBinaryMidletViewInterface:onResume()
-    error("abstract method onResume")
-end
+(define (AllBinaryMidletViewInterface.jnew_0)
+  (define this (new AllBinaryMidletViewInterface% [jclass "AllBinaryMidletViewInterface"]))
+  this)
 
 
-function AllBinaryMidletViewInterface:onPause()
-    error("abstract method onPause")
-end
-
-
-function AllBinaryMidletViewInterface:onDestroy()
-    error("abstract method onDestroy")
-end
-
-return AllBinaryMidletViewInterface
 

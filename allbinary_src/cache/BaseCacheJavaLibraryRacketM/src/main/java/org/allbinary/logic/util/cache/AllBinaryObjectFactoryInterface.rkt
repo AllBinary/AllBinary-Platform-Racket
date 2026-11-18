@@ -23,6 +23,7 @@
     (super-new)
     (define/public (jm_getInstance_0)
       (raise (JR.newException "AbstractMethodError" "getInstance")))))
+(define (AllBinaryObjectFactoryInterface.jclassValue) AllBinaryObjectFactoryInterface%)
 
 (define (AllBinaryObjectFactoryInterface.jnew_0)
   (define this (new AllBinaryObjectFactoryInterface% [jclass "AllBinaryObjectFactoryInterface"]))

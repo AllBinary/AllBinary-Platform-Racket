@@ -1,33 +1,29 @@
--- Generated Code Do Not Modify
--- package javax.microedition.lcdui
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package javax.microedition.lcdui
 
-local CommandListener = require("javax.microedition.lcdui.CommandListener")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./CommandListener.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullCommandListener%
+  (class JObject%
+    (super-new)
+    (define/public (jm_commandAction_2 _c _d)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullCommandListener.jclassValue) NullCommandListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullCommandListener.jcell_NULL_COMMAND_LISTENER 'jnone)
+(define (NullCommandListener.jstatic_NULL_COMMAND_LISTENER)
+  (when (eq? NullCommandListener.jcell_NULL_COMMAND_LISTENER 'jnone) (set! NullCommandListener.jcell_NULL_COMMAND_LISTENER (NullCommandListener.jnew_0)))
+  NullCommandListener.jcell_NULL_COMMAND_LISTENER)
+(define (NullCommandListener.jsetstatic_NULL_COMMAND_LISTENER value) (set! NullCommandListener.jcell_NULL_COMMAND_LISTENER value))
 
-local NullCommandListener = {}
-NullCommandListener.__index = NullCommandListener
-NullCommandListener.className = "NullCommandListener"
-
-function NullCommandListener.new()
-    local self = setmetatable({}, NullCommandListener)
-    return self
-end
+(define (NullCommandListener.jnew_0)
+  (define this (new NullCommandListener% [jclass "NullCommandListener"]))
+  this)
 
 
-function NullCommandListener:commandAction(c, d)
-end
-
-NullCommandListener.NULL_COMMAND_LISTENER = NullCommandListener.new()
-
-return NullCommandListener
 

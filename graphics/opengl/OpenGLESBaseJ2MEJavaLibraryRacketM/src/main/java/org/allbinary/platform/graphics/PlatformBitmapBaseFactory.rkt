@@ -1,59 +1,41 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.platform.graphics
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.platform.graphics
 
--- local Image = require("javax.microedition.lcdui.Image")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define PlatformBitmapBaseFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_createBitmap_1 _image)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))))
+(define (PlatformBitmapBaseFactory.jclassValue) PlatformBitmapBaseFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY 'jnone)
+(define (PlatformBitmapBaseFactory.jstatic_NULL_PLATFORM_BITMAP_BASE_FACTORY)
+  (when (eq? PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY 'jnone) (set! PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY (PlatformBitmapBaseFactory.jnew_0)))
+  PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY)
+(define (PlatformBitmapBaseFactory.jsetstatic_NULL_PLATFORM_BITMAP_BASE_FACTORY value) (set! PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PlatformBitmapBaseFactory = {}
-PlatformBitmapBaseFactory.__index = PlatformBitmapBaseFactory
-PlatformBitmapBaseFactory.className = "PlatformBitmapBaseFactory"
-
-function PlatformBitmapBaseFactory.new()
-    local self = setmetatable({}, PlatformBitmapBaseFactory)
-    return self
-end
+(define (PlatformBitmapBaseFactory.jnew_0)
+  (define this (new PlatformBitmapBaseFactory% [jclass "PlatformBitmapBaseFactory"]))
+  this)
 
 
-function PlatformBitmapBaseFactory:createBitmap(image)
-        error(java_exception("RuntimeException"), 0)
-end
-
-PlatformBitmapBaseFactory.NULL_PLATFORM_BITMAP_BASE_FACTORY = PlatformBitmapBaseFactory.new()
-
-return PlatformBitmapBaseFactory
 

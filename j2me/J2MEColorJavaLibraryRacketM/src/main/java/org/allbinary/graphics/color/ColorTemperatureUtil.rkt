@@ -49,11 +49,13 @@
             (begin
             (set! _basicColor (get-field f_ORANGE (get-field f_basicColorFactory this)))))))))))
         (jreturn _basicColor))))))
+(define (ColorTemperatureUtil.jclassValue) ColorTemperatureUtil%)
 
 (define ColorTemperatureUtil.jcell_instance 'jnone)
 (define (ColorTemperatureUtil.jstatic_instance)
   (when (eq? ColorTemperatureUtil.jcell_instance 'jnone) (set! ColorTemperatureUtil.jcell_instance (ColorTemperatureUtil.jnew_0)))
   ColorTemperatureUtil.jcell_instance)
+(define (ColorTemperatureUtil.jsetstatic_instance value) (set! ColorTemperatureUtil.jcell_instance value))
 
 (define (ColorTemperatureUtil.jnew_0)
   (define this (new ColorTemperatureUtil% [jclass "ColorTemperatureUtil"]))

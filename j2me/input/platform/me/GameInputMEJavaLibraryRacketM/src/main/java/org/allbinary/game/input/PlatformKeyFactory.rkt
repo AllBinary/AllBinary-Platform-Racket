@@ -1,94 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["./J2MEGameKey.rkt" (J2MEGameKey.jm_getString_1)])
+(lazy-require ["./J2MEKeyFactory.rkt" (J2MEKeyFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PlatformKeyFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getString_1 _keyCode)
+    (let ()
+      (let/ec jreturn
+        (jreturn (J2MEGameKey.jm_getString_1 _keyCode)))))
+    (define/public (jm_isSubmission_1 _input)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (J2MEKeyFactory.jm_getInstance_0) jm_isSubmission_1 _input)))))
+    (define/public (jm_isDelete_1 _input)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (J2MEKeyFactory.jm_getInstance_0) jm_isDelete_1 _input)))))
+    (define/public (jm_isBackSpace_1 _input)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (J2MEKeyFactory.jm_getInstance_0) jm_isBackSpace_1 _input)))))
+    (define/public (jm_isLeft_1 _input)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (J2MEKeyFactory.jm_getInstance_0) jm_isLeft_1 _input)))))
+    (define/public (jm_isRight_1 _input)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (J2MEKeyFactory.jm_getInstance_0) jm_isRight_1 _input)))))
+    (define/public (jm_isUp_1 _input)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (J2MEKeyFactory.jm_getInstance_0) jm_isUp_1 _input)))))
+    (define/public (jm_isDown_1 _input)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (J2MEKeyFactory.jm_getInstance_0) jm_isDown_1 _input)))))
+    (define/public (jm_isEnter_1 _input)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (J2MEKeyFactory.jm_getInstance_0) jm_isEnter_1 _input)))))))
+(define (PlatformKeyFactory.jclassValue) PlatformKeyFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define PlatformKeyFactory.jcell_instance 'jnone)
+(define (PlatformKeyFactory.jstatic_instance)
+  (when (eq? PlatformKeyFactory.jcell_instance 'jnone) (set! PlatformKeyFactory.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  PlatformKeyFactory.jcell_instance)
+(define (PlatformKeyFactory.jsetstatic_instance value) (set! PlatformKeyFactory.jcell_instance value))
 
-local PlatformKeyFactory = {}
-PlatformKeyFactory.__index = PlatformKeyFactory
-PlatformKeyFactory.className = "PlatformKeyFactory"
+(define (PlatformKeyFactory.jnew_0)
+  (define this (new PlatformKeyFactory% [jclass "PlatformKeyFactory"]))
+  this)
 
-function PlatformKeyFactory.new()
-    local self = setmetatable({}, PlatformKeyFactory)
-    return self
-end
-
-
-function PlatformKeyFactory.getInstance()
-        if PlatformKeyFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            PlatformKeyFactory.instance = PlatformKeyFactory.new()
-        end
-        return PlatformKeyFactory.instance
-end
-
-
-function PlatformKeyFactory:getString(keyCode)
-        return J2MEGameKey.getString(keyCode)
-end
-
-
-function PlatformKeyFactory:isSubmission(input)
-        return J2MEKeyFactory.getInstance():isSubmission(input)
-end
-
-
-function PlatformKeyFactory:isDelete(input)
-        return J2MEKeyFactory.getInstance():isDelete(input)
-end
-
-
-function PlatformKeyFactory:isBackSpace(input)
-        return J2MEKeyFactory.getInstance():isBackSpace(input)
-end
-
-
-function PlatformKeyFactory:isLeft(input)
-        return J2MEKeyFactory.getInstance():isLeft(input)
-end
-
-
-function PlatformKeyFactory:isRight(input)
-        return J2MEKeyFactory.getInstance():isRight(input)
-end
-
-
-function PlatformKeyFactory:isUp(input)
-        return J2MEKeyFactory.getInstance():isUp(input)
-end
-
-
-function PlatformKeyFactory:isDown(input)
-        return J2MEKeyFactory.getInstance():isDown(input)
-end
+(define (PlatformKeyFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (PlatformKeyFactory.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! PlatformKeyFactory.jcell_instance (PlatformKeyFactory.jnew_0))))
+        (jreturn (PlatformKeyFactory.jstatic_instance)))))
 
 
-function PlatformKeyFactory:isEnter(input)
-        return J2MEKeyFactory.getInstance():isEnter(input)
-end
-
-PlatformKeyFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return PlatformKeyFactory
 

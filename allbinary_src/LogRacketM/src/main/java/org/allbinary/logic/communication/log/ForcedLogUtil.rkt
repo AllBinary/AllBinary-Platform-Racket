@@ -23,6 +23,7 @@
 (define ForcedLogUtil%
   (class JObject%
     (super-new)))
+(define (ForcedLogUtil.jclassValue) ForcedLogUtil%)
 
 (define (ForcedLogUtil.jnew_0)
   (define this (new ForcedLogUtil% [jclass "ForcedLogUtil"]))

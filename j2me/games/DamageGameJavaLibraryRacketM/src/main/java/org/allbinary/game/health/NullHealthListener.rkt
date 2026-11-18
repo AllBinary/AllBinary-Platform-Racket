@@ -1,45 +1,41 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.health
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.health
 
-local HealthListenerInterface = require("org.allbinary.game.health.HealthListenerInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./HealthListenerInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullHealthListener%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onHealthChange_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullHealthListener.jclassValue) NullHealthListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullHealthListener.jcell_NULL_HEALTH_LISTENER 'jnone)
+(define (NullHealthListener.jstatic_NULL_HEALTH_LISTENER)
+  (when (eq? NullHealthListener.jcell_NULL_HEALTH_LISTENER 'jnone) (set! NullHealthListener.jcell_NULL_HEALTH_LISTENER (NullHealthListener.jnew_0)))
+  NullHealthListener.jcell_NULL_HEALTH_LISTENER)
+(define (NullHealthListener.jsetstatic_NULL_HEALTH_LISTENER value) (set! NullHealthListener.jcell_NULL_HEALTH_LISTENER value))
 
-local NullHealthListener = {}
-NullHealthListener.__index = NullHealthListener
-NullHealthListener.className = "NullHealthListener"
-
-function NullHealthListener.new()
-    local self = setmetatable({}, NullHealthListener)
-    return self
-end
+(define (NullHealthListener.jnew_0)
+  (define this (new NullHealthListener% [jclass "NullHealthListener"]))
+  this)
 
 
-function NullHealthListener:onHealthChange()
-end
-
-NullHealthListener.NULL_HEALTH_LISTENER = NullHealthListener.new()
-
-return NullHealthListener
 

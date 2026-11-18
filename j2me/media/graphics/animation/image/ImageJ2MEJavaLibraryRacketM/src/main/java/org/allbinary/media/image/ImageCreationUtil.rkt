@@ -1,62 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local GameFeatureImageCacheFactory = require("org.allbinary.image.GameFeatureImageCacheFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/image/GameFeatureImageCacheFactory.rkt" (GameFeatureImageCacheFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageCreationUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_createImageWH_2 _width _height)
+    (let ([_image JR.null])
+      (let/ec jreturn
+        (set! _image (send (GameFeatureImageCacheFactory.jm_getInstance_0) jm_get_3 (JR.className this) _width _height))
+        (jreturn _image))))
+    (define/public (jm_createImage_4 _width _height _maxScaleX _maxScaleY)
+    (let ([_image JR.null])
+      (let/ec jreturn
+        (set! _image (send (GameFeatureImageCacheFactory.jm_getInstance_0) jm_get_3 (JR.className this) (JR.i32 (+ (JR.d2i (* (JR.toDouble _width) _maxScaleX)) 1)) (JR.i32 (+ (JR.d2i (* (JR.toDouble _height) _maxScaleY)) 1))))
+        (jreturn _image))))))
+(define (ImageCreationUtil.jclassValue) ImageCreationUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ImageCreationUtil.jcell_instance 'jnone)
+(define (ImageCreationUtil.jstatic_instance)
+  (when (eq? ImageCreationUtil.jcell_instance 'jnone) (set! ImageCreationUtil.jcell_instance (ImageCreationUtil.jnew_0)))
+  ImageCreationUtil.jcell_instance)
+(define (ImageCreationUtil.jsetstatic_instance value) (set! ImageCreationUtil.jcell_instance value))
 
-local ImageCreationUtil = {}
-ImageCreationUtil.__index = ImageCreationUtil
-ImageCreationUtil.className = "ImageCreationUtil"
+(define (ImageCreationUtil.jnew_0)
+  (define this (new ImageCreationUtil% [jclass "ImageCreationUtil"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function ImageCreationUtil.getInstance()
-        return ImageCreationUtil.instance
-end
-
-
-function ImageCreationUtil.new()
-    local self = setmetatable({}, ImageCreationUtil)
-    return self
-end
+(define (ImageCreationUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageCreationUtil.jstatic_instance)))))
 
 
--- throws Exception
-function ImageCreationUtil:createImageWH(width, height)
-        local image = GameFeatureImageCacheFactory.getInstance():get(getmetatable(self).className, width, height)
-        return image
-end
-
-
--- throws Exception
-function ImageCreationUtil:createImage(width, height, maxScaleX, maxScaleY)
-        local image = GameFeatureImageCacheFactory.getInstance():get(getmetatable(self).className, java_int(((width + 0.0) * maxScaleX)) + 1, java_int(((height + 0.0) * maxScaleY)) + 1)
-        return image
-end
-
-ImageCreationUtil.instance = ImageCreationUtil.new()
-
-return ImageCreationUtil
 

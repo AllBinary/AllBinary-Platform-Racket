@@ -1,192 +1,176 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system.security.licensing
 
-local TsUtil = require("org.allbinary.TsUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local HardwareInterface = require("org.allbinary.logic.system.hardware.HardwareInterface")
-local SystemHardwareFactory = require("org.allbinary.logic.system.hardware.SystemHardwareFactory")
-local GenericOperatingSystem = require("org.allbinary.logic.system.os.GenericOperatingSystem")
-local NoOperatingSystem = require("org.allbinary.logic.system.os.NoOperatingSystem")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "./AbeClientInformationInterface.rkt")
+(lazy-require ["../../../../../../org/allbinary/TsUtil.rkt" (TsUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/system/hardware/SystemHardwareFactory.rkt" (SystemHardwareFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/system/os/NoOperatingSystem.rkt" (NoOperatingSystem.jstatic_NO_OPERATING_SYSTEM)])
+(lazy-require ["../../../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/util/BasicArrayListUtil.rkt" (BasicArrayListUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["./AbeClientInformationData.rkt" (AbeClientInformationData.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+; This is the information sent to the license server
+(define ClientInformation%
+  (class JObject%
+    (super-new)
+    (field [f_operatingSystemInterface JR.null])
+    (field [f_tsUtil JR.null])
+    (field [f_name JR.null])
+    (field [f_shortName JR.null])
+    (field [f_version JR.null])
+    (field [f_specialName JR.null])
+    (field [f_hardSale #f])
+    (field [f_licenseId JR.null])
+    (field [f_licenseServers JR.null])
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getOperatingSystemInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_operatingSystemInterface this)))))
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_name this)))))
+    (define/public (jm_getSpecialName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_specialName this)))))
+    (define/public (jm_getVersion_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_version this)))))
+    (define/public (jm_getLicenseId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_licenseId this)))))
+    (define/public (jm_getLicenseServers_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_licenseServers this)))))
+    (define/public (jm_getLicenseServer_1 _index)
+    (let ()
+      (let/ec jreturn
+        (jreturn (vector-ref (get-field f_objectArray (get-field f_licenseServers this)) _index)))))
+    (define/public (jm_getNumberOfLicenseServers_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_licenseServers this) jm_size_0)))))
+    (define/public (jm_toHashtable_0)
+    (let ([_abeClientInformationData JR.null][_genericOperatingSystem JR.null][_clientInfoHashtable JR.null][_hardwareInterface JR.null][_hardwareString JR.null])
+      (let/ec jreturn
+        (set! _abeClientInformationData (AbeClientInformationData.jm_getInstance_0))
+        (set! _genericOperatingSystem (send this jm_getOperatingSystemInterface_0))
+        (set! _clientInfoHashtable (send (StdUtil.jm_getInstance_0) jm_createHashtable_0))
+        (send _clientInfoHashtable jm_put_2 (get-field f_NAME _abeClientInformationData) (get-field f_name this))
+        (send _clientInfoHashtable jm_put_2 (get-field f_VERSION _abeClientInformationData) (get-field f_version this))
+        (send _clientInfoHashtable jm_put_2 (get-field f_SPECIALNAME _abeClientInformationData) (get-field f_specialName this))
+        (send _clientInfoHashtable jm_put_2 (get-field f_LICENSEID _abeClientInformationData) (send this jm_getLicenseId_0))
+        (send _clientInfoHashtable jm_put_2 (get-field f_OSNAME _abeClientInformationData) (send _genericOperatingSystem jm_getName_0))
+        (send _clientInfoHashtable jm_put_2 (get-field f_OSARCH _abeClientInformationData) (send _genericOperatingSystem jm_getArch_0))
+        (send _clientInfoHashtable jm_put_2 (get-field f_OSVERSION _abeClientInformationData) (send _genericOperatingSystem jm_getVersion_0))
+        (send _clientInfoHashtable jm_put_2 (get-field f_OS _abeClientInformationData) (send _genericOperatingSystem jm_toString_0))
+        (set! _hardwareInterface (send (SystemHardwareFactory.jm_getInstance_0) jm_getInstance_1 _genericOperatingSystem))
+        (set! _hardwareString (send _hardwareInterface jm_toString_0))
+        (send _clientInfoHashtable jm_put_2 (get-field f_HARDWARE _abeClientInformationData) _hardwareString)
+        (jreturn _clientInfoHashtable))))
+    (define/public (jm_isSameId_1 _alicenseId)
+    (let ()
+      (let/ec jreturn
+        (if (= (send (get-field f_tsUtil this) jm_compareTo_2 (send this jm_getLicenseId_0) _alicenseId) 0)
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))
+    (define/public (jm_isLargerOrDifferentServerList_1 _list)
+    (let ([_size JR.null][_currentSize JR.null][_newServerName JR.null][_nextOldServerName JR.null][_index2 JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _size (JR.i32 (- (send _list jm_size_0) 1)))
+        (set! _currentSize (JR.i32 (- (send (get-field f_licenseServers this) jm_size_0) 1)))
+        (when (> _size _currentSize)
+            (begin
+            (jreturn #t)))
+        (begin
+            (set! _index _size)
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (set! _newServerName (vector-ref (get-field f_objectArray _list) _index))
+            (begin
+                (set! _index2 _currentSize)
+                (let/ec jbreak (let jloop () (when (>= _index2 0)
+                    (let/ec jcontinue
+                (set! _nextOldServerName (vector-ref (get-field f_objectArray (get-field f_licenseServers this)) _index))
+                (when (not (= (send (get-field f_tsUtil this) jm_compareTo_2 _newServerName _nextOldServerName) 0))
+                    (begin
+                    (jreturn #t))))
+                    (set! _index2 (JR.i32 (- _index2 1))) (jloop))))))
+                (set! _index (JR.i32 (- _index 1))) (jloop)))))
+        (jreturn #f))))
+    (define/public (jm_setHardSale_1 _hardSale)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_hardSale this _hardSale))))
+    (define/public (jm_isHardSale_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_hardSale this)))))
+    (define/public (jm_setOperatingSystemInterface_1 _operatingSystemInterface)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_operatingSystemInterface this _operatingSystemInterface))))
+    (define/public (jm_setLicenseId_1 _licenseId)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_licenseId this _licenseId))))
+    (define/public (jm_setLicenseServers_1 _licenseServers)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_licenseServers this _licenseServers))))
+    (define/public (jm_toShortString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_shortName this)))))))
+(define (ClientInformation.jclassValue) ClientInformation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- This is the information sent to the license server
-local ClientInformation = {}
-ClientInformation.__index = ClientInformation
-ClientInformation.className = "ClientInformation"
-
-function ClientInformation:_init_fields()
-    self.operatingSystemInterface = NoOperatingSystem.NO_OPERATING_SYSTEM
-    self.tsUtil = TsUtil.getInstance()
-    self.name = nil
-    self.shortName = nil
-    self.version = nil
-    self.specialName = nil
-    self.hardSale = true
-    self.licenseId = StringUtil.getInstance().EMPTY_STRING
-    self.licenseServers = BasicArrayListUtil.getInstance():getImmutableInstance()
-end
-
-
-function ClientInformation.new(name, version, specialName, shortName)
-    local self = setmetatable({}, ClientInformation)
-    self:_init_fields()
-        self.name = name
-        self.version = version
-        self.specialName = specialName
-        self.shortName = tostring(StringMaker.new():append(shortName):append(CommonSeps.getInstance().UNDERSCORE):append(version))
-        self:init()
-    return self
-end
-
-
-function ClientInformation:init()
-end
-
-
-function ClientInformation:getOperatingSystemInterface()
-        return self.operatingSystemInterface
-end
-
-
-function ClientInformation:getName()
-        return self.name
-end
-
-
-function ClientInformation:getSpecialName()
-        return self.specialName
-end
-
-
-function ClientInformation:getVersion()
-        return self.version
-end
-
-
-function ClientInformation:getLicenseId()
-        return self.licenseId
-end
-
-
-function ClientInformation:getLicenseServers()
-        return self.licenseServers
-end
-
-
-function ClientInformation:getLicenseServer(index)
-        return self.licenseServers.objectArray[index + 1]
-end
-
-
-function ClientInformation:getNumberOfLicenseServers()
-        return self.licenseServers:size()
-end
-
-
-function ClientInformation:toHashtable()
-        local abeClientInformationData = AbeClientInformationData.getInstance()
-        local genericOperatingSystem = self:getOperatingSystemInterface()
-        local clientInfoHashtable = StdUtil.getInstance():createHashtable()
-        clientInfoHashtable:put(abeClientInformationData.NAME, self.name)
-        clientInfoHashtable:put(abeClientInformationData.VERSION, self.version)
-        clientInfoHashtable:put(abeClientInformationData.SPECIALNAME, self.specialName)
-        clientInfoHashtable:put(abeClientInformationData.LICENSEID, self:getLicenseId())
-        clientInfoHashtable:put(abeClientInformationData.OSNAME, genericOperatingSystem:getName())
-        clientInfoHashtable:put(abeClientInformationData.OSARCH, genericOperatingSystem:getArch())
-        clientInfoHashtable:put(abeClientInformationData.OSVERSION, genericOperatingSystem:getVersion())
-        clientInfoHashtable:put(abeClientInformationData.OS, tostring(genericOperatingSystem))
-        local hardwareInterface = SystemHardwareFactory.getInstance():getInstance(genericOperatingSystem)
-        local hardwareString = tostring(hardwareInterface)
-        clientInfoHashtable:put(abeClientInformationData.HARDWARE, hardwareString)
-        return clientInfoHashtable
-end
-
-
-function ClientInformation:isSameId(alicenseId)
-        if self.tsUtil:compareTo(self:getLicenseId(), alicenseId) == 0 then
-            return true
-        else
-            return false
-        end
-end
-
-
-function ClientInformation:isLargerOrDifferentServerList(list)
-        local size = list:size() - 1
-        local currentSize = self.licenseServers:size() - 1
-        if size > currentSize then
-            return true
-        end
-        for index = size, 0, -1 do
-            local newServerName = list.objectArray[index + 1]
-            for index2 = currentSize, 0, -1 do
-                local nextOldServerName = self.licenseServers.objectArray[index + 1]
-                if self.tsUtil:compareTo(newServerName, nextOldServerName) ~= 0 then
-                    return true
-                end
-            end
-        end
-        return false
-end
-
-
-function ClientInformation:setHardSale(hardSale)
-        self.hardSale = hardSale
-end
-
-
-function ClientInformation:isHardSale()
-        return self.hardSale
-end
-
-
-function ClientInformation:setOperatingSystemInterface(operatingSystemInterface)
-        self.operatingSystemInterface = operatingSystemInterface
-end
-
-
-function ClientInformation:setLicenseId(licenseId)
-        self.licenseId = licenseId
-end
+(define (ClientInformation.jnew_4 _name _version _specialName _shortName)
+  (define this (new ClientInformation% [jclass "ClientInformation"]))
+    (set-field! f_operatingSystemInterface this (NoOperatingSystem.jstatic_NO_OPERATING_SYSTEM))
+    (set-field! f_tsUtil this (TsUtil.jm_getInstance_0))
+    
+    
+    
+    
+    (set-field! f_hardSale this #t)
+    (set-field! f_licenseId this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (set-field! f_licenseServers this (send (BasicArrayListUtil.jm_getInstance_0) jm_getImmutableInstance_0))
+    (let ()
+      (let/ec jreturn
+        (set-field! f_name this _name)
+        (set-field! f_version this _version)
+        (set-field! f_specialName this _specialName)
+        (set-field! f_shortName this (send (send (send (send (StringMaker.jnew_0) jm_append_1 _shortName) jm_append_1 (get-field f_UNDERSCORE (CommonSeps.jm_getInstance_0))) jm_append_1 _version) jm_toString_0))
+        (send this jm_init_0)))
+  this)
 
 
-function ClientInformation:setLicenseServers(licenseServers)
-        self.licenseServers = licenseServers
-end
-
-
-function ClientInformation:toShortString()
-        return self.shortName
-end
-
-return ClientInformation
 

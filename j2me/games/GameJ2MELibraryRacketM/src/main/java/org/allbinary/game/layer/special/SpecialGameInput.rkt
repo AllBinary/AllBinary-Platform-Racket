@@ -1,110 +1,74 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.special
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SpecialGameInputInterface = require("org.allbinary.game.layer.special.SpecialGameInputInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./SpecialGameInputInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SpecialGameInput%
+  (class JObject%
+    (super-new)
+    (define/public (jm_up_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_down_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_right_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_left_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_strafeLeft_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_strafeRight_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_fire_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special1_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special2_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special3_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special4_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_special5_2 _layerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_paintThreed_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (SpecialGameInput.jclassValue) SpecialGameInput%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SpecialGameInput = {}
-SpecialGameInput.__index = SpecialGameInput
-SpecialGameInput.className = "SpecialGameInput"
-
-function SpecialGameInput.new()
-    local self = setmetatable({}, SpecialGameInput)
-    return self
-end
-
-
--- throws Exception
-function SpecialGameInput:up()
-end
-
-
--- throws Exception
-function SpecialGameInput:down()
-end
-
-
--- throws Exception
-function SpecialGameInput:right()
-end
-
-
--- throws Exception
-function SpecialGameInput:left()
-end
-
-
--- throws Exception
-function SpecialGameInput:strafeLeft()
-end
-
-
--- throws Exception
-function SpecialGameInput:strafeRight()
-end
-
-
--- throws Exception
-function SpecialGameInput:fire(layerManager, gameKeyEvent)
-end
+(define (SpecialGameInput.jnew_0)
+  (define this (new SpecialGameInput% [jclass "SpecialGameInput"]))
+  this)
 
 
--- throws Exception
-function SpecialGameInput:special1(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function SpecialGameInput:special2(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function SpecialGameInput:special3(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function SpecialGameInput:special4(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function SpecialGameInput:special5(layerManager, gameKeyEvent)
-end
-
-
-function SpecialGameInput:paint(graphics)
-end
-
-
-function SpecialGameInput:paintThreed(graphics)
-end
-
-return SpecialGameInput
 

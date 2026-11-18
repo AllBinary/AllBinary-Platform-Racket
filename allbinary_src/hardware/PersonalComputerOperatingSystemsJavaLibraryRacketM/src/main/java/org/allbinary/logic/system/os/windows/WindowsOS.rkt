@@ -26,6 +26,7 @@
     (let ()
       (let/ec jreturn
         (jreturn #t))))))
+(define (WindowsOS.jclassValue) WindowsOS%)
 
 (define (WindowsOS.jnew_0)
   (define this (new WindowsOS% [jclass "WindowsOS"]))

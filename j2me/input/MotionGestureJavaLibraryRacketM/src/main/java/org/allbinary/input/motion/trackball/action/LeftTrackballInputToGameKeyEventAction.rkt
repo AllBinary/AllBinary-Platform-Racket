@@ -1,55 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.trackball.action
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.trackball.action
 
-local PlatformInputMappingFactory = require("org.allbinary.game.input.PlatformInputMappingFactory")
-local GameKeyCompleteMotionGestureInputEvent = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEvent")
-local TrackballMotionGestureFactory = require("org.allbinary.input.motion.gesture.TrackballMotionGestureFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent.rkt")
+(lazy-require ["../../../../../../org/allbinary/game/input/PlatformInputMappingFactory.rkt" (PlatformInputMappingFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/input/motion/gesture/TrackballMotionGestureFactory.rkt" (TrackballMotionGestureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LeftTrackballInputToGameKeyEventAction%
+  (class GameKeyCompleteMotionGestureInputEvent%
+    (super-new)))
+(define (LeftTrackballInputToGameKeyEventAction.jclassValue) LeftTrackballInputToGameKeyEventAction%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LeftTrackballInputToGameKeyEventAction.jcell_instance 'jnone)
+(define (LeftTrackballInputToGameKeyEventAction.jstatic_instance)
+  (when (eq? LeftTrackballInputToGameKeyEventAction.jcell_instance 'jnone) (set! LeftTrackballInputToGameKeyEventAction.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  LeftTrackballInputToGameKeyEventAction.jcell_instance)
+(define (LeftTrackballInputToGameKeyEventAction.jsetstatic_instance value) (set! LeftTrackballInputToGameKeyEventAction.jcell_instance value))
 
-local LeftTrackballInputToGameKeyEventAction = {}
-LeftTrackballInputToGameKeyEventAction.__index = LeftTrackballInputToGameKeyEventAction
-LeftTrackballInputToGameKeyEventAction.className = "LeftTrackballInputToGameKeyEventAction"
-setmetatable(LeftTrackballInputToGameKeyEventAction, {__index = GameKeyCompleteMotionGestureInputEvent})
+(define (LeftTrackballInputToGameKeyEventAction.jnew_0)
+  (define this (new LeftTrackballInputToGameKeyEventAction% [jclass "LeftTrackballInputToGameKeyEventAction"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
+
+(define (LeftTrackballInputToGameKeyEventAction.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (LeftTrackballInputToGameKeyEventAction.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! LeftTrackballInputToGameKeyEventAction.jcell_instance (LeftTrackballInputToGameKeyEventAction.jnew_0))))
+        (jreturn (LeftTrackballInputToGameKeyEventAction.jstatic_instance)))))
 
 
-function LeftTrackballInputToGameKeyEventAction.getInstance()
-        if LeftTrackballInputToGameKeyEventAction.instance == NullUtil.getInstance().NULL_OBJECT then
-            LeftTrackballInputToGameKeyEventAction.instance = LeftTrackballInputToGameKeyEventAction.new()
-        end
-        return LeftTrackballInputToGameKeyEventAction.instance
-end
-
-
-function LeftTrackballInputToGameKeyEventAction.new()
-    local self = setmetatable(GameKeyCompleteMotionGestureInputEvent.new("Left Action", TrackballMotionGestureFactory.getInstance().LEFT, PlatformInputMappingFactory.getInstance():getPersistentInputMappingInstance():getInputMapping()), LeftTrackballInputToGameKeyEventAction)
-        -- super(...) made self above
-    return self
-end
-
-LeftTrackballInputToGameKeyEventAction.instance = NullUtil.getInstance().NULL_OBJECT
-
-return LeftTrackballInputToGameKeyEventAction
 

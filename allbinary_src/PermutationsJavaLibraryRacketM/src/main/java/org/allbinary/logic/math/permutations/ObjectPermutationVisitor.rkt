@@ -1,65 +1,56 @@
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.permutations
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.math.permutations
 
-local TsUtil = require("org.allbinary.TsUtil")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/logic/util/visitor/Visitor.rkt"
+  "../../../../../java/lang/System.rkt")
+(lazy-require ["../../../../../org/allbinary/TsUtil.rkt" (TsUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ObjectPermutationVisitor%
+  (class Visitor%
+    (super-new)
+    (field [f_data JR.null])
+    (field [f_stringBuilder JR.null])
+    (define/override (jm_visit_1 _anyType)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+        (send this jm_print_2 (get-field f_data this) (get-field f_stringBuilder this))
+        (jreturn (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))))
+    (define/public (jm_print_1 _data)
+    (let ([_stringBuilder JR.null])
+      (let/ec jreturn
+        (set! _stringBuilder (StringMaker.jnew_0))
+        (send this jm_print_2 _data _stringBuilder))))
+    (define/public (jm_print_2 _data _stringBuilder)
+    (let ([_tsUtil JR.null][_size JR.null][_i JR.null])
+      (let/ec jreturn
+        (set! _tsUtil (TsUtil.jm_getInstance_0))
+        (set! _size (vector-length _data))
+        (begin
+            (set! _i 0)
+            (let/ec jbreak (let jloop () (when (< _i _size)
+                (let/ec jcontinue
+            (send _stringBuilder jm_appendint_1 (send _tsUtil jm_hashCode_1 (vector-ref _data _i)))
+            (send _stringBuilder jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0))))
+                (set! _i (JR.i32 (+ _i 1))) (jloop)))))
+        (JR.println (send _stringBuilder jm_toString_0)))))))
+(define (ObjectPermutationVisitor.jclassValue) ObjectPermutationVisitor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ObjectPermutationVisitor = {}
-ObjectPermutationVisitor.__index = ObjectPermutationVisitor
-ObjectPermutationVisitor.className = "ObjectPermutationVisitor"
-setmetatable(ObjectPermutationVisitor, {__index = Visitor})
-
-function ObjectPermutationVisitor:_init_fields()
-    self.data = nil
-    self.stringBuilder = StringMaker.new()
-end
-
-
-function ObjectPermutationVisitor.new(data)
-    local self = setmetatable(Visitor.new(), ObjectPermutationVisitor)
-    self:_init_fields()
-        self.data = data
-    return self
-end
-
-
-function ObjectPermutationVisitor:visit(anyType)
-        self.stringBuilder:delete(0, self.stringBuilder:length())
-        self:print(self.data, self.stringBuilder)
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-
-function ObjectPermutationVisitor:print(data)
-        local stringBuilder = StringMaker.new()
-        self:print(data, stringBuilder)
-end
+(define (ObjectPermutationVisitor.jnew_1 _data)
+  (define this (new ObjectPermutationVisitor% [jclass "ObjectPermutationVisitor"]))
+    
+    (set-field! f_stringBuilder this (StringMaker.jnew_0))
+    (let ()
+      (let/ec jreturn
+        (set-field! f_data this _data)))
+  this)
 
 
--- Java overloaded method: Lua keeps the last definition
-function ObjectPermutationVisitor:print(data, stringBuilder)
-        local tsUtil = TsUtil.getInstance()
-        local size = (data.n or #data)
-        for i = 0, size - 1 do
-            stringBuilder:appendint(java_int(tsUtil:hashCode(data[i + 1])))
-            stringBuilder:append(CommonSeps.getInstance().SPACE)
-        end
-        print(tostring(stringBuilder))
-end
-
-return ObjectPermutationVisitor
 

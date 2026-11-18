@@ -1,48 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.audio
 
-local Sound = require("org.allbinary.media.audio.Sound")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./Sound.rkt")
+(lazy-require ["./PlayerComposite.rkt" (PlayerComposite.jnew_2)])
+(lazy-require ["./AllBinaryMediaManager.rkt" (AllBinaryMediaManager.jm_createPlayer_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CompositeSound%
+  (class Sound%
+    (super-new)
+    (define/override (jm_init_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setPlayerP_1 (PlayerComposite.jnew_2 (AllBinaryMediaManager.jm_createPlayer_1 (send this jm_getResource_0)) 570)))))))
+(define (CompositeSound.jclassValue) CompositeSound%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CompositeSound = {}
-CompositeSound.__index = CompositeSound
-CompositeSound.className = "CompositeSound"
-setmetatable(CompositeSound, {__index = Sound})
-
-
-function CompositeSound.new(resource)
-    local self = setmetatable(Sound.new(resource), CompositeSound)
-        -- super(...) made self above
-    return self
-end
+(define (CompositeSound.jnew_1 _resource)
+  (define this (new CompositeSound% [jclass "CompositeSound"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
--- throws Exception
-function CompositeSound:init()
-        self:setPlayerP(PlayerComposite.new(AllBinaryMediaManager.createPlayer(self:getResource()), 570))
-end
-
-return CompositeSound
 

@@ -1,75 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.math
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.math
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local MathUtil = require("org.allbinary.logic.math.MathUtil")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/logic/math/MathUtil.rkt" (MathUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LayerDistanceUtil%
+  (class JObject%
+    (super-new)
+    (field [f_mathUtil JR.null])
+    (define/public (jm_getDistance_2 _layerInterface _layerInterface2)
+    (let ([_dx JR.null][_dy JR.null])
+      (let/ec jreturn
+        (set! _dx (JR.i32 (- (JR.i32 (+ (send _layerInterface jm_getXP_0) (send _layerInterface jm_getHalfWidth_0))) (JR.i32 (+ (send _layerInterface2 jm_getXP_0) (send _layerInterface2 jm_getHalfWidth_0))))))
+        (set! _dy (JR.i32 (- (JR.i32 (+ (send _layerInterface jm_getYP_0) (send _layerInterface jm_getHalfHeight_0))) (JR.i32 (+ (send _layerInterface2 jm_getYP_0) (send _layerInterface2 jm_getHalfHeight_0))))))
+        (jreturn (send (get-field f_mathUtil this) jm_sqrt_1 (JR.i32 (+ (JR.i32 (* _dx _dx)) (JR.i32 (* _dy _dy)))))))))
+    (define/public (jm_getDistance3D_2 _layerInterface _layerInterface2)
+    (let ([_dx JR.null][_dy JR.null][_dz JR.null])
+      (let/ec jreturn
+        (set! _dx (JR.i32 (- (JR.i32 (+ (send _layerInterface jm_getXP_0) (send _layerInterface jm_getHalfWidth_0))) (JR.i32 (+ (send _layerInterface2 jm_getXP_0) (send _layerInterface2 jm_getHalfWidth_0))))))
+        (set! _dy (JR.i32 (- (JR.i32 (+ (send _layerInterface jm_getYP_0) (send _layerInterface jm_getHalfHeight_0))) (JR.i32 (+ (send _layerInterface2 jm_getYP_0) (send _layerInterface2 jm_getHalfHeight_0))))))
+        (set! _dz (JR.i32 (- (JR.i32 (+ (send _layerInterface jm_getZP_0) (send _layerInterface jm_getHalfDepth_0))) (JR.i32 (+ (send _layerInterface2 jm_getZP_0) (send _layerInterface2 jm_getHalfDepth_0))))))
+        (jreturn (send (get-field f_mathUtil this) jm_sqrt_1 (JR.i32 (+ (JR.i32 (+ (JR.i32 (* _dx _dx)) (JR.i32 (* _dy _dy)))) (JR.i32 (* _dz _dz)))))))))
+    (define/public (jm_getDistanceAt_2 _layerInterface _point)
+    (let ([_dx JR.null][_dy JR.null])
+      (let/ec jreturn
+        (set! _dx (JR.i32 (- (send _layerInterface jm_getXP_0) (send _point jm_getX_0))))
+        (set! _dy (JR.i32 (- (send _layerInterface jm_getYP_0) (send _point jm_getY_0))))
+        (jreturn (send (get-field f_mathUtil this) jm_sqrt_1 (JR.i32 (+ (JR.i32 (* _dx _dx)) (JR.i32 (* _dy _dy)))))))))))
+(define (LayerDistanceUtil.jclassValue) LayerDistanceUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LayerDistanceUtil.jcell_instance 'jnone)
+(define (LayerDistanceUtil.jstatic_instance)
+  (when (eq? LayerDistanceUtil.jcell_instance 'jnone) (set! LayerDistanceUtil.jcell_instance (LayerDistanceUtil.jnew_0)))
+  LayerDistanceUtil.jcell_instance)
+(define (LayerDistanceUtil.jsetstatic_instance value) (set! LayerDistanceUtil.jcell_instance value))
 
-local LayerDistanceUtil = {}
-LayerDistanceUtil.__index = LayerDistanceUtil
-LayerDistanceUtil.className = "LayerDistanceUtil"
+(define (LayerDistanceUtil.jnew_0)
+  (define this (new LayerDistanceUtil% [jclass "LayerDistanceUtil"]))
+    (set-field! f_mathUtil this (MathUtil.jm_getInstance_0))
+  this)
 
-function LayerDistanceUtil:_init_fields()
-    self.mathUtil = MathUtil.getInstance()
-end
-
-function LayerDistanceUtil.new()
-    local self = setmetatable({}, LayerDistanceUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function LayerDistanceUtil.getInstance()
-        return LayerDistanceUtil.instance
-end
-
-
-function LayerDistanceUtil:getDistance(layerInterface, layerInterface2)
-        local dx = (layerInterface:getXP() + layerInterface:getHalfWidth()) - (layerInterface2:getXP() + layerInterface2:getHalfWidth())
-        local dy = (layerInterface:getYP() + layerInterface:getHalfHeight()) - (layerInterface2:getYP() + layerInterface2:getHalfHeight())
-        return java_int(self.mathUtil:sqrt((dx * dx) + (dy * dy)))
-end
-
-
-function LayerDistanceUtil:getDistance3D(layerInterface, layerInterface2)
-        local dx = (layerInterface:getXP() + layerInterface:getHalfWidth()) - (layerInterface2:getXP() + layerInterface2:getHalfWidth())
-        local dy = (layerInterface:getYP() + layerInterface:getHalfHeight()) - (layerInterface2:getYP() + layerInterface2:getHalfHeight())
-        local dz = (layerInterface:getZP() + layerInterface:getHalfDepth()) - (layerInterface2:getZP() + layerInterface2:getHalfDepth())
-        return java_int(self.mathUtil:sqrt((dx * dx) + (dy * dy) + (dz * dz)))
-end
+(define (LayerDistanceUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LayerDistanceUtil.jstatic_instance)))))
 
 
-function LayerDistanceUtil:getDistanceAt(layerInterface, point)
-        local dx = layerInterface:getXP() - point:getX()
-        local dy = layerInterface:getYP() - point:getY()
-        return java_int(self.mathUtil:sqrt((dx * dx) + (dy * dy)))
-end
-
-LayerDistanceUtil.instance = LayerDistanceUtil.new()
-
-return LayerDistanceUtil
 

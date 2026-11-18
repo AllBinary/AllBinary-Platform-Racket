@@ -41,11 +41,13 @@
     (let ()
       (let/ec jreturn
         (set-field! f_unknownSpecificOSAllowed this _aUnknownSpecificOSAllowed))))))
+(define (OperatingSystems.jclassValue) OperatingSystems%)
 
 (define OperatingSystems.jcell_instance 'jnone)
 (define (OperatingSystems.jstatic_instance)
   (when (eq? OperatingSystems.jcell_instance 'jnone) (set! OperatingSystems.jcell_instance (OperatingSystems.jnew_0)))
   OperatingSystems.jcell_instance)
+(define (OperatingSystems.jsetstatic_instance value) (set! OperatingSystems.jcell_instance value))
 
 (define (OperatingSystems.jnew_0)
   (define this (new OperatingSystems% [jclass "OperatingSystems"]))

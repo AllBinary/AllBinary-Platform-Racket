@@ -1,75 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image.sprite
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorUtil = require("org.allbinary.graphics.color.BasicColorUtil")
-local SpriteIndexedAnimation = require("org.allbinary.animation.image.sprite.SpriteIndexedAnimation")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./SpriteIndexedAnimation.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AdjustedSpriteIndexedAnimation%
+  (class SpriteIndexedAnimation%
+    (super-new)
+    (field [f_dx 0])
+    (field [f_dy 0])
+    (define/override (jm_paintFrame_4 _graphics _frame _x _y)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setFrame_1 _frame)
+        (send (get-field f_sprite this) jm_setPosition_2 (JR.i32 (+ _x (get-field f_dx this))) (JR.i32 (+ _y (get-field f_dy this))))
+        (super jm_paint_1 _graphics))))
+    (define/override (jm_paintXY_3 _g _x _y)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_sprite this) jm_setPosition_2 (JR.i32 (+ _x (get-field f_dx this))) (JR.i32 (+ _y (get-field f_dy this))))
+        (super jm_paint_1 _g))))
+    (define/override (jm_paint_1 _g)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_sprite this) jm_setPosition_2 (get-field f_dx this) (get-field f_dy this))
+        (super jm_paint_1 _g))))))
+(define (AdjustedSpriteIndexedAnimation.jclassValue) AdjustedSpriteIndexedAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AdjustedSpriteIndexedAnimation = {}
-AdjustedSpriteIndexedAnimation.__index = AdjustedSpriteIndexedAnimation
-AdjustedSpriteIndexedAnimation.className = "AdjustedSpriteIndexedAnimation"
-setmetatable(AdjustedSpriteIndexedAnimation, {__index = SpriteIndexedAnimation})
-
-function AdjustedSpriteIndexedAnimation:_init_fields()
-    self.dx = nil
-    self.dy = nil
-end
-
-
-function AdjustedSpriteIndexedAnimation.new(sprite, image, basicColorArray, dx, dy, animationBehavior)
-    local self = setmetatable(SpriteIndexedAnimation.new(sprite, image, basicColorArray, animationBehavior), AdjustedSpriteIndexedAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
-function AdjustedSpriteIndexedAnimation:paintFrame(graphics, frame, x, y)
-        self:setFrame(frame)
-        self.sprite:setPosition(x + self.dx, y + self.dy)
-        SpriteIndexedAnimation.paint(self, graphics)
-end
+(define (AdjustedSpriteIndexedAnimation.jnew_6 _sprite _image _basicColorArray _dx _dy _animationBehavior)
+  (define this (new AdjustedSpriteIndexedAnimation% [jclass "AdjustedSpriteIndexedAnimation"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_dx this _dx)
+        (set-field! f_dy this _dy)))
+  this)
 
 
-function AdjustedSpriteIndexedAnimation:paintXY(g, x, y)
-        self.sprite:setPosition(x + self.dx, y + self.dy)
-        SpriteIndexedAnimation.paint(self, g)
-end
-
-
-function AdjustedSpriteIndexedAnimation:paint(g)
-        self.sprite:setPosition(self.dx, self.dy)
-        SpriteIndexedAnimation.paint(self, g)
-end
-
-return AdjustedSpriteIndexedAnimation
 

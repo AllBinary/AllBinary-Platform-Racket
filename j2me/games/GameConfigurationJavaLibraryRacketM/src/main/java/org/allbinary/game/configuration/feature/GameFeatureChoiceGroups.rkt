@@ -1,70 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.feature
 
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameFeatureChoiceGroups%
+  (class JObject%
+    (super-new)
+    (field [f_hashtable JR.null])
+    (define/public (jm_get_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_hashtable this)))))
+    (define/public (jm_add_2 _name _list)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_hashtable this) jm_put_2 _name _list))))))
+(define (GameFeatureChoiceGroups.jclassValue) GameFeatureChoiceGroups%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive 'jnone)
+(define (GameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsExclusive)
+  (when (eq? GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive 'jnone) (set! GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive (GameFeatureChoiceGroups.jnew_0)))
+  GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive)
+(define (GameFeatureChoiceGroups.jsetstatic_gameFeatureChoiceGroupsExclusive value) (set! GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive value))
 
-local GameFeatureChoiceGroups = {}
-GameFeatureChoiceGroups.__index = GameFeatureChoiceGroups
-GameFeatureChoiceGroups.className = "GameFeatureChoiceGroups"
+(define GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple 'jnone)
+(define (GameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsMultiple)
+  (when (eq? GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple 'jnone) (set! GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple (GameFeatureChoiceGroups.jnew_0)))
+  GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple)
+(define (GameFeatureChoiceGroups.jsetstatic_gameFeatureChoiceGroupsMultiple value) (set! GameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple value))
 
-function GameFeatureChoiceGroups:_init_fields()
-    self.hashtable = StdUtil.getInstance():createHashtable()
-end
+(define (GameFeatureChoiceGroups.jnew_0)
+  (define this (new GameFeatureChoiceGroups% [jclass "GameFeatureChoiceGroups"]))
+    (set-field! f_hashtable this (send (StdUtil.jm_getInstance_0) jm_createHashtable_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
+(define (GameFeatureChoiceGroups.jm_getExclusiveInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsExclusive)))))
 
-function GameFeatureChoiceGroups.new()
-    local self = setmetatable({}, GameFeatureChoiceGroups)
-    self:_init_fields()
-    return self
-end
-
-
-function GameFeatureChoiceGroups.getExclusiveInstance()
-        return GameFeatureChoiceGroups.gameFeatureChoiceGroupsExclusive
-end
-
-
-function GameFeatureChoiceGroups.getMultipleInstance()
-        return GameFeatureChoiceGroups.gameFeatureChoiceGroupsMultiple
-end
-
-
-function GameFeatureChoiceGroups:get()
-        return self.hashtable
-end
+(define (GameFeatureChoiceGroups.jm_getMultipleInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsMultiple)))))
 
 
-function GameFeatureChoiceGroups:add(name, list)
-        self.hashtable:put(name, list)
-end
-
-GameFeatureChoiceGroups.gameFeatureChoiceGroupsExclusive = GameFeatureChoiceGroups.new()
-GameFeatureChoiceGroups.gameFeatureChoiceGroupsMultiple = GameFeatureChoiceGroups.new()
-
-return GameFeatureChoiceGroups
 

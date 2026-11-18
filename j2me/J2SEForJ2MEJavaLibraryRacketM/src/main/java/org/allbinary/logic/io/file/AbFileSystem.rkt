@@ -1,139 +1,110 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2026 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io.file
 
--- local File = require("java.io.File")
--- local FileInputStream = require("java.io.FileInputStream")
--- local InputStream = require("java.io.InputStream")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../java/io/File.rkt"
+  "../../../../../java/io/FileInputStream.rkt"
+  "../../../../../java/io/InputStream.rkt"
+  "../../../../../java/lang/System.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+;J2SEForJ2ME
+(define AbFileSystem%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (define/public (jm_isDirectoryOrFile_1 _path)
+    (let ([_file JR.null])
+      (let/ec jreturn
+        (set! _file (File.jnew_1 _path))
+        (jreturn (or (send _file jm_isDirectory_0) (send _file jm_isFile_0))))))
+    (define/public (jm_isDirectory_1 _path)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (File.jnew_1 _path) jm_isDirectory_0)))))
+    (define/public (jm_getFilesAsStringArrayForPath_1 _currentDirPath)
+    (let ([_file JR.null])
+      (let/ec jreturn
+        (set! _file (File.jnew_1 _currentDirPath))
+        (if (send _file jm_exists_0)
+            (begin
+            (jreturn (send _file jm_list_0)))
+            (begin
+            (jreturn (send (StringUtil.jm_getInstance_0) jm_getArrayInstance_0)))))))
+    (define/public (jm_readAsString_1 _fileName)
+    (let ([_bytes JR.null])
+      (let/ec jreturn
+        (set! _bytes (JR.newArray 0 1000000))
+        (jreturn (send this jm_readAsString_2 _fileName _bytes)))))
+    (define/public (jm_readAsString_2 _fileName _bytes)
+    (let ([_closeable JR.null][_idFile JR.null][_size JR.null])
+      (let/ec jreturn
+        (set! _closeable (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+        (dynamic-wind void (lambda () (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this "readAsString" _e))])
+            (set! _idFile (FileInputStream.jnew_1 _fileName))
+            (set! _closeable _idFile)
+            (set! _size (send _idFile jm_read_1 _bytes))
+            (when (> _size 0)
+                (begin
+                (jreturn (JR.fromChars _bytes 0 _size))))))
+            (lambda ()
+            (send this jm_close_1 _closeable)))
+        (jreturn (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))
+    (define/public (jm_close_1 _closeable)
+    (let ([_inputStream JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_CLOSE (get-field f_commonStrings this)) _e)
+            (jreturn #f))])
+            (when (not (JR.null? _closeable))
+                (begin
+                (set! _inputStream _closeable)
+                (send _inputStream jm_close_0)))
+            (jreturn #t)))))))
+(define (AbFileSystem.jclassValue) AbFileSystem%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AbFileSystem.jcell_instance 'jnone)
+(define (AbFileSystem.jstatic_instance)
+  (when (eq? AbFileSystem.jcell_instance 'jnone) (set! AbFileSystem.jcell_instance (AbFileSystem.jnew_0)))
+  AbFileSystem.jcell_instance)
+(define (AbFileSystem.jsetstatic_instance value) (set! AbFileSystem.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (AbFileSystem.jnew_0)
+  (define this (new AbFileSystem% [jclass "AbFileSystem"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+  this)
 
---J2SEForJ2ME
-local AbFileSystem = {}
-AbFileSystem.__index = AbFileSystem
-AbFileSystem.className = "AbFileSystem"
+(define (AbFileSystem.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AbFileSystem.jstatic_instance)))))
 
-function AbFileSystem:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-end
-
-function AbFileSystem.new()
-    local self = setmetatable({}, AbFileSystem)
-    self:_init_fields()
-    return self
-end
-
-
-function AbFileSystem.getInstance()
-        return AbFileSystem.instance
-end
-
-
-function AbFileSystem:isDirectoryOrFile(path)
-        local file = File.new(path)
-        return file:isDirectory() or file:isFile()
-end
-
-
-function AbFileSystem:isDirectory(path)
-        return File.new(path):isDirectory()
-end
-
-
-function AbFileSystem:getFilesAsStringArrayForPath(currentDirPath)
-        local file = File.new(currentDirPath)
-        if file:exists() then
-            return file:list()
-        else
-            return StringUtil.getInstance():getArrayInstance()
-        end
-end
-
-
-function AbFileSystem:readAsString(fileName)
-        local bytes = java_new_array(0, 1000000)
-        return self:readAsString(fileName, bytes)
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function AbFileSystem:readAsString(fileName, bytes)
-        local closeable = NullUtil.getInstance().NULL_OBJECT
-        local try_ok, try_error = pcall(function()
-            local idFile = FileInputStream.new(fileName)
-            closeable = idFile
-            local size = idFile:read(bytes)
-            if size > 0 then
-                return string.char(table.unpack(bytes, 0, size))
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "readAsString", e)
-        end
-        do -- finally
-            self:close(closeable)
-        end
-        return StringUtil.getInstance().EMPTY_STRING
-end
+(define (AbFileSystem.jm_main_1 _args)
+    (let ([_isDirectory JR.null])
+      (let/ec jreturn
+        (set! _isDirectory (send (AbFileSystem.jm_getInstance_0) jm_isDirectory_1 "c:"))
+        (JR.println (JR.concat "isDirectory: " (JR.boolean _isDirectory))))))
 
 
-function AbFileSystem:close(closeable)
-        local try_ok, try_error = pcall(function()
-            if closeable ~= nil then
-                local inputStream = (closeable)
-                inputStream:close()
-            end
-            return true
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.CLOSE, e)
-            return false
-        end
-end
-
-
--- throws Exception
-function AbFileSystem.main(args)
-        local isDirectory = AbFileSystem.getInstance():isDirectory("c:")
-        print("isDirectory: " .. tostring(isDirectory))
-end
-
-AbFileSystem.instance = AbFileSystem.new()
-
-return AbFileSystem
 

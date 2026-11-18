@@ -24,6 +24,7 @@
 (define Memory%
   (class JObject%
     (super-new)))
+(define (Memory.jclassValue) Memory%)
 
 (define (Memory.jnew_0)
   (define this (new Memory% [jclass "Memory"]))

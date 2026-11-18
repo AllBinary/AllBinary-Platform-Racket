@@ -21,6 +21,7 @@
 (define J2MEUtil%
   (class JObject%
     (super-new)))
+(define (J2MEUtil.jclassValue) J2MEUtil%)
 
 (define (J2MEUtil.jnew_0)
   (define this (new J2MEUtil% [jclass "J2MEUtil"]))

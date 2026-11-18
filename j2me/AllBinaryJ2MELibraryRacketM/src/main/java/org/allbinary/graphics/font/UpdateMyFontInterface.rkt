@@ -1,40 +1,33 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.font
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.font
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define UpdateMyFontInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_updateMeasurement_1 _graphics)
+      (raise (JR.newException "AbstractMethodError" "updateMeasurement")))))
+(define (UpdateMyFontInterface.jclassValue) UpdateMyFontInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local UpdateMyFontInterface = {}
-UpdateMyFontInterface.__index = UpdateMyFontInterface
-UpdateMyFontInterface.className = "UpdateMyFontInterface"
+(define (UpdateMyFontInterface.jnew_0)
+  (define this (new UpdateMyFontInterface% [jclass "UpdateMyFontInterface"]))
+  this)
 
 
-function UpdateMyFontInterface:updateMeasurement(graphics)
-    error("abstract method updateMeasurement")
-end
-
-return UpdateMyFontInterface
 

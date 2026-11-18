@@ -1,55 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.touch.action
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.touch.action
 
-local PlatformInputMappingFactory = require("org.allbinary.game.input.PlatformInputMappingFactory")
-local GameKeyCompleteMotionGestureInputEvent = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEvent")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent.rkt")
+(lazy-require ["../../../../../../org/allbinary/game/input/PlatformInputMappingFactory.rkt" (PlatformInputMappingFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/input/motion/gesture/TouchMotionGestureFactory.rkt" (TouchMotionGestureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LeftTouchInputToGameKeyEventAction%
+  (class GameKeyCompleteMotionGestureInputEvent%
+    (super-new)))
+(define (LeftTouchInputToGameKeyEventAction.jclassValue) LeftTouchInputToGameKeyEventAction%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LeftTouchInputToGameKeyEventAction.jcell_instance 'jnone)
+(define (LeftTouchInputToGameKeyEventAction.jstatic_instance)
+  (when (eq? LeftTouchInputToGameKeyEventAction.jcell_instance 'jnone) (set! LeftTouchInputToGameKeyEventAction.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  LeftTouchInputToGameKeyEventAction.jcell_instance)
+(define (LeftTouchInputToGameKeyEventAction.jsetstatic_instance value) (set! LeftTouchInputToGameKeyEventAction.jcell_instance value))
 
-local LeftTouchInputToGameKeyEventAction = {}
-LeftTouchInputToGameKeyEventAction.__index = LeftTouchInputToGameKeyEventAction
-LeftTouchInputToGameKeyEventAction.className = "LeftTouchInputToGameKeyEventAction"
-setmetatable(LeftTouchInputToGameKeyEventAction, {__index = GameKeyCompleteMotionGestureInputEvent})
+(define (LeftTouchInputToGameKeyEventAction.jnew_0)
+  (define this (new LeftTouchInputToGameKeyEventAction% [jclass "LeftTouchInputToGameKeyEventAction"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
+
+(define (LeftTouchInputToGameKeyEventAction.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (LeftTouchInputToGameKeyEventAction.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! LeftTouchInputToGameKeyEventAction.jcell_instance (LeftTouchInputToGameKeyEventAction.jnew_0))))
+        (jreturn (LeftTouchInputToGameKeyEventAction.jstatic_instance)))))
 
 
-function LeftTouchInputToGameKeyEventAction.getInstance()
-        if LeftTouchInputToGameKeyEventAction.instance == NullUtil.getInstance().NULL_OBJECT then
-            LeftTouchInputToGameKeyEventAction.instance = LeftTouchInputToGameKeyEventAction.new()
-        end
-        return LeftTouchInputToGameKeyEventAction.instance
-end
-
-
-function LeftTouchInputToGameKeyEventAction.new()
-    local self = setmetatable(GameKeyCompleteMotionGestureInputEvent.new("Left Action", TouchMotionGestureFactory.getInstance().LEFT, PlatformInputMappingFactory.getInstance():getPersistentInputMappingInstance():getInputMapping()), LeftTouchInputToGameKeyEventAction)
-        -- super(...) made self above
-    return self
-end
-
-LeftTouchInputToGameKeyEventAction.instance = NullUtil.getInstance().NULL_OBJECT
-
-return LeftTouchInputToGameKeyEventAction
 

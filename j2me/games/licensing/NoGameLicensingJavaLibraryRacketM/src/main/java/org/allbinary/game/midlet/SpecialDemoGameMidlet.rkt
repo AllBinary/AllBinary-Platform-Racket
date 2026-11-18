@@ -1,53 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.midlet
 
-local ClientInformationFactory = require("org.allbinary.logic.system.security.licensing.ClientInformationFactory")
-local LicenseServerInitFileUtil = require("org.allbinary.logic.system.security.licensing.LicenseServerInitFileUtil")
-local DemoGameMidlet = require("org.allbinary.game.midlet.DemoGameMidlet")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./DemoGameMidlet.rkt")
+(lazy-require ["../../../../org/allbinary/logic/system/security/licensing/LicenseServerInitFileUtil.rkt" (LicenseServerInitFileUtil.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SpecialDemoGameMidlet%
+  (class DemoGameMidlet%
+    (super-new)
+    (define/public (jm_initView_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_preInit_0)
+    (let ()
+      (let/ec jreturn
+        (send (LicenseServerInitFileUtil.jnew_0) jm_init_0))))))
+(define (SpecialDemoGameMidlet.jclassValue) SpecialDemoGameMidlet%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SpecialDemoGameMidlet = {}
-SpecialDemoGameMidlet.__index = SpecialDemoGameMidlet
-SpecialDemoGameMidlet.className = "SpecialDemoGameMidlet"
-setmetatable(SpecialDemoGameMidlet, {__index = DemoGameMidlet})
-
-
-function SpecialDemoGameMidlet.new(clientInformationFactory, licenseLoadingType, demoSetupFactory, licenseCheckRunnableFactory)
-    local self = setmetatable(DemoGameMidlet.new(clientInformationFactory), SpecialDemoGameMidlet)
-        -- super(...) made self above
-    return self
-end
-
-
-function SpecialDemoGameMidlet:initView()
-end
+(define (SpecialDemoGameMidlet.jnew_4 _clientInformationFactory _licenseLoadingType _demoSetupFactory _licenseCheckRunnableFactory)
+  (define this (new SpecialDemoGameMidlet% [jclass "SpecialDemoGameMidlet"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function SpecialDemoGameMidlet:preInit()
-        LicenseServerInitFileUtil.new():init()
-end
-
-return SpecialDemoGameMidlet
 

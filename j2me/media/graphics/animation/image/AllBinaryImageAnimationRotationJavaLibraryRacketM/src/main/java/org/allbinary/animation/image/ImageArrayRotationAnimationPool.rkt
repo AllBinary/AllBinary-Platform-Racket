@@ -1,62 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
-local BasicArrayListResetablePool = require("org.allbinary.logic.util.cache.BasicArrayListResetablePool")
-local CacheableInterface = require("org.allbinary.logic.util.cache.CacheableInterface")
-local CacheableInterfaceFactoryInterface = require("org.allbinary.logic.util.cache.CacheableInterfaceFactoryInterface")
-local PoolInterface = require("org.allbinary.logic.util.cache.PoolInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/cache/BasicArrayListResetablePool.rkt")
+(lazy-require ["./ImageArrayRotationAnimationCacheableInterfaceFactory.rkt" (ImageArrayRotationAnimationCacheableInterfaceFactory.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageArrayRotationAnimationPool%
+  (class BasicArrayListResetablePool%
+    (super-new)
+    (define/override (jm_remove_1 _key)
+    (let ([_cacheableInterface JR.null][_allBinaryImageRotationAnimationInfo JR.null][_imageArrayRotationAnimationCacheable JR.null])
+      (let/ec jreturn
+        (set! _cacheableInterface (super jm_remove_1 _key))
+        (set! _allBinaryImageRotationAnimationInfo _key)
+        (set! _imageArrayRotationAnimationCacheable _cacheableInterface)
+        (send _imageArrayRotationAnimationCacheable jm_setImageArray_1 (send _allBinaryImageRotationAnimationInfo jm_getImageArray_0))
+        (jreturn _cacheableInterface))))))
+(define (ImageArrayRotationAnimationPool.jclassValue) ImageArrayRotationAnimationPool%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ImageArrayRotationAnimationPool.jcell_IMAGE_ROTATION_ANIMATION_POOL 'jnone)
+(define (ImageArrayRotationAnimationPool.jstatic_IMAGE_ROTATION_ANIMATION_POOL)
+  (when (eq? ImageArrayRotationAnimationPool.jcell_IMAGE_ROTATION_ANIMATION_POOL 'jnone) (set! ImageArrayRotationAnimationPool.jcell_IMAGE_ROTATION_ANIMATION_POOL (ImageArrayRotationAnimationPool.jnew_1 (ImageArrayRotationAnimationCacheableInterfaceFactory.jnew_0))))
+  ImageArrayRotationAnimationPool.jcell_IMAGE_ROTATION_ANIMATION_POOL)
+(define (ImageArrayRotationAnimationPool.jsetstatic_IMAGE_ROTATION_ANIMATION_POOL value) (set! ImageArrayRotationAnimationPool.jcell_IMAGE_ROTATION_ANIMATION_POOL value))
 
-local ImageArrayRotationAnimationPool = {}
-ImageArrayRotationAnimationPool.__index = ImageArrayRotationAnimationPool
-ImageArrayRotationAnimationPool.className = "ImageArrayRotationAnimationPool"
-setmetatable(ImageArrayRotationAnimationPool, {__index = BasicArrayListResetablePool})
+(define (ImageArrayRotationAnimationPool.jnew_1 _cacheableInterfaceFactoryInterface)
+  (define this (new ImageArrayRotationAnimationPool% [jclass "ImageArrayRotationAnimationPool"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-
-function ImageArrayRotationAnimationPool.new(cacheableInterfaceFactoryInterface)
-    local self = setmetatable(BasicArrayListResetablePool.new(cacheableInterfaceFactoryInterface), ImageArrayRotationAnimationPool)
-        -- super(...) made self above
-    return self
-end
-
-
-function ImageArrayRotationAnimationPool.getInstance()
-        return ImageArrayRotationAnimationPool.IMAGE_ROTATION_ANIMATION_POOL
-end
+(define (ImageArrayRotationAnimationPool.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageArrayRotationAnimationPool.jstatic_IMAGE_ROTATION_ANIMATION_POOL)))))
 
 
--- throws Exception
-function ImageArrayRotationAnimationPool:remove(key)
-        local cacheableInterface = BasicArrayListResetablePool.remove(self, key)
-        local allBinaryImageRotationAnimationInfo = key
-        local imageArrayRotationAnimationCacheable = (cacheableInterface)
-        imageArrayRotationAnimationCacheable:setImageArray(allBinaryImageRotationAnimationInfo:getImageArray())
-        return cacheableInterface
-end
-
-ImageArrayRotationAnimationPool.IMAGE_ROTATION_ANIMATION_POOL = ImageArrayRotationAnimationPool.new(ImageArrayRotationAnimationCacheableInterfaceFactory.new())
-
-return ImageArrayRotationAnimationPool
 

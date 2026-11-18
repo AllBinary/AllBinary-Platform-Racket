@@ -1,51 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local LocationPaintableInterface = require("org.allbinary.graphics.paint.LocationPaintableInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./LocationPaintableInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LocationPaintable%
+  (class JObject%
+    (super-new)
+    (define/public (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (LocationPaintable.jclassValue) LocationPaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LocationPaintable.jcell_instance 'jnone)
+(define (LocationPaintable.jstatic_instance)
+  (when (eq? LocationPaintable.jcell_instance 'jnone) (set! LocationPaintable.jcell_instance (LocationPaintable.jnew_0)))
+  LocationPaintable.jcell_instance)
+(define (LocationPaintable.jsetstatic_instance value) (set! LocationPaintable.jcell_instance value))
 
-local LocationPaintable = {}
-LocationPaintable.__index = LocationPaintable
-LocationPaintable.className = "LocationPaintable"
+(define (LocationPaintable.jnew_0)
+  (define this (new LocationPaintable% [jclass "LocationPaintable"]))
+  this)
 
-function LocationPaintable.new()
-    local self = setmetatable({}, LocationPaintable)
-    return self
-end
-
-
-function LocationPaintable.getInstance()
-        return LocationPaintable.instance
-end
+(define (LocationPaintable.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LocationPaintable.jstatic_instance)))))
 
 
-function LocationPaintable:paintXY(graphics, x, y)
-end
-
-LocationPaintable.instance = LocationPaintable.new()
-
-return LocationPaintable
 

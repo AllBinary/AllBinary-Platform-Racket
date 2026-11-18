@@ -36,11 +36,13 @@
     (field [f_ITEM_LABEL JR.null])
     (field [f_RESULT_ JR.null])
     (field [f_COLON_SEP JR.null])))
+(define (CommonLabels.jclassValue) CommonLabels%)
 
 (define CommonLabels.jcell_instance 'jnone)
 (define (CommonLabels.jstatic_instance)
   (when (eq? CommonLabels.jcell_instance 'jnone) (set! CommonLabels.jcell_instance (CommonLabels.jnew_0)))
   CommonLabels.jcell_instance)
+(define (CommonLabels.jsetstatic_instance value) (set! CommonLabels.jcell_instance value))
 
 (define (CommonLabels.jnew_0)
   (define this (new CommonLabels% [jclass "CommonLabels"]))

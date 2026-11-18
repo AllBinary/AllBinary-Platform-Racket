@@ -1,39 +1,25 @@
--- Generated Code Do Not Modify
--- package org.allbinary.view
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.view
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define EmulatorViewInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_setMidlet_1 _midlet)
+      (raise (JR.newException "AbstractMethodError" "setMidlet")))
+    (define/public (jm_onEmulatorInitComplete_1 _midletActivity)
+      (raise (JR.newException "AbstractMethodError" "onEmulatorInitComplete")))
+    (define/public (jm_onSetDisplayable_1 _displayable)
+      (raise (JR.newException "AbstractMethodError" "onSetDisplayable")))))
+(define (EmulatorViewInterface.jclassValue) EmulatorViewInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local EmulatorViewInterface = {}
-EmulatorViewInterface.__index = EmulatorViewInterface
-EmulatorViewInterface.className = "EmulatorViewInterface"
-
-
-function EmulatorViewInterface:setMidlet(midlet)
-    error("abstract method setMidlet")
-end
+(define (EmulatorViewInterface.jnew_0)
+  (define this (new EmulatorViewInterface% [jclass "EmulatorViewInterface"]))
+  this)
 
 
-function EmulatorViewInterface:onEmulatorInitComplete(midletActivity)
-    error("abstract method onEmulatorInitComplete")
-end
-
-
-function EmulatorViewInterface:onSetDisplayable(displayable)
-    error("abstract method onSetDisplayable")
-end
-
-return EmulatorViewInterface
 

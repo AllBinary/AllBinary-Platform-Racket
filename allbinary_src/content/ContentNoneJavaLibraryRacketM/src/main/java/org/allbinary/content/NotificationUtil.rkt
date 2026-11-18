@@ -1,50 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.content
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.content
 
--- local Command = require("javax.microedition.lcdui.Command")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NotificationUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_notify_3 _command _resource _message)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NotificationUtil.jclassValue) NotificationUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NotificationUtil.jcell_SINGLETON 'jnone)
+(define (NotificationUtil.jstatic_SINGLETON)
+  (when (eq? NotificationUtil.jcell_SINGLETON 'jnone) (set! NotificationUtil.jcell_SINGLETON (NotificationUtil.jnew_0)))
+  NotificationUtil.jcell_SINGLETON)
+(define (NotificationUtil.jsetstatic_SINGLETON value) (set! NotificationUtil.jcell_SINGLETON value))
 
-local NotificationUtil = {}
-NotificationUtil.__index = NotificationUtil
-NotificationUtil.className = "NotificationUtil"
+(define (NotificationUtil.jnew_0)
+  (define this (new NotificationUtil% [jclass "NotificationUtil"]))
+  this)
 
-function NotificationUtil.new()
-    local self = setmetatable({}, NotificationUtil)
-    return self
-end
-
-
-function NotificationUtil.getInstance()
-        return NotificationUtil.SINGLETON
-end
+(define (NotificationUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NotificationUtil.jstatic_SINGLETON)))))
 
 
-function NotificationUtil:notify(command, resource, message)
-end
-
-NotificationUtil.SINGLETON = NotificationUtil.new()
-
-return NotificationUtil
 

@@ -1,45 +1,36 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.midlet
 
-local ABRunnable = require("org.allbinary.thread.ABRunnable")
-local NullABRunnable = require("org.allbinary.thread.NullABRunnable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/thread/NullABRunnable.rkt" (NullABRunnable.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LicenseCheckRunnableFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_1 _specialDemoGameMidlet)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullABRunnable.jm_getInstance_0)))))))
+(define (LicenseCheckRunnableFactory.jclassValue) LicenseCheckRunnableFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LicenseCheckRunnableFactory = {}
-LicenseCheckRunnableFactory.__index = LicenseCheckRunnableFactory
-LicenseCheckRunnableFactory.className = "LicenseCheckRunnableFactory"
-
-function LicenseCheckRunnableFactory.new()
-    local self = setmetatable({}, LicenseCheckRunnableFactory)
-    return self
-end
+(define (LicenseCheckRunnableFactory.jnew_0)
+  (define this (new LicenseCheckRunnableFactory% [jclass "LicenseCheckRunnableFactory"]))
+  this)
 
 
-function LicenseCheckRunnableFactory:getInstance(specialDemoGameMidlet)
-        return NullABRunnable.getInstance()
-end
-
-return LicenseCheckRunnableFactory
 

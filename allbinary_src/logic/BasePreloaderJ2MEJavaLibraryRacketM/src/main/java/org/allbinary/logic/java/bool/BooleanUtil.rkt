@@ -64,11 +64,13 @@
             (send _stringMaker jm_appendboolean_1 (vector-ref _booleanArray _index)))
                 (set! _index (JR.i32 (+ _index 1))) (jloop)))))
         (jreturn (send _stringMaker jm_toString_0)))))))
+(define (BooleanUtil.jclassValue) BooleanUtil%)
 
 (define BooleanUtil.jcell_instance 'jnone)
 (define (BooleanUtil.jstatic_instance)
   (when (eq? BooleanUtil.jcell_instance 'jnone) (set! BooleanUtil.jcell_instance (BooleanUtil.jnew_0)))
   BooleanUtil.jcell_instance)
+(define (BooleanUtil.jsetstatic_instance value) (set! BooleanUtil.jcell_instance value))
 
 (define (BooleanUtil.jnew_0)
   (define this (new BooleanUtil% [jclass "BooleanUtil"]))

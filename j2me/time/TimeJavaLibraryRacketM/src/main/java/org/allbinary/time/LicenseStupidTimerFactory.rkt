@@ -22,11 +22,13 @@
 (define LicenseStupidTimerFactory%
   (class JObject%
     (super-new)))
+(define (LicenseStupidTimerFactory.jclassValue) LicenseStupidTimerFactory%)
 
 (define LicenseStupidTimerFactory.jcell_instance 'jnone)
 (define (LicenseStupidTimerFactory.jstatic_instance)
   (when (eq? LicenseStupidTimerFactory.jcell_instance 'jnone) (set! LicenseStupidTimerFactory.jcell_instance (StupidTimer.jnew_0)))
   LicenseStupidTimerFactory.jcell_instance)
+(define (LicenseStupidTimerFactory.jsetstatic_instance value) (set! LicenseStupidTimerFactory.jcell_instance value))
 
 (define (LicenseStupidTimerFactory.jnew_0)
   (define this (new LicenseStupidTimerFactory% [jclass "LicenseStupidTimerFactory"]))

@@ -22,11 +22,13 @@
 (define NoOperatingSystem%
   (class GenericOperatingSystem%
     (super-new)))
+(define (NoOperatingSystem.jclassValue) NoOperatingSystem%)
 
 (define NoOperatingSystem.jcell_NO_OPERATING_SYSTEM 'jnone)
 (define (NoOperatingSystem.jstatic_NO_OPERATING_SYSTEM)
   (when (eq? NoOperatingSystem.jcell_NO_OPERATING_SYSTEM 'jnone) (set! NoOperatingSystem.jcell_NO_OPERATING_SYSTEM (GenericOperatingSystem.jnew_0)))
   NoOperatingSystem.jcell_NO_OPERATING_SYSTEM)
+(define (NoOperatingSystem.jsetstatic_NO_OPERATING_SYSTEM value) (set! NoOperatingSystem.jcell_NO_OPERATING_SYSTEM value))
 
 (define (NoOperatingSystem.jnew_0)
   (define this (new NoOperatingSystem% [jclass "NoOperatingSystem"]))

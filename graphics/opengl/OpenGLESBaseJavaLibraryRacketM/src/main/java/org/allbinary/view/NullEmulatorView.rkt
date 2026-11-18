@@ -1,55 +1,47 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.view
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.view
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
-local EmulatorViewInterface = require("org.allbinary.view.EmulatorViewInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./EmulatorViewInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullEmulatorView%
+  (class JObject%
+    (super-new)
+    (define/public (jm_setMidlet_1 _midlet)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onEmulatorInitComplete_1 _midletActivity)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onSetDisplayable_1 _displayable)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullEmulatorView.jclassValue) NullEmulatorView%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullEmulatorView.jcell_NULL_EMULATOR_VIEW 'jnone)
+(define (NullEmulatorView.jstatic_NULL_EMULATOR_VIEW)
+  (when (eq? NullEmulatorView.jcell_NULL_EMULATOR_VIEW 'jnone) (set! NullEmulatorView.jcell_NULL_EMULATOR_VIEW (NullEmulatorView.jnew_0)))
+  NullEmulatorView.jcell_NULL_EMULATOR_VIEW)
+(define (NullEmulatorView.jsetstatic_NULL_EMULATOR_VIEW value) (set! NullEmulatorView.jcell_NULL_EMULATOR_VIEW value))
 
-local NullEmulatorView = {}
-NullEmulatorView.__index = NullEmulatorView
-NullEmulatorView.className = "NullEmulatorView"
-
-function NullEmulatorView.new()
-    local self = setmetatable({}, NullEmulatorView)
-    return self
-end
-
-
-function NullEmulatorView:setMidlet(midlet)
-end
-
-
-function NullEmulatorView:onEmulatorInitComplete(midletActivity)
-end
+(define (NullEmulatorView.jnew_0)
+  (define this (new NullEmulatorView% [jclass "NullEmulatorView"]))
+  this)
 
 
-function NullEmulatorView:onSetDisplayable(displayable)
-end
-
-NullEmulatorView.NULL_EMULATOR_VIEW = NullEmulatorView.new()
-
-return NullEmulatorView
 

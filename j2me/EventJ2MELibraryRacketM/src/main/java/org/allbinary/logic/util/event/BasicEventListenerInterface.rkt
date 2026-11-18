@@ -22,6 +22,7 @@
 (define BasicEventListenerInterface%
   (class JObject%
     (super-new)))
+(define (BasicEventListenerInterface.jclassValue) BasicEventListenerInterface%)
 
 (define (BasicEventListenerInterface.jnew_0)
   (define this (new BasicEventListenerInterface% [jclass "BasicEventListenerInterface"]))

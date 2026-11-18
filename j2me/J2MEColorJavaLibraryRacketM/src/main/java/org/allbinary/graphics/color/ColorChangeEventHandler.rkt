@@ -22,11 +22,13 @@
 (define ColorChangeEventHandler%
   (class BasicEventHandler%
     (super-new)))
+(define (ColorChangeEventHandler.jclassValue) ColorChangeEventHandler%)
 
 (define ColorChangeEventHandler.jcell_eventHandler 'jnone)
 (define (ColorChangeEventHandler.jstatic_eventHandler)
   (when (eq? ColorChangeEventHandler.jcell_eventHandler 'jnone) (set! ColorChangeEventHandler.jcell_eventHandler (ColorChangeEventHandler.jnew_0)))
   ColorChangeEventHandler.jcell_eventHandler)
+(define (ColorChangeEventHandler.jsetstatic_eventHandler value) (set! ColorChangeEventHandler.jcell_eventHandler value))
 
 (define (ColorChangeEventHandler.jnew_0)
   (define this (new ColorChangeEventHandler% [jclass "ColorChangeEventHandler"]))

@@ -1,59 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local InitUpdatePaintable = require("org.allbinary.graphics.paint.InitUpdatePaintable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./InitUpdatePaintable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AnimationCompositePaintable%
+  (class InitUpdatePaintable%
+    (super-new)
+    (field [f_animationInterface JR.null])
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationInterface this) jm_paintXY_3 _graphics 0 0))))
+    (define/override (jm_paintThreed_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationInterface this) jm_paintThreedXYZ_4 _graphics 0 0 0))))))
+(define (AnimationCompositePaintable.jclassValue) AnimationCompositePaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AnimationCompositePaintable = {}
-AnimationCompositePaintable.__index = AnimationCompositePaintable
-AnimationCompositePaintable.className = "AnimationCompositePaintable"
-setmetatable(AnimationCompositePaintable, {__index = InitUpdatePaintable})
-
-function AnimationCompositePaintable:_init_fields()
-    self.animationInterface = nil
-end
-
-
-function AnimationCompositePaintable.new(animationInterface)
-    local self = setmetatable(InitUpdatePaintable.new(), AnimationCompositePaintable)
-    self:_init_fields()
-        self.animationInterface = animationInterface
-    return self
-end
+(define (AnimationCompositePaintable.jnew_1 _animationInterface)
+  (define this (new AnimationCompositePaintable% [jclass "AnimationCompositePaintable"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_animationInterface this _animationInterface)))
+  this)
 
 
-function AnimationCompositePaintable:paint(graphics)
-        self.animationInterface:paintXY(graphics, 0, 0)
-end
-
-
-function AnimationCompositePaintable:paintThreed(graphics)
-        self.animationInterface:paintThreedXYZ(graphics, 0, 0, 0)
-end
-
-return AnimationCompositePaintable
 

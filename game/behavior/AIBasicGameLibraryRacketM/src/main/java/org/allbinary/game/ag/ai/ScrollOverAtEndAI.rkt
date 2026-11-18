@@ -1,69 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/ai/BasicAI.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ScrollOverAtEndAI%
+  (class BasicAI%
+    (super-new)
+    (define/override (jm_processAI_1 _allBinaryLayerManager)
+    (let ([_ownerLayerInterface JR.null][_x JR.null][_y JR.null][_width JR.null][_height JR.null][_displayInfo JR.null])
+      (let/ec jreturn
+        (set! _ownerLayerInterface (send this jm_getOwnerLayerInterface_0))
+        (set! _x (send _ownerLayerInterface jm_getXP_0))
+        (set! _y (send _ownerLayerInterface jm_getYP_0))
+        (set! _width (send _ownerLayerInterface jm_getWidth_0))
+        (set! _height (send _ownerLayerInterface jm_getHeight_0))
+        (set! _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (when (> _x (send _displayInfo jm_getLastWidth_0))
+            (begin
+            (send _ownerLayerInterface jm_setPosition_3 0 _y (send _ownerLayerInterface jm_getZP_0))))
+        (when (> _y (send _displayInfo jm_getLastHeight_0))
+            (begin
+            (send _ownerLayerInterface jm_setPosition_3 _x 0 (send _ownerLayerInterface jm_getZP_0))))
+        (when (< _x (JR.i32 (- _width)))
+            (begin
+            (send _ownerLayerInterface jm_setPosition_3 (JR.i32 (- (send _displayInfo jm_getLastWidth_0) _width)) _y (send _ownerLayerInterface jm_getZP_0))))
+        (when (< _y (JR.i32 (- _height)))
+            (begin
+            (send _ownerLayerInterface jm_setPosition_3 _x (JR.i32 (- (send _displayInfo jm_getLastHeight_0) _height)) (send _ownerLayerInterface jm_getZP_0)))))))))
+(define (ScrollOverAtEndAI.jclassValue) ScrollOverAtEndAI%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ScrollOverAtEndAI = {}
-ScrollOverAtEndAI.__index = ScrollOverAtEndAI
-ScrollOverAtEndAI.className = "ScrollOverAtEndAI"
-setmetatable(ScrollOverAtEndAI, {__index = BasicAI})
+(define (ScrollOverAtEndAI.jnew_2 _ownerLayerInterface _gameInput)
+  (define this (new ScrollOverAtEndAI% [jclass "ScrollOverAtEndAI"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function ScrollOverAtEndAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), ScrollOverAtEndAI)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function ScrollOverAtEndAI:processAI(allBinaryLayerManager)
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local x = ownerLayerInterface:getXP()
-        local y = ownerLayerInterface:getYP()
-        local width = ownerLayerInterface:getWidth()
-        local height = ownerLayerInterface:getHeight()
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        if x > displayInfo:getLastWidth() then
-            ownerLayerInterface:setPosition(0, y, ownerLayerInterface:getZP())
-        end
-        if y > displayInfo:getLastHeight() then
-            ownerLayerInterface:setPosition(x, 0, ownerLayerInterface:getZP())
-        end
-        if x < -width then
-            ownerLayerInterface:setPosition(displayInfo:getLastWidth() - width, y, ownerLayerInterface:getZP())
-        end
-        if y < -height then
-            ownerLayerInterface:setPosition(x, displayInfo:getLastHeight() - height, ownerLayerInterface:getZP())
-        end
-end
-
-return ScrollOverAtEndAI
 

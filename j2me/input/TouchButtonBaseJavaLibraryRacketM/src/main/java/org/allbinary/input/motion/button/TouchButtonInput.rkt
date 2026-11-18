@@ -1,83 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
-local GameKey = require("org.allbinary.game.input.GameKey")
-local GameKeyEventSourceInterface = require("org.allbinary.game.input.GameKeyEventSourceInterface")
-local Input = require("org.allbinary.game.input.Input")
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local GameKeyEventFactory = require("org.allbinary.game.input.event.GameKeyEventFactory")
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/input/GameKeyEventSourceInterface.rkt"
+  "../../../../../org/allbinary/game/input/Input.rkt")
+(lazy-require ["../../../../../org/allbinary/game/input/InputFactory.rkt" (InputFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/input/event/GameKeyEvent.rkt" (GameKeyEvent.jstatic_NONE)])
+(lazy-require ["../../../../../org/allbinary/game/input/event/GameKeyEventFactory.rkt" (GameKeyEventFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TouchButtonInput%
+  (class Input%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_gameKeyEventFactory JR.null])
+    (field [f_TOUCH_BUTTON_SOURCE_ID 0])
+    (field [f_gameKeyEvent JR.null])
+    (define/public (jm_update_1 _inputToGameKeyMapping)
+    (let ([_gameKey JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_UPDATE _commonStrings) _e))])
+            (set! _gameKey (send _inputToGameKeyMapping jm_getInstance_1 (send this jm_getId_0)))
+            (set-field! f_gameKeyEvent this (send (get-field f_gameKeyEventFactory this) jm_getInstanceForInput_2 this _gameKey))))))
+    (define/public (jm_getSourceId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_TOUCH_BUTTON_SOURCE_ID this)))))
+    (define/public (jm_getGameKeyEvent_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameKeyEvent this)))))))
+(define (TouchButtonInput.jclassValue) TouchButtonInput%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TouchButtonInput = {}
-TouchButtonInput.__index = TouchButtonInput
-TouchButtonInput.className = "TouchButtonInput"
-setmetatable(TouchButtonInput, {__index = Input})
-
-function TouchButtonInput:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.gameKeyEventFactory = GameKeyEventFactory.getInstance()
-    self.TOUCH_BUTTON_SOURCE_ID = self.gameKeyEventFactory.TOUCH_BUTTON_SOURCE_ID
-    self.gameKeyEvent = GameKeyEvent.NONE
-end
-
-
-function TouchButtonInput.new(id, name)
-    local self = setmetatable(Input.new(id, name), TouchButtonInput)
-    self:_init_fields()
-        -- super(...) made self above
-        local inputFactory = InputFactory.getInstance()
-        inputFactory:add(self:getId(), self)
-    return self
-end
-
-
-function TouchButtonInput:update(inputToGameKeyMapping)
-        local try_ok, try_error = pcall(function()
-            local gameKey = inputToGameKeyMapping:getInstance(self:getId())
-            self.gameKeyEvent = self.gameKeyEventFactory:getInstanceForInput(self, gameKey)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.UPDATE, e)
-        end
-end
+(define (TouchButtonInput.jnew_2 _id _name)
+  (define this (new TouchButtonInput% [jclass "TouchButtonInput"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_gameKeyEventFactory this (GameKeyEventFactory.jm_getInstance_0))
+    (set-field! f_TOUCH_BUTTON_SOURCE_ID this (get-field f_TOUCH_BUTTON_SOURCE_ID (get-field f_gameKeyEventFactory this)))
+    (set-field! f_gameKeyEvent this (GameKeyEvent.jstatic_NONE))
+    (let ([_inputFactory JR.null])
+      (let/ec jreturn
+        (void)
+        (set! _inputFactory (InputFactory.jm_getInstance_0))
+        (send _inputFactory jm_add_2 (send this jm_getId_0) this)))
+  this)
 
 
-function TouchButtonInput:getSourceId()
-        return self.TOUCH_BUTTON_SOURCE_ID
-end
-
-
-function TouchButtonInput:getGameKeyEvent()
-        return self.gameKeyEvent
-end
-
-return TouchButtonInput
 

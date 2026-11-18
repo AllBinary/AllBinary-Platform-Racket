@@ -1,43 +1,34 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.drop
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.drop
 
-local PickedUpLayerInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterface")
-local LayerInterface = require("org.allbinary.layer.LayerInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/layer/LayerInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DropLayerInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getDroppedLayer_0)
+      (raise (JR.newException "AbstractMethodError" "getDroppedLayer")))))
+(define (DropLayerInterface.jclassValue) DropLayerInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local DropLayerInterface = {}
-DropLayerInterface.__index = DropLayerInterface
-DropLayerInterface.className = "DropLayerInterface"
-setmetatable(DropLayerInterface, {__index = LayerInterface})
+(define (DropLayerInterface.jnew_0)
+  (define this (new DropLayerInterface% [jclass "DropLayerInterface"]))
+  this)
 
 
--- throws Exception
-function DropLayerInterface:getDroppedLayer()
-    error("abstract method getDroppedLayer")
-end
-
-return DropLayerInterface
 

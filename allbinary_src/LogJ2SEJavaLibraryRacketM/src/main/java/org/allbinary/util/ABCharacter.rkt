@@ -22,6 +22,7 @@
 (define ABCharacter%
   (class JObject%
     (super-new)))
+(define (ABCharacter.jclassValue) ABCharacter%)
 
 (define (ABCharacter.jnew_0)
   (define this (new ABCharacter% [jclass "ABCharacter"]))

@@ -1,43 +1,39 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.feature
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/game/commands/GameCommandsFactory.rkt" (GameCommandsFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MultiPlayerGameFeatureFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_addCommands_1 _anyType)
+    (let ([_gameCommandsFactory JR.null][_canvas JR.null])
+      (let/ec jreturn
+        (set! _gameCommandsFactory (GameCommandsFactory.jm_getInstance_0))
+        (set! _canvas _anyType)
+        (send _canvas jm_addCommand_1 (get-field f_QUIT_COMMAND _gameCommandsFactory)))))))
+(define (MultiPlayerGameFeatureFactory.jclassValue) MultiPlayerGameFeatureFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define MultiPlayerGameFeatureFactory.jcell_instance 'jnone)
+(define (MultiPlayerGameFeatureFactory.jstatic_instance)
+  (when (eq? MultiPlayerGameFeatureFactory.jcell_instance 'jnone) (set! MultiPlayerGameFeatureFactory.jcell_instance (MultiPlayerGameFeatureFactory.jnew_0)))
+  MultiPlayerGameFeatureFactory.jcell_instance)
+(define (MultiPlayerGameFeatureFactory.jsetstatic_instance value) (set! MultiPlayerGameFeatureFactory.jcell_instance value))
 
-local MultiPlayerGameFeatureFactory = {}
-MultiPlayerGameFeatureFactory.__index = MultiPlayerGameFeatureFactory
-MultiPlayerGameFeatureFactory.className = "MultiPlayerGameFeatureFactory"
+(define (MultiPlayerGameFeatureFactory.jnew_0)
+  (define this (new MultiPlayerGameFeatureFactory% [jclass "MultiPlayerGameFeatureFactory"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function MultiPlayerGameFeatureFactory.getInstance()
-        return MultiPlayerGameFeatureFactory.instance
-end
-
-
-function MultiPlayerGameFeatureFactory.new()
-    local self = setmetatable({}, MultiPlayerGameFeatureFactory)
-    return self
-end
+(define (MultiPlayerGameFeatureFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (MultiPlayerGameFeatureFactory.jstatic_instance)))))
 
 
-function MultiPlayerGameFeatureFactory:addCommands(anyType)
-        local gameCommandsFactory = GameCommandsFactory.getInstance()
-        local canvas = anyType
-        canvas:addCommand(gameCommandsFactory.QUIT_COMMAND)
-end
-
-MultiPlayerGameFeatureFactory.instance = MultiPlayerGameFeatureFactory.new()
-
-return MultiPlayerGameFeatureFactory
 

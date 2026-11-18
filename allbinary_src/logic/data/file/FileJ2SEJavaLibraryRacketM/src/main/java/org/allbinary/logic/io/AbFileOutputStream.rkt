@@ -1,69 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io
 
--- local FileNotFoundException = require("java.io.FileNotFoundException")
--- local FileOutputStream = require("java.io.FileOutputStream")
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
-local AbFileNativeUtil = require("org.allbinary.logic.io.file.AbFileNativeUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/FileNotFoundException.rkt"
+  "../../../../java/io/FileOutputStream.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AbFileOutputStream%
+  (class FileOutputStream%
+    (super-new)))
+(define (AbFileOutputStream.jclassValue) AbFileOutputStream%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (AbFileOutputStream.jnew_2 _name _append)
+  (define this (new AbFileOutputStream% [jclass "AbFileOutputStream"]))
+    (let ()
+      (let/ec jreturn
+        (JR.superInit this 'jsuper_2 _name _append)))
+  this)
 
-local AbFileOutputStream = {}
-AbFileOutputStream.__index = AbFileOutputStream
-AbFileOutputStream.className = "AbFileOutputStream"
-setmetatable(AbFileOutputStream, {__index = FileOutputStream})
+(define (AbFileOutputStream.jm_createFromAbFile_1 _file)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AbFileOutputStream.jnew_2 (send _file jm_getPath_0) #f)))))
 
+(define (AbFileOutputStream.jm_createFromAbFileAppend_2 _file _append)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AbFileOutputStream.jnew_2 (send _file jm_getPath_0) _append)))))
 
--- throws FileNotFoundException
-function AbFileOutputStream.createFromAbFile(file)
-        return AbFileOutputStream.new(file:getPath(), false)
-end
+(define (AbFileOutputStream.jm_createFromFilePath_1 _name)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AbFileOutputStream.jnew_2 _name #f)))))
 
-
--- throws FileNotFoundException
-function AbFileOutputStream.createFromAbFileAppend(file, append)
-        return AbFileOutputStream.new(file:getPath(), append)
-end
-
-
--- throws FileNotFoundException
-function AbFileOutputStream.createFromFilePath(name)
-        return AbFileOutputStream.new(name, false)
-end
-
-
--- throws FileNotFoundException
-function AbFileOutputStream.createFromFilePathAppend(name, append)
-        return AbFileOutputStream.new(name, append)
-end
+(define (AbFileOutputStream.jm_createFromFilePathAppend_2 _name _append)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AbFileOutputStream.jnew_2 _name _append)))))
 
 
-function AbFileOutputStream.new(name, append)
-    local self = setmetatable(FileOutputStream.new(name, append), AbFileOutputStream)
-        -- super(...) made self above
-    return self
-end
-
-return AbFileOutputStream
 

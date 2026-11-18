@@ -1,90 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local VectorAnimation = require("org.allbinary.animation.VectorAnimation")
-local GameConfigurationCentral = require("org.allbinary.game.configuration.GameConfigurationCentral")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local AnimationFrameToImageUtil = require("org.allbinary.image.AnimationFrameToImageUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local ImageToRotationImageArrayUtil = require("org.allbinary.media.image.ImageToRotationImageArrayUtil")
-local VectorInfo = require("org.allbinary.vector.VectorInfo")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./BaseImageAnimationFactory.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/NullImage.rkt" (NullImage.jstatic_NULL_IMAGE_ARRAY)])
+(lazy-require ["../../../../org/allbinary/animation/VectorAnimation.rkt" (VectorAnimation.jm_createVectorAnimation_3)])
+(lazy-require ["../../../../org/allbinary/game/configuration/GameConfigurationCentral.rkt" (GameConfigurationCentral.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/image/AnimationFrameToImageUtil.rkt" (AnimationFrameToImageUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(lazy-require ["../../../../org/allbinary/math/AngleFactory.rkt" (AngleFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/math/AngleInfo.rkt" (AngleInfo.jm_getInstance_1)])
+(lazy-require ["../../../../org/allbinary/media/image/ImageToRotationImageArrayUtil.rkt" (ImageToRotationImageArrayUtil.jm_getInstance_0)])
+(lazy-require ["./AdjustedImageArrayRotationAnimation.rkt" (AdjustedImageArrayRotationAnimation.jnew_6 AdjustedImageArrayRotationAnimation.jm_createAnimation_4)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define VectorToImageArrayRotationAnimationFactory%
+  (class BaseImageAnimationFactory%
+    (super-new)
+    (field [f_imageArray JR.null])
+    (field [f_angleIncrement 0])
+    (define/public (jm_init_0)
+    (let ([_angleFactory JR.null])
+      (let/ec jreturn
+        (set! _angleFactory (AngleFactory.jm_getInstance_0))
+        (set-field! f_angleIncrement this (JR.idiv (get-field f_TOTAL_ANGLE _angleFactory) (send (GameConfigurationCentral.jm_getInstance_0) jm_getGameControlFidelity_0)))
+        (set-field! f_imageArray this (send (ImageToRotationImageArrayUtil.jm_getInstance_0) jm_generate_3 (send this jm_getImage_0) (send this jm_getAngleIncrement_0) (get-field f_TOTAL_ANGLE _angleFactory))))))
+    (define/override (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (if (or (not (= (get-field f_dx (get-field f_animationFactoryInitializationVisitor this)) 0)) (not (= (get-field f_dy (get-field f_animationFactoryInitializationVisitor this)) 0)))
+            (begin
+            (jreturn (AdjustedImageArrayRotationAnimation.jnew_6 (get-field f_imageArray this) (AngleInfo.jm_getInstance_1 (JR.i16 (send this jm_getAngleIncrement_0))) (get-field f_TOTAL_ANGLE (AngleFactory.jm_getInstance_0)) (get-field f_dx (get-field f_animationFactoryInitializationVisitor this)) (get-field f_dy (get-field f_animationFactoryInitializationVisitor this)) (send (get-field f_animationBehaviorFactory this) jm_getOrCreateInstance_0))))
+            (begin
+            (jreturn (AdjustedImageArrayRotationAnimation.jm_createAnimation_4 (get-field f_imageArray this) (AngleInfo.jm_getInstance_1 (JR.i16 (get-field f_angleIncrement this))) (get-field f_TOTAL_ANGLE (AngleFactory.jm_getInstance_0)) (send (get-field f_animationBehaviorFactory this) jm_getOrCreateInstance_0))))))))
+    (define/public (jm_getAngleIncrement_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_angleIncrement this)))))
+    (define/override (jm_setInitialScale_1 _scaleProperties)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (VectorToImageArrayRotationAnimationFactory.jclassValue) VectorToImageArrayRotationAnimationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local VectorToImageArrayRotationAnimationFactory = {}
-VectorToImageArrayRotationAnimationFactory.__index = VectorToImageArrayRotationAnimationFactory
-VectorToImageArrayRotationAnimationFactory.className = "VectorToImageArrayRotationAnimationFactory"
-setmetatable(VectorToImageArrayRotationAnimationFactory, {__index = BaseImageAnimationFactory})
-
-function VectorToImageArrayRotationAnimationFactory:_init_fields()
-    self.imageArray = NullImage.NULL_IMAGE_ARRAY
-    self.angleIncrement = 0
-end
-
-
-function VectorToImageArrayRotationAnimationFactory.new(vectorInfo, basicColor, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(AnimationFrameToImageUtil.getInstance():getInstanceTranslate(vectorInfo:getWidth(), vectorInfo:getHeight(), VectorAnimation.createVectorAnimation(vectorInfo:getPoints(), basicColor, animationBehaviorFactory:getOrCreateInstance())), PrimitiveIntUtil.getArrayInstance(), 0, 0, 0, 0, animationBehaviorFactory), VectorToImageArrayRotationAnimationFactory)
-    self:_init_fields()
-        -- super(...) made self above
-        self:init()
-    return self
-end
-
-
--- throws Exception
-function VectorToImageArrayRotationAnimationFactory:init()
-        local angleFactory = AngleFactory.getInstance()
-        self.angleIncrement = angleFactory.TOTAL_ANGLE / GameConfigurationCentral.getInstance():getGameControlFidelity()
-        self.imageArray = ImageToRotationImageArrayUtil.getInstance():generate(self:getImage(), self:getAngleIncrement(), java_int(angleFactory.TOTAL_ANGLE))
-end
-
-
--- throws Exception
-function VectorToImageArrayRotationAnimationFactory:getInstance(instanceId)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            return AdjustedImageArrayRotationAnimation.new(self.imageArray, AngleInfo.getInstance(self:getAngleIncrement()), java_int(AngleFactory.getInstance().TOTAL_ANGLE), self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return AdjustedImageArrayRotationAnimation.createAnimation(self.imageArray, AngleInfo.getInstance(self.angleIncrement), java_int(AngleFactory.getInstance().TOTAL_ANGLE), self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
+(define (VectorToImageArrayRotationAnimationFactory.jnew_3 _vectorInfo _basicColor _animationBehaviorFactory)
+  (define this (new VectorToImageArrayRotationAnimationFactory% [jclass "VectorToImageArrayRotationAnimationFactory"]))
+    (set-field! f_imageArray this (NullImage.jstatic_NULL_IMAGE_ARRAY))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (send this jm_init_0)))
+  this)
 
 
-function VectorToImageArrayRotationAnimationFactory:getAngleIncrement()
-        return self.angleIncrement
-end
-
-
-function VectorToImageArrayRotationAnimationFactory:setInitialScale(scaleProperties)
-end
-
-return VectorToImageArrayRotationAnimationFactory
 

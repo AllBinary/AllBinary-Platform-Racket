@@ -80,11 +80,13 @@
                 (JR.println (send _log jm_toString_0))
                 (send (get-field f_logUtil this) jm_putL_1 _log)))
             (jreturn (get-field f_genericOperatingSystem this))))))))
+(define (OperatingSystemFactory.jclassValue) OperatingSystemFactory%)
 
 (define OperatingSystemFactory.jcell_instance 'jnone)
 (define (OperatingSystemFactory.jstatic_instance)
   (when (eq? OperatingSystemFactory.jcell_instance 'jnone) (set! OperatingSystemFactory.jcell_instance (OperatingSystemFactory.jnew_0)))
   OperatingSystemFactory.jcell_instance)
+(define (OperatingSystemFactory.jsetstatic_instance value) (set! OperatingSystemFactory.jcell_instance value))
 
 (define (OperatingSystemFactory.jnew_0)
   (define this (new OperatingSystemFactory% [jclass "OperatingSystemFactory"]))

@@ -38,11 +38,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_wholesaleRoles this)))))))
+(define (StoreRoleFactory.jclassValue) StoreRoleFactory%)
 
 (define StoreRoleFactory.jcell_instance 'jnone)
 (define (StoreRoleFactory.jstatic_instance)
   (when (eq? StoreRoleFactory.jcell_instance 'jnone) (set! StoreRoleFactory.jcell_instance (StoreRoleFactory.jnew_0)))
   StoreRoleFactory.jcell_instance)
+(define (StoreRoleFactory.jsetstatic_instance value) (set! StoreRoleFactory.jcell_instance value))
 
 (define (StoreRoleFactory.jnew_0)
   (define this (new StoreRoleFactory% [jclass "StoreRoleFactory"]))

@@ -1,130 +1,114 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local ColorChangeEvent = require("org.allbinary.graphics.color.ColorChangeEvent")
-local ColorChangeListener = require("org.allbinary.graphics.color.ColorChangeListener")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/color/ColorChangeListener.rkt"
+  "../../../../org/allbinary/graphics/font/UpdateMyFontInterface.rkt"
+  "../../../../org/allbinary/graphics/paint/Paintable.rkt")
+(lazy-require ["../../../../org/allbinary/graphics/Anchor.rkt" (Anchor.jstatic_TOP_LEFT)])
+(lazy-require ["../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/font/MyFontProcessor.rkt" (MyFontProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/font/UpdateMyFontProcessor.rkt" (UpdateMyFontProcessor.jnew_1)])
+(lazy-require ["./NullHighScoresSingletonFactory.rkt" (NullHighScoresSingletonFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HighScoresPaintable%
+  (class Paintable%
+    (super-new)
+    (field [f_displayInfoSingleton JR.null])
+    (field [f_myFontProcessor JR.null])
+    (field [f_basicColor JR.null])
+    (field [f_highScores JR.null])
+    (field [f_anchor 0])
+    (field [f_charHeight 0])
+    (define/public (jm_updateMeasurement_1 _graphics)
+    (let ([_font JR.null])
+      (let/ec jreturn
+        (set! _font (send _graphics jm_getFont_0))
+        (set-field! f_charHeight this (send _font jm_getHeight_0))
+        (set-field! f_myFontProcessor this (MyFontProcessor.jm_getInstance_0)))))
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ([_colorChangeEvent JR.null])
+      (let/ec jreturn
+        (set! _colorChangeEvent _eventObject)
+        (set-field! f_basicColor this (send _colorChangeEvent jm_getBasicColorP_0)))))
+    (define/override (jm_paint_1 _graphics)
+    (let ([_width JR.null][_height JR.null][_heading JR.null][_topScoresWidth JR.null][_charHeight JR.null][_columnTwoHeading JR.null][_columnTwoHeadingWidth JR.null][_index JR.null][_largestSecondColumnWidth JR.null][_list JR.null][_size JR.null][_vectorIndex JR.null][_highScore JR.null][_nextScoreWidth JR.null])
+      (let/ec jreturn
+        (send (get-field f_myFontProcessor this) jm_process_1 _graphics)
+        (set! _width (send (get-field f_displayInfoSingleton this) jm_getLastWidth_0))
+        (set! _height (send (get-field f_displayInfoSingleton this) jm_getLastHeight_0))
+        (send _graphics jm_setColor_1 (send (send this jm_getBasicColorP_0) jm_intValue_0))
+        (set! _heading (send (get-field f_highScores this) jm_getHeading_0))
+        (set! _topScoresWidth (arithmetic-shift (JR.className (send _graphics jm_getFont_0)) (- (bitwise-and 1 31))))
+        (set! _charHeight (get-field f_charHeight this))
+        (send _graphics jm_drawString_4 _heading (JR.i32 (- (arithmetic-shift _width (- (bitwise-and 1 31))) _topScoresWidth)) _charHeight (get-field f_anchor this))
+        (send _graphics jm_drawString_4 (send (get-field f_highScores this) jm_getColumnOneHeading_0) 10 (JR.i32 (* _charHeight 3)) (get-field f_anchor this))
+        (set! _columnTwoHeading (send (get-field f_highScores this) jm_getColumnTwoHeading_0))
+        (set! _columnTwoHeadingWidth (JR.className (send _graphics jm_getFont_0)))
+        (send _graphics jm_drawString_4 _columnTwoHeading (JR.i32 (- (JR.i32 (- _width 10)) _columnTwoHeadingWidth)) (JR.i32 (* _charHeight 3)) (get-field f_anchor this))
+        (set! _index 4)
+        (set! _largestSecondColumnWidth _columnTwoHeadingWidth)
+        (set! _list (send (get-field f_highScores this) jm_getList_0))
+        (set! _size (send _list jm_size_0))
+        (set! _vectorIndex 0)
+        (set! _highScore JR.null)
+        (let/ec jbreak (let jloop () (when (and (< _vectorIndex _size) (< (JR.i32 (* _charHeight _index)) (JR.i32 (- _height (JR.i32 (* _charHeight 2))))))
+                (let/ec jcontinue
+            (set! _highScore (vector-ref (get-field f_objectArray _list) _vectorIndex))
+            (set! _nextScoreWidth (JR.className (send _graphics jm_getFont_0)))
+            (when (> _nextScoreWidth _largestSecondColumnWidth)
+                (begin
+                (set! _largestSecondColumnWidth _nextScoreWidth)))
+            (set! _vectorIndex (JR.i32 (+ _vectorIndex 1)))) (jloop))))
+        (set! _vectorIndex 0)
+        (let/ec jbreak (let jloop () (when (and (< _vectorIndex _size) (< (JR.i32 (* _charHeight _index)) (JR.i32 (- _height (JR.i32 (* _charHeight 2))))))
+                (let/ec jcontinue
+            (set! _highScore (vector-ref (get-field f_objectArray _list) _vectorIndex))
+            (send _graphics jm_drawString_4 (send _highScore jm_getName_0) 10 (JR.i32 (* _charHeight _index)) (get-field f_anchor this))
+            (send _graphics jm_drawString_4 (send _highScore jm_getScoreString_0) (JR.i32 (- (JR.i32 (- _width 10)) _largestSecondColumnWidth)) (JR.i32 (* _charHeight _index)) (get-field f_anchor this))
+            (set! _index (JR.i32 (+ _index 1)))
+            (set! _vectorIndex (JR.i32 (+ _vectorIndex 1)))) (jloop)))))))
+    (define/override (jm_setBasicColorP_1 _basicColor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_basicColor this _basicColor))))
+    (define/public (jm_getBasicColorP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_basicColor this)))))
+    (define/public (jm_setHighScores_1 _highScores)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_highScores this _highScores))))))
+(define (HighScoresPaintable.jclassValue) HighScoresPaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local HighScoresPaintable = {}
-HighScoresPaintable.__index = HighScoresPaintable
-HighScoresPaintable.className = "HighScoresPaintable"
-setmetatable(HighScoresPaintable, {__index = Paintable})
-
-function HighScoresPaintable:_init_fields()
-    self.displayInfoSingleton = DisplayInfoSingleton.getInstance()
-    self.myFontProcessor = UpdateMyFontProcessor.new(self)
-    self.basicColor = BasicColorFactory.getInstance().WHITE
-    self.highScores = NullHighScoresSingletonFactory.getInstance()
-    self.anchor = Anchor.TOP_LEFT
-    self.charHeight = 0
-end
-
-
-function HighScoresPaintable.new()
-    local self = setmetatable(Paintable.new(), HighScoresPaintable)
-    self:_init_fields()
-    return self
-end
-
-
-function HighScoresPaintable:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.charHeight = font:getHeight()
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function HighScoresPaintable:onEvent(eventObject)
-        local colorChangeEvent = eventObject
-        self.basicColor = colorChangeEvent:getBasicColorP()
-end
-
-
-function HighScoresPaintable:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        local width = self.displayInfoSingleton:getLastWidth()
-        local height = self.displayInfoSingleton:getLastHeight()
-        graphics:setColor(math.tointeger(self:getBasicColorP() // 1))
-        local heading = self.highScores:getHeading()
-        local topScoresWidth = (((graphics:getFont():stringWidth(heading)) // (1 << (1))))
-        local charHeight = self.charHeight
-        graphics:drawString(heading, (((width) // (1 << (1)))) - topScoresWidth, charHeight, self.anchor)
-        graphics:drawString(self.highScores:getColumnOneHeading(), 10, charHeight * 3, self.anchor)
-        local columnTwoHeading = self.highScores:getColumnTwoHeading()
-        local columnTwoHeadingWidth = graphics:getFont():stringWidth(columnTwoHeading)
-        graphics:drawString(columnTwoHeading, width - 10 - columnTwoHeadingWidth, charHeight * 3, self.anchor)
-        local index = 4
-        local largestSecondColumnWidth = columnTwoHeadingWidth
-        local list = self.highScores:getList()
-        local size = list:size()
-        local vectorIndex = 0
-        local highScore = nil
-        while vectorIndex < size and charHeight * index < height - (charHeight * 2) do
-            highScore = list.objectArray[vectorIndex + 1]
-            local nextScoreWidth = graphics:getFont():stringWidth(highScore:getScoreString())
-            if nextScoreWidth > largestSecondColumnWidth then
-                largestSecondColumnWidth = nextScoreWidth
-            end
-            vectorIndex = vectorIndex + 1
-        end
-        vectorIndex = 0
-        while vectorIndex < size and charHeight * index < height - (charHeight * 2) do
-            highScore = list.objectArray[vectorIndex + 1]
-            graphics:drawString(highScore:getName(), 10, charHeight * index, self.anchor)
-            graphics:drawString(highScore:getScoreString(), width - 10 - largestSecondColumnWidth, charHeight * index, self.anchor)
-            index = index + 1
-            vectorIndex = vectorIndex + 1
-        end
-end
-
-
-function HighScoresPaintable:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-end
+(define (HighScoresPaintable.jnew_0)
+  (define this (new HighScoresPaintable% [jclass "HighScoresPaintable"]))
+    (set-field! f_displayInfoSingleton this (DisplayInfoSingleton.jm_getInstance_0))
+    (set-field! f_myFontProcessor this (UpdateMyFontProcessor.jnew_1 this))
+    (set-field! f_basicColor this (get-field f_WHITE (BasicColorFactory.jm_getInstance_0)))
+    (set-field! f_highScores this (NullHighScoresSingletonFactory.jm_getInstance_0))
+    (set-field! f_anchor this (Anchor.jstatic_TOP_LEFT))
+    
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function HighScoresPaintable:getBasicColorP()
-        return self.basicColor
-end
-
-
-function HighScoresPaintable:setHighScores(highScores)
-        self.highScores = highScores
-end
-
-return HighScoresPaintable
 

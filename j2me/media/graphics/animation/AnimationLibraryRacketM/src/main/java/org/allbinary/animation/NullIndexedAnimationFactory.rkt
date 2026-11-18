@@ -1,79 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./AnimationInterfaceFactoryInterface.rkt"
+  "./ProceduralAnimationInterfaceFactoryInterface.rkt")
+(lazy-require ["./NullIndexedAnimationInner.rkt" (NullIndexedAnimationInner.jnew_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define NullIndexedAnimationFactory%
+  (class JObject%
+    (super-new)
+    (field [f_NULL_ANIMATION JR.null])
+    (define/public (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_ANIMATION this)))))
+    (define/public (jm_getInstanceAnimation_1 _animationInterface)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_ANIMATION this)))))
+    (define/public (jm_setInitialScale_1 _scaleProperties)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullIndexedAnimationFactory.jclassValue) NullIndexedAnimationFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_ARRAY 'jnone)
+(define (NullIndexedAnimationFactory.jstatic_NULL_INDEXED_ANIMATION_ARRAY)
+  (when (eq? NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_ARRAY 'jnone) (set! NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_ARRAY (JR.newArray JR.null 0)))
+  NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_ARRAY)
+(define (NullIndexedAnimationFactory.jsetstatic_NULL_INDEXED_ANIMATION_ARRAY value) (set! NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_ARRAY value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_FACTORY 'jnone)
+(define (NullIndexedAnimationFactory.jstatic_NULL_INDEXED_ANIMATION_FACTORY)
+  (when (eq? NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_FACTORY 'jnone) (set! NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_FACTORY (NullIndexedAnimationFactory.jnew_0)))
+  NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_FACTORY)
+(define (NullIndexedAnimationFactory.jsetstatic_NULL_INDEXED_ANIMATION_FACTORY value) (set! NullIndexedAnimationFactory.jcell_NULL_INDEXED_ANIMATION_FACTORY value))
 
-local NullIndexedAnimationFactory = {}
-NullIndexedAnimationFactory.__index = NullIndexedAnimationFactory
-NullIndexedAnimationFactory.className = "NullIndexedAnimationFactory"
+(define (NullIndexedAnimationFactory.jnew_0)
+  (define this (new NullIndexedAnimationFactory% [jclass "NullIndexedAnimationFactory"]))
+    (set-field! f_NULL_ANIMATION this (NullIndexedAnimationInner.jnew_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function NullIndexedAnimationFactory:_init_fields()
-    self.NULL_ANIMATION = NullIndexedAnimationInner.new()
-end
-
-
-function NullIndexedAnimationFactory.new()
-    local self = setmetatable({}, NullIndexedAnimationFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function NullIndexedAnimationFactory.getFactoryInstance()
-        return NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_FACTORY
-end
-
-
--- throws Exception
-function NullIndexedAnimationFactory:getInstance(instanceId)
-        return self.NULL_ANIMATION
-end
-
-
--- throws Exception
-function NullIndexedAnimationFactory:getInstanceAnimation(animationInterface)
-        return self.NULL_ANIMATION
-end
+(define (NullIndexedAnimationFactory.jm_getFactoryInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullIndexedAnimationFactory.jstatic_NULL_INDEXED_ANIMATION_FACTORY)))))
 
 
-function NullIndexedAnimationFactory:setInitialScale(scaleProperties)
-end
-
-NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_ARRAY = java_new_array(nil, 0)
-NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_FACTORY = NullIndexedAnimationFactory.new()
-
-return NullIndexedAnimationFactory
 

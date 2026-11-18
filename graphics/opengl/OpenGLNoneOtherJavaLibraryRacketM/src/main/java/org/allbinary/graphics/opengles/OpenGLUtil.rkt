@@ -1,47 +1,41 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.opengles
 
--- local Image = require("javax.microedition.lcdui.Image")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/lang/Runnable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OpenGLUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_addImage_1 _image)
+    (let ()
+      (let/ec jreturn
+        (jreturn _image))))
+    (define/public (jm_clear_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_addRunnable_1 _runnable)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (OpenGLUtil.jclassValue) OpenGLUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define OpenGLUtil.jcell_instance 'jnone)
+(define (OpenGLUtil.jstatic_instance)
+  (when (eq? OpenGLUtil.jcell_instance 'jnone) (set! OpenGLUtil.jcell_instance (OpenGLUtil.jnew_0)))
+  OpenGLUtil.jcell_instance)
+(define (OpenGLUtil.jsetstatic_instance value) (set! OpenGLUtil.jcell_instance value))
 
-local OpenGLUtil = {}
-OpenGLUtil.__index = OpenGLUtil
-OpenGLUtil.className = "OpenGLUtil"
+(define (OpenGLUtil.jnew_0)
+  (define this (new OpenGLUtil% [jclass "OpenGLUtil"]))
+  this)
 
-function OpenGLUtil.new()
-    local self = setmetatable({}, OpenGLUtil)
-    return self
-end
-
-
-function OpenGLUtil.getInstance()
-        return OpenGLUtil.instance
-end
-
-
-function OpenGLUtil:addImage(image)
-        return image
-end
-
-
-function OpenGLUtil:clear()
-end
+(define (OpenGLUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (OpenGLUtil.jstatic_instance)))))
 
 
-function OpenGLUtil:addRunnable(runnable)
-end
-
-OpenGLUtil.instance = OpenGLUtil.new()
-
-return OpenGLUtil
 

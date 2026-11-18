@@ -1,146 +1,146 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.weapon
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.combat.weapon
 
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local SimpleWeaponProperties = require("org.allbinary.game.combat.weapon.SimpleWeaponProperties")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./SimpleWeaponProperties.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../../../org/allbinary/logic/math/BasicDecimal.rkt" (BasicDecimal.jnew_1 BasicDecimal.jstatic_ZERO_BIGDECIMAL)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define WeaponProperties%
+  (class SimpleWeaponProperties%
+    (super-new)
+    (field [f_reloadTime 0])
+    (field [f_targetingTime 0])
+    (field [f_speed JR.null])
+    (field [f_MAX 0])
+    (field [f_ZERO 0])
+    (define/public (jm_setReloadTime_1 _reloadTime)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_reloadTime this _reloadTime))))
+    (define/public (jm_getReloadTime_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_reloadTime this)))))
+    (define/public (jm_setTargetingTime_1 _targetingTime)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_targetingTime this _targetingTime))))
+    (define/public (jm_getTargetingTime_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_targetingTime this)))))
+    (define/public (jm_getSpeed_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_speed this)))))
+    (define/public (jm_setSpeed_1 _speed)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_speed this _speed))))
+    (define/public (jm_getDamageI_1 _range)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (- (send this jm_getDamage_0) (JR.idiv (JR.i32 (* (send this jm_getDissipation_0) _range)) (send (get-field f_speed this) jm_getScaled_0))))))))
+    (define/public (jm_toStringArray_0)
+    (let ([_index JR.null][_stringArray JR.null][_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _index 0)
+        (set! _stringArray (JR.newArray JR.null 3))
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (vector-set! _stringArray (let ([jvalue _index]) (set! _index (JR.i32 (+ _index 1))) jvalue) (send (send (send _stringBuffer jm_append_1 (WeaponProperties.jstatic_DAMAGE)) jm_appendint_1 (send this jm_getDamage_0)) jm_toString_0))
+        (send _stringBuffer jm_delete_2 0 (send _stringBuffer jm_length_0))
+        (vector-set! _stringArray (let ([jvalue _index]) (set! _index (JR.i32 (+ _index 1))) jvalue) (send (send (send _stringBuffer jm_append_1 (WeaponProperties.jstatic_RANGE)) jm_appendint_1 (send this jm_getRange_0)) jm_toString_0))
+        (send _stringBuffer jm_delete_2 0 (send _stringBuffer jm_length_0))
+        (vector-set! _stringArray (let ([jvalue _index]) (set! _index (JR.i32 (+ _index 1))) jvalue) (send (send (send _stringBuffer jm_append_1 (WeaponProperties.jstatic_RELOAD)) jm_appendlong_1 (send this jm_getReloadTime_0)) jm_toString_0))
+        (jreturn _stringArray))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send (send _stringBuffer jm_append_1 (WeaponProperties.jstatic_DAMAGE)) jm_appendint_1 (send this jm_getDamage_0))
+        (send _stringBuffer jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0)))
+        (send (send _stringBuffer jm_append_1 (WeaponProperties.jstatic_RANGE)) jm_appendint_1 (send this jm_getRange_0))
+        (send _stringBuffer jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0)))
+        (send (send _stringBuffer jm_append_1 (WeaponProperties.jstatic_RELOAD)) jm_appendlong_1 (send this jm_getReloadTime_0))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (WeaponProperties.jclassValue) WeaponProperties%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define WeaponProperties.jcell_NULL_WEAPON_PROPERTIES 'jnone)
+(define (WeaponProperties.jstatic_NULL_WEAPON_PROPERTIES)
+  (when (eq? WeaponProperties.jcell_NULL_WEAPON_PROPERTIES 'jnone) (set! WeaponProperties.jcell_NULL_WEAPON_PROPERTIES (WeaponProperties.jnew_5 0 0 0 0 (JR.i16 0))))
+  WeaponProperties.jcell_NULL_WEAPON_PROPERTIES)
+(define (WeaponProperties.jsetstatic_NULL_WEAPON_PROPERTIES value) (set! WeaponProperties.jcell_NULL_WEAPON_PROPERTIES value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define WeaponProperties.jcell_messageSent 'jnone)
+(define (WeaponProperties.jstatic_messageSent)
+  (when (eq? WeaponProperties.jcell_messageSent 'jnone) (set! WeaponProperties.jcell_messageSent #f))
+  WeaponProperties.jcell_messageSent)
+(define (WeaponProperties.jsetstatic_messageSent value) (set! WeaponProperties.jcell_messageSent value))
 
-local WeaponProperties = {}
-WeaponProperties.__index = WeaponProperties
-WeaponProperties.className = "WeaponProperties"
-setmetatable(WeaponProperties, {__index = SimpleWeaponProperties})
+(define WeaponProperties.jcell_DAMAGE 'jnone)
+(define (WeaponProperties.jstatic_DAMAGE)
+  (when (eq? WeaponProperties.jcell_DAMAGE 'jnone) (set! WeaponProperties.jcell_DAMAGE "Damage: "))
+  WeaponProperties.jcell_DAMAGE)
+(define (WeaponProperties.jsetstatic_DAMAGE value) (set! WeaponProperties.jcell_DAMAGE value))
 
-function WeaponProperties:_init_fields()
-    self.reloadTime = 0
-    self.targetingTime = 0
-    self.speed = BasicDecimal.ZERO_BIGDECIMAL
-    self.MAX = 10240
-    self.ZERO = 0
-end
+(define WeaponProperties.jcell_RANGE 'jnone)
+(define (WeaponProperties.jstatic_RANGE)
+  (when (eq? WeaponProperties.jcell_RANGE 'jnone) (set! WeaponProperties.jcell_RANGE "Range: "))
+  WeaponProperties.jcell_RANGE)
+(define (WeaponProperties.jsetstatic_RANGE value) (set! WeaponProperties.jcell_RANGE value))
 
+(define WeaponProperties.jcell_RELOAD 'jnone)
+(define (WeaponProperties.jstatic_RELOAD)
+  (when (eq? WeaponProperties.jcell_RELOAD 'jnone) (set! WeaponProperties.jcell_RELOAD "Reload: "))
+  WeaponProperties.jcell_RELOAD)
+(define (WeaponProperties.jsetstatic_RELOAD value) (set! WeaponProperties.jcell_RELOAD value))
 
-function WeaponProperties.new(reloadTime, targetingTime, speed, damage, dissipation)
-    local self = setmetatable(SimpleWeaponProperties.new(), WeaponProperties)
-    self:_init_fields()
-        if speed < self.MAX and speed ~= 0 and not WeaponProperties.messageSent then
-            local MESSAGE = "Danger Danger Danger: Speed probably to slow if using 1 degree calculations as velocity for a single axis could be below 1024: "
-            local commonStrings = CommonStrings.getInstance()
-            PreLogUtil.put(tostring(StringMaker.new():append(MESSAGE):appendlong(speed)), self, commonStrings.CONSTRUCTOR)
-            WeaponProperties.messageSent = true
-        end
-        self:setReloadTime(reloadTime)
-        self:setTargetingTime(targetingTime)
-        self:setDamage(damage)
-        self:setDissipation(dissipation)
-        self:setSpeed(BasicDecimal.new(speed))
-        if dissipation ~= self.ZERO then
-            local unscaledDamage = self.speed:getUnscaled() * damage
-            local scaledDissipation = dissipation * self.speed:getScaledFactorValue()
-            local value = (java_idiv(unscaledDamage, scaledDissipation))
-            self:setRange(java_idiv((value * 9), 10))
-        end
-    return self
-end
-
-
-function WeaponProperties:setReloadTime(reloadTime)
-        self.reloadTime = reloadTime
-end
-
-
-function WeaponProperties:getReloadTime()
-        return self.reloadTime
-end
-
-
-function WeaponProperties:setTargetingTime(targetingTime)
-        self.targetingTime = targetingTime
-end
+(define (WeaponProperties.jnew_5 _reloadTime _targetingTime _speed _damage _dissipation)
+  (define this (new WeaponProperties% [jclass "WeaponProperties"]))
+    
+    
+    (set-field! f_speed this (BasicDecimal.jstatic_ZERO_BIGDECIMAL))
+    (set-field! f_MAX this 10240)
+    (set-field! f_ZERO this 0)
+    (let ([_MESSAGE JR.null][_commonStrings JR.null][_unscaledDamage JR.null][_scaledDissipation JR.null][_value JR.null])
+      (let/ec jreturn
+        (when (and (and (< _speed (get-field f_MAX this)) (not (= _speed 0))) (not (WeaponProperties.jstatic_messageSent)))
+            (begin
+            (set! _MESSAGE "Danger Danger Danger: Speed probably to slow if using 1 degree calculations as velocity for a single axis could be below 1024: ")
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (PreLogUtil.jm_put_3 (send (send (send (StringMaker.jnew_0) jm_append_1 _MESSAGE) jm_appendlong_1 _speed) jm_toString_0) this (get-field f_CONSTRUCTOR _commonStrings))
+            (set! WeaponProperties.jcell_messageSent #t)))
+        (send this jm_setReloadTime_1 _reloadTime)
+        (send this jm_setTargetingTime_1 _targetingTime)
+        (send this jm_setDamage_1 _damage)
+        (send this jm_setDissipation_1 _dissipation)
+        (send this jm_setSpeed_1 (BasicDecimal.jnew_1 _speed))
+        (when (not (= _dissipation (get-field f_ZERO this)))
+            (begin
+            (set! _unscaledDamage (JR.i64 (* (send (get-field f_speed this) jm_getUnscaled_0) _damage)))
+            (set! _scaledDissipation (JR.i32 (* _dissipation (send (get-field f_speed this) jm_getScaledFactorValue_0))))
+            (set! _value (JR.ldiv _unscaledDamage _scaledDissipation))
+            (send this jm_setRange_1 (JR.idiv (JR.i32 (JR.i64 (* _value 9))) 10))))))
+  this)
 
 
-function WeaponProperties:getTargetingTime()
-        return self.targetingTime
-end
-
-
-function WeaponProperties:getSpeed()
-        return self.speed
-end
-
-
-function WeaponProperties:setSpeed(speed)
-        self.speed = speed
-end
-
-
-function WeaponProperties:getDamageI(range)
-        return self:getDamage() - ((self:getDissipation() * range) / self.speed:getScaled())
-end
-
-
-function WeaponProperties:toStringArray()
-        local index = 0
-        local stringArray = java_new_array(nil, 3)
-        local stringBuffer = StringMaker.new()
-        stringArray[(function() local value = index index = value + 1 return value end)() + 1] = tostring(stringBuffer:append(WeaponProperties.DAMAGE):appendint(java_int(self:getDamage())))
-        stringBuffer:delete(0, stringBuffer:length())
-        stringArray[(function() local value = index index = value + 1 return value end)() + 1] = tostring(stringBuffer:append(WeaponProperties.RANGE):appendint(java_int(self:getRange())))
-        stringBuffer:delete(0, stringBuffer:length())
-        stringArray[(function() local value = index index = value + 1 return value end)() + 1] = tostring(stringBuffer:append(WeaponProperties.RELOAD):appendlong(self:getReloadTime()))
-        return stringArray
-end
-
-
-function WeaponProperties:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(WeaponProperties.DAMAGE):appendint(java_int(self:getDamage()))
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(WeaponProperties.RANGE):appendint(java_int(self:getRange()))
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(WeaponProperties.RELOAD):appendlong(self:getReloadTime())
-        return tostring(stringBuffer)
-end
-WeaponProperties.__tostring = function(self) return self:toString() end
-
-WeaponProperties.NULL_WEAPON_PROPERTIES = WeaponProperties.new(0, 0, 0, 0, 0)
-WeaponProperties.messageSent = false
-WeaponProperties.DAMAGE = "Damage: "
-WeaponProperties.RANGE = "Range: "
-WeaponProperties.RELOAD = "Reload: "
-
-return WeaponProperties
 

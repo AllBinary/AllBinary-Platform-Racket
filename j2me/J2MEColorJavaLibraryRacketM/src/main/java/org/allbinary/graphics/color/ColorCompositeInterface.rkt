@@ -24,6 +24,7 @@
     (super-new)
     (define/public (jm_getBasicColorP_0)
       (raise (JR.newException "AbstractMethodError" "getBasicColorP")))))
+(define (ColorCompositeInterface.jclassValue) ColorCompositeInterface%)
 
 (define (ColorCompositeInterface.jnew_0)
   (define this (new ColorCompositeInterface% [jclass "ColorCompositeInterface"]))

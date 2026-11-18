@@ -77,11 +77,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_immutableInstance this)))))))
+(define (BasicArrayListUtil.jclassValue) BasicArrayListUtil%)
 
 (define BasicArrayListUtil.jcell_instance 'jnone)
 (define (BasicArrayListUtil.jstatic_instance)
   (when (eq? BasicArrayListUtil.jcell_instance 'jnone) (set! BasicArrayListUtil.jcell_instance (BasicArrayListUtil.jnew_0)))
   BasicArrayListUtil.jcell_instance)
+(define (BasicArrayListUtil.jsetstatic_instance value) (set! BasicArrayListUtil.jcell_instance value))
 
 (define (BasicArrayListUtil.jnew_0)
   (define this (new BasicArrayListUtil% [jclass "BasicArrayListUtil"]))

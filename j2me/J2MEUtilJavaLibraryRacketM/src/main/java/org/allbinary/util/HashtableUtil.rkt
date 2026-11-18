@@ -59,11 +59,13 @@
                 (let/ec jcontinue
             (send _list jm_add_1 (send (get-field f_enumerationUtil this) jm_nextElement_1 _enumeration))) (jloop))))
         (jreturn _list))))))
+(define (HashtableUtil.jclassValue) HashtableUtil%)
 
 (define HashtableUtil.jcell_instance 'jnone)
 (define (HashtableUtil.jstatic_instance)
   (when (eq? HashtableUtil.jcell_instance 'jnone) (set! HashtableUtil.jcell_instance (HashtableUtil.jnew_0)))
   HashtableUtil.jcell_instance)
+(define (HashtableUtil.jsetstatic_instance value) (set! HashtableUtil.jcell_instance value))
 
 (define (HashtableUtil.jnew_0)
   (define this (new HashtableUtil% [jclass "HashtableUtil"]))

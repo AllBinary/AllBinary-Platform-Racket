@@ -21,6 +21,7 @@
 (define EthernetInterface%
   (class JObject%
     (super-new)))
+(define (EthernetInterface.jclassValue) EthernetInterface%)
 
 (define (EthernetInterface.jnew_0)
   (define this (new EthernetInterface% [jclass "EthernetInterface"]))

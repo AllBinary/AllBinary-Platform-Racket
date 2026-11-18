@@ -1,96 +1,80 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local AnimationFactoryInitializationVisitor = require("org.allbinary.animation.image.AnimationFactoryInitializationVisitor")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local ImageJ2MEScaleUtil = require("org.allbinary.media.image.ImageJ2MEScaleUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/media/image/ImageJ2MEScaleUtil.rkt" (ImageJ2MEScaleUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AnimationFactoryImageScaleUtil%
+  (class JObject%
+    (super-new)
+    (field [f_imageScaleUtil JR.null])
+    (define/public (jm_createImage_5 _image _width _height _scaleWidth _scaleHeight)
+    (let ([_scaledImage JR.null][_scaleX JR.null][_scaleY JR.null][_scaledWidth JR.null][_scaledHeight JR.null])
+      (let/ec jreturn
+        (set! _scaledImage JR.null)
+        (if (and (not (= _scaleWidth 0)) (not (= _scaleHeight 0)))
+            (begin
+            (set! _scaleX (/ (JR.toDouble _scaleWidth) (JR.toDouble _width)))
+            (set! _scaleY (/ (JR.toDouble _scaleHeight) (JR.toDouble _height)))
+            (if (or (and (= _scaleX 1.0) (= _scaleY 1.0)) (or (= _scaleX 0.0) (= _scaleY 0.0)))
+                (begin
+                (set! _scaledImage _image))
+                (begin
+                (set! _scaledWidth (JR.d2i (* _scaleX (JR.toDouble _width))))
+                (set! _scaledHeight (JR.d2i (* _scaleY (JR.toDouble _height))))
+                (set! _scaledImage (send (get-field f_imageScaleUtil this) jm_scale_3 _image _scaledWidth _scaledHeight)))))
+            (begin
+            (set! _scaledImage _image)))
+        (jreturn _scaledImage))))
+    (define/public (jm_processAdjust_1 _baseImageAnimationFactory)
+    (let ([_scaleProperties JR.null][_animationFactoryInitializationVisitor JR.null][_scaleX JR.null][_scaleY JR.null])
+      (let/ec jreturn
+        (set! _scaleProperties (send _baseImageAnimationFactory jm_getScalePropertiesP_0))
+        (if (and (not (= (get-field f_scaleWidth _scaleProperties) 0)) (not (= (get-field f_scaleHeight _scaleProperties) 0)))
+            (begin
+            (set! _animationFactoryInitializationVisitor (send _baseImageAnimationFactory jm_getAnimationFactoryInitializationVisitorP_0))
+            (set! _scaleX (/ (JR.toDouble (get-field f_scaleWidth _scaleProperties)) (JR.toDouble (get-field f_width _animationFactoryInitializationVisitor))))
+            (set! _scaleY (/ (JR.toDouble (get-field f_scaleHeight _scaleProperties)) (JR.toDouble (get-field f_height _animationFactoryInitializationVisitor))))
+            (if (or (and (= _scaleX 1.0) (= _scaleY 1.0)) (or (= _scaleX 0.0) (= _scaleY 0.0)))
+                (begin
+                (void))
+                (begin
+                (set-field! f_dx _animationFactoryInitializationVisitor (JR.d2i (* (JR.toDouble (get-field f_originalDx _animationFactoryInitializationVisitor)) _scaleX)))
+                (set-field! f_dy _animationFactoryInitializationVisitor (JR.d2i (* (JR.toDouble (get-field f_originalDy _animationFactoryInitializationVisitor)) _scaleY))))))
+            (begin
+            (void))))))))
+(define (AnimationFactoryImageScaleUtil.jclassValue) AnimationFactoryImageScaleUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AnimationFactoryImageScaleUtil.jcell_instance 'jnone)
+(define (AnimationFactoryImageScaleUtil.jstatic_instance)
+  (when (eq? AnimationFactoryImageScaleUtil.jcell_instance 'jnone) (set! AnimationFactoryImageScaleUtil.jcell_instance (AnimationFactoryImageScaleUtil.jnew_0)))
+  AnimationFactoryImageScaleUtil.jcell_instance)
+(define (AnimationFactoryImageScaleUtil.jsetstatic_instance value) (set! AnimationFactoryImageScaleUtil.jcell_instance value))
 
-local AnimationFactoryImageScaleUtil = {}
-AnimationFactoryImageScaleUtil.__index = AnimationFactoryImageScaleUtil
-AnimationFactoryImageScaleUtil.className = "AnimationFactoryImageScaleUtil"
+(define (AnimationFactoryImageScaleUtil.jnew_0)
+  (define this (new AnimationFactoryImageScaleUtil% [jclass "AnimationFactoryImageScaleUtil"]))
+    (set-field! f_imageScaleUtil this (ImageJ2MEScaleUtil.jm_getInstance_0))
+  this)
 
-function AnimationFactoryImageScaleUtil:_init_fields()
-    self.imageScaleUtil = ImageJ2MEScaleUtil.getInstance()
-end
-
-function AnimationFactoryImageScaleUtil.new()
-    local self = setmetatable({}, AnimationFactoryImageScaleUtil)
-    self:_init_fields()
-    return self
-end
+(define (AnimationFactoryImageScaleUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AnimationFactoryImageScaleUtil.jstatic_instance)))))
 
 
-function AnimationFactoryImageScaleUtil.getInstance()
-        return AnimationFactoryImageScaleUtil.instance
-end
-
-
--- throws Exception
-function AnimationFactoryImageScaleUtil:createImage(image, width, height, scaleWidth, scaleHeight)
-        local scaledImage = nil
-        if scaleWidth ~= 0 and scaleHeight ~= 0 then
-            local scaleX = ((scaleWidth + 0.0)) / ((width + 0.0))
-            local scaleY = ((scaleHeight + 0.0)) / ((height + 0.0))
-            if (scaleX == 1.0 and scaleY == 1.0) or (scaleX == 0.0 or scaleY == 0.0) then
-                scaledImage = image
-            else
-                local scaledWidth = java_int((scaleX * (width + 0.0)))
-                local scaledHeight = java_int((scaleY * (height + 0.0)))
-                scaledImage = self.imageScaleUtil:scale(image, scaledWidth, scaledHeight)
-            end
-        else
-            scaledImage = image
-        end
-        return scaledImage
-end
-
-
--- throws Exception
-function AnimationFactoryImageScaleUtil:processAdjust(baseImageAnimationFactory)
-        local scaleProperties = baseImageAnimationFactory:getScalePropertiesP()
-        if scaleProperties.scaleWidth ~= 0 and scaleProperties.scaleHeight ~= 0 then
-            local animationFactoryInitializationVisitor = baseImageAnimationFactory:getAnimationFactoryInitializationVisitorP()
-            local scaleX = ((scaleProperties.scaleWidth + 0.0)) / ((animationFactoryInitializationVisitor.width + 0.0))
-            local scaleY = ((scaleProperties.scaleHeight + 0.0)) / ((animationFactoryInitializationVisitor.height + 0.0))
-            if (scaleX == 1.0 and scaleY == 1.0) or (scaleX == 0.0 or scaleY == 0.0) then
-            else
-                animationFactoryInitializationVisitor.dx = java_int((animationFactoryInitializationVisitor.originalDx * scaleX))
-                animationFactoryInitializationVisitor.dy = java_int((animationFactoryInitializationVisitor.originalDy * scaleY))
-            end
-        else
-        end
-end
-
-AnimationFactoryImageScaleUtil.instance = AnimationFactoryImageScaleUtil.new()
-
-return AnimationFactoryImageScaleUtil
 

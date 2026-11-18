@@ -10,6 +10,7 @@
 (define KotlinUtil%
   (class JObject%
     (super-new)))
+(define (KotlinUtil.jclassValue) KotlinUtil%)
 
 (define (KotlinUtil.jnew_0)
   (define this (new KotlinUtil% [jclass "KotlinUtil"]))

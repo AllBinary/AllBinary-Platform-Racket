@@ -1,38 +1,28 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.collision
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local CollisionProcessor = require("org.allbinary.game.collision.CollisionProcessor")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./CollisionProcessor.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Collision2DProcessor%
+  (class CollisionProcessor%
+    (super-new)
+    (define/override (jm_isCollision_2 _myLayer _myLayer2)
+    (let ()
+      (let/ec jreturn
+        (if (or (or (or (>= (send _myLayer2 jm_getXP_0) (send _myLayer jm_getX2_0)) (>= (send _myLayer2 jm_getYP_0) (send _myLayer jm_getY2_0))) (<= (send _myLayer2 jm_getX2_0) (send _myLayer jm_getXP_0))) (<= (send _myLayer2 jm_getY2_0) (send _myLayer jm_getYP_0)))
+            (begin
+            (jreturn #f))
+            (begin
+            (jreturn #t))))))))
+(define (Collision2DProcessor.jclassValue) Collision2DProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local Collision2DProcessor = {}
-Collision2DProcessor.__index = Collision2DProcessor
-Collision2DProcessor.className = "Collision2DProcessor"
-setmetatable(Collision2DProcessor, {__index = CollisionProcessor})
-
-function Collision2DProcessor.new()
-    local self = setmetatable(CollisionProcessor.new(), Collision2DProcessor)
-    return self
-end
+(define (Collision2DProcessor.jnew_0)
+  (define this (new Collision2DProcessor% [jclass "Collision2DProcessor"]))
+  this)
 
 
-function Collision2DProcessor:isCollision(myLayer, myLayer2)
-        if myLayer2:getXP() >= myLayer:getX2() or myLayer2:getYP() >= myLayer:getY2() or myLayer2:getX2() <= myLayer:getXP() or myLayer2:getY2() <= myLayer:getYP() then
-            return false
-        else
-            return true
-        end
-end
-
-return Collision2DProcessor
 

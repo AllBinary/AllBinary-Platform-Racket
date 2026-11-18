@@ -1,59 +1,50 @@
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.business.advertisement
 
-local GameAdState = require("org.allbinary.game.GameAdState")
-local SoftwareInformation = require("org.allbinary.logic.system.SoftwareInformation")
-local GameAdStateFactoryInterface = require("org.allbinary.business.advertisement.GameAdStateFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./GameAdStateFactoryInterface.rkt")
+(lazy-require ["../../../../org/allbinary/game/GameAdState.rkt" (GameAdState.jnew_1)])
+(lazy-require ["./AppNameLicensingAdConfiguration.rkt" (AppNameLicensingAdConfiguration.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameAdStateFactory%
+  (class JObject%
+    (super-new)
+    (field [f_gameAdStateArray JR.null])
+    (field [f_gameAdState JR.null])
+    (define/public (jm_getCurrentInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameAdState this)))))
+    (define/public (jm_getInstanceForApp_1 _softwareInformation)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_gameAdState this (vector-ref (get-field f_gameAdStateArray this) 0))
+        (jreturn (vector-ref (get-field f_gameAdStateArray this) 0)))))
+    (define/public (jm_isEnabled_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))))
+(define (GameAdStateFactory.jclassValue) GameAdStateFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameAdStateFactory.jcell_instance 'jnone)
+(define (GameAdStateFactory.jstatic_instance)
+  (when (eq? GameAdStateFactory.jcell_instance 'jnone) (set! GameAdStateFactory.jcell_instance (GameAdStateFactory.jnew_0)))
+  GameAdStateFactory.jcell_instance)
+(define (GameAdStateFactory.jsetstatic_instance value) (set! GameAdStateFactory.jcell_instance value))
 
-local GameAdStateFactory = {}
-GameAdStateFactory.__index = GameAdStateFactory
-GameAdStateFactory.className = "GameAdStateFactory"
+(define (GameAdStateFactory.jnew_0)
+  (define this (new GameAdStateFactory% [jclass "GameAdStateFactory"]))
+    (set-field! f_gameAdStateArray this (vector (GameAdState.jnew_1 (AppNameLicensingAdConfiguration.jnew_0))))
+    (set-field! f_gameAdState this (vector-ref (get-field f_gameAdStateArray this) 0))
+  this)
 
-function GameAdStateFactory:_init_fields()
-    self.gameAdStateArray = {GameAdState.new(AppNameLicensingAdConfiguration.new())}
-    self.gameAdState = self.gameAdStateArray[1]
-end
-
-function GameAdStateFactory.new()
-    local self = setmetatable({}, GameAdStateFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function GameAdStateFactory.getInstance()
-        return GameAdStateFactory.instance
-end
-
-
-function GameAdStateFactory:getCurrentInstance()
-        return self.gameAdState
-end
-
-
--- throws Exception
-function GameAdStateFactory:getInstanceForApp(softwareInformation)
-        self.gameAdState = self.gameAdStateArray[1]
-        return self.gameAdStateArray[1]
-end
+(define (GameAdStateFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameAdStateFactory.jstatic_instance)))))
 
 
-function GameAdStateFactory:isEnabled()
-        return false
-end
-
-GameAdStateFactory.instance = GameAdStateFactory.new()
-
-return GameAdStateFactory
 

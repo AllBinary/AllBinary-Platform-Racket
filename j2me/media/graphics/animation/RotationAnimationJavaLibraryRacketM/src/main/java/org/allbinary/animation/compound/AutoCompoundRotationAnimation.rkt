@@ -1,195 +1,151 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.compound
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.compound
 
--- local GL = require("javax.microedition.khronos.opengles.GL")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local RotationAnimation = require("org.allbinary.animation.RotationAnimation")
-local Direction = require("org.allbinary.direction.Direction")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local Angle = require("org.allbinary.math.Angle")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local CompoundAnimationInterface = require("org.allbinary.animation.compound.CompoundAnimationInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/RotationAnimation.rkt"
+  "./CompoundAnimationInterface.rkt")
+(lazy-require ["../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(lazy-require ["../../../../org/allbinary/math/AngleFactory.rkt" (AngleFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/math/AngleInfo.rkt" (AngleInfo.jm_getInstance_1)])
+(lazy-require ["../../../../org/allbinary/util/CircularIndexUtil.rkt" (CircularIndexUtil.jm_createInstance_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AutoCompoundRotationAnimation%
+  (class RotationAnimation%
+    (super-new)
+    (field [f_animationInterfaceArray JR.null])
+    (define/override (jm_setFrame_1 _index)
+    (let ()
+      (let/ec jreturn
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/override (jm_getFrame_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this))))))))
+    (define/override (jm_getAnimationSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this))))))))
+    (define/override (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this))))))))
+    (define/override (jm_previousFrame_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_circularIndexUtil this))
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_circularIndexUtil this))
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/override (jm_previousRotation_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/override (jm_nextRotation_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/override (jm_setSequence_1 _sequence)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_getSequence_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PrimitiveIntUtil.jm_getArrayInstance_0)))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/override (jm_paintThreedXYZ_4 _graphics _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/public (jm_getCurrentAnimation_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/public (jm_nextAnimation_0)
+    (let ([_frame JR.null])
+      (let/ec jreturn
+        (set! _frame (send this jm_getFrame_0))
+        (JR.className (get-field f_circularIndexUtil this))
+        (send this jm_setFrame_1 _frame))))
+    (define/public (jm_previousAnimation_0)
+    (let ([_frame JR.null])
+      (let/ec jreturn
+        (set! _frame (send this jm_getFrame_0))
+        (JR.className (get-field f_circularIndexUtil this))
+        (send this jm_setFrame_1 _frame))))
+    (define/public (jm_setAnimation_1 _index)
+    (let ([_frame JR.null])
+      (let/ec jreturn
+        (set! _frame (send this jm_getFrame_0))
+        (JR.className (get-field f_circularIndexUtil this))
+        (send this jm_setFrame_1 _frame))))
+    (define/override (jm_setFrameByDirection_1 _direction)
+    (let ()
+      (let/ec jreturn
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/override (jm_setFrameToAngle_1 _angle)
+    (let ()
+      (let/ec jreturn
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/override (jm_adjustFrameToAngle_1 _newAngle)
+    (let ()
+      (let/ec jreturn
+        (send this jm_adjustFrame_1 (send _newAngle jm_getValue_0)))))
+    (define/override (jm_adjustFrame_1 _angle)
+    (let ()
+      (let/ec jreturn
+        (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this)))))))
+    (define/override (jm_getAngleInfoP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (vector-ref (get-field f_animationInterfaceArray this) (JR.className (get-field f_circularIndexUtil this))))))))
+    (define/public (jm_getAnimationInterfaceArray_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_animationInterfaceArray this)))))
+    (define/public (jm_setAnimationInterfaceArray_1 _animationInterfaceArray)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_animationInterfaceArray this _animationInterfaceArray))))
+    (define/override (jm_set_1 _gl)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (vector-length (get-field f_animationInterfaceArray this)))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (JR.className (vector-ref (get-field f_animationInterfaceArray this) _index))) (jloop))))))))))
+(define (AutoCompoundRotationAnimation.jclassValue) AutoCompoundRotationAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AutoCompoundRotationAnimation = {}
-AutoCompoundRotationAnimation.__index = AutoCompoundRotationAnimation
-AutoCompoundRotationAnimation.className = "AutoCompoundRotationAnimation"
-setmetatable(AutoCompoundRotationAnimation, {__index = RotationAnimation})
-
-function AutoCompoundRotationAnimation:_init_fields()
-    self.animationInterfaceArray = nil
-end
-
-
-function AutoCompoundRotationAnimation.new(animationInterfaceArray, animationBehavior)
-    local self = setmetatable(RotationAnimation.new(AngleInfo.getInstance(AngleFactory.getInstance().QUARTER_TOTAL_ANGLE), CircularIndexUtil.createInstance(4), animationBehavior), AutoCompoundRotationAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.animationInterfaceArray = animationInterfaceArray
-        self.circularIndexUtil = CircularIndexUtil.createInstance((self.animationInterfaceArray.n or #self.animationInterfaceArray))
-    return self
-end
-
-
-function AutoCompoundRotationAnimation:setFrame(index)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:setFrame(index)
-end
-
-
-function AutoCompoundRotationAnimation:getFrame()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:getFrame()
-end
-
-
--- throws Exception
-function AutoCompoundRotationAnimation:getAnimationSize()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:getAnimationSize()
-end
-
-
-function AutoCompoundRotationAnimation:getSize()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:getSize()
-end
-
-
-function AutoCompoundRotationAnimation:previousFrame()
-        self.circularIndexUtil:previous()
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:previousFrame()
-end
-
-
--- throws Exception
-function AutoCompoundRotationAnimation:nextFrame()
-        self.circularIndexUtil:next()
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:nextFrame()
-end
-
-
-function AutoCompoundRotationAnimation:previousRotation()
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:previousRotation()
-end
-
-
-function AutoCompoundRotationAnimation:nextRotation()
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:nextRotation()
-end
-
-
-function AutoCompoundRotationAnimation:setSequence(sequence)
-end
-
-
-function AutoCompoundRotationAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
-function AutoCompoundRotationAnimation:paintXY(graphics, x, y)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:paintXY(graphics, x, y)
-end
-
-
-function AutoCompoundRotationAnimation:paintThreedXYZ(graphics, x, y, z)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:paintThreedXYZ(graphics, x, y, z)
-end
-
-
-function AutoCompoundRotationAnimation:getCurrentAnimation()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]
-end
-
-
-function AutoCompoundRotationAnimation:nextAnimation()
-        local frame = self:getFrame()
-        self.circularIndexUtil:next()
-        self:setFrame(frame)
-end
-
-
-function AutoCompoundRotationAnimation:previousAnimation()
-        local frame = self:getFrame()
-        self.circularIndexUtil:previous()
-        self:setFrame(frame)
-end
-
-
-function AutoCompoundRotationAnimation:setAnimation(index)
-        local frame = self:getFrame()
-        self.circularIndexUtil:setIndex(index)
-        self:setFrame(frame)
-end
-
-
-function AutoCompoundRotationAnimation:setFrameByDirection(direction)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:setFrameByDirection(direction)
-end
+(define (AutoCompoundRotationAnimation.jnew_2 _animationInterfaceArray _animationBehavior)
+  (define this (new AutoCompoundRotationAnimation% [jclass "AutoCompoundRotationAnimation"]))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_animationInterfaceArray this _animationInterfaceArray)
+        (set-field! f_circularIndexUtil this (CircularIndexUtil.jm_createInstance_1 (vector-length (get-field f_animationInterfaceArray this))))))
+  this)
 
 
-function AutoCompoundRotationAnimation:setFrameToAngle(angle)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:setFrameToAngle(angle)
-end
-
-
-function AutoCompoundRotationAnimation:adjustFrameToAngle(newAngle)
-        self:adjustFrame(newAngle:getValue())
-end
-
-
-function AutoCompoundRotationAnimation:adjustFrame(angle)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:adjustFrame(angle)
-end
-
-
-function AutoCompoundRotationAnimation:getAngleInfoP()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:getAngleInfoP()
-end
-
-
-function AutoCompoundRotationAnimation:getAnimationInterfaceArray()
-        return self.animationInterfaceArray
-end
-
-
-function AutoCompoundRotationAnimation:setAnimationInterfaceArray(animationInterfaceArray)
-        self.animationInterfaceArray = animationInterfaceArray
-end
-
-
--- throws Exception
-function AutoCompoundRotationAnimation:set(gl)
-        do
-            local index = (self.animationInterfaceArray.n or #self.animationInterfaceArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            self.animationInterfaceArray[index + 1]:set(gl)
-            end
-        end
-end
-
-return AutoCompoundRotationAnimation
 

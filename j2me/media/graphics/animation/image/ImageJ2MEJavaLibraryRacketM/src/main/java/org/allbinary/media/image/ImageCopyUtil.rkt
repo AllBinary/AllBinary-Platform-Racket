@@ -1,128 +1,109 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/feature/GameFeatureFactory.rkt" (GameFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/Anchor.rkt" (Anchor.jstatic_TOP_LEFT)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./ImageCreationUtil.rkt" (ImageCreationUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define ImageCopyUtil%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_imageCreationUtil JR.null])
+    (field [f_anchor 0])
+    (field [f_gameFeatureFactory JR.null])
+    (field [f_features JR.null])
+    (field [f_NO_COPY JR.null])
+    (define/public (jm_createImageForRotation_1 _originalImage)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_createImage_1 _originalImage)))))
+    (define/public (jm_createImage_1 _originalImage)
+    (let ([_image JR.null])
+      (let/ec jreturn
+        (when (not (send (get-field f_features this) jm_isFeature_1 (get-field f_POST_IMAGE_LOADING_MODIFICATION (get-field f_gameFeatureFactory this))))
+            (begin
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_NO_COPY this) this (get-field f_CONSTRUCTOR (get-field f_commonStrings this)) (JR.newException "Exception"))
+            (jreturn _originalImage)))
+        (set! _image (send (get-field f_imageCreationUtil this) jm_createImageWH_2 (send _originalImage jm_getWidth_0) (send _originalImage jm_getHeight_0)))
+        (if (send _image jm_isMutable_0)
+            (begin
+            (JR.className (send _image jm_getGraphics_0))
+            (jreturn _image))
+            (begin
+            (raise (JR.newException "Exception" "Not Mutable")))))))
+    (define/public (jm_createImageScale_3 _originalImage _canvasScale _resize)
+    (let ([_newWidth JR.null][_newHeight JR.null][_image JR.null][_halfWidthDelta JR.null][_halfHeightDelta JR.null][_graphics JR.null])
+      (let/ec jreturn
+        (when (not (send (get-field f_features this) jm_isFeature_1 (get-field f_POST_IMAGE_LOADING_MODIFICATION (get-field f_gameFeatureFactory this))))
+            (begin
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_NO_COPY this) this (get-field f_CONSTRUCTOR (get-field f_commonStrings this)) (JR.newException "Exception"))
+            (jreturn _originalImage)))
+        (set! _newWidth (JR.d2i (* (JR.toDouble (send _originalImage jm_getWidth_0)) _canvasScale)))
+        (set! _newHeight (JR.d2i (* (JR.toDouble (send _originalImage jm_getHeight_0)) _canvasScale)))
+        (when _resize
+            (begin
+            (when (< _newWidth _newHeight)
+                (begin
+                (set! _newWidth _newHeight)))
+            (when (< _newHeight _newWidth)
+                (begin
+                (set! _newHeight _newWidth)))))
+        (set! _image (send (get-field f_imageCreationUtil this) jm_createImageWH_2 _newWidth _newHeight))
+        (if (send _image jm_isMutable_0)
+            (begin
+            (set! _halfWidthDelta (JR.idiv (JR.i32 (- _newWidth (send _originalImage jm_getWidth_0))) 2))
+            (set! _halfHeightDelta (JR.idiv (JR.i32 (- _newHeight (send _originalImage jm_getHeight_0))) 2))
+            (set! _graphics (send _image jm_getGraphics_0))
+            (send _graphics jm_drawImage_4 _originalImage _halfWidthDelta _halfHeightDelta (get-field f_anchor this))
+            (jreturn _image))
+            (begin
+            (raise (JR.newException "Exception" "Not Mutable")))))))))
+(define (ImageCopyUtil.jclassValue) ImageCopyUtil%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageCopyUtil.jcell_instance 'jnone)
+(define (ImageCopyUtil.jstatic_instance)
+  (when (eq? ImageCopyUtil.jcell_instance 'jnone) (set! ImageCopyUtil.jcell_instance (ImageCopyUtil.jnew_0)))
+  ImageCopyUtil.jcell_instance)
+(define (ImageCopyUtil.jsetstatic_instance value) (set! ImageCopyUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (ImageCopyUtil.jnew_0)
+  (define this (new ImageCopyUtil% [jclass "ImageCopyUtil"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_imageCreationUtil this (ImageCreationUtil.jm_getInstance_0))
+    (set-field! f_anchor this (Anchor.jstatic_TOP_LEFT))
+    (set-field! f_gameFeatureFactory this (GameFeatureFactory.jm_getInstance_0))
+    (set-field! f_features this (Features.jm_getInstance_0))
+    (set-field! f_NO_COPY this "J2ME does not need to copy images after initial loading")
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local ImageCopyUtil = {}
-ImageCopyUtil.__index = ImageCopyUtil
-ImageCopyUtil.className = "ImageCopyUtil"
-
-function ImageCopyUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.imageCreationUtil = ImageCreationUtil.getInstance()
-    self.anchor = Anchor.TOP_LEFT
-    self.gameFeatureFactory = GameFeatureFactory.getInstance()
-    self.features = Features.getInstance()
-    self.NO_COPY = "J2ME does not need to copy images after initial loading"
-end
-
-
-function ImageCopyUtil.getInstance()
-        return ImageCopyUtil.instance
-end
+(define (ImageCopyUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageCopyUtil.jstatic_instance)))))
 
 
-function ImageCopyUtil.new()
-    local self = setmetatable({}, ImageCopyUtil)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function ImageCopyUtil:createImageForRotation(originalImage)
-        return self:createImage(originalImage)
-end
-
-
--- throws Exception
-function ImageCopyUtil:createImage(originalImage)
-        if not self.features:isFeature(self.gameFeatureFactory.POST_IMAGE_LOADING_MODIFICATION) then
-            self.logUtil:put(self.NO_COPY, self, self.commonStrings.CONSTRUCTOR, java_exception("Exception"))
-            return originalImage
-        end
-        local image = self.imageCreationUtil:createImageWH(originalImage:getWidth(), originalImage:getHeight())
-        if image:isMutable() then
-            image:getGraphics():drawImage(originalImage, 0, 0, self.anchor)
-            return image
-        else
-            error(java_exception("Exception", "Not Mutable"), 0)
-        end
-end
-
-
--- throws Exception
-function ImageCopyUtil:createImageScale(originalImage, canvasScale, resize)
-        if not self.features:isFeature(self.gameFeatureFactory.POST_IMAGE_LOADING_MODIFICATION) then
-            self.logUtil:put(self.NO_COPY, self, self.commonStrings.CONSTRUCTOR, java_exception("Exception"))
-            return originalImage
-        end
-        local newWidth = java_int((originalImage:getWidth() * canvasScale))
-        local newHeight = java_int((originalImage:getHeight() * canvasScale))
-        if resize then
-            if newWidth < newHeight then
-                newWidth = newHeight
-            end
-            if newHeight < newWidth then
-                newHeight = newWidth
-            end
-        end
-        local image = self.imageCreationUtil:createImageWH(newWidth, newHeight)
-        if image:isMutable() then
-            local halfWidthDelta = (newWidth - originalImage:getWidth()) / 2
-            local halfHeightDelta = (newHeight - originalImage:getHeight()) / 2
-            local graphics = image:getGraphics()
-            graphics:drawImage(originalImage, halfWidthDelta, halfHeightDelta, self.anchor)
-            return image
-        else
-            error(java_exception("Exception", "Not Mutable"), 0)
-        end
-end
-
-ImageCopyUtil.instance = ImageCopyUtil.new()
-
-return ImageCopyUtil
 

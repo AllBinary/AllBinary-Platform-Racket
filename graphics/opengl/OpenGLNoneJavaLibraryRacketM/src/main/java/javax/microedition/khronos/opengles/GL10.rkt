@@ -1,745 +1,1633 @@
--- Generated Code Do Not Modify
--- package javax.microedition.khronos.opengles
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package javax.microedition.khronos.opengles
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/nio/Buffer.rkt"
+  "../../../../java/nio/FloatBuffer.rkt"
+  "../../../../java/nio/IntBuffer.rkt"
+  "./GL.rkt")
+(provide (all-defined-out))
+
+(define GL10%
+  (class JObject%
+    (super-new)
+    (define/public (jm_glActiveTexture_1 _texture)
+      (raise (JR.newException "AbstractMethodError" "glActiveTexture")))
+    (define/public (jm_glAlphaFunc_2 _func _ref)
+      (raise (JR.newException "AbstractMethodError" "glAlphaFunc")))
+    (define/public (jm_glBindTexture_2 _target _texture)
+      (raise (JR.newException "AbstractMethodError" "glBindTexture")))
+    (define/public (jm_glBlendFunc_2 _sfactor _dfactor)
+      (raise (JR.newException "AbstractMethodError" "glBlendFunc")))
+    (define/public (jm_glClear_1 _mask)
+      (raise (JR.newException "AbstractMethodError" "glClear")))
+    (define/public (jm_glClearColor_4 _red _green _blue _alpha)
+      (raise (JR.newException "AbstractMethodError" "glClearColor")))
+    (define/public (jm_glClearDepthf_1 _depth)
+      (raise (JR.newException "AbstractMethodError" "glClearDepthf")))
+    (define/public (jm_glClearStencil_1 _s)
+      (raise (JR.newException "AbstractMethodError" "glClearStencil")))
+    (define/public (jm_glClientActiveTexture_1 _texture)
+      (raise (JR.newException "AbstractMethodError" "glClientActiveTexture")))
+    (define/public (jm_glColor4f_4 _red _green _blue _alpha)
+      (raise (JR.newException "AbstractMethodError" "glColor4f")))
+    (define/public (jm_glColorMask_4 _red _green _blue _alpha)
+      (raise (JR.newException "AbstractMethodError" "glColorMask")))
+    (define/public (jm_glColorPointer_4 _size _type _stride _pointer)
+      (raise (JR.newException "AbstractMethodError" "glColorPointer")))
+    (define/public (jm_glCompressedTexImage2D_8 _target _level _internalformat _width _height _border _imageSize _data)
+      (raise (JR.newException "AbstractMethodError" "glCompressedTexImage2D")))
+    (define/public (jm_glCompressedTexSubImage2D_9 _target _level _xoffset _yoffset _width _height _format _imageSize _data)
+      (raise (JR.newException "AbstractMethodError" "glCompressedTexSubImage2D")))
+    (define/public (jm_glCopyTexImage2D_8 _target _level _internalformat _x _y _width _height _border)
+      (raise (JR.newException "AbstractMethodError" "glCopyTexImage2D")))
+    (define/public (jm_glCopyTexSubImage2D_8 _target _level _xoffset _yoffset _x _y _width _height)
+      (raise (JR.newException "AbstractMethodError" "glCopyTexSubImage2D")))
+    (define/public (jm_glCullFace_1 _mode)
+      (raise (JR.newException "AbstractMethodError" "glCullFace")))
+    (define/public (jm_glDeleteTextures_3 _n _textures _offset)
+      (raise (JR.newException "AbstractMethodError" "glDeleteTextures")))
+    (define/public (jm_glDeleteTextures_2 _n _textures)
+      (raise (JR.newException "AbstractMethodError" "glDeleteTextures")))
+    (define/public (jm_glDepthFunc_1 _func)
+      (raise (JR.newException "AbstractMethodError" "glDepthFunc")))
+    (define/public (jm_glDepthMask_1 _flag)
+      (raise (JR.newException "AbstractMethodError" "glDepthMask")))
+    (define/public (jm_glDepthRangef_2 _zNear _zFar)
+      (raise (JR.newException "AbstractMethodError" "glDepthRangef")))
+    (define/public (jm_glDisable_1 _cap)
+      (raise (JR.newException "AbstractMethodError" "glDisable")))
+    (define/public (jm_glDisableClientState_1 _array)
+      (raise (JR.newException "AbstractMethodError" "glDisableClientState")))
+    (define/public (jm_glDrawArrays_3 _mode _first _count)
+      (raise (JR.newException "AbstractMethodError" "glDrawArrays")))
+    (define/public (jm_glDrawElements_4 _mode _count _type _indices)
+      (raise (JR.newException "AbstractMethodError" "glDrawElements")))
+    (define/public (jm_glEnable_1 _cap)
+      (raise (JR.newException "AbstractMethodError" "glEnable")))
+    (define/public (jm_glEnableClientState_1 _array)
+      (raise (JR.newException "AbstractMethodError" "glEnableClientState")))
+    (define/public (jm_glFinish_0)
+      (raise (JR.newException "AbstractMethodError" "glFinish")))
+    (define/public (jm_glFlush_0)
+      (raise (JR.newException "AbstractMethodError" "glFlush")))
+    (define/public (jm_glFogf_2 _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glFogf")))
+    (define/public (jm_glFogfv_3 _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glFogfv")))
+    (define/public (jm_glFogfv_2 _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glFogfv")))
+    (define/public (jm_glFrontFace_1 _mode)
+      (raise (JR.newException "AbstractMethodError" "glFrontFace")))
+    (define/public (jm_glFrustumf_6 _left _right _bottom _top _zNear _zFar)
+      (raise (JR.newException "AbstractMethodError" "glFrustumf")))
+    (define/public (jm_glGenTextures_3 _n _textures _offset)
+      (raise (JR.newException "AbstractMethodError" "glGenTextures")))
+    (define/public (jm_glGenTextures_2 _n _textures)
+      (raise (JR.newException "AbstractMethodError" "glGenTextures")))
+    (define/public (jm_glGetError_0)
+      (raise (JR.newException "AbstractMethodError" "glGetError")))
+    (define/public (jm_glGetIntegerv_3 _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glGetIntegerv")))
+    (define/public (jm_glGetIntegerv_2 _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glGetIntegerv")))
+    (define/public (jm_glGetString_1 _name)
+      (raise (JR.newException "AbstractMethodError" "glGetString")))
+    (define/public (jm_glHint_2 _target _mode)
+      (raise (JR.newException "AbstractMethodError" "glHint")))
+    (define/public (jm_glLightModelf_2 _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glLightModelf")))
+    (define/public (jm_glLightModelfv_3 _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glLightModelfv")))
+    (define/public (jm_glLightModelfv_2 _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glLightModelfv")))
+    (define/public (jm_glLightf_3 _light _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glLightf")))
+    (define/public (jm_glLightfv_4 _light _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glLightfv")))
+    (define/public (jm_glLightfv_3 _light _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glLightfv")))
+    (define/public (jm_glLineWidth_1 _width)
+      (raise (JR.newException "AbstractMethodError" "glLineWidth")))
+    (define/public (jm_glLoadIdentity_0)
+      (raise (JR.newException "AbstractMethodError" "glLoadIdentity")))
+    (define/public (jm_glLoadMatrixf_2 _m _offset)
+      (raise (JR.newException "AbstractMethodError" "glLoadMatrixf")))
+    (define/public (jm_glLoadMatrixf_1 _m)
+      (raise (JR.newException "AbstractMethodError" "glLoadMatrixf")))
+    (define/public (jm_glLogicOp_1 _opcode)
+      (raise (JR.newException "AbstractMethodError" "glLogicOp")))
+    (define/public (jm_glMaterialf_3 _face _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glMaterialf")))
+    (define/public (jm_glMaterialfv_4 _face _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glMaterialfv")))
+    (define/public (jm_glMaterialfv_3 _face _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glMaterialfv")))
+    (define/public (jm_glMatrixMode_1 _mode)
+      (raise (JR.newException "AbstractMethodError" "glMatrixMode")))
+    (define/public (jm_glMultMatrixf_2 _m _offset)
+      (raise (JR.newException "AbstractMethodError" "glMultMatrixf")))
+    (define/public (jm_glMultMatrixf_1 _m)
+      (raise (JR.newException "AbstractMethodError" "glMultMatrixf")))
+    (define/public (jm_glMultiTexCoord4f_5 _target _s _t _r _q)
+      (raise (JR.newException "AbstractMethodError" "glMultiTexCoord4f")))
+    (define/public (jm_glNormal3f_3 _nx _ny _nz)
+      (raise (JR.newException "AbstractMethodError" "glNormal3f")))
+    (define/public (jm_glNormalPointer_3 _type _stride _pointer)
+      (raise (JR.newException "AbstractMethodError" "glNormalPointer")))
+    (define/public (jm_glOrthof_6 _left _right _bottom _top _zNear _zFar)
+      (raise (JR.newException "AbstractMethodError" "glOrthof")))
+    (define/public (jm_glPixelStorei_2 _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glPixelStorei")))
+    (define/public (jm_glPointSize_1 _size)
+      (raise (JR.newException "AbstractMethodError" "glPointSize")))
+    (define/public (jm_glPolygonOffset_2 _factor _units)
+      (raise (JR.newException "AbstractMethodError" "glPolygonOffset")))
+    (define/public (jm_glPopMatrix_0)
+      (raise (JR.newException "AbstractMethodError" "glPopMatrix")))
+    (define/public (jm_glPushMatrix_0)
+      (raise (JR.newException "AbstractMethodError" "glPushMatrix")))
+    (define/public (jm_glReadPixels_7 _x _y _width _height _format _type _pixels)
+      (raise (JR.newException "AbstractMethodError" "glReadPixels")))
+    (define/public (jm_glRotatef_4 _angle _x _y _z)
+      (raise (JR.newException "AbstractMethodError" "glRotatef")))
+    (define/public (jm_glRotatex_4 _angle _x _y _z)
+      (raise (JR.newException "AbstractMethodError" "glRotatex")))
+    (define/public (jm_glSampleCoverage_2 _value _invert)
+      (raise (JR.newException "AbstractMethodError" "glSampleCoverage")))
+    (define/public (jm_glScalef_3 _x _y _z)
+      (raise (JR.newException "AbstractMethodError" "glScalef")))
+    (define/public (jm_glScalex_3 _x _y _z)
+      (raise (JR.newException "AbstractMethodError" "glScalex")))
+    (define/public (jm_glScissor_4 _x _y _width _height)
+      (raise (JR.newException "AbstractMethodError" "glScissor")))
+    (define/public (jm_glShadeModel_1 _mode)
+      (raise (JR.newException "AbstractMethodError" "glShadeModel")))
+    (define/public (jm_glStencilFunc_3 _func _ref _mask)
+      (raise (JR.newException "AbstractMethodError" "glStencilFunc")))
+    (define/public (jm_glStencilMask_1 _mask)
+      (raise (JR.newException "AbstractMethodError" "glStencilMask")))
+    (define/public (jm_glStencilOp_3 _fail _zfail _zpass)
+      (raise (JR.newException "AbstractMethodError" "glStencilOp")))
+    (define/public (jm_glTexCoordPointer_4 _size _type _stride _pointer)
+      (raise (JR.newException "AbstractMethodError" "glTexCoordPointer")))
+    (define/public (jm_glTexEnvf_3 _target _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glTexEnvf")))
+    (define/public (jm_glTexEnvfv_4 _target _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glTexEnvfv")))
+    (define/public (jm_glTexEnvfv_3 _target _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glTexEnvfv")))
+    (define/public (jm_glTexImage2D_9 _target _level _internalformat _width _height _border _format _type _pixels)
+      (raise (JR.newException "AbstractMethodError" "glTexImage2D")))
+    (define/public (jm_glTexParameterf_3 _target _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glTexParameterf")))
+    (define/public (jm_glTexParameteri_3 _target _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glTexParameteri")))
+    (define/public (jm_glTexSubImage2D_9 _target _level _xoffset _yoffset _width _height _format _type _pixels)
+      (raise (JR.newException "AbstractMethodError" "glTexSubImage2D")))
+    (define/public (jm_glTranslatef_3 _x _y _z)
+      (raise (JR.newException "AbstractMethodError" "glTranslatef")))
+    (define/public (jm_glVertexPointer_4 _size _type _stride _pointer)
+      (raise (JR.newException "AbstractMethodError" "glVertexPointer")))
+    (define/public (jm_glViewport_4 _x _y _width _height)
+      (raise (JR.newException "AbstractMethodError" "glViewport")))
+    (define/public (jm_glBegin_1 _i)
+      (raise (JR.newException "AbstractMethodError" "glBegin")))
+    (define/public (jm_glEnd_0)
+      (raise (JR.newException "AbstractMethodError" "glEnd")))
+    (define/public (jm_glVertex3f_3 _f _f2 _f3)
+      (raise (JR.newException "AbstractMethodError" "glVertex3f")))
+    (define/public (jm_glPolygonMode_2 _i _i1)
+      (raise (JR.newException "AbstractMethodError" "glPolygonMode")))))
+(define (GL10.jclassValue) GL10%)
+
+(define GL10.jcell_GL_ADD 'jnone)
+(define (GL10.jstatic_GL_ADD)
+  (when (eq? GL10.jcell_GL_ADD 'jnone) (set! GL10.jcell_GL_ADD 260))
+  GL10.jcell_GL_ADD)
+(define (GL10.jsetstatic_GL_ADD value) (set! GL10.jcell_GL_ADD value))
+
+(define GL10.jcell_GL_ALIASED_LINE_WIDTH_RANGE 'jnone)
+(define (GL10.jstatic_GL_ALIASED_LINE_WIDTH_RANGE)
+  (when (eq? GL10.jcell_GL_ALIASED_LINE_WIDTH_RANGE 'jnone) (set! GL10.jcell_GL_ALIASED_LINE_WIDTH_RANGE 33902))
+  GL10.jcell_GL_ALIASED_LINE_WIDTH_RANGE)
+(define (GL10.jsetstatic_GL_ALIASED_LINE_WIDTH_RANGE value) (set! GL10.jcell_GL_ALIASED_LINE_WIDTH_RANGE value))
+
+(define GL10.jcell_GL_ALIASED_POINT_SIZE_RANGE 'jnone)
+(define (GL10.jstatic_GL_ALIASED_POINT_SIZE_RANGE)
+  (when (eq? GL10.jcell_GL_ALIASED_POINT_SIZE_RANGE 'jnone) (set! GL10.jcell_GL_ALIASED_POINT_SIZE_RANGE 33901))
+  GL10.jcell_GL_ALIASED_POINT_SIZE_RANGE)
+(define (GL10.jsetstatic_GL_ALIASED_POINT_SIZE_RANGE value) (set! GL10.jcell_GL_ALIASED_POINT_SIZE_RANGE value))
+
+(define GL10.jcell_GL_ALPHA 'jnone)
+(define (GL10.jstatic_GL_ALPHA)
+  (when (eq? GL10.jcell_GL_ALPHA 'jnone) (set! GL10.jcell_GL_ALPHA 6406))
+  GL10.jcell_GL_ALPHA)
+(define (GL10.jsetstatic_GL_ALPHA value) (set! GL10.jcell_GL_ALPHA value))
+
+(define GL10.jcell_GL_ALPHA_BITS 'jnone)
+(define (GL10.jstatic_GL_ALPHA_BITS)
+  (when (eq? GL10.jcell_GL_ALPHA_BITS 'jnone) (set! GL10.jcell_GL_ALPHA_BITS 3413))
+  GL10.jcell_GL_ALPHA_BITS)
+(define (GL10.jsetstatic_GL_ALPHA_BITS value) (set! GL10.jcell_GL_ALPHA_BITS value))
+
+(define GL10.jcell_GL_ALPHA_TEST 'jnone)
+(define (GL10.jstatic_GL_ALPHA_TEST)
+  (when (eq? GL10.jcell_GL_ALPHA_TEST 'jnone) (set! GL10.jcell_GL_ALPHA_TEST 3008))
+  GL10.jcell_GL_ALPHA_TEST)
+(define (GL10.jsetstatic_GL_ALPHA_TEST value) (set! GL10.jcell_GL_ALPHA_TEST value))
+
+(define GL10.jcell_GL_ALWAYS 'jnone)
+(define (GL10.jstatic_GL_ALWAYS)
+  (when (eq? GL10.jcell_GL_ALWAYS 'jnone) (set! GL10.jcell_GL_ALWAYS 519))
+  GL10.jcell_GL_ALWAYS)
+(define (GL10.jsetstatic_GL_ALWAYS value) (set! GL10.jcell_GL_ALWAYS value))
+
+(define GL10.jcell_GL_AMBIENT 'jnone)
+(define (GL10.jstatic_GL_AMBIENT)
+  (when (eq? GL10.jcell_GL_AMBIENT 'jnone) (set! GL10.jcell_GL_AMBIENT 4608))
+  GL10.jcell_GL_AMBIENT)
+(define (GL10.jsetstatic_GL_AMBIENT value) (set! GL10.jcell_GL_AMBIENT value))
+
+(define GL10.jcell_GL_AMBIENT_AND_DIFFUSE 'jnone)
+(define (GL10.jstatic_GL_AMBIENT_AND_DIFFUSE)
+  (when (eq? GL10.jcell_GL_AMBIENT_AND_DIFFUSE 'jnone) (set! GL10.jcell_GL_AMBIENT_AND_DIFFUSE 5634))
+  GL10.jcell_GL_AMBIENT_AND_DIFFUSE)
+(define (GL10.jsetstatic_GL_AMBIENT_AND_DIFFUSE value) (set! GL10.jcell_GL_AMBIENT_AND_DIFFUSE value))
+
+(define GL10.jcell_GL_AND 'jnone)
+(define (GL10.jstatic_GL_AND)
+  (when (eq? GL10.jcell_GL_AND 'jnone) (set! GL10.jcell_GL_AND 5377))
+  GL10.jcell_GL_AND)
+(define (GL10.jsetstatic_GL_AND value) (set! GL10.jcell_GL_AND value))
+
+(define GL10.jcell_GL_AND_INVERTED 'jnone)
+(define (GL10.jstatic_GL_AND_INVERTED)
+  (when (eq? GL10.jcell_GL_AND_INVERTED 'jnone) (set! GL10.jcell_GL_AND_INVERTED 5380))
+  GL10.jcell_GL_AND_INVERTED)
+(define (GL10.jsetstatic_GL_AND_INVERTED value) (set! GL10.jcell_GL_AND_INVERTED value))
+
+(define GL10.jcell_GL_AND_REVERSE 'jnone)
+(define (GL10.jstatic_GL_AND_REVERSE)
+  (when (eq? GL10.jcell_GL_AND_REVERSE 'jnone) (set! GL10.jcell_GL_AND_REVERSE 5378))
+  GL10.jcell_GL_AND_REVERSE)
+(define (GL10.jsetstatic_GL_AND_REVERSE value) (set! GL10.jcell_GL_AND_REVERSE value))
+
+(define GL10.jcell_GL_BACK 'jnone)
+(define (GL10.jstatic_GL_BACK)
+  (when (eq? GL10.jcell_GL_BACK 'jnone) (set! GL10.jcell_GL_BACK 1029))
+  GL10.jcell_GL_BACK)
+(define (GL10.jsetstatic_GL_BACK value) (set! GL10.jcell_GL_BACK value))
+
+(define GL10.jcell_GL_BLEND 'jnone)
+(define (GL10.jstatic_GL_BLEND)
+  (when (eq? GL10.jcell_GL_BLEND 'jnone) (set! GL10.jcell_GL_BLEND 3042))
+  GL10.jcell_GL_BLEND)
+(define (GL10.jsetstatic_GL_BLEND value) (set! GL10.jcell_GL_BLEND value))
+
+(define GL10.jcell_GL_BLUE_BITS 'jnone)
+(define (GL10.jstatic_GL_BLUE_BITS)
+  (when (eq? GL10.jcell_GL_BLUE_BITS 'jnone) (set! GL10.jcell_GL_BLUE_BITS 3412))
+  GL10.jcell_GL_BLUE_BITS)
+(define (GL10.jsetstatic_GL_BLUE_BITS value) (set! GL10.jcell_GL_BLUE_BITS value))
+
+(define GL10.jcell_GL_BYTE 'jnone)
+(define (GL10.jstatic_GL_BYTE)
+  (when (eq? GL10.jcell_GL_BYTE 'jnone) (set! GL10.jcell_GL_BYTE 5120))
+  GL10.jcell_GL_BYTE)
+(define (GL10.jsetstatic_GL_BYTE value) (set! GL10.jcell_GL_BYTE value))
+
+(define GL10.jcell_GL_CCW 'jnone)
+(define (GL10.jstatic_GL_CCW)
+  (when (eq? GL10.jcell_GL_CCW 'jnone) (set! GL10.jcell_GL_CCW 2305))
+  GL10.jcell_GL_CCW)
+(define (GL10.jsetstatic_GL_CCW value) (set! GL10.jcell_GL_CCW value))
+
+(define GL10.jcell_GL_CLAMP_TO_EDGE 'jnone)
+(define (GL10.jstatic_GL_CLAMP_TO_EDGE)
+  (when (eq? GL10.jcell_GL_CLAMP_TO_EDGE 'jnone) (set! GL10.jcell_GL_CLAMP_TO_EDGE 33071))
+  GL10.jcell_GL_CLAMP_TO_EDGE)
+(define (GL10.jsetstatic_GL_CLAMP_TO_EDGE value) (set! GL10.jcell_GL_CLAMP_TO_EDGE value))
+
+(define GL10.jcell_GL_CLEAR 'jnone)
+(define (GL10.jstatic_GL_CLEAR)
+  (when (eq? GL10.jcell_GL_CLEAR 'jnone) (set! GL10.jcell_GL_CLEAR 5376))
+  GL10.jcell_GL_CLEAR)
+(define (GL10.jsetstatic_GL_CLEAR value) (set! GL10.jcell_GL_CLEAR value))
+
+(define GL10.jcell_GL_COLOR_ARRAY 'jnone)
+(define (GL10.jstatic_GL_COLOR_ARRAY)
+  (when (eq? GL10.jcell_GL_COLOR_ARRAY 'jnone) (set! GL10.jcell_GL_COLOR_ARRAY 32886))
+  GL10.jcell_GL_COLOR_ARRAY)
+(define (GL10.jsetstatic_GL_COLOR_ARRAY value) (set! GL10.jcell_GL_COLOR_ARRAY value))
+
+(define GL10.jcell_GL_COLOR_BUFFER_BIT 'jnone)
+(define (GL10.jstatic_GL_COLOR_BUFFER_BIT)
+  (when (eq? GL10.jcell_GL_COLOR_BUFFER_BIT 'jnone) (set! GL10.jcell_GL_COLOR_BUFFER_BIT 16384))
+  GL10.jcell_GL_COLOR_BUFFER_BIT)
+(define (GL10.jsetstatic_GL_COLOR_BUFFER_BIT value) (set! GL10.jcell_GL_COLOR_BUFFER_BIT value))
+
+(define GL10.jcell_GL_COLOR_LOGIC_OP 'jnone)
+(define (GL10.jstatic_GL_COLOR_LOGIC_OP)
+  (when (eq? GL10.jcell_GL_COLOR_LOGIC_OP 'jnone) (set! GL10.jcell_GL_COLOR_LOGIC_OP 3058))
+  GL10.jcell_GL_COLOR_LOGIC_OP)
+(define (GL10.jsetstatic_GL_COLOR_LOGIC_OP value) (set! GL10.jcell_GL_COLOR_LOGIC_OP value))
+
+(define GL10.jcell_GL_COLOR_MATERIAL 'jnone)
+(define (GL10.jstatic_GL_COLOR_MATERIAL)
+  (when (eq? GL10.jcell_GL_COLOR_MATERIAL 'jnone) (set! GL10.jcell_GL_COLOR_MATERIAL 2903))
+  GL10.jcell_GL_COLOR_MATERIAL)
+(define (GL10.jsetstatic_GL_COLOR_MATERIAL value) (set! GL10.jcell_GL_COLOR_MATERIAL value))
+
+(define GL10.jcell_GL_COMPRESSED_TEXTURE_FORMATS 'jnone)
+(define (GL10.jstatic_GL_COMPRESSED_TEXTURE_FORMATS)
+  (when (eq? GL10.jcell_GL_COMPRESSED_TEXTURE_FORMATS 'jnone) (set! GL10.jcell_GL_COMPRESSED_TEXTURE_FORMATS 34467))
+  GL10.jcell_GL_COMPRESSED_TEXTURE_FORMATS)
+(define (GL10.jsetstatic_GL_COMPRESSED_TEXTURE_FORMATS value) (set! GL10.jcell_GL_COMPRESSED_TEXTURE_FORMATS value))
+
+(define GL10.jcell_GL_CONSTANT_ATTENUATION 'jnone)
+(define (GL10.jstatic_GL_CONSTANT_ATTENUATION)
+  (when (eq? GL10.jcell_GL_CONSTANT_ATTENUATION 'jnone) (set! GL10.jcell_GL_CONSTANT_ATTENUATION 4615))
+  GL10.jcell_GL_CONSTANT_ATTENUATION)
+(define (GL10.jsetstatic_GL_CONSTANT_ATTENUATION value) (set! GL10.jcell_GL_CONSTANT_ATTENUATION value))
+
+(define GL10.jcell_GL_COPY 'jnone)
+(define (GL10.jstatic_GL_COPY)
+  (when (eq? GL10.jcell_GL_COPY 'jnone) (set! GL10.jcell_GL_COPY 5379))
+  GL10.jcell_GL_COPY)
+(define (GL10.jsetstatic_GL_COPY value) (set! GL10.jcell_GL_COPY value))
+
+(define GL10.jcell_GL_COPY_INVERTED 'jnone)
+(define (GL10.jstatic_GL_COPY_INVERTED)
+  (when (eq? GL10.jcell_GL_COPY_INVERTED 'jnone) (set! GL10.jcell_GL_COPY_INVERTED 5388))
+  GL10.jcell_GL_COPY_INVERTED)
+(define (GL10.jsetstatic_GL_COPY_INVERTED value) (set! GL10.jcell_GL_COPY_INVERTED value))
+
+(define GL10.jcell_GL_CULL_FACE 'jnone)
+(define (GL10.jstatic_GL_CULL_FACE)
+  (when (eq? GL10.jcell_GL_CULL_FACE 'jnone) (set! GL10.jcell_GL_CULL_FACE 2884))
+  GL10.jcell_GL_CULL_FACE)
+(define (GL10.jsetstatic_GL_CULL_FACE value) (set! GL10.jcell_GL_CULL_FACE value))
+
+(define GL10.jcell_GL_CW 'jnone)
+(define (GL10.jstatic_GL_CW)
+  (when (eq? GL10.jcell_GL_CW 'jnone) (set! GL10.jcell_GL_CW 2304))
+  GL10.jcell_GL_CW)
+(define (GL10.jsetstatic_GL_CW value) (set! GL10.jcell_GL_CW value))
+
+(define GL10.jcell_GL_DECAL 'jnone)
+(define (GL10.jstatic_GL_DECAL)
+  (when (eq? GL10.jcell_GL_DECAL 'jnone) (set! GL10.jcell_GL_DECAL 8449))
+  GL10.jcell_GL_DECAL)
+(define (GL10.jsetstatic_GL_DECAL value) (set! GL10.jcell_GL_DECAL value))
+
+(define GL10.jcell_GL_DECR 'jnone)
+(define (GL10.jstatic_GL_DECR)
+  (when (eq? GL10.jcell_GL_DECR 'jnone) (set! GL10.jcell_GL_DECR 7683))
+  GL10.jcell_GL_DECR)
+(define (GL10.jsetstatic_GL_DECR value) (set! GL10.jcell_GL_DECR value))
+
+(define GL10.jcell_GL_DEPTH_BITS 'jnone)
+(define (GL10.jstatic_GL_DEPTH_BITS)
+  (when (eq? GL10.jcell_GL_DEPTH_BITS 'jnone) (set! GL10.jcell_GL_DEPTH_BITS 3414))
+  GL10.jcell_GL_DEPTH_BITS)
+(define (GL10.jsetstatic_GL_DEPTH_BITS value) (set! GL10.jcell_GL_DEPTH_BITS value))
+
+(define GL10.jcell_GL_DEPTH_BUFFER_BIT 'jnone)
+(define (GL10.jstatic_GL_DEPTH_BUFFER_BIT)
+  (when (eq? GL10.jcell_GL_DEPTH_BUFFER_BIT 'jnone) (set! GL10.jcell_GL_DEPTH_BUFFER_BIT 256))
+  GL10.jcell_GL_DEPTH_BUFFER_BIT)
+(define (GL10.jsetstatic_GL_DEPTH_BUFFER_BIT value) (set! GL10.jcell_GL_DEPTH_BUFFER_BIT value))
+
+(define GL10.jcell_GL_DEPTH_TEST 'jnone)
+(define (GL10.jstatic_GL_DEPTH_TEST)
+  (when (eq? GL10.jcell_GL_DEPTH_TEST 'jnone) (set! GL10.jcell_GL_DEPTH_TEST 2929))
+  GL10.jcell_GL_DEPTH_TEST)
+(define (GL10.jsetstatic_GL_DEPTH_TEST value) (set! GL10.jcell_GL_DEPTH_TEST value))
+
+(define GL10.jcell_GL_DIFFUSE 'jnone)
+(define (GL10.jstatic_GL_DIFFUSE)
+  (when (eq? GL10.jcell_GL_DIFFUSE 'jnone) (set! GL10.jcell_GL_DIFFUSE 4609))
+  GL10.jcell_GL_DIFFUSE)
+(define (GL10.jsetstatic_GL_DIFFUSE value) (set! GL10.jcell_GL_DIFFUSE value))
+
+(define GL10.jcell_GL_DITHER 'jnone)
+(define (GL10.jstatic_GL_DITHER)
+  (when (eq? GL10.jcell_GL_DITHER 'jnone) (set! GL10.jcell_GL_DITHER 3024))
+  GL10.jcell_GL_DITHER)
+(define (GL10.jsetstatic_GL_DITHER value) (set! GL10.jcell_GL_DITHER value))
+
+(define GL10.jcell_GL_DONT_CARE 'jnone)
+(define (GL10.jstatic_GL_DONT_CARE)
+  (when (eq? GL10.jcell_GL_DONT_CARE 'jnone) (set! GL10.jcell_GL_DONT_CARE 4352))
+  GL10.jcell_GL_DONT_CARE)
+(define (GL10.jsetstatic_GL_DONT_CARE value) (set! GL10.jcell_GL_DONT_CARE value))
+
+(define GL10.jcell_GL_DST_ALPHA 'jnone)
+(define (GL10.jstatic_GL_DST_ALPHA)
+  (when (eq? GL10.jcell_GL_DST_ALPHA 'jnone) (set! GL10.jcell_GL_DST_ALPHA 772))
+  GL10.jcell_GL_DST_ALPHA)
+(define (GL10.jsetstatic_GL_DST_ALPHA value) (set! GL10.jcell_GL_DST_ALPHA value))
+
+(define GL10.jcell_GL_DST_COLOR 'jnone)
+(define (GL10.jstatic_GL_DST_COLOR)
+  (when (eq? GL10.jcell_GL_DST_COLOR 'jnone) (set! GL10.jcell_GL_DST_COLOR 774))
+  GL10.jcell_GL_DST_COLOR)
+(define (GL10.jsetstatic_GL_DST_COLOR value) (set! GL10.jcell_GL_DST_COLOR value))
+
+(define GL10.jcell_GL_EMISSION 'jnone)
+(define (GL10.jstatic_GL_EMISSION)
+  (when (eq? GL10.jcell_GL_EMISSION 'jnone) (set! GL10.jcell_GL_EMISSION 5632))
+  GL10.jcell_GL_EMISSION)
+(define (GL10.jsetstatic_GL_EMISSION value) (set! GL10.jcell_GL_EMISSION value))
+
+(define GL10.jcell_GL_EQUAL 'jnone)
+(define (GL10.jstatic_GL_EQUAL)
+  (when (eq? GL10.jcell_GL_EQUAL 'jnone) (set! GL10.jcell_GL_EQUAL 514))
+  GL10.jcell_GL_EQUAL)
+(define (GL10.jsetstatic_GL_EQUAL value) (set! GL10.jcell_GL_EQUAL value))
+
+(define GL10.jcell_GL_EQUIV 'jnone)
+(define (GL10.jstatic_GL_EQUIV)
+  (when (eq? GL10.jcell_GL_EQUIV 'jnone) (set! GL10.jcell_GL_EQUIV 5385))
+  GL10.jcell_GL_EQUIV)
+(define (GL10.jsetstatic_GL_EQUIV value) (set! GL10.jcell_GL_EQUIV value))
+
+(define GL10.jcell_GL_EXP 'jnone)
+(define (GL10.jstatic_GL_EXP)
+  (when (eq? GL10.jcell_GL_EXP 'jnone) (set! GL10.jcell_GL_EXP 2048))
+  GL10.jcell_GL_EXP)
+(define (GL10.jsetstatic_GL_EXP value) (set! GL10.jcell_GL_EXP value))
+
+(define GL10.jcell_GL_EXP2 'jnone)
+(define (GL10.jstatic_GL_EXP2)
+  (when (eq? GL10.jcell_GL_EXP2 'jnone) (set! GL10.jcell_GL_EXP2 2049))
+  GL10.jcell_GL_EXP2)
+(define (GL10.jsetstatic_GL_EXP2 value) (set! GL10.jcell_GL_EXP2 value))
+
+(define GL10.jcell_GL_EXTENSIONS 'jnone)
+(define (GL10.jstatic_GL_EXTENSIONS)
+  (when (eq? GL10.jcell_GL_EXTENSIONS 'jnone) (set! GL10.jcell_GL_EXTENSIONS 7939))
+  GL10.jcell_GL_EXTENSIONS)
+(define (GL10.jsetstatic_GL_EXTENSIONS value) (set! GL10.jcell_GL_EXTENSIONS value))
+
+(define GL10.jcell_GL_FALSE 'jnone)
+(define (GL10.jstatic_GL_FALSE)
+  (when (eq? GL10.jcell_GL_FALSE 'jnone) (set! GL10.jcell_GL_FALSE 0))
+  GL10.jcell_GL_FALSE)
+(define (GL10.jsetstatic_GL_FALSE value) (set! GL10.jcell_GL_FALSE value))
+
+(define GL10.jcell_GL_FASTEST 'jnone)
+(define (GL10.jstatic_GL_FASTEST)
+  (when (eq? GL10.jcell_GL_FASTEST 'jnone) (set! GL10.jcell_GL_FASTEST 4353))
+  GL10.jcell_GL_FASTEST)
+(define (GL10.jsetstatic_GL_FASTEST value) (set! GL10.jcell_GL_FASTEST value))
+
+(define GL10.jcell_GL_FIXED 'jnone)
+(define (GL10.jstatic_GL_FIXED)
+  (when (eq? GL10.jcell_GL_FIXED 'jnone) (set! GL10.jcell_GL_FIXED 5132))
+  GL10.jcell_GL_FIXED)
+(define (GL10.jsetstatic_GL_FIXED value) (set! GL10.jcell_GL_FIXED value))
+
+(define GL10.jcell_GL_FLAT 'jnone)
+(define (GL10.jstatic_GL_FLAT)
+  (when (eq? GL10.jcell_GL_FLAT 'jnone) (set! GL10.jcell_GL_FLAT 7424))
+  GL10.jcell_GL_FLAT)
+(define (GL10.jsetstatic_GL_FLAT value) (set! GL10.jcell_GL_FLAT value))
+
+(define GL10.jcell_GL_FLOAT 'jnone)
+(define (GL10.jstatic_GL_FLOAT)
+  (when (eq? GL10.jcell_GL_FLOAT 'jnone) (set! GL10.jcell_GL_FLOAT 5126))
+  GL10.jcell_GL_FLOAT)
+(define (GL10.jsetstatic_GL_FLOAT value) (set! GL10.jcell_GL_FLOAT value))
+
+(define GL10.jcell_GL_FOG 'jnone)
+(define (GL10.jstatic_GL_FOG)
+  (when (eq? GL10.jcell_GL_FOG 'jnone) (set! GL10.jcell_GL_FOG 2912))
+  GL10.jcell_GL_FOG)
+(define (GL10.jsetstatic_GL_FOG value) (set! GL10.jcell_GL_FOG value))
+
+(define GL10.jcell_GL_FOG_COLOR 'jnone)
+(define (GL10.jstatic_GL_FOG_COLOR)
+  (when (eq? GL10.jcell_GL_FOG_COLOR 'jnone) (set! GL10.jcell_GL_FOG_COLOR 2918))
+  GL10.jcell_GL_FOG_COLOR)
+(define (GL10.jsetstatic_GL_FOG_COLOR value) (set! GL10.jcell_GL_FOG_COLOR value))
+
+(define GL10.jcell_GL_FOG_DENSITY 'jnone)
+(define (GL10.jstatic_GL_FOG_DENSITY)
+  (when (eq? GL10.jcell_GL_FOG_DENSITY 'jnone) (set! GL10.jcell_GL_FOG_DENSITY 2914))
+  GL10.jcell_GL_FOG_DENSITY)
+(define (GL10.jsetstatic_GL_FOG_DENSITY value) (set! GL10.jcell_GL_FOG_DENSITY value))
+
+(define GL10.jcell_GL_FOG_END 'jnone)
+(define (GL10.jstatic_GL_FOG_END)
+  (when (eq? GL10.jcell_GL_FOG_END 'jnone) (set! GL10.jcell_GL_FOG_END 2916))
+  GL10.jcell_GL_FOG_END)
+(define (GL10.jsetstatic_GL_FOG_END value) (set! GL10.jcell_GL_FOG_END value))
+
+(define GL10.jcell_GL_FOG_HINT 'jnone)
+(define (GL10.jstatic_GL_FOG_HINT)
+  (when (eq? GL10.jcell_GL_FOG_HINT 'jnone) (set! GL10.jcell_GL_FOG_HINT 3156))
+  GL10.jcell_GL_FOG_HINT)
+(define (GL10.jsetstatic_GL_FOG_HINT value) (set! GL10.jcell_GL_FOG_HINT value))
+
+(define GL10.jcell_GL_FOG_MODE 'jnone)
+(define (GL10.jstatic_GL_FOG_MODE)
+  (when (eq? GL10.jcell_GL_FOG_MODE 'jnone) (set! GL10.jcell_GL_FOG_MODE 2917))
+  GL10.jcell_GL_FOG_MODE)
+(define (GL10.jsetstatic_GL_FOG_MODE value) (set! GL10.jcell_GL_FOG_MODE value))
+
+(define GL10.jcell_GL_FOG_START 'jnone)
+(define (GL10.jstatic_GL_FOG_START)
+  (when (eq? GL10.jcell_GL_FOG_START 'jnone) (set! GL10.jcell_GL_FOG_START 2915))
+  GL10.jcell_GL_FOG_START)
+(define (GL10.jsetstatic_GL_FOG_START value) (set! GL10.jcell_GL_FOG_START value))
+
+(define GL10.jcell_GL_FRONT 'jnone)
+(define (GL10.jstatic_GL_FRONT)
+  (when (eq? GL10.jcell_GL_FRONT 'jnone) (set! GL10.jcell_GL_FRONT 1028))
+  GL10.jcell_GL_FRONT)
+(define (GL10.jsetstatic_GL_FRONT value) (set! GL10.jcell_GL_FRONT value))
+
+(define GL10.jcell_GL_FRONT_AND_BACK 'jnone)
+(define (GL10.jstatic_GL_FRONT_AND_BACK)
+  (when (eq? GL10.jcell_GL_FRONT_AND_BACK 'jnone) (set! GL10.jcell_GL_FRONT_AND_BACK 1032))
+  GL10.jcell_GL_FRONT_AND_BACK)
+(define (GL10.jsetstatic_GL_FRONT_AND_BACK value) (set! GL10.jcell_GL_FRONT_AND_BACK value))
+
+(define GL10.jcell_GL_GEQUAL 'jnone)
+(define (GL10.jstatic_GL_GEQUAL)
+  (when (eq? GL10.jcell_GL_GEQUAL 'jnone) (set! GL10.jcell_GL_GEQUAL 518))
+  GL10.jcell_GL_GEQUAL)
+(define (GL10.jsetstatic_GL_GEQUAL value) (set! GL10.jcell_GL_GEQUAL value))
+
+(define GL10.jcell_GL_GREATER 'jnone)
+(define (GL10.jstatic_GL_GREATER)
+  (when (eq? GL10.jcell_GL_GREATER 'jnone) (set! GL10.jcell_GL_GREATER 516))
+  GL10.jcell_GL_GREATER)
+(define (GL10.jsetstatic_GL_GREATER value) (set! GL10.jcell_GL_GREATER value))
+
+(define GL10.jcell_GL_GREEN_BITS 'jnone)
+(define (GL10.jstatic_GL_GREEN_BITS)
+  (when (eq? GL10.jcell_GL_GREEN_BITS 'jnone) (set! GL10.jcell_GL_GREEN_BITS 3411))
+  GL10.jcell_GL_GREEN_BITS)
+(define (GL10.jsetstatic_GL_GREEN_BITS value) (set! GL10.jcell_GL_GREEN_BITS value))
+
+(define GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES 'jnone)
+(define (GL10.jstatic_GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES)
+  (when (eq? GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES 'jnone) (set! GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES 35739))
+  GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES)
+(define (GL10.jsetstatic_GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES value) (set! GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES value))
+
+(define GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_TYPE_OES 'jnone)
+(define (GL10.jstatic_GL_IMPLEMENTATION_COLOR_READ_TYPE_OES)
+  (when (eq? GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_TYPE_OES 'jnone) (set! GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_TYPE_OES 35738))
+  GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_TYPE_OES)
+(define (GL10.jsetstatic_GL_IMPLEMENTATION_COLOR_READ_TYPE_OES value) (set! GL10.jcell_GL_IMPLEMENTATION_COLOR_READ_TYPE_OES value))
+
+(define GL10.jcell_GL_INCR 'jnone)
+(define (GL10.jstatic_GL_INCR)
+  (when (eq? GL10.jcell_GL_INCR 'jnone) (set! GL10.jcell_GL_INCR 7682))
+  GL10.jcell_GL_INCR)
+(define (GL10.jsetstatic_GL_INCR value) (set! GL10.jcell_GL_INCR value))
+
+(define GL10.jcell_GL_INVALID_ENUM 'jnone)
+(define (GL10.jstatic_GL_INVALID_ENUM)
+  (when (eq? GL10.jcell_GL_INVALID_ENUM 'jnone) (set! GL10.jcell_GL_INVALID_ENUM 1280))
+  GL10.jcell_GL_INVALID_ENUM)
+(define (GL10.jsetstatic_GL_INVALID_ENUM value) (set! GL10.jcell_GL_INVALID_ENUM value))
+
+(define GL10.jcell_GL_INVALID_OPERATION 'jnone)
+(define (GL10.jstatic_GL_INVALID_OPERATION)
+  (when (eq? GL10.jcell_GL_INVALID_OPERATION 'jnone) (set! GL10.jcell_GL_INVALID_OPERATION 1282))
+  GL10.jcell_GL_INVALID_OPERATION)
+(define (GL10.jsetstatic_GL_INVALID_OPERATION value) (set! GL10.jcell_GL_INVALID_OPERATION value))
+
+(define GL10.jcell_GL_INVALID_VALUE 'jnone)
+(define (GL10.jstatic_GL_INVALID_VALUE)
+  (when (eq? GL10.jcell_GL_INVALID_VALUE 'jnone) (set! GL10.jcell_GL_INVALID_VALUE 1281))
+  GL10.jcell_GL_INVALID_VALUE)
+(define (GL10.jsetstatic_GL_INVALID_VALUE value) (set! GL10.jcell_GL_INVALID_VALUE value))
+
+(define GL10.jcell_GL_INVERT 'jnone)
+(define (GL10.jstatic_GL_INVERT)
+  (when (eq? GL10.jcell_GL_INVERT 'jnone) (set! GL10.jcell_GL_INVERT 5386))
+  GL10.jcell_GL_INVERT)
+(define (GL10.jsetstatic_GL_INVERT value) (set! GL10.jcell_GL_INVERT value))
+
+(define GL10.jcell_GL_KEEP 'jnone)
+(define (GL10.jstatic_GL_KEEP)
+  (when (eq? GL10.jcell_GL_KEEP 'jnone) (set! GL10.jcell_GL_KEEP 7680))
+  GL10.jcell_GL_KEEP)
+(define (GL10.jsetstatic_GL_KEEP value) (set! GL10.jcell_GL_KEEP value))
+
+(define GL10.jcell_GL_LEQUAL 'jnone)
+(define (GL10.jstatic_GL_LEQUAL)
+  (when (eq? GL10.jcell_GL_LEQUAL 'jnone) (set! GL10.jcell_GL_LEQUAL 515))
+  GL10.jcell_GL_LEQUAL)
+(define (GL10.jsetstatic_GL_LEQUAL value) (set! GL10.jcell_GL_LEQUAL value))
+
+(define GL10.jcell_GL_LESS 'jnone)
+(define (GL10.jstatic_GL_LESS)
+  (when (eq? GL10.jcell_GL_LESS 'jnone) (set! GL10.jcell_GL_LESS 513))
+  GL10.jcell_GL_LESS)
+(define (GL10.jsetstatic_GL_LESS value) (set! GL10.jcell_GL_LESS value))
+
+(define GL10.jcell_GL_LIGHT_MODEL_AMBIENT 'jnone)
+(define (GL10.jstatic_GL_LIGHT_MODEL_AMBIENT)
+  (when (eq? GL10.jcell_GL_LIGHT_MODEL_AMBIENT 'jnone) (set! GL10.jcell_GL_LIGHT_MODEL_AMBIENT 2899))
+  GL10.jcell_GL_LIGHT_MODEL_AMBIENT)
+(define (GL10.jsetstatic_GL_LIGHT_MODEL_AMBIENT value) (set! GL10.jcell_GL_LIGHT_MODEL_AMBIENT value))
+
+(define GL10.jcell_GL_LIGHT_MODEL_TWO_SIDE 'jnone)
+(define (GL10.jstatic_GL_LIGHT_MODEL_TWO_SIDE)
+  (when (eq? GL10.jcell_GL_LIGHT_MODEL_TWO_SIDE 'jnone) (set! GL10.jcell_GL_LIGHT_MODEL_TWO_SIDE 2898))
+  GL10.jcell_GL_LIGHT_MODEL_TWO_SIDE)
+(define (GL10.jsetstatic_GL_LIGHT_MODEL_TWO_SIDE value) (set! GL10.jcell_GL_LIGHT_MODEL_TWO_SIDE value))
+
+(define GL10.jcell_GL_LIGHT0 'jnone)
+(define (GL10.jstatic_GL_LIGHT0)
+  (when (eq? GL10.jcell_GL_LIGHT0 'jnone) (set! GL10.jcell_GL_LIGHT0 16384))
+  GL10.jcell_GL_LIGHT0)
+(define (GL10.jsetstatic_GL_LIGHT0 value) (set! GL10.jcell_GL_LIGHT0 value))
+
+(define GL10.jcell_GL_LIGHT1 'jnone)
+(define (GL10.jstatic_GL_LIGHT1)
+  (when (eq? GL10.jcell_GL_LIGHT1 'jnone) (set! GL10.jcell_GL_LIGHT1 16385))
+  GL10.jcell_GL_LIGHT1)
+(define (GL10.jsetstatic_GL_LIGHT1 value) (set! GL10.jcell_GL_LIGHT1 value))
+
+(define GL10.jcell_GL_LIGHT2 'jnone)
+(define (GL10.jstatic_GL_LIGHT2)
+  (when (eq? GL10.jcell_GL_LIGHT2 'jnone) (set! GL10.jcell_GL_LIGHT2 16386))
+  GL10.jcell_GL_LIGHT2)
+(define (GL10.jsetstatic_GL_LIGHT2 value) (set! GL10.jcell_GL_LIGHT2 value))
+
+(define GL10.jcell_GL_LIGHT3 'jnone)
+(define (GL10.jstatic_GL_LIGHT3)
+  (when (eq? GL10.jcell_GL_LIGHT3 'jnone) (set! GL10.jcell_GL_LIGHT3 16387))
+  GL10.jcell_GL_LIGHT3)
+(define (GL10.jsetstatic_GL_LIGHT3 value) (set! GL10.jcell_GL_LIGHT3 value))
+
+(define GL10.jcell_GL_LIGHT4 'jnone)
+(define (GL10.jstatic_GL_LIGHT4)
+  (when (eq? GL10.jcell_GL_LIGHT4 'jnone) (set! GL10.jcell_GL_LIGHT4 16388))
+  GL10.jcell_GL_LIGHT4)
+(define (GL10.jsetstatic_GL_LIGHT4 value) (set! GL10.jcell_GL_LIGHT4 value))
+
+(define GL10.jcell_GL_LIGHT5 'jnone)
+(define (GL10.jstatic_GL_LIGHT5)
+  (when (eq? GL10.jcell_GL_LIGHT5 'jnone) (set! GL10.jcell_GL_LIGHT5 16389))
+  GL10.jcell_GL_LIGHT5)
+(define (GL10.jsetstatic_GL_LIGHT5 value) (set! GL10.jcell_GL_LIGHT5 value))
+
+(define GL10.jcell_GL_LIGHT6 'jnone)
+(define (GL10.jstatic_GL_LIGHT6)
+  (when (eq? GL10.jcell_GL_LIGHT6 'jnone) (set! GL10.jcell_GL_LIGHT6 16390))
+  GL10.jcell_GL_LIGHT6)
+(define (GL10.jsetstatic_GL_LIGHT6 value) (set! GL10.jcell_GL_LIGHT6 value))
+
+(define GL10.jcell_GL_LIGHT7 'jnone)
+(define (GL10.jstatic_GL_LIGHT7)
+  (when (eq? GL10.jcell_GL_LIGHT7 'jnone) (set! GL10.jcell_GL_LIGHT7 16391))
+  GL10.jcell_GL_LIGHT7)
+(define (GL10.jsetstatic_GL_LIGHT7 value) (set! GL10.jcell_GL_LIGHT7 value))
+
+(define GL10.jcell_GL_LIGHTING 'jnone)
+(define (GL10.jstatic_GL_LIGHTING)
+  (when (eq? GL10.jcell_GL_LIGHTING 'jnone) (set! GL10.jcell_GL_LIGHTING 2896))
+  GL10.jcell_GL_LIGHTING)
+(define (GL10.jsetstatic_GL_LIGHTING value) (set! GL10.jcell_GL_LIGHTING value))
+
+(define GL10.jcell_GL_LINE_LOOP 'jnone)
+(define (GL10.jstatic_GL_LINE_LOOP)
+  (when (eq? GL10.jcell_GL_LINE_LOOP 'jnone) (set! GL10.jcell_GL_LINE_LOOP 2))
+  GL10.jcell_GL_LINE_LOOP)
+(define (GL10.jsetstatic_GL_LINE_LOOP value) (set! GL10.jcell_GL_LINE_LOOP value))
+
+(define GL10.jcell_GL_LINE_SMOOTH 'jnone)
+(define (GL10.jstatic_GL_LINE_SMOOTH)
+  (when (eq? GL10.jcell_GL_LINE_SMOOTH 'jnone) (set! GL10.jcell_GL_LINE_SMOOTH 2848))
+  GL10.jcell_GL_LINE_SMOOTH)
+(define (GL10.jsetstatic_GL_LINE_SMOOTH value) (set! GL10.jcell_GL_LINE_SMOOTH value))
+
+(define GL10.jcell_GL_LINE_SMOOTH_HINT 'jnone)
+(define (GL10.jstatic_GL_LINE_SMOOTH_HINT)
+  (when (eq? GL10.jcell_GL_LINE_SMOOTH_HINT 'jnone) (set! GL10.jcell_GL_LINE_SMOOTH_HINT 3154))
+  GL10.jcell_GL_LINE_SMOOTH_HINT)
+(define (GL10.jsetstatic_GL_LINE_SMOOTH_HINT value) (set! GL10.jcell_GL_LINE_SMOOTH_HINT value))
+
+(define GL10.jcell_GL_LINE_STRIP 'jnone)
+(define (GL10.jstatic_GL_LINE_STRIP)
+  (when (eq? GL10.jcell_GL_LINE_STRIP 'jnone) (set! GL10.jcell_GL_LINE_STRIP 3))
+  GL10.jcell_GL_LINE_STRIP)
+(define (GL10.jsetstatic_GL_LINE_STRIP value) (set! GL10.jcell_GL_LINE_STRIP value))
+
+(define GL10.jcell_GL_LINEAR 'jnone)
+(define (GL10.jstatic_GL_LINEAR)
+  (when (eq? GL10.jcell_GL_LINEAR 'jnone) (set! GL10.jcell_GL_LINEAR 9729))
+  GL10.jcell_GL_LINEAR)
+(define (GL10.jsetstatic_GL_LINEAR value) (set! GL10.jcell_GL_LINEAR value))
+
+(define GL10.jcell_GL_LINEAR_ATTENUATION 'jnone)
+(define (GL10.jstatic_GL_LINEAR_ATTENUATION)
+  (when (eq? GL10.jcell_GL_LINEAR_ATTENUATION 'jnone) (set! GL10.jcell_GL_LINEAR_ATTENUATION 4616))
+  GL10.jcell_GL_LINEAR_ATTENUATION)
+(define (GL10.jsetstatic_GL_LINEAR_ATTENUATION value) (set! GL10.jcell_GL_LINEAR_ATTENUATION value))
+
+(define GL10.jcell_GL_LINEAR_MIPMAP_LINEAR 'jnone)
+(define (GL10.jstatic_GL_LINEAR_MIPMAP_LINEAR)
+  (when (eq? GL10.jcell_GL_LINEAR_MIPMAP_LINEAR 'jnone) (set! GL10.jcell_GL_LINEAR_MIPMAP_LINEAR 9987))
+  GL10.jcell_GL_LINEAR_MIPMAP_LINEAR)
+(define (GL10.jsetstatic_GL_LINEAR_MIPMAP_LINEAR value) (set! GL10.jcell_GL_LINEAR_MIPMAP_LINEAR value))
+
+(define GL10.jcell_GL_LINEAR_MIPMAP_NEAREST 'jnone)
+(define (GL10.jstatic_GL_LINEAR_MIPMAP_NEAREST)
+  (when (eq? GL10.jcell_GL_LINEAR_MIPMAP_NEAREST 'jnone) (set! GL10.jcell_GL_LINEAR_MIPMAP_NEAREST 9985))
+  GL10.jcell_GL_LINEAR_MIPMAP_NEAREST)
+(define (GL10.jsetstatic_GL_LINEAR_MIPMAP_NEAREST value) (set! GL10.jcell_GL_LINEAR_MIPMAP_NEAREST value))
+
+(define GL10.jcell_GL_LINES 'jnone)
+(define (GL10.jstatic_GL_LINES)
+  (when (eq? GL10.jcell_GL_LINES 'jnone) (set! GL10.jcell_GL_LINES 1))
+  GL10.jcell_GL_LINES)
+(define (GL10.jsetstatic_GL_LINES value) (set! GL10.jcell_GL_LINES value))
+
+(define GL10.jcell_GL_LUMINANCE 'jnone)
+(define (GL10.jstatic_GL_LUMINANCE)
+  (when (eq? GL10.jcell_GL_LUMINANCE 'jnone) (set! GL10.jcell_GL_LUMINANCE 6409))
+  GL10.jcell_GL_LUMINANCE)
+(define (GL10.jsetstatic_GL_LUMINANCE value) (set! GL10.jcell_GL_LUMINANCE value))
+
+(define GL10.jcell_GL_LUMINANCE_ALPHA 'jnone)
+(define (GL10.jstatic_GL_LUMINANCE_ALPHA)
+  (when (eq? GL10.jcell_GL_LUMINANCE_ALPHA 'jnone) (set! GL10.jcell_GL_LUMINANCE_ALPHA 6410))
+  GL10.jcell_GL_LUMINANCE_ALPHA)
+(define (GL10.jsetstatic_GL_LUMINANCE_ALPHA value) (set! GL10.jcell_GL_LUMINANCE_ALPHA value))
+
+(define GL10.jcell_GL_MAX_ELEMENTS_INDICES 'jnone)
+(define (GL10.jstatic_GL_MAX_ELEMENTS_INDICES)
+  (when (eq? GL10.jcell_GL_MAX_ELEMENTS_INDICES 'jnone) (set! GL10.jcell_GL_MAX_ELEMENTS_INDICES 33001))
+  GL10.jcell_GL_MAX_ELEMENTS_INDICES)
+(define (GL10.jsetstatic_GL_MAX_ELEMENTS_INDICES value) (set! GL10.jcell_GL_MAX_ELEMENTS_INDICES value))
+
+(define GL10.jcell_GL_MAX_ELEMENTS_VERTICES 'jnone)
+(define (GL10.jstatic_GL_MAX_ELEMENTS_VERTICES)
+  (when (eq? GL10.jcell_GL_MAX_ELEMENTS_VERTICES 'jnone) (set! GL10.jcell_GL_MAX_ELEMENTS_VERTICES 33000))
+  GL10.jcell_GL_MAX_ELEMENTS_VERTICES)
+(define (GL10.jsetstatic_GL_MAX_ELEMENTS_VERTICES value) (set! GL10.jcell_GL_MAX_ELEMENTS_VERTICES value))
+
+(define GL10.jcell_GL_MAX_LIGHTS 'jnone)
+(define (GL10.jstatic_GL_MAX_LIGHTS)
+  (when (eq? GL10.jcell_GL_MAX_LIGHTS 'jnone) (set! GL10.jcell_GL_MAX_LIGHTS 3377))
+  GL10.jcell_GL_MAX_LIGHTS)
+(define (GL10.jsetstatic_GL_MAX_LIGHTS value) (set! GL10.jcell_GL_MAX_LIGHTS value))
+
+(define GL10.jcell_GL_MAX_MODELVIEW_STACK_DEPTH 'jnone)
+(define (GL10.jstatic_GL_MAX_MODELVIEW_STACK_DEPTH)
+  (when (eq? GL10.jcell_GL_MAX_MODELVIEW_STACK_DEPTH 'jnone) (set! GL10.jcell_GL_MAX_MODELVIEW_STACK_DEPTH 3382))
+  GL10.jcell_GL_MAX_MODELVIEW_STACK_DEPTH)
+(define (GL10.jsetstatic_GL_MAX_MODELVIEW_STACK_DEPTH value) (set! GL10.jcell_GL_MAX_MODELVIEW_STACK_DEPTH value))
+
+(define GL10.jcell_GL_MAX_PROJECTION_STACK_DEPTH 'jnone)
+(define (GL10.jstatic_GL_MAX_PROJECTION_STACK_DEPTH)
+  (when (eq? GL10.jcell_GL_MAX_PROJECTION_STACK_DEPTH 'jnone) (set! GL10.jcell_GL_MAX_PROJECTION_STACK_DEPTH 3384))
+  GL10.jcell_GL_MAX_PROJECTION_STACK_DEPTH)
+(define (GL10.jsetstatic_GL_MAX_PROJECTION_STACK_DEPTH value) (set! GL10.jcell_GL_MAX_PROJECTION_STACK_DEPTH value))
+
+(define GL10.jcell_GL_MAX_TEXTURE_SIZE 'jnone)
+(define (GL10.jstatic_GL_MAX_TEXTURE_SIZE)
+  (when (eq? GL10.jcell_GL_MAX_TEXTURE_SIZE 'jnone) (set! GL10.jcell_GL_MAX_TEXTURE_SIZE 3379))
+  GL10.jcell_GL_MAX_TEXTURE_SIZE)
+(define (GL10.jsetstatic_GL_MAX_TEXTURE_SIZE value) (set! GL10.jcell_GL_MAX_TEXTURE_SIZE value))
+
+(define GL10.jcell_GL_MAX_TEXTURE_STACK_DEPTH 'jnone)
+(define (GL10.jstatic_GL_MAX_TEXTURE_STACK_DEPTH)
+  (when (eq? GL10.jcell_GL_MAX_TEXTURE_STACK_DEPTH 'jnone) (set! GL10.jcell_GL_MAX_TEXTURE_STACK_DEPTH 3385))
+  GL10.jcell_GL_MAX_TEXTURE_STACK_DEPTH)
+(define (GL10.jsetstatic_GL_MAX_TEXTURE_STACK_DEPTH value) (set! GL10.jcell_GL_MAX_TEXTURE_STACK_DEPTH value))
+
+(define GL10.jcell_GL_MAX_TEXTURE_UNITS 'jnone)
+(define (GL10.jstatic_GL_MAX_TEXTURE_UNITS)
+  (when (eq? GL10.jcell_GL_MAX_TEXTURE_UNITS 'jnone) (set! GL10.jcell_GL_MAX_TEXTURE_UNITS 34018))
+  GL10.jcell_GL_MAX_TEXTURE_UNITS)
+(define (GL10.jsetstatic_GL_MAX_TEXTURE_UNITS value) (set! GL10.jcell_GL_MAX_TEXTURE_UNITS value))
+
+(define GL10.jcell_GL_MAX_VIEWPORT_DIMS 'jnone)
+(define (GL10.jstatic_GL_MAX_VIEWPORT_DIMS)
+  (when (eq? GL10.jcell_GL_MAX_VIEWPORT_DIMS 'jnone) (set! GL10.jcell_GL_MAX_VIEWPORT_DIMS 3386))
+  GL10.jcell_GL_MAX_VIEWPORT_DIMS)
+(define (GL10.jsetstatic_GL_MAX_VIEWPORT_DIMS value) (set! GL10.jcell_GL_MAX_VIEWPORT_DIMS value))
+
+(define GL10.jcell_GL_MODELVIEW 'jnone)
+(define (GL10.jstatic_GL_MODELVIEW)
+  (when (eq? GL10.jcell_GL_MODELVIEW 'jnone) (set! GL10.jcell_GL_MODELVIEW 5888))
+  GL10.jcell_GL_MODELVIEW)
+(define (GL10.jsetstatic_GL_MODELVIEW value) (set! GL10.jcell_GL_MODELVIEW value))
+
+(define GL10.jcell_GL_MODULATE 'jnone)
+(define (GL10.jstatic_GL_MODULATE)
+  (when (eq? GL10.jcell_GL_MODULATE 'jnone) (set! GL10.jcell_GL_MODULATE 8448))
+  GL10.jcell_GL_MODULATE)
+(define (GL10.jsetstatic_GL_MODULATE value) (set! GL10.jcell_GL_MODULATE value))
+
+(define GL10.jcell_GL_MULTISAMPLE 'jnone)
+(define (GL10.jstatic_GL_MULTISAMPLE)
+  (when (eq? GL10.jcell_GL_MULTISAMPLE 'jnone) (set! GL10.jcell_GL_MULTISAMPLE 32925))
+  GL10.jcell_GL_MULTISAMPLE)
+(define (GL10.jsetstatic_GL_MULTISAMPLE value) (set! GL10.jcell_GL_MULTISAMPLE value))
+
+(define GL10.jcell_GL_NAND 'jnone)
+(define (GL10.jstatic_GL_NAND)
+  (when (eq? GL10.jcell_GL_NAND 'jnone) (set! GL10.jcell_GL_NAND 5390))
+  GL10.jcell_GL_NAND)
+(define (GL10.jsetstatic_GL_NAND value) (set! GL10.jcell_GL_NAND value))
+
+(define GL10.jcell_GL_NEAREST 'jnone)
+(define (GL10.jstatic_GL_NEAREST)
+  (when (eq? GL10.jcell_GL_NEAREST 'jnone) (set! GL10.jcell_GL_NEAREST 9728))
+  GL10.jcell_GL_NEAREST)
+(define (GL10.jsetstatic_GL_NEAREST value) (set! GL10.jcell_GL_NEAREST value))
+
+(define GL10.jcell_GL_NEAREST_MIPMAP_LINEAR 'jnone)
+(define (GL10.jstatic_GL_NEAREST_MIPMAP_LINEAR)
+  (when (eq? GL10.jcell_GL_NEAREST_MIPMAP_LINEAR 'jnone) (set! GL10.jcell_GL_NEAREST_MIPMAP_LINEAR 9986))
+  GL10.jcell_GL_NEAREST_MIPMAP_LINEAR)
+(define (GL10.jsetstatic_GL_NEAREST_MIPMAP_LINEAR value) (set! GL10.jcell_GL_NEAREST_MIPMAP_LINEAR value))
+
+(define GL10.jcell_GL_NEAREST_MIPMAP_NEAREST 'jnone)
+(define (GL10.jstatic_GL_NEAREST_MIPMAP_NEAREST)
+  (when (eq? GL10.jcell_GL_NEAREST_MIPMAP_NEAREST 'jnone) (set! GL10.jcell_GL_NEAREST_MIPMAP_NEAREST 9984))
+  GL10.jcell_GL_NEAREST_MIPMAP_NEAREST)
+(define (GL10.jsetstatic_GL_NEAREST_MIPMAP_NEAREST value) (set! GL10.jcell_GL_NEAREST_MIPMAP_NEAREST value))
+
+(define GL10.jcell_GL_NEVER 'jnone)
+(define (GL10.jstatic_GL_NEVER)
+  (when (eq? GL10.jcell_GL_NEVER 'jnone) (set! GL10.jcell_GL_NEVER 512))
+  GL10.jcell_GL_NEVER)
+(define (GL10.jsetstatic_GL_NEVER value) (set! GL10.jcell_GL_NEVER value))
+
+(define GL10.jcell_GL_NICEST 'jnone)
+(define (GL10.jstatic_GL_NICEST)
+  (when (eq? GL10.jcell_GL_NICEST 'jnone) (set! GL10.jcell_GL_NICEST 4354))
+  GL10.jcell_GL_NICEST)
+(define (GL10.jsetstatic_GL_NICEST value) (set! GL10.jcell_GL_NICEST value))
+
+(define GL10.jcell_GL_NO_ERROR 'jnone)
+(define (GL10.jstatic_GL_NO_ERROR)
+  (when (eq? GL10.jcell_GL_NO_ERROR 'jnone) (set! GL10.jcell_GL_NO_ERROR 0))
+  GL10.jcell_GL_NO_ERROR)
+(define (GL10.jsetstatic_GL_NO_ERROR value) (set! GL10.jcell_GL_NO_ERROR value))
+
+(define GL10.jcell_GL_NOOP 'jnone)
+(define (GL10.jstatic_GL_NOOP)
+  (when (eq? GL10.jcell_GL_NOOP 'jnone) (set! GL10.jcell_GL_NOOP 5381))
+  GL10.jcell_GL_NOOP)
+(define (GL10.jsetstatic_GL_NOOP value) (set! GL10.jcell_GL_NOOP value))
+
+(define GL10.jcell_GL_NOR 'jnone)
+(define (GL10.jstatic_GL_NOR)
+  (when (eq? GL10.jcell_GL_NOR 'jnone) (set! GL10.jcell_GL_NOR 5384))
+  GL10.jcell_GL_NOR)
+(define (GL10.jsetstatic_GL_NOR value) (set! GL10.jcell_GL_NOR value))
+
+(define GL10.jcell_GL_NORMAL_ARRAY 'jnone)
+(define (GL10.jstatic_GL_NORMAL_ARRAY)
+  (when (eq? GL10.jcell_GL_NORMAL_ARRAY 'jnone) (set! GL10.jcell_GL_NORMAL_ARRAY 32885))
+  GL10.jcell_GL_NORMAL_ARRAY)
+(define (GL10.jsetstatic_GL_NORMAL_ARRAY value) (set! GL10.jcell_GL_NORMAL_ARRAY value))
+
+(define GL10.jcell_GL_NORMALIZE 'jnone)
+(define (GL10.jstatic_GL_NORMALIZE)
+  (when (eq? GL10.jcell_GL_NORMALIZE 'jnone) (set! GL10.jcell_GL_NORMALIZE 2977))
+  GL10.jcell_GL_NORMALIZE)
+(define (GL10.jsetstatic_GL_NORMALIZE value) (set! GL10.jcell_GL_NORMALIZE value))
+
+(define GL10.jcell_GL_NOTEQUAL 'jnone)
+(define (GL10.jstatic_GL_NOTEQUAL)
+  (when (eq? GL10.jcell_GL_NOTEQUAL 'jnone) (set! GL10.jcell_GL_NOTEQUAL 517))
+  GL10.jcell_GL_NOTEQUAL)
+(define (GL10.jsetstatic_GL_NOTEQUAL value) (set! GL10.jcell_GL_NOTEQUAL value))
+
+(define GL10.jcell_GL_NUM_COMPRESSED_TEXTURE_FORMATS 'jnone)
+(define (GL10.jstatic_GL_NUM_COMPRESSED_TEXTURE_FORMATS)
+  (when (eq? GL10.jcell_GL_NUM_COMPRESSED_TEXTURE_FORMATS 'jnone) (set! GL10.jcell_GL_NUM_COMPRESSED_TEXTURE_FORMATS 34466))
+  GL10.jcell_GL_NUM_COMPRESSED_TEXTURE_FORMATS)
+(define (GL10.jsetstatic_GL_NUM_COMPRESSED_TEXTURE_FORMATS value) (set! GL10.jcell_GL_NUM_COMPRESSED_TEXTURE_FORMATS value))
+
+(define GL10.jcell_GL_ONE 'jnone)
+(define (GL10.jstatic_GL_ONE)
+  (when (eq? GL10.jcell_GL_ONE 'jnone) (set! GL10.jcell_GL_ONE 1))
+  GL10.jcell_GL_ONE)
+(define (GL10.jsetstatic_GL_ONE value) (set! GL10.jcell_GL_ONE value))
+
+(define GL10.jcell_GL_ONE_MINUS_DST_ALPHA 'jnone)
+(define (GL10.jstatic_GL_ONE_MINUS_DST_ALPHA)
+  (when (eq? GL10.jcell_GL_ONE_MINUS_DST_ALPHA 'jnone) (set! GL10.jcell_GL_ONE_MINUS_DST_ALPHA 773))
+  GL10.jcell_GL_ONE_MINUS_DST_ALPHA)
+(define (GL10.jsetstatic_GL_ONE_MINUS_DST_ALPHA value) (set! GL10.jcell_GL_ONE_MINUS_DST_ALPHA value))
+
+(define GL10.jcell_GL_ONE_MINUS_DST_COLOR 'jnone)
+(define (GL10.jstatic_GL_ONE_MINUS_DST_COLOR)
+  (when (eq? GL10.jcell_GL_ONE_MINUS_DST_COLOR 'jnone) (set! GL10.jcell_GL_ONE_MINUS_DST_COLOR 775))
+  GL10.jcell_GL_ONE_MINUS_DST_COLOR)
+(define (GL10.jsetstatic_GL_ONE_MINUS_DST_COLOR value) (set! GL10.jcell_GL_ONE_MINUS_DST_COLOR value))
+
+(define GL10.jcell_GL_ONE_MINUS_SRC_ALPHA 'jnone)
+(define (GL10.jstatic_GL_ONE_MINUS_SRC_ALPHA)
+  (when (eq? GL10.jcell_GL_ONE_MINUS_SRC_ALPHA 'jnone) (set! GL10.jcell_GL_ONE_MINUS_SRC_ALPHA 771))
+  GL10.jcell_GL_ONE_MINUS_SRC_ALPHA)
+(define (GL10.jsetstatic_GL_ONE_MINUS_SRC_ALPHA value) (set! GL10.jcell_GL_ONE_MINUS_SRC_ALPHA value))
+
+(define GL10.jcell_GL_ONE_MINUS_SRC_COLOR 'jnone)
+(define (GL10.jstatic_GL_ONE_MINUS_SRC_COLOR)
+  (when (eq? GL10.jcell_GL_ONE_MINUS_SRC_COLOR 'jnone) (set! GL10.jcell_GL_ONE_MINUS_SRC_COLOR 769))
+  GL10.jcell_GL_ONE_MINUS_SRC_COLOR)
+(define (GL10.jsetstatic_GL_ONE_MINUS_SRC_COLOR value) (set! GL10.jcell_GL_ONE_MINUS_SRC_COLOR value))
+
+(define GL10.jcell_GL_OR 'jnone)
+(define (GL10.jstatic_GL_OR)
+  (when (eq? GL10.jcell_GL_OR 'jnone) (set! GL10.jcell_GL_OR 5383))
+  GL10.jcell_GL_OR)
+(define (GL10.jsetstatic_GL_OR value) (set! GL10.jcell_GL_OR value))
+
+(define GL10.jcell_GL_OR_INVERTED 'jnone)
+(define (GL10.jstatic_GL_OR_INVERTED)
+  (when (eq? GL10.jcell_GL_OR_INVERTED 'jnone) (set! GL10.jcell_GL_OR_INVERTED 5389))
+  GL10.jcell_GL_OR_INVERTED)
+(define (GL10.jsetstatic_GL_OR_INVERTED value) (set! GL10.jcell_GL_OR_INVERTED value))
+
+(define GL10.jcell_GL_OR_REVERSE 'jnone)
+(define (GL10.jstatic_GL_OR_REVERSE)
+  (when (eq? GL10.jcell_GL_OR_REVERSE 'jnone) (set! GL10.jcell_GL_OR_REVERSE 5387))
+  GL10.jcell_GL_OR_REVERSE)
+(define (GL10.jsetstatic_GL_OR_REVERSE value) (set! GL10.jcell_GL_OR_REVERSE value))
+
+(define GL10.jcell_GL_OUT_OF_MEMORY 'jnone)
+(define (GL10.jstatic_GL_OUT_OF_MEMORY)
+  (when (eq? GL10.jcell_GL_OUT_OF_MEMORY 'jnone) (set! GL10.jcell_GL_OUT_OF_MEMORY 1285))
+  GL10.jcell_GL_OUT_OF_MEMORY)
+(define (GL10.jsetstatic_GL_OUT_OF_MEMORY value) (set! GL10.jcell_GL_OUT_OF_MEMORY value))
+
+(define GL10.jcell_GL_PACK_ALIGNMENT 'jnone)
+(define (GL10.jstatic_GL_PACK_ALIGNMENT)
+  (when (eq? GL10.jcell_GL_PACK_ALIGNMENT 'jnone) (set! GL10.jcell_GL_PACK_ALIGNMENT 3333))
+  GL10.jcell_GL_PACK_ALIGNMENT)
+(define (GL10.jsetstatic_GL_PACK_ALIGNMENT value) (set! GL10.jcell_GL_PACK_ALIGNMENT value))
+
+(define GL10.jcell_GL_PALETTE4_R5_G6_B5_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE4_R5_G6_B5_OES)
+  (when (eq? GL10.jcell_GL_PALETTE4_R5_G6_B5_OES 'jnone) (set! GL10.jcell_GL_PALETTE4_R5_G6_B5_OES 35730))
+  GL10.jcell_GL_PALETTE4_R5_G6_B5_OES)
+(define (GL10.jsetstatic_GL_PALETTE4_R5_G6_B5_OES value) (set! GL10.jcell_GL_PALETTE4_R5_G6_B5_OES value))
+
+(define GL10.jcell_GL_PALETTE4_RGB5_A1_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE4_RGB5_A1_OES)
+  (when (eq? GL10.jcell_GL_PALETTE4_RGB5_A1_OES 'jnone) (set! GL10.jcell_GL_PALETTE4_RGB5_A1_OES 35732))
+  GL10.jcell_GL_PALETTE4_RGB5_A1_OES)
+(define (GL10.jsetstatic_GL_PALETTE4_RGB5_A1_OES value) (set! GL10.jcell_GL_PALETTE4_RGB5_A1_OES value))
+
+(define GL10.jcell_GL_PALETTE4_RGB8_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE4_RGB8_OES)
+  (when (eq? GL10.jcell_GL_PALETTE4_RGB8_OES 'jnone) (set! GL10.jcell_GL_PALETTE4_RGB8_OES 35728))
+  GL10.jcell_GL_PALETTE4_RGB8_OES)
+(define (GL10.jsetstatic_GL_PALETTE4_RGB8_OES value) (set! GL10.jcell_GL_PALETTE4_RGB8_OES value))
+
+(define GL10.jcell_GL_PALETTE4_RGBA4_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE4_RGBA4_OES)
+  (when (eq? GL10.jcell_GL_PALETTE4_RGBA4_OES 'jnone) (set! GL10.jcell_GL_PALETTE4_RGBA4_OES 35731))
+  GL10.jcell_GL_PALETTE4_RGBA4_OES)
+(define (GL10.jsetstatic_GL_PALETTE4_RGBA4_OES value) (set! GL10.jcell_GL_PALETTE4_RGBA4_OES value))
+
+(define GL10.jcell_GL_PALETTE4_RGBA8_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE4_RGBA8_OES)
+  (when (eq? GL10.jcell_GL_PALETTE4_RGBA8_OES 'jnone) (set! GL10.jcell_GL_PALETTE4_RGBA8_OES 35729))
+  GL10.jcell_GL_PALETTE4_RGBA8_OES)
+(define (GL10.jsetstatic_GL_PALETTE4_RGBA8_OES value) (set! GL10.jcell_GL_PALETTE4_RGBA8_OES value))
+
+(define GL10.jcell_GL_PALETTE8_R5_G6_B5_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE8_R5_G6_B5_OES)
+  (when (eq? GL10.jcell_GL_PALETTE8_R5_G6_B5_OES 'jnone) (set! GL10.jcell_GL_PALETTE8_R5_G6_B5_OES 35735))
+  GL10.jcell_GL_PALETTE8_R5_G6_B5_OES)
+(define (GL10.jsetstatic_GL_PALETTE8_R5_G6_B5_OES value) (set! GL10.jcell_GL_PALETTE8_R5_G6_B5_OES value))
+
+(define GL10.jcell_GL_PALETTE8_RGB5_A1_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE8_RGB5_A1_OES)
+  (when (eq? GL10.jcell_GL_PALETTE8_RGB5_A1_OES 'jnone) (set! GL10.jcell_GL_PALETTE8_RGB5_A1_OES 35737))
+  GL10.jcell_GL_PALETTE8_RGB5_A1_OES)
+(define (GL10.jsetstatic_GL_PALETTE8_RGB5_A1_OES value) (set! GL10.jcell_GL_PALETTE8_RGB5_A1_OES value))
+
+(define GL10.jcell_GL_PALETTE8_RGB8_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE8_RGB8_OES)
+  (when (eq? GL10.jcell_GL_PALETTE8_RGB8_OES 'jnone) (set! GL10.jcell_GL_PALETTE8_RGB8_OES 35733))
+  GL10.jcell_GL_PALETTE8_RGB8_OES)
+(define (GL10.jsetstatic_GL_PALETTE8_RGB8_OES value) (set! GL10.jcell_GL_PALETTE8_RGB8_OES value))
+
+(define GL10.jcell_GL_PALETTE8_RGBA4_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE8_RGBA4_OES)
+  (when (eq? GL10.jcell_GL_PALETTE8_RGBA4_OES 'jnone) (set! GL10.jcell_GL_PALETTE8_RGBA4_OES 35736))
+  GL10.jcell_GL_PALETTE8_RGBA4_OES)
+(define (GL10.jsetstatic_GL_PALETTE8_RGBA4_OES value) (set! GL10.jcell_GL_PALETTE8_RGBA4_OES value))
+
+(define GL10.jcell_GL_PALETTE8_RGBA8_OES 'jnone)
+(define (GL10.jstatic_GL_PALETTE8_RGBA8_OES)
+  (when (eq? GL10.jcell_GL_PALETTE8_RGBA8_OES 'jnone) (set! GL10.jcell_GL_PALETTE8_RGBA8_OES 35734))
+  GL10.jcell_GL_PALETTE8_RGBA8_OES)
+(define (GL10.jsetstatic_GL_PALETTE8_RGBA8_OES value) (set! GL10.jcell_GL_PALETTE8_RGBA8_OES value))
+
+(define GL10.jcell_GL_PERSPECTIVE_CORRECTION_HINT 'jnone)
+(define (GL10.jstatic_GL_PERSPECTIVE_CORRECTION_HINT)
+  (when (eq? GL10.jcell_GL_PERSPECTIVE_CORRECTION_HINT 'jnone) (set! GL10.jcell_GL_PERSPECTIVE_CORRECTION_HINT 3152))
+  GL10.jcell_GL_PERSPECTIVE_CORRECTION_HINT)
+(define (GL10.jsetstatic_GL_PERSPECTIVE_CORRECTION_HINT value) (set! GL10.jcell_GL_PERSPECTIVE_CORRECTION_HINT value))
+
+(define GL10.jcell_GL_POINT_SMOOTH 'jnone)
+(define (GL10.jstatic_GL_POINT_SMOOTH)
+  (when (eq? GL10.jcell_GL_POINT_SMOOTH 'jnone) (set! GL10.jcell_GL_POINT_SMOOTH 2832))
+  GL10.jcell_GL_POINT_SMOOTH)
+(define (GL10.jsetstatic_GL_POINT_SMOOTH value) (set! GL10.jcell_GL_POINT_SMOOTH value))
+
+(define GL10.jcell_GL_POINT_SMOOTH_HINT 'jnone)
+(define (GL10.jstatic_GL_POINT_SMOOTH_HINT)
+  (when (eq? GL10.jcell_GL_POINT_SMOOTH_HINT 'jnone) (set! GL10.jcell_GL_POINT_SMOOTH_HINT 3153))
+  GL10.jcell_GL_POINT_SMOOTH_HINT)
+(define (GL10.jsetstatic_GL_POINT_SMOOTH_HINT value) (set! GL10.jcell_GL_POINT_SMOOTH_HINT value))
+
+(define GL10.jcell_GL_POINTS 'jnone)
+(define (GL10.jstatic_GL_POINTS)
+  (when (eq? GL10.jcell_GL_POINTS 'jnone) (set! GL10.jcell_GL_POINTS 0))
+  GL10.jcell_GL_POINTS)
+(define (GL10.jsetstatic_GL_POINTS value) (set! GL10.jcell_GL_POINTS value))
+
+(define GL10.jcell_GL_POINT_FADE_THRESHOLD_SIZE 'jnone)
+(define (GL10.jstatic_GL_POINT_FADE_THRESHOLD_SIZE)
+  (when (eq? GL10.jcell_GL_POINT_FADE_THRESHOLD_SIZE 'jnone) (set! GL10.jcell_GL_POINT_FADE_THRESHOLD_SIZE 33064))
+  GL10.jcell_GL_POINT_FADE_THRESHOLD_SIZE)
+(define (GL10.jsetstatic_GL_POINT_FADE_THRESHOLD_SIZE value) (set! GL10.jcell_GL_POINT_FADE_THRESHOLD_SIZE value))
+
+(define GL10.jcell_GL_POINT_SIZE 'jnone)
+(define (GL10.jstatic_GL_POINT_SIZE)
+  (when (eq? GL10.jcell_GL_POINT_SIZE 'jnone) (set! GL10.jcell_GL_POINT_SIZE 2833))
+  GL10.jcell_GL_POINT_SIZE)
+(define (GL10.jsetstatic_GL_POINT_SIZE value) (set! GL10.jcell_GL_POINT_SIZE value))
+
+(define GL10.jcell_GL_POLYGON_OFFSET_FILL 'jnone)
+(define (GL10.jstatic_GL_POLYGON_OFFSET_FILL)
+  (when (eq? GL10.jcell_GL_POLYGON_OFFSET_FILL 'jnone) (set! GL10.jcell_GL_POLYGON_OFFSET_FILL 32823))
+  GL10.jcell_GL_POLYGON_OFFSET_FILL)
+(define (GL10.jsetstatic_GL_POLYGON_OFFSET_FILL value) (set! GL10.jcell_GL_POLYGON_OFFSET_FILL value))
+
+(define GL10.jcell_GL_POLYGON_SMOOTH_HINT 'jnone)
+(define (GL10.jstatic_GL_POLYGON_SMOOTH_HINT)
+  (when (eq? GL10.jcell_GL_POLYGON_SMOOTH_HINT 'jnone) (set! GL10.jcell_GL_POLYGON_SMOOTH_HINT 3155))
+  GL10.jcell_GL_POLYGON_SMOOTH_HINT)
+(define (GL10.jsetstatic_GL_POLYGON_SMOOTH_HINT value) (set! GL10.jcell_GL_POLYGON_SMOOTH_HINT value))
+
+(define GL10.jcell_GL_POSITION 'jnone)
+(define (GL10.jstatic_GL_POSITION)
+  (when (eq? GL10.jcell_GL_POSITION 'jnone) (set! GL10.jcell_GL_POSITION 4611))
+  GL10.jcell_GL_POSITION)
+(define (GL10.jsetstatic_GL_POSITION value) (set! GL10.jcell_GL_POSITION value))
+
+(define GL10.jcell_GL_PROJECTION 'jnone)
+(define (GL10.jstatic_GL_PROJECTION)
+  (when (eq? GL10.jcell_GL_PROJECTION 'jnone) (set! GL10.jcell_GL_PROJECTION 5889))
+  GL10.jcell_GL_PROJECTION)
+(define (GL10.jsetstatic_GL_PROJECTION value) (set! GL10.jcell_GL_PROJECTION value))
+
+(define GL10.jcell_GL_QUADRATIC_ATTENUATION 'jnone)
+(define (GL10.jstatic_GL_QUADRATIC_ATTENUATION)
+  (when (eq? GL10.jcell_GL_QUADRATIC_ATTENUATION 'jnone) (set! GL10.jcell_GL_QUADRATIC_ATTENUATION 4617))
+  GL10.jcell_GL_QUADRATIC_ATTENUATION)
+(define (GL10.jsetstatic_GL_QUADRATIC_ATTENUATION value) (set! GL10.jcell_GL_QUADRATIC_ATTENUATION value))
+
+(define GL10.jcell_GL_RED_BITS 'jnone)
+(define (GL10.jstatic_GL_RED_BITS)
+  (when (eq? GL10.jcell_GL_RED_BITS 'jnone) (set! GL10.jcell_GL_RED_BITS 3410))
+  GL10.jcell_GL_RED_BITS)
+(define (GL10.jsetstatic_GL_RED_BITS value) (set! GL10.jcell_GL_RED_BITS value))
+
+(define GL10.jcell_GL_RENDERER 'jnone)
+(define (GL10.jstatic_GL_RENDERER)
+  (when (eq? GL10.jcell_GL_RENDERER 'jnone) (set! GL10.jcell_GL_RENDERER 7937))
+  GL10.jcell_GL_RENDERER)
+(define (GL10.jsetstatic_GL_RENDERER value) (set! GL10.jcell_GL_RENDERER value))
+
+(define GL10.jcell_GL_REPEAT 'jnone)
+(define (GL10.jstatic_GL_REPEAT)
+  (when (eq? GL10.jcell_GL_REPEAT 'jnone) (set! GL10.jcell_GL_REPEAT 10497))
+  GL10.jcell_GL_REPEAT)
+(define (GL10.jsetstatic_GL_REPEAT value) (set! GL10.jcell_GL_REPEAT value))
+
+(define GL10.jcell_GL_REPLACE 'jnone)
+(define (GL10.jstatic_GL_REPLACE)
+  (when (eq? GL10.jcell_GL_REPLACE 'jnone) (set! GL10.jcell_GL_REPLACE 7681))
+  GL10.jcell_GL_REPLACE)
+(define (GL10.jsetstatic_GL_REPLACE value) (set! GL10.jcell_GL_REPLACE value))
+
+(define GL10.jcell_GL_RESCALE_NORMAL 'jnone)
+(define (GL10.jstatic_GL_RESCALE_NORMAL)
+  (when (eq? GL10.jcell_GL_RESCALE_NORMAL 'jnone) (set! GL10.jcell_GL_RESCALE_NORMAL 32826))
+  GL10.jcell_GL_RESCALE_NORMAL)
+(define (GL10.jsetstatic_GL_RESCALE_NORMAL value) (set! GL10.jcell_GL_RESCALE_NORMAL value))
+
+(define GL10.jcell_GL_RGB 'jnone)
+(define (GL10.jstatic_GL_RGB)
+  (when (eq? GL10.jcell_GL_RGB 'jnone) (set! GL10.jcell_GL_RGB 6407))
+  GL10.jcell_GL_RGB)
+(define (GL10.jsetstatic_GL_RGB value) (set! GL10.jcell_GL_RGB value))
+
+(define GL10.jcell_GL_RGBA 'jnone)
+(define (GL10.jstatic_GL_RGBA)
+  (when (eq? GL10.jcell_GL_RGBA 'jnone) (set! GL10.jcell_GL_RGBA 6408))
+  GL10.jcell_GL_RGBA)
+(define (GL10.jsetstatic_GL_RGBA value) (set! GL10.jcell_GL_RGBA value))
+
+(define GL10.jcell_GL_SAMPLE_ALPHA_TO_COVERAGE 'jnone)
+(define (GL10.jstatic_GL_SAMPLE_ALPHA_TO_COVERAGE)
+  (when (eq? GL10.jcell_GL_SAMPLE_ALPHA_TO_COVERAGE 'jnone) (set! GL10.jcell_GL_SAMPLE_ALPHA_TO_COVERAGE 32926))
+  GL10.jcell_GL_SAMPLE_ALPHA_TO_COVERAGE)
+(define (GL10.jsetstatic_GL_SAMPLE_ALPHA_TO_COVERAGE value) (set! GL10.jcell_GL_SAMPLE_ALPHA_TO_COVERAGE value))
+
+(define GL10.jcell_GL_SAMPLE_ALPHA_TO_ONE 'jnone)
+(define (GL10.jstatic_GL_SAMPLE_ALPHA_TO_ONE)
+  (when (eq? GL10.jcell_GL_SAMPLE_ALPHA_TO_ONE 'jnone) (set! GL10.jcell_GL_SAMPLE_ALPHA_TO_ONE 32927))
+  GL10.jcell_GL_SAMPLE_ALPHA_TO_ONE)
+(define (GL10.jsetstatic_GL_SAMPLE_ALPHA_TO_ONE value) (set! GL10.jcell_GL_SAMPLE_ALPHA_TO_ONE value))
+
+(define GL10.jcell_GL_SAMPLE_COVERAGE 'jnone)
+(define (GL10.jstatic_GL_SAMPLE_COVERAGE)
+  (when (eq? GL10.jcell_GL_SAMPLE_COVERAGE 'jnone) (set! GL10.jcell_GL_SAMPLE_COVERAGE 32928))
+  GL10.jcell_GL_SAMPLE_COVERAGE)
+(define (GL10.jsetstatic_GL_SAMPLE_COVERAGE value) (set! GL10.jcell_GL_SAMPLE_COVERAGE value))
+
+(define GL10.jcell_GL_SCISSOR_TEST 'jnone)
+(define (GL10.jstatic_GL_SCISSOR_TEST)
+  (when (eq? GL10.jcell_GL_SCISSOR_TEST 'jnone) (set! GL10.jcell_GL_SCISSOR_TEST 3089))
+  GL10.jcell_GL_SCISSOR_TEST)
+(define (GL10.jsetstatic_GL_SCISSOR_TEST value) (set! GL10.jcell_GL_SCISSOR_TEST value))
+
+(define GL10.jcell_GL_SET 'jnone)
+(define (GL10.jstatic_GL_SET)
+  (when (eq? GL10.jcell_GL_SET 'jnone) (set! GL10.jcell_GL_SET 5391))
+  GL10.jcell_GL_SET)
+(define (GL10.jsetstatic_GL_SET value) (set! GL10.jcell_GL_SET value))
+
+(define GL10.jcell_GL_SHININESS 'jnone)
+(define (GL10.jstatic_GL_SHININESS)
+  (when (eq? GL10.jcell_GL_SHININESS 'jnone) (set! GL10.jcell_GL_SHININESS 5633))
+  GL10.jcell_GL_SHININESS)
+(define (GL10.jsetstatic_GL_SHININESS value) (set! GL10.jcell_GL_SHININESS value))
+
+(define GL10.jcell_GL_SHORT 'jnone)
+(define (GL10.jstatic_GL_SHORT)
+  (when (eq? GL10.jcell_GL_SHORT 'jnone) (set! GL10.jcell_GL_SHORT 5122))
+  GL10.jcell_GL_SHORT)
+(define (GL10.jsetstatic_GL_SHORT value) (set! GL10.jcell_GL_SHORT value))
+
+(define GL10.jcell_GL_SMOOTH 'jnone)
+(define (GL10.jstatic_GL_SMOOTH)
+  (when (eq? GL10.jcell_GL_SMOOTH 'jnone) (set! GL10.jcell_GL_SMOOTH 7425))
+  GL10.jcell_GL_SMOOTH)
+(define (GL10.jsetstatic_GL_SMOOTH value) (set! GL10.jcell_GL_SMOOTH value))
+
+(define GL10.jcell_GL_SMOOTH_LINE_WIDTH_RANGE 'jnone)
+(define (GL10.jstatic_GL_SMOOTH_LINE_WIDTH_RANGE)
+  (when (eq? GL10.jcell_GL_SMOOTH_LINE_WIDTH_RANGE 'jnone) (set! GL10.jcell_GL_SMOOTH_LINE_WIDTH_RANGE 2850))
+  GL10.jcell_GL_SMOOTH_LINE_WIDTH_RANGE)
+(define (GL10.jsetstatic_GL_SMOOTH_LINE_WIDTH_RANGE value) (set! GL10.jcell_GL_SMOOTH_LINE_WIDTH_RANGE value))
+
+(define GL10.jcell_GL_SMOOTH_POINT_SIZE_RANGE 'jnone)
+(define (GL10.jstatic_GL_SMOOTH_POINT_SIZE_RANGE)
+  (when (eq? GL10.jcell_GL_SMOOTH_POINT_SIZE_RANGE 'jnone) (set! GL10.jcell_GL_SMOOTH_POINT_SIZE_RANGE 2834))
+  GL10.jcell_GL_SMOOTH_POINT_SIZE_RANGE)
+(define (GL10.jsetstatic_GL_SMOOTH_POINT_SIZE_RANGE value) (set! GL10.jcell_GL_SMOOTH_POINT_SIZE_RANGE value))
+
+(define GL10.jcell_GL_SPECULAR 'jnone)
+(define (GL10.jstatic_GL_SPECULAR)
+  (when (eq? GL10.jcell_GL_SPECULAR 'jnone) (set! GL10.jcell_GL_SPECULAR 4610))
+  GL10.jcell_GL_SPECULAR)
+(define (GL10.jsetstatic_GL_SPECULAR value) (set! GL10.jcell_GL_SPECULAR value))
+
+(define GL10.jcell_GL_SPOT_CUTOFF 'jnone)
+(define (GL10.jstatic_GL_SPOT_CUTOFF)
+  (when (eq? GL10.jcell_GL_SPOT_CUTOFF 'jnone) (set! GL10.jcell_GL_SPOT_CUTOFF 4614))
+  GL10.jcell_GL_SPOT_CUTOFF)
+(define (GL10.jsetstatic_GL_SPOT_CUTOFF value) (set! GL10.jcell_GL_SPOT_CUTOFF value))
+
+(define GL10.jcell_GL_SPOT_DIRECTION 'jnone)
+(define (GL10.jstatic_GL_SPOT_DIRECTION)
+  (when (eq? GL10.jcell_GL_SPOT_DIRECTION 'jnone) (set! GL10.jcell_GL_SPOT_DIRECTION 4612))
+  GL10.jcell_GL_SPOT_DIRECTION)
+(define (GL10.jsetstatic_GL_SPOT_DIRECTION value) (set! GL10.jcell_GL_SPOT_DIRECTION value))
+
+(define GL10.jcell_GL_SPOT_EXPONENT 'jnone)
+(define (GL10.jstatic_GL_SPOT_EXPONENT)
+  (when (eq? GL10.jcell_GL_SPOT_EXPONENT 'jnone) (set! GL10.jcell_GL_SPOT_EXPONENT 4613))
+  GL10.jcell_GL_SPOT_EXPONENT)
+(define (GL10.jsetstatic_GL_SPOT_EXPONENT value) (set! GL10.jcell_GL_SPOT_EXPONENT value))
+
+(define GL10.jcell_GL_SRC_ALPHA 'jnone)
+(define (GL10.jstatic_GL_SRC_ALPHA)
+  (when (eq? GL10.jcell_GL_SRC_ALPHA 'jnone) (set! GL10.jcell_GL_SRC_ALPHA 770))
+  GL10.jcell_GL_SRC_ALPHA)
+(define (GL10.jsetstatic_GL_SRC_ALPHA value) (set! GL10.jcell_GL_SRC_ALPHA value))
+
+(define GL10.jcell_GL_SRC_ALPHA_SATURATE 'jnone)
+(define (GL10.jstatic_GL_SRC_ALPHA_SATURATE)
+  (when (eq? GL10.jcell_GL_SRC_ALPHA_SATURATE 'jnone) (set! GL10.jcell_GL_SRC_ALPHA_SATURATE 776))
+  GL10.jcell_GL_SRC_ALPHA_SATURATE)
+(define (GL10.jsetstatic_GL_SRC_ALPHA_SATURATE value) (set! GL10.jcell_GL_SRC_ALPHA_SATURATE value))
+
+(define GL10.jcell_GL_SRC_COLOR 'jnone)
+(define (GL10.jstatic_GL_SRC_COLOR)
+  (when (eq? GL10.jcell_GL_SRC_COLOR 'jnone) (set! GL10.jcell_GL_SRC_COLOR 768))
+  GL10.jcell_GL_SRC_COLOR)
+(define (GL10.jsetstatic_GL_SRC_COLOR value) (set! GL10.jcell_GL_SRC_COLOR value))
+
+(define GL10.jcell_GL_STACK_OVERFLOW 'jnone)
+(define (GL10.jstatic_GL_STACK_OVERFLOW)
+  (when (eq? GL10.jcell_GL_STACK_OVERFLOW 'jnone) (set! GL10.jcell_GL_STACK_OVERFLOW 1283))
+  GL10.jcell_GL_STACK_OVERFLOW)
+(define (GL10.jsetstatic_GL_STACK_OVERFLOW value) (set! GL10.jcell_GL_STACK_OVERFLOW value))
+
+(define GL10.jcell_GL_STACK_UNDERFLOW 'jnone)
+(define (GL10.jstatic_GL_STACK_UNDERFLOW)
+  (when (eq? GL10.jcell_GL_STACK_UNDERFLOW 'jnone) (set! GL10.jcell_GL_STACK_UNDERFLOW 1284))
+  GL10.jcell_GL_STACK_UNDERFLOW)
+(define (GL10.jsetstatic_GL_STACK_UNDERFLOW value) (set! GL10.jcell_GL_STACK_UNDERFLOW value))
+
+(define GL10.jcell_GL_STENCIL_BITS 'jnone)
+(define (GL10.jstatic_GL_STENCIL_BITS)
+  (when (eq? GL10.jcell_GL_STENCIL_BITS 'jnone) (set! GL10.jcell_GL_STENCIL_BITS 3415))
+  GL10.jcell_GL_STENCIL_BITS)
+(define (GL10.jsetstatic_GL_STENCIL_BITS value) (set! GL10.jcell_GL_STENCIL_BITS value))
+
+(define GL10.jcell_GL_STENCIL_BUFFER_BIT 'jnone)
+(define (GL10.jstatic_GL_STENCIL_BUFFER_BIT)
+  (when (eq? GL10.jcell_GL_STENCIL_BUFFER_BIT 'jnone) (set! GL10.jcell_GL_STENCIL_BUFFER_BIT 1024))
+  GL10.jcell_GL_STENCIL_BUFFER_BIT)
+(define (GL10.jsetstatic_GL_STENCIL_BUFFER_BIT value) (set! GL10.jcell_GL_STENCIL_BUFFER_BIT value))
+
+(define GL10.jcell_GL_STENCIL_TEST 'jnone)
+(define (GL10.jstatic_GL_STENCIL_TEST)
+  (when (eq? GL10.jcell_GL_STENCIL_TEST 'jnone) (set! GL10.jcell_GL_STENCIL_TEST 2960))
+  GL10.jcell_GL_STENCIL_TEST)
+(define (GL10.jsetstatic_GL_STENCIL_TEST value) (set! GL10.jcell_GL_STENCIL_TEST value))
+
+(define GL10.jcell_GL_SUBPIXEL_BITS 'jnone)
+(define (GL10.jstatic_GL_SUBPIXEL_BITS)
+  (when (eq? GL10.jcell_GL_SUBPIXEL_BITS 'jnone) (set! GL10.jcell_GL_SUBPIXEL_BITS 3408))
+  GL10.jcell_GL_SUBPIXEL_BITS)
+(define (GL10.jsetstatic_GL_SUBPIXEL_BITS value) (set! GL10.jcell_GL_SUBPIXEL_BITS value))
+
+(define GL10.jcell_GL_TEXTURE 'jnone)
+(define (GL10.jstatic_GL_TEXTURE)
+  (when (eq? GL10.jcell_GL_TEXTURE 'jnone) (set! GL10.jcell_GL_TEXTURE 5890))
+  GL10.jcell_GL_TEXTURE)
+(define (GL10.jsetstatic_GL_TEXTURE value) (set! GL10.jcell_GL_TEXTURE value))
+
+(define GL10.jcell_GL_TEXTURE_2D 'jnone)
+(define (GL10.jstatic_GL_TEXTURE_2D)
+  (when (eq? GL10.jcell_GL_TEXTURE_2D 'jnone) (set! GL10.jcell_GL_TEXTURE_2D 3553))
+  GL10.jcell_GL_TEXTURE_2D)
+(define (GL10.jsetstatic_GL_TEXTURE_2D value) (set! GL10.jcell_GL_TEXTURE_2D value))
+
+(define GL10.jcell_GL_TEXTURE_COORD_ARRAY 'jnone)
+(define (GL10.jstatic_GL_TEXTURE_COORD_ARRAY)
+  (when (eq? GL10.jcell_GL_TEXTURE_COORD_ARRAY 'jnone) (set! GL10.jcell_GL_TEXTURE_COORD_ARRAY 32888))
+  GL10.jcell_GL_TEXTURE_COORD_ARRAY)
+(define (GL10.jsetstatic_GL_TEXTURE_COORD_ARRAY value) (set! GL10.jcell_GL_TEXTURE_COORD_ARRAY value))
+
+(define GL10.jcell_GL_TEXTURE_ENV 'jnone)
+(define (GL10.jstatic_GL_TEXTURE_ENV)
+  (when (eq? GL10.jcell_GL_TEXTURE_ENV 'jnone) (set! GL10.jcell_GL_TEXTURE_ENV 8960))
+  GL10.jcell_GL_TEXTURE_ENV)
+(define (GL10.jsetstatic_GL_TEXTURE_ENV value) (set! GL10.jcell_GL_TEXTURE_ENV value))
+
+(define GL10.jcell_GL_TEXTURE_ENV_COLOR 'jnone)
+(define (GL10.jstatic_GL_TEXTURE_ENV_COLOR)
+  (when (eq? GL10.jcell_GL_TEXTURE_ENV_COLOR 'jnone) (set! GL10.jcell_GL_TEXTURE_ENV_COLOR 8705))
+  GL10.jcell_GL_TEXTURE_ENV_COLOR)
+(define (GL10.jsetstatic_GL_TEXTURE_ENV_COLOR value) (set! GL10.jcell_GL_TEXTURE_ENV_COLOR value))
+
+(define GL10.jcell_GL_TEXTURE_ENV_MODE 'jnone)
+(define (GL10.jstatic_GL_TEXTURE_ENV_MODE)
+  (when (eq? GL10.jcell_GL_TEXTURE_ENV_MODE 'jnone) (set! GL10.jcell_GL_TEXTURE_ENV_MODE 8704))
+  GL10.jcell_GL_TEXTURE_ENV_MODE)
+(define (GL10.jsetstatic_GL_TEXTURE_ENV_MODE value) (set! GL10.jcell_GL_TEXTURE_ENV_MODE value))
+
+(define GL10.jcell_GL_TEXTURE_MAG_FILTER 'jnone)
+(define (GL10.jstatic_GL_TEXTURE_MAG_FILTER)
+  (when (eq? GL10.jcell_GL_TEXTURE_MAG_FILTER 'jnone) (set! GL10.jcell_GL_TEXTURE_MAG_FILTER 10240))
+  GL10.jcell_GL_TEXTURE_MAG_FILTER)
+(define (GL10.jsetstatic_GL_TEXTURE_MAG_FILTER value) (set! GL10.jcell_GL_TEXTURE_MAG_FILTER value))
+
+(define GL10.jcell_GL_TEXTURE_MIN_FILTER 'jnone)
+(define (GL10.jstatic_GL_TEXTURE_MIN_FILTER)
+  (when (eq? GL10.jcell_GL_TEXTURE_MIN_FILTER 'jnone) (set! GL10.jcell_GL_TEXTURE_MIN_FILTER 10241))
+  GL10.jcell_GL_TEXTURE_MIN_FILTER)
+(define (GL10.jsetstatic_GL_TEXTURE_MIN_FILTER value) (set! GL10.jcell_GL_TEXTURE_MIN_FILTER value))
+
+(define GL10.jcell_GL_TEXTURE_WRAP_S 'jnone)
+(define (GL10.jstatic_GL_TEXTURE_WRAP_S)
+  (when (eq? GL10.jcell_GL_TEXTURE_WRAP_S 'jnone) (set! GL10.jcell_GL_TEXTURE_WRAP_S 10242))
+  GL10.jcell_GL_TEXTURE_WRAP_S)
+(define (GL10.jsetstatic_GL_TEXTURE_WRAP_S value) (set! GL10.jcell_GL_TEXTURE_WRAP_S value))
+
+(define GL10.jcell_GL_TEXTURE_WRAP_T 'jnone)
+(define (GL10.jstatic_GL_TEXTURE_WRAP_T)
+  (when (eq? GL10.jcell_GL_TEXTURE_WRAP_T 'jnone) (set! GL10.jcell_GL_TEXTURE_WRAP_T 10243))
+  GL10.jcell_GL_TEXTURE_WRAP_T)
+(define (GL10.jsetstatic_GL_TEXTURE_WRAP_T value) (set! GL10.jcell_GL_TEXTURE_WRAP_T value))
+
+(define GL10.jcell_GL_TEXTURE0 'jnone)
+(define (GL10.jstatic_GL_TEXTURE0)
+  (when (eq? GL10.jcell_GL_TEXTURE0 'jnone) (set! GL10.jcell_GL_TEXTURE0 33984))
+  GL10.jcell_GL_TEXTURE0)
+(define (GL10.jsetstatic_GL_TEXTURE0 value) (set! GL10.jcell_GL_TEXTURE0 value))
+
+(define GL10.jcell_GL_TEXTURE1 'jnone)
+(define (GL10.jstatic_GL_TEXTURE1)
+  (when (eq? GL10.jcell_GL_TEXTURE1 'jnone) (set! GL10.jcell_GL_TEXTURE1 33985))
+  GL10.jcell_GL_TEXTURE1)
+(define (GL10.jsetstatic_GL_TEXTURE1 value) (set! GL10.jcell_GL_TEXTURE1 value))
+
+(define GL10.jcell_GL_TEXTURE2 'jnone)
+(define (GL10.jstatic_GL_TEXTURE2)
+  (when (eq? GL10.jcell_GL_TEXTURE2 'jnone) (set! GL10.jcell_GL_TEXTURE2 33986))
+  GL10.jcell_GL_TEXTURE2)
+(define (GL10.jsetstatic_GL_TEXTURE2 value) (set! GL10.jcell_GL_TEXTURE2 value))
+
+(define GL10.jcell_GL_TEXTURE3 'jnone)
+(define (GL10.jstatic_GL_TEXTURE3)
+  (when (eq? GL10.jcell_GL_TEXTURE3 'jnone) (set! GL10.jcell_GL_TEXTURE3 33987))
+  GL10.jcell_GL_TEXTURE3)
+(define (GL10.jsetstatic_GL_TEXTURE3 value) (set! GL10.jcell_GL_TEXTURE3 value))
+
+(define GL10.jcell_GL_TEXTURE4 'jnone)
+(define (GL10.jstatic_GL_TEXTURE4)
+  (when (eq? GL10.jcell_GL_TEXTURE4 'jnone) (set! GL10.jcell_GL_TEXTURE4 33988))
+  GL10.jcell_GL_TEXTURE4)
+(define (GL10.jsetstatic_GL_TEXTURE4 value) (set! GL10.jcell_GL_TEXTURE4 value))
+
+(define GL10.jcell_GL_TEXTURE5 'jnone)
+(define (GL10.jstatic_GL_TEXTURE5)
+  (when (eq? GL10.jcell_GL_TEXTURE5 'jnone) (set! GL10.jcell_GL_TEXTURE5 33989))
+  GL10.jcell_GL_TEXTURE5)
+(define (GL10.jsetstatic_GL_TEXTURE5 value) (set! GL10.jcell_GL_TEXTURE5 value))
+
+(define GL10.jcell_GL_TEXTURE6 'jnone)
+(define (GL10.jstatic_GL_TEXTURE6)
+  (when (eq? GL10.jcell_GL_TEXTURE6 'jnone) (set! GL10.jcell_GL_TEXTURE6 33990))
+  GL10.jcell_GL_TEXTURE6)
+(define (GL10.jsetstatic_GL_TEXTURE6 value) (set! GL10.jcell_GL_TEXTURE6 value))
+
+(define GL10.jcell_GL_TEXTURE7 'jnone)
+(define (GL10.jstatic_GL_TEXTURE7)
+  (when (eq? GL10.jcell_GL_TEXTURE7 'jnone) (set! GL10.jcell_GL_TEXTURE7 33991))
+  GL10.jcell_GL_TEXTURE7)
+(define (GL10.jsetstatic_GL_TEXTURE7 value) (set! GL10.jcell_GL_TEXTURE7 value))
+
+(define GL10.jcell_GL_TEXTURE8 'jnone)
+(define (GL10.jstatic_GL_TEXTURE8)
+  (when (eq? GL10.jcell_GL_TEXTURE8 'jnone) (set! GL10.jcell_GL_TEXTURE8 33992))
+  GL10.jcell_GL_TEXTURE8)
+(define (GL10.jsetstatic_GL_TEXTURE8 value) (set! GL10.jcell_GL_TEXTURE8 value))
+
+(define GL10.jcell_GL_TEXTURE9 'jnone)
+(define (GL10.jstatic_GL_TEXTURE9)
+  (when (eq? GL10.jcell_GL_TEXTURE9 'jnone) (set! GL10.jcell_GL_TEXTURE9 33993))
+  GL10.jcell_GL_TEXTURE9)
+(define (GL10.jsetstatic_GL_TEXTURE9 value) (set! GL10.jcell_GL_TEXTURE9 value))
+
+(define GL10.jcell_GL_TEXTURE10 'jnone)
+(define (GL10.jstatic_GL_TEXTURE10)
+  (when (eq? GL10.jcell_GL_TEXTURE10 'jnone) (set! GL10.jcell_GL_TEXTURE10 33994))
+  GL10.jcell_GL_TEXTURE10)
+(define (GL10.jsetstatic_GL_TEXTURE10 value) (set! GL10.jcell_GL_TEXTURE10 value))
+
+(define GL10.jcell_GL_TEXTURE11 'jnone)
+(define (GL10.jstatic_GL_TEXTURE11)
+  (when (eq? GL10.jcell_GL_TEXTURE11 'jnone) (set! GL10.jcell_GL_TEXTURE11 33995))
+  GL10.jcell_GL_TEXTURE11)
+(define (GL10.jsetstatic_GL_TEXTURE11 value) (set! GL10.jcell_GL_TEXTURE11 value))
+
+(define GL10.jcell_GL_TEXTURE12 'jnone)
+(define (GL10.jstatic_GL_TEXTURE12)
+  (when (eq? GL10.jcell_GL_TEXTURE12 'jnone) (set! GL10.jcell_GL_TEXTURE12 33996))
+  GL10.jcell_GL_TEXTURE12)
+(define (GL10.jsetstatic_GL_TEXTURE12 value) (set! GL10.jcell_GL_TEXTURE12 value))
+
+(define GL10.jcell_GL_TEXTURE13 'jnone)
+(define (GL10.jstatic_GL_TEXTURE13)
+  (when (eq? GL10.jcell_GL_TEXTURE13 'jnone) (set! GL10.jcell_GL_TEXTURE13 33997))
+  GL10.jcell_GL_TEXTURE13)
+(define (GL10.jsetstatic_GL_TEXTURE13 value) (set! GL10.jcell_GL_TEXTURE13 value))
+
+(define GL10.jcell_GL_TEXTURE14 'jnone)
+(define (GL10.jstatic_GL_TEXTURE14)
+  (when (eq? GL10.jcell_GL_TEXTURE14 'jnone) (set! GL10.jcell_GL_TEXTURE14 33998))
+  GL10.jcell_GL_TEXTURE14)
+(define (GL10.jsetstatic_GL_TEXTURE14 value) (set! GL10.jcell_GL_TEXTURE14 value))
+
+(define GL10.jcell_GL_TEXTURE15 'jnone)
+(define (GL10.jstatic_GL_TEXTURE15)
+  (when (eq? GL10.jcell_GL_TEXTURE15 'jnone) (set! GL10.jcell_GL_TEXTURE15 33999))
+  GL10.jcell_GL_TEXTURE15)
+(define (GL10.jsetstatic_GL_TEXTURE15 value) (set! GL10.jcell_GL_TEXTURE15 value))
+
+(define GL10.jcell_GL_TEXTURE16 'jnone)
+(define (GL10.jstatic_GL_TEXTURE16)
+  (when (eq? GL10.jcell_GL_TEXTURE16 'jnone) (set! GL10.jcell_GL_TEXTURE16 34000))
+  GL10.jcell_GL_TEXTURE16)
+(define (GL10.jsetstatic_GL_TEXTURE16 value) (set! GL10.jcell_GL_TEXTURE16 value))
+
+(define GL10.jcell_GL_TEXTURE17 'jnone)
+(define (GL10.jstatic_GL_TEXTURE17)
+  (when (eq? GL10.jcell_GL_TEXTURE17 'jnone) (set! GL10.jcell_GL_TEXTURE17 34001))
+  GL10.jcell_GL_TEXTURE17)
+(define (GL10.jsetstatic_GL_TEXTURE17 value) (set! GL10.jcell_GL_TEXTURE17 value))
+
+(define GL10.jcell_GL_TEXTURE18 'jnone)
+(define (GL10.jstatic_GL_TEXTURE18)
+  (when (eq? GL10.jcell_GL_TEXTURE18 'jnone) (set! GL10.jcell_GL_TEXTURE18 34002))
+  GL10.jcell_GL_TEXTURE18)
+(define (GL10.jsetstatic_GL_TEXTURE18 value) (set! GL10.jcell_GL_TEXTURE18 value))
+
+(define GL10.jcell_GL_TEXTURE19 'jnone)
+(define (GL10.jstatic_GL_TEXTURE19)
+  (when (eq? GL10.jcell_GL_TEXTURE19 'jnone) (set! GL10.jcell_GL_TEXTURE19 34003))
+  GL10.jcell_GL_TEXTURE19)
+(define (GL10.jsetstatic_GL_TEXTURE19 value) (set! GL10.jcell_GL_TEXTURE19 value))
+
+(define GL10.jcell_GL_TEXTURE20 'jnone)
+(define (GL10.jstatic_GL_TEXTURE20)
+  (when (eq? GL10.jcell_GL_TEXTURE20 'jnone) (set! GL10.jcell_GL_TEXTURE20 34004))
+  GL10.jcell_GL_TEXTURE20)
+(define (GL10.jsetstatic_GL_TEXTURE20 value) (set! GL10.jcell_GL_TEXTURE20 value))
+
+(define GL10.jcell_GL_TEXTURE21 'jnone)
+(define (GL10.jstatic_GL_TEXTURE21)
+  (when (eq? GL10.jcell_GL_TEXTURE21 'jnone) (set! GL10.jcell_GL_TEXTURE21 34005))
+  GL10.jcell_GL_TEXTURE21)
+(define (GL10.jsetstatic_GL_TEXTURE21 value) (set! GL10.jcell_GL_TEXTURE21 value))
+
+(define GL10.jcell_GL_TEXTURE22 'jnone)
+(define (GL10.jstatic_GL_TEXTURE22)
+  (when (eq? GL10.jcell_GL_TEXTURE22 'jnone) (set! GL10.jcell_GL_TEXTURE22 34006))
+  GL10.jcell_GL_TEXTURE22)
+(define (GL10.jsetstatic_GL_TEXTURE22 value) (set! GL10.jcell_GL_TEXTURE22 value))
+
+(define GL10.jcell_GL_TEXTURE23 'jnone)
+(define (GL10.jstatic_GL_TEXTURE23)
+  (when (eq? GL10.jcell_GL_TEXTURE23 'jnone) (set! GL10.jcell_GL_TEXTURE23 34007))
+  GL10.jcell_GL_TEXTURE23)
+(define (GL10.jsetstatic_GL_TEXTURE23 value) (set! GL10.jcell_GL_TEXTURE23 value))
+
+(define GL10.jcell_GL_TEXTURE24 'jnone)
+(define (GL10.jstatic_GL_TEXTURE24)
+  (when (eq? GL10.jcell_GL_TEXTURE24 'jnone) (set! GL10.jcell_GL_TEXTURE24 34008))
+  GL10.jcell_GL_TEXTURE24)
+(define (GL10.jsetstatic_GL_TEXTURE24 value) (set! GL10.jcell_GL_TEXTURE24 value))
+
+(define GL10.jcell_GL_TEXTURE25 'jnone)
+(define (GL10.jstatic_GL_TEXTURE25)
+  (when (eq? GL10.jcell_GL_TEXTURE25 'jnone) (set! GL10.jcell_GL_TEXTURE25 34009))
+  GL10.jcell_GL_TEXTURE25)
+(define (GL10.jsetstatic_GL_TEXTURE25 value) (set! GL10.jcell_GL_TEXTURE25 value))
+
+(define GL10.jcell_GL_TEXTURE26 'jnone)
+(define (GL10.jstatic_GL_TEXTURE26)
+  (when (eq? GL10.jcell_GL_TEXTURE26 'jnone) (set! GL10.jcell_GL_TEXTURE26 34010))
+  GL10.jcell_GL_TEXTURE26)
+(define (GL10.jsetstatic_GL_TEXTURE26 value) (set! GL10.jcell_GL_TEXTURE26 value))
+
+(define GL10.jcell_GL_TEXTURE27 'jnone)
+(define (GL10.jstatic_GL_TEXTURE27)
+  (when (eq? GL10.jcell_GL_TEXTURE27 'jnone) (set! GL10.jcell_GL_TEXTURE27 34011))
+  GL10.jcell_GL_TEXTURE27)
+(define (GL10.jsetstatic_GL_TEXTURE27 value) (set! GL10.jcell_GL_TEXTURE27 value))
+
+(define GL10.jcell_GL_TEXTURE28 'jnone)
+(define (GL10.jstatic_GL_TEXTURE28)
+  (when (eq? GL10.jcell_GL_TEXTURE28 'jnone) (set! GL10.jcell_GL_TEXTURE28 34012))
+  GL10.jcell_GL_TEXTURE28)
+(define (GL10.jsetstatic_GL_TEXTURE28 value) (set! GL10.jcell_GL_TEXTURE28 value))
+
+(define GL10.jcell_GL_TEXTURE29 'jnone)
+(define (GL10.jstatic_GL_TEXTURE29)
+  (when (eq? GL10.jcell_GL_TEXTURE29 'jnone) (set! GL10.jcell_GL_TEXTURE29 34013))
+  GL10.jcell_GL_TEXTURE29)
+(define (GL10.jsetstatic_GL_TEXTURE29 value) (set! GL10.jcell_GL_TEXTURE29 value))
+
+(define GL10.jcell_GL_TEXTURE30 'jnone)
+(define (GL10.jstatic_GL_TEXTURE30)
+  (when (eq? GL10.jcell_GL_TEXTURE30 'jnone) (set! GL10.jcell_GL_TEXTURE30 34014))
+  GL10.jcell_GL_TEXTURE30)
+(define (GL10.jsetstatic_GL_TEXTURE30 value) (set! GL10.jcell_GL_TEXTURE30 value))
+
+(define GL10.jcell_GL_TEXTURE31 'jnone)
+(define (GL10.jstatic_GL_TEXTURE31)
+  (when (eq? GL10.jcell_GL_TEXTURE31 'jnone) (set! GL10.jcell_GL_TEXTURE31 34015))
+  GL10.jcell_GL_TEXTURE31)
+(define (GL10.jsetstatic_GL_TEXTURE31 value) (set! GL10.jcell_GL_TEXTURE31 value))
+
+(define GL10.jcell_GL_TRIANGLE_FAN 'jnone)
+(define (GL10.jstatic_GL_TRIANGLE_FAN)
+  (when (eq? GL10.jcell_GL_TRIANGLE_FAN 'jnone) (set! GL10.jcell_GL_TRIANGLE_FAN 6))
+  GL10.jcell_GL_TRIANGLE_FAN)
+(define (GL10.jsetstatic_GL_TRIANGLE_FAN value) (set! GL10.jcell_GL_TRIANGLE_FAN value))
+
+(define GL10.jcell_GL_TRIANGLE_STRIP 'jnone)
+(define (GL10.jstatic_GL_TRIANGLE_STRIP)
+  (when (eq? GL10.jcell_GL_TRIANGLE_STRIP 'jnone) (set! GL10.jcell_GL_TRIANGLE_STRIP 5))
+  GL10.jcell_GL_TRIANGLE_STRIP)
+(define (GL10.jsetstatic_GL_TRIANGLE_STRIP value) (set! GL10.jcell_GL_TRIANGLE_STRIP value))
+
+(define GL10.jcell_GL_TRIANGLES 'jnone)
+(define (GL10.jstatic_GL_TRIANGLES)
+  (when (eq? GL10.jcell_GL_TRIANGLES 'jnone) (set! GL10.jcell_GL_TRIANGLES 4))
+  GL10.jcell_GL_TRIANGLES)
+(define (GL10.jsetstatic_GL_TRIANGLES value) (set! GL10.jcell_GL_TRIANGLES value))
+
+(define GL10.jcell_GL_TRUE 'jnone)
+(define (GL10.jstatic_GL_TRUE)
+  (when (eq? GL10.jcell_GL_TRUE 'jnone) (set! GL10.jcell_GL_TRUE 1))
+  GL10.jcell_GL_TRUE)
+(define (GL10.jsetstatic_GL_TRUE value) (set! GL10.jcell_GL_TRUE value))
+
+(define GL10.jcell_GL_UNPACK_ALIGNMENT 'jnone)
+(define (GL10.jstatic_GL_UNPACK_ALIGNMENT)
+  (when (eq? GL10.jcell_GL_UNPACK_ALIGNMENT 'jnone) (set! GL10.jcell_GL_UNPACK_ALIGNMENT 3317))
+  GL10.jcell_GL_UNPACK_ALIGNMENT)
+(define (GL10.jsetstatic_GL_UNPACK_ALIGNMENT value) (set! GL10.jcell_GL_UNPACK_ALIGNMENT value))
+
+(define GL10.jcell_GL_UNSIGNED_BYTE 'jnone)
+(define (GL10.jstatic_GL_UNSIGNED_BYTE)
+  (when (eq? GL10.jcell_GL_UNSIGNED_BYTE 'jnone) (set! GL10.jcell_GL_UNSIGNED_BYTE 5121))
+  GL10.jcell_GL_UNSIGNED_BYTE)
+(define (GL10.jsetstatic_GL_UNSIGNED_BYTE value) (set! GL10.jcell_GL_UNSIGNED_BYTE value))
+
+(define GL10.jcell_GL_UNSIGNED_SHORT 'jnone)
+(define (GL10.jstatic_GL_UNSIGNED_SHORT)
+  (when (eq? GL10.jcell_GL_UNSIGNED_SHORT 'jnone) (set! GL10.jcell_GL_UNSIGNED_SHORT 5123))
+  GL10.jcell_GL_UNSIGNED_SHORT)
+(define (GL10.jsetstatic_GL_UNSIGNED_SHORT value) (set! GL10.jcell_GL_UNSIGNED_SHORT value))
+
+(define GL10.jcell_GL_UNSIGNED_SHORT_4_4_4_4 'jnone)
+(define (GL10.jstatic_GL_UNSIGNED_SHORT_4_4_4_4)
+  (when (eq? GL10.jcell_GL_UNSIGNED_SHORT_4_4_4_4 'jnone) (set! GL10.jcell_GL_UNSIGNED_SHORT_4_4_4_4 32819))
+  GL10.jcell_GL_UNSIGNED_SHORT_4_4_4_4)
+(define (GL10.jsetstatic_GL_UNSIGNED_SHORT_4_4_4_4 value) (set! GL10.jcell_GL_UNSIGNED_SHORT_4_4_4_4 value))
+
+(define GL10.jcell_GL_UNSIGNED_SHORT_5_5_5_1 'jnone)
+(define (GL10.jstatic_GL_UNSIGNED_SHORT_5_5_5_1)
+  (when (eq? GL10.jcell_GL_UNSIGNED_SHORT_5_5_5_1 'jnone) (set! GL10.jcell_GL_UNSIGNED_SHORT_5_5_5_1 32820))
+  GL10.jcell_GL_UNSIGNED_SHORT_5_5_5_1)
+(define (GL10.jsetstatic_GL_UNSIGNED_SHORT_5_5_5_1 value) (set! GL10.jcell_GL_UNSIGNED_SHORT_5_5_5_1 value))
+
+(define GL10.jcell_GL_UNSIGNED_SHORT_5_6_5 'jnone)
+(define (GL10.jstatic_GL_UNSIGNED_SHORT_5_6_5)
+  (when (eq? GL10.jcell_GL_UNSIGNED_SHORT_5_6_5 'jnone) (set! GL10.jcell_GL_UNSIGNED_SHORT_5_6_5 33635))
+  GL10.jcell_GL_UNSIGNED_SHORT_5_6_5)
+(define (GL10.jsetstatic_GL_UNSIGNED_SHORT_5_6_5 value) (set! GL10.jcell_GL_UNSIGNED_SHORT_5_6_5 value))
+
+(define GL10.jcell_GL_VENDOR 'jnone)
+(define (GL10.jstatic_GL_VENDOR)
+  (when (eq? GL10.jcell_GL_VENDOR 'jnone) (set! GL10.jcell_GL_VENDOR 7936))
+  GL10.jcell_GL_VENDOR)
+(define (GL10.jsetstatic_GL_VENDOR value) (set! GL10.jcell_GL_VENDOR value))
+
+(define GL10.jcell_GL_VERSION 'jnone)
+(define (GL10.jstatic_GL_VERSION)
+  (when (eq? GL10.jcell_GL_VERSION 'jnone) (set! GL10.jcell_GL_VERSION 7938))
+  GL10.jcell_GL_VERSION)
+(define (GL10.jsetstatic_GL_VERSION value) (set! GL10.jcell_GL_VERSION value))
+
+(define GL10.jcell_GL_VERTEX_ARRAY 'jnone)
+(define (GL10.jstatic_GL_VERTEX_ARRAY)
+  (when (eq? GL10.jcell_GL_VERTEX_ARRAY 'jnone) (set! GL10.jcell_GL_VERTEX_ARRAY 32884))
+  GL10.jcell_GL_VERTEX_ARRAY)
+(define (GL10.jsetstatic_GL_VERTEX_ARRAY value) (set! GL10.jcell_GL_VERTEX_ARRAY value))
+
+(define GL10.jcell_GL_XOR 'jnone)
+(define (GL10.jstatic_GL_XOR)
+  (when (eq? GL10.jcell_GL_XOR 'jnone) (set! GL10.jcell_GL_XOR 5382))
+  GL10.jcell_GL_XOR)
+(define (GL10.jsetstatic_GL_XOR value) (set! GL10.jcell_GL_XOR value))
+
+(define GL10.jcell_GL_ZERO 'jnone)
+(define (GL10.jstatic_GL_ZERO)
+  (when (eq? GL10.jcell_GL_ZERO 'jnone) (set! GL10.jcell_GL_ZERO 0))
+  GL10.jcell_GL_ZERO)
+(define (GL10.jsetstatic_GL_ZERO value) (set! GL10.jcell_GL_ZERO value))
+
+(define (GL10.jnew_0)
+  (define this (new GL10% [jclass "GL10"]))
+  this)
 
--- local Buffer = require("java.nio.Buffer")
--- local FloatBuffer = require("java.nio.FloatBuffer")
--- local IntBuffer = require("java.nio.IntBuffer")
-local GL = require("javax.microedition.khronos.opengles.GL")
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local GL10 = {}
-GL10.__index = GL10
-GL10.className = "GL10"
-setmetatable(GL10, {__index = GL})
-
-
-function GL10:glActiveTexture(texture)
-    error("abstract method glActiveTexture")
-end
-
-
-function GL10:glAlphaFunc(func, ref)
-    error("abstract method glAlphaFunc")
-end
-
-
-function GL10:glBindTexture(target, texture)
-    error("abstract method glBindTexture")
-end
-
-
-function GL10:glBlendFunc(sfactor, dfactor)
-    error("abstract method glBlendFunc")
-end
-
-
-function GL10:glClear(mask)
-    error("abstract method glClear")
-end
-
-
-function GL10:glClearColor(red, green, blue, alpha)
-    error("abstract method glClearColor")
-end
-
-
-function GL10:glClearDepthf(depth)
-    error("abstract method glClearDepthf")
-end
-
-
-function GL10:glClearStencil(s)
-    error("abstract method glClearStencil")
-end
-
-
-function GL10:glClientActiveTexture(texture)
-    error("abstract method glClientActiveTexture")
-end
-
-
-function GL10:glColor4f(red, green, blue, alpha)
-    error("abstract method glColor4f")
-end
-
-
-function GL10:glColorMask(red, green, blue, alpha)
-    error("abstract method glColorMask")
-end
-
-
-function GL10:glColorPointer(size, type, stride, pointer)
-    error("abstract method glColorPointer")
-end
-
-
-function GL10:glCompressedTexImage2D(target, level, internalformat, width, height, border, imageSize, data)
-    error("abstract method glCompressedTexImage2D")
-end
-
-
-function GL10:glCompressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, imageSize, data)
-    error("abstract method glCompressedTexSubImage2D")
-end
-
-
-function GL10:glCopyTexImage2D(target, level, internalformat, x, y, width, height, border)
-    error("abstract method glCopyTexImage2D")
-end
-
-
-function GL10:glCopyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height)
-    error("abstract method glCopyTexSubImage2D")
-end
-
-
-function GL10:glCullFace(mode)
-    error("abstract method glCullFace")
-end
-
-
-function GL10:glDeleteTextures(n, textures, offset)
-    error("abstract method glDeleteTextures")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glDeleteTextures(n, textures)
-    error("abstract method glDeleteTextures")
-end
-
-
-function GL10:glDepthFunc(func)
-    error("abstract method glDepthFunc")
-end
-
-
-function GL10:glDepthMask(flag)
-    error("abstract method glDepthMask")
-end
-
-
-function GL10:glDepthRangef(zNear, zFar)
-    error("abstract method glDepthRangef")
-end
-
-
-function GL10:glDisable(cap)
-    error("abstract method glDisable")
-end
-
-
-function GL10:glDisableClientState(array)
-    error("abstract method glDisableClientState")
-end
-
-
-function GL10:glDrawArrays(mode, first, count)
-    error("abstract method glDrawArrays")
-end
-
-
-function GL10:glDrawElements(mode, count, type, indices)
-    error("abstract method glDrawElements")
-end
-
-
-function GL10:glEnable(cap)
-    error("abstract method glEnable")
-end
-
-
-function GL10:glEnableClientState(array)
-    error("abstract method glEnableClientState")
-end
-
-
-function GL10:glFinish()
-    error("abstract method glFinish")
-end
-
-
-function GL10:glFlush()
-    error("abstract method glFlush")
-end
-
-
-function GL10:glFogf(pname, param)
-    error("abstract method glFogf")
-end
-
-
-function GL10:glFogfv(pname, params, offset)
-    error("abstract method glFogfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glFogfv(pname, params)
-    error("abstract method glFogfv")
-end
-
-
-function GL10:glFrontFace(mode)
-    error("abstract method glFrontFace")
-end
-
-
-function GL10:glFrustumf(left, right, bottom, top, zNear, zFar)
-    error("abstract method glFrustumf")
-end
-
-
-function GL10:glGenTextures(n, textures, offset)
-    error("abstract method glGenTextures")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glGenTextures(n, textures)
-    error("abstract method glGenTextures")
-end
-
-
-function GL10:glGetError()
-    error("abstract method glGetError")
-end
-
-
-function GL10:glGetIntegerv(pname, params, offset)
-    error("abstract method glGetIntegerv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glGetIntegerv(pname, params)
-    error("abstract method glGetIntegerv")
-end
-
-
-function GL10:glGetString(name)
-    error("abstract method glGetString")
-end
-
-
-function GL10:glHint(target, mode)
-    error("abstract method glHint")
-end
-
-
-function GL10:glLightModelf(pname, param)
-    error("abstract method glLightModelf")
-end
-
-
-function GL10:glLightModelfv(pname, params, offset)
-    error("abstract method glLightModelfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glLightModelfv(pname, params)
-    error("abstract method glLightModelfv")
-end
-
-
-function GL10:glLightf(light, pname, param)
-    error("abstract method glLightf")
-end
-
-
-function GL10:glLightfv(light, pname, params, offset)
-    error("abstract method glLightfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glLightfv(light, pname, params)
-    error("abstract method glLightfv")
-end
-
-
-function GL10:glLineWidth(width)
-    error("abstract method glLineWidth")
-end
-
-
-function GL10:glLoadIdentity()
-    error("abstract method glLoadIdentity")
-end
-
-
-function GL10:glLoadMatrixf(m, offset)
-    error("abstract method glLoadMatrixf")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glLoadMatrixf(m)
-    error("abstract method glLoadMatrixf")
-end
-
-
-function GL10:glLogicOp(opcode)
-    error("abstract method glLogicOp")
-end
-
-
-function GL10:glMaterialf(face, pname, param)
-    error("abstract method glMaterialf")
-end
-
-
-function GL10:glMaterialfv(face, pname, params, offset)
-    error("abstract method glMaterialfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glMaterialfv(face, pname, params)
-    error("abstract method glMaterialfv")
-end
-
-
-function GL10:glMatrixMode(mode)
-    error("abstract method glMatrixMode")
-end
-
-
-function GL10:glMultMatrixf(m, offset)
-    error("abstract method glMultMatrixf")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glMultMatrixf(m)
-    error("abstract method glMultMatrixf")
-end
-
-
-function GL10:glMultiTexCoord4f(target, s, t, r, q)
-    error("abstract method glMultiTexCoord4f")
-end
-
-
-function GL10:glNormal3f(nx, ny, nz)
-    error("abstract method glNormal3f")
-end
-
-
-function GL10:glNormalPointer(type, stride, pointer)
-    error("abstract method glNormalPointer")
-end
-
-
-function GL10:glOrthof(left, right, bottom, top, zNear, zFar)
-    error("abstract method glOrthof")
-end
-
-
-function GL10:glPixelStorei(pname, param)
-    error("abstract method glPixelStorei")
-end
-
-
-function GL10:glPointSize(size)
-    error("abstract method glPointSize")
-end
-
-
-function GL10:glPolygonOffset(factor, units)
-    error("abstract method glPolygonOffset")
-end
-
-
-function GL10:glPopMatrix()
-    error("abstract method glPopMatrix")
-end
-
-
-function GL10:glPushMatrix()
-    error("abstract method glPushMatrix")
-end
-
-
-function GL10:glReadPixels(x, y, width, height, format, type, pixels)
-    error("abstract method glReadPixels")
-end
-
-
-function GL10:glRotatef(angle, x, y, z)
-    error("abstract method glRotatef")
-end
-
-
-function GL10:glRotatex(angle, x, y, z)
-    error("abstract method glRotatex")
-end
-
-
-function GL10:glSampleCoverage(value, invert)
-    error("abstract method glSampleCoverage")
-end
-
-
-function GL10:glScalef(x, y, z)
-    error("abstract method glScalef")
-end
-
-
-function GL10:glScalex(x, y, z)
-    error("abstract method glScalex")
-end
-
-
-function GL10:glScissor(x, y, width, height)
-    error("abstract method glScissor")
-end
-
-
-function GL10:glShadeModel(mode)
-    error("abstract method glShadeModel")
-end
-
-
-function GL10:glStencilFunc(func, ref, mask)
-    error("abstract method glStencilFunc")
-end
-
-
-function GL10:glStencilMask(mask)
-    error("abstract method glStencilMask")
-end
-
-
-function GL10:glStencilOp(fail, zfail, zpass)
-    error("abstract method glStencilOp")
-end
-
-
-function GL10:glTexCoordPointer(size, type, stride, pointer)
-    error("abstract method glTexCoordPointer")
-end
-
-
-function GL10:glTexEnvf(target, pname, param)
-    error("abstract method glTexEnvf")
-end
-
-
-function GL10:glTexEnvfv(target, pname, params, offset)
-    error("abstract method glTexEnvfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL10:glTexEnvfv(target, pname, params)
-    error("abstract method glTexEnvfv")
-end
-
-
-function GL10:glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels)
-    error("abstract method glTexImage2D")
-end
-
-
-function GL10:glTexParameterf(target, pname, param)
-    error("abstract method glTexParameterf")
-end
-
-
-function GL10:glTexParameteri(target, pname, param)
-    error("abstract method glTexParameteri")
-end
-
-
-function GL10:glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels)
-    error("abstract method glTexSubImage2D")
-end
-
-
-function GL10:glTranslatef(x, y, z)
-    error("abstract method glTranslatef")
-end
-
-
-function GL10:glVertexPointer(size, type, stride, pointer)
-    error("abstract method glVertexPointer")
-end
-
-
-function GL10:glViewport(x, y, width, height)
-    error("abstract method glViewport")
-end
-
-
-function GL10:glBegin(i)
-    error("abstract method glBegin")
-end
-
-
-function GL10:glEnd()
-    error("abstract method glEnd")
-end
-
-
-function GL10:glVertex3f(f, f2, f3)
-    error("abstract method glVertex3f")
-end
-
-
-function GL10:glPolygonMode(i, i1)
-    error("abstract method glPolygonMode")
-end
-
-GL10.GL_ADD = 260
-GL10.GL_ALIASED_LINE_WIDTH_RANGE = 33902
-GL10.GL_ALIASED_POINT_SIZE_RANGE = 33901
-GL10.GL_ALPHA = 6406
-GL10.GL_ALPHA_BITS = 3413
-GL10.GL_ALPHA_TEST = 3008
-GL10.GL_ALWAYS = 519
-GL10.GL_AMBIENT = 4608
-GL10.GL_AMBIENT_AND_DIFFUSE = 5634
-GL10.GL_AND = 5377
-GL10.GL_AND_INVERTED = 5380
-GL10.GL_AND_REVERSE = 5378
-GL10.GL_BACK = 1029
-GL10.GL_BLEND = 3042
-GL10.GL_BLUE_BITS = 3412
-GL10.GL_BYTE = 5120
-GL10.GL_CCW = 2305
-GL10.GL_CLAMP_TO_EDGE = 33071
-GL10.GL_CLEAR = 5376
-GL10.GL_COLOR_ARRAY = 32886
-GL10.GL_COLOR_BUFFER_BIT = 16384
-GL10.GL_COLOR_LOGIC_OP = 3058
-GL10.GL_COLOR_MATERIAL = 2903
-GL10.GL_COMPRESSED_TEXTURE_FORMATS = 34467
-GL10.GL_CONSTANT_ATTENUATION = 4615
-GL10.GL_COPY = 5379
-GL10.GL_COPY_INVERTED = 5388
-GL10.GL_CULL_FACE = 2884
-GL10.GL_CW = 2304
-GL10.GL_DECAL = 8449
-GL10.GL_DECR = 7683
-GL10.GL_DEPTH_BITS = 3414
-GL10.GL_DEPTH_BUFFER_BIT = 256
-GL10.GL_DEPTH_TEST = 2929
-GL10.GL_DIFFUSE = 4609
-GL10.GL_DITHER = 3024
-GL10.GL_DONT_CARE = 4352
-GL10.GL_DST_ALPHA = 772
-GL10.GL_DST_COLOR = 774
-GL10.GL_EMISSION = 5632
-GL10.GL_EQUAL = 514
-GL10.GL_EQUIV = 5385
-GL10.GL_EXP = 2048
-GL10.GL_EXP2 = 2049
-GL10.GL_EXTENSIONS = 7939
-GL10.GL_FALSE = 0
-GL10.GL_FASTEST = 4353
-GL10.GL_FIXED = 5132
-GL10.GL_FLAT = 7424
-GL10.GL_FLOAT = 5126
-GL10.GL_FOG = 2912
-GL10.GL_FOG_COLOR = 2918
-GL10.GL_FOG_DENSITY = 2914
-GL10.GL_FOG_END = 2916
-GL10.GL_FOG_HINT = 3156
-GL10.GL_FOG_MODE = 2917
-GL10.GL_FOG_START = 2915
-GL10.GL_FRONT = 1028
-GL10.GL_FRONT_AND_BACK = 1032
-GL10.GL_GEQUAL = 518
-GL10.GL_GREATER = 516
-GL10.GL_GREEN_BITS = 3411
-GL10.GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES = 35739
-GL10.GL_IMPLEMENTATION_COLOR_READ_TYPE_OES = 35738
-GL10.GL_INCR = 7682
-GL10.GL_INVALID_ENUM = 1280
-GL10.GL_INVALID_OPERATION = 1282
-GL10.GL_INVALID_VALUE = 1281
-GL10.GL_INVERT = 5386
-GL10.GL_KEEP = 7680
-GL10.GL_LEQUAL = 515
-GL10.GL_LESS = 513
-GL10.GL_LIGHT_MODEL_AMBIENT = 2899
-GL10.GL_LIGHT_MODEL_TWO_SIDE = 2898
-GL10.GL_LIGHT0 = 16384
-GL10.GL_LIGHT1 = 16385
-GL10.GL_LIGHT2 = 16386
-GL10.GL_LIGHT3 = 16387
-GL10.GL_LIGHT4 = 16388
-GL10.GL_LIGHT5 = 16389
-GL10.GL_LIGHT6 = 16390
-GL10.GL_LIGHT7 = 16391
-GL10.GL_LIGHTING = 2896
-GL10.GL_LINE_LOOP = 2
-GL10.GL_LINE_SMOOTH = 2848
-GL10.GL_LINE_SMOOTH_HINT = 3154
-GL10.GL_LINE_STRIP = 3
-GL10.GL_LINEAR = 9729
-GL10.GL_LINEAR_ATTENUATION = 4616
-GL10.GL_LINEAR_MIPMAP_LINEAR = 9987
-GL10.GL_LINEAR_MIPMAP_NEAREST = 9985
-GL10.GL_LINES = 1
-GL10.GL_LUMINANCE = 6409
-GL10.GL_LUMINANCE_ALPHA = 6410
-GL10.GL_MAX_ELEMENTS_INDICES = 33001
-GL10.GL_MAX_ELEMENTS_VERTICES = 33000
-GL10.GL_MAX_LIGHTS = 3377
-GL10.GL_MAX_MODELVIEW_STACK_DEPTH = 3382
-GL10.GL_MAX_PROJECTION_STACK_DEPTH = 3384
-GL10.GL_MAX_TEXTURE_SIZE = 3379
-GL10.GL_MAX_TEXTURE_STACK_DEPTH = 3385
-GL10.GL_MAX_TEXTURE_UNITS = 34018
-GL10.GL_MAX_VIEWPORT_DIMS = 3386
-GL10.GL_MODELVIEW = 5888
-GL10.GL_MODULATE = 8448
-GL10.GL_MULTISAMPLE = 32925
-GL10.GL_NAND = 5390
-GL10.GL_NEAREST = 9728
-GL10.GL_NEAREST_MIPMAP_LINEAR = 9986
-GL10.GL_NEAREST_MIPMAP_NEAREST = 9984
-GL10.GL_NEVER = 512
-GL10.GL_NICEST = 4354
-GL10.GL_NO_ERROR = 0
-GL10.GL_NOOP = 5381
-GL10.GL_NOR = 5384
-GL10.GL_NORMAL_ARRAY = 32885
-GL10.GL_NORMALIZE = 2977
-GL10.GL_NOTEQUAL = 517
-GL10.GL_NUM_COMPRESSED_TEXTURE_FORMATS = 34466
-GL10.GL_ONE = 1
-GL10.GL_ONE_MINUS_DST_ALPHA = 773
-GL10.GL_ONE_MINUS_DST_COLOR = 775
-GL10.GL_ONE_MINUS_SRC_ALPHA = 771
-GL10.GL_ONE_MINUS_SRC_COLOR = 769
-GL10.GL_OR = 5383
-GL10.GL_OR_INVERTED = 5389
-GL10.GL_OR_REVERSE = 5387
-GL10.GL_OUT_OF_MEMORY = 1285
-GL10.GL_PACK_ALIGNMENT = 3333
-GL10.GL_PALETTE4_R5_G6_B5_OES = 35730
-GL10.GL_PALETTE4_RGB5_A1_OES = 35732
-GL10.GL_PALETTE4_RGB8_OES = 35728
-GL10.GL_PALETTE4_RGBA4_OES = 35731
-GL10.GL_PALETTE4_RGBA8_OES = 35729
-GL10.GL_PALETTE8_R5_G6_B5_OES = 35735
-GL10.GL_PALETTE8_RGB5_A1_OES = 35737
-GL10.GL_PALETTE8_RGB8_OES = 35733
-GL10.GL_PALETTE8_RGBA4_OES = 35736
-GL10.GL_PALETTE8_RGBA8_OES = 35734
-GL10.GL_PERSPECTIVE_CORRECTION_HINT = 3152
-GL10.GL_POINT_SMOOTH = 2832
-GL10.GL_POINT_SMOOTH_HINT = 3153
-GL10.GL_POINTS = 0
-GL10.GL_POINT_FADE_THRESHOLD_SIZE = 33064
-GL10.GL_POINT_SIZE = 2833
-GL10.GL_POLYGON_OFFSET_FILL = 32823
-GL10.GL_POLYGON_SMOOTH_HINT = 3155
-GL10.GL_POSITION = 4611
-GL10.GL_PROJECTION = 5889
-GL10.GL_QUADRATIC_ATTENUATION = 4617
-GL10.GL_RED_BITS = 3410
-GL10.GL_RENDERER = 7937
-GL10.GL_REPEAT = 10497
-GL10.GL_REPLACE = 7681
-GL10.GL_RESCALE_NORMAL = 32826
-GL10.GL_RGB = 6407
-GL10.GL_RGBA = 6408
-GL10.GL_SAMPLE_ALPHA_TO_COVERAGE = 32926
-GL10.GL_SAMPLE_ALPHA_TO_ONE = 32927
-GL10.GL_SAMPLE_COVERAGE = 32928
-GL10.GL_SCISSOR_TEST = 3089
-GL10.GL_SET = 5391
-GL10.GL_SHININESS = 5633
-GL10.GL_SHORT = 5122
-GL10.GL_SMOOTH = 7425
-GL10.GL_SMOOTH_LINE_WIDTH_RANGE = 2850
-GL10.GL_SMOOTH_POINT_SIZE_RANGE = 2834
-GL10.GL_SPECULAR = 4610
-GL10.GL_SPOT_CUTOFF = 4614
-GL10.GL_SPOT_DIRECTION = 4612
-GL10.GL_SPOT_EXPONENT = 4613
-GL10.GL_SRC_ALPHA = 770
-GL10.GL_SRC_ALPHA_SATURATE = 776
-GL10.GL_SRC_COLOR = 768
-GL10.GL_STACK_OVERFLOW = 1283
-GL10.GL_STACK_UNDERFLOW = 1284
-GL10.GL_STENCIL_BITS = 3415
-GL10.GL_STENCIL_BUFFER_BIT = 1024
-GL10.GL_STENCIL_TEST = 2960
-GL10.GL_SUBPIXEL_BITS = 3408
-GL10.GL_TEXTURE = 5890
-GL10.GL_TEXTURE_2D = 3553
-GL10.GL_TEXTURE_COORD_ARRAY = 32888
-GL10.GL_TEXTURE_ENV = 8960
-GL10.GL_TEXTURE_ENV_COLOR = 8705
-GL10.GL_TEXTURE_ENV_MODE = 8704
-GL10.GL_TEXTURE_MAG_FILTER = 10240
-GL10.GL_TEXTURE_MIN_FILTER = 10241
-GL10.GL_TEXTURE_WRAP_S = 10242
-GL10.GL_TEXTURE_WRAP_T = 10243
-GL10.GL_TEXTURE0 = 33984
-GL10.GL_TEXTURE1 = 33985
-GL10.GL_TEXTURE2 = 33986
-GL10.GL_TEXTURE3 = 33987
-GL10.GL_TEXTURE4 = 33988
-GL10.GL_TEXTURE5 = 33989
-GL10.GL_TEXTURE6 = 33990
-GL10.GL_TEXTURE7 = 33991
-GL10.GL_TEXTURE8 = 33992
-GL10.GL_TEXTURE9 = 33993
-GL10.GL_TEXTURE10 = 33994
-GL10.GL_TEXTURE11 = 33995
-GL10.GL_TEXTURE12 = 33996
-GL10.GL_TEXTURE13 = 33997
-GL10.GL_TEXTURE14 = 33998
-GL10.GL_TEXTURE15 = 33999
-GL10.GL_TEXTURE16 = 34000
-GL10.GL_TEXTURE17 = 34001
-GL10.GL_TEXTURE18 = 34002
-GL10.GL_TEXTURE19 = 34003
-GL10.GL_TEXTURE20 = 34004
-GL10.GL_TEXTURE21 = 34005
-GL10.GL_TEXTURE22 = 34006
-GL10.GL_TEXTURE23 = 34007
-GL10.GL_TEXTURE24 = 34008
-GL10.GL_TEXTURE25 = 34009
-GL10.GL_TEXTURE26 = 34010
-GL10.GL_TEXTURE27 = 34011
-GL10.GL_TEXTURE28 = 34012
-GL10.GL_TEXTURE29 = 34013
-GL10.GL_TEXTURE30 = 34014
-GL10.GL_TEXTURE31 = 34015
-GL10.GL_TRIANGLE_FAN = 6
-GL10.GL_TRIANGLE_STRIP = 5
-GL10.GL_TRIANGLES = 4
-GL10.GL_TRUE = 1
-GL10.GL_UNPACK_ALIGNMENT = 3317
-GL10.GL_UNSIGNED_BYTE = 5121
-GL10.GL_UNSIGNED_SHORT = 5123
-GL10.GL_UNSIGNED_SHORT_4_4_4_4 = 32819
-GL10.GL_UNSIGNED_SHORT_5_5_5_1 = 32820
-GL10.GL_UNSIGNED_SHORT_5_6_5 = 33635
-GL10.GL_VENDOR = 7936
-GL10.GL_VERSION = 7938
-GL10.GL_VERTEX_ARRAY = 32884
-GL10.GL_XOR = 5382
-GL10.GL_ZERO = 0
-
-return GL10
 

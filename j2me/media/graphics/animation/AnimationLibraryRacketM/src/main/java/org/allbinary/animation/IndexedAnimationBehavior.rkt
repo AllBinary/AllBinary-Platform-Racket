@@ -1,56 +1,48 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./AnimationBehavior.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define IndexedAnimationBehavior%
+  (class AnimationBehavior%
+    (super-new)
+    (field [f_frameDelayTime 0])
+    (field [f_loopTotal 0])
+    (field [f_elapsedTime 0])
+    (field [f_loopIndex 0])
+    (define/override (jm_reset_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_loopIndex this 0))))))
+(define (IndexedAnimationBehavior.jclassValue) IndexedAnimationBehavior%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local IndexedAnimationBehavior = {}
-IndexedAnimationBehavior.__index = IndexedAnimationBehavior
-IndexedAnimationBehavior.className = "IndexedAnimationBehavior"
-setmetatable(IndexedAnimationBehavior, {__index = AnimationBehavior})
-
-function IndexedAnimationBehavior:_init_fields()
-    self.frameDelayTime = nil
-    self.loopTotal = nil
-    self.elapsedTime = 0
-    self.loopIndex = 0
-end
-
-
-function IndexedAnimationBehavior.new(loopTotal, frameDelayTime)
-    local self = setmetatable(AnimationBehavior.new(), IndexedAnimationBehavior)
-    self:_init_fields()
-        self.loopTotal = loopTotal
-        self.frameDelayTime = frameDelayTime
-    return self
-end
+(define (IndexedAnimationBehavior.jnew_2 _loopTotal _frameDelayTime)
+  (define this (new IndexedAnimationBehavior% [jclass "IndexedAnimationBehavior"]))
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_loopTotal this _loopTotal)
+        (set-field! f_frameDelayTime this _frameDelayTime)))
+  this)
 
 
-function IndexedAnimationBehavior:reset()
-        self.loopIndex = 0
-end
-
-return IndexedAnimationBehavior
 

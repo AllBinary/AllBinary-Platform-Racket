@@ -1,57 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.event.handler
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.util.event.handler
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicEventHandlerInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_addListenerInterface_1 _eventListenerInterface)
+      (raise (JR.newException "AbstractMethodError" "addListenerInterface")))
+    (define/public (jm_fireEvent_1 _eventObject)
+      (raise (JR.newException "AbstractMethodError" "fireEvent")))
+    (define/public (jm_removeAllListeners_0)
+      (raise (JR.newException "AbstractMethodError" "removeAllListeners")))
+    (define/public (jm_removeListener_1 _eventListenerInterface)
+      (raise (JR.newException "AbstractMethodError" "removeListener")))))
+(define (BasicEventHandlerInterface.jclassValue) BasicEventHandlerInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local BasicEventHandlerInterface = {}
-BasicEventHandlerInterface.__index = BasicEventHandlerInterface
-BasicEventHandlerInterface.className = "BasicEventHandlerInterface"
-
-
-function BasicEventHandlerInterface:addListenerInterface(eventListenerInterface)
-    error("abstract method addListenerInterface")
-end
+(define (BasicEventHandlerInterface.jnew_0)
+  (define this (new BasicEventHandlerInterface% [jclass "BasicEventHandlerInterface"]))
+  this)
 
 
--- throws Exception
-function BasicEventHandlerInterface:fireEvent(eventObject)
-    error("abstract method fireEvent")
-end
-
-
-function BasicEventHandlerInterface:removeAllListeners()
-    error("abstract method removeAllListeners")
-end
-
-
-function BasicEventHandlerInterface:removeListener(eventListenerInterface)
-    error("abstract method removeListener")
-end
-
-return BasicEventHandlerInterface
 

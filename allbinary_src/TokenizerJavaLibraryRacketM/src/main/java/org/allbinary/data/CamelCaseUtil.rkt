@@ -1,75 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.data
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.data
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
-local Tokenizer = require("org.allbinary.logic.string.tokens.Tokenizer")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/lang/Character.rkt")
+(lazy-require ["../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringValidationUtil.rkt" (StringValidationUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/string/tokens/Tokenizer.rkt" (Tokenizer.jnew_1)])
+(lazy-require ["../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CamelCaseUtil%
+  (class JObject%
+    (super-new)
+    (field [f_commonSeps JR.null])
+    (define/public (jm_getAsCamelCase_2 _string _stringBuilder)
+    (let ([_stringValidationUtil JR.null][_list JR.null][_tokenizer JR.null][_size JR.null][_word JR.null][_i JR.null])
+      (let/ec jreturn
+        (set! _stringValidationUtil (StringValidationUtil.jm_getInstance_0))
+        (send _stringBuilder jm_delete_2 0 (send _stringBuilder jm_length_0))
+        (set! _list (BasicArrayListD.jnew_0))
+        (set! _tokenizer (Tokenizer.jnew_1 (get-field f_UNDERSCORE (get-field f_commonSeps this))))
+        (send _tokenizer jm_getTokensFromString_2 _string _list)
+        (set! _size (send _list jm_size_0))
+        (set! _word JR.null)
+        (begin
+            (set! _i 0)
+            (let/ec jbreak (let jloop () (when (< _i _size)
+                (let/ec jcontinue
+            (set! _word (send _list jm_get_1 _i))
+            (set! _word (if (send _stringValidationUtil jm_isEmpty_1 _word) _word (send (send (send (StringMaker.jnew_0) jm_appendchar_1 (Character.jm_toUpperCase_1 (JR.charAt _word 0))) jm_append_1 (JR.toLowerCase (JR.substring _word 1))) jm_toString_0)))
+            (send _stringBuilder jm_append_1 _word))
+                (set! _i (JR.i32 (+ _i 1))) (jloop)))))
+        (jreturn (send _stringBuilder jm_toString_0)))))))
+(define (CamelCaseUtil.jclassValue) CamelCaseUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define CamelCaseUtil.jcell_instance 'jnone)
+(define (CamelCaseUtil.jstatic_instance)
+  (when (eq? CamelCaseUtil.jcell_instance 'jnone) (set! CamelCaseUtil.jcell_instance (CamelCaseUtil.jnew_0)))
+  CamelCaseUtil.jcell_instance)
+(define (CamelCaseUtil.jsetstatic_instance value) (set! CamelCaseUtil.jcell_instance value))
 
-local CamelCaseUtil = {}
-CamelCaseUtil.__index = CamelCaseUtil
-CamelCaseUtil.className = "CamelCaseUtil"
+(define (CamelCaseUtil.jnew_0)
+  (define this (new CamelCaseUtil% [jclass "CamelCaseUtil"]))
+    (set-field! f_commonSeps this (CommonSeps.jm_getInstance_0))
+  this)
 
-function CamelCaseUtil:_init_fields()
-    self.commonSeps = CommonSeps.getInstance()
-end
-
-function CamelCaseUtil.new()
-    local self = setmetatable({}, CamelCaseUtil)
-    self:_init_fields()
-    return self
-end
+(define (CamelCaseUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (CamelCaseUtil.jstatic_instance)))))
 
 
-function CamelCaseUtil.getInstance()
-        return CamelCaseUtil.instance
-end
-
-
--- throws Exception
-function CamelCaseUtil:getAsCamelCase(string, stringBuilder)
-        local stringValidationUtil = StringValidationUtil.getInstance()
-        stringBuilder:delete(0, stringBuilder:length())
-        local list = BasicArrayListD.new()
-        local tokenizer = Tokenizer.new(self.commonSeps.UNDERSCORE)
-        tokenizer:getTokensFromString(string, list)
-        local size = list:size()
-        local word = nil
-        for i = 0, size - 1 do
-            word = list:get(i)
-            word = (function() if stringValidationUtil:isEmpty(word) then return word else return tostring(StringMaker.new():appendchar(string.upper(string.sub(word, (0) + 1, (0) + 1))):append(string.lower(string.sub(word, (1) + 1)))) end end)()
-            stringBuilder:append(word)
-        end
-        return tostring(stringBuilder)
-end
-
-CamelCaseUtil.instance = CamelCaseUtil.new()
-
-return CamelCaseUtil
 

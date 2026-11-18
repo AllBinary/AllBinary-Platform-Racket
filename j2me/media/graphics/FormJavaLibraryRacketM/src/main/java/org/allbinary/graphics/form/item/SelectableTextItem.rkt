@@ -1,59 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ABTextItem = require("org.allbinary.graphics.form.item.ABTextItem")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./ABTextItem.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SelectableTextItem%
+  (class ABTextItem%
+    (super-new)
+    (define/override (jm_isFocusable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #t))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ([_stringComponent JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_myFontProcessor this))
+        (set! _stringComponent (send this jm_getLabelStringComponent_0))
+        (when (not (JR.null? _stringComponent))
+            (begin
+            (send _graphics jm_setColor_1 (JR.className (send _stringComponent jm_getForegroundBasicColor_0)))))
+        (send _graphics jm_drawString_4 (send this jm_getLabel_0) (JR.i32 (+ _x 2)) _y 0))))))
+(define (SelectableTextItem.jclassValue) SelectableTextItem%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SelectableTextItem = {}
-SelectableTextItem.__index = SelectableTextItem
-SelectableTextItem.className = "SelectableTextItem"
-setmetatable(SelectableTextItem, {__index = ABTextItem})
-
-
-function SelectableTextItem.new(label, layout, altText, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ABTextItem.new(label, layout, altText, backgroundBasicColor, foregroundBasicColor), SelectableTextItem)
-        -- super(...) made self above
-    return self
-end
-
-
-function SelectableTextItem:isFocusable()
-        return true
-end
+(define (SelectableTextItem.jnew_5 _label _layout _altText _backgroundBasicColor _foregroundBasicColor)
+  (define this (new SelectableTextItem% [jclass "SelectableTextItem"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function SelectableTextItem:paintXY(graphics, x, y)
-        self.myFontProcessor:process(graphics)
-        local stringComponent = self:getLabelStringComponent()
-        if stringComponent ~= nil then
-            graphics:setColor(math.tointeger(stringComponent:getForegroundBasicColor() // 1))
-        end
-        graphics:drawString(self:getLabel(), x + 2, y, 0)
-end
-
-return SelectableTextItem
 

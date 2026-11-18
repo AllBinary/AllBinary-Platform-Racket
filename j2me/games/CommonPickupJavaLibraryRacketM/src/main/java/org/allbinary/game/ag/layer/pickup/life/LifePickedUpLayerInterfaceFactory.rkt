@@ -1,78 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup.life
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.pickup.life
 
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local CountedPickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactory")
-local IconLayerFactory = require("org.allbinary.game.layer.pickup.IconLayerFactory")
-local PickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactory")
-local PickedUpLayerInterfaceFactoryInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface")
-local PickedUpLayerTypeFactory = require("org.allbinary.game.layer.pickup.PickedUpLayerTypeFactory")
-local PickupProcessorInterface = require("org.allbinary.game.layer.pickup.PickupProcessorInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(require racket/class racket/lazy-require
+  "../../../../../../../allbinary_java.rkt"
+  "../../../../../../../org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactory.rkt"
+  "../../../../../../../org/allbinary/game/layer/pickup/PickupProcessorInterface.rkt")
+(lazy-require ["../../../../../../../org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory.rkt" (FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../../org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory.rkt" (CountedPickedUpLayerInterfaceFactory.jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY)])
+(lazy-require ["../../../../../../../org/allbinary/game/layer/pickup/IconLayerFactory.rkt" (IconLayerFactory.jm_getInstance_3)])
+(lazy-require ["../../../../../../../org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory.rkt" (PickedUpLayerTypeFactory.jm_getInstance_0)])
+(lazy-require ["./LifeLayerCircularStaticPool.rkt" (LifeLayerCircularStaticPool.jnew_2)])
+(lazy-require ["./LifeLayerFactory.rkt" (LifeLayerFactory.jnew_0)])
+(lazy-require ["./LifeResources.rkt" (LifeResources.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LifePickedUpLayerInterfaceFactory%
+  (class PickedUpLayerInterfaceFactory%
+    (super-new)
+    (field [f_pool JR.null])
+    (define/public (jm_getTotal_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 1))))
+    (define/public (jm_process_1 _sourceLayerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_pool this) jm_visit_1 _sourceLayerInterface))))))
+(define (LifePickedUpLayerInterfaceFactory.jclassValue) LifePickedUpLayerInterfaceFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface 'jnone)
+(define (LifePickedUpLayerInterfaceFactory.jstatic_pickedUpLayerInterfaceFactoryInterface)
+  (when (eq? LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface 'jnone) (set! LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface (CountedPickedUpLayerInterfaceFactory.jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY)))
+  LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface)
+(define (LifePickedUpLayerInterfaceFactory.jsetstatic_pickedUpLayerInterfaceFactoryInterface value) (set! LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface value))
 
-local LifePickedUpLayerInterfaceFactory = {}
-LifePickedUpLayerInterfaceFactory.__index = LifePickedUpLayerInterfaceFactory
-LifePickedUpLayerInterfaceFactory.className = "LifePickedUpLayerInterfaceFactory"
-setmetatable(LifePickedUpLayerInterfaceFactory, {__index = PickedUpLayerInterfaceFactory})
+(define (LifePickedUpLayerInterfaceFactory.jnew_0)
+  (define this (new LifePickedUpLayerInterfaceFactory% [jclass "LifePickedUpLayerInterfaceFactory"]))
+    (set-field! f_pool this (LifeLayerCircularStaticPool.jnew_2 (LifeLayerFactory.jnew_0) 1))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-function LifePickedUpLayerInterfaceFactory:_init_fields()
-    self.pool = LifeLayerCircularStaticPool.new(LifeLayerFactory.new(), 1)
-end
+(define (LifePickedUpLayerInterfaceFactory.jm_init_0)
+    (let ()
+      (let/ec jreturn
+        (set! LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface (LifePickedUpLayerInterfaceFactory.jnew_0)))))
 
-
--- throws Exception
-function LifePickedUpLayerInterfaceFactory.init()
-        LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = LifePickedUpLayerInterfaceFactory.new()
-end
-
-
-function LifePickedUpLayerInterfaceFactory.new()
-    local self = setmetatable(PickedUpLayerInterfaceFactory.new(PickedUpLayerTypeFactory.getInstance().LIFE, IconLayerFactory.getInstance(FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(LifeResources.getInstance().RESOURCE):getInstance(0), 10, 10), FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(LifeResources.getInstance().RESOURCE):getInstance(0)), LifePickedUpLayerInterfaceFactory)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function LifePickedUpLayerInterfaceFactory:getTotal()
-        return 1
-end
-
-
-function LifePickedUpLayerInterfaceFactory.getInstance()
-        return LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface
-end
+(define (LifePickedUpLayerInterfaceFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LifePickedUpLayerInterfaceFactory.jstatic_pickedUpLayerInterfaceFactoryInterface)))))
 
 
--- throws Exception
-function LifePickedUpLayerInterfaceFactory:process(sourceLayerInterface)
-        self.pool:visit(sourceLayerInterface)
-end
-
-LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory.NULL_COUNTED_PICKUP_LAYER_FACTORY
-
-return LifePickedUpLayerInterfaceFactory
 

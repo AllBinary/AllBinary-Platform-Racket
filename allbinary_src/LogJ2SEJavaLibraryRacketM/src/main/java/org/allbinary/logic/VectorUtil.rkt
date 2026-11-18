@@ -32,11 +32,13 @@
       (let/ec jreturn
         (set! _vector _anyType)
         (jreturn (send _vector jm_elementAt_1 _index)))))))
+(define (VectorUtil.jclassValue) VectorUtil%)
 
 (define VectorUtil.jcell_instance 'jnone)
 (define (VectorUtil.jstatic_instance)
   (when (eq? VectorUtil.jcell_instance 'jnone) (set! VectorUtil.jcell_instance (VectorUtil.jnew_0)))
   VectorUtil.jcell_instance)
+(define (VectorUtil.jsetstatic_instance value) (set! VectorUtil.jcell_instance value))
 
 (define (VectorUtil.jnew_0)
   (define this (new VectorUtil% [jclass "VectorUtil"]))

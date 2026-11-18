@@ -1,81 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local GameInfo = require("org.allbinary.game.GameInfo")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define EndGameInfo%
+  (class JObject%
+    (super-new)
+    (field [f_NORMAL_GAME_OVER_WIN JR.null])
+    (field [f_TEASER_DEMO_GAME_END_LAST_LEVEL JR.null])
+    (field [f_TEASER_DEMO_GAME_END JR.null])
+    (field [f_gameOverStr JR.null])
+    (field [f_winStr JR.null])
+    (define/public (jm_update_2 _gameInfo _myCanvas)
+    (let ()
+      (let/ec jreturn
+        (if (send _gameInfo jm_isLastLevel_0)
+            (begin
+            (send this jm_setWinStr_1 (get-field f_TEASER_DEMO_GAME_END_LAST_LEVEL this))
+            (send this jm_setGameOverStr_1 (get-field f_TEASER_DEMO_GAME_END_LAST_LEVEL this)))
+            (begin
+            (send this jm_setWinStr_1 (get-field f_NORMAL_GAME_OVER_WIN this))
+            (send this jm_setGameOverStr_1 (get-field f_TEASER_DEMO_GAME_END this)))))))
+    (define/public (jm_getGameOverStr_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameOverStr this)))))
+    (define/public (jm_setGameOverStr_1 _gameOverStr)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_gameOverStr this _gameOverStr))))
+    (define/public (jm_getWinStr_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_winStr this)))))
+    (define/public (jm_setWinStr_1 _winStr)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_winStr this _winStr))))))
+(define (EndGameInfo.jclassValue) EndGameInfo%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local EndGameInfo = {}
-EndGameInfo.__index = EndGameInfo
-EndGameInfo.className = "EndGameInfo"
-
-function EndGameInfo:_init_fields()
-    self.NORMAL_GAME_OVER_WIN = "You Won"
-    self.TEASER_DEMO_GAME_END_LAST_LEVEL = "End of Demo."
-    self.TEASER_DEMO_GAME_END = "Demo Game Over."
-    self.gameOverStr = StringUtil.getInstance().EMPTY_STRING
-    self.winStr = self.gameOverStr
-end
-
-function EndGameInfo.new()
-    local self = setmetatable({}, EndGameInfo)
-    self:_init_fields()
-    return self
-end
-
-
-function EndGameInfo:update(gameInfo, myCanvas)
-        if gameInfo:isLastLevel() then
-            self:setWinStr(self.TEASER_DEMO_GAME_END_LAST_LEVEL)
-            self:setGameOverStr(self.TEASER_DEMO_GAME_END_LAST_LEVEL)
-        else
-            self:setWinStr(self.NORMAL_GAME_OVER_WIN)
-            self:setGameOverStr(self.TEASER_DEMO_GAME_END)
-        end
-end
-
-
-function EndGameInfo:getGameOverStr()
-        return self.gameOverStr
-end
-
-
-function EndGameInfo:setGameOverStr(gameOverStr)
-        self.gameOverStr = gameOverStr
-end
+(define (EndGameInfo.jnew_0)
+  (define this (new EndGameInfo% [jclass "EndGameInfo"]))
+    (set-field! f_NORMAL_GAME_OVER_WIN this "You Won")
+    (set-field! f_TEASER_DEMO_GAME_END_LAST_LEVEL this "End of Demo.")
+    (set-field! f_TEASER_DEMO_GAME_END this "Demo Game Over.")
+    (set-field! f_gameOverStr this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (set-field! f_winStr this (get-field f_gameOverStr this))
+  this)
 
 
-function EndGameInfo:getWinStr()
-        return self.winStr
-end
-
-
-function EndGameInfo:setWinStr(winStr)
-        self.winStr = winStr
-end
-
-return EndGameInfo
 

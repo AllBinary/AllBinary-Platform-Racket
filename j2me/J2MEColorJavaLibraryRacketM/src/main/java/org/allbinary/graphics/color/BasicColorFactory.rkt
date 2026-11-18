@@ -70,11 +70,13 @@
       (let/ec jreturn
         (set! _ALPHA_MASK #xFF000000)
         (jreturn (BasicColor.jnew_3 _alphaValue (JR.i32 (+ (JR.i32 (+ (JR.i32 (+ (bitwise-and (JR.i32 (arithmetic-shift _alphaValue (bitwise-and 24 31))) _ALPHA_MASK) (bitwise-and (JR.i32 (arithmetic-shift _r (bitwise-and 16 31))) #x00FF0000))) (bitwise-and (JR.i32 (arithmetic-shift _g (bitwise-and 8 31))) #x0000FF00))) (bitwise-and _b #x000000FF))) (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))))))))
+(define (BasicColorFactory.jclassValue) BasicColorFactory%)
 
 (define BasicColorFactory.jcell_instance 'jnone)
 (define (BasicColorFactory.jstatic_instance)
   (when (eq? BasicColorFactory.jcell_instance 'jnone) (set! BasicColorFactory.jcell_instance (BasicColorFactory.jnew_0)))
   BasicColorFactory.jcell_instance)
+(define (BasicColorFactory.jsetstatic_instance value) (set! BasicColorFactory.jcell_instance value))
 
 (define (BasicColorFactory.jnew_0)
   (define this (new BasicColorFactory% [jclass "BasicColorFactory"]))

@@ -1,37 +1,38 @@
--- Generated Code Do Not Modify
--- package org.bouncycastle.jce.provider
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.bouncycastle.jce.provider
 
--- local Provider = require("java.security.Provider")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/security/Provider.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BouncyCastleProvider%
+  (class Provider%
+    (super-new)
+    (define/public (jm_setParameter_2 _parameterName _parameter)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (BouncyCastleProvider.jclassValue) BouncyCastleProvider%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define BouncyCastleProvider.jcell_info 'jnone)
+(define (BouncyCastleProvider.jstatic_info)
+  (when (eq? BouncyCastleProvider.jcell_info 'jnone) (set! BouncyCastleProvider.jcell_info "BouncyCastle Security Provider v1.41"))
+  BouncyCastleProvider.jcell_info)
+(define (BouncyCastleProvider.jsetstatic_info value) (set! BouncyCastleProvider.jcell_info value))
 
-local BouncyCastleProvider = {}
-BouncyCastleProvider.__index = BouncyCastleProvider
-BouncyCastleProvider.className = "BouncyCastleProvider"
-setmetatable(BouncyCastleProvider, {__index = Provider})
+(define BouncyCastleProvider.jcell_PROVIDER_NAME 'jnone)
+(define (BouncyCastleProvider.jstatic_PROVIDER_NAME)
+  (when (eq? BouncyCastleProvider.jcell_PROVIDER_NAME 'jnone) (set! BouncyCastleProvider.jcell_PROVIDER_NAME "BC"))
+  BouncyCastleProvider.jcell_PROVIDER_NAME)
+(define (BouncyCastleProvider.jsetstatic_PROVIDER_NAME value) (set! BouncyCastleProvider.jcell_PROVIDER_NAME value))
+
+(define (BouncyCastleProvider.jnew_0)
+  (define this (new BouncyCastleProvider% [jclass "BouncyCastleProvider"]))
+    (let ()
+      (let/ec jreturn
+        (JR.superInit this 'jsuper_3 (BouncyCastleProvider.jstatic_PROVIDER_NAME) 1.41 (BouncyCastleProvider.jstatic_info))))
+  this)
 
 
-function BouncyCastleProvider.new()
-    local self = setmetatable(Provider.new(BouncyCastleProvider.PROVIDER_NAME, 1.41, BouncyCastleProvider.info), BouncyCastleProvider)
-        -- super(...) made self above
-    return self
-end
-
-
-function BouncyCastleProvider:setParameter(parameterName, parameter)
-end
-
-BouncyCastleProvider.info = "BouncyCastle Security Provider v1.41"
-BouncyCastleProvider.PROVIDER_NAME = "BC"
-
-return BouncyCastleProvider
 

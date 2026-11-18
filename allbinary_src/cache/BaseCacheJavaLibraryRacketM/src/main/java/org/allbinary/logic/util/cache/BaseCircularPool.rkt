@@ -46,6 +46,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (vector-ref (get-field f_OBJECT_ARRAY this) _index)))))))
+(define (BaseCircularPool.jclassValue) BaseCircularPool%)
 
 (define (BaseCircularPool.jnew_0)
   (define this (new BaseCircularPool% [jclass "BaseCircularPool"]))

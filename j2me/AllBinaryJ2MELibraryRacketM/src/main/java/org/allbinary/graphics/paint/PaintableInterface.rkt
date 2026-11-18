@@ -1,45 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PaintableInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_paint_1 _graphics)
+      (raise (JR.newException "AbstractMethodError" "paint")))
+    (define/public (jm_paintThreed_1 _graphics)
+      (raise (JR.newException "AbstractMethodError" "paintThreed")))))
+(define (PaintableInterface.jclassValue) PaintableInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local PaintableInterface = {}
-PaintableInterface.__index = PaintableInterface
-PaintableInterface.className = "PaintableInterface"
-
-
-function PaintableInterface:paint(graphics)
-    error("abstract method paint")
-end
+(define (PaintableInterface.jnew_0)
+  (define this (new PaintableInterface% [jclass "PaintableInterface"]))
+  this)
 
 
-function PaintableInterface:paintThreed(graphics)
-    error("abstract method paintThreed")
-end
-
-return PaintableInterface
 

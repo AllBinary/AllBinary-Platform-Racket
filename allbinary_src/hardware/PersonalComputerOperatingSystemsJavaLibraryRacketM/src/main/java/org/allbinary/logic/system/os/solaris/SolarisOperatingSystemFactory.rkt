@@ -52,11 +52,13 @@
                     (begin
                     (raise (JR.newException "Exception" (JR.concat "Specific Solaris OS Not Supported: " _osName)))))))
             (jreturn _operatingSystemInterface)))))))
+(define (SolarisOperatingSystemFactory.jclassValue) SolarisOperatingSystemFactory%)
 
 (define SolarisOperatingSystemFactory.jcell_instance 'jnone)
 (define (SolarisOperatingSystemFactory.jstatic_instance)
   (when (eq? SolarisOperatingSystemFactory.jcell_instance 'jnone) (set! SolarisOperatingSystemFactory.jcell_instance (SolarisOperatingSystemFactory.jnew_0)))
   SolarisOperatingSystemFactory.jcell_instance)
+(define (SolarisOperatingSystemFactory.jsetstatic_instance value) (set! SolarisOperatingSystemFactory.jcell_instance value))
 
 (define (SolarisOperatingSystemFactory.jnew_0)
   (define this (new SolarisOperatingSystemFactory% [jclass "SolarisOperatingSystemFactory"]))

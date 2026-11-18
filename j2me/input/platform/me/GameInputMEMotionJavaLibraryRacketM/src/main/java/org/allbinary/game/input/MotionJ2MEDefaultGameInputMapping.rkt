@@ -1,86 +1,79 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local GamePersistanceStrings = require("org.allbinary.game.configuration.persistance.GamePersistanceStrings")
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local PersistentInputMapping = require("org.allbinary.game.input.mapping.PersistentInputMapping")
-local BasicTouchInputFactory = require("org.allbinary.input.motion.button.BasicTouchInputFactory")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/game/input/mapping/PersistentInputMapping.rkt")
+(lazy-require ["../../../../org/allbinary/game/configuration/persistance/GamePersistanceStrings.rkt" (GamePersistanceStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/input/motion/button/BasicTouchInputFactory.rkt" (BasicTouchInputFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/input/motion/gesture/TouchMotionGestureFactory.rkt" (TouchMotionGestureFactory.jm_getInstance_0)])
+(lazy-require ["./GameKeyFactory.rkt" (GameKeyFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MotionJ2MEDefaultGameInputMapping%
+  (class PersistentInputMapping%
+    (super-new)))
+(define (MotionJ2MEDefaultGameInputMapping.jclassValue) MotionJ2MEDefaultGameInputMapping%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (MotionJ2MEDefaultGameInputMapping.jnew_0)
+  (define this (new MotionJ2MEDefaultGameInputMapping% [jclass "MotionJ2MEDefaultGameInputMapping"]))
+    (let ([_inputToGameKeyMapping JR.null][_gameKeyFactory JR.null][_basicTouchInputFactory JR.null])
+      (let/ec jreturn
+        (void)
+        (set! _inputToGameKeyMapping (send this jm_getInputMapping_0))
+        (set! _gameKeyFactory (GameKeyFactory.jm_getInstance_0))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_UP _gameKeyFactory) (get-field f_KEY_NUM2 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_LEFT _gameKeyFactory) (get-field f_KEY_NUM4 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_RIGHT _gameKeyFactory) (get-field f_KEY_NUM6 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_DOWN _gameKeyFactory) (get-field f_KEY_NUM8 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM1 _gameKeyFactory) (get-field f_GAME_A _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM3 _gameKeyFactory) (get-field f_GAME_B _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM7 _gameKeyFactory) (get-field f_GAME_C _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM9 _gameKeyFactory) (get-field f_GAME_D _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_LEVEL_DOWN _gameKeyFactory) (get-field f_LEVEL_DOWN _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_LEVEL_UP _gameKeyFactory) (get-field f_LEVEL_UP _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_UP _gameKeyFactory) (get-field f_UP _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_DOWN _gameKeyFactory) (get-field f_DOWN _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_LEFT _gameKeyFactory) (get-field f_LEFT _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_RIGHT _gameKeyFactory) (get-field f_RIGHT _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_POUND _gameKeyFactory) (get-field f_KEY_POUND _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_STAR _gameKeyFactory) (get-field f_KEY_STAR _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM1 _gameKeyFactory) (get-field f_KEY_NUM1 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM3 _gameKeyFactory) (get-field f_KEY_NUM3 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM5 _gameKeyFactory) (get-field f_KEY_NUM5 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM7 _gameKeyFactory) (get-field f_KEY_NUM7 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM9 _gameKeyFactory) (get-field f_KEY_NUM9 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM0 _gameKeyFactory) (get-field f_KEY_NUM0 _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM1 _gameKeyFactory) (get-field f_FIRE _gameKeyFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_UP _gameKeyFactory) (get-field f_UP (TouchMotionGestureFactory.jm_getInstance_0)))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_DOWN _gameKeyFactory) (get-field f_DOWN (TouchMotionGestureFactory.jm_getInstance_0)))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_LEFT _gameKeyFactory) (get-field f_LEFT (TouchMotionGestureFactory.jm_getInstance_0)))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_RIGHT _gameKeyFactory) (get-field f_RIGHT (TouchMotionGestureFactory.jm_getInstance_0)))
+        (set! _basicTouchInputFactory (BasicTouchInputFactory.jm_getInstance_0))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_UP _gameKeyFactory) (get-field f_UP _basicTouchInputFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_LEFT _gameKeyFactory) (get-field f_LEFT _basicTouchInputFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_RIGHT _gameKeyFactory) (get-field f_RIGHT _basicTouchInputFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_DOWN _gameKeyFactory) (get-field f_DOWN _basicTouchInputFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM0 _gameKeyFactory) (get-field f_SPECIAL_BUTTON_FIVE _basicTouchInputFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM7 _gameKeyFactory) (get-field f_SPECIAL_BUTTON_FOUR _basicTouchInputFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM9 _gameKeyFactory) (get-field f_SPECIAL_BUTTON_THREE _basicTouchInputFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM1 _gameKeyFactory) (get-field f_SPECIAL_BUTTON_TWO _basicTouchInputFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM3 _gameKeyFactory) (get-field f_SPECIAL_BUTTON_ONE _basicTouchInputFactory))
+        (send _inputToGameKeyMapping jm_add_2 (get-field f_KEY_NUM2 _gameKeyFactory) (get-field f_SPECIAL_BUTTON_SIX _basicTouchInputFactory))))
+  this)
 
-local MotionJ2MEDefaultGameInputMapping = {}
-MotionJ2MEDefaultGameInputMapping.__index = MotionJ2MEDefaultGameInputMapping
-MotionJ2MEDefaultGameInputMapping.className = "MotionJ2MEDefaultGameInputMapping"
-setmetatable(MotionJ2MEDefaultGameInputMapping, {__index = PersistentInputMapping})
 
-
-function MotionJ2MEDefaultGameInputMapping.new()
-    local self = setmetatable(PersistentInputMapping.new(GamePersistanceStrings.getInstance().DEFAULT_INPUT_MAPPING_RECORD_ID), MotionJ2MEDefaultGameInputMapping)
-        -- super(...) made self above
-        local inputToGameKeyMapping = self:getInputMapping()
-        local gameKeyFactory = GameKeyFactory.getInstance()
-        inputToGameKeyMapping:add(gameKeyFactory.UP, gameKeyFactory.KEY_NUM2)
-        inputToGameKeyMapping:add(gameKeyFactory.LEFT, gameKeyFactory.KEY_NUM4)
-        inputToGameKeyMapping:add(gameKeyFactory.RIGHT, gameKeyFactory.KEY_NUM6)
-        inputToGameKeyMapping:add(gameKeyFactory.DOWN, gameKeyFactory.KEY_NUM8)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM1, gameKeyFactory.GAME_A)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM3, gameKeyFactory.GAME_B)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM7, gameKeyFactory.GAME_C)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM9, gameKeyFactory.GAME_D)
-        inputToGameKeyMapping:add(gameKeyFactory.LEVEL_DOWN, gameKeyFactory.LEVEL_DOWN)
-        inputToGameKeyMapping:add(gameKeyFactory.LEVEL_UP, gameKeyFactory.LEVEL_UP)
-        inputToGameKeyMapping:add(gameKeyFactory.UP, gameKeyFactory.UP)
-        inputToGameKeyMapping:add(gameKeyFactory.DOWN, gameKeyFactory.DOWN)
-        inputToGameKeyMapping:add(gameKeyFactory.LEFT, gameKeyFactory.LEFT)
-        inputToGameKeyMapping:add(gameKeyFactory.RIGHT, gameKeyFactory.RIGHT)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_POUND, gameKeyFactory.KEY_POUND)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_STAR, gameKeyFactory.KEY_STAR)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM1, gameKeyFactory.KEY_NUM1)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM3, gameKeyFactory.KEY_NUM3)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM5, gameKeyFactory.KEY_NUM5)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM7, gameKeyFactory.KEY_NUM7)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM9, gameKeyFactory.KEY_NUM9)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM0, gameKeyFactory.KEY_NUM0)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM1, gameKeyFactory.FIRE)
-        inputToGameKeyMapping:add(gameKeyFactory.UP, TouchMotionGestureFactory.getInstance().UP)
-        inputToGameKeyMapping:add(gameKeyFactory.DOWN, TouchMotionGestureFactory.getInstance().DOWN)
-        inputToGameKeyMapping:add(gameKeyFactory.LEFT, TouchMotionGestureFactory.getInstance().LEFT)
-        inputToGameKeyMapping:add(gameKeyFactory.RIGHT, TouchMotionGestureFactory.getInstance().RIGHT)
-        local basicTouchInputFactory = BasicTouchInputFactory.getInstance()
-        inputToGameKeyMapping:add(gameKeyFactory.UP, basicTouchInputFactory.UP)
-        inputToGameKeyMapping:add(gameKeyFactory.LEFT, basicTouchInputFactory.LEFT)
-        inputToGameKeyMapping:add(gameKeyFactory.RIGHT, basicTouchInputFactory.RIGHT)
-        inputToGameKeyMapping:add(gameKeyFactory.DOWN, basicTouchInputFactory.DOWN)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM0, basicTouchInputFactory.SPECIAL_BUTTON_FIVE)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM7, basicTouchInputFactory.SPECIAL_BUTTON_FOUR)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM9, basicTouchInputFactory.SPECIAL_BUTTON_THREE)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM1, basicTouchInputFactory.SPECIAL_BUTTON_TWO)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM3, basicTouchInputFactory.SPECIAL_BUTTON_ONE)
-        inputToGameKeyMapping:add(gameKeyFactory.KEY_NUM2, basicTouchInputFactory.SPECIAL_BUTTON_SIX)
-    return self
-end
-
-return MotionJ2MEDefaultGameInputMapping
 

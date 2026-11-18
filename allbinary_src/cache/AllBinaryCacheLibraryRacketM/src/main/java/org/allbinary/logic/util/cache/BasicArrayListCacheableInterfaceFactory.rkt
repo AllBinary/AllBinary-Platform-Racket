@@ -1,45 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.util.cache
 
-local CacheableInterfaceFactoryInterface = require("org.allbinary.logic.util.cache.CacheableInterfaceFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./CacheableInterfaceFactoryInterface.rkt")
+(lazy-require ["./BasicArrayListCacheable.rkt" (BasicArrayListCacheable.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicArrayListCacheableInterfaceFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_1 _key)
+    (let ()
+      (let/ec jreturn
+        (jreturn (BasicArrayListCacheable.jnew_0)))))))
+(define (BasicArrayListCacheableInterfaceFactory.jclassValue) BasicArrayListCacheableInterfaceFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BasicArrayListCacheableInterfaceFactory = {}
-BasicArrayListCacheableInterfaceFactory.__index = BasicArrayListCacheableInterfaceFactory
-BasicArrayListCacheableInterfaceFactory.className = "BasicArrayListCacheableInterfaceFactory"
-
-function BasicArrayListCacheableInterfaceFactory.new()
-    local self = setmetatable({}, BasicArrayListCacheableInterfaceFactory)
-    return self
-end
+(define (BasicArrayListCacheableInterfaceFactory.jnew_0)
+  (define this (new BasicArrayListCacheableInterfaceFactory% [jclass "BasicArrayListCacheableInterfaceFactory"]))
+  this)
 
 
--- throws Exception
-function BasicArrayListCacheableInterfaceFactory:getInstance(key)
-        return BasicArrayListCacheable.new()
-end
-
-return BasicArrayListCacheableInterfaceFactory
 

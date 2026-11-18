@@ -1,124 +1,108 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local AnimationFactoryImageScaleUtil = require("org.allbinary.image.AnimationFactoryImageScaleUtil")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/AnimationInterfaceFactoryInterface.rkt")
+(lazy-require ["../../../../org/allbinary/animation/NullAnimationFactory.rkt" (NullAnimationFactory.jm_getFactoryInstance_0)])
+(lazy-require ["../../../../org/allbinary/image/AnimationFactoryImageScaleUtil.rkt" (AnimationFactoryImageScaleUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/media/ScaleProperties.rkt" (ScaleProperties.jstatic_instance)])
+(lazy-require ["../../../../org/allbinary/string/CommonLabels.rkt" (CommonLabels.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["./AnimationFactoryInitializationVisitor.rkt" (AnimationFactoryInitializationVisitor.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BaseImageAnimationFactory%
+  (class JObject%
+    (super-new)
+    (field [f_animationFactoryImageScaleUtil JR.null])
+    (field [f_image JR.null])
+    (field [f_animationBehaviorFactory JR.null])
+    (field [f_sequenceArray JR.null])
+    (field [f_animationFactoryInitializationVisitor JR.null])
+    (field [f_scaleProperties JR.null])
+    (define/public (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (NullAnimationFactory.jm_getFactoryInstance_0))))))
+    (define/public (jm_getImage_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_image this)))))
+    (define/public (jm_getSequenceArray_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_sequenceArray this)))))
+    (define/public (jm_setInitialScale_1 _scaleProperties)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_scaleProperties this _scaleProperties)
+        (if (get-field f_shouldScale (get-field f_scaleProperties this))
+            (begin
+            (set-field! f_scaleWidth (get-field f_scaleProperties this) (JR.d2i (* (JR.toDouble (get-field f_width (get-field f_animationFactoryInitializationVisitor this))) (get-field f_scaleX (get-field f_scaleProperties this)))))
+            (set-field! f_scaleHeight (get-field f_scaleProperties this) (JR.d2i (* (JR.toDouble (get-field f_height (get-field f_animationFactoryInitializationVisitor this))) (get-field f_scaleY (get-field f_scaleProperties this))))))
+            (begin
+            (void))))))
+    (define/public (jm_getAnimationFactoryInitializationVisitorP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_animationFactoryInitializationVisitor this)))))
+    (define/public (jm_getScalePropertiesP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_scaleProperties this)))))
+    (define/override (jm_toString_0)
+    (let ([_commonSeps JR.null][_commonLabels JR.null][_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _commonSeps (CommonSeps.jm_getInstance_0))
+        (set! _commonLabels (CommonLabels.jm_getInstance_0))
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 (super jm_toString_0))
+        (send _stringBuffer jm_append_1 (get-field f_HEIGHT_LABEL _commonLabels))
+        (send _stringBuffer jm_appendint_1 (send (get-field f_image this) jm_getHeight_0))
+        (send _stringBuffer jm_append_1 (get-field f_SPACE _commonSeps))
+        (send _stringBuffer jm_append_1 (send (get-field f_animationFactoryInitializationVisitor this) jm_toString_0))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (BaseImageAnimationFactory.jclassValue) BaseImageAnimationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (BaseImageAnimationFactory.jnew_7 _image _sequenceArray _width _height _dx _dy _animationBehaviorFactory)
+  (define this (new BaseImageAnimationFactory% [jclass "BaseImageAnimationFactory"]))
+    (set-field! f_animationFactoryImageScaleUtil this (AnimationFactoryImageScaleUtil.jm_getInstance_0))
+    
+    
+    
+    
+    (set-field! f_scaleProperties this (ScaleProperties.jstatic_instance))
+    (let ()
+      (let/ec jreturn
+        (set-field! f_animationFactoryInitializationVisitor this (AnimationFactoryInitializationVisitor.jnew_0))
+        (set-field! f_image this _image)
+        (set-field! f_width (get-field f_animationFactoryInitializationVisitor this) _width)
+        (set-field! f_height (get-field f_animationFactoryInitializationVisitor this) _height)
+        (set-field! f_animationBehaviorFactory this _animationBehaviorFactory)
+        (set-field! f_sequenceArray this _sequenceArray)
+        (set-field! f_dx (get-field f_animationFactoryInitializationVisitor this) _dx)
+        (set-field! f_dy (get-field f_animationFactoryInitializationVisitor this) _dy)))
+  this)
 
-local BaseImageAnimationFactory = {}
-BaseImageAnimationFactory.__index = BaseImageAnimationFactory
-BaseImageAnimationFactory.className = "BaseImageAnimationFactory"
-
-function BaseImageAnimationFactory:_init_fields()
-    self.animationFactoryImageScaleUtil = AnimationFactoryImageScaleUtil.getInstance()
-    self.image = nil
-    self.animationBehaviorFactory = nil
-    self.sequenceArray = nil
-    self.animationFactoryInitializationVisitor = nil
-    self.scaleProperties = ScaleProperties.instance
-end
-
-
--- throws Exception
-function BaseImageAnimationFactory.createFactoryBase(image, sequenceArray, width, height, animationBehaviorFactory)
-        return BaseImageAnimationFactory.new(image, sequenceArray, width, height, 0, 0, animationBehaviorFactory)
-end
-
-
-function BaseImageAnimationFactory.new(image, sequenceArray, width, height, dx, dy, animationBehaviorFactory)
-    local self = setmetatable({}, BaseImageAnimationFactory)
-    self:_init_fields()
-        self.animationFactoryInitializationVisitor = AnimationFactoryInitializationVisitor.new()
-        self.image = image
-        self.animationFactoryInitializationVisitor.width = width
-        self.animationFactoryInitializationVisitor.height = height
-        self.animationBehaviorFactory = animationBehaviorFactory
-        self.sequenceArray = sequenceArray
-        self.animationFactoryInitializationVisitor.dx = dx
-        self.animationFactoryInitializationVisitor.dy = dy
-    return self
-end
-
-
--- throws Exception
-function BaseImageAnimationFactory:getInstance(instanceId)
-        return NullAnimationFactory.getFactoryInstance():getInstance(instanceId)
-end
-
-
-function BaseImageAnimationFactory:getImage()
-        return self.image
-end
-
-
-function BaseImageAnimationFactory:getSequenceArray()
-        return self.sequenceArray
-end
-
-
-function BaseImageAnimationFactory:setInitialScale(scaleProperties)
-        self.scaleProperties = scaleProperties
-        if self.scaleProperties.shouldScale then
-            self.scaleProperties.scaleWidth = java_int((self.animationFactoryInitializationVisitor.width * self.scaleProperties.scaleX))
-            self.scaleProperties.scaleHeight = java_int((self.animationFactoryInitializationVisitor.height * self.scaleProperties.scaleY))
-        else
-        end
-end
-
-
-function BaseImageAnimationFactory:getAnimationFactoryInitializationVisitorP()
-        return self.animationFactoryInitializationVisitor
-end
-
-
-function BaseImageAnimationFactory:getScalePropertiesP()
-        return self.scaleProperties
-end
+(define (BaseImageAnimationFactory.jm_createFactoryBase_5 _image _sequenceArray _width _height _animationBehaviorFactory)
+    (let ()
+      (let/ec jreturn
+        (jreturn (BaseImageAnimationFactory.jnew_7 _image _sequenceArray _width _height 0 0 _animationBehaviorFactory)))))
 
 
-function BaseImageAnimationFactory:toString()
-        local commonSeps = CommonSeps.getInstance()
-        local commonLabels = CommonLabels.getInstance()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(self.className)
-        stringBuffer:append(commonLabels.HEIGHT_LABEL)
-        stringBuffer:appendint(java_int(self.image:getHeight()))
-        stringBuffer:append(commonSeps.SPACE)
-        stringBuffer:append(tostring(self.animationFactoryInitializationVisitor))
-        return tostring(stringBuffer)
-end
-BaseImageAnimationFactory.__tostring = function(self) return self:toString() end
-
-return BaseImageAnimationFactory
 

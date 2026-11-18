@@ -1,47 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.physics
 
-local FrictionData = require("org.allbinary.game.physics.friction.FrictionData")
-local DragVelocityBehavior = require("org.allbinary.game.physics.velocity.DragVelocityBehavior")
-local VelocityProperties = require("org.allbinary.game.physics.velocity.VelocityProperties")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/game/physics/friction/FrictionData.rkt" (FrictionData.jm_getFrictionDenominator_0)])
+(lazy-require ["../../../../org/allbinary/game/physics/velocity/DragVelocityBehavior.rkt" (DragVelocityBehavior.jstatic_instance)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define FrictionProperties%
+  (class JObject%
+    (super-new)
+    (define/public (jm_friction_2 _velocityProperties _nominator)
+    (let ()
+      (let/ec jreturn
+        (JR.className (DragVelocityBehavior.jstatic_instance)))))))
+(define (FrictionProperties.jclassValue) FrictionProperties%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local FrictionProperties = {}
-FrictionProperties.__index = FrictionProperties
-FrictionProperties.className = "FrictionProperties"
-
-
-function FrictionProperties.new()
-    local self = setmetatable({}, FrictionProperties)
-    return self
-end
+(define (FrictionProperties.jnew_0)
+  (define this (new FrictionProperties% [jclass "FrictionProperties"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function FrictionProperties:friction(velocityProperties, nominator)
-        DragVelocityBehavior.instance:reduce(velocityProperties, nominator, FrictionData.getFrictionDenominator())
-end
-
-return FrictionProperties
 

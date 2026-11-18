@@ -1,93 +1,87 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item.validation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item.validation
 
-local ABTextFieldItem = require("org.allbinary.graphics.form.item.ABTextFieldItem")
-local ValidatorBase = require("org.allbinary.logic.control.validate.ValidatorBase")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/logic/control/validate/ValidatorBase.rkt"
+  "../../../../../../java/lang/Boolean.rkt")
+(lazy-require ["../../../../../../org/allbinary/logic/java/bool/BooleanFactory.rkt" (BooleanFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TextFieldItemValidator%
+  (class ValidatorBase%
+    (super-new)
+    (field [f_textFieldItem JR.null])
+    (field [f_min 0])
+    (field [f_max 0])
+    (field [f_allowOnEmpty #f])
+    (define/override (jm_isValid_0)
+    (let ([_booleanFactory JR.null][_result JR.null][_string JR.null][_textLength JR.null])
+      (let/ec jreturn
+        (set! _booleanFactory (BooleanFactory.jm_getInstance_0))
+        (set! _result (get-field f_TRUE _booleanFactory))
+        (set! _string (send (get-field f_textFieldItem this) jm_getString_0))
+        (set! _textLength (string-length _string))
+        (if (or (and (= _textLength 0) (get-field f_allowOnEmpty this)) (and (> _textLength (get-field f_min this)) (< _textLength (get-field f_max this))))
+            (begin
+            (void))
+            (begin
+            (if (< _textLength (get-field f_min this))
+                (begin
+                (set! _result (get-field f_FALSE _booleanFactory)))
+                (when (> _textLength (get-field f_max this))
+                (begin
+                (set! _result (get-field f_FALSE _booleanFactory)))))))
+        (jreturn _result))))
+    (define/override (jm_toList_0)
+    (let ([_list JR.null][_string JR.null][_textLength JR.null][_label JR.null][_name JR.null])
+      (let/ec jreturn
+        (set! _list (BasicArrayListD.jnew_0))
+        (set! _string (send (get-field f_textFieldItem this) jm_getString_0))
+        (set! _textLength (string-length _string))
+        (if (and (> _textLength (get-field f_min this)) (< _textLength (get-field f_max this)))
+            (begin
+            (void))
+            (begin
+            (set! _label (send (get-field f_textFieldItem this) jm_getLabel_0))
+            (set! _name (JR.substring _label 0 (JR.i32 (- (string-length _label) 2))))
+            (if (< _textLength (get-field f_min this))
+                (begin
+                (send _list jm_add_1 (send (send (send (StringMaker.jnew_0) jm_append_1 _name) jm_append_1 " is to short") jm_toString_0)))
+                (when (> _textLength (get-field f_max this))
+                (begin
+                (send _list jm_add_1 (send (send (send (StringMaker.jnew_0) jm_append_1 _name) jm_append_1 " is to long") jm_toString_0)))))))
+        (jreturn _list))))))
+(define (TextFieldItemValidator.jclassValue) TextFieldItemValidator%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TextFieldItemValidator = {}
-TextFieldItemValidator.__index = TextFieldItemValidator
-TextFieldItemValidator.className = "TextFieldItemValidator"
-setmetatable(TextFieldItemValidator, {__index = ValidatorBase})
-
-function TextFieldItemValidator:_init_fields()
-    self.textFieldItem = nil
-    self.min = nil
-    self.max = nil
-    self.allowOnEmpty = nil
-end
+(define (TextFieldItemValidator.jnew_4 _textFieldItem _min _max _allowOnEmpty)
+  (define this (new TextFieldItemValidator% [jclass "TextFieldItemValidator"]))
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_textFieldItem this _textFieldItem)
+        (set-field! f_min this _min)
+        (set-field! f_max this _max)
+        (set-field! f_allowOnEmpty this _allowOnEmpty)))
+  this)
 
 
-function TextFieldItemValidator.new(textFieldItem, min, max, allowOnEmpty)
-    local self = setmetatable(ValidatorBase.new(), TextFieldItemValidator)
-    self:_init_fields()
-        self.textFieldItem = textFieldItem
-        self.min = min
-        self.max = max
-        self.allowOnEmpty = allowOnEmpty
-    return self
-end
-
-
-function TextFieldItemValidator:isValid()
-        local booleanFactory = BooleanFactory.getInstance()
-        local result = booleanFactory.TRUE
-        local string = self.textFieldItem:getString()
-        local textLength = #string
-        if (textLength == 0 and self.allowOnEmpty) or textLength > self.min and textLength < self.max then
-        else
-            if textLength < self.min then
-                result = booleanFactory.FALSE
-            elseif textLength > self.max then
-                result = booleanFactory.FALSE
-            end
-        end
-        return result
-end
-
-
-function TextFieldItemValidator:toList()
-        local list = BasicArrayListD.new()
-        local string = self.textFieldItem:getString()
-        local textLength = #string
-        if textLength > self.min and textLength < self.max then
-        else
-            local label = self.textFieldItem:getLabel()
-            local name = string.sub(label, (0) + 1, #label - 2)
-            if textLength < self.min then
-                list:add(tostring(StringMaker.new():append(name):append(" is to short")))
-            elseif textLength > self.max then
-                list:add(tostring(StringMaker.new():append(name):append(" is to long")))
-            end
-        end
-        return list
-end
-
-return TextFieldItemValidator
 

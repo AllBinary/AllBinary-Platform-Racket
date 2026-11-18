@@ -73,11 +73,13 @@
     (field [f_ADD_LISTENER JR.null])
     (field [f_REMOVE_LISTENER JR.null])
     (field [f_SIZE JR.null])))
+(define (CommonStrings.jclassValue) CommonStrings%)
 
 (define CommonStrings.jcell_instance 'jnone)
 (define (CommonStrings.jstatic_instance)
   (when (eq? CommonStrings.jcell_instance 'jnone) (set! CommonStrings.jcell_instance (CommonStrings.jnew_0)))
   CommonStrings.jcell_instance)
+(define (CommonStrings.jsetstatic_instance value) (set! CommonStrings.jcell_instance value))
 
 (define (CommonStrings.jnew_0)
   (define this (new CommonStrings% [jclass "CommonStrings"]))

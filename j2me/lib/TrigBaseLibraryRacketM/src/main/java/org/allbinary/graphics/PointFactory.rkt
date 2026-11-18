@@ -34,11 +34,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (GPoint.jnew_3 _x _y _z)))))))
+(define (PointFactory.jclassValue) PointFactory%)
 
 (define PointFactory.jcell_instance 'jnone)
 (define (PointFactory.jstatic_instance)
   (when (eq? PointFactory.jcell_instance 'jnone) (set! PointFactory.jcell_instance (PointFactory.jnew_0)))
   PointFactory.jcell_instance)
+(define (PointFactory.jsetstatic_instance value) (set! PointFactory.jcell_instance value))
 
 (define (PointFactory.jnew_0)
   (define this (new PointFactory% [jclass "PointFactory"]))

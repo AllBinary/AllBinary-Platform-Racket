@@ -87,11 +87,13 @@
             (begin
             (vector-set! (get-field f_STRING_ARRAY this) _i (JR.toString (vector-ref (get-field f_INTEGER_ARRAY this) _i)))))
         (jreturn (vector-ref (get-field f_STRING_ARRAY this) _i)))))))
+(define (SmallLongFactory.jclassValue) SmallLongFactory%)
 
 (define SmallLongFactory.jcell_instance 'jnone)
 (define (SmallLongFactory.jstatic_instance)
   (when (eq? SmallLongFactory.jcell_instance 'jnone) (set! SmallLongFactory.jcell_instance (SmallLongFactory.jnew_0)))
   SmallLongFactory.jcell_instance)
+(define (SmallLongFactory.jsetstatic_instance value) (set! SmallLongFactory.jcell_instance value))
 
 (define (SmallLongFactory.jnew_0)
   (define this (new SmallLongFactory% [jclass "SmallLongFactory"]))

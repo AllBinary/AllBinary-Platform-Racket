@@ -1,42 +1,34 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.event
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/EventListenerInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define VirtualKeyboardEventListenerInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onVirtualKeyboardEvent_1 _virtualKeyboardEvent)
+      (raise (JR.newException "AbstractMethodError" "onVirtualKeyboardEvent")))))
+(define (VirtualKeyboardEventListenerInterface.jclassValue) VirtualKeyboardEventListenerInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local VirtualKeyboardEventListenerInterface = {}
-VirtualKeyboardEventListenerInterface.__index = VirtualKeyboardEventListenerInterface
-VirtualKeyboardEventListenerInterface.className = "VirtualKeyboardEventListenerInterface"
-setmetatable(VirtualKeyboardEventListenerInterface, {__index = EventListenerInterface})
+(define (VirtualKeyboardEventListenerInterface.jnew_0)
+  (define this (new VirtualKeyboardEventListenerInterface% [jclass "VirtualKeyboardEventListenerInterface"]))
+  this)
 
 
--- throws Exception
-function VirtualKeyboardEventListenerInterface:onVirtualKeyboardEvent(virtualKeyboardEvent)
-    error("abstract method onVirtualKeyboardEvent")
-end
-
-return VirtualKeyboardEventListenerInterface
 

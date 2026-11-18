@@ -1,52 +1,51 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.image.opengles
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define OpenGLESImageProperties%
+  (class JObject%
+    (super-new)
+    (field [f_textureID 0])
+    (field [f_scaleX 0.0])
+    (field [f_scaleY 0.0])
+    (field [f_scaleX2 0.0])
+    (field [f_scaleY2 0.0])
+    (field [f_angle 0])
+    (field [f_redf 0.0])
+    (field [f_greenf 0.0])
+    (field [f_bluef 0.0])
+    (field [f_alphaf 0.0])))
+(define (OpenGLESImageProperties.jclassValue) OpenGLESImageProperties%)
+
+(define (OpenGLESImageProperties.jnew_0)
+  (define this (new OpenGLESImageProperties% [jclass "OpenGLESImageProperties"]))
+    (set-field! f_textureID this (JR.i32 (- 1)))
+    (set-field! f_scaleX this 1.0)
+    (set-field! f_scaleY this 1.0)
+    (set-field! f_scaleX2 this 1.0)
+    (set-field! f_scaleY2 this 1.0)
+    
+    (set-field! f_redf this 1.0)
+    (set-field! f_greenf this 1.0)
+    (set-field! f_bluef this 1.0)
+    (set-field! f_alphaf this 1.0)
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLESImageProperties = {}
-OpenGLESImageProperties.__index = OpenGLESImageProperties
-OpenGLESImageProperties.className = "OpenGLESImageProperties"
-
-function OpenGLESImageProperties:_init_fields()
-    self.textureID = -1
-    self.scaleX = 1.0
-    self.scaleY = 1.0
-    self.scaleX2 = 1.0
-    self.scaleY2 = 1.0
-    self.angle = 0
-    self.redf = 1.0
-    self.greenf = 1.0
-    self.bluef = 1.0
-    self.alphaf = 1.0
-end
-
-function OpenGLESImageProperties.new()
-    local self = setmetatable({}, OpenGLESImageProperties)
-    self:_init_fields()
-    return self
-end
-
-return OpenGLESImageProperties
 

@@ -1,38 +1,28 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.collision
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local CollisionProcessor = require("org.allbinary.game.collision.CollisionProcessor")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./CollisionProcessor.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CollisionThreedProcessor%
+  (class CollisionProcessor%
+    (super-new)
+    (define/override (jm_isCollision_2 _myLayer _myLayer2)
+    (let ()
+      (let/ec jreturn
+        (if (or (or (or (or (or (>= (send _myLayer2 jm_getXP_0) (send _myLayer jm_getX2_0)) (>= (send _myLayer2 jm_getYP_0) (send _myLayer jm_getY2_0))) (<= (send _myLayer2 jm_getX2_0) (send _myLayer jm_getXP_0))) (<= (send _myLayer2 jm_getY2_0) (send _myLayer jm_getYP_0))) (< (send _myLayer2 jm_getZP_0) (send _myLayer jm_getZ2_0))) (> (send _myLayer2 jm_getZ2_0) (send _myLayer jm_getZP_0)))
+            (begin
+            (jreturn #f))
+            (begin
+            (jreturn #t))))))))
+(define (CollisionThreedProcessor.jclassValue) CollisionThreedProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CollisionThreedProcessor = {}
-CollisionThreedProcessor.__index = CollisionThreedProcessor
-CollisionThreedProcessor.className = "CollisionThreedProcessor"
-setmetatable(CollisionThreedProcessor, {__index = CollisionProcessor})
-
-function CollisionThreedProcessor.new()
-    local self = setmetatable(CollisionProcessor.new(), CollisionThreedProcessor)
-    return self
-end
+(define (CollisionThreedProcessor.jnew_0)
+  (define this (new CollisionThreedProcessor% [jclass "CollisionThreedProcessor"]))
+  this)
 
 
-function CollisionThreedProcessor:isCollision(myLayer, myLayer2)
-        if myLayer2:getXP() >= myLayer:getX2() or myLayer2:getYP() >= myLayer:getY2() or myLayer2:getX2() <= myLayer:getXP() or myLayer2:getY2() <= myLayer:getYP() or myLayer2:getZP() < myLayer:getZ2() or myLayer2:getZ2() > myLayer:getZP() then
-            return false
-        else
-            return true
-        end
-end
-
-return CollisionThreedProcessor
 

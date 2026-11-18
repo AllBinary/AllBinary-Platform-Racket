@@ -1,55 +1,49 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.image.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OpenGLESImageTranslate%
+  (class JObject%
+    (super-new)
+    (define/public (jm_translate_4 _gl _openGLESImage _x _y)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_imageProcessor _openGLESImage)))))
+    (define/public (jm_translate2_2 _gl _openGLESImage)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (OpenGLESImageTranslate.jclassValue) OpenGLESImageTranslate%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define OpenGLESImageTranslate.jcell_instance 'jnone)
+(define (OpenGLESImageTranslate.jstatic_instance)
+  (when (eq? OpenGLESImageTranslate.jcell_instance 'jnone) (set! OpenGLESImageTranslate.jcell_instance (OpenGLESImageTranslate.jnew_0)))
+  OpenGLESImageTranslate.jcell_instance)
+(define (OpenGLESImageTranslate.jsetstatic_instance value) (set! OpenGLESImageTranslate.jcell_instance value))
 
-local OpenGLESImageTranslate = {}
-OpenGLESImageTranslate.__index = OpenGLESImageTranslate
-OpenGLESImageTranslate.className = "OpenGLESImageTranslate"
+(define (OpenGLESImageTranslate.jnew_0)
+  (define this (new OpenGLESImageTranslate% [jclass "OpenGLESImageTranslate"]))
+  this)
 
-function OpenGLESImageTranslate.new()
-    local self = setmetatable({}, OpenGLESImageTranslate)
-    return self
-end
-
-
-function OpenGLESImageTranslate.getInstance()
-        return OpenGLESImageTranslate.instance
-end
-
-
-function OpenGLESImageTranslate:translate(gl, openGLESImage, x, y)
-        openGLESImage.imageProcessor:translate(gl, x, y)
-end
+(define (OpenGLESImageTranslate.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (OpenGLESImageTranslate.jstatic_instance)))))
 
 
-function OpenGLESImageTranslate:translate2(gl, openGLESImage)
-end
-
-OpenGLESImageTranslate.instance = OpenGLESImageTranslate.new()
-
-return OpenGLESImageTranslate
 

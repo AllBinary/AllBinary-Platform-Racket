@@ -55,11 +55,13 @@
         (send _stringBuffer jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0)))
         (send _stringBuffer jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 (send this jm_getAngleIncrementInfo_0)))
         (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (AngleInfo.jclassValue) AngleInfo%)
 
 (define AngleInfo.jcell_ANGLE 'jnone)
 (define (AngleInfo.jstatic_ANGLE)
   (when (eq? AngleInfo.jcell_ANGLE 'jnone) (set! AngleInfo.jcell_ANGLE "Angle: "))
   AngleInfo.jcell_ANGLE)
+(define (AngleInfo.jsetstatic_ANGLE value) (set! AngleInfo.jcell_ANGLE value))
 
 (define (AngleInfo.jnew_1 _angleIncrementInfo)
   (define this (new AngleInfo% [jclass "AngleInfo"]))

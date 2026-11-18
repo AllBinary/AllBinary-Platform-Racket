@@ -1,74 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/AllBinaryEventObject.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ScrollMapEvent%
+  (class AllBinaryEventObject%
+    (super-new)
+    (field [f_dx 0])
+    (field [f_dy 0])
+    (define/public (jm_setDx_1 _dx)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_dx this _dx))))
+    (define/public (jm_getDx_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_dx this)))))
+    (define/public (jm_setDy_1 _dy)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_dy this _dy))))
+    (define/public (jm_getDy_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_dy this)))))
+    (define/public (jm_setDxDy_2 _dx _dy)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_dx this _dx)
+        (set-field! f_dy this _dy))))))
+(define (ScrollMapEvent.jclassValue) ScrollMapEvent%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ScrollMapEvent = {}
-ScrollMapEvent.__index = ScrollMapEvent
-ScrollMapEvent.className = "ScrollMapEvent"
-setmetatable(ScrollMapEvent, {__index = AllBinaryEventObject})
-
-function ScrollMapEvent:_init_fields()
-    self.dx = 0
-    self.dy = 0
-end
-
-
-function ScrollMapEvent.new(anyType)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), ScrollMapEvent)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function ScrollMapEvent:setDx(dx)
-        self.dx = dx
-end
-
-
-function ScrollMapEvent:getDx()
-        return self.dx
-end
-
-
-function ScrollMapEvent:setDy(dy)
-        self.dy = dy
-end
+(define (ScrollMapEvent.jnew_1 _anyType)
+  (define this (new ScrollMapEvent% [jclass "ScrollMapEvent"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function ScrollMapEvent:getDy()
-        return self.dy
-end
-
-
-function ScrollMapEvent:setDxDy(dx, dy)
-        self.dx = dx
-        self.dy = dy
-end
-
-return ScrollMapEvent
 

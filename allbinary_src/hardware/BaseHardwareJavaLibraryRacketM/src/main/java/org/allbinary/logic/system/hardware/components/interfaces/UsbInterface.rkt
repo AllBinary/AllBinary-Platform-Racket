@@ -21,6 +21,7 @@
 (define UsbInterface%
   (class JObject%
     (super-new)))
+(define (UsbInterface.jclassValue) UsbInterface%)
 
 (define (UsbInterface.jnew_0)
   (define this (new UsbInterface% [jclass "UsbInterface"]))

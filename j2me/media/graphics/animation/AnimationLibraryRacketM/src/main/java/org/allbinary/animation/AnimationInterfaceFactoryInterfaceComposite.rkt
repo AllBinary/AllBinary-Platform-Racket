@@ -1,62 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./AnimationInterfaceFactoryInterface.rkt")
+(lazy-require ["./NullAnimationFactory.rkt" (NullAnimationFactory.jm_getFactoryInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AnimationInterfaceFactoryInterfaceComposite%
+  (class JObject%
+    (super-new)
+    (field [f_animationInterfaceFactoryInterfaceArray JR.null])
+    (define/public (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (NullAnimationFactory.jm_getFactoryInstance_0))))))
+    (define/public (jm_getAnimationInterfaceFactoryInterfaceArray_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_animationInterfaceFactoryInterfaceArray this)))))
+    (define/public (jm_setInitialScale_1 _scaleProperties)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (AnimationInterfaceFactoryInterfaceComposite.jclassValue) AnimationInterfaceFactoryInterfaceComposite%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AnimationInterfaceFactoryInterfaceComposite = {}
-AnimationInterfaceFactoryInterfaceComposite.__index = AnimationInterfaceFactoryInterfaceComposite
-AnimationInterfaceFactoryInterfaceComposite.className = "AnimationInterfaceFactoryInterfaceComposite"
-
-function AnimationInterfaceFactoryInterfaceComposite:_init_fields()
-    self.animationInterfaceFactoryInterfaceArray = nil
-end
-
-
-function AnimationInterfaceFactoryInterfaceComposite.new(basicAnimationInterfaceFactoryInterfaceArray)
-    local self = setmetatable({}, AnimationInterfaceFactoryInterfaceComposite)
-    self:_init_fields()
-        self.animationInterfaceFactoryInterfaceArray = basicAnimationInterfaceFactoryInterfaceArray
-    return self
-end
-
-
--- throws Exception
-function AnimationInterfaceFactoryInterfaceComposite:getInstance(instanceId)
-        return NullAnimationFactory.getFactoryInstance():getInstance(0)
-end
+(define (AnimationInterfaceFactoryInterfaceComposite.jnew_1 _basicAnimationInterfaceFactoryInterfaceArray)
+  (define this (new AnimationInterfaceFactoryInterfaceComposite% [jclass "AnimationInterfaceFactoryInterfaceComposite"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_animationInterfaceFactoryInterfaceArray this _basicAnimationInterfaceFactoryInterfaceArray)))
+  this)
 
 
-function AnimationInterfaceFactoryInterfaceComposite:getAnimationInterfaceFactoryInterfaceArray()
-        return self.animationInterfaceFactoryInterfaceArray
-end
-
-
-function AnimationInterfaceFactoryInterfaceComposite:setInitialScale(scaleProperties)
-end
-
-return AnimationInterfaceFactoryInterfaceComposite
 

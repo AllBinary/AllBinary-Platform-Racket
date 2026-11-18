@@ -1,64 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.collision.layer
 
-local CollidableInterfaceCompositeInterface = require("org.allbinary.game.collision.CollidableInterfaceCompositeInterface")
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LayerProcessor = require("org.allbinary.layer.LayerProcessor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/layer/LayerProcessor.rkt")
+(lazy-require ["./CollidableInterfaceLayerManager.rkt" (CollidableInterfaceLayerManager.jnew_0)])
+(lazy-require ["./AllBinaryCollisionManager.rkt" (AllBinaryCollisionManager.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CollidableInterfaceLayerProcessor%
+  (class LayerProcessor%
+    (super-new)
+    (define/override (jm_processAt_3 _allBinaryLayerManager _layerInterface _index)
+    (let ([_collidableInterfaceCompositeInterface JR.null])
+      (let/ec jreturn
+        (set! _collidableInterfaceCompositeInterface _layerInterface)
+        (when (JR.className (send _collidableInterfaceCompositeInterface jm_getCollidableInferface_0))
+            (begin
+            (send (AllBinaryCollisionManager.jm_getInstance_0) jm_process_3 (send this jm_getLayerManager_0) _collidableInterfaceCompositeInterface _index))))))
+    (define/override (jm_isProcessorLayer_1 _layerInterface)
+    (let ()
+      (let/ec jreturn
+        (if (send _layerInterface jm_implmentsCollidableInterface_0)
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))))
+(define (CollidableInterfaceLayerProcessor.jclassValue) CollidableInterfaceLayerProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CollidableInterfaceLayerProcessor = {}
-CollidableInterfaceLayerProcessor.__index = CollidableInterfaceLayerProcessor
-CollidableInterfaceLayerProcessor.className = "CollidableInterfaceLayerProcessor"
-setmetatable(CollidableInterfaceLayerProcessor, {__index = LayerProcessor})
-
-
-function CollidableInterfaceLayerProcessor.new()
-    local self = setmetatable(LayerProcessor.new(CollidableInterfaceLayerManager.new()), CollidableInterfaceLayerProcessor)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function CollidableInterfaceLayerProcessor:processAt(allBinaryLayerManager, layerInterface, index)
-        local collidableInterfaceCompositeInterface = layerInterface
-        if collidableInterfaceCompositeInterface:getCollidableInferface():isCollidable(collidableInterfaceCompositeInterface) then
-            AllBinaryCollisionManager.getInstance():process(self:getLayerManager(), collidableInterfaceCompositeInterface, index)
-        end
-end
+(define (CollidableInterfaceLayerProcessor.jnew_0)
+  (define this (new CollidableInterfaceLayerProcessor% [jclass "CollidableInterfaceLayerProcessor"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function CollidableInterfaceLayerProcessor:isProcessorLayer(layerInterface)
-        if layerInterface:implmentsCollidableInterface() then
-            return true
-        else
-            return false
-        end
-end
-
-return CollidableInterfaceLayerProcessor
 

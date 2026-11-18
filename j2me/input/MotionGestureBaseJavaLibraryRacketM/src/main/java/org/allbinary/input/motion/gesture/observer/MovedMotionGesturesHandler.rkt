@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.gesture.observer
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MovedMotionGesturesHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_baseMotionGestureEventListener JR.null])
+      (let/ec jreturn
+        (set! _baseMotionGestureEventListener _eventListenerInterface)
+        (send _baseMotionGestureEventListener jm_onMotionGestureEvent_1 _eventObject))))))
+(define (MovedMotionGesturesHandler.jclassValue) MovedMotionGesturesHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define MovedMotionGesturesHandler.jcell_SINGLETON 'jnone)
+(define (MovedMotionGesturesHandler.jstatic_SINGLETON)
+  (when (eq? MovedMotionGesturesHandler.jcell_SINGLETON 'jnone) (set! MovedMotionGesturesHandler.jcell_SINGLETON (MovedMotionGesturesHandler.jnew_0)))
+  MovedMotionGesturesHandler.jcell_SINGLETON)
+(define (MovedMotionGesturesHandler.jsetstatic_SINGLETON value) (set! MovedMotionGesturesHandler.jcell_SINGLETON value))
 
-local MovedMotionGesturesHandler = {}
-MovedMotionGesturesHandler.__index = MovedMotionGesturesHandler
-MovedMotionGesturesHandler.className = "MovedMotionGesturesHandler"
-setmetatable(MovedMotionGesturesHandler, {__index = BasicEventHandler})
+(define (MovedMotionGesturesHandler.jnew_0)
+  (define this (new MovedMotionGesturesHandler% [jclass "MovedMotionGesturesHandler"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function MovedMotionGesturesHandler.getInstance()
-        return MovedMotionGesturesHandler.SINGLETON
-end
-
-
-function MovedMotionGesturesHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), MovedMotionGesturesHandler)
-    return self
-end
+(define (MovedMotionGesturesHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (MovedMotionGesturesHandler.jstatic_SINGLETON)))))
 
 
--- throws Exception
-function MovedMotionGesturesHandler:process(eventObject, eventListenerInterface)
-        local baseMotionGestureEventListener = eventListenerInterface
-        baseMotionGestureEventListener:onMotionGestureEvent(eventObject)
-end
-
-MovedMotionGesturesHandler.SINGLETON = MovedMotionGesturesHandler.new()
-
-return MovedMotionGesturesHandler
 

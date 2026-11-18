@@ -1,50 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.audio
 
-local CompositeSound = require("org.allbinary.media.audio.CompositeSound")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./CompositeSound.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;Use 8hz16bitmono for most J2ME
+(define SelectSound%
+  (class CompositeSound%
+    (super-new)))
+(define (SelectSound.jclassValue) SelectSound%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define SelectSound.jcell_soundInterface 'jnone)
+(define (SelectSound.jstatic_soundInterface)
+  (when (eq? SelectSound.jcell_soundInterface 'jnone) (set! SelectSound.jcell_soundInterface (SelectSound.jnew_0)))
+  SelectSound.jcell_soundInterface)
+(define (SelectSound.jsetstatic_soundInterface value) (set! SelectSound.jcell_soundInterface value))
 
---Use 8hz16bitmono for most J2ME
-local SelectSound = {}
-SelectSound.__index = SelectSound
-SelectSound.className = "SelectSound"
-setmetatable(SelectSound, {__index = CompositeSound})
+(define (SelectSound.jnew_0)
+  (define this (new SelectSound% [jclass "SelectSound"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
+
+(define (SelectSound.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (SelectSound.jstatic_soundInterface)))))
 
 
-function SelectSound.new()
-    local self = setmetatable(CompositeSound.new("resource:/wav/select.wav"), SelectSound)
-        -- super(...) made self above
-    return self
-end
-
-
-function SelectSound.getInstance()
-        return SelectSound.soundInterface
-end
-
-SelectSound.soundInterface = SelectSound.new()
-
-return SelectSound
 

@@ -1,49 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.persistance
 
-local KeyValuePersistance = require("org.allbinary.game.configuration.persistance.KeyValuePersistance")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./KeyValuePersistance.rkt")
+(lazy-require ["./GamePersistanceStrings.rkt" (GamePersistanceStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameConfigurationPersistanceSingleton%
+  (class KeyValuePersistance%
+    (super-new)))
+(define (GameConfigurationPersistanceSingleton.jclassValue) GameConfigurationPersistanceSingleton%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameConfigurationPersistanceSingleton.jcell_GAME_PERSISTANCE 'jnone)
+(define (GameConfigurationPersistanceSingleton.jstatic_GAME_PERSISTANCE)
+  (when (eq? GameConfigurationPersistanceSingleton.jcell_GAME_PERSISTANCE 'jnone) (set! GameConfigurationPersistanceSingleton.jcell_GAME_PERSISTANCE (GameConfigurationPersistanceSingleton.jnew_0)))
+  GameConfigurationPersistanceSingleton.jcell_GAME_PERSISTANCE)
+(define (GameConfigurationPersistanceSingleton.jsetstatic_GAME_PERSISTANCE value) (set! GameConfigurationPersistanceSingleton.jcell_GAME_PERSISTANCE value))
 
-local GameConfigurationPersistanceSingleton = {}
-GameConfigurationPersistanceSingleton.__index = GameConfigurationPersistanceSingleton
-GameConfigurationPersistanceSingleton.className = "GameConfigurationPersistanceSingleton"
-setmetatable(GameConfigurationPersistanceSingleton, {__index = KeyValuePersistance})
+(define (GameConfigurationPersistanceSingleton.jnew_0)
+  (define this (new GameConfigurationPersistanceSingleton% [jclass "GameConfigurationPersistanceSingleton"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
+
+(define (GameConfigurationPersistanceSingleton.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameConfigurationPersistanceSingleton.jstatic_GAME_PERSISTANCE)))))
 
 
-function GameConfigurationPersistanceSingleton.getInstance()
-        return GameConfigurationPersistanceSingleton.GAME_PERSISTANCE
-end
-
-
-function GameConfigurationPersistanceSingleton.new()
-    local self = setmetatable(KeyValuePersistance.new(GamePersistanceStrings.getInstance().SAVED_GAME_CONFIGURATION_RECORD_ID), GameConfigurationPersistanceSingleton)
-        -- super(...) made self above
-    return self
-end
-
-GameConfigurationPersistanceSingleton.GAME_PERSISTANCE = GameConfigurationPersistanceSingleton.new()
-
-return GameConfigurationPersistanceSingleton
 

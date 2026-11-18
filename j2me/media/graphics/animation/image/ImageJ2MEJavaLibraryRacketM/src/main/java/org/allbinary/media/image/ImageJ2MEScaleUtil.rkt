@@ -1,98 +1,81 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2023 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2023 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/Image.rkt" (Image.jm_createRGBImage_4)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define ImageJ2MEScaleUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_scaleArray_3 _images _width _height)
+    (let ([_scaledImages JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _scaledImages (JR.newArray JR.null (vector-length _images)))
+        (begin
+            (set! _index (vector-length _images))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (vector-set! _scaledImages _index (send this jm_scale_3 (vector-ref _images _index) _width _height))) (jloop)))))
+        (jreturn _scaledImages))))
+    (define/public (jm_scale_3 _image _width _height)
+    (let ([_sourceWidth JR.null][_sourceHeight JR.null][_originalData JR.null][_scaledData JR.null][_heightRatioFactor JR.null][_widthRatioFactor JR.null][_scaledIndex JR.null][_dx JR.null][_dy JR.null][_index2 JR.null][_index JR.null][_scaledImage JR.null])
+      (let/ec jreturn
+        (set! _sourceWidth (send _image jm_getWidth_0))
+        (set! _sourceHeight (send _image jm_getHeight_0))
+        (set! _originalData (JR.newArray 0 (JR.i32 (* (send _image jm_getWidth_0) (send _image jm_getHeight_0)))))
+        (send _image jm_getRGB_7 _originalData 0 (send _image jm_getWidth_0) 0 0 (send _image jm_getWidth_0) (send _image jm_getHeight_0))
+        (set! _scaledData (JR.newArray 0 (JR.i32 (* _width _height))))
+        (set! _heightRatioFactor (JR.idiv (JR.i32 (* 8 _sourceHeight)) _height))
+        (set! _widthRatioFactor (JR.idiv (JR.i32 (* 8 _sourceWidth)) _width))
+        (set! _scaledIndex (JR.i32 (- (vector-length _scaledData) 1)))
+        (set! _dx 0)
+        (set! _dy 0)
+        (begin
+            (set! _index _height)
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (set! _dy (arithmetic-shift (JR.i32 (* _index _heightRatioFactor)) (- (bitwise-and 3 31))))
+            (begin
+                (set! _index2 _width)
+                (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index2 1))]) (set! _index2 jvalue) jvalue) 0)
+                    (let/ec jcontinue
+                (set! _dx (arithmetic-shift (JR.i32 (* _index2 _widthRatioFactor)) (- (bitwise-and 3 31))))
+                (vector-set! _scaledData (let ([jvalue _scaledIndex]) (set! _scaledIndex (JR.i32 (- _scaledIndex 1))) jvalue) (vector-ref _originalData (JR.i32 (+ (JR.i32 (* _sourceWidth _dy)) _dx))))) (jloop)))))) (jloop)))))
+        (set! _scaledImage (Image.jm_createRGBImage_4 _scaledData _width _height #t))
+        (jreturn _scaledImage))))))
+(define (ImageJ2MEScaleUtil.jclassValue) ImageJ2MEScaleUtil%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageJ2MEScaleUtil.jcell_instance 'jnone)
+(define (ImageJ2MEScaleUtil.jstatic_instance)
+  (when (eq? ImageJ2MEScaleUtil.jcell_instance 'jnone) (set! ImageJ2MEScaleUtil.jcell_instance (ImageJ2MEScaleUtil.jnew_0)))
+  ImageJ2MEScaleUtil.jcell_instance)
+(define (ImageJ2MEScaleUtil.jsetstatic_instance value) (set! ImageJ2MEScaleUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (ImageJ2MEScaleUtil.jnew_0)
+  (define this (new ImageJ2MEScaleUtil% [jclass "ImageJ2MEScaleUtil"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local ImageJ2MEScaleUtil = {}
-ImageJ2MEScaleUtil.__index = ImageJ2MEScaleUtil
-ImageJ2MEScaleUtil.className = "ImageJ2MEScaleUtil"
-
-
-function ImageJ2MEScaleUtil.getInstance()
-        return ImageJ2MEScaleUtil.instance
-end
+(define (ImageJ2MEScaleUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageJ2MEScaleUtil.jstatic_instance)))))
 
 
-function ImageJ2MEScaleUtil.new()
-    local self = setmetatable({}, ImageJ2MEScaleUtil)
-    return self
-end
-
-
--- throws Exception
-function ImageJ2MEScaleUtil:scaleArray(images, width, height)
-        local scaledImages = java_new_array(nil, (images.n or #images))
-        do
-            local index = (images.n or #images)
-            while (function() index = index - 1 return index end)() >= 0 do
-            scaledImages[index + 1] = self:scale(images[index + 1], width, height)
-            end
-        end
-        return scaledImages
-end
-
-
--- throws Exception
-function ImageJ2MEScaleUtil:scale(image, width, height)
-        local sourceWidth = image:getWidth()
-        local sourceHeight = image:getHeight()
-        local originalData = java_new_array(0, image:getWidth() * image:getHeight())
-        image:getRGB(originalData, 0, image:getWidth(), 0, 0, image:getWidth(), image:getHeight())
-        local scaledData = java_new_array(0, width * height)
-        local heightRatioFactor = java_idiv((8 * sourceHeight), height)
-        local widthRatioFactor = java_idiv((8 * sourceWidth), width)
-        local scaledIndex = (scaledData.n or #scaledData) - 1
-        local dx = 0
-        local dy = 0
-        do
-            local index = height
-            while (function() index = index - 1 return index end)() >= 0 do
-            dy = (((index * heightRatioFactor)) // (1 << (3)))
-            do
-                local index2 = width
-                while (function() index2 = index2 - 1 return index2 end)() >= 0 do
-                dx = (((index2 * widthRatioFactor)) // (1 << (3)))
-                scaledData[(function() local value = scaledIndex scaledIndex = value - 1 return value end)() + 1] = originalData[(sourceWidth * dy) + dx + 1]
-                end
-            end
-            end
-        end
-        local scaledImage = Image.createRGBImage(scaledData, width, height, true)
-        return scaledImage
-end
-
-ImageJ2MEScaleUtil.instance = ImageJ2MEScaleUtil.new()
-
-return ImageJ2MEScaleUtil
 

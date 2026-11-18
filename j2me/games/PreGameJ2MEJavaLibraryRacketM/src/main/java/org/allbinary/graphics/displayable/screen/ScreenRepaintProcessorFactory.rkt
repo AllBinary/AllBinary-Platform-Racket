@@ -1,58 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.displayable.screen
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local Processor = require("org.allbinary.canvas.Processor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/J2MEUtil.rkt" (J2MEUtil.jm_isJ2ME_0)])
+(lazy-require ["../../../../../org/allbinary/canvas/Processor.rkt" (Processor.jm_getInstance_0)])
+(lazy-require ["./ScreenRepaintProcessor.rkt" (ScreenRepaintProcessor.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ScreenRepaintProcessorFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_create_1 _displayable)
+    (let ()
+      (let/ec jreturn
+        (if (not (J2MEUtil.jm_isJ2ME_0))
+            (begin
+            (jreturn (ScreenRepaintProcessor.jnew_1 _displayable)))
+            (begin
+            (jreturn (Processor.jm_getInstance_0)))))))))
+(define (ScreenRepaintProcessorFactory.jclassValue) ScreenRepaintProcessorFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ScreenRepaintProcessorFactory.jcell_instance 'jnone)
+(define (ScreenRepaintProcessorFactory.jstatic_instance)
+  (when (eq? ScreenRepaintProcessorFactory.jcell_instance 'jnone) (set! ScreenRepaintProcessorFactory.jcell_instance (ScreenRepaintProcessorFactory.jnew_0)))
+  ScreenRepaintProcessorFactory.jcell_instance)
+(define (ScreenRepaintProcessorFactory.jsetstatic_instance value) (set! ScreenRepaintProcessorFactory.jcell_instance value))
 
-local ScreenRepaintProcessorFactory = {}
-ScreenRepaintProcessorFactory.__index = ScreenRepaintProcessorFactory
-ScreenRepaintProcessorFactory.className = "ScreenRepaintProcessorFactory"
+(define (ScreenRepaintProcessorFactory.jnew_0)
+  (define this (new ScreenRepaintProcessorFactory% [jclass "ScreenRepaintProcessorFactory"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function ScreenRepaintProcessorFactory.getInstance()
-        return ScreenRepaintProcessorFactory.instance
-end
-
-
-function ScreenRepaintProcessorFactory.new()
-    local self = setmetatable({}, ScreenRepaintProcessorFactory)
-    return self
-end
+(define (ScreenRepaintProcessorFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ScreenRepaintProcessorFactory.jstatic_instance)))))
 
 
-function ScreenRepaintProcessorFactory:create(displayable)
-        if not J2MEUtil.isJ2ME() then
-            return ScreenRepaintProcessor.new(displayable)
-        else
-            return Processor.getInstance()
-        end
-end
-
-ScreenRepaintProcessorFactory.instance = ScreenRepaintProcessorFactory.new()
-
-return ScreenRepaintProcessorFactory
 

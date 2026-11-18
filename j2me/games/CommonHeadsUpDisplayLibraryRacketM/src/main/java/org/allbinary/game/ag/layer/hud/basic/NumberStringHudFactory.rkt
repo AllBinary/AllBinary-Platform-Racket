@@ -1,86 +1,63 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.hud.basic
 
-local BasicHudFactory = require("org.allbinary.game.graphics.hud.BasicHudFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../../../org/allbinary/game/graphics/hud/BasicHudFactory.rkt" (BasicHudFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./NumberStringHud.rkt" (NumberStringHud.jnew_6)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define NumberStringHudFactory%
+  (class JObject%
+    (super-new)
+    (field [f_NULL_NUMBER_STRING_HUD JR.null])
+    (define/public (jm_createHud_0)
+    (let ([_logUtil JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _logUtil (LogUtil.jm_getInstance_0))
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send _logUtil jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_CONSTRUCTOR _commonStrings) _e)
+            (raise (JR.newException "RuntimeException")))])
+            (jreturn (NumberStringHud.jnew_6 (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) 9 (get-field f_ABSOLUTE (BasicHudFactory.jm_getInstance_0)) 1 0 (get-field f_NULL_COLOR (BasicColorFactory.jm_getInstance_0))))))))))
+(define (NumberStringHudFactory.jclassValue) NumberStringHudFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NumberStringHudFactory.jcell_instance 'jnone)
+(define (NumberStringHudFactory.jstatic_instance)
+  (when (eq? NumberStringHudFactory.jcell_instance 'jnone) (set! NumberStringHudFactory.jcell_instance (NullUtil.jm_getInstance_0)))
+  NumberStringHudFactory.jcell_instance)
+(define (NumberStringHudFactory.jsetstatic_instance value) (set! NumberStringHudFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (NumberStringHudFactory.jnew_0)
+  (define this (new NumberStringHudFactory% [jclass "NumberStringHudFactory"]))
+    (set-field! f_NULL_NUMBER_STRING_HUD this (send this jm_createHud_0))
+  this)
 
-local NumberStringHudFactory = {}
-NumberStringHudFactory.__index = NumberStringHudFactory
-NumberStringHudFactory.className = "NumberStringHudFactory"
-
-function NumberStringHudFactory:_init_fields()
-    self.NULL_NUMBER_STRING_HUD = self:createHud()
-end
-
-function NumberStringHudFactory.new()
-    local self = setmetatable({}, NumberStringHudFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function NumberStringHudFactory.getInstance()
-        if NumberStringHudFactory.instance == NullUtil.getInstance() then
-            NumberStringHudFactory.instance = NumberStringHudFactory.new()
-        end
-        return NumberStringHudFactory.instance
-end
+(define (NumberStringHudFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (NumberStringHudFactory.jstatic_instance) (NullUtil.jm_getInstance_0))
+            (begin
+            (set! NumberStringHudFactory.jcell_instance (NumberStringHudFactory.jnew_0))))
+        (jreturn (NumberStringHudFactory.jstatic_instance)))))
 
 
-function NumberStringHudFactory:createHud()
-        local try_ok, try_error = pcall(function()
-            return NumberStringHud.new(StringUtil.getInstance().EMPTY_STRING, 9, BasicHudFactory.getInstance().ABSOLUTE, 1, 0, BasicColorFactory.getInstance().NULL_COLOR)
-        end)
-        if not try_ok then
-            local e = try_error
-            local logUtil = LogUtil.getInstance()
-            local commonStrings = CommonStrings.getInstance()
-            logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-            error(java_exception("RuntimeException"), 0)
-        end
-end
-
-NumberStringHudFactory.instance = NullUtil.getInstance()
-
-return NumberStringHudFactory
 

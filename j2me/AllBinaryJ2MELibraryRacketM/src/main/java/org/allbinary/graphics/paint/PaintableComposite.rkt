@@ -1,62 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./Paintable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PaintableComposite%
+  (class Paintable%
+    (super-new)
+    (field [f_paintableArray JR.null])
+    (define/override (jm_paint_1 _graphics)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (JR.i32 (- (vector-length (get-field f_paintableArray this)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (JR.className (vector-ref (get-field f_paintableArray this) _index)))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))
+    (define/override (jm_paintThreed_1 _graphics)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (JR.i32 (- (vector-length (get-field f_paintableArray this)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (JR.className (vector-ref (get-field f_paintableArray this) _index)))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))))
+(define (PaintableComposite.jclassValue) PaintableComposite%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PaintableComposite = {}
-PaintableComposite.__index = PaintableComposite
-PaintableComposite.className = "PaintableComposite"
-setmetatable(PaintableComposite, {__index = Paintable})
-
-function PaintableComposite:_init_fields()
-    self.paintableArray = nil
-end
-
-
-function PaintableComposite.new(paintableArray)
-    local self = setmetatable(Paintable.new(), PaintableComposite)
-    self:_init_fields()
-        self.paintableArray = paintableArray
-    return self
-end
-
-
-function PaintableComposite:paint(graphics)
-        for index = (self.paintableArray.n or #self.paintableArray) - 1, 0, -1 do
-            self.paintableArray[index + 1]:paint(graphics)
-        end
-end
+(define (PaintableComposite.jnew_1 _paintableArray)
+  (define this (new PaintableComposite% [jclass "PaintableComposite"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_paintableArray this _paintableArray)))
+  this)
 
 
-function PaintableComposite:paintThreed(graphics)
-        for index = (self.paintableArray.n or #self.paintableArray) - 1, 0, -1 do
-            self.paintableArray[index + 1]:paintThreed(graphics)
-        end
-end
-
-return PaintableComposite
 

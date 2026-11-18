@@ -1,47 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.pickup
 
-local LayerInterfaceFactoryInterface = require("org.allbinary.layer.LayerInterfaceFactoryInterface")
-local PickedUpLayerInterfaceFactoryInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/layer/LayerInterfaceFactoryInterface.rkt"
+  "./PickedUpLayerInterfaceFactoryInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CountedPickedUpLayerInterfaceFactoryInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getId_0)
+      (raise (JR.newException "AbstractMethodError" "getId")))
+    (define/public (jm_getTotal_0)
+      (raise (JR.newException "AbstractMethodError" "getTotal")))))
+(define (CountedPickedUpLayerInterfaceFactoryInterface.jclassValue) CountedPickedUpLayerInterfaceFactoryInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local CountedPickedUpLayerInterfaceFactoryInterface = {}
-CountedPickedUpLayerInterfaceFactoryInterface.__index = CountedPickedUpLayerInterfaceFactoryInterface
-CountedPickedUpLayerInterfaceFactoryInterface.className = "CountedPickedUpLayerInterfaceFactoryInterface"
-setmetatable(CountedPickedUpLayerInterfaceFactoryInterface, {__index = PickedUpLayerInterfaceFactoryInterface})
-
-
-function CountedPickedUpLayerInterfaceFactoryInterface:getId()
-    error("abstract method getId")
-end
+(define (CountedPickedUpLayerInterfaceFactoryInterface.jnew_0)
+  (define this (new CountedPickedUpLayerInterfaceFactoryInterface% [jclass "CountedPickedUpLayerInterfaceFactoryInterface"]))
+  this)
 
 
-function CountedPickedUpLayerInterfaceFactoryInterface:getTotal()
-    error("abstract method getTotal")
-end
-
-return CountedPickedUpLayerInterfaceFactoryInterface
 

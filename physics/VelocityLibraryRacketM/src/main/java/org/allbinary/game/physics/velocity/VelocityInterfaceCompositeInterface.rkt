@@ -1,39 +1,33 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.velocity
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.physics.velocity
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define VelocityInterfaceCompositeInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getVelocityProperties_0)
+      (raise (JR.newException "AbstractMethodError" "getVelocityProperties")))))
+(define (VelocityInterfaceCompositeInterface.jclassValue) VelocityInterfaceCompositeInterface%)
+
+(define (VelocityInterfaceCompositeInterface.jnew_0)
+  (define this (new VelocityInterfaceCompositeInterface% [jclass "VelocityInterfaceCompositeInterface"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local VelocityInterfaceCompositeInterface = {}
-VelocityInterfaceCompositeInterface.__index = VelocityInterfaceCompositeInterface
-VelocityInterfaceCompositeInterface.className = "VelocityInterfaceCompositeInterface"
-
-
-function VelocityInterfaceCompositeInterface:getVelocityProperties()
-    error("abstract method getVelocityProperties")
-end
-
-return VelocityInterfaceCompositeInterface
 

@@ -1,107 +1,83 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.resources
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.resources
 
-local GameConfigurationCentral = require("org.allbinary.game.configuration.GameConfigurationCentral")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/game/configuration/GameConfigurationCentral.rkt" (GameConfigurationCentral.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./GameGraphicsResourceUtil.rkt" (GameGraphicsResourceUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define BasicGameResources%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_RESOURCE JR.null])
+    (field [f_RESOURCE_DESTROY JR.null])
+    (define/public (jm_init_2 _ROOT _SIZE)
+    (let ([_scale JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_INIT _commonStrings) _e))])
+            (set! _scale (JR.className (JR.className (get-field f_SCALE (GameConfigurationCentral.jm_getInstance_0)))))
+            (if (and (> _scale 1) (< (JR.i32 (- _scale 1)) (vector-length _SIZE)))
+                (begin
+                (send this jm_append_2 _ROOT (vector-ref _SIZE (JR.i32 (- _scale 1)))))
+                (begin
+                (raise (JR.newException "Exception" (send (send (send (StringMaker.jnew_0) jm_append_1 "Invalid Value: ") jm_appendint_1 _scale) jm_toString_0)))))))))
+    (define/public (jm_append_2 _ROOT _sizeString)
+    (let ([_DESTROY JR.null][_string JR.null])
+      (let/ec jreturn
+        (set! _DESTROY "_destroy")
+        (set! _string (send this jm_getString_0))
+        (JR.className (BasicGameResources.jstatic_stringBuffer))
+        (JR.className (BasicGameResources.jstatic_stringBuffer))
+        (JR.className (BasicGameResources.jstatic_stringBuffer))
+        (JR.className (BasicGameResources.jstatic_stringBuffer))
+        (set-field! f_RESOURCE this (JR.toString (BasicGameResources.jstatic_stringBuffer)))
+        (JR.className (BasicGameResources.jstatic_stringBuffer))
+        (JR.className (BasicGameResources.jstatic_stringBuffer))
+        (JR.className (BasicGameResources.jstatic_stringBuffer))
+        (JR.className (BasicGameResources.jstatic_stringBuffer))
+        (JR.className (BasicGameResources.jstatic_stringBuffer))
+        (set-field! f_RESOURCE_DESTROY this (JR.toString (BasicGameResources.jstatic_stringBuffer))))))
+    (define/public (jm_getString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (GameGraphicsResourceUtil.jm_getInstance_0) jm_getName_0)))))))
+(define (BasicGameResources.jclassValue) BasicGameResources%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicGameResources.jcell_stringBuffer 'jnone)
+(define (BasicGameResources.jstatic_stringBuffer)
+  (when (eq? BasicGameResources.jcell_stringBuffer 'jnone) (set! BasicGameResources.jcell_stringBuffer (StringMaker.jnew_0)))
+  BasicGameResources.jcell_stringBuffer)
+(define (BasicGameResources.jsetstatic_stringBuffer value) (set! BasicGameResources.jcell_stringBuffer value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BasicGameResources = {}
-BasicGameResources.__index = BasicGameResources
-BasicGameResources.className = "BasicGameResources"
-
-function BasicGameResources:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.RESOURCE = StringUtil.getInstance().EMPTY_STRING
-    self.RESOURCE_DESTROY = StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function BasicGameResources.new()
-    local self = setmetatable({}, BasicGameResources)
-    self:_init_fields()
-    return self
-end
-
-
-function BasicGameResources:init(ROOT, SIZE)
-        local try_ok, try_error = pcall(function()
-            local scale = math.tointeger(GameConfigurationCentral.getInstance().SCALE:getValue() // 1)
-            if scale > 1 and scale - 1 < (SIZE.n or #SIZE) then
-                self:append(ROOT, SIZE[scale - 1 + 1])
-            else
-                error(java_exception("Exception", tostring(StringMaker.new():append("Invalid Value: "):appendint(scale))), 0)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.INIT, e)
-        end
-end
-
-
--- throws Exception
-function BasicGameResources:append(ROOT, sizeString)
-        local DESTROY = "_destroy"
-        local string = self:getString()
-        BasicGameResources.stringBuffer:delete(0, BasicGameResources.stringBuffer:length())
-        BasicGameResources.stringBuffer:append(ROOT)
-        BasicGameResources.stringBuffer:append(string)
-        BasicGameResources.stringBuffer:append(sizeString)
-        self.RESOURCE = tostring(BasicGameResources.stringBuffer)
-        BasicGameResources.stringBuffer:delete(0, BasicGameResources.stringBuffer:length())
-        BasicGameResources.stringBuffer:append(ROOT)
-        BasicGameResources.stringBuffer:append(DESTROY)
-        BasicGameResources.stringBuffer:append(string)
-        BasicGameResources.stringBuffer:append(sizeString)
-        self.RESOURCE_DESTROY = tostring(BasicGameResources.stringBuffer)
-end
+(define (BasicGameResources.jnew_0)
+  (define this (new BasicGameResources% [jclass "BasicGameResources"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_RESOURCE this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (set-field! f_RESOURCE_DESTROY this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
--- throws Exception
-function BasicGameResources:getString()
-        return GameGraphicsResourceUtil.getInstance():getName()
-end
-
-BasicGameResources.stringBuffer = StringMaker.new()
-
-return BasicGameResources
 

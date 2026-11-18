@@ -29,11 +29,13 @@
         (set! _dx (JR.i32 (- _x1 _x2)))
         (set! _dy (JR.i32 (- _y1 _y2)))
         (jreturn (send (get-field f_mathUtil this) jm_sqrt_1 (JR.i32 (+ (JR.i32 (* _dx _dx)) (JR.i32 (* _dy _dy)))))))))))
+(define (DistanceUtil.jclassValue) DistanceUtil%)
 
 (define DistanceUtil.jcell_instance 'jnone)
 (define (DistanceUtil.jstatic_instance)
   (when (eq? DistanceUtil.jcell_instance 'jnone) (set! DistanceUtil.jcell_instance (DistanceUtil.jnew_0)))
   DistanceUtil.jcell_instance)
+(define (DistanceUtil.jsetstatic_instance value) (set! DistanceUtil.jcell_instance value))
 
 (define (DistanceUtil.jnew_0)
   (define this (new DistanceUtil% [jclass "DistanceUtil"]))

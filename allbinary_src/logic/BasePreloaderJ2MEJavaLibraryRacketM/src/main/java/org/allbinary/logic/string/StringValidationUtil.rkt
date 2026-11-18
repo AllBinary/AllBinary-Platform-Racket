@@ -105,11 +105,13 @@
             (jreturn #f))
             (begin
             (jreturn #t))))))))
+(define (StringValidationUtil.jclassValue) StringValidationUtil%)
 
 (define StringValidationUtil.jcell_instance 'jnone)
 (define (StringValidationUtil.jstatic_instance)
   (when (eq? StringValidationUtil.jcell_instance 'jnone) (set! StringValidationUtil.jcell_instance (StringValidationUtil.jnew_0)))
   StringValidationUtil.jcell_instance)
+(define (StringValidationUtil.jsetstatic_instance value) (set! StringValidationUtil.jcell_instance value))
 
 (define (StringValidationUtil.jnew_0)
   (define this (new StringValidationUtil% [jclass "StringValidationUtil"]))

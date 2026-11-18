@@ -1,118 +1,107 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./CellPosition.rkt" (CellPosition.jnew_4)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define CellPositionFactory%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_NONE JR.null])
+    (field [f_cellPositionArray JR.null])
+    (field [f_columns 0])
+    (field [f_rows 0])
+    (define/public (jm_init_2 _columns _rows)
+    (let ([_commonStrings JR.null][_stringBuffer JR.null][_row JR.null][_column JR.null])
+      (let/ec jreturn
+        (set! _commonStrings (CommonStrings.jm_getInstance_0))
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 "Init: columns: ")
+        (send _stringBuffer jm_appendint_1 _columns)
+        (send _stringBuffer jm_append_1 " rows: ")
+        (send _stringBuffer jm_appendint_1 _rows)
+        (send (get-field f_logUtil this) jm_putF_3 (send _stringBuffer jm_toString_0) this (get-field f_INIT _commonStrings))
+        (set-field! f_cellPositionArray this (JR.newArray JR.null _columns _rows))
+        (set-field! f_columns this _columns)
+        (set-field! f_rows this _rows)
+        (begin
+            (set! _column 0)
+            (let/ec jbreak (let jloop () (when (< _column _columns)
+                (let/ec jcontinue
+            (begin
+                (set! _row 0)
+                (let/ec jbreak (let jloop () (when (< _row _rows)
+                    (let/ec jcontinue
+                (send this jm_createInstance_2 _column _row))
+                    (set! _row (JR.i32 (+ _row 1))) (jloop))))))
+                (set! _column (JR.i32 (+ _column 1))) (jloop))))))))
+    (define/public (jm_getInstanceColRow_2 _i_column _i_row)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (send (send (send (send (send (send (send (send (send (StringMaker.jnew_0) jm_append_1 "columns: ") jm_appendint_1 (send this jm_getColumns_0)) jm_append_1 " rows: ") jm_appendint_1 (send this jm_getRows_0)) jm_append_1 " col: ") jm_appendint_1 _i_column) jm_append_1 " row: ") jm_appendint_1 _i_row) jm_toString_0) this (get-field f_GET_INSTANCE _commonStrings) _e)
+            (jreturn (get-field f_NONE this)))])
+            (jreturn (vector-ref (vector-ref (get-field f_cellPositionArray this) _i_column) _i_row))))))
+    (define/public (jm_createInstance_2 _i_column _i_row)
+    (let ([_cellPositionCanBeNull JR.null])
+      (let/ec jreturn
+        (set! _cellPositionCanBeNull (vector-ref (vector-ref (get-field f_cellPositionArray this) _i_column) _i_row))
+        (when (JR.null? _cellPositionCanBeNull)
+            (begin
+            (set! _cellPositionCanBeNull (CellPosition.jnew_4 _i_column _i_row (get-field f_columns this) (get-field f_rows this)))
+            (vector-set! (vector-ref (get-field f_cellPositionArray this) _i_column) _i_row _cellPositionCanBeNull)))
+        (jreturn _cellPositionCanBeNull))))
+    (define/public (jm_getColumns_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_columns this)))))
+    (define/public (jm_getRows_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_rows this)))))))
+(define (CellPositionFactory.jclassValue) CellPositionFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CellPositionFactory.jcell_SINGLETON 'jnone)
+(define (CellPositionFactory.jstatic_SINGLETON)
+  (when (eq? CellPositionFactory.jcell_SINGLETON 'jnone) (set! CellPositionFactory.jcell_SINGLETON (CellPositionFactory.jnew_0)))
+  CellPositionFactory.jcell_SINGLETON)
+(define (CellPositionFactory.jsetstatic_SINGLETON value) (set! CellPositionFactory.jcell_SINGLETON value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (CellPositionFactory.jnew_0)
+  (define this (new CellPositionFactory% [jclass "CellPositionFactory"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_NONE this (CellPosition.jnew_4 (JR.i32 (- 1)) (JR.i32 (- 1)) (JR.i32 (- 1)) (JR.i32 (- 1))))
+    (set-field! f_cellPositionArray this (JR.newArray JR.null 0 0))
+    
+    
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local CellPositionFactory = {}
-CellPositionFactory.__index = CellPositionFactory
-CellPositionFactory.className = "CellPositionFactory"
-
-function CellPositionFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.NONE = CellPosition.new(-1, -1, -1, -1)
-    self.cellPositionArray = java_new_array(nil, 0, 0)
-    self.columns = 0
-    self.rows = 0
-end
-
-
-function CellPositionFactory.getInstance()
-        return CellPositionFactory.SINGLETON
-end
-
-
-function CellPositionFactory.new()
-    local self = setmetatable({}, CellPositionFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function CellPositionFactory:init(columns, rows)
-        local commonStrings = CommonStrings.getInstance()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Init: columns: ")
-        stringBuffer:appendint(columns)
-        stringBuffer:append(" rows: ")
-        stringBuffer:appendint(rows)
-        self.logUtil:putF(tostring(stringBuffer), self, commonStrings.INIT)
-        self.cellPositionArray = java_new_array(nil, columns, rows)
-        self.columns = columns
-        self.rows = rows
-        for column = 0, columns - 1 do
-            for row = 0, rows - 1 do
-                self:createInstance(column, row)
-            end
-        end
-end
-
-
-function CellPositionFactory:getInstanceColRow(i_column, i_row)
-        local try_ok, try_error = pcall(function()
-            return self.cellPositionArray[i_column + 1][i_row + 1]
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(tostring(StringMaker.new():append("columns: "):appendint(self:getColumns()):append(" rows: "):appendint(self:getRows()):append(" col: "):appendint(i_column):append(" row: "):appendint(i_row)), self, commonStrings.GET_INSTANCE, e)
-            return self.NONE
-        end
-end
-
-
-function CellPositionFactory:createInstance(i_column, i_row)
-        local cellPositionCanBeNull = self.cellPositionArray[i_column + 1][i_row + 1]
-        if cellPositionCanBeNull == nil then
-            cellPositionCanBeNull = CellPosition.new(i_column, i_row, self.columns, self.rows)
-            self.cellPositionArray[i_column + 1][i_row + 1] = cellPositionCanBeNull
-        end
-        return cellPositionCanBeNull
-end
-
-
-function CellPositionFactory:getColumns()
-        return self.columns
-end
+(define (CellPositionFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (CellPositionFactory.jstatic_SINGLETON)))))
 
 
-function CellPositionFactory:getRows()
-        return self.rows
-end
-
-CellPositionFactory.SINGLETON = CellPositionFactory.new()
-
-return CellPositionFactory
 

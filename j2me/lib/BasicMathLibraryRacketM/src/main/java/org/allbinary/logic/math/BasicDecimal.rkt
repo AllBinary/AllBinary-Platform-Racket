@@ -126,11 +126,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_factorValue this)))))))
+(define (BasicDecimal.jclassValue) BasicDecimal%)
 
 (define BasicDecimal.jcell_ZERO_BIGDECIMAL 'jnone)
 (define (BasicDecimal.jstatic_ZERO_BIGDECIMAL)
   (when (eq? BasicDecimal.jcell_ZERO_BIGDECIMAL 'jnone) (set! BasicDecimal.jcell_ZERO_BIGDECIMAL (BasicDecimal.jnew_1 0)))
   BasicDecimal.jcell_ZERO_BIGDECIMAL)
+(define (BasicDecimal.jsetstatic_ZERO_BIGDECIMAL value) (set! BasicDecimal.jcell_ZERO_BIGDECIMAL value))
 
 (define (BasicDecimal.jnew_1 _units)
   (define this (new BasicDecimal% [jclass "BasicDecimal"]))

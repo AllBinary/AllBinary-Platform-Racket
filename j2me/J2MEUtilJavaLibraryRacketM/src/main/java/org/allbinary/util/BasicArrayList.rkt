@@ -286,11 +286,13 @@
             (send _stringBuffer jm_append_1 _COMMA_SEP))
                 (set! _index (JR.i32 (+ _index 1))) (jloop)))))
         (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (BasicArrayList.jclassValue) BasicArrayList%)
 
 (define BasicArrayList.jcell_SIZE 'jnone)
 (define (BasicArrayList.jstatic_SIZE)
   (when (eq? BasicArrayList.jcell_SIZE 'jnone) (set! BasicArrayList.jcell_SIZE ", Size: "))
   BasicArrayList.jcell_SIZE)
+(define (BasicArrayList.jsetstatic_SIZE value) (set! BasicArrayList.jcell_SIZE value))
 
 (define (BasicArrayList.jnew_1 _objectArray)
   (define this (new BasicArrayList% [jclass "BasicArrayList"]))

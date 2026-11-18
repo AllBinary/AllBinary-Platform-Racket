@@ -1,71 +1,62 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define RendererStateFactory%
+  (class JObject%
+    (super-new)
+    (field [f_loaded #f])
+    (field [f_surfaceChanged #f])
+    (define/public (jm_setLoaded_1 _loaded)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_loaded this _loaded))))
+    (define/public (jm_isLoaded_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_loaded this)))))
+    (define/public (jm_setSurfaceChanged_1 _initialized)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_surfaceChanged this _initialized))))
+    (define/public (jm_isSurfaceChanged_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_surfaceChanged this)))))))
+(define (RendererStateFactory.jclassValue) RendererStateFactory%)
+
+(define RendererStateFactory.jcell_instance 'jnone)
+(define (RendererStateFactory.jstatic_instance)
+  (when (eq? RendererStateFactory.jcell_instance 'jnone) (set! RendererStateFactory.jcell_instance (RendererStateFactory.jnew_0)))
+  RendererStateFactory.jcell_instance)
+(define (RendererStateFactory.jsetstatic_instance value) (set! RendererStateFactory.jcell_instance value))
+
+(define (RendererStateFactory.jnew_0)
+  (define this (new RendererStateFactory% [jclass "RendererStateFactory"]))
+    (set-field! f_loaded this #f)
+    (set-field! f_surfaceChanged this #f)
+  this)
+
+(define (RendererStateFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (RendererStateFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local RendererStateFactory = {}
-RendererStateFactory.__index = RendererStateFactory
-RendererStateFactory.className = "RendererStateFactory"
-
-function RendererStateFactory:_init_fields()
-    self.loaded = false
-    self.surfaceChanged = false
-end
-
-function RendererStateFactory.new()
-    local self = setmetatable({}, RendererStateFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function RendererStateFactory.getInstance()
-        return RendererStateFactory.instance
-end
-
-
-function RendererStateFactory:setLoaded(loaded)
-        self.loaded = loaded
-end
-
-
-function RendererStateFactory:isLoaded()
-        return self.loaded
-end
-
-
-function RendererStateFactory:setSurfaceChanged(initialized)
-        self.surfaceChanged = initialized
-end
-
-
-function RendererStateFactory:isSurfaceChanged()
-        return self.surfaceChanged
-end
-
-RendererStateFactory.instance = RendererStateFactory.new()
-
-return RendererStateFactory
 

@@ -1,150 +1,117 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.business.advertisement
 
-local GameType = require("org.allbinary.game.GameType")
-local GameState = require("org.allbinary.game.state.GameState")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(lazy-require ["../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["./Advertisements.rkt" (Advertisements.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameAdStateBase%
+  (class JObject%
+    (super-new)
+    (field [f_adConfigurationP JR.null])
+    (field [f_advertisementsP JR.null])
+    (field [f_okayToShowAdsP #f])
+    (define/public (jm_initViewArray_1 _viewArray)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onStart_1 _anyType)
+    (let ()
+      (let/ec jreturn
+        (send this jm_init_0))))
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isShowingAtLocation_1 _location)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_isShowingAt_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_show_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_hide_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_PERFORMANCE_MESSAGE (EventStrings.jm_getInstance_0)) this))))
+    (define/public (jm_processAdState_2 _gameState _gameType)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_processPageAdState_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_playingAdState_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_playingAdStateWH_2 _width _height)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_notPlayingAdState_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setGameIsReady_1 _gameIsReady)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isGameIsReady_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_getAdvertisements_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_advertisementsP this)))))
+    (define/public (jm_getAdConfiguration_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_adConfigurationP this)))))
+    (define/public (jm_isOkayToShowPageAd_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_setOkayToShowAds_1 _okayToShowAds)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_okayToShowAdsP this _okayToShowAds))))
+    (define/public (jm_isOkayToShowAds_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_okayToShowAdsP this)))))
+    (define/public (jm_isEnabled_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))))
+(define (GameAdStateBase.jclassValue) GameAdStateBase%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameAdStateBase = {}
-GameAdStateBase.__index = GameAdStateBase
-GameAdStateBase.className = "GameAdStateBase"
-
-function GameAdStateBase:_init_fields()
-    self.adConfigurationP = nil
-    self.advertisementsP = Advertisements.new()
-    self.okayToShowAdsP = false
-end
-
-
-function GameAdStateBase.new(adConfiguration)
-    local self = setmetatable({}, GameAdStateBase)
-    self:_init_fields()
-        self.adConfigurationP = adConfiguration
-    return self
-end
-
-
-function GameAdStateBase:initViewArray(viewArray)
-end
-
-
-function GameAdStateBase:onStart(anyType)
-        self:init()
-end
-
-
-function GameAdStateBase:init()
-end
-
-
-function GameAdStateBase:isShowingAtLocation(location)
-        return false
-end
-
-
-function GameAdStateBase:isShowingAt()
-        return false
-end
-
-
-function GameAdStateBase:show()
-end
-
-
-function GameAdStateBase:hide()
-end
-
-
-function GameAdStateBase:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function GameAdStateBase:processAdState(gameState, gameType)
-end
-
-
-function GameAdStateBase:processPageAdState()
-end
-
-
--- throws Exception
-function GameAdStateBase:playingAdState()
-end
-
-
--- throws Exception
-function GameAdStateBase:playingAdStateWH(width, height)
-end
-
-
--- throws Exception
-function GameAdStateBase:notPlayingAdState()
-end
-
-
-function GameAdStateBase:setGameIsReady(gameIsReady)
-end
-
-
-function GameAdStateBase:isGameIsReady()
-        return false
-end
+(define (GameAdStateBase.jnew_1 _adConfiguration)
+  (define this (new GameAdStateBase% [jclass "GameAdStateBase"]))
+    
+    (set-field! f_advertisementsP this (Advertisements.jnew_0))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_adConfigurationP this _adConfiguration)))
+  this)
 
 
-function GameAdStateBase:getAdvertisements()
-        return self.advertisementsP
-end
-
-
-function GameAdStateBase:getAdConfiguration()
-        return self.adConfigurationP
-end
-
-
-function GameAdStateBase:isOkayToShowPageAd()
-        return false
-end
-
-
-function GameAdStateBase:setOkayToShowAds(okayToShowAds)
-        self.okayToShowAdsP = okayToShowAds
-end
-
-
-function GameAdStateBase:isOkayToShowAds()
-        return self.okayToShowAdsP
-end
-
-
-function GameAdStateBase:isEnabled()
-        return false
-end
-
-return GameAdStateBase
 

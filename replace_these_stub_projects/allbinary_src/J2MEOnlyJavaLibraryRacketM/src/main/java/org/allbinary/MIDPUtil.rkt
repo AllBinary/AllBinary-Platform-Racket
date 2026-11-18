@@ -1,81 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2026 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2026 AllBinary
+;;
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;
+;; Created By: Travis Berthelot
+;; 
+;; Generated Code Do Not Modify
+;; package org.allbinary
 
--- local IOException = require("java.io.IOException")
--- local InputStream = require("java.io.InputStream")
--- local Form = require("javax.microedition.lcdui.Form")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Item = require("javax.microedition.lcdui.Item")
--- local Manager = require("javax.microedition.media.Manager")
--- local MediaException = require("javax.microedition.media.MediaException")
--- local Player = require("javax.microedition.media.Player")
+(require racket/class racket/lazy-require
+  "../../allbinary_java.rkt"
+  "../../java/io/IOException.rkt"
+  "../../java/io/InputStream.rkt")
+(lazy-require ["../../javax/microedition/lcdui/Image.rkt" (Image.jm_createImage_2 Image.jm_createImage_3 Image.jm_createImage_1)])
+(lazy-require ["../../javax/microedition/media/Manager.rkt" (Manager.jm_createPlayer_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;like microemu-playn, so the languages without overloading can be generated. J2ME uses the MIDP overloads.
+(define MIDPUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_createImageWH_2 _width _height)
+    (let ()
+      (let/ec jreturn
+        (jreturn (Image.jm_createImage_2 _width _height)))))
+    (define/public (jm_createImageFromByteArray_3 _imageData _imageOffset _imageLength)
+    (let ()
+      (let/ec jreturn
+        (jreturn (Image.jm_createImage_3 _imageData _imageOffset _imageLength)))))
+    (define/public (jm_createImageFromInputStream_1 _inputStream)
+    (let ()
+      (let/ec jreturn
+        (jreturn (Image.jm_createImage_1 _inputStream)))))
+    (define/public (jm_createPlayerFromInputStream_2 _inputStream _type)
+    (let ()
+      (let/ec jreturn
+        (jreturn (Manager.jm_createPlayer_2 _inputStream _type)))))
+    (define/public (jm_appendItem_2 _form _item)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send _form jm_append_1 _item)))))))
+(define (MIDPUtil.jclassValue) MIDPUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define MIDPUtil.jcell_instance 'jnone)
+(define (MIDPUtil.jstatic_instance)
+  (when (eq? MIDPUtil.jcell_instance 'jnone) (set! MIDPUtil.jcell_instance (MIDPUtil.jnew_0)))
+  MIDPUtil.jcell_instance)
+(define (MIDPUtil.jsetstatic_instance value) (set! MIDPUtil.jcell_instance value))
 
---like microemu-playn, so the languages without overloading can be generated. J2ME uses the MIDP overloads.
-local MIDPUtil = {}
-MIDPUtil.__index = MIDPUtil
-MIDPUtil.className = "MIDPUtil"
+(define (MIDPUtil.jnew_0)
+  (define this (new MIDPUtil% [jclass "MIDPUtil"]))
+  this)
 
-function MIDPUtil.new()
-    local self = setmetatable({}, MIDPUtil)
-    return self
-end
-
-
-function MIDPUtil.getInstance()
-        return MIDPUtil.instance
-end
-
-
-function MIDPUtil:createImageWH(width, height)
-        return Image.createImage(width, height)
-end
-
-
-function MIDPUtil:createImageFromByteArray(imageData, imageOffset, imageLength)
-        return Image.createImage(imageData, imageOffset, imageLength)
-end
-
-
--- throws IOException
-function MIDPUtil:createImageFromInputStream(inputStream)
-        return Image.createImage(inputStream)
-end
-
-
--- throws IOException, MediaException
-function MIDPUtil:createPlayerFromInputStream(inputStream, type)
-        return Manager.createPlayer(inputStream, type)
-end
+(define (MIDPUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (MIDPUtil.jstatic_instance)))))
 
 
-function MIDPUtil:appendItem(form, item)
-        return form:append(item)
-end
-
-MIDPUtil.instance = MIDPUtil.new()
-
-return MIDPUtil
 

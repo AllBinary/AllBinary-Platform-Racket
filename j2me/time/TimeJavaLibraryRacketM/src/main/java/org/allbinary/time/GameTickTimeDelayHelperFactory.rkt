@@ -22,11 +22,13 @@
 (define GameTickTimeDelayHelperFactory%
   (class JObject%
     (super-new)))
+(define (GameTickTimeDelayHelperFactory.jclassValue) GameTickTimeDelayHelperFactory%)
 
 (define GameTickTimeDelayHelperFactory.jcell_instance 'jnone)
 (define (GameTickTimeDelayHelperFactory.jstatic_instance)
   (when (eq? GameTickTimeDelayHelperFactory.jcell_instance 'jnone) (set! GameTickTimeDelayHelperFactory.jcell_instance (GameTickTimeDelayHelper.jnew_1 (JR.i32 (- 1)))))
   GameTickTimeDelayHelperFactory.jcell_instance)
+(define (GameTickTimeDelayHelperFactory.jsetstatic_instance value) (set! GameTickTimeDelayHelperFactory.jcell_instance value))
 
 (define (GameTickTimeDelayHelperFactory.jnew_0)
   (define this (new GameTickTimeDelayHelperFactory% [jclass "GameTickTimeDelayHelperFactory"]))

@@ -1,84 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.business.advertisement
 
-local GameAdState = require("org.allbinary.game.GameAdState")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["./GameAdStateFactory.rkt" (GameAdStateFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BottomLimiter%
+  (class JObject%
+    (super-new)
+    (field [f_bottom 0])
+    (field [f_deltaY 0])
+    (field [f_lower 0])
+    (field [f_higher 0])
+    (define/public (jm_init_2 _lower _higher)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_lower this _lower)
+        (set-field! f_higher this _higher))))
+    (define/public (jm_update_0)
+    (let ([_displayInfo JR.null][_gameAdState JR.null])
+      (let/ec jreturn
+        (set! _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (set! _gameAdState (send (GameAdStateFactory.jm_getInstance_0) jm_getCurrentInstance_0))
+        (if (send _gameAdState jm_isShowingAt_0)
+            (begin
+            (set-field! f_deltaY this (get-field f_higher this)))
+            (begin
+            (set-field! f_deltaY this (get-field f_lower this))))
+        (set-field! f_bottom this (JR.i32 (- (send _displayInfo jm_getLastHeight_0) (get-field f_deltaY this)))))))
+    (define/public (jm_getDeltaY_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_deltaY this)))))
+    (define/public (jm_getBottom_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_bottom this)))))))
+(define (BottomLimiter.jclassValue) BottomLimiter%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define BottomLimiter.jcell_instance 'jnone)
+(define (BottomLimiter.jstatic_instance)
+  (when (eq? BottomLimiter.jcell_instance 'jnone) (set! BottomLimiter.jcell_instance (BottomLimiter.jnew_0)))
+  BottomLimiter.jcell_instance)
+(define (BottomLimiter.jsetstatic_instance value) (set! BottomLimiter.jcell_instance value))
 
-local BottomLimiter = {}
-BottomLimiter.__index = BottomLimiter
-BottomLimiter.className = "BottomLimiter"
+(define (BottomLimiter.jnew_0)
+  (define this (new BottomLimiter% [jclass "BottomLimiter"]))
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function BottomLimiter:_init_fields()
-    self.bottom = 0
-    self.deltaY = 0
-    self.lower = 0
-    self.higher = 0
-end
-
-
-function BottomLimiter.getInstance()
-        return BottomLimiter.instance
-end
-
-
-function BottomLimiter.new()
-    local self = setmetatable({}, BottomLimiter)
-    self:_init_fields()
-    return self
-end
-
-
-function BottomLimiter:init(lower, higher)
-        self.lower = lower
-        self.higher = higher
-end
-
-
-function BottomLimiter:update()
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        local gameAdState = GameAdStateFactory.getInstance():getCurrentInstance()
-        if gameAdState:isShowingAt() then
-            self.deltaY = self.higher
-        else
-            self.deltaY = self.lower
-        end
-        self.bottom = displayInfo:getLastHeight() - self.deltaY
-end
-
-
-function BottomLimiter:getDeltaY()
-        return self.deltaY
-end
+(define (BottomLimiter.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (BottomLimiter.jstatic_instance)))))
 
 
-function BottomLimiter:getBottom()
-        return self.bottom
-end
-
-BottomLimiter.instance = BottomLimiter.new()
-
-return BottomLimiter
 

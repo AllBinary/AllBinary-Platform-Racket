@@ -1,103 +1,83 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.sequence
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai.sequence
 
-local ArtificialIntelligence = require("org.allbinary.ai.ArtificialIntelligence")
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local ArtificialIntelligenceTransitionInterface = require("org.allbinary.ai.ArtificialIntelligenceTransitionInterface")
-local ArrayAI = require("org.allbinary.game.ag.ai.ArrayAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/game/ag/ai/ArrayAI.rkt")
+(lazy-require ["../../../../../../org/allbinary/ai/ArtificialIntelligence.rkt" (ArtificialIntelligence.jstatic_AI_ID)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SequenceAI%
+  (class ArrayAI%
+    (super-new)
+    (field [f_index 0])
+    (define/override (jm_processAI_1 _allBinaryLayerManager)
+    (let ()
+      (let/ec jreturn
+        (JR.className (vector-ref (send this jm_getArtificialIntelligenceInterface_0) (get-field f_index this))))))
+    (define/public (jm_next_0)
+    (let ([_artificialIntelligenceInterface JR.null][_artificialIntelligenceTransitionInterface JR.null])
+      (let/ec jreturn
+        (set-field! f_index this (JR.i32 (+ (get-field f_index this) 1)))
+        (set! _artificialIntelligenceInterface (send this jm_getSelectedArtificialIntelligenceInterface_0))
+        (when (= (send _artificialIntelligenceInterface jm_getId_0) (ArtificialIntelligence.jstatic_AI_ID))
+            (begin
+            (set! _artificialIntelligenceTransitionInterface _artificialIntelligenceInterface)
+            (send _artificialIntelligenceTransitionInterface jm_transition_0))))))
+    (define/public (jm_getIndex_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_index this)))))
+    (define/public (jm_setIndex_1 _index)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_index this _index))))
+    (define/public (jm_getSelectedArtificialIntelligenceInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (vector-ref (send this jm_getArtificialIntelligenceInterface_0) (get-field f_index this))))))
+    (define/override (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (SequenceAI.jstatic_SEQUENCE_AI)))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 (super jm_toString_0))
+        (send _stringBuffer jm_append_1 " Selected AI: ")
+        (send _stringBuffer jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 (send this jm_getSelectedArtificialIntelligenceInterface_0)))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (SequenceAI.jclassValue) SequenceAI%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define SequenceAI.jcell_SEQUENCE_AI 'jnone)
+(define (SequenceAI.jstatic_SEQUENCE_AI)
+  (when (eq? SequenceAI.jcell_SEQUENCE_AI 'jnone) (set! SequenceAI.jcell_SEQUENCE_AI "Sequence AI"))
+  SequenceAI.jcell_SEQUENCE_AI)
+(define (SequenceAI.jsetstatic_SEQUENCE_AI value) (set! SequenceAI.jcell_SEQUENCE_AI value))
 
-local SequenceAI = {}
-SequenceAI.__index = SequenceAI
-SequenceAI.className = "SequenceAI"
-setmetatable(SequenceAI, {__index = ArrayAI})
-
-function SequenceAI:_init_fields()
-    self.index = 0
-end
-
-
-function SequenceAI.new(artificialIntelligenceInterfaceArray, ownerLayerInterface, gameInput)
-    local self = setmetatable(ArrayAI.new(artificialIntelligenceInterfaceArray, ownerLayerInterface, gameInput), SequenceAI)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function SequenceAI:processAI(allBinaryLayerManager)
-        self:getArtificialIntelligenceInterface()[self.index + 1]:processAI(allBinaryLayerManager)
-end
-
-
-function SequenceAI:next()
-        self.index = self.index + 1
-        local artificialIntelligenceInterface = self:getSelectedArtificialIntelligenceInterface()
-        if artificialIntelligenceInterface:getId() == ArtificialIntelligence.AI_ID then
-            local artificialIntelligenceTransitionInterface = artificialIntelligenceInterface
-            artificialIntelligenceTransitionInterface:transition()
-        end
-end
-
-
-function SequenceAI:getIndex()
-        return self.index
-end
-
-
-function SequenceAI:setIndex(index)
-        self.index = index
-end
-
-
-function SequenceAI:getSelectedArtificialIntelligenceInterface()
-        return self:getArtificialIntelligenceInterface()[self.index + 1]
-end
+(define (SequenceAI.jnew_3 _artificialIntelligenceInterfaceArray _ownerLayerInterface _gameInput)
+  (define this (new SequenceAI% [jclass "SequenceAI"]))
+    
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function SequenceAI:getName()
-        return SequenceAI.SEQUENCE_AI
-end
-
-
-function SequenceAI:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(tostring(ArrayAI))
-        stringBuffer:append(" Selected AI: ")
-        stringBuffer:append(StringUtil.getInstance():toString(self:getSelectedArtificialIntelligenceInterface()))
-        return tostring(stringBuffer)
-end
-SequenceAI.__tostring = function(self) return self:toString() end
-
-SequenceAI.SEQUENCE_AI = "Sequence AI"
-
-return SequenceAI
 

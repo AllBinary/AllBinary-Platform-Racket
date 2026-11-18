@@ -22,11 +22,13 @@
 (define SoundThreadPool%
   (class JObject%
     (super-new)))
+(define (SoundThreadPool.jclassValue) SoundThreadPool%)
 
 (define SoundThreadPool.jcell_instance 'jnone)
 (define (SoundThreadPool.jstatic_instance)
   (when (eq? SoundThreadPool.jcell_instance 'jnone) (set! SoundThreadPool.jcell_instance (ThreadPool.jnew_3 "Sound" 1 (ThreadPool.jstatic_NORMAL_PRIORITY))))
   SoundThreadPool.jcell_instance)
+(define (SoundThreadPool.jsetstatic_instance value) (set! SoundThreadPool.jcell_instance value))
 
 (define (SoundThreadPool.jnew_0)
   (define this (new SoundThreadPool% [jclass "SoundThreadPool"]))

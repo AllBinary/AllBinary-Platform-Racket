@@ -1,42 +1,28 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.opengles.shader
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OpenGLObject3dProcessor%
+  (class JObject%
+    (super-new)
+    (field [f_commonStrings JR.null])
+    (define/public (jm_process_2 _gl _object3d)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_process_3 _gl _object3d _index)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (OpenGLObject3dProcessor.jclassValue) OpenGLObject3dProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLObject3dProcessor = {}
-OpenGLObject3dProcessor.__index = OpenGLObject3dProcessor
-OpenGLObject3dProcessor.className = "OpenGLObject3dProcessor"
-
-function OpenGLObject3dProcessor:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-end
-
-function OpenGLObject3dProcessor.new()
-    local self = setmetatable({}, OpenGLObject3dProcessor)
-    self:_init_fields()
-    return self
-end
+(define (OpenGLObject3dProcessor.jnew_0)
+  (define this (new OpenGLObject3dProcessor% [jclass "OpenGLObject3dProcessor"]))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+  this)
 
 
-function OpenGLObject3dProcessor:process(gl, object3d)
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function OpenGLObject3dProcessor:process(gl, object3d, index)
-end
-
-return OpenGLObject3dProcessor
 

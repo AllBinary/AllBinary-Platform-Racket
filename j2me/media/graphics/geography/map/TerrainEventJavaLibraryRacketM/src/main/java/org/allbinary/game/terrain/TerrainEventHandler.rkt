@@ -1,115 +1,93 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.terrain
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.terrain
 
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(lazy-require ["../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TerrainEventHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (field [f_list JR.null])
+    (define/public (jm_addListener_1 _terrainEventListener)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_list this) jm_contains_1 _terrainEventListener))
+            (begin
+            (send (get-field f_list this) jm_add_1 _terrainEventListener))))))
+    (define/override (jm_removeAllListeners_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_list this) jm_clear_0)
+        (super jm_removeAllListeners_0))))
+    (define/override (jm_removeListener_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_list this) jm_remove_1 _eventListenerInterface)
+        (super jm_removeListener_1 _eventListenerInterface))))
+    (define/override (jm_fireEvent_1 _eventObject)
+    (let ([_terrainEventListener JR.null][_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (send (get-field f_list this) jm_size_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (JR.className (get-field f_logUtil this)))])
+                (set! _terrainEventListener (send (get-field f_list this) jm_get_1 _index))
+                (send _terrainEventListener jm_onTerrainEvent_1 _eventObject))) (jloop)))))
+        (super jm_fireEvent_1 _eventObject))))
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_terrainEventListenerInterface JR.null])
+      (let/ec jreturn
+        (set! _terrainEventListenerInterface _eventListenerInterface)
+        (send _terrainEventListenerInterface jm_onTerrainEvent_1 _eventObject))))))
+(define (TerrainEventHandler.jclassValue) TerrainEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define TerrainEventHandler.jcell_hashtable 'jnone)
+(define (TerrainEventHandler.jstatic_hashtable)
+  (when (eq? TerrainEventHandler.jcell_hashtable 'jnone) (set! TerrainEventHandler.jcell_hashtable (get-field f_NULL_TABLE (StdUtil.jm_getInstance_0))))
+  TerrainEventHandler.jcell_hashtable)
+(define (TerrainEventHandler.jsetstatic_hashtable value) (set! TerrainEventHandler.jcell_hashtable value))
 
-local TerrainEventHandler = {}
-TerrainEventHandler.__index = TerrainEventHandler
-TerrainEventHandler.className = "TerrainEventHandler"
-setmetatable(TerrainEventHandler, {__index = BasicEventHandler})
+(define (TerrainEventHandler.jnew_0)
+  (define this (new TerrainEventHandler% [jclass "TerrainEventHandler"]))
+    (set-field! f_list this (BasicArrayListD.jnew_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function TerrainEventHandler:_init_fields()
-    self.list = BasicArrayListD.new()
-end
+(define (TerrainEventHandler.jm_init_0)
+    (let ()
+      (let/ec jreturn
+        (set! TerrainEventHandler.jcell_hashtable (send (StdUtil.jm_getInstance_0) jm_createHashtable_0)))))
 
-
-function TerrainEventHandler.init()
-        TerrainEventHandler.hashtable = StdUtil.getInstance():createHashtable()
-end
-
-
-function TerrainEventHandler.getInstance(anyType)
-        local eventHandlerCanBeNull = TerrainEventHandler.hashtable:get(anyType)
-        if eventHandlerCanBeNull == nil then
-            eventHandlerCanBeNull = TerrainEventHandler.new()
-            TerrainEventHandler.hashtable:put(anyType, eventHandlerCanBeNull)
-        end
-        return eventHandlerCanBeNull
-end
-
-
-function TerrainEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), TerrainEventHandler)
-    self:_init_fields()
-    return self
-end
-
-
-function TerrainEventHandler:addListener(terrainEventListener)
-        if not self.list:contains(terrainEventListener) then
-            self.list:add(terrainEventListener)
-        end
-end
-
-
-function TerrainEventHandler:removeAllListeners()
-        self.list:clear()
-        BasicEventHandler.removeAllListeners(self)
-end
-
-
-function TerrainEventHandler:removeListener(eventListenerInterface)
-        self.list:remove(eventListenerInterface)
-        BasicEventHandler.removeListener(self, eventListenerInterface)
-end
-
-
--- throws Exception
-function TerrainEventHandler:fireEvent(eventObject)
-        do
-            local index = self.list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local try_ok, try_error = pcall(function()
-                local terrainEventListener = self.list:get(index)
-                terrainEventListener:onTerrainEvent(eventObject)
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            end
-        end
-        BasicEventHandler.fireEvent(self, eventObject)
-end
+(define (TerrainEventHandler.jm_getInstance_1 _anyType)
+    (let ([_eventHandlerCanBeNull JR.null])
+      (let/ec jreturn
+        (set! _eventHandlerCanBeNull (JR.className (TerrainEventHandler.jstatic_hashtable)))
+        (when (JR.null? _eventHandlerCanBeNull)
+            (begin
+            (set! _eventHandlerCanBeNull (TerrainEventHandler.jnew_0))
+            (JR.className (TerrainEventHandler.jstatic_hashtable))))
+        (jreturn _eventHandlerCanBeNull))))
 
 
--- throws Exception
-function TerrainEventHandler:process(eventObject, eventListenerInterface)
-        local terrainEventListenerInterface = eventListenerInterface
-        terrainEventListenerInterface:onTerrainEvent(eventObject)
-end
-
-TerrainEventHandler.hashtable = StdUtil.getInstance().NULL_TABLE
-
-return TerrainEventHandler
 

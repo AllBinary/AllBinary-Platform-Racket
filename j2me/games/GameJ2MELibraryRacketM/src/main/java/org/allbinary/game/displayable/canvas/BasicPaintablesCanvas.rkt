@@ -1,66 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local ColorFillBasePaintable = require("org.allbinary.game.paint.ColorFillBasePaintable")
-local ColorFillPaintableFactory = require("org.allbinary.game.paint.ColorFillPaintableFactory")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local GameCommandCanvas = require("org.allbinary.game.displayable.canvas.GameCommandCanvas")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./GameCommandCanvas.rkt")
+(lazy-require ["../../../../../org/allbinary/game/paint/ColorFillPaintableFactory.rkt" (ColorFillPaintableFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicPaintablesCanvas%
+  (class GameCommandCanvas%
+    (super-new)
+    (field [f_paintableArray JR.null])
+    (field [f_colorFillPaintable JR.null])
+    (define/override (jm_paint_1 _graphics)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (send (get-field f_colorFillPaintable this) jm_paint_1 _graphics)
+        (send _graphics jm_setColor_1 (get-field f_foregroundColor this))
+        (begin
+            (set! _index (JR.i32 (- (vector-length (get-field f_paintableArray this)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (JR.className (vector-ref (get-field f_paintableArray this) _index)))
+                (set! _index (JR.i32 (- _index 1))) (jloop)))))
+        (super jm_paint_1 _graphics))))))
+(define (BasicPaintablesCanvas.jclassValue) BasicPaintablesCanvas%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BasicPaintablesCanvas = {}
-BasicPaintablesCanvas.__index = BasicPaintablesCanvas
-BasicPaintablesCanvas.className = "BasicPaintablesCanvas"
-setmetatable(BasicPaintablesCanvas, {__index = GameCommandCanvas})
-
-function BasicPaintablesCanvas:_init_fields()
-    self.paintableArray = nil
-    self.colorFillPaintable = nil
-end
-
-
-function BasicPaintablesCanvas.new(cmdListener, name, allBinaryGameLayerManager, paintableArray)
-    local self = setmetatable(GameCommandCanvas.new(cmdListener, name, allBinaryGameLayerManager:getBackgroundBasicColor(), allBinaryGameLayerManager:getForegroundBasicColor()), BasicPaintablesCanvas)
-    self:_init_fields()
-        -- super(...) made self above
-        self.paintableArray = paintableArray
-        self.colorFillPaintable = ColorFillPaintableFactory.getInstance():getInstance(allBinaryGameLayerManager:getBackgroundBasicColor(), false)
-    return self
-end
+(define (BasicPaintablesCanvas.jnew_4 _cmdListener _name _allBinaryGameLayerManager _paintableArray)
+  (define this (new BasicPaintablesCanvas% [jclass "BasicPaintablesCanvas"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_paintableArray this _paintableArray)
+        (set-field! f_colorFillPaintable this (send (ColorFillPaintableFactory.jm_getInstance_0) jm_getInstance_2 (send _allBinaryGameLayerManager jm_getBackgroundBasicColor_0) #f))))
+  this)
 
 
-function BasicPaintablesCanvas:paint(graphics)
-        self.colorFillPaintable:paint(graphics)
-        graphics:setColor(self.foregroundColor)
-        for index = (self.paintableArray.n or #self.paintableArray) - 1, 0, -1 do
-            self.paintableArray[index + 1]:paint(graphics)
-        end
-        GameCommandCanvas.paint(self, graphics)
-end
-
-return BasicPaintablesCanvas
 

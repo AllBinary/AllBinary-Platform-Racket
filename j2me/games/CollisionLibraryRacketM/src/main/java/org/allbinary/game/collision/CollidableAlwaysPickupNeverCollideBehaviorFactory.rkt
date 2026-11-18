@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.collision
 
-local CollidableBaseBehaviorFactory = require("org.allbinary.game.collision.CollidableBaseBehaviorFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./CollidableBaseBehaviorFactory.rkt")
+(lazy-require ["./CollidableAlwaysPickupNeverCollideBehavior.rkt" (CollidableAlwaysPickupNeverCollideBehavior.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CollidableAlwaysPickupNeverCollideBehaviorFactory%
+  (class CollidableBaseBehaviorFactory%
+    (super-new)
+    (field [f_instance JR.null])
+    (define/override (jm_createBehavior_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_instance this)))))))
+(define (CollidableAlwaysPickupNeverCollideBehaviorFactory.jclassValue) CollidableAlwaysPickupNeverCollideBehaviorFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define CollidableAlwaysPickupNeverCollideBehaviorFactory.jcell_instanceC 'jnone)
+(define (CollidableAlwaysPickupNeverCollideBehaviorFactory.jstatic_instanceC)
+  (when (eq? CollidableAlwaysPickupNeverCollideBehaviorFactory.jcell_instanceC 'jnone) (set! CollidableAlwaysPickupNeverCollideBehaviorFactory.jcell_instanceC (CollidableAlwaysPickupNeverCollideBehaviorFactory.jnew_0)))
+  CollidableAlwaysPickupNeverCollideBehaviorFactory.jcell_instanceC)
+(define (CollidableAlwaysPickupNeverCollideBehaviorFactory.jsetstatic_instanceC value) (set! CollidableAlwaysPickupNeverCollideBehaviorFactory.jcell_instanceC value))
 
-local CollidableAlwaysPickupNeverCollideBehaviorFactory = {}
-CollidableAlwaysPickupNeverCollideBehaviorFactory.__index = CollidableAlwaysPickupNeverCollideBehaviorFactory
-CollidableAlwaysPickupNeverCollideBehaviorFactory.className = "CollidableAlwaysPickupNeverCollideBehaviorFactory"
-setmetatable(CollidableAlwaysPickupNeverCollideBehaviorFactory, {__index = CollidableBaseBehaviorFactory})
+(define (CollidableAlwaysPickupNeverCollideBehaviorFactory.jnew_0)
+  (define this (new CollidableAlwaysPickupNeverCollideBehaviorFactory% [jclass "CollidableAlwaysPickupNeverCollideBehaviorFactory"]))
+    (set-field! f_instance this (CollidableAlwaysPickupNeverCollideBehavior.jnew_0))
+  this)
 
-function CollidableAlwaysPickupNeverCollideBehaviorFactory:_init_fields()
-    self.instance = CollidableAlwaysPickupNeverCollideBehavior.new()
-end
-
-function CollidableAlwaysPickupNeverCollideBehaviorFactory.new()
-    local self = setmetatable(CollidableBaseBehaviorFactory.new(), CollidableAlwaysPickupNeverCollideBehaviorFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function CollidableAlwaysPickupNeverCollideBehaviorFactory.getInstance()
-        return CollidableAlwaysPickupNeverCollideBehaviorFactory.instanceC
-end
+(define (CollidableAlwaysPickupNeverCollideBehaviorFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (CollidableAlwaysPickupNeverCollideBehaviorFactory.jstatic_instanceC)))))
 
 
-function CollidableAlwaysPickupNeverCollideBehaviorFactory:createBehavior()
-        return self.instance
-end
-
-CollidableAlwaysPickupNeverCollideBehaviorFactory.instanceC = CollidableAlwaysPickupNeverCollideBehaviorFactory.new()
-
-return CollidableAlwaysPickupNeverCollideBehaviorFactory
 

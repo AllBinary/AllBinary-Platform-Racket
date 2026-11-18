@@ -36,11 +36,13 @@
             (jreturn (get-field f_TRUE_STRING this)))
             (begin
             (jreturn (get-field f_FALSE_STRING this)))))))))
+(define (BooleanFactory.jclassValue) BooleanFactory%)
 
 (define BooleanFactory.jcell_instance 'jnone)
 (define (BooleanFactory.jstatic_instance)
   (when (eq? BooleanFactory.jcell_instance 'jnone) (set! BooleanFactory.jcell_instance (BooleanFactory.jnew_0)))
   BooleanFactory.jcell_instance)
+(define (BooleanFactory.jsetstatic_instance value) (set! BooleanFactory.jcell_instance value))
 
 (define (BooleanFactory.jnew_0)
   (define this (new BooleanFactory% [jclass "BooleanFactory"]))

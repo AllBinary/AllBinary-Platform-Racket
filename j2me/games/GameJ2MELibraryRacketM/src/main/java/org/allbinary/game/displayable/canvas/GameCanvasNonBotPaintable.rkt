@@ -1,53 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/graphics/paint/Paintable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameCanvasNonBotPaintable%
+  (class Paintable%
+    (super-new)
+    (field [f_gameCanvas JR.null])
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_gameCanvas this) jm_nonBotPaint_1 _graphics))))))
+(define (GameCanvasNonBotPaintable.jclassValue) GameCanvasNonBotPaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameCanvasNonBotPaintable = {}
-GameCanvasNonBotPaintable.__index = GameCanvasNonBotPaintable
-GameCanvasNonBotPaintable.className = "GameCanvasNonBotPaintable"
-setmetatable(GameCanvasNonBotPaintable, {__index = Paintable})
-
-function GameCanvasNonBotPaintable:_init_fields()
-    self.gameCanvas = nil
-end
-
-
-function GameCanvasNonBotPaintable.new(gameCanvas)
-    local self = setmetatable(Paintable.new(), GameCanvasNonBotPaintable)
-    self:_init_fields()
-        self.gameCanvas = gameCanvas
-    return self
-end
+(define (GameCanvasNonBotPaintable.jnew_1 _gameCanvas)
+  (define this (new GameCanvasNonBotPaintable% [jclass "GameCanvasNonBotPaintable"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_gameCanvas this _gameCanvas)))
+  this)
 
 
-function GameCanvasNonBotPaintable:paint(graphics)
-        self.gameCanvas:nonBotPaint(graphics)
-end
-
-return GameCanvasNonBotPaintable
 

@@ -1,73 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/lang/Integer.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameInputProcessor%
+  (class JObject%
+    (super-new)
+    (define/public (jm_processEvent_2 _allbinaryLayerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_processReleasedEvent_2 _allbinaryLayerManager _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_processAnalog_3 _allbinaryLayerManager _gameKeyEvent _analogValue)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_process_2 _allbinaryLayerManager _keyAsInteger)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_processReleased_2 _allbinaryLayerManager _keyAsInteger)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (GameInputProcessor.jclassValue) GameInputProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameInputProcessor.jcell_instance 'jnone)
+(define (GameInputProcessor.jstatic_instance)
+  (when (eq? GameInputProcessor.jcell_instance 'jnone) (set! GameInputProcessor.jcell_instance (GameInputProcessor.jnew_0)))
+  GameInputProcessor.jcell_instance)
+(define (GameInputProcessor.jsetstatic_instance value) (set! GameInputProcessor.jcell_instance value))
 
-local GameInputProcessor = {}
-GameInputProcessor.__index = GameInputProcessor
-GameInputProcessor.className = "GameInputProcessor"
+(define (GameInputProcessor.jnew_0)
+  (define this (new GameInputProcessor% [jclass "GameInputProcessor"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function GameInputProcessor.getInstance()
-        return GameInputProcessor.instance
-end
-
-
-function GameInputProcessor.new()
-    local self = setmetatable({}, GameInputProcessor)
-    return self
-end
-
-
--- throws Exception
-function GameInputProcessor:processEvent(allbinaryLayerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function GameInputProcessor:processReleasedEvent(allbinaryLayerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function GameInputProcessor:processAnalog(allbinaryLayerManager, gameKeyEvent, analogValue)
-end
-
-
--- throws Exception
-function GameInputProcessor:process(allbinaryLayerManager, keyAsInteger)
-end
+(define (GameInputProcessor.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameInputProcessor.jstatic_instance)))))
 
 
--- throws Exception
-function GameInputProcessor:processReleased(allbinaryLayerManager, keyAsInteger)
-end
-
-GameInputProcessor.instance = GameInputProcessor.new()
-
-return GameInputProcessor
 

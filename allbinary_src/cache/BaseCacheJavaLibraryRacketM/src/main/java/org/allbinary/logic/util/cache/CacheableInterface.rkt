@@ -23,6 +23,7 @@
     (super-new)
     (define/public (jm_getKey_0)
       (raise (JR.newException "AbstractMethodError" "getKey")))))
+(define (CacheableInterface.jclassValue) CacheableInterface%)
 
 (define (CacheableInterface.jnew_0)
   (define this (new CacheableInterface% [jclass "CacheableInterface"]))

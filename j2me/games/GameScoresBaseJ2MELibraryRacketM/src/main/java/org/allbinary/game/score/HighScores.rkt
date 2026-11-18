@@ -1,115 +1,97 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local HighScoresInterface = require("org.allbinary.game.score.HighScoresInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./HighScoresInterface.rkt")
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonLabels.rkt" (CommonLabels.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HighScores%
+  (class JObject%
+    (super-new)
+    (field [f_orderedHighScoresList JR.null])
+    (field [f_name JR.null])
+    (field [f_heading JR.null])
+    (field [f_columnOneHeading JR.null])
+    (field [f_columnTwoHeading JR.null])
+    (define/public (jm_setList_1 _orderedHighScoresList)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_orderedHighScoresList this _orderedHighScoresList))))
+    (define/public (jm_getList_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_orderedHighScoresList this)))))
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_name this)))))
+    (define/public (jm_getTotal_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (send this jm_getList_0) jm_size_0)))))
+    (define/public (jm_addHighScore_1 _newHighScore)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_orderedHighScoresList this) jm_add_1 _newHighScore))))
+    (define/public (jm_getHeading_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_heading this)))))
+    (define/public (jm_getColumnOneHeading_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_columnOneHeading this)))))
+    (define/public (jm_getColumnTwoHeading_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_columnTwoHeading this)))))
+    (define/public (jm_isBestScore_1 _newHighScore)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 "HighScores: ")
+        (send _stringBuffer jm_append_1 (get-field f_heading this))
+        (send _stringBuffer jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0)))
+        (send _stringBuffer jm_append_1 (get-field f_TOTAL_LABEL (CommonLabels.jm_getInstance_0)))
+        (send _stringBuffer jm_appendint_1 (send (get-field f_orderedHighScoresList this) jm_size_0))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (HighScores.jclassValue) HighScores%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local HighScores = {}
-HighScores.__index = HighScores
-HighScores.className = "HighScores"
-
-function HighScores:_init_fields()
-    self.orderedHighScoresList = BasicArrayListD.new()
-    self.name = nil
-    self.heading = nil
-    self.columnOneHeading = "Name"
-    self.columnTwoHeading = nil
-end
-
-
-function HighScores.new(name, heading, columnTwoHeading)
-    local self = setmetatable({}, HighScores)
-    self:_init_fields()
-        self.name = name
-        self.heading = heading
-        self.columnTwoHeading = columnTwoHeading
-    return self
-end
-
-
-function HighScores:setList(orderedHighScoresList)
-        self.orderedHighScoresList = orderedHighScoresList
-end
-
-
-function HighScores:getList()
-        return self.orderedHighScoresList
-end
-
-
-function HighScores:getName()
-        return self.name
-end
-
-
-function HighScores:getTotal()
-        return self:getList():size()
-end
-
-
-function HighScores:addHighScore(newHighScore)
-        self.orderedHighScoresList:add(newHighScore)
-end
-
-
-function HighScores:getHeading()
-        return self.heading
-end
-
-
-function HighScores:getColumnOneHeading()
-        return self.columnOneHeading
-end
-
-
-function HighScores:getColumnTwoHeading()
-        return self.columnTwoHeading
-end
-
-
--- throws Exception
-function HighScores:isBestScore(newHighScore)
-        return false
-end
+(define (HighScores.jnew_3 _name _heading _columnTwoHeading)
+  (define this (new HighScores% [jclass "HighScores"]))
+    (set-field! f_orderedHighScoresList this (BasicArrayListD.jnew_0))
+    
+    
+    (set-field! f_columnOneHeading this "Name")
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_name this _name)
+        (set-field! f_heading this _heading)
+        (set-field! f_columnTwoHeading this _columnTwoHeading)))
+  this)
 
 
-function HighScores:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("HighScores: ")
-        stringBuffer:append(self.heading)
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(CommonLabels.getInstance().TOTAL_LABEL)
-        stringBuffer:appendint(self.orderedHighScoresList:size())
-        return tostring(stringBuffer)
-end
-HighScores.__tostring = function(self) return self:toString() end
-
-return HighScores
 

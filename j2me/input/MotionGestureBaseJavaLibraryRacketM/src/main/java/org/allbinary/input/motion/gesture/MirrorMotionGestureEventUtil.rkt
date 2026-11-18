@@ -1,81 +1,72 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.gesture
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local MotionEventCircularPool = require("org.allbinary.input.motion.gesture.observer.MotionEventCircularPool")
-local MotionGestureEvent = require("org.allbinary.input.motion.gesture.observer.MotionGestureEvent")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/PointFactory.rkt" (PointFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/gesture/observer/MotionEventCircularPool.rkt" (MotionEventCircularPool.jm_createPool_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MirrorMotionGestureEventUtil%
+  (class JObject%
+    (super-new)
+    (field [f_motionEventCircularPool JR.null])
+    (define/public (jm_mirrorVerticle_2 _motionGestureEvent _halfWidth)
+    (let ([_event JR.null][_previousNewX JR.null][_currentNewX JR.null][_pointFactory JR.null][_mirroredPreviousPoint JR.null][_mirroredCurrentPoint JR.null])
+      (let/ec jreturn
+        (set! _event (send (get-field f_motionEventCircularPool this) jm_getInstance_1 (send _motionGestureEvent jm_getMotionGesture_0)))
+        (set! _previousNewX (send this jm_getNewX_2 (JR.className (send _motionGestureEvent jm_getPreviousPoint_0)) _halfWidth))
+        (set! _currentNewX (send this jm_getNewX_2 (JR.className (send _motionGestureEvent jm_getCurrentPoint_0)) _halfWidth))
+        (set! _pointFactory (PointFactory.jm_getInstance_0))
+        (set! _mirroredPreviousPoint (send _pointFactory jm_createXY_2 _previousNewX (JR.className (send _motionGestureEvent jm_getPreviousPoint_0))))
+        (set! _mirroredCurrentPoint (send _pointFactory jm_createXY_2 _currentNewX (JR.className (send _motionGestureEvent jm_getCurrentPoint_0))))
+        (send _event jm_setPreviousPoint_1 _mirroredPreviousPoint)
+        (send _event jm_setCurrentPoint_1 _mirroredCurrentPoint)
+        (jreturn _event))))
+    (define/public (jm_getNewX_2 _x _halfWidth)
+    (let ([_newX JR.null])
+      (let/ec jreturn
+        (set! _newX 0)
+        (if (> _x _halfWidth)
+            (begin
+            (set! _newX (JR.i32 (- _halfWidth (JR.i32 (- _x _halfWidth))))))
+            (begin
+            (set! _newX (JR.i32 (+ _halfWidth (JR.i32 (- _halfWidth _x)))))))
+        (jreturn _newX))))))
+(define (MirrorMotionGestureEventUtil.jclassValue) MirrorMotionGestureEventUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define MirrorMotionGestureEventUtil.jcell_instance 'jnone)
+(define (MirrorMotionGestureEventUtil.jstatic_instance)
+  (when (eq? MirrorMotionGestureEventUtil.jcell_instance 'jnone) (set! MirrorMotionGestureEventUtil.jcell_instance (MirrorMotionGestureEventUtil.jnew_0)))
+  MirrorMotionGestureEventUtil.jcell_instance)
+(define (MirrorMotionGestureEventUtil.jsetstatic_instance value) (set! MirrorMotionGestureEventUtil.jcell_instance value))
 
-local MirrorMotionGestureEventUtil = {}
-MirrorMotionGestureEventUtil.__index = MirrorMotionGestureEventUtil
-MirrorMotionGestureEventUtil.className = "MirrorMotionGestureEventUtil"
+(define (MirrorMotionGestureEventUtil.jnew_0)
+  (define this (new MirrorMotionGestureEventUtil% [jclass "MirrorMotionGestureEventUtil"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_motionEventCircularPool this (MotionEventCircularPool.jm_createPool_1 (Integer.jstatic_MAX_VALUE)))))
+  this)
 
-function MirrorMotionGestureEventUtil:_init_fields()
-    self.motionEventCircularPool = nil
-end
-
-
-function MirrorMotionGestureEventUtil.new()
-    local self = setmetatable({}, MirrorMotionGestureEventUtil)
-    self:_init_fields()
-        self.motionEventCircularPool = MotionEventCircularPool.createPool(Integer.MAX_VALUE)
-    return self
-end
-
-
--- throws Exception
-function MirrorMotionGestureEventUtil:mirrorVerticle(motionGestureEvent, halfWidth)
-        local event = self.motionEventCircularPool:getInstance(motionGestureEvent:getMotionGesture())
-        local previousNewX = self:getNewX(motionGestureEvent:getPreviousPoint():getX(), halfWidth)
-        local currentNewX = self:getNewX(motionGestureEvent:getCurrentPoint():getX(), halfWidth)
-        local pointFactory = PointFactory.getInstance()
-        local mirroredPreviousPoint = pointFactory:createXY(previousNewX, motionGestureEvent:getPreviousPoint():getY())
-        local mirroredCurrentPoint = pointFactory:createXY(currentNewX, motionGestureEvent:getCurrentPoint():getY())
-        event:setPreviousPoint(mirroredPreviousPoint)
-        event:setCurrentPoint(mirroredCurrentPoint)
-        return event
-end
-
-
-function MirrorMotionGestureEventUtil:getNewX(x, halfWidth)
-        local newX = 0
-        if x > halfWidth then
-            newX = halfWidth - (x - halfWidth)
-        else
-            newX = halfWidth + (halfWidth - x)
-        end
-        return newX
-end
+(define (MirrorMotionGestureEventUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (MirrorMotionGestureEventUtil.jstatic_instance)))))
 
 
-function MirrorMotionGestureEventUtil.getInstance()
-        return MirrorMotionGestureEventUtil.instance
-end
-
-MirrorMotionGestureEventUtil.instance = MirrorMotionGestureEventUtil.new()
-
-return MirrorMotionGestureEventUtil
 

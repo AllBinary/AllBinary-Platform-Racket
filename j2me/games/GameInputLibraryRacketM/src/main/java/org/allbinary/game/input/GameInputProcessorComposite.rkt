@@ -1,73 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local PlayerGameInput = require("org.allbinary.game.input.PlayerGameInput")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./PlayerGameInput.rkt")
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameInputProcessorComposite%
+  (class PlayerGameInput%
+    (super-new)
+    (field [f_name JR.null])
+    (field [f_gameInputProcessorInterface JR.null])
+    (field [f_NAME_LABEL JR.null])
+    (define/override (jm_update_0)
+    (let ([_list JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (set! _list (send this jm_getGameKeyEventList_0))
+            (send (get-field f_gameInputProcessorInterface this) jm_onInput_1 _list)))))
+    (define/override (jm_toString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (send (send (send (StringMaker.jnew_0) jm_append_1 (super jm_toString_0)) jm_append_1 (get-field f_NAME_LABEL this)) jm_append_1 (get-field f_name this)) jm_toString_0)))))))
+(define (GameInputProcessorComposite.jclassValue) GameInputProcessorComposite%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameInputProcessorComposite = {}
-GameInputProcessorComposite.__index = GameInputProcessorComposite
-GameInputProcessorComposite.className = "GameInputProcessorComposite"
-setmetatable(GameInputProcessorComposite, {__index = PlayerGameInput})
-
-function GameInputProcessorComposite:_init_fields()
-    self.name = nil
-    self.gameInputProcessorInterface = nil
-    self.NAME_LABEL = " GameInputProcessorInterface: "
-end
-
-
-function GameInputProcessorComposite.new(name, gameInputProcessorInterface)
-    local self = setmetatable(PlayerGameInput.new(BasicArrayListD.new(), BasicArrayListD.new(), -1), GameInputProcessorComposite)
-    self:_init_fields()
-        -- super(...) made self above
-        self.name = name
-        self.gameInputProcessorInterface = gameInputProcessorInterface
-    return self
-end
-
-
-function GameInputProcessorComposite:update()
-        local try_ok, try_error = pcall(function()
-            local list = self:getGameKeyEventList()
-            self.gameInputProcessorInterface:onInput(list)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.UPDATE, e)
-        end
-end
+(define (GameInputProcessorComposite.jnew_2 _name _gameInputProcessorInterface)
+  (define this (new GameInputProcessorComposite% [jclass "GameInputProcessorComposite"]))
+    
+    
+    (set-field! f_NAME_LABEL this " GameInputProcessorInterface: ")
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_name this _name)
+        (set-field! f_gameInputProcessorInterface this _gameInputProcessorInterface)))
+  this)
 
 
-function GameInputProcessorComposite:toString()
-        return tostring(StringMaker.new():append(tostring(PlayerGameInput)):append(self.NAME_LABEL):append(self.name))
-end
-GameInputProcessorComposite.__tostring = function(self) return self:toString() end
-
-return GameInputProcessorComposite
 

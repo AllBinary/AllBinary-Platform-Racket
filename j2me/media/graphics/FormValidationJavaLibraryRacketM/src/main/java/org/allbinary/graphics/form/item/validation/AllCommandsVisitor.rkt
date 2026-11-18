@@ -1,47 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item.validation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item.validation
 
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/logic/util/visitor/Visitor.rkt")
+(lazy-require ["../../../../../../org/allbinary/logic/java/bool/BooleanFactory.rkt" (BooleanFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AllCommandsVisitor%
+  (class Visitor%
+    (super-new)
+    (define/override (jm_visit_1 _anyType)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_TRUE (BooleanFactory.jm_getInstance_0))))))))
+(define (AllCommandsVisitor.jclassValue) AllCommandsVisitor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AllCommandsVisitor = {}
-AllCommandsVisitor.__index = AllCommandsVisitor
-AllCommandsVisitor.className = "AllCommandsVisitor"
-setmetatable(AllCommandsVisitor, {__index = Visitor})
-
-
-function AllCommandsVisitor.new()
-    local self = setmetatable(Visitor.new(), AllCommandsVisitor)
-    return self
-end
+(define (AllCommandsVisitor.jnew_0)
+  (define this (new AllCommandsVisitor% [jclass "AllCommandsVisitor"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function AllCommandsVisitor:visit(anyType)
-        return BooleanFactory.getInstance().TRUE
-end
-
-return AllCommandsVisitor
 

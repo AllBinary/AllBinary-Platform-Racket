@@ -1,52 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item.validation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item.validation
 
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/logic/util/visitor/Visitor.rkt")
+(lazy-require ["../../../../../../org/allbinary/logic/java/bool/BooleanFactory.rkt" (BooleanFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TextItemVisitor%
+  (class Visitor%
+    (super-new)
+    (define/override (jm_visit_1 _anyType)
+    (let ([_value JR.null])
+      (let/ec jreturn
+        (set! _value _anyType)
+        (if (< (string-length _value) 2)
+            (begin
+            (jreturn (get-field f_TRUE (BooleanFactory.jm_getInstance_0))))
+            (begin
+            (jreturn (get-field f_FALSE (BooleanFactory.jm_getInstance_0))))))))))
+(define (TextItemVisitor.jclassValue) TextItemVisitor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TextItemVisitor = {}
-TextItemVisitor.__index = TextItemVisitor
-TextItemVisitor.className = "TextItemVisitor"
-setmetatable(TextItemVisitor, {__index = Visitor})
-
-
-function TextItemVisitor.new()
-    local self = setmetatable(Visitor.new(), TextItemVisitor)
-    return self
-end
+(define (TextItemVisitor.jnew_0)
+  (define this (new TextItemVisitor% [jclass "TextItemVisitor"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function TextItemVisitor:visit(anyType)
-        local value = anyType
-        if #value < 2 then
-            return BooleanFactory.getInstance().TRUE
-        else
-            return BooleanFactory.getInstance().FALSE
-        end
-end
-
-return TextItemVisitor
 

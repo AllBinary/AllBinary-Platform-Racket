@@ -26,6 +26,7 @@
     (let ()
       (let/ec jreturn
         (jreturn "Default Character Set: Empty Implementation"))))))
+(define (CharacterSet.jclassValue) CharacterSet%)
 
 (define (CharacterSet.jnew_0)
   (define this (new CharacterSet% [jclass "CharacterSet"]))

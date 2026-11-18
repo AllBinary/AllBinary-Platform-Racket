@@ -1,143 +1,103 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local Form = require("javax.microedition.lcdui.Form")
--- local InvalidRecordIDException = require("javax.microedition.rms.InvalidRecordIDException")
--- local RecordStore = require("javax.microedition.rms.RecordStore")
--- local RecordStoreException = require("javax.microedition.rms.RecordStoreException")
--- local RecordStoreNotOpenException = require("javax.microedition.rms.RecordStoreNotOpenException")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(require racket/class racket/lazy-require
+  "../../allbinary_java.rkt"
+  "../../javax/microedition/lcdui/Form.rkt"
+  "../../java/lang/System.rkt")
+(lazy-require ["../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+;J2ME
+(define TsUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_hashCode_1 _anyType)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className _anyType)))))
+    (define/public (jm_waitFor_2 _any _timeoutMillis)
+    (let ([_anyType JR.null])
+      (let/ec jreturn
+        (set! _anyType _any)
+        (JR.className _anyType))))
+    (define/public (jm_getRecord_2 _anyType _recordId)
+    (let ([_recordStore JR.null][_data JR.null])
+      (let/ec jreturn
+        (set! _recordStore _anyType)
+        (set! _data JR.null)
+        (begin
+            (set! _data (JR.newArray 0 (send _recordStore jm_getRecordSize_1 _recordId)))
+            (send _recordStore jm_getRecord_3 _recordId _data 0))
+        (jreturn (if (< (vector-length _data) 1) (get-field f_NULL_BYTE_ARRAY (NullUtil.jm_getInstance_0)) _data)))))
+    (define/public (jm_compareTo_2 _a _b)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.compareTo _a _b)))))
+    (define/public (jm_equalIgnoreCase_2 _a _b)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.equalsIgnoreCase _a _b)))))
+    (define/public (jm_equalsNotstring_2 _anyType _object2)
+    (let ()
+      (let/ec jreturn
+        (jreturn (eq? _anyType _object2)))))
+    (define/public (jm_toNumberFromChar_1 _value)
+    (let ()
+      (let/ec jreturn
+        (jreturn _value))))
+    (define/public (jm_toNumber_1 _value)
+    (let ()
+      (let/ec jreturn
+        (jreturn _value))))
+    (define/public (jm_getByteArray_1 _string)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.getBytes _string)))))
+    (define/public (jm_isItemListener_1 _owner)
+    (let ()
+      (let/ec jreturn
+        (if (is-a? _owner Form%)
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))
+    (define/public (jm_printAvailableMethods_1 _anyType)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_gc_0)
+    (let ()
+      (let/ec jreturn
+        (System.jm_gc_0))))))
+(define (TsUtil.jclassValue) TsUtil%)
 
-local function java_instanceof(object, class)
-    local metatable = getmetatable(object)
-    while metatable do
-        if metatable == class then return true end
-        local parent = getmetatable(metatable)
-        metatable = parent and parent.__index
-    end
-    return false
-end
+(define TsUtil.jcell_instance 'jnone)
+(define (TsUtil.jstatic_instance)
+  (when (eq? TsUtil.jcell_instance 'jnone) (set! TsUtil.jcell_instance (TsUtil.jnew_0)))
+  TsUtil.jcell_instance)
+(define (TsUtil.jsetstatic_instance value) (set! TsUtil.jcell_instance value))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define (TsUtil.jnew_0)
+  (define this (new TsUtil% [jclass "TsUtil"]))
+  this)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
---J2ME
-local TsUtil = {}
-TsUtil.__index = TsUtil
-TsUtil.className = "TsUtil"
-
-function TsUtil.new()
-    local self = setmetatable({}, TsUtil)
-    return self
-end
-
-
-function TsUtil.getInstance()
-        return TsUtil.instance
-end
-
-
-function TsUtil:hashCode(anyType)
-        return anyType:hashCode()
-end
-
-
--- throws InterruptedException
-function TsUtil:waitFor(any, timeoutMillis)
-        local anyType = any
-        anyType:wait(timeoutMillis)
-end
-
-
--- throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException
-function TsUtil:getRecord(anyType, recordId)
-        local recordStore = anyType
-        local data = nil
-        do -- synchronized (self)
-            data = java_new_array(0, recordStore:getRecordSize(recordId))
-            recordStore:getRecord(recordId, data, 0)
-        end
-        return (function() if (data.n or #data) < 1 then return NullUtil.getInstance().NULL_BYTE_ARRAY else return data end end)()
-end
-
-
-function TsUtil:compareTo(a, b)
-        return ((a < b and -1) or (a > b and 1) or 0)
-end
-
-
-function TsUtil:equalIgnoreCase(a, b)
-        return (string.lower(a) == string.lower(b))
-end
-
-
-function TsUtil:equalsNotstring(anyType, object2)
-        return anyType:equals(object2)
-end
+(define (TsUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TsUtil.jstatic_instance)))))
 
 
-function TsUtil:toNumberFromChar(value)
-        return string.byte(value)
-end
-
-
-function TsUtil:toNumber(value)
-        return value
-end
-
-
-function TsUtil:getByteArray(string)
-        return {string.byte(string, 1, -1)}
-end
-
-
-function TsUtil:isItemListener(owner)
-        if java_instanceof(owner, Form) then
-            return true
-        else
-            return false
-        end
-end
-
-
-function TsUtil:printAvailableMethods(anyType)
-end
-
-
-function TsUtil:gc()
-        collectgarbage()
-end
-
-TsUtil.instance = TsUtil.new()
-
-return TsUtil
 

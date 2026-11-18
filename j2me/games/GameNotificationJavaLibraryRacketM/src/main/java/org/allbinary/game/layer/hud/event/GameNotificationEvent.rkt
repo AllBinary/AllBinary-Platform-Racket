@@ -1,87 +1,75 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.hud.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.hud.event
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/logic/util/event/AllBinaryEventObject.rkt"
+  "../../../../../../java/lang/Integer.rkt"
+  "../../../../../../java/lang/Boolean.rkt")
+(lazy-require ["../../../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameNotificationEvent%
+  (class AllBinaryEventObject%
+    (super-new)
+    (field [f_string JR.null])
+    (field [f_seconds JR.null])
+    (field [f_basicColor JR.null])
+    (field [f_removeable JR.null])
+    (define/public (jm_getString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_string this)))))
+    (define/public (jm_getSeconds_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_seconds this)))))
+    (define/public (jm_getBasicColorP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_basicColor this)))))
+    (define/public (jm_getPermanent_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_removeable this)))))
+    (define/public (jm_setString_1 _string)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_string this _string))))
+    (define/public (jm_setBasicColorP_1 _basicColor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_basicColor this _basicColor))))))
+(define (GameNotificationEvent.jclassValue) GameNotificationEvent%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameNotificationEvent = {}
-GameNotificationEvent.__index = GameNotificationEvent
-GameNotificationEvent.className = "GameNotificationEvent"
-setmetatable(GameNotificationEvent, {__index = AllBinaryEventObject})
-
-function GameNotificationEvent:_init_fields()
-    self.string = StringUtil.getInstance().EMPTY_STRING
-    self.seconds = nil
-    self.basicColor = BasicColorFactory.getInstance().BLACK
-    self.removeable = nil
-end
-
-
-function GameNotificationEvent.new(anyType, string, seconds, basicColor, permanent)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), GameNotificationEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setString(string)
-        self.seconds = seconds
-        self:setBasicColorP(basicColor)
-        self.removeable = permanent
-    return self
-end
-
-
-function GameNotificationEvent:getString()
-        return self.string
-end
-
-
-function GameNotificationEvent:getSeconds()
-        return self.seconds
-end
-
-
-function GameNotificationEvent:getBasicColorP()
-        return self.basicColor
-end
-
-
-function GameNotificationEvent:getPermanent()
-        return self.removeable
-end
+(define (GameNotificationEvent.jnew_5 _anyType _string _seconds _basicColor _permanent)
+  (define this (new GameNotificationEvent% [jclass "GameNotificationEvent"]))
+    (set-field! f_string this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    
+    (set-field! f_basicColor this (get-field f_BLACK (BasicColorFactory.jm_getInstance_0)))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (send this jm_setString_1 _string)
+        (set-field! f_seconds this _seconds)
+        (send this jm_setBasicColorP_1 _basicColor)
+        (set-field! f_removeable this _permanent)))
+  this)
 
 
-function GameNotificationEvent:setString(string)
-        self.string = string
-end
-
-
-function GameNotificationEvent:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-end
-
-return GameNotificationEvent
 

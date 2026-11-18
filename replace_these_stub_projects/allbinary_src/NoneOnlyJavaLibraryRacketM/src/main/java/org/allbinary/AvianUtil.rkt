@@ -21,6 +21,7 @@
 (define AvianUtil%
   (class JObject%
     (super-new)))
+(define (AvianUtil.jclassValue) AvianUtil%)
 
 (define (AvianUtil.jnew_0)
   (define this (new AvianUtil% [jclass "AvianUtil"]))

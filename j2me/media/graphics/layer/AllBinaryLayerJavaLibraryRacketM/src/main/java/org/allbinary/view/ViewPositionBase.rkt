@@ -1,63 +1,56 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.view
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2011 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.view
 
-local GPoint = require("org.allbinary.graphics.GPoint")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../org/allbinary/graphics/GPoint.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ViewPositionBase%
+  (class GPoint%
+    (super-new)
+    (define/public (jm_getX2_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getX_0)))))
+    (define/public (jm_getY2_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getY_0)))))
+    (define/public (jm_getZ2_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getZ_0)))))
+    (define/public (jm_setAllbinaryLayer_1 _allbinaryLayer)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ViewPositionBase.jclassValue) ViewPositionBase%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ViewPositionBase.jcell_NULL_VIEW_POSITION 'jnone)
+(define (ViewPositionBase.jstatic_NULL_VIEW_POSITION)
+  (when (eq? ViewPositionBase.jcell_NULL_VIEW_POSITION 'jnone) (set! ViewPositionBase.jcell_NULL_VIEW_POSITION (ViewPositionBase.jnew_3 0 0 0)))
+  ViewPositionBase.jcell_NULL_VIEW_POSITION)
+(define (ViewPositionBase.jsetstatic_NULL_VIEW_POSITION value) (set! ViewPositionBase.jcell_NULL_VIEW_POSITION value))
 
-local ViewPositionBase = {}
-ViewPositionBase.__index = ViewPositionBase
-ViewPositionBase.className = "ViewPositionBase"
-setmetatable(ViewPositionBase, {__index = GPoint})
-
-
-function ViewPositionBase.new(x, y, z)
-    local self = setmetatable(GPoint.new(x, y, z), ViewPositionBase)
-        -- super(...) made self above
-    return self
-end
-
-
-function ViewPositionBase:getX2()
-        return self:getX()
-end
-
-
-function ViewPositionBase:getY2()
-        return self:getY()
-end
-
-
-function ViewPositionBase:getZ2()
-        return self:getZ()
-end
+(define (ViewPositionBase.jnew_3 _x _y _z)
+  (define this (new ViewPositionBase% [jclass "ViewPositionBase"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function ViewPositionBase:setAllbinaryLayer(allbinaryLayer)
-end
-
-ViewPositionBase.NULL_VIEW_POSITION = ViewPositionBase.new(0, 0, 0)
-
-return ViewPositionBase
 

@@ -1,61 +1,66 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.log.config.type
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.communication.log.config.type
+
+(require racket/class racket/lazy-require
+  "../../../../../../../allbinary_java.rkt")
+(lazy-require ["./LogConfigType.rkt" (LogConfigType.jnew_2)])
+(lazy-require ["./LogConfigTypes.rkt" (LogConfigTypes.jstatic_LOGGING)])
+(provide (all-defined-out))
+
+(define LogConfigTypeFactory%
+  (class JObject%
+    (super-new)
+    (field [f_NO_DESCRIPTION JR.null])
+    (field [f_OS JR.null])
+    (field [f_FACTORYERROR JR.null])
+    (field [f_FILE JR.null])
+    (field [f_FILEERROR JR.null])
+    (field [f_IDLOGGING JR.null])
+    (field [f_REPLACE JR.null])
+    (field [f_REPLACE_INFO JR.null])
+    (field [f_REPLACEERROR JR.null])))
+(define (LogConfigTypeFactory.jclassValue) LogConfigTypeFactory%)
+
+(define LogConfigTypeFactory.jcell_instance 'jnone)
+(define (LogConfigTypeFactory.jstatic_instance)
+  (when (eq? LogConfigTypeFactory.jcell_instance 'jnone) (set! LogConfigTypeFactory.jcell_instance (LogConfigTypeFactory.jnew_0)))
+  LogConfigTypeFactory.jcell_instance)
+(define (LogConfigTypeFactory.jsetstatic_instance value) (set! LogConfigTypeFactory.jcell_instance value))
+
+(define (LogConfigTypeFactory.jnew_0)
+  (define this (new LogConfigTypeFactory% [jclass "LogConfigTypeFactory"]))
+    (set-field! f_NO_DESCRIPTION this "No Description")
+    (set-field! f_OS this (LogConfigType.jnew_2 "Operating System" (get-field f_NO_DESCRIPTION this)))
+    (set-field! f_FACTORYERROR this (LogConfigType.jnew_2 "Factory Error" (get-field f_NO_DESCRIPTION this)))
+    (set-field! f_FILE this (LogConfigType.jnew_2 "File" (get-field f_NO_DESCRIPTION this)))
+    (set-field! f_FILEERROR this (LogConfigType.jnew_2 "File Error" (get-field f_NO_DESCRIPTION this)))
+    (set-field! f_IDLOGGING this (LogConfigType.jnew_2 "ID Logging" (get-field f_NO_DESCRIPTION this)))
+    (set-field! f_REPLACE this (LogConfigType.jnew_2 "Replace" (get-field f_NO_DESCRIPTION this)))
+    (set-field! f_REPLACE_INFO this (LogConfigType.jnew_2 "Replace Info" (get-field f_NO_DESCRIPTION this)))
+    (set-field! f_REPLACEERROR this (LogConfigType.jnew_2 "Replace Error" (get-field f_NO_DESCRIPTION this)))
+    (let ()
+      (let/ec jreturn
+        (JR.className (LogConfigTypes.jstatic_LOGGING))
+        (JR.className (LogConfigTypes.jstatic_LOGGING))))
+  this)
+
+(define (LogConfigTypeFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LogConfigTypeFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LogConfigTypeFactory = {}
-LogConfigTypeFactory.__index = LogConfigTypeFactory
-LogConfigTypeFactory.className = "LogConfigTypeFactory"
-
-function LogConfigTypeFactory:_init_fields()
-    self.NO_DESCRIPTION = "No Description"
-    self.OS = LogConfigType.new("Operating System", self.NO_DESCRIPTION)
-    self.FACTORYERROR = LogConfigType.new("Factory Error", self.NO_DESCRIPTION)
-    self.FILE = LogConfigType.new("File", self.NO_DESCRIPTION)
-    self.FILEERROR = LogConfigType.new("File Error", self.NO_DESCRIPTION)
-    self.IDLOGGING = LogConfigType.new("ID Logging", self.NO_DESCRIPTION)
-    self.REPLACE = LogConfigType.new("Replace", self.NO_DESCRIPTION)
-    self.REPLACE_INFO = LogConfigType.new("Replace Info", self.NO_DESCRIPTION)
-    self.REPLACEERROR = LogConfigType.new("Replace Error", self.NO_DESCRIPTION)
-end
-
-
-function LogConfigTypeFactory.getInstance()
-        return LogConfigTypeFactory.instance
-end
-
-
-function LogConfigTypeFactory.new()
-    local self = setmetatable({}, LogConfigTypeFactory)
-    self:_init_fields()
-        LogConfigTypes.LOGGING:add(self.OS)
-        LogConfigTypes.LOGGING:add(self.FACTORYERROR)
-    return self
-end
-
-LogConfigTypeFactory.instance = LogConfigTypeFactory.new()
-
-return LogConfigTypeFactory
 

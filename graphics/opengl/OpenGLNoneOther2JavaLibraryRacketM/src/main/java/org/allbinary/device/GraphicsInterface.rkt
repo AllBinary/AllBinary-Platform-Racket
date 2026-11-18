@@ -1,41 +1,33 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.device
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.device
 
--- local Font = require("javax.microedition.lcdui.Font")
-local FontDebugBase = require("org.allbinary.graphics.font.FontDebugBase")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GraphicsInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_setFontDebug_2 _font _fontDebug)
+      (raise (JR.newException "AbstractMethodError" "setFontDebug")))))
+(define (GraphicsInterface.jclassValue) GraphicsInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local GraphicsInterface = {}
-GraphicsInterface.__index = GraphicsInterface
-GraphicsInterface.className = "GraphicsInterface"
+(define (GraphicsInterface.jnew_0)
+  (define this (new GraphicsInterface% [jclass "GraphicsInterface"]))
+  this)
 
 
-function GraphicsInterface:setFontDebug(font, fontDebug)
-    error("abstract method setFontDebug")
-end
-
-return GraphicsInterface
 

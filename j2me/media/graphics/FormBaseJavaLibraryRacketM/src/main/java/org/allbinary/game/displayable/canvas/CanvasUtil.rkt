@@ -1,58 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local CommonPhoneStrings = require("org.allbinary.string.CommonPhoneStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../javax/microedition/lcdui/Canvas.rkt" (Canvas.jstatic_UP Canvas.jstatic_DOWN Canvas.jstatic_RIGHT Canvas.jstatic_LEFT Canvas.jstatic_FIRE)])
+(lazy-require ["../../../../../org/allbinary/string/CommonPhoneStrings.rkt" (CommonPhoneStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CanvasUtil%
+  (class JObject%
+    (super-new)))
+(define (CanvasUtil.jclassValue) CanvasUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (CanvasUtil.jnew_0)
+  (define this (new CanvasUtil% [jclass "CanvasUtil"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local CanvasUtil = {}
-CanvasUtil.__index = CanvasUtil
-CanvasUtil.className = "CanvasUtil"
+(define (CanvasUtil.jm_getKeyName_1 _key)
+    (let ([_commonPhoneStrings JR.null])
+      (let/ec jreturn
+        (set! _commonPhoneStrings (CommonPhoneStrings.jm_getInstance_0))
+        (if (= _key (Canvas.jstatic_UP))
+            (begin
+            (jreturn (get-field f_UP _commonPhoneStrings)))
+            (if (= _key (Canvas.jstatic_DOWN))
+            (begin
+            (jreturn (get-field f_DOWN _commonPhoneStrings)))
+            (if (= _key (Canvas.jstatic_RIGHT))
+            (begin
+            (jreturn (get-field f_RIGHT _commonPhoneStrings)))
+            (if (= _key (Canvas.jstatic_LEFT))
+            (begin
+            (jreturn (get-field f_LEFT _commonPhoneStrings)))
+            (when (= _key (Canvas.jstatic_FIRE))
+            (begin
+            (jreturn (get-field f_FIRE _commonPhoneStrings))))))))
+        (jreturn "UNKNOWN KEY"))))
 
 
-function CanvasUtil.new()
-    local self = setmetatable({}, CanvasUtil)
-    return self
-end
-
-
-function CanvasUtil.getKeyName(key)
-        local commonPhoneStrings = CommonPhoneStrings.getInstance()
-        if key == Canvas.UP then
-            return commonPhoneStrings.UP
-        elseif key == Canvas.DOWN then
-            return commonPhoneStrings.DOWN
-        elseif key == Canvas.RIGHT then
-            return commonPhoneStrings.RIGHT
-        elseif key == Canvas.LEFT then
-            return commonPhoneStrings.LEFT
-        elseif key == Canvas.FIRE then
-            return commonPhoneStrings.FIRE
-        end
-        return "UNKNOWN KEY"
-end
-
-return CanvasUtil
 

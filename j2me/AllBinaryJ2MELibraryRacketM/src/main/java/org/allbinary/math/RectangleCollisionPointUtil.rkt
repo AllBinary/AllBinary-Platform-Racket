@@ -1,73 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.math
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.math
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["./RectangleCollisionUtil.rkt" (RectangleCollisionUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define RectangleCollisionPointUtil%
+  (class JObject%
+    (super-new)))
+(define (RectangleCollisionPointUtil.jclassValue) RectangleCollisionPointUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (RectangleCollisionPointUtil.jnew_0)
+  (define this (new RectangleCollisionPointUtil% [jclass "RectangleCollisionPointUtil"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local RectangleCollisionPointUtil = {}
-RectangleCollisionPointUtil.__index = RectangleCollisionPointUtil
-RectangleCollisionPointUtil.className = "RectangleCollisionPointUtil"
+(define (RectangleCollisionPointUtil.jm_allPointsInside_5 _rectX1 _rectY1 _rectX2 _rectY2 _list)
+    (let ([_rectangleCollisionUtil JR.null][_point JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _rectangleCollisionUtil (RectangleCollisionUtil.jm_getInstance_0))
+        (set! _point JR.null)
+        (begin
+            (set! _index (send _list jm_size_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (set! _point (vector-ref (get-field f_objectArray _list) _index))
+            (when (not (send _rectangleCollisionUtil jm_isInside_6 _rectX1 _rectY1 _rectX2 _rectY2 (send _point jm_getX_0) (send _point jm_getY_0)))
+                (begin
+                (jreturn #f)))) (jloop)))))
+        (jreturn #t))))
+
+(define (RectangleCollisionPointUtil.jm_allPointsInsideCell_7 _rectX1 _rectY1 _rectX2 _rectY2 _list _xCellSize _yCellSize)
+    (let ([_rectangleCollisionUtil JR.null][_point JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _rectangleCollisionUtil (RectangleCollisionUtil.jm_getInstance_0))
+        (set! _point JR.null)
+        (begin
+            (set! _index (send _list jm_size_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (set! _point (vector-ref (get-field f_objectArray _list) _index))
+            (when (not (send _rectangleCollisionUtil jm_isInside_6 _rectX1 _rectY1 _rectX2 _rectY2 (JR.i32 (* (send _point jm_getX_0) _xCellSize)) (JR.i32 (* (send _point jm_getY_0) _yCellSize))))
+                (begin
+                (jreturn #f)))) (jloop)))))
+        (jreturn #t))))
 
 
-function RectangleCollisionPointUtil.new()
-    local self = setmetatable({}, RectangleCollisionPointUtil)
-    return self
-end
-
-
-function RectangleCollisionPointUtil.allPointsInside(rectX1, rectY1, rectX2, rectY2, list)
-        local rectangleCollisionUtil = RectangleCollisionUtil.getInstance()
-        local point = nil
-        do
-            local index = list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            point = list.objectArray[index + 1]
-            if not rectangleCollisionUtil:isInside(rectX1, rectY1, rectX2, rectY2, point:getX(), point:getY()) then
-                return false
-            end
-            end
-        end
-        return true
-end
-
-
-function RectangleCollisionPointUtil.allPointsInsideCell(rectX1, rectY1, rectX2, rectY2, list, xCellSize, yCellSize)
-        local rectangleCollisionUtil = RectangleCollisionUtil.getInstance()
-        local point = nil
-        do
-            local index = list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            point = list.objectArray[index + 1]
-            if not rectangleCollisionUtil:isInside(rectX1, rectY1, rectX2, rectY2, point:getX() * xCellSize, point:getY() * yCellSize) then
-                return false
-            end
-            end
-        end
-        return true
-end
-
-return RectangleCollisionPointUtil
 

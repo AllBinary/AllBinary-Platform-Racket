@@ -1,163 +1,123 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Item = require("javax.microedition.lcdui.Item")
-local GameState = require("org.allbinary.game.state.GameState")
-local GameStateFactory = require("org.allbinary.game.state.GameStateFactory")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local GameCanvasRunnableInterface = require("org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../java/lang/Thread.rkt"
+  "./GameCanvasRunnableInterface.rkt")
+(lazy-require ["../../../../../org/allbinary/game/state/GameStateFactory.rkt" (GameStateFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullGameCanvasRunnable%
+  (class JObject%
+    (super-new)
+    (field [f_gameStateFactory JR.null])
+    (define/public (jm_getTitle_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))
+    (define/public (jm_isInitialized_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_isPaused_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_unPause_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_pause_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isHighScoreSubmitted_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_setHighScoreSubmitted_1 _highScoreSubmitted)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_processGameOver_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isGameOver_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_initCommands_1 _cmdListener)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getCurrentStateHashtable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_TABLE (StdUtil.jm_getInstance_0))))))
+    (define/public (jm_getLoadStateHashtable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_TABLE (StdUtil.jm_getInstance_0))))))
+    (define/public (jm_setLoadStateHashtable_1 _hashtable)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getType_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (- 1))))))
+    (define/public (jm_setGameState_1 _gameState)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getGameState_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NO_GAME_STATE (get-field f_gameStateFactory this))))))
+    (define/public (jm_itemStateChanged_1 _item)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_paintThreed_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isRunning_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_setRunning_1 _isRunning)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setThread_1 _thread)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_run_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullGameCanvasRunnable.jclassValue) NullGameCanvasRunnable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE 'jnone)
+(define (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE)
+  (when (eq? NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE 'jnone) (set! NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE (NullGameCanvasRunnable.jnew_0)))
+  NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE)
+(define (NullGameCanvasRunnable.jsetstatic_NULL_GAME_CANVAS_RUNNABLE value) (set! NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE value))
 
-local NullGameCanvasRunnable = {}
-NullGameCanvasRunnable.__index = NullGameCanvasRunnable
-NullGameCanvasRunnable.className = "NullGameCanvasRunnable"
-
-function NullGameCanvasRunnable:_init_fields()
-    self.gameStateFactory = GameStateFactory.getInstance()
-end
-
-function NullGameCanvasRunnable.new()
-    local self = setmetatable({}, NullGameCanvasRunnable)
-    self:_init_fields()
-    return self
-end
-
-
-function NullGameCanvasRunnable:getTitle()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function NullGameCanvasRunnable:isInitialized()
-        return false
-end
-
-
-function NullGameCanvasRunnable:isPaused()
-        return false
-end
-
-
-function NullGameCanvasRunnable:unPause()
-end
-
-
-function NullGameCanvasRunnable:pause()
-end
-
-
-function NullGameCanvasRunnable:isHighScoreSubmitted()
-        return false
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:setHighScoreSubmitted(highScoreSubmitted)
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:processGameOver()
-end
-
-
-function NullGameCanvasRunnable:isGameOver()
-        return false
-end
-
-
-function NullGameCanvasRunnable:initCommands(cmdListener)
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:getCurrentStateHashtable()
-        return StdUtil.getInstance().NULL_TABLE
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:getLoadStateHashtable()
-        return StdUtil.getInstance().NULL_TABLE
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:setLoadStateHashtable(hashtable)
-end
-
-
-function NullGameCanvasRunnable:getType()
-        return -1
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:setGameState(gameState)
-end
+(define (NullGameCanvasRunnable.jnew_0)
+  (define this (new NullGameCanvasRunnable% [jclass "NullGameCanvasRunnable"]))
+    (set-field! f_gameStateFactory this (GameStateFactory.jm_getInstance_0))
+  this)
 
 
-function NullGameCanvasRunnable:getGameState()
-        return self.gameStateFactory.NO_GAME_STATE
-end
-
-
-function NullGameCanvasRunnable:itemStateChanged(item)
-end
-
-
-function NullGameCanvasRunnable:paint(graphics)
-end
-
-
-function NullGameCanvasRunnable:paintThreed(graphics)
-end
-
-
-function NullGameCanvasRunnable:isRunning()
-        return false
-end
-
-
-function NullGameCanvasRunnable:setRunning(isRunning)
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:setThread(thread)
-end
-
-
-function NullGameCanvasRunnable:run()
-end
-
-NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE = NullGameCanvasRunnable.new()
-
-return NullGameCanvasRunnable
 

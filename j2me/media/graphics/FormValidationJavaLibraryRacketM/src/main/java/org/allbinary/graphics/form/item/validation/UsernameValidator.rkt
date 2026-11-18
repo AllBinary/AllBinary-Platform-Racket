@@ -1,43 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item.validation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item.validation
 
-local ABTextFieldItem = require("org.allbinary.graphics.form.item.ABTextFieldItem")
-local TextFieldItemValidator = require("org.allbinary.graphics.form.item.validation.TextFieldItemValidator")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "./TextFieldItemValidator.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define UsernameValidator%
+  (class TextFieldItemValidator%
+    (super-new)))
+(define (UsernameValidator.jclassValue) UsernameValidator%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local UsernameValidator = {}
-UsernameValidator.__index = UsernameValidator
-UsernameValidator.className = "UsernameValidator"
-setmetatable(UsernameValidator, {__index = TextFieldItemValidator})
+(define (UsernameValidator.jnew_4 _textFieldItem _min _max _allowOnEmpty)
+  (define this (new UsernameValidator% [jclass "UsernameValidator"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function UsernameValidator.new(textFieldItem, min, max, allowOnEmpty)
-    local self = setmetatable(TextFieldItemValidator.new(textFieldItem, min, max, allowOnEmpty), UsernameValidator)
-        -- super(...) made self above
-    return self
-end
-
-return UsernameValidator
 

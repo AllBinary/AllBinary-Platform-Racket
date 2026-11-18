@@ -1,50 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system.security.licensing
+
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define LockedResources%
+  (class JObject%
+    (super-new)
+    (field [f_LOCKED_DEMO_GAME_FEATURE_RESOURCE JR.null])))
+(define (LockedResources.jclassValue) LockedResources%)
+
+(define LockedResources.jcell_instance 'jnone)
+(define (LockedResources.jstatic_instance)
+  (when (eq? LockedResources.jcell_instance 'jnone) (set! LockedResources.jcell_instance (LockedResources.jnew_0)))
+  LockedResources.jcell_instance)
+(define (LockedResources.jsetstatic_instance value) (set! LockedResources.jcell_instance value))
+
+(define (LockedResources.jnew_0)
+  (define this (new LockedResources% [jclass "LockedResources"]))
+    (set-field! f_LOCKED_DEMO_GAME_FEATURE_RESOURCE this "/locked_demo_game_feature_64_by_64.png")
+  this)
+
+(define (LockedResources.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LockedResources.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LockedResources = {}
-LockedResources.__index = LockedResources
-LockedResources.className = "LockedResources"
-
-function LockedResources:_init_fields()
-    self.LOCKED_DEMO_GAME_FEATURE_RESOURCE = "/locked_demo_game_feature_64_by_64.png"
-end
-
-function LockedResources.new()
-    local self = setmetatable({}, LockedResources)
-    self:_init_fields()
-    return self
-end
-
-
-function LockedResources.getInstance()
-        return LockedResources.instance
-end
-
-LockedResources.instance = LockedResources.new()
-
-return LockedResources
 

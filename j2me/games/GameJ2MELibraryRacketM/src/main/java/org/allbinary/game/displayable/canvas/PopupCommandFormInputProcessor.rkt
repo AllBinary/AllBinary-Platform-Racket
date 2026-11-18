@@ -1,58 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local ScrollSelectionForm = require("org.allbinary.graphics.form.ScrollSelectionForm")
-local MotionGestureEvent = require("org.allbinary.input.motion.gesture.observer.MotionGestureEvent")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local CommandFormInputProcessor = require("org.allbinary.game.displayable.canvas.CommandFormInputProcessor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./CommandFormInputProcessor.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PopupCommandFormInputProcessor%
+  (class CommandFormInputProcessor%
+    (super-new)
+    (define/override (jm_processInput_1 _key)
+    (let ()
+      (let/ec jreturn
+        (jreturn (super jm_processInput_1 _key)))))
+    (define/override (jm_processMotionInput_1 _motionGestureEvent)
+    (let ()
+      (let/ec jreturn
+        (super jm_processMotionInput_1 _motionGestureEvent))))))
+(define (PopupCommandFormInputProcessor.jclassValue) PopupCommandFormInputProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PopupCommandFormInputProcessor = {}
-PopupCommandFormInputProcessor.__index = PopupCommandFormInputProcessor
-PopupCommandFormInputProcessor.className = "PopupCommandFormInputProcessor"
-setmetatable(PopupCommandFormInputProcessor, {__index = CommandFormInputProcessor})
-
-
-function PopupCommandFormInputProcessor.new(gameKeyEventList, playerInputId, gameCanvas, form, popupMenuInputProcessor)
-    local self = setmetatable(CommandFormInputProcessor.new(gameKeyEventList, playerInputId, gameCanvas, form), PopupCommandFormInputProcessor)
-        -- super(...) made self above
-    return self
-end
+(define (PopupCommandFormInputProcessor.jnew_5 _gameKeyEventList _playerInputId _gameCanvas _form _popupMenuInputProcessor)
+  (define this (new PopupCommandFormInputProcessor% [jclass "PopupCommandFormInputProcessor"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
--- throws Exception
-function PopupCommandFormInputProcessor:processInput(key)
-        return CommandFormInputProcessor.processInput(self, key)
-end
-
-
--- throws Exception
-function PopupCommandFormInputProcessor:processMotionInput(motionGestureEvent)
-        CommandFormInputProcessor.processMotionInput(self, motionGestureEvent)
-end
-
-return PopupCommandFormInputProcessor
 

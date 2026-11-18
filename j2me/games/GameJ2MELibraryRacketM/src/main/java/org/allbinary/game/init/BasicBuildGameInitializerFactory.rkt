@@ -1,46 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.init
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.init
 
-local GameInitializationInterfaceFactoryInterface = require("org.allbinary.game.init.GameInitializationInterfaceFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./GameInitializationInterfaceFactoryInterface.rkt")
+(lazy-require ["./BaseGameInitialization.rkt" (BaseGameInitialization.jstatic_NULL_BASE_GAME_INITIALIZATION)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicBuildGameInitializerFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (BaseGameInitialization.jstatic_NULL_BASE_GAME_INITIALIZATION)))))))
+(define (BasicBuildGameInitializerFactory.jclassValue) BasicBuildGameInitializerFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define BasicBuildGameInitializerFactory.jcell_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY 'jnone)
+(define (BasicBuildGameInitializerFactory.jstatic_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY)
+  (when (eq? BasicBuildGameInitializerFactory.jcell_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY 'jnone) (set! BasicBuildGameInitializerFactory.jcell_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY (BasicBuildGameInitializerFactory.jnew_0)))
+  BasicBuildGameInitializerFactory.jcell_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY)
+(define (BasicBuildGameInitializerFactory.jsetstatic_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY value) (set! BasicBuildGameInitializerFactory.jcell_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY value))
 
-local BasicBuildGameInitializerFactory = {}
-BasicBuildGameInitializerFactory.__index = BasicBuildGameInitializerFactory
-BasicBuildGameInitializerFactory.className = "BasicBuildGameInitializerFactory"
-
-function BasicBuildGameInitializerFactory.new()
-    local self = setmetatable({}, BasicBuildGameInitializerFactory)
-    return self
-end
+(define (BasicBuildGameInitializerFactory.jnew_0)
+  (define this (new BasicBuildGameInitializerFactory% [jclass "BasicBuildGameInitializerFactory"]))
+  this)
 
 
-function BasicBuildGameInitializerFactory:getInstance()
-        return BaseGameInitialization.NULL_BASE_GAME_INITIALIZATION
-end
-
-BasicBuildGameInitializerFactory.NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY = BasicBuildGameInitializerFactory.new()
-
-return BasicBuildGameInitializerFactory
 

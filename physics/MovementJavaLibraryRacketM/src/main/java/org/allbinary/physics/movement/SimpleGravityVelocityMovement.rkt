@@ -1,58 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local GravityUtil = require("org.allbinary.game.physics.acceleration.GravityUtil")
-local VelocityProperties = require("org.allbinary.game.physics.velocity.VelocityProperties")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local BasicConstantVelocityMovement = require("org.allbinary.physics.movement.BasicConstantVelocityMovement")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./BasicConstantVelocityMovement.rkt")
+(lazy-require ["../../../../org/allbinary/game/physics/acceleration/GravityUtil.rkt" (GravityUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/physics/velocity/VelocityProperties.rkt" (VelocityProperties.jnew_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SimpleGravityVelocityMovement%
+  (class BasicConstantVelocityMovement%
+    (super-new)
+    (field [f_gravityUtil JR.null])
+    (define/override (jm_process_1 _layer)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_gravityUtil this) jm_process_2 (send this jm_getVelocityProperties_0) (get-field f_GAME_GRAVITY_VELOCITY (get-field f_gravityUtil this)))
+        (super jm_process_1 _layer))))))
+(define (SimpleGravityVelocityMovement.jclassValue) SimpleGravityVelocityMovement%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SimpleGravityVelocityMovement = {}
-SimpleGravityVelocityMovement.__index = SimpleGravityVelocityMovement
-SimpleGravityVelocityMovement.className = "SimpleGravityVelocityMovement"
-setmetatable(SimpleGravityVelocityMovement, {__index = BasicConstantVelocityMovement})
-
-function SimpleGravityVelocityMovement:_init_fields()
-    self.gravityUtil = GravityUtil.getInstance()
-end
-
-
-function SimpleGravityVelocityMovement.new(speedBasicDecimal)
-    local self = setmetatable(BasicConstantVelocityMovement.new(speedBasicDecimal, VelocityProperties.new(java_int(speedBasicDecimal:getUnscaled()), java_int(speedBasicDecimal:getUnscaled()))), SimpleGravityVelocityMovement)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
+(define (SimpleGravityVelocityMovement.jnew_1 _speedBasicDecimal)
+  (define this (new SimpleGravityVelocityMovement% [jclass "SimpleGravityVelocityMovement"]))
+    (set-field! f_gravityUtil this (GravityUtil.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
--- throws Exception
-function SimpleGravityVelocityMovement:process(layer)
-        self.gravityUtil:process(self:getVelocityProperties(), self.gravityUtil.GAME_GRAVITY_VELOCITY)
-        BasicConstantVelocityMovement.process(self, layer)
-end
-
-return SimpleGravityVelocityMovement
 

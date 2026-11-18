@@ -144,6 +144,7 @@
             (jreturn (send (send (send (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_START _commonLabels)) jm_appendlong_1 (get-field f_startTime this)) jm_append_1 (get-field f_CURRENT _commonLabels)) jm_appendlong_1 _currentTime) jm_append_1 (get-field f_ELAPSED _commonLabels)) jm_append_1 _elapsedAsString) jm_toString_0)))
             (begin
             (jreturn (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))))))
+(define (TimeDelayHelper.jclassValue) TimeDelayHelper%)
 
 (define (TimeDelayHelper.jnew_1 _delay)
   (define this (new TimeDelayHelper% [jclass "TimeDelayHelper"]))

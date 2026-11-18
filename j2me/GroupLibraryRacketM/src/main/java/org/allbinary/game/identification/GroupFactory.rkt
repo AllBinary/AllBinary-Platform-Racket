@@ -1,102 +1,88 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.identification
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.identification
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["./Group.rkt" (Group.jnew_2)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define GroupFactory%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_NULL_GROUP_ARRAY JR.null])
+    (field [f_list JR.null])
+    (field [f_index 0])
+    (define/public (jm_getNextGroup_0)
+    (let ([_group JR.null])
+      (let/ec jreturn
+        (set! _group (vector-ref (get-field f_objectArray (get-field f_list this)) (get-field f_index this)))
+        (set-field! f_index this (JR.i32 (+ (get-field f_index this) 1)))
+        (jreturn _group))))
+    (define/public (jm_getNextGroupByName_1 _name)
+    (let ([_group JR.null])
+      (let/ec jreturn
+        (set! _group (send this jm_getNextGroup_0))
+        (send _group jm_setName_1 _name)
+        (jreturn _group))))
+    (define/public (jm_init_2 _groups _nameArray)
+    (let ([_stringMaker JR.null][_stringUtil JR.null][_TEAM JR.null][_size JR.null][_name JR.null])
+      (let/ec jreturn
+        (set! _stringMaker (StringMaker.jnew_0))
+        (set! _stringUtil (StringUtil.jm_getInstance_0))
+        (set! _TEAM "Team ")
+        (send (get-field f_list this) jm_clear_0)
+        (set-field! f_index this 0)
+        (set! _size (send (get-field f_list this) jm_size_0))
+        (set! _name JR.null)
+        (let/ec jbreak (let jloop () (when (< _size _groups)
+                (let/ec jcontinue
+            (set! _name (get-field f_EMPTY_STRING _stringUtil))
+            (if (< _size (vector-length _nameArray))
+                (begin
+                (set! _name (vector-ref _nameArray _size)))
+                (begin
+                (send _stringMaker jm_delete_2 0 (send _stringMaker jm_length_0))
+                (set! _name (send (send (send _stringMaker jm_append_1 _TEAM) jm_appendint_1 _size) jm_toString_0))))
+            (send (get-field f_list this) jm_add_1 (Group.jnew_2 _name (JR.i16 (JR.i32 (+ _size 3)))))
+            (set! _size (JR.i32 (+ _size 1)))) (jloop)))))))))
+(define (GroupFactory.jclassValue) GroupFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GroupFactory.jcell_instance 'jnone)
+(define (GroupFactory.jstatic_instance)
+  (when (eq? GroupFactory.jcell_instance 'jnone) (set! GroupFactory.jcell_instance (GroupFactory.jnew_0)))
+  GroupFactory.jcell_instance)
+(define (GroupFactory.jsetstatic_instance value) (set! GroupFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (GroupFactory.jnew_0)
+  (define this (new GroupFactory% [jclass "GroupFactory"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_NULL_GROUP_ARRAY this (JR.newArray JR.null 0))
+    (set-field! f_list this (BasicArrayListD.jnew_0))
+    (set-field! f_index this 0)
+  this)
 
-local GroupFactory = {}
-GroupFactory.__index = GroupFactory
-GroupFactory.className = "GroupFactory"
-
-function GroupFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.NULL_GROUP_ARRAY = java_new_array(nil, 0)
-    self.list = BasicArrayListD.new()
-    self.index = 0
-end
-
-function GroupFactory.new()
-    local self = setmetatable({}, GroupFactory)
-    self:_init_fields()
-    return self
-end
+(define (GroupFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GroupFactory.jstatic_instance)))))
 
 
-function GroupFactory.getInstance()
-        return GroupFactory.instance
-end
-
-
-function GroupFactory:getNextGroup()
-        local group = self.list.objectArray[self.index + 1]
-        self.index = self.index + 1
-        return group
-end
-
-
-function GroupFactory:getNextGroupByName(name)
-        local group = self:getNextGroup()
-        group:setName(name)
-        return group
-end
-
-
-function GroupFactory:init(groups, nameArray)
-        local stringMaker = StringMaker.new()
-        local stringUtil = StringUtil.getInstance()
-        local TEAM = "Team "
-        self.list:clear()
-        self.index = 0
-        local size = self.list:size()
-        local name = nil
-        while size < groups do
-            name = stringUtil.EMPTY_STRING
-            if size < (nameArray.n or #nameArray) then
-                name = nameArray[size + 1]
-            else
-                stringMaker:delete(0, stringMaker:length())
-                name = tostring(stringMaker:append(TEAM):appendint(size))
-            end
-            self.list:add(Group.new(name, (size + 3)))
-            size = size + 1
-        end
-end
-
-GroupFactory.instance = GroupFactory.new()
-
-return GroupFactory
 

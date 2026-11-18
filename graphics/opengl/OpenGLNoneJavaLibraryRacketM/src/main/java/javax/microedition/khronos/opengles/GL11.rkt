@@ -1,385 +1,843 @@
--- Generated Code Do Not Modify
--- package javax.microedition.khronos.opengles
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package javax.microedition.khronos.opengles
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/nio/Buffer.rkt"
+  "../../../../java/nio/FloatBuffer.rkt"
+  "../../../../java/nio/IntBuffer.rkt"
+  "./GL10.rkt")
+(provide (all-defined-out))
+
+(define GL11%
+  (class JObject%
+    (super-new)
+    (define/public (jm_glBindBuffer_2 _target _buffer)
+      (raise (JR.newException "AbstractMethodError" "glBindBuffer")))
+    (define/public (jm_glBufferData_4 _target _size _data _usage)
+      (raise (JR.newException "AbstractMethodError" "glBufferData")))
+    (define/public (jm_glBufferSubData_4 _target _offset _size _data)
+      (raise (JR.newException "AbstractMethodError" "glBufferSubData")))
+    (define/public (jm_glClipPlanef_3 _plane _equation _offset)
+      (raise (JR.newException "AbstractMethodError" "glClipPlanef")))
+    (define/public (jm_glClipPlanef_2 _plane _equation)
+      (raise (JR.newException "AbstractMethodError" "glClipPlanef")))
+    (define/public (jm_glColor4ub_4 _red _green _blue _alpha)
+      (raise (JR.newException "AbstractMethodError" "glColor4ub")))
+    (define/public (jm_glColorPointer_4 _size _type _stride _offset)
+      (raise (JR.newException "AbstractMethodError" "glColorPointer")))
+    (define/public (jm_glDeleteBuffers_3 _n _buffers _offset)
+      (raise (JR.newException "AbstractMethodError" "glDeleteBuffers")))
+    (define/public (jm_glDeleteBuffers_2 _n _buffers)
+      (raise (JR.newException "AbstractMethodError" "glDeleteBuffers")))
+    (define/public (jm_glDrawElements_4 _mode _count _type _offset)
+      (raise (JR.newException "AbstractMethodError" "glDrawElements")))
+    (define/public (jm_glGenBuffers_3 _n _buffers _offset)
+      (raise (JR.newException "AbstractMethodError" "glGenBuffers")))
+    (define/public (jm_glGenBuffers_2 _n _buffers)
+      (raise (JR.newException "AbstractMethodError" "glGenBuffers")))
+    (define/public (jm_glGetBufferParameteriv_4 _target _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glGetBufferParameteriv")))
+    (define/public (jm_glGetBufferParameteriv_3 _target _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glGetBufferParameteriv")))
+    (define/public (jm_glGetClipPlanef_3 _pname _eqn _offset)
+      (raise (JR.newException "AbstractMethodError" "glGetClipPlanef")))
+    (define/public (jm_glGetClipPlanef_2 _pname _eqn)
+      (raise (JR.newException "AbstractMethodError" "glGetClipPlanef")))
+    (define/public (jm_glGetFloatv_3 _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glGetFloatv")))
+    (define/public (jm_glGetFloatv_2 _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glGetFloatv")))
+    (define/public (jm_glGetLightfv_4 _light _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glGetLightfv")))
+    (define/public (jm_glGetLightfv_3 _light _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glGetLightfv")))
+    (define/public (jm_glGetMaterialfv_4 _face _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glGetMaterialfv")))
+    (define/public (jm_glGetMaterialfv_3 _face _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glGetMaterialfv")))
+    (define/public (jm_glGetTexEnviv_4 _env _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glGetTexEnviv")))
+    (define/public (jm_glGetTexEnviv_3 _env _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glGetTexEnviv")))
+    (define/public (jm_glGetTexParameterfv_4 _target _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glGetTexParameterfv")))
+    (define/public (jm_glGetTexParameterfv_3 _target _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glGetTexParameterfv")))
+    (define/public (jm_glGetTexParameteriv_4 _target _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glGetTexParameteriv")))
+    (define/public (jm_glGetTexParameteriv_3 _target _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glGetTexParameteriv")))
+    (define/public (jm_glIsBuffer_1 _buffer)
+      (raise (JR.newException "AbstractMethodError" "glIsBuffer")))
+    (define/public (jm_glIsEnabled_1 _cap)
+      (raise (JR.newException "AbstractMethodError" "glIsEnabled")))
+    (define/public (jm_glIsTexture_1 _texture)
+      (raise (JR.newException "AbstractMethodError" "glIsTexture")))
+    (define/public (jm_glNormalPointer_3 _type _stride _offset)
+      (raise (JR.newException "AbstractMethodError" "glNormalPointer")))
+    (define/public (jm_glPointParameterf_2 _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glPointParameterf")))
+    (define/public (jm_glPointParameterfv_3 _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glPointParameterfv")))
+    (define/public (jm_glPointParameterfv_2 _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glPointParameterfv")))
+    (define/public (jm_glTexCoordPointer_4 _size _type _stride _offset)
+      (raise (JR.newException "AbstractMethodError" "glTexCoordPointer")))
+    (define/public (jm_glTexEnvi_3 _target _pname _param)
+      (raise (JR.newException "AbstractMethodError" "glTexEnvi")))
+    (define/public (jm_glTexEnviv_4 _target _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glTexEnviv")))
+    (define/public (jm_glTexEnviv_3 _target _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glTexEnviv")))
+    (define/public (jm_glTexParameterfv_4 _target _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glTexParameterfv")))
+    (define/public (jm_glTexParameterfv_3 _target _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glTexParameterfv")))
+    (define/public (jm_glTexParameteriv_4 _target _pname _params _offset)
+      (raise (JR.newException "AbstractMethodError" "glTexParameteriv")))
+    (define/public (jm_glTexParameteriv_3 _target _pname _params)
+      (raise (JR.newException "AbstractMethodError" "glTexParameteriv")))
+    (define/public (jm_glVertexPointer_4 _size _type _stride _offset)
+      (raise (JR.newException "AbstractMethodError" "glVertexPointer")))))
+(define (GL11.jclassValue) GL11%)
+
+(define GL11.jcell_GL_ACTIVE_TEXTURE 'jnone)
+(define (GL11.jstatic_GL_ACTIVE_TEXTURE)
+  (when (eq? GL11.jcell_GL_ACTIVE_TEXTURE 'jnone) (set! GL11.jcell_GL_ACTIVE_TEXTURE 34016))
+  GL11.jcell_GL_ACTIVE_TEXTURE)
+(define (GL11.jsetstatic_GL_ACTIVE_TEXTURE value) (set! GL11.jcell_GL_ACTIVE_TEXTURE value))
+
+(define GL11.jcell_GL_ADD_SIGNED 'jnone)
+(define (GL11.jstatic_GL_ADD_SIGNED)
+  (when (eq? GL11.jcell_GL_ADD_SIGNED 'jnone) (set! GL11.jcell_GL_ADD_SIGNED 34164))
+  GL11.jcell_GL_ADD_SIGNED)
+(define (GL11.jsetstatic_GL_ADD_SIGNED value) (set! GL11.jcell_GL_ADD_SIGNED value))
+
+(define GL11.jcell_GL_ALPHA_SCALE 'jnone)
+(define (GL11.jstatic_GL_ALPHA_SCALE)
+  (when (eq? GL11.jcell_GL_ALPHA_SCALE 'jnone) (set! GL11.jcell_GL_ALPHA_SCALE 3356))
+  GL11.jcell_GL_ALPHA_SCALE)
+(define (GL11.jsetstatic_GL_ALPHA_SCALE value) (set! GL11.jcell_GL_ALPHA_SCALE value))
+
+(define GL11.jcell_GL_ALPHA_TEST_FUNC 'jnone)
+(define (GL11.jstatic_GL_ALPHA_TEST_FUNC)
+  (when (eq? GL11.jcell_GL_ALPHA_TEST_FUNC 'jnone) (set! GL11.jcell_GL_ALPHA_TEST_FUNC 3009))
+  GL11.jcell_GL_ALPHA_TEST_FUNC)
+(define (GL11.jsetstatic_GL_ALPHA_TEST_FUNC value) (set! GL11.jcell_GL_ALPHA_TEST_FUNC value))
+
+(define GL11.jcell_GL_ALPHA_TEST_REF 'jnone)
+(define (GL11.jstatic_GL_ALPHA_TEST_REF)
+  (when (eq? GL11.jcell_GL_ALPHA_TEST_REF 'jnone) (set! GL11.jcell_GL_ALPHA_TEST_REF 3010))
+  GL11.jcell_GL_ALPHA_TEST_REF)
+(define (GL11.jsetstatic_GL_ALPHA_TEST_REF value) (set! GL11.jcell_GL_ALPHA_TEST_REF value))
+
+(define GL11.jcell_GL_ARRAY_BUFFER 'jnone)
+(define (GL11.jstatic_GL_ARRAY_BUFFER)
+  (when (eq? GL11.jcell_GL_ARRAY_BUFFER 'jnone) (set! GL11.jcell_GL_ARRAY_BUFFER 34962))
+  GL11.jcell_GL_ARRAY_BUFFER)
+(define (GL11.jsetstatic_GL_ARRAY_BUFFER value) (set! GL11.jcell_GL_ARRAY_BUFFER value))
+
+(define GL11.jcell_GL_ARRAY_BUFFER_BINDING 'jnone)
+(define (GL11.jstatic_GL_ARRAY_BUFFER_BINDING)
+  (when (eq? GL11.jcell_GL_ARRAY_BUFFER_BINDING 'jnone) (set! GL11.jcell_GL_ARRAY_BUFFER_BINDING 34964))
+  GL11.jcell_GL_ARRAY_BUFFER_BINDING)
+(define (GL11.jsetstatic_GL_ARRAY_BUFFER_BINDING value) (set! GL11.jcell_GL_ARRAY_BUFFER_BINDING value))
+
+(define GL11.jcell_GL_BLEND_DST 'jnone)
+(define (GL11.jstatic_GL_BLEND_DST)
+  (when (eq? GL11.jcell_GL_BLEND_DST 'jnone) (set! GL11.jcell_GL_BLEND_DST 3040))
+  GL11.jcell_GL_BLEND_DST)
+(define (GL11.jsetstatic_GL_BLEND_DST value) (set! GL11.jcell_GL_BLEND_DST value))
+
+(define GL11.jcell_GL_BLEND_SRC 'jnone)
+(define (GL11.jstatic_GL_BLEND_SRC)
+  (when (eq? GL11.jcell_GL_BLEND_SRC 'jnone) (set! GL11.jcell_GL_BLEND_SRC 3041))
+  GL11.jcell_GL_BLEND_SRC)
+(define (GL11.jsetstatic_GL_BLEND_SRC value) (set! GL11.jcell_GL_BLEND_SRC value))
+
+(define GL11.jcell_GL_BUFFER_ACCESS 'jnone)
+(define (GL11.jstatic_GL_BUFFER_ACCESS)
+  (when (eq? GL11.jcell_GL_BUFFER_ACCESS 'jnone) (set! GL11.jcell_GL_BUFFER_ACCESS 35003))
+  GL11.jcell_GL_BUFFER_ACCESS)
+(define (GL11.jsetstatic_GL_BUFFER_ACCESS value) (set! GL11.jcell_GL_BUFFER_ACCESS value))
+
+(define GL11.jcell_GL_BUFFER_SIZE 'jnone)
+(define (GL11.jstatic_GL_BUFFER_SIZE)
+  (when (eq? GL11.jcell_GL_BUFFER_SIZE 'jnone) (set! GL11.jcell_GL_BUFFER_SIZE 34660))
+  GL11.jcell_GL_BUFFER_SIZE)
+(define (GL11.jsetstatic_GL_BUFFER_SIZE value) (set! GL11.jcell_GL_BUFFER_SIZE value))
+
+(define GL11.jcell_GL_BUFFER_USAGE 'jnone)
+(define (GL11.jstatic_GL_BUFFER_USAGE)
+  (when (eq? GL11.jcell_GL_BUFFER_USAGE 'jnone) (set! GL11.jcell_GL_BUFFER_USAGE 34661))
+  GL11.jcell_GL_BUFFER_USAGE)
+(define (GL11.jsetstatic_GL_BUFFER_USAGE value) (set! GL11.jcell_GL_BUFFER_USAGE value))
+
+(define GL11.jcell_GL_CLIENT_ACTIVE_TEXTURE 'jnone)
+(define (GL11.jstatic_GL_CLIENT_ACTIVE_TEXTURE)
+  (when (eq? GL11.jcell_GL_CLIENT_ACTIVE_TEXTURE 'jnone) (set! GL11.jcell_GL_CLIENT_ACTIVE_TEXTURE 34017))
+  GL11.jcell_GL_CLIENT_ACTIVE_TEXTURE)
+(define (GL11.jsetstatic_GL_CLIENT_ACTIVE_TEXTURE value) (set! GL11.jcell_GL_CLIENT_ACTIVE_TEXTURE value))
+
+(define GL11.jcell_GL_CLIP_PLANE0 'jnone)
+(define (GL11.jstatic_GL_CLIP_PLANE0)
+  (when (eq? GL11.jcell_GL_CLIP_PLANE0 'jnone) (set! GL11.jcell_GL_CLIP_PLANE0 12288))
+  GL11.jcell_GL_CLIP_PLANE0)
+(define (GL11.jsetstatic_GL_CLIP_PLANE0 value) (set! GL11.jcell_GL_CLIP_PLANE0 value))
+
+(define GL11.jcell_GL_CLIP_PLANE1 'jnone)
+(define (GL11.jstatic_GL_CLIP_PLANE1)
+  (when (eq? GL11.jcell_GL_CLIP_PLANE1 'jnone) (set! GL11.jcell_GL_CLIP_PLANE1 12289))
+  GL11.jcell_GL_CLIP_PLANE1)
+(define (GL11.jsetstatic_GL_CLIP_PLANE1 value) (set! GL11.jcell_GL_CLIP_PLANE1 value))
+
+(define GL11.jcell_GL_CLIP_PLANE2 'jnone)
+(define (GL11.jstatic_GL_CLIP_PLANE2)
+  (when (eq? GL11.jcell_GL_CLIP_PLANE2 'jnone) (set! GL11.jcell_GL_CLIP_PLANE2 12290))
+  GL11.jcell_GL_CLIP_PLANE2)
+(define (GL11.jsetstatic_GL_CLIP_PLANE2 value) (set! GL11.jcell_GL_CLIP_PLANE2 value))
+
+(define GL11.jcell_GL_CLIP_PLANE3 'jnone)
+(define (GL11.jstatic_GL_CLIP_PLANE3)
+  (when (eq? GL11.jcell_GL_CLIP_PLANE3 'jnone) (set! GL11.jcell_GL_CLIP_PLANE3 12291))
+  GL11.jcell_GL_CLIP_PLANE3)
+(define (GL11.jsetstatic_GL_CLIP_PLANE3 value) (set! GL11.jcell_GL_CLIP_PLANE3 value))
+
+(define GL11.jcell_GL_CLIP_PLANE4 'jnone)
+(define (GL11.jstatic_GL_CLIP_PLANE4)
+  (when (eq? GL11.jcell_GL_CLIP_PLANE4 'jnone) (set! GL11.jcell_GL_CLIP_PLANE4 12292))
+  GL11.jcell_GL_CLIP_PLANE4)
+(define (GL11.jsetstatic_GL_CLIP_PLANE4 value) (set! GL11.jcell_GL_CLIP_PLANE4 value))
+
+(define GL11.jcell_GL_CLIP_PLANE5 'jnone)
+(define (GL11.jstatic_GL_CLIP_PLANE5)
+  (when (eq? GL11.jcell_GL_CLIP_PLANE5 'jnone) (set! GL11.jcell_GL_CLIP_PLANE5 12293))
+  GL11.jcell_GL_CLIP_PLANE5)
+(define (GL11.jsetstatic_GL_CLIP_PLANE5 value) (set! GL11.jcell_GL_CLIP_PLANE5 value))
+
+(define GL11.jcell_GL_COLOR_ARRAY_BUFFER_BINDING 'jnone)
+(define (GL11.jstatic_GL_COLOR_ARRAY_BUFFER_BINDING)
+  (when (eq? GL11.jcell_GL_COLOR_ARRAY_BUFFER_BINDING 'jnone) (set! GL11.jcell_GL_COLOR_ARRAY_BUFFER_BINDING 34968))
+  GL11.jcell_GL_COLOR_ARRAY_BUFFER_BINDING)
+(define (GL11.jsetstatic_GL_COLOR_ARRAY_BUFFER_BINDING value) (set! GL11.jcell_GL_COLOR_ARRAY_BUFFER_BINDING value))
+
+(define GL11.jcell_GL_COLOR_ARRAY_POINTER 'jnone)
+(define (GL11.jstatic_GL_COLOR_ARRAY_POINTER)
+  (when (eq? GL11.jcell_GL_COLOR_ARRAY_POINTER 'jnone) (set! GL11.jcell_GL_COLOR_ARRAY_POINTER 32912))
+  GL11.jcell_GL_COLOR_ARRAY_POINTER)
+(define (GL11.jsetstatic_GL_COLOR_ARRAY_POINTER value) (set! GL11.jcell_GL_COLOR_ARRAY_POINTER value))
+
+(define GL11.jcell_GL_COLOR_ARRAY_SIZE 'jnone)
+(define (GL11.jstatic_GL_COLOR_ARRAY_SIZE)
+  (when (eq? GL11.jcell_GL_COLOR_ARRAY_SIZE 'jnone) (set! GL11.jcell_GL_COLOR_ARRAY_SIZE 32897))
+  GL11.jcell_GL_COLOR_ARRAY_SIZE)
+(define (GL11.jsetstatic_GL_COLOR_ARRAY_SIZE value) (set! GL11.jcell_GL_COLOR_ARRAY_SIZE value))
+
+(define GL11.jcell_GL_COLOR_ARRAY_STRIDE 'jnone)
+(define (GL11.jstatic_GL_COLOR_ARRAY_STRIDE)
+  (when (eq? GL11.jcell_GL_COLOR_ARRAY_STRIDE 'jnone) (set! GL11.jcell_GL_COLOR_ARRAY_STRIDE 32899))
+  GL11.jcell_GL_COLOR_ARRAY_STRIDE)
+(define (GL11.jsetstatic_GL_COLOR_ARRAY_STRIDE value) (set! GL11.jcell_GL_COLOR_ARRAY_STRIDE value))
+
+(define GL11.jcell_GL_COLOR_ARRAY_TYPE 'jnone)
+(define (GL11.jstatic_GL_COLOR_ARRAY_TYPE)
+  (when (eq? GL11.jcell_GL_COLOR_ARRAY_TYPE 'jnone) (set! GL11.jcell_GL_COLOR_ARRAY_TYPE 32898))
+  GL11.jcell_GL_COLOR_ARRAY_TYPE)
+(define (GL11.jsetstatic_GL_COLOR_ARRAY_TYPE value) (set! GL11.jcell_GL_COLOR_ARRAY_TYPE value))
+
+(define GL11.jcell_GL_COLOR_CLEAR_VALUE 'jnone)
+(define (GL11.jstatic_GL_COLOR_CLEAR_VALUE)
+  (when (eq? GL11.jcell_GL_COLOR_CLEAR_VALUE 'jnone) (set! GL11.jcell_GL_COLOR_CLEAR_VALUE 3106))
+  GL11.jcell_GL_COLOR_CLEAR_VALUE)
+(define (GL11.jsetstatic_GL_COLOR_CLEAR_VALUE value) (set! GL11.jcell_GL_COLOR_CLEAR_VALUE value))
+
+(define GL11.jcell_GL_COLOR_WRITEMASK 'jnone)
+(define (GL11.jstatic_GL_COLOR_WRITEMASK)
+  (when (eq? GL11.jcell_GL_COLOR_WRITEMASK 'jnone) (set! GL11.jcell_GL_COLOR_WRITEMASK 3107))
+  GL11.jcell_GL_COLOR_WRITEMASK)
+(define (GL11.jsetstatic_GL_COLOR_WRITEMASK value) (set! GL11.jcell_GL_COLOR_WRITEMASK value))
+
+(define GL11.jcell_GL_COMBINE 'jnone)
+(define (GL11.jstatic_GL_COMBINE)
+  (when (eq? GL11.jcell_GL_COMBINE 'jnone) (set! GL11.jcell_GL_COMBINE 34160))
+  GL11.jcell_GL_COMBINE)
+(define (GL11.jsetstatic_GL_COMBINE value) (set! GL11.jcell_GL_COMBINE value))
+
+(define GL11.jcell_GL_COMBINE_ALPHA 'jnone)
+(define (GL11.jstatic_GL_COMBINE_ALPHA)
+  (when (eq? GL11.jcell_GL_COMBINE_ALPHA 'jnone) (set! GL11.jcell_GL_COMBINE_ALPHA 34162))
+  GL11.jcell_GL_COMBINE_ALPHA)
+(define (GL11.jsetstatic_GL_COMBINE_ALPHA value) (set! GL11.jcell_GL_COMBINE_ALPHA value))
+
+(define GL11.jcell_GL_COMBINE_RGB 'jnone)
+(define (GL11.jstatic_GL_COMBINE_RGB)
+  (when (eq? GL11.jcell_GL_COMBINE_RGB 'jnone) (set! GL11.jcell_GL_COMBINE_RGB 34161))
+  GL11.jcell_GL_COMBINE_RGB)
+(define (GL11.jsetstatic_GL_COMBINE_RGB value) (set! GL11.jcell_GL_COMBINE_RGB value))
+
+(define GL11.jcell_GL_CONSTANT 'jnone)
+(define (GL11.jstatic_GL_CONSTANT)
+  (when (eq? GL11.jcell_GL_CONSTANT 'jnone) (set! GL11.jcell_GL_CONSTANT 34166))
+  GL11.jcell_GL_CONSTANT)
+(define (GL11.jsetstatic_GL_CONSTANT value) (set! GL11.jcell_GL_CONSTANT value))
+
+(define GL11.jcell_GL_COORD_REPLACE_OES 'jnone)
+(define (GL11.jstatic_GL_COORD_REPLACE_OES)
+  (when (eq? GL11.jcell_GL_COORD_REPLACE_OES 'jnone) (set! GL11.jcell_GL_COORD_REPLACE_OES 34914))
+  GL11.jcell_GL_COORD_REPLACE_OES)
+(define (GL11.jsetstatic_GL_COORD_REPLACE_OES value) (set! GL11.jcell_GL_COORD_REPLACE_OES value))
+
+(define GL11.jcell_GL_CULL_FACE_MODE 'jnone)
+(define (GL11.jstatic_GL_CULL_FACE_MODE)
+  (when (eq? GL11.jcell_GL_CULL_FACE_MODE 'jnone) (set! GL11.jcell_GL_CULL_FACE_MODE 2885))
+  GL11.jcell_GL_CULL_FACE_MODE)
+(define (GL11.jsetstatic_GL_CULL_FACE_MODE value) (set! GL11.jcell_GL_CULL_FACE_MODE value))
+
+(define GL11.jcell_GL_CURRENT_COLOR 'jnone)
+(define (GL11.jstatic_GL_CURRENT_COLOR)
+  (when (eq? GL11.jcell_GL_CURRENT_COLOR 'jnone) (set! GL11.jcell_GL_CURRENT_COLOR 2816))
+  GL11.jcell_GL_CURRENT_COLOR)
+(define (GL11.jsetstatic_GL_CURRENT_COLOR value) (set! GL11.jcell_GL_CURRENT_COLOR value))
+
+(define GL11.jcell_GL_CURRENT_NORMAL 'jnone)
+(define (GL11.jstatic_GL_CURRENT_NORMAL)
+  (when (eq? GL11.jcell_GL_CURRENT_NORMAL 'jnone) (set! GL11.jcell_GL_CURRENT_NORMAL 2818))
+  GL11.jcell_GL_CURRENT_NORMAL)
+(define (GL11.jsetstatic_GL_CURRENT_NORMAL value) (set! GL11.jcell_GL_CURRENT_NORMAL value))
+
+(define GL11.jcell_GL_CURRENT_TEXTURE_COORDS 'jnone)
+(define (GL11.jstatic_GL_CURRENT_TEXTURE_COORDS)
+  (when (eq? GL11.jcell_GL_CURRENT_TEXTURE_COORDS 'jnone) (set! GL11.jcell_GL_CURRENT_TEXTURE_COORDS 2819))
+  GL11.jcell_GL_CURRENT_TEXTURE_COORDS)
+(define (GL11.jsetstatic_GL_CURRENT_TEXTURE_COORDS value) (set! GL11.jcell_GL_CURRENT_TEXTURE_COORDS value))
+
+(define GL11.jcell_GL_DEPTH_CLEAR_VALUE 'jnone)
+(define (GL11.jstatic_GL_DEPTH_CLEAR_VALUE)
+  (when (eq? GL11.jcell_GL_DEPTH_CLEAR_VALUE 'jnone) (set! GL11.jcell_GL_DEPTH_CLEAR_VALUE 2931))
+  GL11.jcell_GL_DEPTH_CLEAR_VALUE)
+(define (GL11.jsetstatic_GL_DEPTH_CLEAR_VALUE value) (set! GL11.jcell_GL_DEPTH_CLEAR_VALUE value))
+
+(define GL11.jcell_GL_DEPTH_FUNC 'jnone)
+(define (GL11.jstatic_GL_DEPTH_FUNC)
+  (when (eq? GL11.jcell_GL_DEPTH_FUNC 'jnone) (set! GL11.jcell_GL_DEPTH_FUNC 2932))
+  GL11.jcell_GL_DEPTH_FUNC)
+(define (GL11.jsetstatic_GL_DEPTH_FUNC value) (set! GL11.jcell_GL_DEPTH_FUNC value))
+
+(define GL11.jcell_GL_DEPTH_RANGE 'jnone)
+(define (GL11.jstatic_GL_DEPTH_RANGE)
+  (when (eq? GL11.jcell_GL_DEPTH_RANGE 'jnone) (set! GL11.jcell_GL_DEPTH_RANGE 2928))
+  GL11.jcell_GL_DEPTH_RANGE)
+(define (GL11.jsetstatic_GL_DEPTH_RANGE value) (set! GL11.jcell_GL_DEPTH_RANGE value))
+
+(define GL11.jcell_GL_DEPTH_WRITEMASK 'jnone)
+(define (GL11.jstatic_GL_DEPTH_WRITEMASK)
+  (when (eq? GL11.jcell_GL_DEPTH_WRITEMASK 'jnone) (set! GL11.jcell_GL_DEPTH_WRITEMASK 2930))
+  GL11.jcell_GL_DEPTH_WRITEMASK)
+(define (GL11.jsetstatic_GL_DEPTH_WRITEMASK value) (set! GL11.jcell_GL_DEPTH_WRITEMASK value))
+
+(define GL11.jcell_GL_DOT3_RGB 'jnone)
+(define (GL11.jstatic_GL_DOT3_RGB)
+  (when (eq? GL11.jcell_GL_DOT3_RGB 'jnone) (set! GL11.jcell_GL_DOT3_RGB 34478))
+  GL11.jcell_GL_DOT3_RGB)
+(define (GL11.jsetstatic_GL_DOT3_RGB value) (set! GL11.jcell_GL_DOT3_RGB value))
+
+(define GL11.jcell_GL_DOT3_RGBA 'jnone)
+(define (GL11.jstatic_GL_DOT3_RGBA)
+  (when (eq? GL11.jcell_GL_DOT3_RGBA 'jnone) (set! GL11.jcell_GL_DOT3_RGBA 34479))
+  GL11.jcell_GL_DOT3_RGBA)
+(define (GL11.jsetstatic_GL_DOT3_RGBA value) (set! GL11.jcell_GL_DOT3_RGBA value))
+
+(define GL11.jcell_GL_DYNAMIC_DRAW 'jnone)
+(define (GL11.jstatic_GL_DYNAMIC_DRAW)
+  (when (eq? GL11.jcell_GL_DYNAMIC_DRAW 'jnone) (set! GL11.jcell_GL_DYNAMIC_DRAW 35048))
+  GL11.jcell_GL_DYNAMIC_DRAW)
+(define (GL11.jsetstatic_GL_DYNAMIC_DRAW value) (set! GL11.jcell_GL_DYNAMIC_DRAW value))
+
+(define GL11.jcell_GL_ELEMENT_ARRAY_BUFFER 'jnone)
+(define (GL11.jstatic_GL_ELEMENT_ARRAY_BUFFER)
+  (when (eq? GL11.jcell_GL_ELEMENT_ARRAY_BUFFER 'jnone) (set! GL11.jcell_GL_ELEMENT_ARRAY_BUFFER 34963))
+  GL11.jcell_GL_ELEMENT_ARRAY_BUFFER)
+(define (GL11.jsetstatic_GL_ELEMENT_ARRAY_BUFFER value) (set! GL11.jcell_GL_ELEMENT_ARRAY_BUFFER value))
+
+(define GL11.jcell_GL_ELEMENT_ARRAY_BUFFER_BINDING 'jnone)
+(define (GL11.jstatic_GL_ELEMENT_ARRAY_BUFFER_BINDING)
+  (when (eq? GL11.jcell_GL_ELEMENT_ARRAY_BUFFER_BINDING 'jnone) (set! GL11.jcell_GL_ELEMENT_ARRAY_BUFFER_BINDING 34965))
+  GL11.jcell_GL_ELEMENT_ARRAY_BUFFER_BINDING)
+(define (GL11.jsetstatic_GL_ELEMENT_ARRAY_BUFFER_BINDING value) (set! GL11.jcell_GL_ELEMENT_ARRAY_BUFFER_BINDING value))
+
+(define GL11.jcell_GL_FRONT_FACE 'jnone)
+(define (GL11.jstatic_GL_FRONT_FACE)
+  (when (eq? GL11.jcell_GL_FRONT_FACE 'jnone) (set! GL11.jcell_GL_FRONT_FACE 2886))
+  GL11.jcell_GL_FRONT_FACE)
+(define (GL11.jsetstatic_GL_FRONT_FACE value) (set! GL11.jcell_GL_FRONT_FACE value))
+
+(define GL11.jcell_GL_GENERATE_MIPMAP 'jnone)
+(define (GL11.jstatic_GL_GENERATE_MIPMAP)
+  (when (eq? GL11.jcell_GL_GENERATE_MIPMAP 'jnone) (set! GL11.jcell_GL_GENERATE_MIPMAP 33169))
+  GL11.jcell_GL_GENERATE_MIPMAP)
+(define (GL11.jsetstatic_GL_GENERATE_MIPMAP value) (set! GL11.jcell_GL_GENERATE_MIPMAP value))
+
+(define GL11.jcell_GL_GENERATE_MIPMAP_HINT 'jnone)
+(define (GL11.jstatic_GL_GENERATE_MIPMAP_HINT)
+  (when (eq? GL11.jcell_GL_GENERATE_MIPMAP_HINT 'jnone) (set! GL11.jcell_GL_GENERATE_MIPMAP_HINT 33170))
+  GL11.jcell_GL_GENERATE_MIPMAP_HINT)
+(define (GL11.jsetstatic_GL_GENERATE_MIPMAP_HINT value) (set! GL11.jcell_GL_GENERATE_MIPMAP_HINT value))
+
+(define GL11.jcell_GL_INTERPOLATE 'jnone)
+(define (GL11.jstatic_GL_INTERPOLATE)
+  (when (eq? GL11.jcell_GL_INTERPOLATE 'jnone) (set! GL11.jcell_GL_INTERPOLATE 34165))
+  GL11.jcell_GL_INTERPOLATE)
+(define (GL11.jsetstatic_GL_INTERPOLATE value) (set! GL11.jcell_GL_INTERPOLATE value))
+
+(define GL11.jcell_GL_LINE_WIDTH 'jnone)
+(define (GL11.jstatic_GL_LINE_WIDTH)
+  (when (eq? GL11.jcell_GL_LINE_WIDTH 'jnone) (set! GL11.jcell_GL_LINE_WIDTH 2849))
+  GL11.jcell_GL_LINE_WIDTH)
+(define (GL11.jsetstatic_GL_LINE_WIDTH value) (set! GL11.jcell_GL_LINE_WIDTH value))
+
+(define GL11.jcell_GL_LOGIC_OP_MODE 'jnone)
+(define (GL11.jstatic_GL_LOGIC_OP_MODE)
+  (when (eq? GL11.jcell_GL_LOGIC_OP_MODE 'jnone) (set! GL11.jcell_GL_LOGIC_OP_MODE 3056))
+  GL11.jcell_GL_LOGIC_OP_MODE)
+(define (GL11.jsetstatic_GL_LOGIC_OP_MODE value) (set! GL11.jcell_GL_LOGIC_OP_MODE value))
+
+(define GL11.jcell_GL_MATRIX_MODE 'jnone)
+(define (GL11.jstatic_GL_MATRIX_MODE)
+  (when (eq? GL11.jcell_GL_MATRIX_MODE 'jnone) (set! GL11.jcell_GL_MATRIX_MODE 2976))
+  GL11.jcell_GL_MATRIX_MODE)
+(define (GL11.jsetstatic_GL_MATRIX_MODE value) (set! GL11.jcell_GL_MATRIX_MODE value))
+
+(define GL11.jcell_GL_MAX_CLIP_PLANES 'jnone)
+(define (GL11.jstatic_GL_MAX_CLIP_PLANES)
+  (when (eq? GL11.jcell_GL_MAX_CLIP_PLANES 'jnone) (set! GL11.jcell_GL_MAX_CLIP_PLANES 3378))
+  GL11.jcell_GL_MAX_CLIP_PLANES)
+(define (GL11.jsetstatic_GL_MAX_CLIP_PLANES value) (set! GL11.jcell_GL_MAX_CLIP_PLANES value))
+
+(define GL11.jcell_GL_MODELVIEW_MATRIX 'jnone)
+(define (GL11.jstatic_GL_MODELVIEW_MATRIX)
+  (when (eq? GL11.jcell_GL_MODELVIEW_MATRIX 'jnone) (set! GL11.jcell_GL_MODELVIEW_MATRIX 2982))
+  GL11.jcell_GL_MODELVIEW_MATRIX)
+(define (GL11.jsetstatic_GL_MODELVIEW_MATRIX value) (set! GL11.jcell_GL_MODELVIEW_MATRIX value))
+
+(define GL11.jcell_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES 'jnone)
+(define (GL11.jstatic_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES)
+  (when (eq? GL11.jcell_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES 'jnone) (set! GL11.jcell_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES 35213))
+  GL11.jcell_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES)
+(define (GL11.jsetstatic_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES value) (set! GL11.jcell_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES value))
+
+(define GL11.jcell_GL_MODELVIEW_STACK_DEPTH 'jnone)
+(define (GL11.jstatic_GL_MODELVIEW_STACK_DEPTH)
+  (when (eq? GL11.jcell_GL_MODELVIEW_STACK_DEPTH 'jnone) (set! GL11.jcell_GL_MODELVIEW_STACK_DEPTH 2979))
+  GL11.jcell_GL_MODELVIEW_STACK_DEPTH)
+(define (GL11.jsetstatic_GL_MODELVIEW_STACK_DEPTH value) (set! GL11.jcell_GL_MODELVIEW_STACK_DEPTH value))
+
+(define GL11.jcell_GL_NORMAL_ARRAY_BUFFER_BINDING 'jnone)
+(define (GL11.jstatic_GL_NORMAL_ARRAY_BUFFER_BINDING)
+  (when (eq? GL11.jcell_GL_NORMAL_ARRAY_BUFFER_BINDING 'jnone) (set! GL11.jcell_GL_NORMAL_ARRAY_BUFFER_BINDING 34967))
+  GL11.jcell_GL_NORMAL_ARRAY_BUFFER_BINDING)
+(define (GL11.jsetstatic_GL_NORMAL_ARRAY_BUFFER_BINDING value) (set! GL11.jcell_GL_NORMAL_ARRAY_BUFFER_BINDING value))
+
+(define GL11.jcell_GL_NORMAL_ARRAY_POINTER 'jnone)
+(define (GL11.jstatic_GL_NORMAL_ARRAY_POINTER)
+  (when (eq? GL11.jcell_GL_NORMAL_ARRAY_POINTER 'jnone) (set! GL11.jcell_GL_NORMAL_ARRAY_POINTER 32911))
+  GL11.jcell_GL_NORMAL_ARRAY_POINTER)
+(define (GL11.jsetstatic_GL_NORMAL_ARRAY_POINTER value) (set! GL11.jcell_GL_NORMAL_ARRAY_POINTER value))
+
+(define GL11.jcell_GL_NORMAL_ARRAY_STRIDE 'jnone)
+(define (GL11.jstatic_GL_NORMAL_ARRAY_STRIDE)
+  (when (eq? GL11.jcell_GL_NORMAL_ARRAY_STRIDE 'jnone) (set! GL11.jcell_GL_NORMAL_ARRAY_STRIDE 32895))
+  GL11.jcell_GL_NORMAL_ARRAY_STRIDE)
+(define (GL11.jsetstatic_GL_NORMAL_ARRAY_STRIDE value) (set! GL11.jcell_GL_NORMAL_ARRAY_STRIDE value))
+
+(define GL11.jcell_GL_NORMAL_ARRAY_TYPE 'jnone)
+(define (GL11.jstatic_GL_NORMAL_ARRAY_TYPE)
+  (when (eq? GL11.jcell_GL_NORMAL_ARRAY_TYPE 'jnone) (set! GL11.jcell_GL_NORMAL_ARRAY_TYPE 32894))
+  GL11.jcell_GL_NORMAL_ARRAY_TYPE)
+(define (GL11.jsetstatic_GL_NORMAL_ARRAY_TYPE value) (set! GL11.jcell_GL_NORMAL_ARRAY_TYPE value))
+
+(define GL11.jcell_GL_OPERAND0_ALPHA 'jnone)
+(define (GL11.jstatic_GL_OPERAND0_ALPHA)
+  (when (eq? GL11.jcell_GL_OPERAND0_ALPHA 'jnone) (set! GL11.jcell_GL_OPERAND0_ALPHA 34200))
+  GL11.jcell_GL_OPERAND0_ALPHA)
+(define (GL11.jsetstatic_GL_OPERAND0_ALPHA value) (set! GL11.jcell_GL_OPERAND0_ALPHA value))
+
+(define GL11.jcell_GL_OPERAND0_RGB 'jnone)
+(define (GL11.jstatic_GL_OPERAND0_RGB)
+  (when (eq? GL11.jcell_GL_OPERAND0_RGB 'jnone) (set! GL11.jcell_GL_OPERAND0_RGB 34192))
+  GL11.jcell_GL_OPERAND0_RGB)
+(define (GL11.jsetstatic_GL_OPERAND0_RGB value) (set! GL11.jcell_GL_OPERAND0_RGB value))
+
+(define GL11.jcell_GL_OPERAND1_ALPHA 'jnone)
+(define (GL11.jstatic_GL_OPERAND1_ALPHA)
+  (when (eq? GL11.jcell_GL_OPERAND1_ALPHA 'jnone) (set! GL11.jcell_GL_OPERAND1_ALPHA 34201))
+  GL11.jcell_GL_OPERAND1_ALPHA)
+(define (GL11.jsetstatic_GL_OPERAND1_ALPHA value) (set! GL11.jcell_GL_OPERAND1_ALPHA value))
+
+(define GL11.jcell_GL_OPERAND1_RGB 'jnone)
+(define (GL11.jstatic_GL_OPERAND1_RGB)
+  (when (eq? GL11.jcell_GL_OPERAND1_RGB 'jnone) (set! GL11.jcell_GL_OPERAND1_RGB 34193))
+  GL11.jcell_GL_OPERAND1_RGB)
+(define (GL11.jsetstatic_GL_OPERAND1_RGB value) (set! GL11.jcell_GL_OPERAND1_RGB value))
+
+(define GL11.jcell_GL_OPERAND2_ALPHA 'jnone)
+(define (GL11.jstatic_GL_OPERAND2_ALPHA)
+  (when (eq? GL11.jcell_GL_OPERAND2_ALPHA 'jnone) (set! GL11.jcell_GL_OPERAND2_ALPHA 34202))
+  GL11.jcell_GL_OPERAND2_ALPHA)
+(define (GL11.jsetstatic_GL_OPERAND2_ALPHA value) (set! GL11.jcell_GL_OPERAND2_ALPHA value))
+
+(define GL11.jcell_GL_OPERAND2_RGB 'jnone)
+(define (GL11.jstatic_GL_OPERAND2_RGB)
+  (when (eq? GL11.jcell_GL_OPERAND2_RGB 'jnone) (set! GL11.jcell_GL_OPERAND2_RGB 34194))
+  GL11.jcell_GL_OPERAND2_RGB)
+(define (GL11.jsetstatic_GL_OPERAND2_RGB value) (set! GL11.jcell_GL_OPERAND2_RGB value))
+
+(define GL11.jcell_GL_POINT_DISTANCE_ATTENUATION 'jnone)
+(define (GL11.jstatic_GL_POINT_DISTANCE_ATTENUATION)
+  (when (eq? GL11.jcell_GL_POINT_DISTANCE_ATTENUATION 'jnone) (set! GL11.jcell_GL_POINT_DISTANCE_ATTENUATION 33065))
+  GL11.jcell_GL_POINT_DISTANCE_ATTENUATION)
+(define (GL11.jsetstatic_GL_POINT_DISTANCE_ATTENUATION value) (set! GL11.jcell_GL_POINT_DISTANCE_ATTENUATION value))
+
+(define GL11.jcell_GL_POINT_FADE_THRESHOLD_SIZE 'jnone)
+(define (GL11.jstatic_GL_POINT_FADE_THRESHOLD_SIZE)
+  (when (eq? GL11.jcell_GL_POINT_FADE_THRESHOLD_SIZE 'jnone) (set! GL11.jcell_GL_POINT_FADE_THRESHOLD_SIZE 33064))
+  GL11.jcell_GL_POINT_FADE_THRESHOLD_SIZE)
+(define (GL11.jsetstatic_GL_POINT_FADE_THRESHOLD_SIZE value) (set! GL11.jcell_GL_POINT_FADE_THRESHOLD_SIZE value))
+
+(define GL11.jcell_GL_POINT_SIZE 'jnone)
+(define (GL11.jstatic_GL_POINT_SIZE)
+  (when (eq? GL11.jcell_GL_POINT_SIZE 'jnone) (set! GL11.jcell_GL_POINT_SIZE 2833))
+  GL11.jcell_GL_POINT_SIZE)
+(define (GL11.jsetstatic_GL_POINT_SIZE value) (set! GL11.jcell_GL_POINT_SIZE value))
+
+(define GL11.jcell_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES 'jnone)
+(define (GL11.jstatic_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES)
+  (when (eq? GL11.jcell_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES 'jnone) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES 35743))
+  GL11.jcell_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES)
+(define (GL11.jsetstatic_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES value) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES value))
+
+(define GL11.jcell_GL_POINT_SIZE_ARRAY_OES 'jnone)
+(define (GL11.jstatic_GL_POINT_SIZE_ARRAY_OES)
+  (when (eq? GL11.jcell_GL_POINT_SIZE_ARRAY_OES 'jnone) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_OES 35740))
+  GL11.jcell_GL_POINT_SIZE_ARRAY_OES)
+(define (GL11.jsetstatic_GL_POINT_SIZE_ARRAY_OES value) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_OES value))
+
+(define GL11.jcell_GL_POINT_SIZE_ARRAY_POINTER_OES 'jnone)
+(define (GL11.jstatic_GL_POINT_SIZE_ARRAY_POINTER_OES)
+  (when (eq? GL11.jcell_GL_POINT_SIZE_ARRAY_POINTER_OES 'jnone) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_POINTER_OES 35212))
+  GL11.jcell_GL_POINT_SIZE_ARRAY_POINTER_OES)
+(define (GL11.jsetstatic_GL_POINT_SIZE_ARRAY_POINTER_OES value) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_POINTER_OES value))
+
+(define GL11.jcell_GL_POINT_SIZE_ARRAY_STRIDE_OES 'jnone)
+(define (GL11.jstatic_GL_POINT_SIZE_ARRAY_STRIDE_OES)
+  (when (eq? GL11.jcell_GL_POINT_SIZE_ARRAY_STRIDE_OES 'jnone) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_STRIDE_OES 35211))
+  GL11.jcell_GL_POINT_SIZE_ARRAY_STRIDE_OES)
+(define (GL11.jsetstatic_GL_POINT_SIZE_ARRAY_STRIDE_OES value) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_STRIDE_OES value))
+
+(define GL11.jcell_GL_POINT_SIZE_ARRAY_TYPE_OES 'jnone)
+(define (GL11.jstatic_GL_POINT_SIZE_ARRAY_TYPE_OES)
+  (when (eq? GL11.jcell_GL_POINT_SIZE_ARRAY_TYPE_OES 'jnone) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_TYPE_OES 35210))
+  GL11.jcell_GL_POINT_SIZE_ARRAY_TYPE_OES)
+(define (GL11.jsetstatic_GL_POINT_SIZE_ARRAY_TYPE_OES value) (set! GL11.jcell_GL_POINT_SIZE_ARRAY_TYPE_OES value))
+
+(define GL11.jcell_GL_POINT_SIZE_MAX 'jnone)
+(define (GL11.jstatic_GL_POINT_SIZE_MAX)
+  (when (eq? GL11.jcell_GL_POINT_SIZE_MAX 'jnone) (set! GL11.jcell_GL_POINT_SIZE_MAX 33063))
+  GL11.jcell_GL_POINT_SIZE_MAX)
+(define (GL11.jsetstatic_GL_POINT_SIZE_MAX value) (set! GL11.jcell_GL_POINT_SIZE_MAX value))
+
+(define GL11.jcell_GL_POINT_SIZE_MIN 'jnone)
+(define (GL11.jstatic_GL_POINT_SIZE_MIN)
+  (when (eq? GL11.jcell_GL_POINT_SIZE_MIN 'jnone) (set! GL11.jcell_GL_POINT_SIZE_MIN 33062))
+  GL11.jcell_GL_POINT_SIZE_MIN)
+(define (GL11.jsetstatic_GL_POINT_SIZE_MIN value) (set! GL11.jcell_GL_POINT_SIZE_MIN value))
+
+(define GL11.jcell_GL_POINT_SPRITE_OES 'jnone)
+(define (GL11.jstatic_GL_POINT_SPRITE_OES)
+  (when (eq? GL11.jcell_GL_POINT_SPRITE_OES 'jnone) (set! GL11.jcell_GL_POINT_SPRITE_OES 34913))
+  GL11.jcell_GL_POINT_SPRITE_OES)
+(define (GL11.jsetstatic_GL_POINT_SPRITE_OES value) (set! GL11.jcell_GL_POINT_SPRITE_OES value))
+
+(define GL11.jcell_GL_POLYGON_OFFSET_FACTOR 'jnone)
+(define (GL11.jstatic_GL_POLYGON_OFFSET_FACTOR)
+  (when (eq? GL11.jcell_GL_POLYGON_OFFSET_FACTOR 'jnone) (set! GL11.jcell_GL_POLYGON_OFFSET_FACTOR 32824))
+  GL11.jcell_GL_POLYGON_OFFSET_FACTOR)
+(define (GL11.jsetstatic_GL_POLYGON_OFFSET_FACTOR value) (set! GL11.jcell_GL_POLYGON_OFFSET_FACTOR value))
+
+(define GL11.jcell_GL_POLYGON_OFFSET_UNITS 'jnone)
+(define (GL11.jstatic_GL_POLYGON_OFFSET_UNITS)
+  (when (eq? GL11.jcell_GL_POLYGON_OFFSET_UNITS 'jnone) (set! GL11.jcell_GL_POLYGON_OFFSET_UNITS 10752))
+  GL11.jcell_GL_POLYGON_OFFSET_UNITS)
+(define (GL11.jsetstatic_GL_POLYGON_OFFSET_UNITS value) (set! GL11.jcell_GL_POLYGON_OFFSET_UNITS value))
+
+(define GL11.jcell_GL_PREVIOUS 'jnone)
+(define (GL11.jstatic_GL_PREVIOUS)
+  (when (eq? GL11.jcell_GL_PREVIOUS 'jnone) (set! GL11.jcell_GL_PREVIOUS 34168))
+  GL11.jcell_GL_PREVIOUS)
+(define (GL11.jsetstatic_GL_PREVIOUS value) (set! GL11.jcell_GL_PREVIOUS value))
+
+(define GL11.jcell_GL_PRIMARY_COLOR 'jnone)
+(define (GL11.jstatic_GL_PRIMARY_COLOR)
+  (when (eq? GL11.jcell_GL_PRIMARY_COLOR 'jnone) (set! GL11.jcell_GL_PRIMARY_COLOR 34167))
+  GL11.jcell_GL_PRIMARY_COLOR)
+(define (GL11.jsetstatic_GL_PRIMARY_COLOR value) (set! GL11.jcell_GL_PRIMARY_COLOR value))
+
+(define GL11.jcell_GL_PROJECTION_MATRIX 'jnone)
+(define (GL11.jstatic_GL_PROJECTION_MATRIX)
+  (when (eq? GL11.jcell_GL_PROJECTION_MATRIX 'jnone) (set! GL11.jcell_GL_PROJECTION_MATRIX 2983))
+  GL11.jcell_GL_PROJECTION_MATRIX)
+(define (GL11.jsetstatic_GL_PROJECTION_MATRIX value) (set! GL11.jcell_GL_PROJECTION_MATRIX value))
+
+(define GL11.jcell_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES 'jnone)
+(define (GL11.jstatic_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES)
+  (when (eq? GL11.jcell_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES 'jnone) (set! GL11.jcell_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES 35214))
+  GL11.jcell_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES)
+(define (GL11.jsetstatic_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES value) (set! GL11.jcell_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES value))
+
+(define GL11.jcell_GL_PROJECTION_STACK_DEPTH 'jnone)
+(define (GL11.jstatic_GL_PROJECTION_STACK_DEPTH)
+  (when (eq? GL11.jcell_GL_PROJECTION_STACK_DEPTH 'jnone) (set! GL11.jcell_GL_PROJECTION_STACK_DEPTH 2980))
+  GL11.jcell_GL_PROJECTION_STACK_DEPTH)
+(define (GL11.jsetstatic_GL_PROJECTION_STACK_DEPTH value) (set! GL11.jcell_GL_PROJECTION_STACK_DEPTH value))
+
+(define GL11.jcell_GL_RGB_SCALE 'jnone)
+(define (GL11.jstatic_GL_RGB_SCALE)
+  (when (eq? GL11.jcell_GL_RGB_SCALE 'jnone) (set! GL11.jcell_GL_RGB_SCALE 34163))
+  GL11.jcell_GL_RGB_SCALE)
+(define (GL11.jsetstatic_GL_RGB_SCALE value) (set! GL11.jcell_GL_RGB_SCALE value))
+
+(define GL11.jcell_GL_SAMPLE_BUFFERS 'jnone)
+(define (GL11.jstatic_GL_SAMPLE_BUFFERS)
+  (when (eq? GL11.jcell_GL_SAMPLE_BUFFERS 'jnone) (set! GL11.jcell_GL_SAMPLE_BUFFERS 32936))
+  GL11.jcell_GL_SAMPLE_BUFFERS)
+(define (GL11.jsetstatic_GL_SAMPLE_BUFFERS value) (set! GL11.jcell_GL_SAMPLE_BUFFERS value))
+
+(define GL11.jcell_GL_SAMPLE_COVERAGE_INVERT 'jnone)
+(define (GL11.jstatic_GL_SAMPLE_COVERAGE_INVERT)
+  (when (eq? GL11.jcell_GL_SAMPLE_COVERAGE_INVERT 'jnone) (set! GL11.jcell_GL_SAMPLE_COVERAGE_INVERT 32939))
+  GL11.jcell_GL_SAMPLE_COVERAGE_INVERT)
+(define (GL11.jsetstatic_GL_SAMPLE_COVERAGE_INVERT value) (set! GL11.jcell_GL_SAMPLE_COVERAGE_INVERT value))
+
+(define GL11.jcell_GL_SAMPLE_COVERAGE_VALUE 'jnone)
+(define (GL11.jstatic_GL_SAMPLE_COVERAGE_VALUE)
+  (when (eq? GL11.jcell_GL_SAMPLE_COVERAGE_VALUE 'jnone) (set! GL11.jcell_GL_SAMPLE_COVERAGE_VALUE 32938))
+  GL11.jcell_GL_SAMPLE_COVERAGE_VALUE)
+(define (GL11.jsetstatic_GL_SAMPLE_COVERAGE_VALUE value) (set! GL11.jcell_GL_SAMPLE_COVERAGE_VALUE value))
+
+(define GL11.jcell_GL_SAMPLES 'jnone)
+(define (GL11.jstatic_GL_SAMPLES)
+  (when (eq? GL11.jcell_GL_SAMPLES 'jnone) (set! GL11.jcell_GL_SAMPLES 32937))
+  GL11.jcell_GL_SAMPLES)
+(define (GL11.jsetstatic_GL_SAMPLES value) (set! GL11.jcell_GL_SAMPLES value))
+
+(define GL11.jcell_GL_SCISSOR_BOX 'jnone)
+(define (GL11.jstatic_GL_SCISSOR_BOX)
+  (when (eq? GL11.jcell_GL_SCISSOR_BOX 'jnone) (set! GL11.jcell_GL_SCISSOR_BOX 3088))
+  GL11.jcell_GL_SCISSOR_BOX)
+(define (GL11.jsetstatic_GL_SCISSOR_BOX value) (set! GL11.jcell_GL_SCISSOR_BOX value))
+
+(define GL11.jcell_GL_SHADE_MODEL 'jnone)
+(define (GL11.jstatic_GL_SHADE_MODEL)
+  (when (eq? GL11.jcell_GL_SHADE_MODEL 'jnone) (set! GL11.jcell_GL_SHADE_MODEL 2900))
+  GL11.jcell_GL_SHADE_MODEL)
+(define (GL11.jsetstatic_GL_SHADE_MODEL value) (set! GL11.jcell_GL_SHADE_MODEL value))
+
+(define GL11.jcell_GL_SRC0_ALPHA 'jnone)
+(define (GL11.jstatic_GL_SRC0_ALPHA)
+  (when (eq? GL11.jcell_GL_SRC0_ALPHA 'jnone) (set! GL11.jcell_GL_SRC0_ALPHA 34184))
+  GL11.jcell_GL_SRC0_ALPHA)
+(define (GL11.jsetstatic_GL_SRC0_ALPHA value) (set! GL11.jcell_GL_SRC0_ALPHA value))
+
+(define GL11.jcell_GL_SRC0_RGB 'jnone)
+(define (GL11.jstatic_GL_SRC0_RGB)
+  (when (eq? GL11.jcell_GL_SRC0_RGB 'jnone) (set! GL11.jcell_GL_SRC0_RGB 34176))
+  GL11.jcell_GL_SRC0_RGB)
+(define (GL11.jsetstatic_GL_SRC0_RGB value) (set! GL11.jcell_GL_SRC0_RGB value))
+
+(define GL11.jcell_GL_SRC1_ALPHA 'jnone)
+(define (GL11.jstatic_GL_SRC1_ALPHA)
+  (when (eq? GL11.jcell_GL_SRC1_ALPHA 'jnone) (set! GL11.jcell_GL_SRC1_ALPHA 34185))
+  GL11.jcell_GL_SRC1_ALPHA)
+(define (GL11.jsetstatic_GL_SRC1_ALPHA value) (set! GL11.jcell_GL_SRC1_ALPHA value))
+
+(define GL11.jcell_GL_SRC1_RGB 'jnone)
+(define (GL11.jstatic_GL_SRC1_RGB)
+  (when (eq? GL11.jcell_GL_SRC1_RGB 'jnone) (set! GL11.jcell_GL_SRC1_RGB 34177))
+  GL11.jcell_GL_SRC1_RGB)
+(define (GL11.jsetstatic_GL_SRC1_RGB value) (set! GL11.jcell_GL_SRC1_RGB value))
+
+(define GL11.jcell_GL_SRC2_ALPHA 'jnone)
+(define (GL11.jstatic_GL_SRC2_ALPHA)
+  (when (eq? GL11.jcell_GL_SRC2_ALPHA 'jnone) (set! GL11.jcell_GL_SRC2_ALPHA 34186))
+  GL11.jcell_GL_SRC2_ALPHA)
+(define (GL11.jsetstatic_GL_SRC2_ALPHA value) (set! GL11.jcell_GL_SRC2_ALPHA value))
+
+(define GL11.jcell_GL_SRC2_RGB 'jnone)
+(define (GL11.jstatic_GL_SRC2_RGB)
+  (when (eq? GL11.jcell_GL_SRC2_RGB 'jnone) (set! GL11.jcell_GL_SRC2_RGB 34178))
+  GL11.jcell_GL_SRC2_RGB)
+(define (GL11.jsetstatic_GL_SRC2_RGB value) (set! GL11.jcell_GL_SRC2_RGB value))
+
+(define GL11.jcell_GL_STATIC_DRAW 'jnone)
+(define (GL11.jstatic_GL_STATIC_DRAW)
+  (when (eq? GL11.jcell_GL_STATIC_DRAW 'jnone) (set! GL11.jcell_GL_STATIC_DRAW 35044))
+  GL11.jcell_GL_STATIC_DRAW)
+(define (GL11.jsetstatic_GL_STATIC_DRAW value) (set! GL11.jcell_GL_STATIC_DRAW value))
+
+(define GL11.jcell_GL_STENCIL_CLEAR_VALUE 'jnone)
+(define (GL11.jstatic_GL_STENCIL_CLEAR_VALUE)
+  (when (eq? GL11.jcell_GL_STENCIL_CLEAR_VALUE 'jnone) (set! GL11.jcell_GL_STENCIL_CLEAR_VALUE 2961))
+  GL11.jcell_GL_STENCIL_CLEAR_VALUE)
+(define (GL11.jsetstatic_GL_STENCIL_CLEAR_VALUE value) (set! GL11.jcell_GL_STENCIL_CLEAR_VALUE value))
+
+(define GL11.jcell_GL_STENCIL_FAIL 'jnone)
+(define (GL11.jstatic_GL_STENCIL_FAIL)
+  (when (eq? GL11.jcell_GL_STENCIL_FAIL 'jnone) (set! GL11.jcell_GL_STENCIL_FAIL 2964))
+  GL11.jcell_GL_STENCIL_FAIL)
+(define (GL11.jsetstatic_GL_STENCIL_FAIL value) (set! GL11.jcell_GL_STENCIL_FAIL value))
+
+(define GL11.jcell_GL_STENCIL_FUNC 'jnone)
+(define (GL11.jstatic_GL_STENCIL_FUNC)
+  (when (eq? GL11.jcell_GL_STENCIL_FUNC 'jnone) (set! GL11.jcell_GL_STENCIL_FUNC 2962))
+  GL11.jcell_GL_STENCIL_FUNC)
+(define (GL11.jsetstatic_GL_STENCIL_FUNC value) (set! GL11.jcell_GL_STENCIL_FUNC value))
+
+(define GL11.jcell_GL_STENCIL_PASS_DEPTH_FAIL 'jnone)
+(define (GL11.jstatic_GL_STENCIL_PASS_DEPTH_FAIL)
+  (when (eq? GL11.jcell_GL_STENCIL_PASS_DEPTH_FAIL 'jnone) (set! GL11.jcell_GL_STENCIL_PASS_DEPTH_FAIL 2965))
+  GL11.jcell_GL_STENCIL_PASS_DEPTH_FAIL)
+(define (GL11.jsetstatic_GL_STENCIL_PASS_DEPTH_FAIL value) (set! GL11.jcell_GL_STENCIL_PASS_DEPTH_FAIL value))
+
+(define GL11.jcell_GL_STENCIL_PASS_DEPTH_PASS 'jnone)
+(define (GL11.jstatic_GL_STENCIL_PASS_DEPTH_PASS)
+  (when (eq? GL11.jcell_GL_STENCIL_PASS_DEPTH_PASS 'jnone) (set! GL11.jcell_GL_STENCIL_PASS_DEPTH_PASS 2966))
+  GL11.jcell_GL_STENCIL_PASS_DEPTH_PASS)
+(define (GL11.jsetstatic_GL_STENCIL_PASS_DEPTH_PASS value) (set! GL11.jcell_GL_STENCIL_PASS_DEPTH_PASS value))
+
+(define GL11.jcell_GL_STENCIL_REF 'jnone)
+(define (GL11.jstatic_GL_STENCIL_REF)
+  (when (eq? GL11.jcell_GL_STENCIL_REF 'jnone) (set! GL11.jcell_GL_STENCIL_REF 2967))
+  GL11.jcell_GL_STENCIL_REF)
+(define (GL11.jsetstatic_GL_STENCIL_REF value) (set! GL11.jcell_GL_STENCIL_REF value))
+
+(define GL11.jcell_GL_STENCIL_VALUE_MASK 'jnone)
+(define (GL11.jstatic_GL_STENCIL_VALUE_MASK)
+  (when (eq? GL11.jcell_GL_STENCIL_VALUE_MASK 'jnone) (set! GL11.jcell_GL_STENCIL_VALUE_MASK 2963))
+  GL11.jcell_GL_STENCIL_VALUE_MASK)
+(define (GL11.jsetstatic_GL_STENCIL_VALUE_MASK value) (set! GL11.jcell_GL_STENCIL_VALUE_MASK value))
+
+(define GL11.jcell_GL_STENCIL_WRITEMASK 'jnone)
+(define (GL11.jstatic_GL_STENCIL_WRITEMASK)
+  (when (eq? GL11.jcell_GL_STENCIL_WRITEMASK 'jnone) (set! GL11.jcell_GL_STENCIL_WRITEMASK 2968))
+  GL11.jcell_GL_STENCIL_WRITEMASK)
+(define (GL11.jsetstatic_GL_STENCIL_WRITEMASK value) (set! GL11.jcell_GL_STENCIL_WRITEMASK value))
+
+(define GL11.jcell_GL_SUBTRACT 'jnone)
+(define (GL11.jstatic_GL_SUBTRACT)
+  (when (eq? GL11.jcell_GL_SUBTRACT 'jnone) (set! GL11.jcell_GL_SUBTRACT 34023))
+  GL11.jcell_GL_SUBTRACT)
+(define (GL11.jsetstatic_GL_SUBTRACT value) (set! GL11.jcell_GL_SUBTRACT value))
+
+(define GL11.jcell_GL_TEXTURE_BINDING_2D 'jnone)
+(define (GL11.jstatic_GL_TEXTURE_BINDING_2D)
+  (when (eq? GL11.jcell_GL_TEXTURE_BINDING_2D 'jnone) (set! GL11.jcell_GL_TEXTURE_BINDING_2D 32873))
+  GL11.jcell_GL_TEXTURE_BINDING_2D)
+(define (GL11.jsetstatic_GL_TEXTURE_BINDING_2D value) (set! GL11.jcell_GL_TEXTURE_BINDING_2D value))
+
+(define GL11.jcell_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING 'jnone)
+(define (GL11.jstatic_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING)
+  (when (eq? GL11.jcell_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING 'jnone) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING 34970))
+  GL11.jcell_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING)
+(define (GL11.jsetstatic_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING value) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING value))
+
+(define GL11.jcell_GL_TEXTURE_COORD_ARRAY_POINTER 'jnone)
+(define (GL11.jstatic_GL_TEXTURE_COORD_ARRAY_POINTER)
+  (when (eq? GL11.jcell_GL_TEXTURE_COORD_ARRAY_POINTER 'jnone) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_POINTER 32914))
+  GL11.jcell_GL_TEXTURE_COORD_ARRAY_POINTER)
+(define (GL11.jsetstatic_GL_TEXTURE_COORD_ARRAY_POINTER value) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_POINTER value))
+
+(define GL11.jcell_GL_TEXTURE_COORD_ARRAY_SIZE 'jnone)
+(define (GL11.jstatic_GL_TEXTURE_COORD_ARRAY_SIZE)
+  (when (eq? GL11.jcell_GL_TEXTURE_COORD_ARRAY_SIZE 'jnone) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_SIZE 32904))
+  GL11.jcell_GL_TEXTURE_COORD_ARRAY_SIZE)
+(define (GL11.jsetstatic_GL_TEXTURE_COORD_ARRAY_SIZE value) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_SIZE value))
+
+(define GL11.jcell_GL_TEXTURE_COORD_ARRAY_STRIDE 'jnone)
+(define (GL11.jstatic_GL_TEXTURE_COORD_ARRAY_STRIDE)
+  (when (eq? GL11.jcell_GL_TEXTURE_COORD_ARRAY_STRIDE 'jnone) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_STRIDE 32906))
+  GL11.jcell_GL_TEXTURE_COORD_ARRAY_STRIDE)
+(define (GL11.jsetstatic_GL_TEXTURE_COORD_ARRAY_STRIDE value) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_STRIDE value))
+
+(define GL11.jcell_GL_TEXTURE_COORD_ARRAY_TYPE 'jnone)
+(define (GL11.jstatic_GL_TEXTURE_COORD_ARRAY_TYPE)
+  (when (eq? GL11.jcell_GL_TEXTURE_COORD_ARRAY_TYPE 'jnone) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_TYPE 32905))
+  GL11.jcell_GL_TEXTURE_COORD_ARRAY_TYPE)
+(define (GL11.jsetstatic_GL_TEXTURE_COORD_ARRAY_TYPE value) (set! GL11.jcell_GL_TEXTURE_COORD_ARRAY_TYPE value))
+
+(define GL11.jcell_GL_TEXTURE_MATRIX 'jnone)
+(define (GL11.jstatic_GL_TEXTURE_MATRIX)
+  (when (eq? GL11.jcell_GL_TEXTURE_MATRIX 'jnone) (set! GL11.jcell_GL_TEXTURE_MATRIX 2984))
+  GL11.jcell_GL_TEXTURE_MATRIX)
+(define (GL11.jsetstatic_GL_TEXTURE_MATRIX value) (set! GL11.jcell_GL_TEXTURE_MATRIX value))
+
+(define GL11.jcell_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES 'jnone)
+(define (GL11.jstatic_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES)
+  (when (eq? GL11.jcell_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES 'jnone) (set! GL11.jcell_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES 35215))
+  GL11.jcell_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES)
+(define (GL11.jsetstatic_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES value) (set! GL11.jcell_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES value))
+
+(define GL11.jcell_GL_TEXTURE_STACK_DEPTH 'jnone)
+(define (GL11.jstatic_GL_TEXTURE_STACK_DEPTH)
+  (when (eq? GL11.jcell_GL_TEXTURE_STACK_DEPTH 'jnone) (set! GL11.jcell_GL_TEXTURE_STACK_DEPTH 2981))
+  GL11.jcell_GL_TEXTURE_STACK_DEPTH)
+(define (GL11.jsetstatic_GL_TEXTURE_STACK_DEPTH value) (set! GL11.jcell_GL_TEXTURE_STACK_DEPTH value))
+
+(define GL11.jcell_GL_VERTEX_ARRAY_BUFFER_BINDING 'jnone)
+(define (GL11.jstatic_GL_VERTEX_ARRAY_BUFFER_BINDING)
+  (when (eq? GL11.jcell_GL_VERTEX_ARRAY_BUFFER_BINDING 'jnone) (set! GL11.jcell_GL_VERTEX_ARRAY_BUFFER_BINDING 34966))
+  GL11.jcell_GL_VERTEX_ARRAY_BUFFER_BINDING)
+(define (GL11.jsetstatic_GL_VERTEX_ARRAY_BUFFER_BINDING value) (set! GL11.jcell_GL_VERTEX_ARRAY_BUFFER_BINDING value))
+
+(define GL11.jcell_GL_VERTEX_ARRAY_POINTER 'jnone)
+(define (GL11.jstatic_GL_VERTEX_ARRAY_POINTER)
+  (when (eq? GL11.jcell_GL_VERTEX_ARRAY_POINTER 'jnone) (set! GL11.jcell_GL_VERTEX_ARRAY_POINTER 32910))
+  GL11.jcell_GL_VERTEX_ARRAY_POINTER)
+(define (GL11.jsetstatic_GL_VERTEX_ARRAY_POINTER value) (set! GL11.jcell_GL_VERTEX_ARRAY_POINTER value))
+
+(define GL11.jcell_GL_VERTEX_ARRAY_SIZE 'jnone)
+(define (GL11.jstatic_GL_VERTEX_ARRAY_SIZE)
+  (when (eq? GL11.jcell_GL_VERTEX_ARRAY_SIZE 'jnone) (set! GL11.jcell_GL_VERTEX_ARRAY_SIZE 32890))
+  GL11.jcell_GL_VERTEX_ARRAY_SIZE)
+(define (GL11.jsetstatic_GL_VERTEX_ARRAY_SIZE value) (set! GL11.jcell_GL_VERTEX_ARRAY_SIZE value))
+
+(define GL11.jcell_GL_VERTEX_ARRAY_STRIDE 'jnone)
+(define (GL11.jstatic_GL_VERTEX_ARRAY_STRIDE)
+  (when (eq? GL11.jcell_GL_VERTEX_ARRAY_STRIDE 'jnone) (set! GL11.jcell_GL_VERTEX_ARRAY_STRIDE 32892))
+  GL11.jcell_GL_VERTEX_ARRAY_STRIDE)
+(define (GL11.jsetstatic_GL_VERTEX_ARRAY_STRIDE value) (set! GL11.jcell_GL_VERTEX_ARRAY_STRIDE value))
+
+(define GL11.jcell_GL_VERTEX_ARRAY_TYPE 'jnone)
+(define (GL11.jstatic_GL_VERTEX_ARRAY_TYPE)
+  (when (eq? GL11.jcell_GL_VERTEX_ARRAY_TYPE 'jnone) (set! GL11.jcell_GL_VERTEX_ARRAY_TYPE 32891))
+  GL11.jcell_GL_VERTEX_ARRAY_TYPE)
+(define (GL11.jsetstatic_GL_VERTEX_ARRAY_TYPE value) (set! GL11.jcell_GL_VERTEX_ARRAY_TYPE value))
+
+(define GL11.jcell_GL_VIEWPORT 'jnone)
+(define (GL11.jstatic_GL_VIEWPORT)
+  (when (eq? GL11.jcell_GL_VIEWPORT 'jnone) (set! GL11.jcell_GL_VIEWPORT 2978))
+  GL11.jcell_GL_VIEWPORT)
+(define (GL11.jsetstatic_GL_VIEWPORT value) (set! GL11.jcell_GL_VIEWPORT value))
+
+(define GL11.jcell_GL_WRITE_ONLY 'jnone)
+(define (GL11.jstatic_GL_WRITE_ONLY)
+  (when (eq? GL11.jcell_GL_WRITE_ONLY 'jnone) (set! GL11.jcell_GL_WRITE_ONLY 35001))
+  GL11.jcell_GL_WRITE_ONLY)
+(define (GL11.jsetstatic_GL_WRITE_ONLY value) (set! GL11.jcell_GL_WRITE_ONLY value))
+
+(define (GL11.jnew_0)
+  (define this (new GL11% [jclass "GL11"]))
+  this)
 
--- local Buffer = require("java.nio.Buffer")
--- local FloatBuffer = require("java.nio.FloatBuffer")
--- local IntBuffer = require("java.nio.IntBuffer")
-local GL10 = require("javax.microedition.khronos.opengles.GL10")
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local GL11 = {}
-GL11.__index = GL11
-GL11.className = "GL11"
-setmetatable(GL11, {__index = GL10})
-
-
-function GL11:glBindBuffer(target, buffer)
-    error("abstract method glBindBuffer")
-end
-
-
-function GL11:glBufferData(target, size, data, usage)
-    error("abstract method glBufferData")
-end
-
-
-function GL11:glBufferSubData(target, offset, size, data)
-    error("abstract method glBufferSubData")
-end
-
-
-function GL11:glClipPlanef(plane, equation, offset)
-    error("abstract method glClipPlanef")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glClipPlanef(plane, equation)
-    error("abstract method glClipPlanef")
-end
-
-
-function GL11:glColor4ub(red, green, blue, alpha)
-    error("abstract method glColor4ub")
-end
-
-
-function GL11:glColorPointer(size, type, stride, offset)
-    error("abstract method glColorPointer")
-end
-
-
-function GL11:glDeleteBuffers(n, buffers, offset)
-    error("abstract method glDeleteBuffers")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glDeleteBuffers(n, buffers)
-    error("abstract method glDeleteBuffers")
-end
-
-
-function GL11:glDrawElements(mode, count, type, offset)
-    error("abstract method glDrawElements")
-end
-
-
-function GL11:glGenBuffers(n, buffers, offset)
-    error("abstract method glGenBuffers")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glGenBuffers(n, buffers)
-    error("abstract method glGenBuffers")
-end
-
-
-function GL11:glGetBufferParameteriv(target, pname, params, offset)
-    error("abstract method glGetBufferParameteriv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glGetBufferParameteriv(target, pname, params)
-    error("abstract method glGetBufferParameteriv")
-end
-
-
-function GL11:glGetClipPlanef(pname, eqn, offset)
-    error("abstract method glGetClipPlanef")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glGetClipPlanef(pname, eqn)
-    error("abstract method glGetClipPlanef")
-end
-
-
-function GL11:glGetFloatv(pname, params, offset)
-    error("abstract method glGetFloatv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glGetFloatv(pname, params)
-    error("abstract method glGetFloatv")
-end
-
-
-function GL11:glGetLightfv(light, pname, params, offset)
-    error("abstract method glGetLightfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glGetLightfv(light, pname, params)
-    error("abstract method glGetLightfv")
-end
-
-
-function GL11:glGetMaterialfv(face, pname, params, offset)
-    error("abstract method glGetMaterialfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glGetMaterialfv(face, pname, params)
-    error("abstract method glGetMaterialfv")
-end
-
-
-function GL11:glGetTexEnviv(env, pname, params, offset)
-    error("abstract method glGetTexEnviv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glGetTexEnviv(env, pname, params)
-    error("abstract method glGetTexEnviv")
-end
-
-
-function GL11:glGetTexParameterfv(target, pname, params, offset)
-    error("abstract method glGetTexParameterfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glGetTexParameterfv(target, pname, params)
-    error("abstract method glGetTexParameterfv")
-end
-
-
-function GL11:glGetTexParameteriv(target, pname, params, offset)
-    error("abstract method glGetTexParameteriv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glGetTexParameteriv(target, pname, params)
-    error("abstract method glGetTexParameteriv")
-end
-
-
-function GL11:glIsBuffer(buffer)
-    error("abstract method glIsBuffer")
-end
-
-
-function GL11:glIsEnabled(cap)
-    error("abstract method glIsEnabled")
-end
-
-
-function GL11:glIsTexture(texture)
-    error("abstract method glIsTexture")
-end
-
-
-function GL11:glNormalPointer(type, stride, offset)
-    error("abstract method glNormalPointer")
-end
-
-
-function GL11:glPointParameterf(pname, param)
-    error("abstract method glPointParameterf")
-end
-
-
-function GL11:glPointParameterfv(pname, params, offset)
-    error("abstract method glPointParameterfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glPointParameterfv(pname, params)
-    error("abstract method glPointParameterfv")
-end
-
-
-function GL11:glTexCoordPointer(size, type, stride, offset)
-    error("abstract method glTexCoordPointer")
-end
-
-
-function GL11:glTexEnvi(target, pname, param)
-    error("abstract method glTexEnvi")
-end
-
-
-function GL11:glTexEnviv(target, pname, params, offset)
-    error("abstract method glTexEnviv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glTexEnviv(target, pname, params)
-    error("abstract method glTexEnviv")
-end
-
-
-function GL11:glTexParameterfv(target, pname, params, offset)
-    error("abstract method glTexParameterfv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glTexParameterfv(target, pname, params)
-    error("abstract method glTexParameterfv")
-end
-
-
-function GL11:glTexParameteriv(target, pname, params, offset)
-    error("abstract method glTexParameteriv")
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function GL11:glTexParameteriv(target, pname, params)
-    error("abstract method glTexParameteriv")
-end
-
-
-function GL11:glVertexPointer(size, type, stride, offset)
-    error("abstract method glVertexPointer")
-end
-
-GL11.GL_ACTIVE_TEXTURE = 34016
-GL11.GL_ADD_SIGNED = 34164
-GL11.GL_ALPHA_SCALE = 3356
-GL11.GL_ALPHA_TEST_FUNC = 3009
-GL11.GL_ALPHA_TEST_REF = 3010
-GL11.GL_ARRAY_BUFFER = 34962
-GL11.GL_ARRAY_BUFFER_BINDING = 34964
-GL11.GL_BLEND_DST = 3040
-GL11.GL_BLEND_SRC = 3041
-GL11.GL_BUFFER_ACCESS = 35003
-GL11.GL_BUFFER_SIZE = 34660
-GL11.GL_BUFFER_USAGE = 34661
-GL11.GL_CLIENT_ACTIVE_TEXTURE = 34017
-GL11.GL_CLIP_PLANE0 = 12288
-GL11.GL_CLIP_PLANE1 = 12289
-GL11.GL_CLIP_PLANE2 = 12290
-GL11.GL_CLIP_PLANE3 = 12291
-GL11.GL_CLIP_PLANE4 = 12292
-GL11.GL_CLIP_PLANE5 = 12293
-GL11.GL_COLOR_ARRAY_BUFFER_BINDING = 34968
-GL11.GL_COLOR_ARRAY_POINTER = 32912
-GL11.GL_COLOR_ARRAY_SIZE = 32897
-GL11.GL_COLOR_ARRAY_STRIDE = 32899
-GL11.GL_COLOR_ARRAY_TYPE = 32898
-GL11.GL_COLOR_CLEAR_VALUE = 3106
-GL11.GL_COLOR_WRITEMASK = 3107
-GL11.GL_COMBINE = 34160
-GL11.GL_COMBINE_ALPHA = 34162
-GL11.GL_COMBINE_RGB = 34161
-GL11.GL_CONSTANT = 34166
-GL11.GL_COORD_REPLACE_OES = 34914
-GL11.GL_CULL_FACE_MODE = 2885
-GL11.GL_CURRENT_COLOR = 2816
-GL11.GL_CURRENT_NORMAL = 2818
-GL11.GL_CURRENT_TEXTURE_COORDS = 2819
-GL11.GL_DEPTH_CLEAR_VALUE = 2931
-GL11.GL_DEPTH_FUNC = 2932
-GL11.GL_DEPTH_RANGE = 2928
-GL11.GL_DEPTH_WRITEMASK = 2930
-GL11.GL_DOT3_RGB = 34478
-GL11.GL_DOT3_RGBA = 34479
-GL11.GL_DYNAMIC_DRAW = 35048
-GL11.GL_ELEMENT_ARRAY_BUFFER = 34963
-GL11.GL_ELEMENT_ARRAY_BUFFER_BINDING = 34965
-GL11.GL_FRONT_FACE = 2886
-GL11.GL_GENERATE_MIPMAP = 33169
-GL11.GL_GENERATE_MIPMAP_HINT = 33170
-GL11.GL_INTERPOLATE = 34165
-GL11.GL_LINE_WIDTH = 2849
-GL11.GL_LOGIC_OP_MODE = 3056
-GL11.GL_MATRIX_MODE = 2976
-GL11.GL_MAX_CLIP_PLANES = 3378
-GL11.GL_MODELVIEW_MATRIX = 2982
-GL11.GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES = 35213
-GL11.GL_MODELVIEW_STACK_DEPTH = 2979
-GL11.GL_NORMAL_ARRAY_BUFFER_BINDING = 34967
-GL11.GL_NORMAL_ARRAY_POINTER = 32911
-GL11.GL_NORMAL_ARRAY_STRIDE = 32895
-GL11.GL_NORMAL_ARRAY_TYPE = 32894
-GL11.GL_OPERAND0_ALPHA = 34200
-GL11.GL_OPERAND0_RGB = 34192
-GL11.GL_OPERAND1_ALPHA = 34201
-GL11.GL_OPERAND1_RGB = 34193
-GL11.GL_OPERAND2_ALPHA = 34202
-GL11.GL_OPERAND2_RGB = 34194
-GL11.GL_POINT_DISTANCE_ATTENUATION = 33065
-GL11.GL_POINT_FADE_THRESHOLD_SIZE = 33064
-GL11.GL_POINT_SIZE = 2833
-GL11.GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES = 35743
-GL11.GL_POINT_SIZE_ARRAY_OES = 35740
-GL11.GL_POINT_SIZE_ARRAY_POINTER_OES = 35212
-GL11.GL_POINT_SIZE_ARRAY_STRIDE_OES = 35211
-GL11.GL_POINT_SIZE_ARRAY_TYPE_OES = 35210
-GL11.GL_POINT_SIZE_MAX = 33063
-GL11.GL_POINT_SIZE_MIN = 33062
-GL11.GL_POINT_SPRITE_OES = 34913
-GL11.GL_POLYGON_OFFSET_FACTOR = 32824
-GL11.GL_POLYGON_OFFSET_UNITS = 10752
-GL11.GL_PREVIOUS = 34168
-GL11.GL_PRIMARY_COLOR = 34167
-GL11.GL_PROJECTION_MATRIX = 2983
-GL11.GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES = 35214
-GL11.GL_PROJECTION_STACK_DEPTH = 2980
-GL11.GL_RGB_SCALE = 34163
-GL11.GL_SAMPLE_BUFFERS = 32936
-GL11.GL_SAMPLE_COVERAGE_INVERT = 32939
-GL11.GL_SAMPLE_COVERAGE_VALUE = 32938
-GL11.GL_SAMPLES = 32937
-GL11.GL_SCISSOR_BOX = 3088
-GL11.GL_SHADE_MODEL = 2900
-GL11.GL_SRC0_ALPHA = 34184
-GL11.GL_SRC0_RGB = 34176
-GL11.GL_SRC1_ALPHA = 34185
-GL11.GL_SRC1_RGB = 34177
-GL11.GL_SRC2_ALPHA = 34186
-GL11.GL_SRC2_RGB = 34178
-GL11.GL_STATIC_DRAW = 35044
-GL11.GL_STENCIL_CLEAR_VALUE = 2961
-GL11.GL_STENCIL_FAIL = 2964
-GL11.GL_STENCIL_FUNC = 2962
-GL11.GL_STENCIL_PASS_DEPTH_FAIL = 2965
-GL11.GL_STENCIL_PASS_DEPTH_PASS = 2966
-GL11.GL_STENCIL_REF = 2967
-GL11.GL_STENCIL_VALUE_MASK = 2963
-GL11.GL_STENCIL_WRITEMASK = 2968
-GL11.GL_SUBTRACT = 34023
-GL11.GL_TEXTURE_BINDING_2D = 32873
-GL11.GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING = 34970
-GL11.GL_TEXTURE_COORD_ARRAY_POINTER = 32914
-GL11.GL_TEXTURE_COORD_ARRAY_SIZE = 32904
-GL11.GL_TEXTURE_COORD_ARRAY_STRIDE = 32906
-GL11.GL_TEXTURE_COORD_ARRAY_TYPE = 32905
-GL11.GL_TEXTURE_MATRIX = 2984
-GL11.GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES = 35215
-GL11.GL_TEXTURE_STACK_DEPTH = 2981
-GL11.GL_VERTEX_ARRAY_BUFFER_BINDING = 34966
-GL11.GL_VERTEX_ARRAY_POINTER = 32910
-GL11.GL_VERTEX_ARRAY_SIZE = 32890
-GL11.GL_VERTEX_ARRAY_STRIDE = 32892
-GL11.GL_VERTEX_ARRAY_TYPE = 32891
-GL11.GL_VIEWPORT = 2978
-GL11.GL_WRITE_ONLY = 35001
-
-return GL11
 

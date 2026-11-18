@@ -26,11 +26,13 @@
     (let ()
       (let/ec jreturn
         (jreturn #f))))))
+(define (NullABRunnable.jclassValue) NullABRunnable%)
 
 (define NullABRunnable.jcell_instance 'jnone)
 (define (NullABRunnable.jstatic_instance)
   (when (eq? NullABRunnable.jcell_instance 'jnone) (set! NullABRunnable.jcell_instance (NullABRunnable.jnew_0)))
   NullABRunnable.jcell_instance)
+(define (NullABRunnable.jsetstatic_instance value) (set! NullABRunnable.jcell_instance value))
 
 (define (NullABRunnable.jnew_0)
   (define this (new NullABRunnable% [jclass "NullABRunnable"]))

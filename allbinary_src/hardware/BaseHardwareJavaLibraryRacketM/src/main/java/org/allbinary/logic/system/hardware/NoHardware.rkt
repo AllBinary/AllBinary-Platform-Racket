@@ -40,11 +40,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_NULL_TABLE (StdUtil.jm_getInstance_0))))))))
+(define (NoHardware.jclassValue) NoHardware%)
 
 (define NoHardware.jcell_instance 'jnone)
 (define (NoHardware.jstatic_instance)
   (when (eq? NoHardware.jcell_instance 'jnone) (set! NoHardware.jcell_instance (NoHardware.jnew_0)))
   NoHardware.jcell_instance)
+(define (NoHardware.jsetstatic_instance value) (set! NoHardware.jcell_instance value))
 
 (define (NoHardware.jnew_0)
   (define this (new NoHardware% [jclass "NoHardware"]))

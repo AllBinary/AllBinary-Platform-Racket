@@ -1,104 +1,82 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.view.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.view.event
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(lazy-require ["../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ViewPositionEventHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (field [f_list JR.null])
+    (define/public (jm_addListener_1 _layerInterface)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_list this) jm_contains_1 _layerInterface))
+            (begin
+            (send (get-field f_list this) jm_add_1 _layerInterface))))))
+    (define/override (jm_removeAllListeners_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_list this) jm_clear_0)
+        (super jm_removeAllListeners_0))))
+    (define/override (jm_removeListener_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_list this) jm_remove_1 _eventListenerInterface)
+        (super jm_removeListener_1 _eventListenerInterface))))
+    (define/override (jm_fireEvent_1 _eventObject)
+    (let ([_layerInterface JR.null][_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (send (get-field f_list this) jm_size_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (JR.className (get-field f_logUtil this)))])
+                (set! _layerInterface (vector-ref (get-field f_objectArray (get-field f_list this)) _index))
+                (send _layerInterface jm_onChangeEvent_1 _eventObject))) (jloop)))))
+        (super jm_fireEvent_1 _eventObject))))
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_viewPositionEventListenerInterface JR.null])
+      (let/ec jreturn
+        (set! _viewPositionEventListenerInterface _eventListenerInterface)
+        (send _viewPositionEventListenerInterface jm_onChangeEvent_1 _eventObject))))))
+(define (ViewPositionEventHandler.jclassValue) ViewPositionEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ViewPositionEventHandler.jcell_SINGLETON 'jnone)
+(define (ViewPositionEventHandler.jstatic_SINGLETON)
+  (when (eq? ViewPositionEventHandler.jcell_SINGLETON 'jnone) (set! ViewPositionEventHandler.jcell_SINGLETON (ViewPositionEventHandler.jnew_0)))
+  ViewPositionEventHandler.jcell_SINGLETON)
+(define (ViewPositionEventHandler.jsetstatic_SINGLETON value) (set! ViewPositionEventHandler.jcell_SINGLETON value))
 
-local ViewPositionEventHandler = {}
-ViewPositionEventHandler.__index = ViewPositionEventHandler
-ViewPositionEventHandler.className = "ViewPositionEventHandler"
-setmetatable(ViewPositionEventHandler, {__index = BasicEventHandler})
+(define (ViewPositionEventHandler.jnew_0)
+  (define this (new ViewPositionEventHandler% [jclass "ViewPositionEventHandler"]))
+    (set-field! f_list this (BasicArrayListD.jnew_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function ViewPositionEventHandler:_init_fields()
-    self.list = BasicArrayListD.new()
-end
-
-
-function ViewPositionEventHandler.getInstance()
-        return ViewPositionEventHandler.SINGLETON
-end
-
-
-function ViewPositionEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), ViewPositionEventHandler)
-    self:_init_fields()
-    return self
-end
-
-
-function ViewPositionEventHandler:addListener(layerInterface)
-        if not self.list:contains(layerInterface) then
-            self.list:add(layerInterface)
-        end
-end
-
-
-function ViewPositionEventHandler:removeAllListeners()
-        self.list:clear()
-        BasicEventHandler.removeAllListeners(self)
-end
-
-
-function ViewPositionEventHandler:removeListener(eventListenerInterface)
-        self.list:remove(eventListenerInterface)
-        BasicEventHandler.removeListener(self, eventListenerInterface)
-end
-
-
--- throws Exception
-function ViewPositionEventHandler:fireEvent(eventObject)
-        do
-            local index = self.list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local try_ok, try_error = pcall(function()
-                local layerInterface = self.list.objectArray[index + 1]
-                layerInterface:onChangeEvent(eventObject)
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            end
-        end
-        BasicEventHandler.fireEvent(self, eventObject)
-end
+(define (ViewPositionEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ViewPositionEventHandler.jstatic_SINGLETON)))))
 
 
--- throws Exception
-function ViewPositionEventHandler:process(eventObject, eventListenerInterface)
-        local viewPositionEventListenerInterface = (eventListenerInterface)
-        viewPositionEventListenerInterface:onChangeEvent(eventObject)
-end
-
-ViewPositionEventHandler.SINGLETON = ViewPositionEventHandler.new()
-
-return ViewPositionEventHandler
 

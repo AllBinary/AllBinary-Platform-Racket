@@ -22,11 +22,13 @@
 (define LogConfigTypes%
   (class JObject%
     (super-new)))
+(define (LogConfigTypes.jclassValue) LogConfigTypes%)
 
 (define LogConfigTypes.jcell_LOGGING 'jnone)
 (define (LogConfigTypes.jstatic_LOGGING)
   (when (eq? LogConfigTypes.jcell_LOGGING 'jnone) (set! LogConfigTypes.jcell_LOGGING (BasicArrayListD.jnew_0)))
   LogConfigTypes.jcell_LOGGING)
+(define (LogConfigTypes.jsetstatic_LOGGING value) (set! LogConfigTypes.jcell_LOGGING value))
 
 (define (LogConfigTypes.jnew_0)
   (define this (new LogConfigTypes% [jclass "LogConfigTypes"]))

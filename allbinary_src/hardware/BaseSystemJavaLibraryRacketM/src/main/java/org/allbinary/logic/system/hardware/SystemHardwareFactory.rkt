@@ -40,11 +40,13 @@
                 (set-field! f_hardwareInterface this (send (HardwareFactory.jm_getInstance_0) jm_getInstance_1 _operatingSystemInterface))))
             (send (get-field f_logUtil this) jm_putF_3 "Found Hardware" this (get-field f_CONSTRUCTOR (get-field f_commonStrings this))))
         (jreturn (get-field f_hardwareInterface this)))))))
+(define (SystemHardwareFactory.jclassValue) SystemHardwareFactory%)
 
 (define SystemHardwareFactory.jcell_instance 'jnone)
 (define (SystemHardwareFactory.jstatic_instance)
   (when (eq? SystemHardwareFactory.jcell_instance 'jnone) (set! SystemHardwareFactory.jcell_instance (SystemHardwareFactory.jnew_0)))
   SystemHardwareFactory.jcell_instance)
+(define (SystemHardwareFactory.jsetstatic_instance value) (set! SystemHardwareFactory.jcell_instance value))
 
 (define (SystemHardwareFactory.jnew_0)
   (define this (new SystemHardwareFactory% [jclass "SystemHardwareFactory"]))

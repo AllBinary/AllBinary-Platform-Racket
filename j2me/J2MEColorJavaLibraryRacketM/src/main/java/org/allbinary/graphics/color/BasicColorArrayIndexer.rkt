@@ -36,6 +36,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_basicColorArray this)))))))
+(define (BasicColorArrayIndexer.jclassValue) BasicColorArrayIndexer%)
 
 (define (BasicColorArrayIndexer.jnew_1 _basicColorArray)
   (define this (new BasicColorArrayIndexer% [jclass "BasicColorArrayIndexer"]))

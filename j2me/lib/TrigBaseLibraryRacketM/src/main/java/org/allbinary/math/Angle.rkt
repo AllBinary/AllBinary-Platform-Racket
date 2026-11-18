@@ -26,6 +26,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_value this)))))))
+(define (Angle.jclassValue) Angle%)
 
 (define (Angle.jnew_1 _angle)
   (define this (new Angle% [jclass "Angle"]))

@@ -40,11 +40,13 @@
                 (jreturn (vector-ref (get-field f_NUMBER_ARRAY this) _index)))))
                 (set! _index (JR.i32 (+ _index 1))) (jloop)))))
         (raise (JR.newException "Exception" (send (send (send (StringMaker.jnew_0) jm_append_1 "numberAsChar was not in array: ") jm_appendchar_1 _numberAsChar) jm_toString_0))))))))
+(define (PrimitiveLongSingleton.jclassValue) PrimitiveLongSingleton%)
 
 (define PrimitiveLongSingleton.jcell_instance 'jnone)
 (define (PrimitiveLongSingleton.jstatic_instance)
   (when (eq? PrimitiveLongSingleton.jcell_instance 'jnone) (set! PrimitiveLongSingleton.jcell_instance (PrimitiveLongSingleton.jnew_0)))
   PrimitiveLongSingleton.jcell_instance)
+(define (PrimitiveLongSingleton.jsetstatic_instance value) (set! PrimitiveLongSingleton.jcell_instance value))
 
 (define (PrimitiveLongSingleton.jnew_0)
   (define this (new PrimitiveLongSingleton% [jclass "PrimitiveLongSingleton"]))

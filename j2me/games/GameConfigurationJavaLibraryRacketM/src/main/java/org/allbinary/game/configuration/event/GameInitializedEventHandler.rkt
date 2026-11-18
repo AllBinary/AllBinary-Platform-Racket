@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameInitializedEventHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_gameInitializedListenerInterface JR.null])
+      (let/ec jreturn
+        (set! _gameInitializedListenerInterface _eventListenerInterface)
+        (send _gameInitializedListenerInterface jm_onGameInitialized_1 _eventObject))))))
+(define (GameInitializedEventHandler.jclassValue) GameInitializedEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameInitializedEventHandler.jcell_gameKeyEventHandler 'jnone)
+(define (GameInitializedEventHandler.jstatic_gameKeyEventHandler)
+  (when (eq? GameInitializedEventHandler.jcell_gameKeyEventHandler 'jnone) (set! GameInitializedEventHandler.jcell_gameKeyEventHandler (GameInitializedEventHandler.jnew_0)))
+  GameInitializedEventHandler.jcell_gameKeyEventHandler)
+(define (GameInitializedEventHandler.jsetstatic_gameKeyEventHandler value) (set! GameInitializedEventHandler.jcell_gameKeyEventHandler value))
 
-local GameInitializedEventHandler = {}
-GameInitializedEventHandler.__index = GameInitializedEventHandler
-GameInitializedEventHandler.className = "GameInitializedEventHandler"
-setmetatable(GameInitializedEventHandler, {__index = BasicEventHandler})
+(define (GameInitializedEventHandler.jnew_0)
+  (define this (new GameInitializedEventHandler% [jclass "GameInitializedEventHandler"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function GameInitializedEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), GameInitializedEventHandler)
-    return self
-end
-
-
-function GameInitializedEventHandler.getInstance()
-        return GameInitializedEventHandler.gameKeyEventHandler
-end
+(define (GameInitializedEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameInitializedEventHandler.jstatic_gameKeyEventHandler)))))
 
 
--- throws Exception
-function GameInitializedEventHandler:process(eventObject, eventListenerInterface)
-        local gameInitializedListenerInterface = (eventListenerInterface)
-        gameInitializedListenerInterface:onGameInitialized(eventObject)
-end
-
-GameInitializedEventHandler.gameKeyEventHandler = GameInitializedEventHandler.new()
-
-return GameInitializedEventHandler
 

@@ -162,6 +162,7 @@
             (jreturn (send this jm_toStringAt_1 _totalTime)))
             (begin
             (jreturn (get-field f_NOT this)))))))))
+(define (BaseGameStatistics.jclassValue) BaseGameStatistics%)
 
 (define (BaseGameStatistics.jnew_0)
   (define this (new BaseGameStatistics% [jclass "BaseGameStatistics"]))

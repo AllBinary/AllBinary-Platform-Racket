@@ -1,46 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./HighScores.rkt" (HighScores.jnew_3)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullHighScoresSingletonFactory%
+  (class JObject%
+    (super-new)))
+(define (NullHighScoresSingletonFactory.jclassValue) NullHighScoresSingletonFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullHighScoresSingletonFactory.jcell_SINGLETON 'jnone)
+(define (NullHighScoresSingletonFactory.jstatic_SINGLETON)
+  (when (eq? NullHighScoresSingletonFactory.jcell_SINGLETON 'jnone) (set! NullHighScoresSingletonFactory.jcell_SINGLETON (HighScores.jnew_3 (get-field f_LOADING (CommonStrings.jm_getInstance_0)) "High Scores Not Loaded" (get-field f_PERIODS (CommonStrings.jm_getInstance_0)))))
+  NullHighScoresSingletonFactory.jcell_SINGLETON)
+(define (NullHighScoresSingletonFactory.jsetstatic_SINGLETON value) (set! NullHighScoresSingletonFactory.jcell_SINGLETON value))
 
-local NullHighScoresSingletonFactory = {}
-NullHighScoresSingletonFactory.__index = NullHighScoresSingletonFactory
-NullHighScoresSingletonFactory.className = "NullHighScoresSingletonFactory"
+(define (NullHighScoresSingletonFactory.jnew_0)
+  (define this (new NullHighScoresSingletonFactory% [jclass "NullHighScoresSingletonFactory"]))
+  this)
 
-function NullHighScoresSingletonFactory.new()
-    local self = setmetatable({}, NullHighScoresSingletonFactory)
-    return self
-end
+(define (NullHighScoresSingletonFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullHighScoresSingletonFactory.jstatic_SINGLETON)))))
 
 
-function NullHighScoresSingletonFactory.getInstance()
-        return NullHighScoresSingletonFactory.SINGLETON
-end
-
-NullHighScoresSingletonFactory.SINGLETON = HighScores.new(CommonStrings.getInstance().LOADING, "High Scores Not Loaded", CommonStrings.getInstance().PERIODS)
-
-return NullHighScoresSingletonFactory
 

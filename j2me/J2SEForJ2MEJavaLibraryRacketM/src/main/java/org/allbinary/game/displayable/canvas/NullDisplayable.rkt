@@ -1,50 +1,41 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BaseGameStatistics = require("org.allbinary.canvas.BaseGameStatistics")
-local GameStatisticsFactory = require("org.allbinary.canvas.GameStatisticsFactory")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../javax/microedition/lcdui/Canvas.rkt")
+(lazy-require ["../../../../../org/allbinary/canvas/GameStatisticsFactory.rkt" (GameStatisticsFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;J2SEForJ2ME
+(define NullDisplayable%
+  (class Canvas%
+    (super-new)
+    (field [f_baseGameStatistics JR.null])
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_baseGameStatistics this) jm_nextRefresh_0))))))
+(define (NullDisplayable.jclassValue) NullDisplayable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullDisplayable.jcell_SINGLETON 'jnone)
+(define (NullDisplayable.jstatic_SINGLETON)
+  (when (eq? NullDisplayable.jcell_SINGLETON 'jnone) (set! NullDisplayable.jcell_SINGLETON (NullDisplayable.jnew_0)))
+  NullDisplayable.jcell_SINGLETON)
+(define (NullDisplayable.jsetstatic_SINGLETON value) (set! NullDisplayable.jcell_SINGLETON value))
 
---J2SEForJ2ME
-local NullDisplayable = {}
-NullDisplayable.__index = NullDisplayable
-NullDisplayable.className = "NullDisplayable"
-setmetatable(NullDisplayable, {__index = Canvas})
+(define (NullDisplayable.jnew_0)
+  (define this (new NullDisplayable% [jclass "NullDisplayable"]))
+    (set-field! f_baseGameStatistics this (GameStatisticsFactory.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function NullDisplayable:_init_fields()
-    self.baseGameStatistics = GameStatisticsFactory.getInstance()
-end
-
-
-function NullDisplayable.getInstance()
-        return NullDisplayable.SINGLETON
-end
-
-
-function NullDisplayable.new()
-    local self = setmetatable(Canvas.new(), NullDisplayable)
-    self:_init_fields()
-    return self
-end
+(define (NullDisplayable.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullDisplayable.jstatic_SINGLETON)))))
 
 
-function NullDisplayable:paint(graphics)
-        self.baseGameStatistics:nextRefresh()
-end
-
-NullDisplayable.SINGLETON = NullDisplayable.new()
-
-return NullDisplayable
 

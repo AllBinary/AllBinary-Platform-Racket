@@ -1,147 +1,128 @@
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local TsUtil = require("org.allbinary.TsUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local SynchObject = require("org.allbinary.thread.SynchObject")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local ABSystemWrapper = require("org.allbinary.logic.ABSystemWrapper")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/TsUtil.rkt" (TsUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/thread/SynchObject.rkt" (SynchObject.jnew_0)])
+(lazy-require ["../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["../../../org/allbinary/logic/ABSystemWrapper.rkt" (ABSystemWrapper.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LayerManager%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_systemWrapper JR.null])
+    (field [f_tsUtil JR.null])
+    (field [f_layerManagerLogging JR.null])
+    (field [f_list JR.null])
+    (field [f_anyType JR.null])
+    (define/public (jm_contains_1 _layerInterface)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_list this) jm_contains_1 _layerInterface)))))
+    (define/public (jm_update_1 _layerInterface)
+    (let ([_had JR.null][_nextLayerInterface JR.null][_size JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _had (send (get-field f_list this) jm_remove_1 _layerInterface))
+        (when _had
+            (begin
+            (set! _nextLayerInterface JR.null)
+            (set! _size (send (get-field f_list this) jm_size_0))
+            (begin
+                (set! _index 0)
+                (let/ec jbreak (let jloop () (when (< _index _size)
+                    (let/ec jcontinue
+                (set! _nextLayerInterface (send (get-field f_list this) jm_get_1 _index))
+                (when (> (send _layerInterface jm_getZP_0) (send _nextLayerInterface jm_getZP_0))
+                    (begin
+                    (send (get-field f_list this) jm_addAt_2 _index _layerInterface)
+                    (jreturn (void)))))
+                    (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+            (send (get-field f_list this) jm_add_1 _layerInterface))))))
+    (define/public (jm_insert_1 _layerInterface)
+    (let ([_nextLayerInterface JR.null][_size JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _nextLayerInterface JR.null)
+        (set! _size (send (get-field f_list this) jm_size_0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _nextLayerInterface (send (get-field f_list this) jm_get_1 _index))
+            (when (> (send _layerInterface jm_getZP_0) (send _nextLayerInterface jm_getZP_0))
+                (begin
+                (send this jm_appendAt_2 _layerInterface _index)
+                (jreturn (void)))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (send this jm_append_1 _layerInterface))))
+    (define/public (jm_append_1 _layerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_layerManagerLogging this) jm_append_1 _layerInterface)
+        (send (get-field f_list this) jm_add_1 _layerInterface))))
+    (define/public (jm_appendAt_2 _layerInterface _index)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_layerManagerLogging this) jm_appendAt_2 _layerInterface _index)
+        (send (get-field f_list this) jm_addAt_2 _index _layerInterface))))
+    (define/public (jm_remove_1 _layerInterface)
+    (let ([_result JR.null])
+      (let/ec jreturn
+        (begin
+            (send (get-field f_layerManagerLogging this) jm_remove_1 _layerInterface)
+            (set! _result (send (get-field f_list this) jm_remove_1 _layerInterface))
+            (send (get-field f_layerManagerLogging this) jm_removeResult_3 this _layerInterface _result)))))
+    (define/public (jm_getLayerAt_1 _index)
+    (let ()
+      (let/ec jreturn
+        (jreturn (vector-ref (get-field f_objectArray (get-field f_list this)) _index)))))
+    (define/public (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_list this) jm_size_0)))))
+    (define/public (jm_cleanup_0)
+    (let ()
+      (let/ec jreturn
+        (begin
+            (send (get-field f_list this) jm_clear_0)
+            (send (get-field f_layerManagerLogging this) jm_clear_0)
+            (send (get-field f_tsUtil this) jm_gc_0)
+            (send (get-field f_tsUtil this) jm_gc_0)))))
+    (define/public (jm_paint_3 _g _x _y)
+    (let ([_comp JR.null][_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _comp JR.null)
+            (begin
+                (set! _index (send (get-field f_list this) jm_size_0))
+                (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                    (let/ec jcontinue
+                (set! _comp (vector-ref (get-field f_objectArray (get-field f_list this)) _index))
+                (when (and (not (JR.null? _comp)) (send _comp jm_isVisible_0))
+                    (begin
+                    (send _comp jm_paint_1 _g)))) (jloop)))))))))))
+(define (LayerManager.jclassValue) LayerManager%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LayerManager = {}
-LayerManager.__index = LayerManager
-LayerManager.className = "LayerManager"
-
-function LayerManager:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.systemWrapper = ABSystemWrapper.getInstance()
-    self.tsUtil = TsUtil.getInstance()
-    self.layerManagerLogging = nil
-    self.list = BasicArrayListD.new()
-    self.anyType = SynchObject.new()
-end
-
-
-function LayerManager.new(layerManagerLogging)
-    local self = setmetatable({}, LayerManager)
-    self:_init_fields()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        self.layerManagerLogging = layerManagerLogging
-    return self
-end
-
-
-function LayerManager:contains(layerInterface)
-        return self.list:contains(layerInterface)
-end
-
-
--- throws Exception
-function LayerManager:update(layerInterface)
-        local had = self.list:remove(layerInterface)
-        if had then
-            local nextLayerInterface = nil
-            local size = self.list:size()
-            for index = 0, size - 1 do
-                nextLayerInterface = self.list:get(index)
-                if layerInterface:getZP() > nextLayerInterface:getZP() then
-                    self.list:addAt(index, layerInterface)
-                    return
-                end
-            end
-            self.list:add(layerInterface)
-        end
-end
-
-
--- throws Exception
-function LayerManager:insert(layerInterface)
-        local nextLayerInterface = nil
-        local size = self.list:size()
-        for index = 0, size - 1 do
-            nextLayerInterface = self.list:get(index)
-            if layerInterface:getZP() > nextLayerInterface:getZP() then
-                self:appendAt(layerInterface, index)
-                return
-            end
-        end
-        self:append(layerInterface)
-end
-
-
--- throws Exception
-function LayerManager:append(layerInterface)
-        self.layerManagerLogging:append(layerInterface)
-        self.list:add(layerInterface)
-end
-
-
--- throws Exception
-function LayerManager:appendAt(layerInterface, index)
-        self.layerManagerLogging:appendAt(layerInterface, index)
-        self.list:addAt(index, layerInterface)
-end
-
-
--- throws Exception
-function LayerManager:remove(layerInterface)
-        do -- synchronized (self.anyType)
-            self.layerManagerLogging:remove(layerInterface)
-            local result = self.list:remove(layerInterface)
-            self.layerManagerLogging:removeResult(self, layerInterface, result)
-        end
-end
-
-
-function LayerManager:getLayerAt(index)
-        return self.list.objectArray[index + 1]
-end
-
-
-function LayerManager:getSize()
-        return self.list:size()
-end
-
-
--- throws Exception
-function LayerManager:cleanup()
-        do -- synchronized (self.anyType)
-            self.list:clear()
-            self.layerManagerLogging:clear()
-            self.tsUtil:gc()
-            self.tsUtil:gc()
-        end
-end
+(define (LayerManager.jnew_1 _layerManagerLogging)
+  (define this (new LayerManager% [jclass "LayerManager"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_systemWrapper this (ABSystemWrapper.jm_getInstance_0))
+    (set-field! f_tsUtil this (TsUtil.jm_getInstance_0))
+    
+    (set-field! f_list this (BasicArrayListD.jnew_0))
+    (set-field! f_anyType this (SynchObject.jnew_0))
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 (get-field f_START (get-field f_commonStrings this)) this (get-field f_CONSTRUCTOR (get-field f_commonStrings this)))
+        (set-field! f_layerManagerLogging this _layerManagerLogging)))
+  this)
 
 
-function LayerManager:paint(g, x, y)
-        do -- synchronized (self.anyType)
-            local comp = nil
-            do
-                local index = self.list:size()
-                while (function() index = index - 1 return index end)() >= 0 do
-                comp = self.list.objectArray[index + 1]
-                if comp ~= nil and comp:isVisible() then
-                    comp:paint(g)
-                end
-                end
-            end
-        end
-end
-
-return LayerManager
 

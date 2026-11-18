@@ -56,6 +56,7 @@
       (let/ec jreturn
         (begin
             (send (get-field f_threadObjectUtil this) jm_notifyObject_1 this)))))))
+(define (StupidTimer.jclassValue) StupidTimer%)
 
 (define (StupidTimer.jnew_0)
   (define this (new StupidTimer% [jclass "StupidTimer"]))

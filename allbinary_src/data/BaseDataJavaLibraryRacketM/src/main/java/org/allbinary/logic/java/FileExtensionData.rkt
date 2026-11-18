@@ -23,11 +23,13 @@
     (super-new)
     (field [f_DOT_JAVA_SOURCE JR.null])
     (field [f_JAVA_SOURCE JR.null])))
+(define (FileExtensionData.jclassValue) FileExtensionData%)
 
 (define FileExtensionData.jcell_instance 'jnone)
 (define (FileExtensionData.jstatic_instance)
   (when (eq? FileExtensionData.jcell_instance 'jnone) (set! FileExtensionData.jcell_instance (FileExtensionData.jnew_0)))
   FileExtensionData.jcell_instance)
+(define (FileExtensionData.jsetstatic_instance value) (set! FileExtensionData.jcell_instance value))
 
 (define (FileExtensionData.jnew_0)
   (define this (new FileExtensionData% [jclass "FileExtensionData"]))

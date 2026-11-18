@@ -1,59 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.debug
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.debug
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define DebugInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_start_0)
+      (raise (JR.newException "AbstractMethodError" "start")))
+    (define/public (jm_stop_0)
+      (raise (JR.newException "AbstractMethodError" "stop")))
+    (define/public (jm_getStartTime_0)
+      (raise (JR.newException "AbstractMethodError" "getStartTime")))
+    (define/public (jm_getMaxTime_0)
+      (raise (JR.newException "AbstractMethodError" "getMaxTime")))
+    (define/public (jm_isRunning_0)
+      (raise (JR.newException "AbstractMethodError" "isRunning")))))
+(define (DebugInterface.jclassValue) DebugInterface%)
+
+(define (DebugInterface.jnew_0)
+  (define this (new DebugInterface% [jclass "DebugInterface"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local DebugInterface = {}
-DebugInterface.__index = DebugInterface
-DebugInterface.className = "DebugInterface"
-
-
-function DebugInterface:start()
-    error("abstract method start")
-end
-
-
-function DebugInterface:stop()
-    error("abstract method stop")
-end
-
-
-function DebugInterface:getStartTime()
-    error("abstract method getStartTime")
-end
-
-
-function DebugInterface:getMaxTime()
-    error("abstract method getMaxTime")
-end
-
-
-function DebugInterface:isRunning()
-    error("abstract method isRunning")
-end
-
-return DebugInterface
 

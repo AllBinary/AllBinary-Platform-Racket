@@ -1,101 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local SpecialAnimationInterface = require("org.allbinary.animation.special.SpecialAnimationInterface")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ImageArrayAnimation = require("org.allbinary.animation.image.ImageArrayAnimation")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/special/SpecialAnimationInterface.rkt"
+  "./ImageArrayAnimation.rkt")
+(lazy-require ["../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/time/GameTickTimeDelayHelperFactory.rkt" (GameTickTimeDelayHelperFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/time/TimeDelayHelper.rkt" (TimeDelayHelper.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageArraySpecialAnimation%
+  (class ImageArrayAnimation%
+    (super-new)
+    (field [f_timeDelayHelper JR.null])
+    (field [f_loopCount 0])
+    (field [f_loopCountTotal 0])
+    (define/public (jm_getLoopCount_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_loopCount this)))))
+    (define/public (jm_setLastFrame_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_circularIndexUtil this)))))
+    (define/override (jm_reset_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setFrame_1 (JR.i32 (- (send this jm_getSize_0) 1)))
+        (set-field! f_loopCount this 0))))
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn
+        (when (> (send this jm_getFrame_0) 0)
+            (begin
+            (when (send (get-field f_timeDelayHelper this) jm_isTime_1 (get-field f_startTime (GameTickTimeDelayHelperFactory.jm_getInstance_0)))
+                (begin
+                (send this jm_previousFrame_0)
+                (when (= (send this jm_getFrame_0) 0)
+                    (begin
+                    (set-field! f_loopCount this (JR.i32 (+ (get-field f_loopCount this) 1))))))))))))
+    (define/public (jm_isComplete_0)
+    (let ()
+      (let/ec jreturn
+        (if (or (< (get-field f_loopCount this) (get-field f_loopCountTotal this)) (not (= (send this jm_getFrame_0) 0)))
+            (begin
+            (jreturn #f))
+            (begin
+            (jreturn #t))))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (set! _x (JR.i32 (- (send (DisplayInfoSingleton.jm_getInstance_0) jm_getLastHalfWidth_0) (arithmetic-shift (JR.className (send this jm_getImage_1 (JR.className (get-field f_circularIndexUtil this)))) (- (bitwise-and 1 31))))))
+        (set! _y 5)
+        (super jm_paintXY_3 _graphics _x _y))))))
+(define (ImageArraySpecialAnimation.jclassValue) ImageArraySpecialAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageArraySpecialAnimation = {}
-ImageArraySpecialAnimation.__index = ImageArraySpecialAnimation
-ImageArraySpecialAnimation.className = "ImageArraySpecialAnimation"
-setmetatable(ImageArraySpecialAnimation, {__index = ImageArrayAnimation})
-
-function ImageArraySpecialAnimation:_init_fields()
-    self.timeDelayHelper = TimeDelayHelper.new(270)
-    self.loopCount = 0
-    self.loopCountTotal = 1
-end
-
-
-function ImageArraySpecialAnimation.new(imageArray, animationBehavior)
-    local self = setmetatable(ImageArrayAnimation.new(imageArray, animationBehavior), ImageArraySpecialAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:reset()
-    return self
-end
-
-
-function ImageArraySpecialAnimation:getLoopCount()
-        return self.loopCount
-end
-
-
-function ImageArraySpecialAnimation:setLastFrame()
-        self.circularIndexUtil:setIndex(self.circularIndexUtil:getSize() - 1)
-end
-
-
-function ImageArraySpecialAnimation:reset()
-        self:setFrame(self:getSize() - 1)
-        self.loopCount = 0
-end
-
-
-function ImageArraySpecialAnimation:nextFrame()
-        if self:getFrame() > 0 then
-            if self.timeDelayHelper:isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) then
-                self:previousFrame()
-                if self:getFrame() == 0 then
-                    self.loopCount = self.loopCount + 1
-                end
-            end
-        end
-end
-
-
-function ImageArraySpecialAnimation:isComplete()
-        if self.loopCount < self.loopCountTotal or self:getFrame() ~= 0 then
-            return false
-        else
-            return true
-        end
-end
+(define (ImageArraySpecialAnimation.jnew_2 _imageArray _animationBehavior)
+  (define this (new ImageArraySpecialAnimation% [jclass "ImageArraySpecialAnimation"]))
+    (set-field! f_timeDelayHelper this (TimeDelayHelper.jnew_1 270))
+    (set-field! f_loopCount this 0)
+    (set-field! f_loopCountTotal this 1)
+    (let ()
+      (let/ec jreturn
+        (void)
+        (send this jm_reset_0)))
+  this)
 
 
-function ImageArraySpecialAnimation:paintXY(graphics, x, y)
-        x = DisplayInfoSingleton.getInstance():getLastHalfWidth() - (((self:getImage(self.circularIndexUtil:getIndex()):getWidth()) // (1 << (1))))
-        y = 5
-        ImageArrayAnimation.paintXY(self, graphics, x, y)
-end
-
-return ImageArraySpecialAnimation
 

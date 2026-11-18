@@ -23,6 +23,7 @@
     (super-new)
     (define/public (jm_onEvent_1 _eventObject)
       (raise (JR.newException "AbstractMethodError" "onEvent")))))
+(define (EventListenerInterface.jclassValue) EventListenerInterface%)
 
 (define (EventListenerInterface.jnew_0)
   (define this (new EventListenerInterface% [jclass "EventListenerInterface"]))

@@ -26,6 +26,7 @@
     (let ()
       (let/ec jreturn
         (jreturn #t))))))
+(define (LinuxOS.jclassValue) LinuxOS%)
 
 (define (LinuxOS.jnew_0)
   (define this (new LinuxOS% [jclass "LinuxOS"]))

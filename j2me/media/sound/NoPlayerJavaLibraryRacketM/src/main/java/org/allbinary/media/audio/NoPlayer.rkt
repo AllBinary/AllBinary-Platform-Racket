@@ -1,72 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.audio
 
--- local Control = require("javax.microedition.media.Control")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicPlayer = require("org.allbinary.media.audio.BasicPlayer")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./BasicPlayer.rkt")
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["./NullControl.rkt" (NullControl.jnew_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define NoPlayer%
+  (class BasicPlayer%
+    (super-new)
+    (define/override (jm_close_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_getContentType_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_STRING (StringUtil.jm_getInstance_0))))))
+    (define/override (jm_getControl_1 _controlType)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullControl.jnew_0)))))
+    (define/override (jm_getControls_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.newArray JR.null 0)))))))
+(define (NoPlayer.jclassValue) NoPlayer%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NoPlayer.jcell_NO_PLAYER 'jnone)
+(define (NoPlayer.jstatic_NO_PLAYER)
+  (when (eq? NoPlayer.jcell_NO_PLAYER 'jnone) (set! NoPlayer.jcell_NO_PLAYER (NoPlayer.jnew_0)))
+  NoPlayer.jcell_NO_PLAYER)
+(define (NoPlayer.jsetstatic_NO_PLAYER value) (set! NoPlayer.jcell_NO_PLAYER value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local NoPlayer = {}
-NoPlayer.__index = NoPlayer
-NoPlayer.className = "NoPlayer"
-setmetatable(NoPlayer, {__index = BasicPlayer})
-
-
-function NoPlayer.new()
-    local self = setmetatable(BasicPlayer.new(), NoPlayer)
-    return self
-end
-
-
-function NoPlayer:close()
-end
-
-
-function NoPlayer:getContentType()
-        return StringUtil.getInstance().NULL_STRING
-end
+(define (NoPlayer.jnew_0)
+  (define this (new NoPlayer% [jclass "NoPlayer"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function NoPlayer:getControl(controlType)
-        return NullControl.new()
-end
-
-
-function NoPlayer:getControls()
-        return java_new_array(nil, 0)
-end
-
-NoPlayer.NO_PLAYER = NoPlayer.new()
-
-return NoPlayer
 

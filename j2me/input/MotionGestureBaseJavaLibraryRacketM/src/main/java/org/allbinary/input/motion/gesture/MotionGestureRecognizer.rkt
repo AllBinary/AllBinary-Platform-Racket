@@ -1,202 +1,186 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.gesture
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local Line = require("org.allbinary.graphics.Line")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local MotionGestureConfiguration = require("org.allbinary.input.motion.gesture.configuration.MotionGestureConfiguration")
-local MotionGestureConfigurationFactory = require("org.allbinary.input.motion.gesture.configuration.MotionGestureConfigurationFactory")
-local BasicMotionGesturesHandler = require("org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler")
-local MotionEventCircularPool = require("org.allbinary.input.motion.gesture.observer.MotionEventCircularPool")
-local MotionGestureEvent = require("org.allbinary.input.motion.gesture.observer.MotionGestureEvent")
-local MovedMotionGesturesHandler = require("org.allbinary.input.motion.gesture.observer.MovedMotionGesturesHandler")
-local ScrolledMotionGesturesHandler = require("org.allbinary.input.motion.gesture.observer.ScrolledMotionGesturesHandler")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local J2SEMath = require("org.allbinary.logic.math.J2SEMath")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/Line.rkt" (Line.jnew_2)])
+(lazy-require ["../../../../../org/allbinary/graphics/PointFactory.rkt" (PointFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory.rkt" (MotionGestureConfigurationFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler.rkt" (BasicMotionGesturesHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/gesture/observer/MotionEventCircularPool.rkt" (MotionEventCircularPool.jm_createPool_1)])
+(lazy-require ["../../../../../org/allbinary/input/motion/gesture/observer/MovedMotionGesturesHandler.rkt" (MovedMotionGesturesHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/gesture/observer/ScrolledMotionGesturesHandler.rkt" (ScrolledMotionGesturesHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/math/J2SEMath.rkt" (J2SEMath.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt" (BasicEventHandler.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./TouchMotionGestureFactory.rkt" (TouchMotionGestureFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MotionGestureRecognizer%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_j2seMath JR.null])
+    (field [f_origin JR.null])
+    (field [f_previous JR.null])
+    (field [f_intermediate JR.null])
+    (field [f_line JR.null])
+    (field [f_motionGesturesHandler JR.null])
+    (field [f_movedMotionGesturesHandler JR.null])
+    (field [f_scrolledMotionGesturesHandler JR.null])
+    (field [f_motionEventCircularPool JR.null])
+    (define/public (jm_processPressedMotionEvent_3 _current _deviceId _button)
+    (let ([_event JR.null])
+      (let/ec jreturn
+        (set-field! f_intermediate this (get-field f_origin this))
+        (set-field! f_previous this (get-field f_origin this))
+        (set! _event (send (get-field f_motionEventCircularPool this) jm_getInstance_1 (get-field f_PRESSED (TouchMotionGestureFactory.jm_getInstance_0))))
+        (send _event jm_setPreviousPoint_1 (get-field f_previous this))
+        (send _event jm_setCurrentPoint_1 _current)
+        (send (get-field f_motionGesturesHandler this) jm_fireEvent_1 _event)
+        (jreturn #t))))
+    (define/public (jm_processReleasedMotionEvent_3 _current _deviceId _button)
+    (let ([_event JR.null])
+      (let/ec jreturn
+        (set! _event (send (get-field f_motionEventCircularPool this) jm_getInstance_1 (get-field f_RELEASED (TouchMotionGestureFactory.jm_getInstance_0))))
+        (send _event jm_setPreviousPoint_1 (get-field f_previous this))
+        (send _event jm_setCurrentPoint_1 _current)
+        (send (get-field f_motionGesturesHandler this) jm_fireEvent_1 _event)
+        (jreturn #t))))
+    (define/public (jm_processDraggedMotionEvent_3 _current _deviceId _buttonMask)
+    (let ([_minimumMotionGesture JR.null][_gradient JR.null][_absGradient JR.null][_conf JR.null][_touchMotionGestureFactory JR.null][_newMotionGesture JR.null][_diagonalToleranceHigher JR.null][_diagonalToleranceLower JR.null][_event JR.null])
+      (let/ec jreturn
+        (when (or (eq? (get-field f_previous this) (get-field f_origin this)) (eq? (get-field f_intermediate this) (get-field f_origin this)))
+            (begin
+            (set-field! f_previous this _current)
+            (set-field! f_intermediate this _current)
+            (jreturn (void))))
+        (send (get-field f_line this) jm_setP1_1 (get-field f_previous this))
+        (send (get-field f_line this) jm_setP2_1 _current)
+        (set! _minimumMotionGesture (send (MotionGestureConfigurationFactory.jm_getInstance_0) jm_getMinimumMotionGesture_0))
+        (when (and (< (send (get-field f_j2seMath this) jm_abs_1 (send (get-field f_line this) jm_getDeltaX_0)) (JR.toDouble _minimumMotionGesture)) (< (send (get-field f_j2seMath this) jm_abs_1 (send (get-field f_line this) jm_getDeltaY_0)) (JR.toDouble _minimumMotionGesture)))
+            (begin
+            (set-field! f_intermediate this _current)
+            (jreturn (void))))
+        (set! _gradient (send (get-field f_line this) jm_getGradient_0))
+        (set! _absGradient (send (get-field f_j2seMath this) jm_abs_1 _gradient))
+        (set! _conf (MotionGestureConfigurationFactory.jm_getInstance_0))
+        (set! _touchMotionGestureFactory (TouchMotionGestureFactory.jm_getInstance_0))
+        (set! _newMotionGesture (get-field f_NO_MOTION _touchMotionGestureFactory))
+        (set! _diagonalToleranceHigher 12.0)
+        (set! _diagonalToleranceLower 12.0)
+        (when (send _conf jm_isDiagonalMotionGestureAllowed_0)
+            (begin
+            (set! _diagonalToleranceHigher (JR.toDouble (JR.i32 (- 90 (send _conf jm_getDiagonalTolerance_0)))))
+            (set! _diagonalToleranceLower (JR.toDouble (send _conf jm_getDiagonalTolerance_0)))))
+        (if (> _absGradient (tan (toRadians _diagonalToleranceHigher)))
+            (begin
+            (if (> (send (get-field f_line this) jm_getDeltaY_0) 0.0)
+                (begin
+                (set! _newMotionGesture (get-field f_UP _touchMotionGestureFactory)))
+                (begin
+                (set! _newMotionGesture (get-field f_DOWN _touchMotionGestureFactory)))))
+            (begin
+            (if (< _absGradient (tan (toRadians _diagonalToleranceLower)))
+                (begin
+                (if (> (send (get-field f_line this) jm_getDeltaX_0) 0.0)
+                    (begin
+                    (set! _newMotionGesture (get-field f_LEFT _touchMotionGestureFactory)))
+                    (begin
+                    (set! _newMotionGesture (get-field f_RIGHT _touchMotionGestureFactory)))))
+                (begin
+                (if (> _gradient 0.0)
+                    (begin
+                    (if (> (send (get-field f_line this) jm_getDeltaX_0) 0.0)
+                        (begin
+                        (set! _newMotionGesture (get-field f_DIAGONAL_UP_LEFT _touchMotionGestureFactory)))
+                        (begin
+                        (set! _newMotionGesture (get-field f_DIAGONAL_DOWN_RIGHT _touchMotionGestureFactory)))))
+                    (begin
+                    (if (> (send (get-field f_line this) jm_getDeltaX_0) 0.0)
+                        (begin
+                        (set! _newMotionGesture (get-field f_DIAGONAL_DOWN_LEFT _touchMotionGestureFactory)))
+                        (begin
+                        (set! _newMotionGesture (get-field f_DIAGONAL_UP_RIGHT _touchMotionGestureFactory))))))))))
+        (set-field! f_previous this _current)
+        (set-field! f_intermediate this _current)
+        (set! _event (send (get-field f_motionEventCircularPool this) jm_getInstance_1 _newMotionGesture))
+        (send _event jm_setPreviousPoint_1 (get-field f_previous this))
+        (send _event jm_setCurrentPoint_1 _current)
+        (send (get-field f_motionGesturesHandler this) jm_fireEvent_1 _event)
+        (jreturn (void)))))
+    (define/public (jm_processMovedMotionEvent_3 _current _deviceId _button)
+    (let ([_event JR.null])
+      (let/ec jreturn
+        (set! _event (send (get-field f_motionEventCircularPool this) jm_getInstance_1 (get-field f_NO_MOTION (TouchMotionGestureFactory.jm_getInstance_0))))
+        (send _event jm_setPreviousPoint_1 (get-field f_previous this))
+        (send _event jm_setCurrentPoint_1 _current)
+        (send (get-field f_movedMotionGesturesHandler this) jm_fireEvent_1 _event)
+        (jreturn #t))))
+    (define/public (jm_processScrolledMotionEvent_3 _current _deviceId _button)
+    (let ([_touchMotionGestureFactory JR.null][_newMotionGesture JR.null][_event JR.null])
+      (let/ec jreturn
+        (set! _touchMotionGestureFactory (TouchMotionGestureFactory.jm_getInstance_0))
+        (set! _newMotionGesture (get-field f_NO_MOTION _touchMotionGestureFactory))
+        (if (> _button 0)
+            (begin
+            (set! _newMotionGesture (get-field f_SCROLL_UP _touchMotionGestureFactory)))
+            (when (< _button 0)
+            (begin
+            (set! _newMotionGesture (get-field f_SCROLL_DOWN _touchMotionGestureFactory)))))
+        (set! _event (send (get-field f_motionEventCircularPool this) jm_getInstance_1 _newMotionGesture))
+        (send _event jm_setPreviousPoint_1 (get-field f_previous this))
+        (send _event jm_setCurrentPoint_1 _current)
+        (send (get-field f_scrolledMotionGesturesHandler this) jm_fireEvent_1 _event)
+        (jreturn #t))))
+    (define/public (jm_getMotionGesturesHandler_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_motionGesturesHandler this)))))))
+(define (MotionGestureRecognizer.jclassValue) MotionGestureRecognizer%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local MotionGestureRecognizer = {}
-MotionGestureRecognizer.__index = MotionGestureRecognizer
-MotionGestureRecognizer.className = "MotionGestureRecognizer"
-
-function MotionGestureRecognizer:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.j2seMath = J2SEMath.getInstance()
-    self.origin = PointFactory.getInstance().ZERO_ZERO
-    self.previous = self.origin
-    self.intermediate = self.origin
-    self.line = Line.new(self.origin, self.origin)
-    self.motionGesturesHandler = nil
-    self.movedMotionGesturesHandler = nil
-    self.scrolledMotionGesturesHandler = nil
-    self.motionEventCircularPool = nil
-end
-
-
-function MotionGestureRecognizer.new(id)
-    local self = setmetatable({}, MotionGestureRecognizer)
-    self:_init_fields()
-        self.motionEventCircularPool = MotionEventCircularPool.createPool(id)
-        local motionGesturesHandler = BasicEventHandler.new()
-        local movedMotionGesturesHandler = motionGesturesHandler
-        local scrolledMotionGesturesHandler = motionGesturesHandler
-        local try_ok, try_error = pcall(function()
-            motionGesturesHandler = BasicMotionGesturesHandler.getInstance()
-            movedMotionGesturesHandler = MovedMotionGesturesHandler.getInstance()
-            scrolledMotionGesturesHandler = ScrolledMotionGesturesHandler.getInstance()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-        end
-        self.motionGesturesHandler = motionGesturesHandler
-        self.movedMotionGesturesHandler = movedMotionGesturesHandler
-        self.scrolledMotionGesturesHandler = scrolledMotionGesturesHandler
-    return self
-end
-
-
--- throws Exception
-function MotionGestureRecognizer:processPressedMotionEvent(current, deviceId, button)
-        self.intermediate = self.origin
-        self.previous = self.origin
-        local event = self.motionEventCircularPool:getInstance(TouchMotionGestureFactory.getInstance().PRESSED)
-        event:setPreviousPoint(self.previous)
-        event:setCurrentPoint(current)
-        self.motionGesturesHandler:fireEvent(event)
-        return true
-end
-
-
--- throws Exception
-function MotionGestureRecognizer:processReleasedMotionEvent(current, deviceId, button)
-        local event = self.motionEventCircularPool:getInstance(TouchMotionGestureFactory.getInstance().RELEASED)
-        event:setPreviousPoint(self.previous)
-        event:setCurrentPoint(current)
-        self.motionGesturesHandler:fireEvent(event)
-        return true
-end
-
-
--- throws Exception
-function MotionGestureRecognizer:processDraggedMotionEvent(current, deviceId, buttonMask)
-        if self.previous == self.origin or self.intermediate == self.origin then
-            self.previous = current
-            self.intermediate = current
-            return
-        end
-        self.line:setP1(self.previous)
-        self.line:setP2(current)
-        local minimumMotionGesture = MotionGestureConfigurationFactory.getInstance():getMinimumMotionGesture()
-        if self.j2seMath:abs((self.line:getDeltaX() + 0.0)) < minimumMotionGesture and self.j2seMath:abs((self.line:getDeltaY() + 0.0)) < minimumMotionGesture then
-            self.intermediate = current
-            return
-        end
-        local gradient = self.line:getGradient()
-        local absGradient = (self.j2seMath:abs(gradient) + 0.0)
-        local conf = MotionGestureConfigurationFactory.getInstance()
-        local touchMotionGestureFactory = TouchMotionGestureFactory.getInstance()
-        local newMotionGesture = touchMotionGestureFactory.NO_MOTION
-        local diagonalToleranceHigher = 12.0
-        local diagonalToleranceLower = 12.0
-        if conf:isDiagonalMotionGestureAllowed() then
-            diagonalToleranceHigher = ((90 - conf:getDiagonalTolerance()) + 0.0)
-            diagonalToleranceLower = (conf:getDiagonalTolerance() + 0.0)
-        end
-        if absGradient > math.tan(math.rad(diagonalToleranceHigher)) then
-            if self.line:getDeltaY() > 0 then
-                newMotionGesture = touchMotionGestureFactory.UP
-            else
-                newMotionGesture = touchMotionGestureFactory.DOWN
-            end
-        else
-            if absGradient < math.tan(math.rad(diagonalToleranceLower)) then
-                if self.line:getDeltaX() > 0 then
-                    newMotionGesture = touchMotionGestureFactory.LEFT
-                else
-                    newMotionGesture = touchMotionGestureFactory.RIGHT
-                end
-            else
-                if gradient > 0.0 then
-                    if self.line:getDeltaX() > 0 then
-                        newMotionGesture = touchMotionGestureFactory.DIAGONAL_UP_LEFT
-                    else
-                        newMotionGesture = touchMotionGestureFactory.DIAGONAL_DOWN_RIGHT
-                    end
-                else
-                    if self.line:getDeltaX() > 0 then
-                        newMotionGesture = touchMotionGestureFactory.DIAGONAL_DOWN_LEFT
-                    else
-                        newMotionGesture = touchMotionGestureFactory.DIAGONAL_UP_RIGHT
-                    end
-                end
-            end
-        end
-        self.previous = current
-        self.intermediate = current
-        local event = self.motionEventCircularPool:getInstance(newMotionGesture)
-        event:setPreviousPoint(self.previous)
-        event:setCurrentPoint(current)
-        self.motionGesturesHandler:fireEvent(event)
-        return
-end
-
-
--- throws Exception
-function MotionGestureRecognizer:processMovedMotionEvent(current, deviceId, button)
-        local event = self.motionEventCircularPool:getInstance(TouchMotionGestureFactory.getInstance().NO_MOTION)
-        event:setPreviousPoint(self.previous)
-        event:setCurrentPoint(current)
-        self.movedMotionGesturesHandler:fireEvent(event)
-        return true
-end
-
-
--- throws Exception
-function MotionGestureRecognizer:processScrolledMotionEvent(current, deviceId, button)
-        local touchMotionGestureFactory = TouchMotionGestureFactory.getInstance()
-        local newMotionGesture = touchMotionGestureFactory.NO_MOTION
-        if button > 0 then
-            newMotionGesture = touchMotionGestureFactory.SCROLL_UP
-        elseif button < 0 then
-            newMotionGesture = touchMotionGestureFactory.SCROLL_DOWN
-        end
-        local event = self.motionEventCircularPool:getInstance(newMotionGesture)
-        event:setPreviousPoint(self.previous)
-        event:setCurrentPoint(current)
-        self.scrolledMotionGesturesHandler:fireEvent(event)
-        return true
-end
+(define (MotionGestureRecognizer.jnew_1 _id)
+  (define this (new MotionGestureRecognizer% [jclass "MotionGestureRecognizer"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_j2seMath this (J2SEMath.jm_getInstance_0))
+    (set-field! f_origin this (get-field f_ZERO_ZERO (PointFactory.jm_getInstance_0)))
+    (set-field! f_previous this (get-field f_origin this))
+    (set-field! f_intermediate this (get-field f_origin this))
+    (set-field! f_line this (Line.jnew_2 (get-field f_origin this) (get-field f_origin this)))
+    
+    
+    
+    
+    (let ([_motionGesturesHandler JR.null][_movedMotionGesturesHandler JR.null][_scrolledMotionGesturesHandler JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (set-field! f_motionEventCircularPool this (MotionEventCircularPool.jm_createPool_1 _id))
+        (set! _motionGesturesHandler (BasicEventHandler.jnew_0))
+        (set! _movedMotionGesturesHandler _motionGesturesHandler)
+        (set! _scrolledMotionGesturesHandler _motionGesturesHandler)
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_CONSTRUCTOR _commonStrings) _e))])
+            (set! _motionGesturesHandler (BasicMotionGesturesHandler.jm_getInstance_0))
+            (set! _movedMotionGesturesHandler (MovedMotionGesturesHandler.jm_getInstance_0))
+            (set! _scrolledMotionGesturesHandler (ScrolledMotionGesturesHandler.jm_getInstance_0)))
+        (set-field! f_motionGesturesHandler this _motionGesturesHandler)
+        (set-field! f_movedMotionGesturesHandler this _movedMotionGesturesHandler)
+        (set-field! f_scrolledMotionGesturesHandler this _scrolledMotionGesturesHandler)))
+  this)
 
 
-function MotionGestureRecognizer:getMotionGesturesHandler()
-        return self.motionGesturesHandler
-end
-
-return MotionGestureRecognizer
 

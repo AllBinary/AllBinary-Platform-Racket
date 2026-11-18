@@ -1,47 +1,34 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics
 
-local PlatformBitmapBase = require("org.allbinary.platform.graphics.PlatformBitmapBase")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../org/allbinary/platform/graphics/PlatformBitmapBase.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OpenGLBitmap%
+  (class PlatformBitmapBase%
+    (super-new)
+    (field [f_bitmap JR.null])
+    (define/public (jm_getPixels_7 _pixels _offset _stride _x _y _width _height)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setPixels_7 _pixels _offset _stride _x _y _width _height)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_recycle_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (OpenGLBitmap.jclassValue) OpenGLBitmap%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLBitmap = {}
-OpenGLBitmap.__index = OpenGLBitmap
-OpenGLBitmap.className = "OpenGLBitmap"
-setmetatable(OpenGLBitmap, {__index = PlatformBitmapBase})
-
-function OpenGLBitmap:_init_fields()
-    self.bitmap = nil
-end
-
-
-function OpenGLBitmap.new(bitmap)
-    local self = setmetatable(PlatformBitmapBase.new(), OpenGLBitmap)
-    self:_init_fields()
-        self.bitmap = bitmap
-    return self
-end
-
-
-function OpenGLBitmap:getPixels(pixels, offset, stride, x, y, width, height)
-end
+(define (OpenGLBitmap.jnew_1 _bitmap)
+  (define this (new OpenGLBitmap% [jclass "OpenGLBitmap"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_bitmap this _bitmap)))
+  this)
 
 
-function OpenGLBitmap:setPixels(pixels, offset, stride, x, y, width, height)
-end
-
-
-function OpenGLBitmap:recycle()
-end
-
-return OpenGLBitmap
 

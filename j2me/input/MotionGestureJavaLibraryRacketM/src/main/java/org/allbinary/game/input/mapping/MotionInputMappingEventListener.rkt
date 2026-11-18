@@ -1,57 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input.mapping
 
-local InputMappingEvent = require("org.allbinary.game.input.mapping.event.InputMappingEvent")
-local InputMappingEventListenerInterface = require("org.allbinary.game.input.mapping.event.InputMappingEventListenerInterface")
-local GameKeyCompleteMotionGestureInputEventFactory = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEventFactory")
-local BasicTouchInputFactory = require("org.allbinary.input.motion.button.BasicTouchInputFactory")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/input/mapping/event/InputMappingEventListenerInterface.rkt")
+(lazy-require ["../../../../../org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEventFactory.rkt" (GameKeyCompleteMotionGestureInputEventFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/button/BasicTouchInputFactory.rkt" (BasicTouchInputFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(lazy-require ["../../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MotionInputMappingEventListener%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_PERFORMANCE_MESSAGE (EventStrings.jm_getInstance_0)) this))))
+    (define/public (jm_onInputMappingEvent_1 _inputMappingEvent)
+    (let ()
+      (let/ec jreturn
+        (send (GameKeyCompleteMotionGestureInputEventFactory.jm_getInstance_0) jm_updateAll_0)
+        (send (BasicTouchInputFactory.jm_getInstance_0) jm_updateAll_1 (send _inputMappingEvent jm_getInputToGameKeyMapping_0)))))))
+(define (MotionInputMappingEventListener.jclassValue) MotionInputMappingEventListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local MotionInputMappingEventListener = {}
-MotionInputMappingEventListener.__index = MotionInputMappingEventListener
-MotionInputMappingEventListener.className = "MotionInputMappingEventListener"
-
-function MotionInputMappingEventListener.new()
-    local self = setmetatable({}, MotionInputMappingEventListener)
-    return self
-end
-
-
-function MotionInputMappingEventListener:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
+(define (MotionInputMappingEventListener.jnew_0)
+  (define this (new MotionInputMappingEventListener% [jclass "MotionInputMappingEventListener"]))
+  this)
 
 
--- throws Exception
-function MotionInputMappingEventListener:onInputMappingEvent(inputMappingEvent)
-        GameKeyCompleteMotionGestureInputEventFactory.getInstance():updateAll()
-        BasicTouchInputFactory.getInstance():updateAll(inputMappingEvent:getInputToGameKeyMapping())
-end
-
-return MotionInputMappingEventListener
 

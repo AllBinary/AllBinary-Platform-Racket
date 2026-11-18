@@ -1,224 +1,169 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
--- local ByteArrayInputStream = require("java.io.ByteArrayInputStream")
--- local ByteArrayOutputStream = require("java.io.ByteArrayOutputStream")
--- local DataInputStream = require("java.io.DataInputStream")
--- local DataOutputStream = require("java.io.DataOutputStream")
--- local RecordEnumeration = require("javax.microedition.rms.RecordEnumeration")
--- local RecordStore = require("javax.microedition.rms.RecordStore")
--- local RecordStoreException = require("javax.microedition.rms.RecordStoreException")
-local TsUtil = require("org.allbinary.TsUtil")
-local GameInfo = require("org.allbinary.game.GameInfo")
-local NullRecordComparator = require("org.allbinary.game.configuration.persistance.NullRecordComparator")
-local NullRecordFilter = require("org.allbinary.game.configuration.persistance.NullRecordFilter")
-local NullRecordStore = require("org.allbinary.game.configuration.persistance.NullRecordStore")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local ExceptionUtil = require("org.allbinary.logic.java.exception.ExceptionUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local PlatformRecordIdUtil = require("org.allbinary.persistance.PlatformRecordIdUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/ByteArrayInputStream.rkt"
+  "../../../../java/io/ByteArrayOutputStream.rkt"
+  "../../../../java/io/DataInputStream.rkt"
+  "../../../../java/io/DataOutputStream.rkt"
+  "../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../javax/microedition/rms/RecordStore.rkt" (RecordStore.jm_openRecordStore_2)])
+(lazy-require ["../../../../org/allbinary/TsUtil.rkt" (TsUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/persistance/NullRecordComparator.rkt" (NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR)])
+(lazy-require ["../../../../org/allbinary/game/configuration/persistance/NullRecordFilter.rkt" (NullRecordFilter.jstatic_NULL_RECORD_FILTER)])
+(lazy-require ["../../../../org/allbinary/game/configuration/persistance/NullRecordStore.rkt" (NullRecordStore.jstatic_NULL_RECORD_STORE)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../../org/allbinary/logic/java/exception/ExceptionUtil.rkt" (ExceptionUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.rkt" (SmallIntegerSingletonFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/persistance/PlatformRecordIdUtil.rkt" (PlatformRecordIdUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
--- Java library java.io.ByteArrayOutputStream
-local function java_byte_array_output_stream()
-    local stream = {buffer = {}}
-    function stream:write(value, offset, length)
-        if type(value) == "table" then
-            local first = (offset or 0) + 1
-            local last = first + (length or #value) - 1
-            for index = first, last do self.buffer[#self.buffer + 1] = string.char(value[index] % 256) end
-        elseif type(value) == "number" then
-            self.buffer[#self.buffer + 1] = string.char(value % 256)
-        else
-            self.buffer[#self.buffer + 1] = tostring(value)
-        end
-    end
-    function stream:toString() return table.concat(self.buffer) end
-    function stream:size() return #table.concat(self.buffer) end
-    function stream:reset() self.buffer = {} end
-    function stream:flush() end
-    function stream:close() end
-    return setmetatable(stream, {__tostring = function(self) return table.concat(self.buffer) end})
-end
+(define HighScoreNamePersistanceSingleton%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_tsUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_platformRecordIdUtil JR.null])
+    (field [f_RECORD_ID JR.null])
+    (field [f_name JR.null])
+    (field [f_nameBasicArrayList JR.null])
+    (define/public (jm_clear_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_name this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))
+    (define/public (jm_deleteAll_2 _abeClientInformation _gameInfo)
+    (let ([_size JR.null][_integer JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _size (send (get-field f_nameBasicArrayList this) jm_size_0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _integer (vector-ref (get-field f_objectArray (get-field f_nameBasicArrayList this)) _index))
+            (send this jm_delete_3 _abeClientInformation _gameInfo (send _integer jm_intValue_0)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (send this jm_clear_0))))
+    (define/public (jm_getRecordId_1 _abeClientInformation)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_platformRecordIdUtil this) jm_getRecordId_2 _abeClientInformation (get-field f_RECORD_ID this))))))
+    (define/public (jm_delete_3 _abeClientInformation _gameInfo _deleteId)
+    (let ([_recordStore JR.null])
+      (let/ec jreturn
+        (set! _recordStore (NullRecordStore.jstatic_NULL_RECORD_STORE))
+        (dynamic-wind void (lambda () (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (raise _e))])
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "Deleting: ") jm_appendint_1 _deleteId) jm_toString_0) this (get-field f_delete (get-field f_commonStrings this)))
+            (set! _recordStore (RecordStore.jm_openRecordStore_2 (send this jm_getRecordId_1 _abeClientInformation) #t))
+            (send _recordStore jm_deleteRecord_1 _deleteId)))
+            (lambda ()
+            (when (not (JR.null? _recordStore))
+                (begin
+                (PreLogUtil.jm_put_3 "Closing RecordStore" this (get-field f_delete (get-field f_commonStrings this)))
+                (send _recordStore jm_closeRecordStore_0))))))))
+    (define/public (jm_getIds_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_nameBasicArrayList this)))))
+    (define/public (jm_load_2 _abeClientInformation _gameInfo)
+    (let ([_recordStore JR.null][_LOADING_ID JR.null][_recordEnum JR.null][_smallIntegerSingletonFactory JR.null][_recordAsBytes JR.null][_byteArrayInputStream JR.null][_inputStream JR.null][_id JR.null])
+      (let/ec jreturn
+        (set! _recordStore (NullRecordStore.jstatic_NULL_RECORD_STORE))
+        (dynamic-wind void (lambda () (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send this jm_save_3 _abeClientInformation _gameInfo (get-field f_name this))
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_EXCEPTION_LABEL (get-field f_commonStrings this))) jm_append_1 (send (ExceptionUtil.jm_getInstance_0) jm_getStackTrace_1 _e)) jm_toString_0) this (get-field f_LOAD (get-field f_commonStrings this))))])
+            (when (eq? (get-field f_name this) (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+                (begin
+                (set! _LOADING_ID "Loading id: ")
+                (set! _recordStore (RecordStore.jm_openRecordStore_2 (send this jm_getRecordId_1 _abeClientInformation) #t))
+                (set! _recordEnum (send _recordStore jm_enumerateRecords_3 (NullRecordFilter.jstatic_NULL_RECORD_FILTER) (NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR) #t))
+                (set! _smallIntegerSingletonFactory (SmallIntegerSingletonFactory.jm_getInstance_0))
+                (set! _recordAsBytes JR.null)
+                (set! _byteArrayInputStream JR.null)
+                (set! _inputStream JR.null)
+                (let/ec jbreak (let jloop () (when (send _recordEnum jm_hasNextElement_0)
+                        (let/ec jcontinue
+                    (set! _id (send _recordEnum jm_nextRecordId_0))
+                    (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 _LOADING_ID) jm_appendint_1 _id) jm_toString_0) this (get-field f_LOAD (get-field f_commonStrings this)))
+                    (set! _recordAsBytes (send (get-field f_tsUtil this) jm_getRecord_2 _recordStore _id))
+                    (set! _byteArrayInputStream (ByteArrayInputStream.jnew_1 _recordAsBytes))
+                    (set! _inputStream (DataInputStream.jnew_1 _byteArrayInputStream))
+                    (let/ec jbreak (let jloop () (when (> (send _inputStream jm_available_0) 0)
+                            (let/ec jcontinue
+                        (set-field! f_name this (send _inputStream jm_readUTF_0))) (jloop))))
+                    (send (get-field f_nameBasicArrayList this) jm_add_1 (send _smallIntegerSingletonFactory jm_getAt_1 _id))) (jloop))))))))
+            (lambda ()
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_LOAD (get-field f_commonStrings this)) _e))])
+                (when (not (JR.null? _recordStore))
+                    (begin
+                    (PreLogUtil.jm_put_3 "Closing RecordStore" this (get-field f_LOAD (get-field f_commonStrings this)))
+                    (send _recordStore jm_closeRecordStore_0))))))
+        (jreturn (get-field f_name this)))))
+    (define/public (jm_save_3 _abeClientInformation _gameInfo _name)
+    (let ([_recordStore JR.null][_byteArrayOutputStream JR.null][_outputStream JR.null][_savedGameBytes JR.null])
+      (let/ec jreturn
+        (set! _recordStore (NullRecordStore.jstatic_NULL_RECORD_STORE))
+        (dynamic-wind void (lambda () (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_SAVE (get-field f_commonStrings this)) _e))])
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "Saving: ") jm_append_1 _name) jm_toString_0) this (get-field f_SAVE (get-field f_commonStrings this)))
+            (set! _recordStore (RecordStore.jm_openRecordStore_2 (send this jm_getRecordId_1 _abeClientInformation) #t))
+            (set! _byteArrayOutputStream (ByteArrayOutputStream.jnew_0))
+            (set! _outputStream (DataOutputStream.jnew_1 _byteArrayOutputStream))
+            (send _outputStream jm_writeUTF_1 _name)
+            (set! _savedGameBytes (send _byteArrayOutputStream jm_toByteArray_0))
+            (send _recordStore jm_addRecord_3 _savedGameBytes 0 (vector-length _savedGameBytes))
+            (set-field! f_name this _name)))
+            (lambda ()
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_SAVE (get-field f_commonStrings this)) _e))])
+                (when (not (JR.null? _recordStore))
+                    (begin
+                    (PreLogUtil.jm_put_3 "Closing RecordStore" this (get-field f_SAVE (get-field f_commonStrings this)))
+                    (send _recordStore jm_closeRecordStore_0)))))))))))
+(define (HighScoreNamePersistanceSingleton.jclassValue) HighScoreNamePersistanceSingleton%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HighScoreNamePersistanceSingleton.jcell_SINGLETON 'jnone)
+(define (HighScoreNamePersistanceSingleton.jstatic_SINGLETON)
+  (when (eq? HighScoreNamePersistanceSingleton.jcell_SINGLETON 'jnone) (set! HighScoreNamePersistanceSingleton.jcell_SINGLETON (HighScoreNamePersistanceSingleton.jnew_0)))
+  HighScoreNamePersistanceSingleton.jcell_SINGLETON)
+(define (HighScoreNamePersistanceSingleton.jsetstatic_SINGLETON value) (set! HighScoreNamePersistanceSingleton.jcell_SINGLETON value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (HighScoreNamePersistanceSingleton.jnew_0)
+  (define this (new HighScoreNamePersistanceSingleton% [jclass "HighScoreNamePersistanceSingleton"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_tsUtil this (TsUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_platformRecordIdUtil this (PlatformRecordIdUtil.jm_getInstance_0))
+    (set-field! f_RECORD_ID this "_SN")
+    (set-field! f_name this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (set-field! f_nameBasicArrayList this (BasicArrayListD.jnew_0))
+  this)
 
-local HighScoreNamePersistanceSingleton = {}
-HighScoreNamePersistanceSingleton.__index = HighScoreNamePersistanceSingleton
-HighScoreNamePersistanceSingleton.className = "HighScoreNamePersistanceSingleton"
-
-function HighScoreNamePersistanceSingleton:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.tsUtil = TsUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.platformRecordIdUtil = PlatformRecordIdUtil.getInstance()
-    self.RECORD_ID = "_SN"
-    self.name = StringUtil.getInstance().EMPTY_STRING
-    self.nameBasicArrayList = BasicArrayListD.new()
-end
-
-function HighScoreNamePersistanceSingleton.new()
-    local self = setmetatable({}, HighScoreNamePersistanceSingleton)
-    self:_init_fields()
-    return self
-end
-
-
-function HighScoreNamePersistanceSingleton.getInstance()
-        return HighScoreNamePersistanceSingleton.SINGLETON
-end
-
-
-function HighScoreNamePersistanceSingleton:clear()
-        self.name = StringUtil.getInstance().EMPTY_STRING
-end
-
-
--- throws Exception
-function HighScoreNamePersistanceSingleton:deleteAll(abeClientInformation, gameInfo)
-        local size = self.nameBasicArrayList:size()
-        for index = 0, size - 1 do
-            local integer = self.nameBasicArrayList.objectArray[index + 1]
-            self:delete(abeClientInformation, gameInfo, math.tointeger(integer // 1))
-        end
-        self:clear()
-end
-
-
-function HighScoreNamePersistanceSingleton:getRecordId(abeClientInformation)
-        return self.platformRecordIdUtil:getRecordId(abeClientInformation, self.RECORD_ID)
-end
-
-
--- throws Exception
-function HighScoreNamePersistanceSingleton:delete(abeClientInformation, gameInfo, deleteId)
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(tostring(StringMaker.new():append("Deleting: "):appendint(deleteId)), self, self.commonStrings.delete)
-            recordStore = RecordStore.openRecordStore(self:getRecordId(abeClientInformation), true)
-            recordStore:deleteRecord(deleteId)
-        end)
-        if not try_ok then
-            local e = try_error
-            error(e, 0)
-        end
-        do -- finally
-            if recordStore ~= nil then
-                PreLogUtil.put("Closing RecordStore", self, self.commonStrings.delete)
-                recordStore:closeRecordStore()
-            end
-        end
-end
-
-
-function HighScoreNamePersistanceSingleton:getIds()
-        return self.nameBasicArrayList
-end
-
-
-function HighScoreNamePersistanceSingleton:load(abeClientInformation, gameInfo)
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            if self.name == StringUtil.getInstance().EMPTY_STRING then
-                local LOADING_ID = "Loading id: "
-                recordStore = RecordStore.openRecordStore(self:getRecordId(abeClientInformation), true)
-                local recordEnum = recordStore:enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true)
-                local smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-                local recordAsBytes = nil
-                local byteArrayInputStream = nil
-                local inputStream = nil
-                while recordEnum:hasNextElement() do
-                    local id = recordEnum:nextRecordId()
-                    self.logUtil:putF(tostring(StringMaker.new():append(LOADING_ID):appendint(id)), self, self.commonStrings.LOAD)
-                    recordAsBytes = self.tsUtil:getRecord(recordStore, id)
-                    byteArrayInputStream = ByteArrayInputStream.new(recordAsBytes)
-                    inputStream = DataInputStream.new(byteArrayInputStream)
-                    while inputStream:available() > 0 do
-                        self.name = inputStream:readUTF()
-                    end
-                    self.nameBasicArrayList:add(smallIntegerSingletonFactory:getAt(id))
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self:save(abeClientInformation, gameInfo, self.name)
-            self.logUtil:putF(tostring(StringMaker.new():append(self.commonStrings.EXCEPTION_LABEL):append(ExceptionUtil.getInstance():getStackTrace(e))), self, self.commonStrings.LOAD)
-        end
-        do -- finally
-            local try_ok, try_error = pcall(function()
-                if recordStore ~= nil then
-                    PreLogUtil.put("Closing RecordStore", self, self.commonStrings.LOAD)
-                    recordStore:closeRecordStore()
-                end
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.LOAD, e)
-            end
-        end
-        return self.name
-end
+(define (HighScoreNamePersistanceSingleton.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (HighScoreNamePersistanceSingleton.jstatic_SINGLETON)))))
 
 
-function HighScoreNamePersistanceSingleton:save(abeClientInformation, gameInfo, name)
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(tostring(StringMaker.new():append("Saving: "):append(name)), self, self.commonStrings.SAVE)
-            recordStore = RecordStore.openRecordStore(self:getRecordId(abeClientInformation), true)
-            local byteArrayOutputStream = java_byte_array_output_stream()
-            local outputStream = DataOutputStream.new(byteArrayOutputStream)
-            outputStream:writeUTF(name)
-            local savedGameBytes = byteArrayOutputStream:toByteArray()
-            recordStore:addRecord(savedGameBytes, 0, (savedGameBytes.n or #savedGameBytes))
-            self.name = name
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.SAVE, e)
-        end
-        do -- finally
-            local try_ok, try_error = pcall(function()
-                if recordStore ~= nil then
-                    PreLogUtil.put("Closing RecordStore", self, self.commonStrings.SAVE)
-                    recordStore:closeRecordStore()
-                end
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.SAVE, e)
-            end
-        end
-end
-
-HighScoreNamePersistanceSingleton.SINGLETON = HighScoreNamePersistanceSingleton.new()
-
-return HighScoreNamePersistanceSingleton
 

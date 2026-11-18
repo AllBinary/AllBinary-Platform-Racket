@@ -23,6 +23,7 @@
     (super-new)
     (define/public (jm_setBasicColorP_1 _basicColor)
       (raise (JR.newException "AbstractMethodError" "setBasicColorP")))))
+(define (BasicColorCompositeSetterInterface.jclassValue) BasicColorCompositeSetterInterface%)
 
 (define (BasicColorCompositeSetterInterface.jnew_0)
   (define this (new BasicColorCompositeSetterInterface% [jclass "BasicColorCompositeSetterInterface"]))

@@ -1,99 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.resource
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.resource
 
-local RelativeRelationship = require("org.allbinary.graphics.RelativeRelationship")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local ResourceRelativeRelationshipFactoryInterface = require("org.allbinary.game.resource.ResourceRelativeRelationshipFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./ResourceRelativeRelationshipFactoryInterface.rkt")
+(lazy-require ["../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListUtil.rkt" (BasicArrayListUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ResourceRelativeRelationshipFactory%
+  (class JObject%
+    (super-new)
+    (field [f_basicArrayListUtil JR.null])
+    (field [f_hashtable JR.null])
+    (field [f_initialized #f])
+    (define/public (jm_init_1 _level)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setInitialized_1 #t))))
+    (define/public (jm_getResourceRelativeRelationshipList_1 _resource)
+    (let ([_listCanBeNull JR.null])
+      (let/ec jreturn
+        (set! _listCanBeNull (send (get-field f_hashtable this) jm_get_1 _resource))
+        (when (JR.null? _listCanBeNull)
+            (begin
+            (jreturn (send (get-field f_basicArrayListUtil this) jm_getImmutableInstance_0))))
+        (jreturn _listCanBeNull))))
+    (define/public (jm_addResourceRelativeRelationship_2 _resource _hardPoint)
+    (let ([_list JR.null])
+      (let/ec jreturn
+        (set! _list (send this jm_getResourceRelativeRelationshipList_1 _resource))
+        (when (eq? _list (send (get-field f_basicArrayListUtil this) jm_getImmutableInstance_0))
+            (begin
+            (set! _list (BasicArrayListD.jnew_0))))
+        (send _list jm_add_1 _hardPoint)
+        (send (get-field f_hashtable this) jm_put_2 _resource _list))))
+    (define/public (jm_isLoadingLevel_1 _level)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_isFeature_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_setInitialized_1 _initialized)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_initialized this _initialized))))
+    (define/public (jm_isInitialized_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_initialized this)))))))
+(define (ResourceRelativeRelationshipFactory.jclassValue) ResourceRelativeRelationshipFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ResourceRelativeRelationshipFactory = {}
-ResourceRelativeRelationshipFactory.__index = ResourceRelativeRelationshipFactory
-ResourceRelativeRelationshipFactory.className = "ResourceRelativeRelationshipFactory"
-
-function ResourceRelativeRelationshipFactory:_init_fields()
-    self.basicArrayListUtil = BasicArrayListUtil.getInstance()
-    self.hashtable = StdUtil.getInstance():createHashtable()
-    self.initialized = false
-end
-
-function ResourceRelativeRelationshipFactory.new()
-    local self = setmetatable({}, ResourceRelativeRelationshipFactory)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function ResourceRelativeRelationshipFactory:init(level)
-        self:setInitialized(true)
-end
-
-
--- throws Exception
-function ResourceRelativeRelationshipFactory:getResourceRelativeRelationshipList(resource)
-        local listCanBeNull = self.hashtable:get(resource)
-        if listCanBeNull == nil then
-            return self.basicArrayListUtil:getImmutableInstance()
-        end
-        return listCanBeNull
-end
-
-
--- throws Exception
-function ResourceRelativeRelationshipFactory:addResourceRelativeRelationship(resource, hardPoint)
-        local list = self:getResourceRelativeRelationshipList(resource)
-        if list == self.basicArrayListUtil:getImmutableInstance() then
-            list = BasicArrayListD.new()
-        end
-        list:add(hardPoint)
-        self.hashtable:put(resource, list)
-end
-
-
-function ResourceRelativeRelationshipFactory:isLoadingLevel(level)
-        return false
-end
+(define (ResourceRelativeRelationshipFactory.jnew_0)
+  (define this (new ResourceRelativeRelationshipFactory% [jclass "ResourceRelativeRelationshipFactory"]))
+    (set-field! f_basicArrayListUtil this (BasicArrayListUtil.jm_getInstance_0))
+    (set-field! f_hashtable this (send (StdUtil.jm_getInstance_0) jm_createHashtable_0))
+    
+  this)
 
 
-function ResourceRelativeRelationshipFactory:isFeature()
-        return false
-end
-
-
-function ResourceRelativeRelationshipFactory:setInitialized(initialized)
-        self.initialized = initialized
-end
-
-
-function ResourceRelativeRelationshipFactory:isInitialized()
-        return self.initialized
-end
-
-return ResourceRelativeRelationshipFactory
 

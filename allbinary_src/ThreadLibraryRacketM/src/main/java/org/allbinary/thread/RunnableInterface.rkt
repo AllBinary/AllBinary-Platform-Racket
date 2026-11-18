@@ -29,6 +29,7 @@
       (raise (JR.newException "AbstractMethodError" "setRunning")))
     (define/public (jm_setThread_1 _thread)
       (raise (JR.newException "AbstractMethodError" "setThread")))))
+(define (RunnableInterface.jclassValue) RunnableInterface%)
 
 (define (RunnableInterface.jnew_0)
   (define this (new RunnableInterface% [jclass "RunnableInterface"]))

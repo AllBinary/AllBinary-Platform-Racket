@@ -1,84 +1,65 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
-local GameInfo = require("org.allbinary.game.GameInfo")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local SoftwareInformation = require("org.allbinary.logic.system.SoftwareInformation")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local HighScoresBase = require("org.allbinary.game.score.HighScoresBase")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./HighScoresBase.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["./RecordStoreHighScores.rkt" (RecordStoreHighScores.jm_getInstance_6)])
+(lazy-require ["./ScoreComparator.rkt" (ScoreComparator.jnew_1)])
+(lazy-require ["./HighScoresHelper2.rkt" (HighScoresHelper2.jnew_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define BasicHighScoresFactory%
+  (class HighScoresBase%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_abeClientInformation JR.null])
+    (field [f_highScoresArray JR.null])
+    (field [f_TOP JR.null])
+    (field [f_SCORES JR.null])
+    (field [f_PERSONAL_HIGH_SCORES JR.null])
+    (field [f_FETCH JR.null])
+    (define/override (jm_fetchHighScores_2 _gameInfo _highScoresResultsListener)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 "Getting Local HighScores" this (get-field f_FETCH this))
+        (send this jm_fetchHighScoresPreload_3 _gameInfo _highScoresResultsListener #t))))
+    (define/override (jm_fetchHighScoresPreload_3 _gameInfo _highScoresResultsListener _preload)
+    (let ()
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_FETCH this) _e))])
+            (vector-set! (get-field f_highScoresArray this) 0 (RecordStoreHighScores.jm_getInstance_6 (get-field f_abeClientInformation this) _gameInfo (get-field f_TOP this) (get-field f_PERSONAL_HIGH_SCORES this) (get-field f_SCORES this) (ScoreComparator.jnew_1 #t)))
+            (send _highScoresResultsListener jm_setHighScoresArray_1 (get-field f_highScoresArray this))))))
+    (define/override (jm_createHighScoresHelper_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (HighScoresHelper2.jnew_0)))))))
+(define (BasicHighScoresFactory.jclassValue) BasicHighScoresFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define (BasicHighScoresFactory.jnew_2 _abeClientInformation _softwareInformation)
+  (define this (new BasicHighScoresFactory% [jclass "BasicHighScoresFactory"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    
+    (set-field! f_highScoresArray this (JR.newArray JR.null 1))
+    (set-field! f_TOP this "Top")
+    (set-field! f_SCORES this "Scores")
+    (set-field! f_PERSONAL_HIGH_SCORES this "Personal Top Scores")
+    (set-field! f_FETCH this "fetchHighScores")
+    (let ()
+      (let/ec jreturn
+        (set-field! f_abeClientInformation this _abeClientInformation)))
+  this)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BasicHighScoresFactory = {}
-BasicHighScoresFactory.__index = BasicHighScoresFactory
-BasicHighScoresFactory.className = "BasicHighScoresFactory"
-setmetatable(BasicHighScoresFactory, {__index = HighScoresBase})
-
-function BasicHighScoresFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.abeClientInformation = nil
-    self.highScoresArray = java_new_array(nil, 1)
-    self.TOP = "Top"
-    self.SCORES = "Scores"
-    self.PERSONAL_HIGH_SCORES = "Personal Top Scores"
-    self.FETCH = "fetchHighScores"
-end
-
-
-function BasicHighScoresFactory.new(abeClientInformation, softwareInformation)
-    local self = setmetatable(HighScoresBase.new(), BasicHighScoresFactory)
-    self:_init_fields()
-        self.abeClientInformation = abeClientInformation
-    return self
-end
-
-
-function BasicHighScoresFactory:fetchHighScores(gameInfo, highScoresResultsListener)
-        self.logUtil:putF("Getting Local HighScores", self, self.FETCH)
-        self:fetchHighScoresPreload(gameInfo, highScoresResultsListener, true)
-end
-
-
-function BasicHighScoresFactory:fetchHighScoresPreload(gameInfo, highScoresResultsListener, preload)
-        local try_ok, try_error = pcall(function()
-            self.highScoresArray[1] = RecordStoreHighScores.getInstance(self.abeClientInformation, gameInfo, self.TOP, self.PERSONAL_HIGH_SCORES, self.SCORES, ScoreComparator.new(true))
-            highScoresResultsListener:setHighScoresArray(self.highScoresArray)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.FETCH, e)
-        end
-end
+(define (BasicHighScoresFactory.jm_loaded_1 _index2)
+    (let ()
+      (let/ec jreturn
+        (when (>= _index2 0)
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
 
 
-function BasicHighScoresFactory:createHighScoresHelper()
-        return HighScoresHelper2.new()
-end
-
-
-function BasicHighScoresFactory.loaded(index2)
-        if index2 >= 0 then
-            return true
-        end
-        return false
-end
-
-return BasicHighScoresFactory
 

@@ -1,57 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.view
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.view
 
-local ViewPosition = require("org.allbinary.view.ViewPosition")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./ViewPosition.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define StaticViewPosition%
+  (class ViewPosition%
+    (super-new)
+    (define/override (jm_getX_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getRawX_0)))))
+    (define/override (jm_getY_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getRawY_0)))))
+    (define/override (jm_getZ_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getRawZ_0)))))))
+(define (StaticViewPosition.jclassValue) StaticViewPosition%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local StaticViewPosition = {}
-StaticViewPosition.__index = StaticViewPosition
-StaticViewPosition.className = "StaticViewPosition"
-setmetatable(StaticViewPosition, {__index = ViewPosition})
-
-
-function StaticViewPosition.new(x, y, z)
-    local self = setmetatable(ViewPosition.new(x, y, z), StaticViewPosition)
-        -- super(...) made self above
-    return self
-end
-
-
-function StaticViewPosition:getX()
-        return self:getRawX()
-end
-
-
-function StaticViewPosition:getY()
-        return self:getRawY()
-end
+(define (StaticViewPosition.jnew_3 _x _y _z)
+  (define this (new StaticViewPosition% [jclass "StaticViewPosition"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function StaticViewPosition:getZ()
-        return self:getRawZ()
-end
-
-return StaticViewPosition
 

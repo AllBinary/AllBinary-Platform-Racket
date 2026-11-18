@@ -1,60 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.content
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.content
 
--- local Command = require("javax.microedition.lcdui.Command")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CommandUriAction%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/public (jm_add_2 _command _url)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_process_1 _command)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (CommandUriAction.jclassValue) CommandUriAction%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define CommandUriAction.jcell_instance 'jnone)
+(define (CommandUriAction.jstatic_instance)
+  (when (eq? CommandUriAction.jcell_instance 'jnone) (set! CommandUriAction.jcell_instance (CommandUriAction.jnew_0)))
+  CommandUriAction.jcell_instance)
+(define (CommandUriAction.jsetstatic_instance value) (set! CommandUriAction.jcell_instance value))
 
-local CommandUriAction = {}
-CommandUriAction.__index = CommandUriAction
-CommandUriAction.className = "CommandUriAction"
+(define (CommandUriAction.jnew_0)
+  (define this (new CommandUriAction% [jclass "CommandUriAction"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+  this)
 
-function CommandUriAction:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-function CommandUriAction.new()
-    local self = setmetatable({}, CommandUriAction)
-    self:_init_fields()
-    return self
-end
-
-
-function CommandUriAction.getInstance()
-        return CommandUriAction.instance
-end
-
-
-function CommandUriAction:add(command, url)
-end
+(define (CommandUriAction.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (CommandUriAction.jstatic_instance)))))
 
 
-function CommandUriAction:process(command)
-end
-
-CommandUriAction.instance = CommandUriAction.new()
-
-return CommandUriAction
 

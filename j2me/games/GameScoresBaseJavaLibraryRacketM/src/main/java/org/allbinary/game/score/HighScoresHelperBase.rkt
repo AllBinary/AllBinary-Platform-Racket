@@ -1,101 +1,74 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local HighScoresHelperBaseInterface = require("org.allbinary.game.score.HighScoresHelperBaseInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./HighScoresHelperBaseInterface.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./LastFetchHighScoresFactory.rkt" (LastFetchHighScoresFactory.jm_getInstance_0)])
+(lazy-require ["./NullHighScoresSingletonFactory.rkt" (NullHighScoresSingletonFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define HighScoresHelperBase%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_highScoresArrayP JR.null])
+    (define/public (jm_setHighScoresArray_1 _highScoresArrayP)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (if (not (JR.null? _highScoresArrayP))
+            (begin
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_START _commonStrings)) jm_appendint_1 (vector-length _highScoresArrayP)) jm_toString_0) this "setHighScoresArray"))
+            (begin
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_putF_3 (get-field f_START _commonStrings) this "setHighScoresArray")))
+        (set-field! f_highScoresArrayP this _highScoresArrayP))))
+    (define/public (jm_getNextHighScores_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullHighScoresSingletonFactory.jm_getInstance_0)))))
+    (define/public (jm_isAnyHighScores_0)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_setSelectedHighScores_1 _selectedHighScores)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getSelectedHighScores_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullHighScoresSingletonFactory.jm_getInstance_0)))))
+    (define/public (jm_getHighScoresArray_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_highScoresArrayP this)))))
+    (define/public (jm_selectHighScores_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (HighScoresHelperBase.jclassValue) HighScoresHelperBase%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local HighScoresHelperBase = {}
-HighScoresHelperBase.__index = HighScoresHelperBase
-HighScoresHelperBase.className = "HighScoresHelperBase"
-
-function HighScoresHelperBase:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.highScoresArrayP = LastFetchHighScoresFactory.getInstance().highScoresArray
-end
-
-function HighScoresHelperBase.new()
-    local self = setmetatable({}, HighScoresHelperBase)
-    self:_init_fields()
-    return self
-end
-
-
-function HighScoresHelperBase:setHighScoresArray(highScoresArrayP)
-        if highScoresArrayP ~= nil then
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:putF(tostring(StringMaker.new():append(commonStrings.START):appendint((highScoresArrayP.n or #highScoresArrayP))), self, "setHighScoresArray")
-        else
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:putF(commonStrings.START, self, "setHighScoresArray")
-        end
-        self.highScoresArrayP = highScoresArrayP
-end
-
-
-function HighScoresHelperBase:getNextHighScores()
-        return NullHighScoresSingletonFactory.getInstance()
-end
+(define (HighScoresHelperBase.jnew_0)
+  (define this (new HighScoresHelperBase% [jclass "HighScoresHelperBase"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_highScoresArrayP this (get-field f_highScoresArray (LastFetchHighScoresFactory.jm_getInstance_0)))
+  this)
 
 
-function HighScoresHelperBase:isAnyHighScores()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function HighScoresHelperBase:setSelectedHighScores(selectedHighScores)
-end
-
-
-function HighScoresHelperBase:getSelectedHighScores()
-        return NullHighScoresSingletonFactory.getInstance()
-end
-
-
-function HighScoresHelperBase:getHighScoresArray()
-        return self.highScoresArrayP
-end
-
-
-function HighScoresHelperBase:selectHighScores()
-end
-
-return HighScoresHelperBase
 

@@ -43,11 +43,13 @@
     (field [f_WORKFLOWEDITOR JR.null])
     (field [f_WIZARD JR.null])
     (field [f_VIEWEDITOR JR.null])))
+(define (BasicUserRoleFactory.jclassValue) BasicUserRoleFactory%)
 
 (define BasicUserRoleFactory.jcell_instance 'jnone)
 (define (BasicUserRoleFactory.jstatic_instance)
   (when (eq? BasicUserRoleFactory.jcell_instance 'jnone) (set! BasicUserRoleFactory.jcell_instance (BasicUserRoleFactory.jnew_0)))
   BasicUserRoleFactory.jcell_instance)
+(define (BasicUserRoleFactory.jsetstatic_instance value) (set! BasicUserRoleFactory.jcell_instance value))
 
 (define (BasicUserRoleFactory.jnew_0)
   (define this (new BasicUserRoleFactory% [jclass "BasicUserRoleFactory"]))

@@ -1,88 +1,75 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.caption
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.caption
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local TextAnimation = require("org.allbinary.animation.text.TextAnimation")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local CaptionAnimationHelperBase = require("org.allbinary.animation.caption.CaptionAnimationHelperBase")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./CaptionAnimationHelperBase.rkt")
+(lazy-require ["../../../../org/allbinary/animation/AnimationBehavior.rkt" (AnimationBehavior.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/animation/NullAnimationFactory.rkt" (NullAnimationFactory.jm_getFactoryInstance_0)])
+(lazy-require ["../../../../org/allbinary/animation/text/TextAnimation.rkt" (TextAnimation.jnew_2)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/time/GameTickTimeDelayHelperFactory.rkt" (GameTickTimeDelayHelperFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/time/TimeDelayHelper.rkt" (TimeDelayHelper.jnew_1)])
+(lazy-require ["./CaptionAnimation.rkt" (CaptionAnimation.jnew_6)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CaptionAnimationHelper%
+  (class CaptionAnimationHelperBase%
+    (super-new)
+    (field [f_timeHelper JR.null])
+    (field [f_textAnimation JR.null])
+    (field [f_captionAnimation JR.null])
+    (field [f_animation JR.null])
+    (define/override (jm_isShowing_0)
+    (let ()
+      (let/ec jreturn
+        (if (eq? (get-field f_animation this) (get-field f_captionAnimation this))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))
+    (define/override (jm_tick_0)
+    (let ()
+      (let/ec jreturn
+        (when (send (get-field f_timeHelper this) jm_isTime_1 (get-field f_startTime (GameTickTimeDelayHelperFactory.jm_getInstance_0)))
+            (begin
+            (set-field! f_animation this (JR.className (NullAnimationFactory.jm_getFactoryInstance_0))))))))
+    (define/override (jm_update_2 _message _basicColor)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_textAnimation this) jm_setBasicColorP_1 _basicColor)
+        (send (get-field f_textAnimation this) jm_setText_1 _message)
+        (set-field! f_animation this (get-field f_captionAnimation this))
+        (send (get-field f_timeHelper this) jm_setStartTimeTNT_0))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animation this) jm_paintXY_3 _graphics _x _y))))))
+(define (CaptionAnimationHelper.jclassValue) CaptionAnimationHelper%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CaptionAnimationHelper = {}
-CaptionAnimationHelper.__index = CaptionAnimationHelper
-CaptionAnimationHelper.className = "CaptionAnimationHelper"
-setmetatable(CaptionAnimationHelper, {__index = CaptionAnimationHelperBase})
-
-function CaptionAnimationHelper:_init_fields()
-    self.timeHelper = TimeDelayHelper.new(620)
-    self.textAnimation = TextAnimation.new(StringUtil.getInstance().EMPTY_STRING, AnimationBehavior.getInstance())
-    self.captionAnimation = nil
-    self.animation = NullAnimationFactory.getFactoryInstance():getInstance(0)
-end
-
-
-function CaptionAnimationHelper.new(captionAnimation, captionDx, captionDy, dx, dy)
-    local self = setmetatable(CaptionAnimationHelperBase.new(), CaptionAnimationHelper)
-    self:_init_fields()
-        self.captionAnimation = CaptionAnimation.new(captionAnimation, self.textAnimation, captionDx, captionDy, dx, dy)
-    return self
-end
-
-
-function CaptionAnimationHelper:isShowing()
-        if self.animation == self.captionAnimation then
-            return true
-        else
-            return false
-        end
-end
-
-
-function CaptionAnimationHelper:tick()
-        if self.timeHelper:isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) then
-            self.animation = NullAnimationFactory.getFactoryInstance():getInstance(0)
-        end
-end
-
-
-function CaptionAnimationHelper:update(message, basicColor)
-        self.textAnimation:setBasicColorP(basicColor)
-        self.textAnimation:setText(message)
-        self.animation = self.captionAnimation
-        self.timeHelper:setStartTimeTNT()
-end
+(define (CaptionAnimationHelper.jnew_5 _captionAnimation _captionDx _captionDy _dx _dy)
+  (define this (new CaptionAnimationHelper% [jclass "CaptionAnimationHelper"]))
+    (set-field! f_timeHelper this (TimeDelayHelper.jnew_1 620))
+    (set-field! f_textAnimation this (TextAnimation.jnew_2 (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (AnimationBehavior.jm_getInstance_0)))
+    
+    (set-field! f_animation this (JR.className (NullAnimationFactory.jm_getFactoryInstance_0)))
+    (let ()
+      (let/ec jreturn
+        (set-field! f_captionAnimation this (CaptionAnimation.jnew_6 _captionAnimation (get-field f_textAnimation this) _captionDx _captionDy _dx _dy))))
+  this)
 
 
-function CaptionAnimationHelper:paintXY(graphics, x, y)
-        self.animation:paintXY(graphics, x, y)
-end
-
-return CaptionAnimationHelper
 

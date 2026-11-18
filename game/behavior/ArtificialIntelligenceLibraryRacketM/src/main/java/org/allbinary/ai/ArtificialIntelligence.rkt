@@ -1,59 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.ai
 
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./ArtificialIntelligenceInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ArtificialIntelligence%
+  (class JObject%
+    (super-new)
+    (define/public (jm_processAI_1 _layerManager)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 1))))))
+(define (ArtificialIntelligence.jclassValue) ArtificialIntelligence%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ArtificialIntelligence.jcell_AI_ID 'jnone)
+(define (ArtificialIntelligence.jstatic_AI_ID)
+  (when (eq? ArtificialIntelligence.jcell_AI_ID 'jnone) (set! ArtificialIntelligence.jcell_AI_ID 2))
+  ArtificialIntelligence.jcell_AI_ID)
+(define (ArtificialIntelligence.jsetstatic_AI_ID value) (set! ArtificialIntelligence.jcell_AI_ID value))
 
-local ArtificialIntelligence = {}
-ArtificialIntelligence.__index = ArtificialIntelligence
-ArtificialIntelligence.className = "ArtificialIntelligence"
+(define ArtificialIntelligence.jcell_instance 'jnone)
+(define (ArtificialIntelligence.jstatic_instance)
+  (when (eq? ArtificialIntelligence.jcell_instance 'jnone) (set! ArtificialIntelligence.jcell_instance (ArtificialIntelligence.jnew_0)))
+  ArtificialIntelligence.jcell_instance)
+(define (ArtificialIntelligence.jsetstatic_instance value) (set! ArtificialIntelligence.jcell_instance value))
 
+(define (ArtificialIntelligence.jnew_0)
+  (define this (new ArtificialIntelligence% [jclass "ArtificialIntelligence"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function ArtificialIntelligence.getInstance()
-        return ArtificialIntelligence.instance
-end
-
-
-function ArtificialIntelligence.new()
-    local self = setmetatable({}, ArtificialIntelligence)
-    return self
-end
-
-
--- throws Exception
-function ArtificialIntelligence:processAI(layerManager)
-end
+(define (ArtificialIntelligence.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ArtificialIntelligence.jstatic_instance)))))
 
 
-function ArtificialIntelligence:getId()
-        return 1
-end
-
-ArtificialIntelligence.AI_ID = 2
-ArtificialIntelligence.instance = ArtificialIntelligence.new()
-
-return ArtificialIntelligence
 

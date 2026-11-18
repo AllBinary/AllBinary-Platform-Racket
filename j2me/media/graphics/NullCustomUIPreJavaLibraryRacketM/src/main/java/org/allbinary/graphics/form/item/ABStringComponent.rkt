@@ -1,45 +1,39 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ABStringComponent%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getBackgroundBasicColor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_WHITE (BasicColorFactory.jm_getInstance_0))))))
+    (define/public (jm_getForegroundBasicColor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_WHITE (BasicColorFactory.jm_getInstance_0))))))
+    (define/public (jm_setForegroundBasicColor_1 _foregroundBasicColor)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ABStringComponent.jclassValue) ABStringComponent%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ABStringComponent.jcell_NULL_STRING_COMPONENT 'jnone)
+(define (ABStringComponent.jstatic_NULL_STRING_COMPONENT)
+  (when (eq? ABStringComponent.jcell_NULL_STRING_COMPONENT 'jnone) (set! ABStringComponent.jcell_NULL_STRING_COMPONENT (ABStringComponent.jnew_2 (get-field f_BLACK (BasicColorFactory.jm_getInstance_0)) (get-field f_WHITE (BasicColorFactory.jm_getInstance_0)))))
+  ABStringComponent.jcell_NULL_STRING_COMPONENT)
+(define (ABStringComponent.jsetstatic_NULL_STRING_COMPONENT value) (set! ABStringComponent.jcell_NULL_STRING_COMPONENT value))
 
-local ABStringComponent = {}
-ABStringComponent.__index = ABStringComponent
-ABStringComponent.className = "ABStringComponent"
-
-
-function ABStringComponent:getBackgroundBasicColor()
-        return BasicColorFactory.getInstance().WHITE
-end
-
-
-function ABStringComponent.new(backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable({}, ABStringComponent)
-    return self
-end
-
-
-function ABStringComponent:getForegroundBasicColor()
-        return BasicColorFactory.getInstance().WHITE
-end
+(define (ABStringComponent.jnew_2 _backgroundBasicColor _foregroundBasicColor)
+  (define this (new ABStringComponent% [jclass "ABStringComponent"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function ABStringComponent:setForegroundBasicColor(foregroundBasicColor)
-end
-
-ABStringComponent.NULL_STRING_COMPONENT = ABStringComponent.new(BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
-
-return ABStringComponent
 

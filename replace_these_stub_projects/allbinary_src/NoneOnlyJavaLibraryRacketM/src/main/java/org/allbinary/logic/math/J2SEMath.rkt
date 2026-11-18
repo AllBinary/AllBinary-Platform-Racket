@@ -33,11 +33,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (if (< _value 0.0) (- _value) _value)))))))
+(define (J2SEMath.jclassValue) J2SEMath%)
 
 (define J2SEMath.jcell_instance 'jnone)
 (define (J2SEMath.jstatic_instance)
   (when (eq? J2SEMath.jcell_instance 'jnone) (set! J2SEMath.jcell_instance (J2SEMath.jnew_0)))
   J2SEMath.jcell_instance)
+(define (J2SEMath.jsetstatic_instance value) (set! J2SEMath.jcell_instance value))
 
 (define (J2SEMath.jnew_0)
   (define this (new J2SEMath% [jclass "J2SEMath"]))

@@ -57,6 +57,7 @@
                 (send (get-field f_threadPool this) jm_completedTask_1 _task2)
                 (set-field! f_runningTask (get-field f_threadPool this) #f))) (jloop))))
         (send (get-field f_threadPool this) jm_threadStopped_0))))))
+(define (PooledThread.jclassValue) PooledThread%)
 
 (define (PooledThread.jnew_1 _threadPool)
   (define this (new PooledThread% [jclass "PooledThread"]))
@@ -67,7 +68,7 @@
     (set-field! f_INTERRUPT_EXCEPTION this "Exit InterruptedException")
     (let ()
       (let/ec jreturn
-        (void)
+        (JR.superInit this 'jsuper_1 (send _threadPool jm_createName_0))
         (send (get-field f_logUtil this) jm_putF_3 (get-field f_CONSTRUCTOR (get-field f_commonStrings this)) this (get-field f_CONSTRUCTOR (get-field f_commonStrings this)))
         (set-field! f_threadPool this _threadPool)))
   this)

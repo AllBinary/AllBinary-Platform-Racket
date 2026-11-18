@@ -171,16 +171,19 @@
     (let ()
       (let/ec jreturn
         (jreturn (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_poolName this)) jm_append_1 (ThreadPool.jstatic_ROOT_NAME)) jm_appendint_1 (let ([jvalue (get-field f_threadID this)]) (set-field! f_threadID this (JR.i32 (+ (get-field f_threadID this) 1))) jvalue)) jm_toString_0)))))))
+(define (ThreadPool.jclassValue) ThreadPool%)
 
 (define ThreadPool.jcell_ROOT_NAME 'jnone)
 (define (ThreadPool.jstatic_ROOT_NAME)
   (when (eq? ThreadPool.jcell_ROOT_NAME 'jnone) (set! ThreadPool.jcell_ROOT_NAME "-PooledThread-"))
   ThreadPool.jcell_ROOT_NAME)
+(define (ThreadPool.jsetstatic_ROOT_NAME value) (set! ThreadPool.jcell_ROOT_NAME value))
 
 (define ThreadPool.jcell_NORMAL_PRIORITY 'jnone)
 (define (ThreadPool.jstatic_NORMAL_PRIORITY)
   (when (eq? ThreadPool.jcell_NORMAL_PRIORITY 'jnone) (set! ThreadPool.jcell_NORMAL_PRIORITY (Thread.jstatic_NORM_PRIORITY)))
   ThreadPool.jcell_NORMAL_PRIORITY)
+(define (ThreadPool.jsetstatic_NORMAL_PRIORITY value) (set! ThreadPool.jcell_NORMAL_PRIORITY value))
 
 (define (ThreadPool.jnew_3 _poolName _numThreads _priority)
   (define this (new ThreadPool% [jclass "ThreadPool"]))

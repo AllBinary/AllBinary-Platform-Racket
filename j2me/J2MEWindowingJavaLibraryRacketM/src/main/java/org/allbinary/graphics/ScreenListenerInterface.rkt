@@ -25,6 +25,7 @@
       (raise (JR.newException "AbstractMethodError" "onFullScreen")))
     (define/public (jm_onFullScreenDisplay_0)
       (raise (JR.newException "AbstractMethodError" "onFullScreenDisplay")))))
+(define (ScreenListenerInterface.jclassValue) ScreenListenerInterface%)
 
 (define (ScreenListenerInterface.jnew_0)
   (define this (new ScreenListenerInterface% [jclass "ScreenListenerInterface"]))

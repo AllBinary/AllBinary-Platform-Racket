@@ -43,6 +43,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (JR.i64 (- (get-field f_startTime this) (get-field f_lastStartTime this)))))))))
+(define (GameTickTimeDelayHelper.jclassValue) GameTickTimeDelayHelper%)
 
 (define (GameTickTimeDelayHelper.jnew_1 _startTime)
   (define this (new GameTickTimeDelayHelper% [jclass "GameTickTimeDelayHelper"]))

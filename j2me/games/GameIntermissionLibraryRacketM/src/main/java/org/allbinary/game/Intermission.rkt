@@ -1,72 +1,62 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game
 
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local IntermissionInterface = require("org.allbinary.game.IntermissionInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./IntermissionInterface.rkt")
+(lazy-require ["../../../org/allbinary/time/TimeDelayHelper.rkt" (TimeDelayHelper.jnew_1)])
+(lazy-require ["./NullIntermissionEnableListener.rkt" (NullIntermissionEnableListener.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Intermission%
+  (class JObject%
+    (super-new)
+    (field [f_enabled #f])
+    (field [f_timeElapsedHelper JR.null])
+    (field [f_intermissionEnableListener JR.null])
+    (define/public (jm_setListener_1 _enableListener)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_intermissionEnableListener this _enableListener))))
+    (define/public (jm_getTimeDelayHelper_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_timeElapsedHelper this)))))
+    (define/public (jm_setEnabled_1 _enabled)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_enabled this _enabled)
+        (when (send this jm_isEnabled_0)
+            (begin
+            (send (send this jm_getTimeDelayHelper_0) jm_setStartTimeTNT_0)))
+        (send (get-field f_intermissionEnableListener this) jm_notifyIntermission_1 _enabled))))
+    (define/public (jm_isEnabled_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_enabled this)))))))
+(define (Intermission.jclassValue) Intermission%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local Intermission = {}
-Intermission.__index = Intermission
-Intermission.className = "Intermission"
-
-function Intermission:_init_fields()
-    self.enabled = false
-    self.timeElapsedHelper = TimeDelayHelper.new(0)
-    self.intermissionEnableListener = NullIntermissionEnableListener.getInstance()
-end
-
-
-function Intermission.new()
-    local self = setmetatable({}, Intermission)
-    self:_init_fields()
-    return self
-end
-
-
-function Intermission:setListener(enableListener)
-        self.intermissionEnableListener = enableListener
-end
-
-
-function Intermission:getTimeDelayHelper()
-        return self.timeElapsedHelper
-end
-
-
-function Intermission:setEnabled(enabled)
-        self.enabled = enabled
-        if self:isEnabled() then
-            self:getTimeDelayHelper():setStartTimeTNT()
-        end
-        self.intermissionEnableListener:notifyIntermission(enabled)
-end
+(define (Intermission.jnew_0)
+  (define this (new Intermission% [jclass "Intermission"]))
+    
+    (set-field! f_timeElapsedHelper this (TimeDelayHelper.jnew_1 0))
+    (set-field! f_intermissionEnableListener this (NullIntermissionEnableListener.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function Intermission:isEnabled()
-        return self.enabled
-end
-
-return Intermission
 

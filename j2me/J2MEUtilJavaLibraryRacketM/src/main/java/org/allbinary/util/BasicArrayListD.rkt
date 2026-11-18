@@ -22,6 +22,7 @@
 (define BasicArrayListD%
   (class BasicArrayListS%
     (super-new)))
+(define (BasicArrayListD.jclassValue) BasicArrayListD%)
 
 (define (BasicArrayListD.jnew_0)
   (define this (new BasicArrayListD% [jclass "BasicArrayListD"]))

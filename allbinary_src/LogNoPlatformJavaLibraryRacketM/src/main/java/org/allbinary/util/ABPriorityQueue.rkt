@@ -22,6 +22,7 @@
 (define ABPriorityQueue%
   (class PriorityQueue%
     (super-new)))
+(define (ABPriorityQueue.jclassValue) ABPriorityQueue%)
 
 (define (ABPriorityQueue.jnew_0)
   (define this (new ABPriorityQueue% [jclass "ABPriorityQueue"]))

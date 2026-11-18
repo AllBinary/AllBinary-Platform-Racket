@@ -1,62 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local BaseTouchInput = require("org.allbinary.input.motion.button.BaseTouchInput")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./BaseTouchInput.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListUtil.rkt" (BasicArrayListUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NoButtonsBuilder%
+  (class BaseTouchInput%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/override (jm_getList_0)
+    (let ([_list JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_GET_LIST (get-field f_commonStrings this)) _e)
+            (jreturn (send (BasicArrayListUtil.jm_getInstance_0) jm_getImmutableInstance_0)))])
+            (send (get-field f_logUtil this) jm_putF_3 (get-field f_START (get-field f_commonStrings this)) this (get-field f_CONSTRUCTOR (get-field f_commonStrings this)))
+            (set! _list (send (BasicArrayListUtil.jm_getInstance_0) jm_getImmutableInstance_0))
+            (jreturn _list)))))))
+(define (NoButtonsBuilder.jclassValue) NoButtonsBuilder%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local NoButtonsBuilder = {}
-NoButtonsBuilder.__index = NoButtonsBuilder
-NoButtonsBuilder.className = "NoButtonsBuilder"
-setmetatable(NoButtonsBuilder, {__index = BaseTouchInput})
-
-function NoButtonsBuilder:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-function NoButtonsBuilder.new()
-    local self = setmetatable(BaseTouchInput.new(), NoButtonsBuilder)
-    self:_init_fields()
-    return self
-end
+(define (NoButtonsBuilder.jnew_0)
+  (define this (new NoButtonsBuilder% [jclass "NoButtonsBuilder"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+  this)
 
 
-function NoButtonsBuilder:getList()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-            local list = BasicArrayListUtil.getInstance():getImmutableInstance()
-            return list
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.GET_LIST, e)
-            return BasicArrayListUtil.getInstance():getImmutableInstance()
-        end
-end
-
-return NoButtonsBuilder
 

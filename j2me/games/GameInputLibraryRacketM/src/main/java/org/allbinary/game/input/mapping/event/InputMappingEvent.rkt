@@ -1,58 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input.mapping.event
 
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/logic/util/event/AllBinaryEventObject.rkt")
+(lazy-require ["../../../../../../org/allbinary/game/input/mapping/InputToGameKeyMapping.rkt" (InputToGameKeyMapping.jm_getNullInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define InputMappingEvent%
+  (class AllBinaryEventObject%
+    (super-new)
+    (field [f_inputToGameKeyMapping JR.null])
+    (define/public (jm_setInputToGameKeyMapping_1 _inputToGameKeyMapping)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_inputToGameKeyMapping this _inputToGameKeyMapping))))
+    (define/public (jm_getInputToGameKeyMapping_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_inputToGameKeyMapping this)))))))
+(define (InputMappingEvent.jclassValue) InputMappingEvent%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local InputMappingEvent = {}
-InputMappingEvent.__index = InputMappingEvent
-InputMappingEvent.className = "InputMappingEvent"
-setmetatable(InputMappingEvent, {__index = AllBinaryEventObject})
-
-function InputMappingEvent:_init_fields()
-    self.inputToGameKeyMapping = InputToGameKeyMapping.getNullInstance()
-end
-
-
-function InputMappingEvent.new(anyType)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), InputMappingEvent)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
+(define (InputMappingEvent.jnew_1 _anyType)
+  (define this (new InputMappingEvent% [jclass "InputMappingEvent"]))
+    (set-field! f_inputToGameKeyMapping this (InputToGameKeyMapping.jm_getNullInstance_0))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function InputMappingEvent:setInputToGameKeyMapping(inputToGameKeyMapping)
-        self.inputToGameKeyMapping = inputToGameKeyMapping
-end
-
-
-function InputMappingEvent:getInputToGameKeyMapping()
-        return self.inputToGameKeyMapping
-end
-
-return InputMappingEvent
 

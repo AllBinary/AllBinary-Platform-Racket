@@ -1,129 +1,134 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;; 
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer
 
-local TsUtil = require("org.allbinary.TsUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local LayerManagerLoggingBase = require("org.allbinary.layer.LayerManagerLoggingBase")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/lang/Integer.rkt"
+  "./LayerManagerLoggingBase.rkt")
+(lazy-require ["../../../org/allbinary/TsUtil.rkt" (TsUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LayerManagerLogging%
+  (class LayerManagerLoggingBase%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_stringBuilder JR.null])
+    (field [f_APPEND JR.null])
+    (field [f_APPEND_ JR.null])
+    (field [f__AT_ JR.null])
+    (field [f_ATTEMPT_REMOVE_ JR.null])
+    (field [f_REMOVE_ JR.null])
+    (field [f_REMOVE JR.null])
+    (field [f_DID_NOT_REMOVE JR.null])
+    (field [f_CLEAR JR.null])
+    (define/override (jm_append_1 _layerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send (get-field f_stringBuilder this) jm_appendint_1 (send (TsUtil.jm_getInstance_0) jm_hashCode_1 this)) jm_append_1 (get-field f_APPEND_ this)) jm_append_1 (send _layerInterface jm_getName_0)) jm_toString_0) this (get-field f_APPEND this)))))
+    (define/override (jm_appendAt_2 _layerInterface _index)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send (send (send (get-field f_stringBuilder this) jm_appendint_1 (send (TsUtil.jm_getInstance_0) jm_hashCode_1 this)) jm_append_1 (get-field f_APPEND_ this)) jm_append_1 (send _layerInterface jm_getName_0)) jm_append_1 (get-field f__AT_ this)) jm_appendint_1 _index) jm_toString_0) this (get-field f_APPEND this)))))
+    (define/override (jm_remove_1 _layerInterface)
+    (let ()
+      (let/ec jreturn
+        (if (JR.null? _layerInterface)
+            (begin
+            (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send (get-field f_stringBuilder this) jm_appendint_1 (send (TsUtil.jm_getInstance_0) jm_hashCode_1 this)) jm_append_1 (get-field f_ATTEMPT_REMOVE_ this)) jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 _layerInterface)) jm_toString_0) this (get-field f_REMOVE this)))
+            (begin
+            (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send (get-field f_stringBuilder this) jm_appendint_1 (send (TsUtil.jm_getInstance_0) jm_hashCode_1 this)) jm_append_1 (get-field f_ATTEMPT_REMOVE_ this)) jm_append_1 (send _layerInterface jm_getName_0)) jm_toString_0) this (get-field f_REMOVE this)))))))
+    (define/override (jm_removeResult_3 _layerManager _layerInterface _result)
+    (let ()
+      (let/ec jreturn
+        (if (JR.null? _layerInterface)
+            (begin
+            (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send (get-field f_stringBuilder this) jm_appendint_1 (send (TsUtil.jm_getInstance_0) jm_hashCode_1 this)) jm_append_1 (get-field f_REMOVE_ this)) jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 _layerInterface)) jm_toString_0) this (get-field f_REMOVE this)))
+            (if _result
+            (begin
+            (when (LayerManagerLogging.jstatic_removeFailed)
+                (begin
+                (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+                (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send (get-field f_stringBuilder this) jm_appendint_1 (send (TsUtil.jm_getInstance_0) jm_hashCode_1 this)) jm_append_1 (get-field f_REMOVE_ this)) jm_append_1 (send _layerInterface jm_getName_0)) jm_toString_0) this (get-field f_REMOVE this)))))
+            (begin
+            (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send (get-field f_stringBuilder this) jm_appendint_1 (send (TsUtil.jm_getInstance_0) jm_hashCode_1 this)) jm_append_1 (get-field f_DID_NOT_REMOVE this)) jm_append_1 (send _layerInterface jm_getName_0)) jm_toString_0) this (get-field f_REMOVE this))
+            (set! LayerManagerLogging.jcell_removeFailed #t)))))))
+    (define/public (jm_log_1 _layerManager)
+    (let ([_size JR.null][_commonSeps JR.null][_allBinaryLayer JR.null][_index JR.null])
+      (let/ec jreturn
+        (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+        (set! _size (send _layerManager jm_getSize_0))
+        (set! _commonSeps (CommonSeps.jm_getInstance_0))
+        (send (send (get-field f_stringBuilder this) jm_append_1 (Integer.jm_toHexString_1 (send (TsUtil.jm_getInstance_0) jm_hashCode_1 _layerManager))) jm_append_1 (get-field f_COLON_SEP _commonSeps))
+        (send (send (get-field f_stringBuilder this) jm_appendint_1 _size) jm_append_1 (get-field f_COLON_SEP _commonSeps))
+        (set! _allBinaryLayer JR.null)
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _allBinaryLayer (send _layerManager jm_getLayerAt_1 _index))
+            (send (send (get-field f_stringBuilder this) jm_append_1 (send _allBinaryLayer jm_getName_0)) jm_append_1 (get-field f_COMMA _commonSeps)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (send (get-field f_logUtil this) jm_putF_3 (send (get-field f_stringBuilder this) jm_toString_0) this (get-field f_REMOVE this)))))
+    (define/override (jm_clear_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_stringBuilder this) jm_delete_2 0 (send (get-field f_stringBuilder this) jm_length_0))
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (get-field f_stringBuilder this) jm_appendint_1 (send (TsUtil.jm_getInstance_0) jm_hashCode_1 this)) jm_append_1 (get-field f_CLEAR this)) jm_toString_0) this (get-field f_CLEAR this)))))))
+(define (LayerManagerLogging.jclassValue) LayerManagerLogging%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LayerManagerLogging.jcell_instance 'jnone)
+(define (LayerManagerLogging.jstatic_instance)
+  (when (eq? LayerManagerLogging.jcell_instance 'jnone) (set! LayerManagerLogging.jcell_instance (LayerManagerLogging.jnew_0)))
+  LayerManagerLogging.jcell_instance)
+(define (LayerManagerLogging.jsetstatic_instance value) (set! LayerManagerLogging.jcell_instance value))
 
-local LayerManagerLogging = {}
-LayerManagerLogging.__index = LayerManagerLogging
-LayerManagerLogging.className = "LayerManagerLogging"
-setmetatable(LayerManagerLogging, {__index = LayerManagerLoggingBase})
+(define LayerManagerLogging.jcell_removeFailed 'jnone)
+(define (LayerManagerLogging.jstatic_removeFailed)
+  (when (eq? LayerManagerLogging.jcell_removeFailed 'jnone) (set! LayerManagerLogging.jcell_removeFailed #f))
+  LayerManagerLogging.jcell_removeFailed)
+(define (LayerManagerLogging.jsetstatic_removeFailed value) (set! LayerManagerLogging.jcell_removeFailed value))
 
-function LayerManagerLogging:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.stringBuilder = StringMaker.new()
-    self.APPEND = "append"
-    self.APPEND_ = " append: "
-    self._AT_ = " at: "
-    self.ATTEMPT_REMOVE_ = " Remove Attempt: "
-    self.REMOVE_ = " Remove: "
-    self.REMOVE = "remove"
-    self.DID_NOT_REMOVE = " Did not remove: "
-    self.CLEAR = " Clear List"
-end
+(define (LayerManagerLogging.jnew_0)
+  (define this (new LayerManagerLogging% [jclass "LayerManagerLogging"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_stringBuilder this (StringMaker.jnew_0))
+    (set-field! f_APPEND this "append")
+    (set-field! f_APPEND_ this " append: ")
+    (set-field! f__AT_ this " at: ")
+    (set-field! f_ATTEMPT_REMOVE_ this " Remove Attempt: ")
+    (set-field! f_REMOVE_ this " Remove: ")
+    (set-field! f_REMOVE this "remove")
+    (set-field! f_DID_NOT_REMOVE this " Did not remove: ")
+    (set-field! f_CLEAR this " Clear List")
+  this)
 
-function LayerManagerLogging.new()
-    local self = setmetatable(LayerManagerLoggingBase.new(), LayerManagerLogging)
-    self:_init_fields()
-    return self
-end
-
-
-function LayerManagerLogging.getInstance()
-        return LayerManagerLogging.instance
-end
+(define (LayerManagerLogging.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LayerManagerLogging.jstatic_instance)))))
 
 
--- throws Exception
-function LayerManagerLogging:append(layerInterface)
-        self.stringBuilder:delete(0, self.stringBuilder:length())
-        self.logUtil:putF(tostring(self.stringBuilder:appendint(java_int(TsUtil.getInstance():hashCode(self))):append(self.APPEND_):append(layerInterface:getName())), self, self.APPEND)
-end
-
-
-function LayerManagerLogging:appendAt(layerInterface, index)
-        self.stringBuilder:delete(0, self.stringBuilder:length())
-        self.logUtil:putF(tostring(self.stringBuilder:appendint(java_int(TsUtil.getInstance():hashCode(self))):append(self.APPEND_):append(layerInterface:getName()):append(self._AT_):appendint(index)), self, self.APPEND)
-end
-
-
-function LayerManagerLogging:remove(layerInterface)
-        if layerInterface == nil then
-            self.stringBuilder:delete(0, self.stringBuilder:length())
-            self.logUtil:putF(tostring(self.stringBuilder:appendint(java_int(TsUtil.getInstance():hashCode(self))):append(self.ATTEMPT_REMOVE_):append(StringUtil.getInstance():toString(layerInterface))), self, self.REMOVE)
-        else
-            self.stringBuilder:delete(0, self.stringBuilder:length())
-            self.logUtil:putF(tostring(self.stringBuilder:appendint(java_int(TsUtil.getInstance():hashCode(self))):append(self.ATTEMPT_REMOVE_):append(layerInterface:getName())), self, self.REMOVE)
-        end
-end
-
-
-function LayerManagerLogging:removeResult(layerManager, layerInterface, result)
-        if layerInterface == nil then
-            self.stringBuilder:delete(0, self.stringBuilder:length())
-            self.logUtil:putF(tostring(self.stringBuilder:appendint(java_int(TsUtil.getInstance():hashCode(self))):append(self.REMOVE_):append(StringUtil.getInstance():toString(layerInterface))), self, self.REMOVE)
-        elseif result then
-            if LayerManagerLogging.removeFailed then
-                self.stringBuilder:delete(0, self.stringBuilder:length())
-                self.logUtil:putF(tostring(self.stringBuilder:appendint(java_int(TsUtil.getInstance():hashCode(self))):append(self.REMOVE_):append(layerInterface:getName())), self, self.REMOVE)
-            end
-        else
-            self.stringBuilder:delete(0, self.stringBuilder:length())
-            self.logUtil:putF(tostring(self.stringBuilder:appendint(java_int(TsUtil.getInstance():hashCode(self))):append(self.DID_NOT_REMOVE):append(layerInterface:getName())), self, self.REMOVE)
-            LayerManagerLogging.removeFailed = true
-        end
-end
-
-
-function LayerManagerLogging:log(layerManager)
-        self.stringBuilder:delete(0, self.stringBuilder:length())
-        local size = layerManager:getSize()
-        local commonSeps = CommonSeps.getInstance()
-        self.stringBuilder:append(string.format("%x", TsUtil.getInstance():hashCode(layerManager))):append(commonSeps.COLON_SEP)
-        self.stringBuilder:appendint(size):append(commonSeps.COLON_SEP)
-        local allBinaryLayer = nil
-        for index = 0, size - 1 do
-            allBinaryLayer = (layerManager:getLayerAt(index))
-            self.stringBuilder:append(allBinaryLayer:getName()):append(commonSeps.COMMA)
-        end
-        self.logUtil:putF(tostring(self.stringBuilder), self, self.REMOVE)
-end
-
-
-function LayerManagerLogging:clear()
-        self.stringBuilder:delete(0, self.stringBuilder:length())
-        self.logUtil:putF(tostring(self.stringBuilder:appendint(java_int(TsUtil.getInstance():hashCode(self))):append(self.CLEAR)), self, self.CLEAR)
-end
-
-LayerManagerLogging.instance = LayerManagerLogging.new()
-LayerManagerLogging.removeFailed = false
-
-return LayerManagerLogging
 

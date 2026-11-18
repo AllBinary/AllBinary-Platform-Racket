@@ -1,84 +1,93 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.gesture
 
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/game/input/InputFactory.rkt" (InputFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["./MotionGestureInput.rkt" (MotionGestureInput.jnew_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TouchMotionGestureFactory%
+  (class JObject%
+    (super-new)
+    (field [f_LEFT JR.null])
+    (field [f_RIGHT JR.null])
+    (field [f_UP JR.null])
+    (field [f_DOWN JR.null])
+    (field [f_PRESSED JR.null])
+    (field [f_RELEASED JR.null])
+    (field [f_DIAGONAL_DOWN_RIGHT JR.null])
+    (field [f_DIAGONAL_DOWN_LEFT JR.null])
+    (field [f_DIAGONAL_UP_RIGHT JR.null])
+    (field [f_DIAGONAL_UP_LEFT JR.null])
+    (field [f_SCROLL_UP JR.null])
+    (field [f_SCROLL_DOWN JR.null])
+    (field [f_NO_MOTION JR.null])
+    (field [f_LAST_MOTION JR.null])))
+(define (TouchMotionGestureFactory.jclassValue) TouchMotionGestureFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define TouchMotionGestureFactory.jcell_instance 'jnone)
+(define (TouchMotionGestureFactory.jstatic_instance)
+  (when (eq? TouchMotionGestureFactory.jcell_instance 'jnone) (set! TouchMotionGestureFactory.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  TouchMotionGestureFactory.jcell_instance)
+(define (TouchMotionGestureFactory.jsetstatic_instance value) (set! TouchMotionGestureFactory.jcell_instance value))
 
-local TouchMotionGestureFactory = {}
-TouchMotionGestureFactory.__index = TouchMotionGestureFactory
-TouchMotionGestureFactory.className = "TouchMotionGestureFactory"
+(define (TouchMotionGestureFactory.jnew_0)
+  (define this (new TouchMotionGestureFactory% [jclass "TouchMotionGestureFactory"]))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (let ([_MAX JR.null])
+      (let/ec jreturn
+        (set! _MAX (get-field f_MAX (InputFactory.jm_getInstance_0)))
+        (set-field! f_LEFT this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 3)) "Left Touch"))
+        (set-field! f_RIGHT this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 4)) "Right Touch"))
+        (set-field! f_UP this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 5)) "Up Touch"))
+        (set-field! f_DOWN this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 6)) "Down Touch"))
+        (set-field! f_PRESSED this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 7)) "Screen Press"))
+        (set-field! f_RELEASED this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 8)) "Released"))
+        (set-field! f_DIAGONAL_DOWN_RIGHT this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 9)) "Diagonal Dn R"))
+        (set-field! f_DIAGONAL_DOWN_LEFT this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 10)) "Diagonal Dn L"))
+        (set-field! f_DIAGONAL_UP_RIGHT this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 11)) "Diagonal Up R"))
+        (set-field! f_DIAGONAL_UP_LEFT this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 12)) "Diagonal Up L"))
+        (set-field! f_SCROLL_UP this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 13)) "Scroll Up"))
+        (set-field! f_SCROLL_DOWN this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 14)) "Scroll Down"))
+        (set-field! f_NO_MOTION this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 2)) "No Motion"))
+        (set-field! f_LAST_MOTION this (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 19)) "Last Motion"))))
+  this)
 
-function TouchMotionGestureFactory:_init_fields()
-    self.LEFT = nil
-    self.RIGHT = nil
-    self.UP = nil
-    self.DOWN = nil
-    self.PRESSED = nil
-    self.RELEASED = nil
-    self.DIAGONAL_DOWN_RIGHT = nil
-    self.DIAGONAL_DOWN_LEFT = nil
-    self.DIAGONAL_UP_RIGHT = nil
-    self.DIAGONAL_UP_LEFT = nil
-    self.SCROLL_UP = nil
-    self.SCROLL_DOWN = nil
-    self.NO_MOTION = nil
-    self.LAST_MOTION = nil
-end
+(define (TouchMotionGestureFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (TouchMotionGestureFactory.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! TouchMotionGestureFactory.jcell_instance (TouchMotionGestureFactory.jnew_0))))
+        (jreturn (TouchMotionGestureFactory.jstatic_instance)))))
 
 
-function TouchMotionGestureFactory.getInstance()
-        if TouchMotionGestureFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            TouchMotionGestureFactory.instance = TouchMotionGestureFactory.new()
-        end
-        return TouchMotionGestureFactory.instance
-end
-
-
-function TouchMotionGestureFactory.new()
-    local self = setmetatable({}, TouchMotionGestureFactory)
-    self:_init_fields()
-        local MAX = InputFactory.getInstance().MAX
-        self.LEFT = MotionGestureInput.new(MAX - 3, "Left Touch")
-        self.RIGHT = MotionGestureInput.new(MAX - 4, "Right Touch")
-        self.UP = MotionGestureInput.new(MAX - 5, "Up Touch")
-        self.DOWN = MotionGestureInput.new(MAX - 6, "Down Touch")
-        self.PRESSED = MotionGestureInput.new(MAX - 7, "Screen Press")
-        self.RELEASED = MotionGestureInput.new(MAX - 8, "Released")
-        self.DIAGONAL_DOWN_RIGHT = MotionGestureInput.new(MAX - 9, "Diagonal Dn R")
-        self.DIAGONAL_DOWN_LEFT = MotionGestureInput.new(MAX - 10, "Diagonal Dn L")
-        self.DIAGONAL_UP_RIGHT = MotionGestureInput.new(MAX - 11, "Diagonal Up R")
-        self.DIAGONAL_UP_LEFT = MotionGestureInput.new(MAX - 12, "Diagonal Up L")
-        self.SCROLL_UP = MotionGestureInput.new(MAX - 13, "Scroll Up")
-        self.SCROLL_DOWN = MotionGestureInput.new(MAX - 14, "Scroll Down")
-        self.NO_MOTION = MotionGestureInput.new(MAX - 2, "No Motion")
-        self.LAST_MOTION = MotionGestureInput.new(MAX - 19, "Last Motion")
-    return self
-end
-
-TouchMotionGestureFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return TouchMotionGestureFactory
 

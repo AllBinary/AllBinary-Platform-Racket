@@ -1,72 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ai
 
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListUtil.rkt" (BasicArrayListUtil.jm_getInstance_0)])
+(lazy-require ["./BasicAI.rkt" (BasicAI.jstatic_ID)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ArtificialIntelligenceInterfaceFactoryInterfaceFactory%
+  (class JObject%
+    (super-new)
+    (field [f_list JR.null])
+    (define/public (jm_clear_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_list this (BasicArrayListD.jnew_0)))))
+    (define/public (jm_getInstanceFromCollection_1 _hashtable)
+    (let ([_typeInteger JR.null][_type JR.null][_artificialIntelligenceInterfaceFactoryInterface JR.null])
+      (let/ec jreturn
+        (set! _typeInteger (send _hashtable jm_get_1 (BasicAI.jstatic_ID)))
+        (set! _type (send _typeInteger jm_intValue_0))
+        (set! _artificialIntelligenceInterfaceFactoryInterface (vector-ref (get-field f_objectArray (get-field f_list this)) (JR.i32 (- _type 1))))
+        (jreturn _artificialIntelligenceInterfaceFactoryInterface))))
+    (define/public (jm_add_1 _artificialIntelligenceInterfaceFactoryInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_list this) jm_add_1 _artificialIntelligenceInterfaceFactoryInterface))))))
+(define (ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jclassValue) ArtificialIntelligenceInterfaceFactoryInterfaceFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON 'jnone)
+(define (ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jstatic_SINGLETON)
+  (when (eq? ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON 'jnone) (set! ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON (ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jnew_0)))
+  ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON)
+(define (ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jsetstatic_SINGLETON value) (set! ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON value))
 
-local ArtificialIntelligenceInterfaceFactoryInterfaceFactory = {}
-ArtificialIntelligenceInterfaceFactoryInterfaceFactory.__index = ArtificialIntelligenceInterfaceFactoryInterfaceFactory
-ArtificialIntelligenceInterfaceFactoryInterfaceFactory.className = "ArtificialIntelligenceInterfaceFactoryInterfaceFactory"
+(define (ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jnew_0)
+  (define this (new ArtificialIntelligenceInterfaceFactoryInterfaceFactory% [jclass "ArtificialIntelligenceInterfaceFactoryInterfaceFactory"]))
+    (set-field! f_list this (send (BasicArrayListUtil.jm_getInstance_0) jm_getImmutableInstance_0))
+  this)
 
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:_init_fields()
-    self.list = BasicArrayListUtil.getInstance():getImmutableInstance()
-end
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory.new()
-    local self = setmetatable({}, ArtificialIntelligenceInterfaceFactoryInterfaceFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:clear()
-        self.list = BasicArrayListD.new()
-end
-
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory.getInstance()
-        return ArtificialIntelligenceInterfaceFactoryInterfaceFactory.SINGLETON
-end
-
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:getInstanceFromCollection(hashtable)
-        local typeInteger = hashtable:get(BasicAI.ID)
-        local type = math.tointeger(typeInteger // 1)
-        local artificialIntelligenceInterfaceFactoryInterface = self.list.objectArray[type - 1 + 1]
-        return artificialIntelligenceInterfaceFactoryInterface
-end
+(define (ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jstatic_SINGLETON)))))
 
 
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:add(artificialIntelligenceInterfaceFactoryInterface)
-        self.list:add(artificialIntelligenceInterfaceFactoryInterface)
-end
-
-ArtificialIntelligenceInterfaceFactoryInterfaceFactory.SINGLETON = ArtificialIntelligenceInterfaceFactoryInterfaceFactory.new()
-
-return ArtificialIntelligenceInterfaceFactoryInterfaceFactory
 

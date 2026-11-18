@@ -25,6 +25,7 @@
     (define/public (jm_onResizable_1 _isResizable)
     (let ()
       (let/ec jreturn (void))))))
+(define (ResizableEmptyListener.jclassValue) ResizableEmptyListener%)
 
 (define (ResizableEmptyListener.jnew_0)
   (define this (new ResizableEmptyListener% [jclass "ResizableEmptyListener"]))

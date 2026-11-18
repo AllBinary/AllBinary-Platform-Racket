@@ -1,80 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.hud.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.hud.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local NullEventListener = require("org.allbinary.logic.util.event.NullEventListener")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(lazy-require ["../../../../../../org/allbinary/logic/util/event/NullEventListener.rkt" (NullEventListener.jstatic_NULL_EVENT_LISTENER)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameNotificationEventHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (field [f_enabled #f])
+    (define/override (jm_removeAllListeners_0)
+    (let ([_eventListenerInterface JR.null][_list JR.null])
+      (let/ec jreturn
+        (set! _eventListenerInterface (NullEventListener.jstatic_NULL_EVENT_LISTENER))
+        (set! _list (get-field f_eventListenerInterfaceList this))
+        (when (> (send _list jm_size_0) 0)
+            (begin
+            (set! _eventListenerInterface (vector-ref (get-field f_objectArray _list) 0))))
+        (super jm_removeAllListeners_0)
+        (when (not (eq? _eventListenerInterface (NullEventListener.jstatic_NULL_EVENT_LISTENER)))
+            (begin
+            (send this jm_addListenerInterface_1 _eventListenerInterface))))))
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_gameNotificationListenerInterface JR.null])
+      (let/ec jreturn
+        (when (not (get-field f_enabled this))
+            (begin
+            (jreturn (void))))
+        (set! _gameNotificationListenerInterface _eventListenerInterface)
+        (send _gameNotificationListenerInterface jm_onGameNotificationEvent_1 _eventObject))))))
+(define (GameNotificationEventHandler.jclassValue) GameNotificationEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameNotificationEventHandler.jcell_instance 'jnone)
+(define (GameNotificationEventHandler.jstatic_instance)
+  (when (eq? GameNotificationEventHandler.jcell_instance 'jnone) (set! GameNotificationEventHandler.jcell_instance (GameNotificationEventHandler.jnew_0)))
+  GameNotificationEventHandler.jcell_instance)
+(define (GameNotificationEventHandler.jsetstatic_instance value) (set! GameNotificationEventHandler.jcell_instance value))
 
-local GameNotificationEventHandler = {}
-GameNotificationEventHandler.__index = GameNotificationEventHandler
-GameNotificationEventHandler.className = "GameNotificationEventHandler"
-setmetatable(GameNotificationEventHandler, {__index = BasicEventHandler})
+(define (GameNotificationEventHandler.jnew_0)
+  (define this (new GameNotificationEventHandler% [jclass "GameNotificationEventHandler"]))
+    (set-field! f_enabled this #t)
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function GameNotificationEventHandler:_init_fields()
-    self.enabled = true
-end
-
-
-function GameNotificationEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), GameNotificationEventHandler)
-    self:_init_fields()
-    return self
-end
+(define (GameNotificationEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameNotificationEventHandler.jstatic_instance)))))
 
 
-function GameNotificationEventHandler:removeAllListeners()
-        local eventListenerInterface = NullEventListener.NULL_EVENT_LISTENER
-        local list = self.eventListenerInterfaceList
-        if list:size() > 0 then
-            eventListenerInterface = list.objectArray[1]
-        end
-        BasicEventHandler.removeAllListeners(self)
-        if eventListenerInterface ~= NullEventListener.NULL_EVENT_LISTENER then
-            self:addListenerInterface(eventListenerInterface)
-        end
-end
-
-
-function GameNotificationEventHandler.getInstance()
-        return GameNotificationEventHandler.instance
-end
-
-
--- throws Exception
-function GameNotificationEventHandler:process(eventObject, eventListenerInterface)
-        if not self.enabled then
-            return
-        end
-        local gameNotificationListenerInterface = eventListenerInterface
-        gameNotificationListenerInterface:onGameNotificationEvent(eventObject)
-end
-
-GameNotificationEventHandler.instance = GameNotificationEventHandler.new()
-
-return GameNotificationEventHandler
 

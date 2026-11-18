@@ -37,11 +37,13 @@
             (jreturn #f))
             (begin
             (jreturn #t))))))))
+(define (RectangleCollisionUtil.jclassValue) RectangleCollisionUtil%)
 
 (define RectangleCollisionUtil.jcell_instance 'jnone)
 (define (RectangleCollisionUtil.jstatic_instance)
   (when (eq? RectangleCollisionUtil.jcell_instance 'jnone) (set! RectangleCollisionUtil.jcell_instance (RectangleCollisionUtil.jnew_0)))
   RectangleCollisionUtil.jcell_instance)
+(define (RectangleCollisionUtil.jsetstatic_instance value) (set! RectangleCollisionUtil.jcell_instance value))
 
 (define (RectangleCollisionUtil.jnew_0)
   (define this (new RectangleCollisionUtil% [jclass "RectangleCollisionUtil"]))

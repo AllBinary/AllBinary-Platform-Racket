@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.bounds.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.bounds.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BoundsChangeEventHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_boundsChangeEventListener JR.null])
+      (let/ec jreturn
+        (set! _boundsChangeEventListener _eventListenerInterface)
+        (send _boundsChangeEventListener jm_onBoundsChangeEvent_1 _eventObject))))))
+(define (BoundsChangeEventHandler.jclassValue) BoundsChangeEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define BoundsChangeEventHandler.jcell_SINGLETON 'jnone)
+(define (BoundsChangeEventHandler.jstatic_SINGLETON)
+  (when (eq? BoundsChangeEventHandler.jcell_SINGLETON 'jnone) (set! BoundsChangeEventHandler.jcell_SINGLETON (BoundsChangeEventHandler.jnew_0)))
+  BoundsChangeEventHandler.jcell_SINGLETON)
+(define (BoundsChangeEventHandler.jsetstatic_SINGLETON value) (set! BoundsChangeEventHandler.jcell_SINGLETON value))
 
-local BoundsChangeEventHandler = {}
-BoundsChangeEventHandler.__index = BoundsChangeEventHandler
-BoundsChangeEventHandler.className = "BoundsChangeEventHandler"
-setmetatable(BoundsChangeEventHandler, {__index = BasicEventHandler})
+(define (BoundsChangeEventHandler.jnew_0)
+  (define this (new BoundsChangeEventHandler% [jclass "BoundsChangeEventHandler"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function BoundsChangeEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), BoundsChangeEventHandler)
-    return self
-end
-
-
-function BoundsChangeEventHandler.getInstance()
-        return BoundsChangeEventHandler.SINGLETON
-end
+(define (BoundsChangeEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (BoundsChangeEventHandler.jstatic_SINGLETON)))))
 
 
--- throws Exception
-function BoundsChangeEventHandler:process(eventObject, eventListenerInterface)
-        local boundsChangeEventListener = eventListenerInterface
-        boundsChangeEventListener:onBoundsChangeEvent(eventObject)
-end
-
-BoundsChangeEventHandler.SINGLETON = BoundsChangeEventHandler.new()
-
-return BoundsChangeEventHandler
 

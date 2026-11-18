@@ -1,53 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.destroy.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.combat.destroy.event
 
-local AllBinaryGameCanvas = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvas")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local AllBinaryEventObjectFactoryInterface = require("org.allbinary.logic.util.event.AllBinaryEventObjectFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/logic/util/event/AllBinaryEventObjectFactoryInterface.rkt")
+(lazy-require ["./DestroyedEvent.rkt" (DestroyedEvent.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DestroyEventFactory%
+  (class JObject%
+    (super-new)
+    (field [f_combatGameCanvas JR.null])
+    (define/public (jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DestroyedEvent.jnew_1 (get-field f_combatGameCanvas this))))))))
+(define (DestroyEventFactory.jclassValue) DestroyEventFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local DestroyEventFactory = {}
-DestroyEventFactory.__index = DestroyEventFactory
-DestroyEventFactory.className = "DestroyEventFactory"
-
-function DestroyEventFactory:_init_fields()
-    self.combatGameCanvas = nil
-end
-
-
-function DestroyEventFactory.new(combatGameCanvas)
-    local self = setmetatable({}, DestroyEventFactory)
-    self:_init_fields()
-        self.combatGameCanvas = combatGameCanvas
-    return self
-end
+(define (DestroyEventFactory.jnew_1 _combatGameCanvas)
+  (define this (new DestroyEventFactory% [jclass "DestroyEventFactory"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_combatGameCanvas this _combatGameCanvas)))
+  this)
 
 
-function DestroyEventFactory:getInstance()
-        return DestroyedEvent.new(self.combatGameCanvas)
-end
-
-return DestroyEventFactory
 

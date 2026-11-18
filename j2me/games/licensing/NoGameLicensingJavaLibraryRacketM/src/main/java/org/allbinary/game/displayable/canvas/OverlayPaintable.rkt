@@ -1,64 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local InitUpdatePaintable = require("org.allbinary.graphics.paint.InitUpdatePaintable")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/graphics/paint/InitUpdatePaintable.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OverlayPaintable%
+  (class InitUpdatePaintable%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/override (jm_update_0)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_UPDATE _commonStrings) _e))])
+            (void)))))
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (OverlayPaintable.jclassValue) OverlayPaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OverlayPaintable = {}
-OverlayPaintable.__index = OverlayPaintable
-OverlayPaintable.className = "OverlayPaintable"
-setmetatable(OverlayPaintable, {__index = InitUpdatePaintable})
-
-function OverlayPaintable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-
-function OverlayPaintable.new()
-    local self = setmetatable(InitUpdatePaintable.new(), OverlayPaintable)
-    self:_init_fields()
-    return self
-end
-
-
-function OverlayPaintable:update()
-        local try_ok, try_error = pcall(function()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.UPDATE, e)
-        end
-end
+(define (OverlayPaintable.jnew_0)
+  (define this (new OverlayPaintable% [jclass "OverlayPaintable"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function OverlayPaintable:paint(graphics)
-end
-
-return OverlayPaintable
 

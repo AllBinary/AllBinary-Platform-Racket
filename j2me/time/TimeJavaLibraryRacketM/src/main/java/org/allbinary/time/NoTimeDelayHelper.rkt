@@ -38,11 +38,13 @@
     (let ()
       (let/ec jreturn
         (jreturn #t))))))
+(define (NoTimeDelayHelper.jclassValue) NoTimeDelayHelper%)
 
 (define NoTimeDelayHelper.jcell_SINGLETON 'jnone)
 (define (NoTimeDelayHelper.jstatic_SINGLETON)
   (when (eq? NoTimeDelayHelper.jcell_SINGLETON 'jnone) (set! NoTimeDelayHelper.jcell_SINGLETON (NoTimeDelayHelper.jnew_0)))
   NoTimeDelayHelper.jcell_SINGLETON)
+(define (NoTimeDelayHelper.jsetstatic_SINGLETON value) (set! NoTimeDelayHelper.jcell_SINGLETON value))
 
 (define (NoTimeDelayHelper.jnew_0)
   (define this (new NoTimeDelayHelper% [jclass "NoTimeDelayHelper"]))

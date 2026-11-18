@@ -23,11 +23,13 @@
     (super-new)
     (field [f_SEPARATORCHAR 0])
     (field [f_PATH_START JR.null])))
+(define (FilePathData.jclassValue) FilePathData%)
 
 (define FilePathData.jcell_instance 'jnone)
 (define (FilePathData.jstatic_instance)
   (when (eq? FilePathData.jcell_instance 'jnone) (set! FilePathData.jcell_instance (FilePathData.jnew_0)))
   FilePathData.jcell_instance)
+(define (FilePathData.jsetstatic_instance value) (set! FilePathData.jcell_instance value))
 
 (define (FilePathData.jnew_0)
   (define this (new FilePathData% [jclass "FilePathData"]))

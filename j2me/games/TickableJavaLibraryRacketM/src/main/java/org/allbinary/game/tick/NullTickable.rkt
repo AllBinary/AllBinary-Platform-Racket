@@ -1,62 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.tick
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.tick
 
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local TickableInterface = require("org.allbinary.game.tick.TickableInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./TickableInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullTickable%
+  (class JObject%
+    (super-new)
+    (field [f_NAME JR.null])
+    (define/public (jm_processTick_1 _allBinaryLayerManager)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NAME this)))))))
+(define (NullTickable.jclassValue) NullTickable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullTickable.jcell_SINGLETON 'jnone)
+(define (NullTickable.jstatic_SINGLETON)
+  (when (eq? NullTickable.jcell_SINGLETON 'jnone) (set! NullTickable.jcell_SINGLETON (NullTickable.jnew_0)))
+  NullTickable.jcell_SINGLETON)
+(define (NullTickable.jsetstatic_SINGLETON value) (set! NullTickable.jcell_SINGLETON value))
 
-local NullTickable = {}
-NullTickable.__index = NullTickable
-NullTickable.className = "NullTickable"
+(define (NullTickable.jnew_0)
+  (define this (new NullTickable% [jclass "NullTickable"]))
+    (set-field! f_NAME this "NulLTickable")
+  this)
 
-function NullTickable:_init_fields()
-    self.NAME = "NulLTickable"
-end
-
-function NullTickable.new()
-    local self = setmetatable({}, NullTickable)
-    self:_init_fields()
-    return self
-end
-
-
-function NullTickable.getInstance()
-        return NullTickable.SINGLETON
-end
-
-
--- throws Exception
-function NullTickable:processTick(allBinaryLayerManager)
-end
+(define (NullTickable.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullTickable.jstatic_SINGLETON)))))
 
 
-function NullTickable:getName()
-        return self.NAME
-end
-
-NullTickable.SINGLETON = NullTickable.new()
-
-return NullTickable
 

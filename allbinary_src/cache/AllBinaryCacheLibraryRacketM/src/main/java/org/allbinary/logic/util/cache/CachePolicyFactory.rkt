@@ -1,56 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.util.cache
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../java/lang/Long.rkt")
+(lazy-require ["./CachePolicy.rkt" (CachePolicy.jnew_3)])
+(provide (all-defined-out))
+
+(define CachePolicyFactory%
+  (class JObject%
+    (super-new)
+    (field [f_NAME JR.null])
+    (field [f_MAX_TIME_THOUSAND_MAX JR.null])
+    (field [f_THIRTY_MINUTES_TEN_THOUSAND_MAX JR.null])
+    (field [f_THIRTY_MINUTES_FIFTY_THOUSAND_MAX JR.null])
+    (field [f_ONE_MINUTE_FIVE_MAX JR.null])
+    (field [f_ONE_MINUTE_TEN_MAX JR.null])
+    (field [f_ONE_MINUTE_ONE_HUNDRED_MAX JR.null])))
+(define (CachePolicyFactory.jclassValue) CachePolicyFactory%)
+
+(define CachePolicyFactory.jcell_instance 'jnone)
+(define (CachePolicyFactory.jstatic_instance)
+  (when (eq? CachePolicyFactory.jcell_instance 'jnone) (set! CachePolicyFactory.jcell_instance (CachePolicyFactory.jnew_0)))
+  CachePolicyFactory.jcell_instance)
+(define (CachePolicyFactory.jsetstatic_instance value) (set! CachePolicyFactory.jcell_instance value))
+
+(define (CachePolicyFactory.jnew_0)
+  (define this (new CachePolicyFactory% [jclass "CachePolicyFactory"]))
+    (set-field! f_NAME this "lru")
+    (set-field! f_MAX_TIME_THOUSAND_MAX this (CachePolicy.jnew_3 (get-field f_NAME this) (Long.jstatic_MAX_VALUE) 1000))
+    (set-field! f_THIRTY_MINUTES_TEN_THOUSAND_MAX this (CachePolicy.jnew_3 (get-field f_NAME this) (JR.i32 (* (JR.i32 (* 1000 60)) 30)) 10000))
+    (set-field! f_THIRTY_MINUTES_FIFTY_THOUSAND_MAX this (CachePolicy.jnew_3 (get-field f_NAME this) (JR.i32 (* (JR.i32 (* 1000 60)) 30)) 100000))
+    (set-field! f_ONE_MINUTE_FIVE_MAX this (CachePolicy.jnew_3 (get-field f_NAME this) (JR.i32 (* (JR.i32 (* 1000 60)) 1)) 5))
+    (set-field! f_ONE_MINUTE_TEN_MAX this (CachePolicy.jnew_3 (get-field f_NAME this) (JR.i32 (* (JR.i32 (* 1000 60)) 1)) 10))
+    (set-field! f_ONE_MINUTE_ONE_HUNDRED_MAX this (CachePolicy.jnew_3 (get-field f_NAME this) (JR.i32 (* (JR.i32 (* 1000 60)) 1)) 100))
+  this)
+
+(define (CachePolicyFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (CachePolicyFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CachePolicyFactory = {}
-CachePolicyFactory.__index = CachePolicyFactory
-CachePolicyFactory.className = "CachePolicyFactory"
-
-function CachePolicyFactory:_init_fields()
-    self.NAME = "lru"
-    self.MAX_TIME_THOUSAND_MAX = CachePolicy.new(self.NAME, Long.MAX_VALUE, 1000)
-    self.THIRTY_MINUTES_TEN_THOUSAND_MAX = CachePolicy.new(self.NAME, 1000 * 60 * 30, 10000)
-    self.THIRTY_MINUTES_FIFTY_THOUSAND_MAX = CachePolicy.new(self.NAME, 1000 * 60 * 30, 100000)
-    self.ONE_MINUTE_FIVE_MAX = CachePolicy.new(self.NAME, 1000 * 60 * 1, 5)
-    self.ONE_MINUTE_TEN_MAX = CachePolicy.new(self.NAME, 1000 * 60 * 1, 10)
-    self.ONE_MINUTE_ONE_HUNDRED_MAX = CachePolicy.new(self.NAME, 1000 * 60 * 1, 100)
-end
-
-function CachePolicyFactory.new()
-    local self = setmetatable({}, CachePolicyFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function CachePolicyFactory.getInstance()
-        return CachePolicyFactory.instance
-end
-
-CachePolicyFactory.instance = CachePolicyFactory.new()
-
-return CachePolicyFactory
 

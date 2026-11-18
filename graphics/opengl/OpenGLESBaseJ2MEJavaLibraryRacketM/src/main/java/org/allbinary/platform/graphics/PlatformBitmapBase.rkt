@@ -1,45 +1,36 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.platform.graphics
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.platform.graphics
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/NullImage.rkt" (NullImage.jstatic_NULL_IMAGE)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PlatformBitmapBase%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getImage_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullImage.jstatic_NULL_IMAGE)))))))
+(define (PlatformBitmapBase.jclassValue) PlatformBitmapBase%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PlatformBitmapBase = {}
-PlatformBitmapBase.__index = PlatformBitmapBase
-PlatformBitmapBase.className = "PlatformBitmapBase"
-
-function PlatformBitmapBase.new()
-    local self = setmetatable({}, PlatformBitmapBase)
-    return self
-end
+(define (PlatformBitmapBase.jnew_0)
+  (define this (new PlatformBitmapBase% [jclass "PlatformBitmapBase"]))
+  this)
 
 
-function PlatformBitmapBase:getImage()
-        return NullImage.NULL_IMAGE
-end
-
-return PlatformBitmapBase
 

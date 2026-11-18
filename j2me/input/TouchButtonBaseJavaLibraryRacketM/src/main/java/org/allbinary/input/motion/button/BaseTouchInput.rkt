@@ -1,59 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListUtil.rkt" (BasicArrayListUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BaseTouchInput%
+  (class JObject%
+    (super-new)
+    (field [f_commonStrings JR.null])
+    (field [f_basicArrayListUtil JR.null])
+    (define/public (jm_getList_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_basicArrayListUtil this) jm_getImmutableInstance_0)))))
+    (define/override (jm_toString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className this)))))))
+(define (BaseTouchInput.jclassValue) BaseTouchInput%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BaseTouchInput = {}
-BaseTouchInput.__index = BaseTouchInput
-BaseTouchInput.className = "BaseTouchInput"
-
-function BaseTouchInput:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.basicArrayListUtil = BasicArrayListUtil.getInstance()
-end
-
-
-function BaseTouchInput.new()
-    local self = setmetatable({}, BaseTouchInput)
-    self:_init_fields()
-    return self
-end
-
-
-function BaseTouchInput:getList()
-        return self.basicArrayListUtil:getImmutableInstance()
-end
+(define (BaseTouchInput.jnew_0)
+  (define this (new BaseTouchInput% [jclass "BaseTouchInput"]))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_basicArrayListUtil this (BasicArrayListUtil.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function BaseTouchInput:toString()
-        return getmetatable(self).className
-end
-BaseTouchInput.__tostring = function(self) return self:toString() end
-
-return BaseTouchInput
 

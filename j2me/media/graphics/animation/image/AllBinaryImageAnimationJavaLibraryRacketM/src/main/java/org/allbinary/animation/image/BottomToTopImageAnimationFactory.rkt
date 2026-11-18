@@ -1,53 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./BaseImageAnimationFactory.rkt")
+(lazy-require ["../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(lazy-require ["./BottomToTopImageAnimation.rkt" (BottomToTopImageAnimation.jnew_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BottomToTopImageAnimationFactory%
+  (class BaseImageAnimationFactory%
+    (super-new)
+    (define/override (jm_getInstance_1 _instanceId)
+    (let ([_scaledImage JR.null])
+      (let/ec jreturn
+        (set! _scaledImage (JR.className (get-field f_animationFactoryImageScaleUtil this)))
+        (jreturn (BottomToTopImageAnimation.jnew_2 _scaledImage (send (get-field f_animationBehaviorFactory this) jm_getOrCreateInstance_0))))))))
+(define (BottomToTopImageAnimationFactory.jclassValue) BottomToTopImageAnimationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BottomToTopImageAnimationFactory = {}
-BottomToTopImageAnimationFactory.__index = BottomToTopImageAnimationFactory
-BottomToTopImageAnimationFactory.className = "BottomToTopImageAnimationFactory"
-setmetatable(BottomToTopImageAnimationFactory, {__index = BaseImageAnimationFactory})
-
-
-function BottomToTopImageAnimationFactory.new(image, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), image:getWidth(), image:getHeight(), 0, 0, animationBehaviorFactory), BottomToTopImageAnimationFactory)
-        -- super(...) made self above
-    return self
-end
+(define (BottomToTopImageAnimationFactory.jnew_2 _image _animationBehaviorFactory)
+  (define this (new BottomToTopImageAnimationFactory% [jclass "BottomToTopImageAnimationFactory"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
--- throws Exception
-function BottomToTopImageAnimationFactory:getInstance(instanceId)
-        local scaledImage = self.animationFactoryImageScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        return BottomToTopImageAnimation.new(scaledImage, self.animationBehaviorFactory:getOrCreateInstance())
-end
-
-return BottomToTopImageAnimationFactory
 

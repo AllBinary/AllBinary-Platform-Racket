@@ -1,59 +1,62 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define GameStrings%
+  (class JObject%
+    (super-new)
+    (field [f_PROCESS_TICK JR.null])
+    (field [f_ON_GAME_INITIALIZED JR.null])
+    (field [f_UPDATESURFACE JR.null])
+    (field [f_ON_SET_DISPLAYABLE JR.null])
+    (field [f_UNPAUSE JR.null])
+    (field [f_TOGGLE_MENU JR.null])
+    (field [f_SET_GAME_OVER JR.null])
+    (field [f_GAME_STATE JR.null])
+    (field [f_SET_GAME_STATE JR.null])
+    (field [f_STOP_GAME_CANVAS_RUNNABLE_INTERFACE JR.null])))
+(define (GameStrings.jclassValue) GameStrings%)
+
+(define GameStrings.jcell_instance 'jnone)
+(define (GameStrings.jstatic_instance)
+  (when (eq? GameStrings.jcell_instance 'jnone) (set! GameStrings.jcell_instance (GameStrings.jnew_0)))
+  GameStrings.jcell_instance)
+(define (GameStrings.jsetstatic_instance value) (set! GameStrings.jcell_instance value))
+
+(define (GameStrings.jnew_0)
+  (define this (new GameStrings% [jclass "GameStrings"]))
+    (set-field! f_PROCESS_TICK this "processTick")
+    (set-field! f_ON_GAME_INITIALIZED this "onGameInitialized")
+    (set-field! f_UPDATESURFACE this "updateSurface")
+    (set-field! f_ON_SET_DISPLAYABLE this "onSetDisplayable")
+    (set-field! f_UNPAUSE this "unPause")
+    (set-field! f_TOGGLE_MENU this "toggleMenu")
+    (set-field! f_SET_GAME_OVER this "setGameOver")
+    (set-field! f_GAME_STATE this "Game State: ")
+    (set-field! f_SET_GAME_STATE this "setGameState")
+    (set-field! f_STOP_GAME_CANVAS_RUNNABLE_INTERFACE this "stopGameCanvasRunnableInterface")
+  this)
+
+(define (GameStrings.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameStrings.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameStrings = {}
-GameStrings.__index = GameStrings
-GameStrings.className = "GameStrings"
-
-function GameStrings:_init_fields()
-    self.PROCESS_TICK = "processTick"
-    self.ON_GAME_INITIALIZED = "onGameInitialized"
-    self.UPDATESURFACE = "updateSurface"
-    self.ON_SET_DISPLAYABLE = "onSetDisplayable"
-    self.UNPAUSE = "unPause"
-    self.TOGGLE_MENU = "toggleMenu"
-    self.SET_GAME_OVER = "setGameOver"
-    self.GAME_STATE = "Game State: "
-    self.SET_GAME_STATE = "setGameState"
-    self.STOP_GAME_CANVAS_RUNNABLE_INTERFACE = "stopGameCanvasRunnableInterface"
-end
-
-function GameStrings.new()
-    local self = setmetatable({}, GameStrings)
-    self:_init_fields()
-    return self
-end
-
-
-function GameStrings.getInstance()
-        return GameStrings.instance
-end
-
-GameStrings.instance = GameStrings.new()
-
-return GameStrings
 

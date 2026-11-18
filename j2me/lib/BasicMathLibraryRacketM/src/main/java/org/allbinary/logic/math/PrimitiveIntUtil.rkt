@@ -22,6 +22,7 @@
 (define PrimitiveIntUtil%
   (class JObject%
     (super-new)))
+(define (PrimitiveIntUtil.jclassValue) PrimitiveIntUtil%)
 
 (define (PrimitiveIntUtil.jnew_0)
   (define this (new PrimitiveIntUtil% [jclass "PrimitiveIntUtil"]))

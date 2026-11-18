@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local CommandTextItemArrayFactory = require("org.allbinary.graphics.form.item.CommandTextItemArrayFactory")
-local LimitCommandsVisitor = require("org.allbinary.graphics.form.item.LimitCommandsVisitor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/form/item/CommandTextItemArrayFactory.rkt" (CommandTextItemArrayFactory.jnew_1)])
+(lazy-require ["../../../../../org/allbinary/graphics/form/item/LimitCommandsVisitor.rkt" (LimitCommandsVisitor.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DemoLimitedCommandTextItemArrayFactory%
+  (class JObject%
+    (super-new)
+    (field [f_commandTextItemArrayFactory JR.null])
+    (define/public (jm_getCommandTextItemArrayFactory_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_commandTextItemArrayFactory this)))))))
+(define (DemoLimitedCommandTextItemArrayFactory.jclassValue) DemoLimitedCommandTextItemArrayFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DemoLimitedCommandTextItemArrayFactory.jcell_instance 'jnone)
+(define (DemoLimitedCommandTextItemArrayFactory.jstatic_instance)
+  (when (eq? DemoLimitedCommandTextItemArrayFactory.jcell_instance 'jnone) (set! DemoLimitedCommandTextItemArrayFactory.jcell_instance (DemoLimitedCommandTextItemArrayFactory.jnew_0)))
+  DemoLimitedCommandTextItemArrayFactory.jcell_instance)
+(define (DemoLimitedCommandTextItemArrayFactory.jsetstatic_instance value) (set! DemoLimitedCommandTextItemArrayFactory.jcell_instance value))
 
-local DemoLimitedCommandTextItemArrayFactory = {}
-DemoLimitedCommandTextItemArrayFactory.__index = DemoLimitedCommandTextItemArrayFactory
-DemoLimitedCommandTextItemArrayFactory.className = "DemoLimitedCommandTextItemArrayFactory"
+(define (DemoLimitedCommandTextItemArrayFactory.jnew_0)
+  (define this (new DemoLimitedCommandTextItemArrayFactory% [jclass "DemoLimitedCommandTextItemArrayFactory"]))
+    (set-field! f_commandTextItemArrayFactory this (CommandTextItemArrayFactory.jnew_1 (LimitCommandsVisitor.jnew_0)))
+  this)
 
-function DemoLimitedCommandTextItemArrayFactory:_init_fields()
-    self.commandTextItemArrayFactory = CommandTextItemArrayFactory.new(LimitCommandsVisitor.new())
-end
-
-function DemoLimitedCommandTextItemArrayFactory.new()
-    local self = setmetatable({}, DemoLimitedCommandTextItemArrayFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function DemoLimitedCommandTextItemArrayFactory.getInstance()
-        return DemoLimitedCommandTextItemArrayFactory.instance
-end
+(define (DemoLimitedCommandTextItemArrayFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DemoLimitedCommandTextItemArrayFactory.jstatic_instance)))))
 
 
-function DemoLimitedCommandTextItemArrayFactory:getCommandTextItemArrayFactory()
-        return self.commandTextItemArrayFactory
-end
-
-DemoLimitedCommandTextItemArrayFactory.instance = DemoLimitedCommandTextItemArrayFactory.new()
-
-return DemoLimitedCommandTextItemArrayFactory
 

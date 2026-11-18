@@ -1,96 +1,83 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.time
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.hud.basic.time
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicHud = require("org.allbinary.game.graphics.hud.BasicHud")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local PrimitiveLongSingleton = require("org.allbinary.logic.math.PrimitiveLongSingleton")
+(require racket/class racket/lazy-require
+  "../../../../../../../../allbinary_java.rkt"
+  "../../../../../../../../org/allbinary/game/graphics/hud/BasicHud.rkt")
+(lazy-require ["../../../../../../../../org/allbinary/graphics/font/MyFontProcessor.rkt" (MyFontProcessor.jm_defaultStringWidth_2)])
+(lazy-require ["../../../../../../../../org/allbinary/logic/math/PrimitiveLongSingleton.rkt" (PrimitiveLongSingleton.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TimeHudWidget%
+  (class BasicHud%
+    (super-new)
+    (inherit/super jm_paintDX_8)
+    (field [f_TIME_STRING JR.null])
+    (field [f_TIME_CHAR_ARRAY JR.null])
+    (field [f_offset 0])
+    (field [f_string JR.null])
+    (field [f_totalDigits 0])
+    (field [f_timer JR.null])
+    (define/override (jm_updateMeasurement_1 _graphics)
+    (let ([_font JR.null])
+      (let/ec jreturn
+        (set! _font (send _graphics jm_getFont_0))
+        (set-field! f_updateMaxWidth this (JR.i32 (* (send _font jm_getSize_0) 5)))
+        (set-field! f_offset this (JR.i32 (+ (send _font jm_stringWidth_1 (get-field f_TIME_STRING this)) (MyFontProcessor.jm_defaultStringWidth_2 _font 3))))
+        (super jm_updateMeasurement_1 _graphics))))
+    (define/public (jm_update_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_timer this) jm_update_0)
+        (send this jm_set_0))))
+    (define/public (jm_set_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_string this (send (get-field f_timer this) jm_getTimeChars_0))
+        (set-field! f_totalDigits this (send (get-field f_timer this) jm_getCurrentTotalDigits_0)))))
+    (define/public (jm_getTimer_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_timer this)))))
+    (define/public (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (super jm_paintDX_8 _graphics (get-field f_TIME_CHAR_ARRAY this) 0 (vector-length (get-field f_TIME_CHAR_ARRAY this)) (get-field f_string this) 0 (get-field f_totalDigits this) (get-field f_offset this)))))))
+(define (TimeHudWidget.jclassValue) TimeHudWidget%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (TimeHudWidget.jnew_5 _location _direction _bufferZone _basicColor _timer)
+  (define this (new TimeHudWidget% [jclass "TimeHudWidget"]))
+    (set-field! f_TIME_STRING this "Time ")
+    (set-field! f_TIME_CHAR_ARRAY this (vector (char->integer #\T) (char->integer #\i) (char->integer #\m) (char->integer #\e) 32))
+    
+    (set-field! f_string this (get-field f_ZERO (PrimitiveLongSingleton.jm_getInstance_0)))
+    (set-field! f_totalDigits this 1)
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_timer this _timer)
+        (send this jm_set_0)
+        (set-field! f_updateMaxHeight this 14)))
+  this)
 
-local TimeHudWidget = {}
-TimeHudWidget.__index = TimeHudWidget
-TimeHudWidget.className = "TimeHudWidget"
-setmetatable(TimeHudWidget, {__index = BasicHud})
-
-function TimeHudWidget:_init_fields()
-    self.TIME_STRING = "Time "
-    self.TIME_CHAR_ARRAY = {"T", "i", "m", "e", " "}
-    self.offset = 0
-    self.string = PrimitiveLongSingleton.getInstance().ZERO
-    self.totalDigits = 1
-    self.timer = nil
-end
-
-
--- throws Exception
-function TimeHudWidget.getInstance(location, direction, basicColor, timer)
-        return TimeHudWidget.new(location, direction, 2, basicColor, timer)
-end
-
-
-function TimeHudWidget.new(location, direction, bufferZone, basicColor, timer)
-    local self = setmetatable(BasicHud.new(location, direction, bufferZone, basicColor), TimeHudWidget)
-    self:_init_fields()
-        -- super(...) made self above
-        self.timer = timer
-        self:set()
-        self.updateMaxHeight = 14
-    return self
-end
-
-
-function TimeHudWidget:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.updateMaxWidth = font:getSize() * 5
-        self.offset = font:stringWidth(self.TIME_STRING) + MyFontProcessor.defaultStringWidth(font, 3)
-        BasicHud.updateMeasurement(self, graphics)
-end
-
-
-function TimeHudWidget:update()
-        self.timer:update()
-        self:set()
-end
-
-
-function TimeHudWidget:set()
-        self.string = self.timer:getTimeChars()
-        self.totalDigits = self.timer:getCurrentTotalDigits()
-end
+(define (TimeHudWidget.jm_getInstance_4 _location _direction _basicColor _timer)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TimeHudWidget.jnew_5 _location _direction 2 _basicColor _timer)))))
 
 
-function TimeHudWidget:getTimer()
-        return self.timer
-end
-
-
-function TimeHudWidget:paint(graphics)
-        BasicHud.paintDX(self, graphics, self.TIME_CHAR_ARRAY, 0, (self.TIME_CHAR_ARRAY.n or #self.TIME_CHAR_ARRAY), self.string, 0, self.totalDigits, self.offset)
-end
-
-return TimeHudWidget
 

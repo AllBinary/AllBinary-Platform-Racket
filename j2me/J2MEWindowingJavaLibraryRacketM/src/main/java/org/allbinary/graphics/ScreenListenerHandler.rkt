@@ -35,11 +35,13 @@
     (let ()
       (let/ec jreturn
         (send (get-field f_screenListenerInterface this) jm_onFullScreenDisplay_0))))))
+(define (ScreenListenerHandler.jclassValue) ScreenListenerHandler%)
 
 (define ScreenListenerHandler.jcell_instance 'jnone)
 (define (ScreenListenerHandler.jstatic_instance)
   (when (eq? ScreenListenerHandler.jcell_instance 'jnone) (set! ScreenListenerHandler.jcell_instance (ScreenListenerHandler.jnew_0)))
   ScreenListenerHandler.jcell_instance)
+(define (ScreenListenerHandler.jsetstatic_instance value) (set! ScreenListenerHandler.jcell_instance value))
 
 (define (ScreenListenerHandler.jnew_0)
   (define this (new ScreenListenerHandler% [jclass "ScreenListenerHandler"]))

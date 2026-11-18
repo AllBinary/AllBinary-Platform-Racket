@@ -1,45 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io
 
--- local FileNotFoundException = require("java.io.FileNotFoundException")
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
-local AbFileNativeUtil = require("org.allbinary.logic.io.file.AbFileNativeUtil")
-local AbFileInputStream = require("org.allbinary.logic.io.AbFileInputStream")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/FileNotFoundException.rkt"
+  "./AbFileInputStream.rkt")
+(lazy-require ["../../../../org/allbinary/logic/io/file/AbFileNativeUtil.rkt" (AbFileNativeUtil.jm_get_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AbFileLocalInputStream%
+  (class AbFileInputStream%
+    (super-new)))
+(define (AbFileLocalInputStream.jclassValue) AbFileLocalInputStream%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AbFileLocalInputStream = {}
-AbFileLocalInputStream.__index = AbFileLocalInputStream
-AbFileLocalInputStream.className = "AbFileLocalInputStream"
-setmetatable(AbFileLocalInputStream, {__index = AbFileInputStream})
+(define (AbFileLocalInputStream.jnew_1 _file)
+  (define this (new AbFileLocalInputStream% [jclass "AbFileLocalInputStream"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function AbFileLocalInputStream.new(file)
-    local self = setmetatable(AbFileInputStream.new(AbFileNativeUtil.get(file):getPath()), AbFileLocalInputStream)
-        -- super(...) made self above
-    return self
-end
-
-return AbFileLocalInputStream
 

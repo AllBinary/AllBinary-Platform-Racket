@@ -40,11 +40,13 @@
                 (let/ec jcontinue
             (send _basicArrayList jm_add_1 (send this jm_nextElement_1 _enumeration))) (jloop))))
         (jreturn (send _basicArrayList jm_toArray_0)))))))
+(define (EnumerationUtil.jclassValue) EnumerationUtil%)
 
 (define EnumerationUtil.jcell_instance 'jnone)
 (define (EnumerationUtil.jstatic_instance)
   (when (eq? EnumerationUtil.jcell_instance 'jnone) (set! EnumerationUtil.jcell_instance (EnumerationUtil.jnew_0)))
   EnumerationUtil.jcell_instance)
+(define (EnumerationUtil.jsetstatic_instance value) (set! EnumerationUtil.jcell_instance value))
 
 (define (EnumerationUtil.jnew_0)
   (define this (new EnumerationUtil% [jclass "EnumerationUtil"]))

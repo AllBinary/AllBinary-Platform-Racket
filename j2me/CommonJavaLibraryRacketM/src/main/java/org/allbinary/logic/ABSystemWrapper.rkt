@@ -30,11 +30,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (JR.currentTimeMillis)))))))
+(define (ABSystemWrapper.jclassValue) ABSystemWrapper%)
 
 (define ABSystemWrapper.jcell_instance 'jnone)
 (define (ABSystemWrapper.jstatic_instance)
   (when (eq? ABSystemWrapper.jcell_instance 'jnone) (set! ABSystemWrapper.jcell_instance (ABSystemWrapper.jnew_0)))
   ABSystemWrapper.jcell_instance)
+(define (ABSystemWrapper.jsetstatic_instance value) (set! ABSystemWrapper.jcell_instance value))
 
 (define (ABSystemWrapper.jnew_0)
   (define this (new ABSystemWrapper% [jclass "ABSystemWrapper"]))

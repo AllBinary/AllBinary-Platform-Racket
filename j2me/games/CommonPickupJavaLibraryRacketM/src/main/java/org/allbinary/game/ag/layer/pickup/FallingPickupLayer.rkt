@@ -1,62 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.pickup
 
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local CountedPickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactory")
-local PickupLayer = require("org.allbinary.game.layer.pickup.PickupLayer")
-local RemoteInfo = require("org.allbinary.game.multiplayer.layer.RemoteInfo")
-local TickableInterface = require("org.allbinary.game.tick.TickableInterface")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local ViewPosition = require("org.allbinary.view.ViewPosition")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/game/layer/pickup/PickupLayer.rkt"
+  "../../../../../../org/allbinary/game/tick/TickableInterface.rkt")
+(lazy-require ["../../../../../../org/allbinary/animation/NullAnimationFactory.rkt" (NullAnimationFactory.jm_getFactoryInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory.rkt" (CountedPickedUpLayerInterfaceFactory.jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY)])
+(lazy-require ["../../../../../../org/allbinary/graphics/PointFactory.rkt" (PointFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/graphics/Rectangle.rkt" (Rectangle.jnew_3)])
+(lazy-require ["../../../../../../org/allbinary/view/ViewPosition.rkt" (ViewPosition.jm_getInstanceD_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define FallingPickupLayer%
+  (class PickupLayer%
+    (super-new)
+    (define/override (jm_processTick_1 _allBinaryLayerManager)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setPosition_3 (get-field f_x this) (JR.i32 (+ (get-field f_y this) 1)) (get-field f_z this)))))
+    (define/override (jm_implmentsTickableInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #t))))))
+(define (FallingPickupLayer.jclassValue) FallingPickupLayer%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define FallingPickupLayer.jcell_NAME 'jnone)
+(define (FallingPickupLayer.jstatic_NAME)
+  (when (eq? FallingPickupLayer.jcell_NAME 'jnone) (set! FallingPickupLayer.jcell_NAME "FallingPickupLayer"))
+  FallingPickupLayer.jcell_NAME)
+(define (FallingPickupLayer.jsetstatic_NAME value) (set! FallingPickupLayer.jcell_NAME value))
 
-local FallingPickupLayer = {}
-FallingPickupLayer.__index = FallingPickupLayer
-FallingPickupLayer.className = "FallingPickupLayer"
-setmetatable(FallingPickupLayer, {__index = PickupLayer})
-
-
-function FallingPickupLayer.new(remoteInfo)
-    local self = setmetatable(PickupLayer.new(FallingPickupLayer.NAME, remoteInfo, 0, CountedPickedUpLayerInterfaceFactory.NULL_COUNTED_PICKUP_LAYER_FACTORY, NullAnimationFactory.getFactoryInstance():getInstance(0), Rectangle.new(PointFactory.getInstance().ZERO_ZERO, 0, 0), ViewPosition.getInstanceD()), FallingPickupLayer)
-        -- super(...) made self above
-    return self
-end
-
-
-function FallingPickupLayer:processTick(allBinaryLayerManager)
-        self:setPosition(self.x, self.y + 1, self.z)
-end
+(define (FallingPickupLayer.jnew_1 _remoteInfo)
+  (define this (new FallingPickupLayer% [jclass "FallingPickupLayer"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function FallingPickupLayer:implmentsTickableInterface()
-        return true
-end
-
-FallingPickupLayer.NAME = "FallingPickupLayer"
-
-return FallingPickupLayer
 

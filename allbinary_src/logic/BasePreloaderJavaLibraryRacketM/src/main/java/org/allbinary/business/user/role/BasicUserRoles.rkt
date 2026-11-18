@@ -42,11 +42,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_roleVector this)))))))
+(define (BasicUserRoles.jclassValue) BasicUserRoles%)
 
 (define BasicUserRoles.jcell_instance 'jnone)
 (define (BasicUserRoles.jstatic_instance)
   (when (eq? BasicUserRoles.jcell_instance 'jnone) (set! BasicUserRoles.jcell_instance (BasicUserRoles.jnew_0)))
   BasicUserRoles.jcell_instance)
+(define (BasicUserRoles.jsetstatic_instance value) (set! BasicUserRoles.jcell_instance value))
 
 (define (BasicUserRoles.jnew_0)
   (define this (new BasicUserRoles% [jclass "BasicUserRoles"]))

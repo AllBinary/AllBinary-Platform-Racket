@@ -1,110 +1,84 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local GameTypeFactory = require("org.allbinary.game.GameTypeFactory")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/game/GameTypeFactory.rkt" (GameTypeFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/paint/NullPaintable.rkt" (NullPaintable.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DemoGameBehavior%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_pause_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_unPause_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_updateTouch_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_updateScreenButtonPaintable_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_setTouchPaintableP_1 (NullPaintable.jm_getInstance_0)))))
+    (define/public (jm_setGameState_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_removeAllGameKeyInputListeners_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_updateEndGameProcessor_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_buildGame_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_run_1 _allBinaryGameCanvas)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (set! _commonStrings (CommonStrings.jm_getInstance_0))
+        (send (get-field f_logUtil this) jm_putF_3 (JR.toString (get-field f_BOT (GameTypeFactory.jm_getInstance_0))) this (get-field f_RUN _commonStrings)))))
+    (define/public (jm_setHighScore_6 _abeClientInformation _allBinaryGameCanvas _name _score _autoSubmit _isLast)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (DemoGameBehavior.jclassValue) DemoGameBehavior%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DemoGameBehavior.jcell_instance 'jnone)
+(define (DemoGameBehavior.jstatic_instance)
+  (when (eq? DemoGameBehavior.jcell_instance 'jnone) (set! DemoGameBehavior.jcell_instance (DemoGameBehavior.jnew_0)))
+  DemoGameBehavior.jcell_instance)
+(define (DemoGameBehavior.jsetstatic_instance value) (set! DemoGameBehavior.jcell_instance value))
 
-local DemoGameBehavior = {}
-DemoGameBehavior.__index = DemoGameBehavior
-DemoGameBehavior.className = "DemoGameBehavior"
+(define (DemoGameBehavior.jnew_0)
+  (define this (new DemoGameBehavior% [jclass "DemoGameBehavior"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+  this)
 
-function DemoGameBehavior:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-function DemoGameBehavior.new()
-    local self = setmetatable({}, DemoGameBehavior)
-    self:_init_fields()
-    return self
-end
-
-
-function DemoGameBehavior.getInstance()
-        return DemoGameBehavior.instance
-end
-
-
--- throws Exception
-function DemoGameBehavior:init()
-end
-
-
-function DemoGameBehavior:pause(allBinaryGameCanvas)
-end
-
-
-function DemoGameBehavior:unPause(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function DemoGameBehavior:updateTouch(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function DemoGameBehavior:updateScreenButtonPaintable(allBinaryGameCanvas)
-        allBinaryGameCanvas:setTouchPaintableP(NullPaintable.getInstance())
-end
-
-
--- throws Exception
-function DemoGameBehavior:setGameState(allBinaryGameCanvas)
-end
-
-
-function DemoGameBehavior:removeAllGameKeyInputListeners(allBinaryGameCanvas)
-end
+(define (DemoGameBehavior.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DemoGameBehavior.jstatic_instance)))))
 
 
--- throws Exception
-function DemoGameBehavior:updateEndGameProcessor(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function DemoGameBehavior:buildGame(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function DemoGameBehavior:run(allBinaryGameCanvas)
-        local commonStrings = CommonStrings.getInstance()
-        self.logUtil:putF(tostring(GameTypeFactory.getInstance().BOT), self, commonStrings.RUN)
-end
-
-
--- throws Exception
-function DemoGameBehavior:setHighScore(abeClientInformation, allBinaryGameCanvas, name, score, autoSubmit, isLast)
-end
-
-DemoGameBehavior.instance = DemoGameBehavior.new()
-
-return DemoGameBehavior
 

@@ -1,94 +1,71 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.event
 
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt"
+  "../../../../java/lang/Thread.rkt")
+(lazy-require ["../../../../org/allbinary/logic/java/bool/BooleanFactory.rkt" (BooleanFactory.jm_getInstance_0)])
+(lazy-require ["./VirtualKeyboardEvent.rkt" (VirtualKeyboardEvent.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define VirtualKeyboardEventHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (field [f_SHOW_EVENT JR.null])
+    (field [f_HIDE_EVENT JR.null])
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_virtualKeyboardEventListenerInterface JR.null])
+      (let/ec jreturn
+        (set! _virtualKeyboardEventListenerInterface _eventListenerInterface)
+        (send _virtualKeyboardEventListenerInterface jm_onVirtualKeyboardEvent_1 _eventObject))))
+    (define/public (jm_open_0)
+    (let ()
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (Thread.jm_sleep_1 120)
+            (send this jm_fireEvent_1 (get-field f_SHOW_EVENT this))))))
+    (define/public (jm_close_0)
+    (let ()
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (Thread.jm_sleep_1 120)
+            (send this jm_fireEvent_1 (get-field f_HIDE_EVENT this))))))))
+(define (VirtualKeyboardEventHandler.jclassValue) VirtualKeyboardEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define VirtualKeyboardEventHandler.jcell_gameKeyEventHandler 'jnone)
+(define (VirtualKeyboardEventHandler.jstatic_gameKeyEventHandler)
+  (when (eq? VirtualKeyboardEventHandler.jcell_gameKeyEventHandler 'jnone) (set! VirtualKeyboardEventHandler.jcell_gameKeyEventHandler (VirtualKeyboardEventHandler.jnew_0)))
+  VirtualKeyboardEventHandler.jcell_gameKeyEventHandler)
+(define (VirtualKeyboardEventHandler.jsetstatic_gameKeyEventHandler value) (set! VirtualKeyboardEventHandler.jcell_gameKeyEventHandler value))
 
-local function java_sleep(milliseconds)
-    local finish = os.clock() + milliseconds / 1000
-    while os.clock() < finish do end
-end
+(define (VirtualKeyboardEventHandler.jnew_0)
+  (define this (new VirtualKeyboardEventHandler% [jclass "VirtualKeyboardEventHandler"]))
+    (set-field! f_SHOW_EVENT this (VirtualKeyboardEvent.jnew_1 (get-field f_TRUE (BooleanFactory.jm_getInstance_0))))
+    (set-field! f_HIDE_EVENT this (VirtualKeyboardEvent.jnew_1 (get-field f_FALSE (BooleanFactory.jm_getInstance_0))))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local VirtualKeyboardEventHandler = {}
-VirtualKeyboardEventHandler.__index = VirtualKeyboardEventHandler
-VirtualKeyboardEventHandler.className = "VirtualKeyboardEventHandler"
-setmetatable(VirtualKeyboardEventHandler, {__index = BasicEventHandler})
-
-function VirtualKeyboardEventHandler:_init_fields()
-    self.SHOW_EVENT = VirtualKeyboardEvent.new(BooleanFactory.getInstance().TRUE)
-    self.HIDE_EVENT = VirtualKeyboardEvent.new(BooleanFactory.getInstance().FALSE)
-end
-
-
-function VirtualKeyboardEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), VirtualKeyboardEventHandler)
-    self:_init_fields()
-    return self
-end
-
-
-function VirtualKeyboardEventHandler.getInstance()
-        return VirtualKeyboardEventHandler.gameKeyEventHandler
-end
-
-
--- throws Exception
-function VirtualKeyboardEventHandler:process(eventObject, eventListenerInterface)
-        local virtualKeyboardEventListenerInterface = eventListenerInterface
-        virtualKeyboardEventListenerInterface:onVirtualKeyboardEvent(eventObject)
-end
-
-
-function VirtualKeyboardEventHandler:open()
-        local try_ok, try_error = pcall(function()
-            java_sleep(120)
-            self:fireEvent(self.SHOW_EVENT)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "open", e)
-        end
-end
+(define (VirtualKeyboardEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (VirtualKeyboardEventHandler.jstatic_gameKeyEventHandler)))))
 
 
--- throws Exception
-function VirtualKeyboardEventHandler:close()
-        local try_ok, try_error = pcall(function()
-            java_sleep(120)
-            self:fireEvent(self.HIDE_EVENT)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.CLOSE, e)
-        end
-end
-
-VirtualKeyboardEventHandler.gameKeyEventHandler = VirtualKeyboardEventHandler.new()
-
-return VirtualKeyboardEventHandler
 

@@ -1,123 +1,126 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.emulator.device
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.emulator.device
 
--- local Font = require("javax.microedition.lcdui.Font")
-local AvianUtil = require("org.allbinary.AvianUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/Font.rkt" (Font.jm_getDefaultFont_0)])
+(lazy-require ["../../../../org/allbinary/AvianUtil.rkt" (AvianUtil.jm_isAvian_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define TrueTypeFontUtilBase%
+  (class JObject%
+    (super-new)
+    (field [f_shortPattern JR.null])
+    (field [f_patternAsBytes JR.null])
+    (field [f_pattern JR.null])
+    (field [f_charArray JR.null])
+    (field [f__characterWidth JR.null])
+    (field [f_characterArray JR.null])
+    (field [f_size 0])
+    (field [f_lastCapIndex 0])
+    (field [f_currentFont JR.null])
+    (field [f_scale 0])
+    (field [f_CELLS_PER_ROW 0])
+    (field [f_fontSize 0])
+    (field [f_baseCharWidth 0])
+    (field [f_cellSize 0])
+    (field [f_textureSize 0])
+    (field [f_actualCellsPerRow 0])
+    (define/public (jm_getAsTextureSize_1 _textureSize)
+    (let ()
+      (let/ec jreturn
+        (if (<= _textureSize 64)
+            (begin
+            (set! _textureSize 64))
+            (if (<= _textureSize 128)
+            (begin
+            (set! _textureSize 128))
+            (if (<= _textureSize 256)
+            (begin
+            (set! _textureSize 256))
+            (if (<= _textureSize 512)
+            (begin
+            (set! _textureSize 512))
+            (when (<= _textureSize 1024)
+            (begin
+            (set! _textureSize 1024)))))))
+        (jreturn _textureSize))))
+    (define/public (jm_getCellSize_1 _cellSize)
+    (let ()
+      (let/ec jreturn
+        (if (<= _cellSize 16)
+            (begin
+            (set! _cellSize 16))
+            (if (<= _cellSize 32)
+            (begin
+            (set! _cellSize 32))
+            (if (<= _cellSize 64)
+            (begin
+            (set! _cellSize 64))
+            (if (<= _cellSize 128)
+            (begin
+            (set! _cellSize 128))
+            (when (<= _cellSize 256)
+            (begin
+            (set! _cellSize 256)))))))
+        (jreturn _cellSize))))
+    (define/public (jm_getYOffset_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (* (JR.i32 (- (get-field f_scale this) 1)) (get-field f_cellSize this)))))))))
+(define (TrueTypeFontUtilBase.jclassValue) TrueTypeFontUtilBase%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TrueTypeFontUtilBase = {}
-TrueTypeFontUtilBase.__index = TrueTypeFontUtilBase
-TrueTypeFontUtilBase.className = "TrueTypeFontUtilBase"
-
-function TrueTypeFontUtilBase:_init_fields()
-    self.shortPattern = nil
-    self.patternAsBytes = {32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 32, 32, 32, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 32, 32, 32, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 32, 32, 32, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 32, 32, 32, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 32, 32, 32, 33, 36, 37, 96, -62, -84, -62, -84, 34, -62, -93, -62, -93, 94, 38, 42, 40, 32, 32, 32, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 32, 32, 32, 64, 126, 44, 47, 60, 62, 92, 124, -62, -82, -62, -82, -62, -87, -62, -87}
-    self.pattern = string.char(table.unpack(self.patternAsBytes))
-    self.charArray = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x6f, 0x50, 0x56, 0x6b, 0x51, 0x52, 0x5a, 0x6a, 0x5c, 0x60, 0x5b, 0x62, 0x72, 0x63, 0x4b, 0x73, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0x6c, 0x69, 0x74, 0x64, 0x75, 0x4c, 0x70, 0xb, 0xc, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x65, 0x76, 0x66, 0x59, 0x61, 0x53, 0x2b, 0x2c, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3a, 0x3b, 0x3c, 0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4a, 0x67, 0x77, 0x68, 0x71, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x58, 0x0, 0x0, 0x0, 0x0, 0x0, 0x7b, 0x0, 0x0, 0x55, 0x0, 0x79, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}
-    self._characterWidth = java_new_array(0, #self.pattern)
-    self.characterArray = java_new_array("\0", 1)
-    self.size = #self.pattern
-    self.lastCapIndex = ((string.find(self.pattern, "Z", 1, true) or 0) - 1)
-    self.currentFont = Font.getDefaultFont()
-    self.scale = nil
-    self.CELLS_PER_ROW = nil
-    self.fontSize = nil
-    self.baseCharWidth = nil
-    self.cellSize = nil
-    self.textureSize = nil
-    self.actualCellsPerRow = nil
-end
-
-
-function TrueTypeFontUtilBase.new(scale)
-    local self = setmetatable({}, TrueTypeFontUtilBase)
-    self:_init_fields()
-        local shortPattern = StringUtil.getInstance().EMPTY_STRING
-        if AvianUtil.isAvian() then
-            local shortPatterAsByteArray = {32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 33, 36, 37, 96, -62, -84, -62, -84, 34, -62, -93, -62, -93, 94, 38, 42, 40, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 64, 126, 44, 47, 60, 62, 92, 124, -62, -82, -62, -82, -62, -87, -62, -87}
-            shortPattern = string.char(table.unpack(shortPatterAsByteArray))
-        else
-            local shortPatterAsByteArray = {32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 33, 36, 37, 96, -62, -84, 34, -62, -93, 94, 38, 42, 40, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 64, 126, 44, 47, 60, 62, 92, 124, -62, -82, -62, -87}
-            shortPattern = string.char(table.unpack(shortPatterAsByteArray))
-        end
-        self.shortPattern = shortPattern
-        self.scale = scale
-        self.CELLS_PER_ROW = 16
-        self.fontSize = (20 + 6) * self.scale
-        self.baseCharWidth = self.fontSize + (6 * self.scale)
-        self.cellSize = self.fontSize + (6 * self.scale)
-        self.textureSize = self:getAsTextureSize(self.CELLS_PER_ROW * self.cellSize)
-        self.actualCellsPerRow = java_idiv(self.textureSize, self.cellSize)
-    return self
-end
+(define (TrueTypeFontUtilBase.jnew_1 _scale)
+  (define this (new TrueTypeFontUtilBase% [jclass "TrueTypeFontUtilBase"]))
+    
+    (set-field! f_patternAsBytes this (vector 32 48 49 50 51 52 53 54 55 56 57 65 66 32 32 32 67 68 69 70 71 72 73 74 75 76 77 78 79 32 32 32 80 81 82 83 84 85 86 87 88 89 90 97 98 32 32 32 99 100 101 102 103 104 105 106 107 108 109 110 111 32 32 32 112 113 114 115 116 117 118 119 120 121 122 46 63 32 32 32 33 36 37 96 (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 84))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 84))) 34 (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 93))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 93))) 94 38 42 40 32 32 32 41 95 43 45 61 91 93 123 125 59 39 35 58 32 32 32 64 126 44 47 60 62 92 124 (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 82))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 82))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 87))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 87)))))
+    (set-field! f_pattern this (get-field f_patternAsBytes this))
+    (set-field! f_charArray this (vector #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x6f #x50 #x56 #x6b #x51 #x52 #x5a #x6a #x5c #x60 #x5b #x62 #x72 #x63 #x4b #x73 #x1 #x2 #x3 #x4 #x5 #x6 #x7 #x8 #x9 #xa #x6c #x69 #x74 #x64 #x75 #x4c #x70 #xb #xc #x10 #x11 #x12 #x13 #x14 #x15 #x16 #x17 #x18 #x19 #x1a #x1b #x1c #x20 #x21 #x22 #x23 #x24 #x25 #x26 #x27 #x28 #x29 #x2a #x65 #x76 #x66 #x59 #x61 #x53 #x2b #x2c #x30 #x31 #x32 #x33 #x34 #x35 #x36 #x37 #x38 #x39 #x3a #x3b #x3c #x40 #x41 #x42 #x43 #x44 #x45 #x46 #x47 #x48 #x49 #x4a #x67 #x77 #x68 #x71 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x58 #x0 #x0 #x0 #x0 #x0 #x7b #x0 #x0 #x55 #x0 #x79 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+    (set-field! f__characterWidth this (JR.newArray 0 (string-length (get-field f_pattern this))))
+    (set-field! f_characterArray this (JR.newArray 0 1))
+    (set-field! f_size this (string-length (get-field f_pattern this)))
+    (set-field! f_lastCapIndex this (JR.indexOf (get-field f_pattern this) (char->integer #\Z)))
+    (set-field! f_currentFont this (Font.jm_getDefaultFont_0))
+    
+    
+    
+    
+    
+    
+    
+    (let ([_shortPattern JR.null][_shortPatterAsByteArray JR.null])
+      (let/ec jreturn
+        (set! _shortPattern (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+        (if (AvianUtil.jm_isAvian_0)
+            (begin
+            (set! _shortPatterAsByteArray (vector 32 48 49 50 51 52 53 54 55 56 57 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 46 63 33 36 37 96 (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 84))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 84))) 34 (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 93))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 93))) 94 38 42 40 41 95 43 45 61 91 93 123 125 59 39 35 58 64 126 44 47 60 62 92 124 (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 82))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 82))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 87))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 87)))))
+            (set! _shortPattern _shortPatterAsByteArray))
+            (begin
+            (set! _shortPatterAsByteArray (vector 32 48 49 50 51 52 53 54 55 56 57 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 46 63 33 36 37 96 (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 84))) 34 (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 93))) 94 38 42 40 41 95 43 45 61 91 93 123 125 59 39 35 58 64 126 44 47 60 62 92 124 (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 82))) (JR.i8 (JR.i32 (- 62))) (JR.i8 (JR.i32 (- 87)))))
+            (set! _shortPattern _shortPatterAsByteArray)))
+        (set-field! f_shortPattern this _shortPattern)
+        (set-field! f_scale this _scale)
+        (set-field! f_CELLS_PER_ROW this 16)
+        (set-field! f_fontSize this (JR.i32 (* (JR.i32 (+ 20 6)) (get-field f_scale this))))
+        (set-field! f_baseCharWidth this (JR.i32 (+ (get-field f_fontSize this) (JR.i32 (* 6 (get-field f_scale this))))))
+        (set-field! f_cellSize this (JR.i32 (+ (get-field f_fontSize this) (JR.i32 (* 6 (get-field f_scale this))))))
+        (set-field! f_textureSize this (send this jm_getAsTextureSize_1 (JR.i32 (* (get-field f_CELLS_PER_ROW this) (get-field f_cellSize this)))))
+        (set-field! f_actualCellsPerRow this (JR.idiv (get-field f_textureSize this) (get-field f_cellSize this)))))
+  this)
 
 
-function TrueTypeFontUtilBase:getAsTextureSize(textureSize)
-        if textureSize <= 64 then
-            textureSize = 64
-        elseif textureSize <= 128 then
-            textureSize = 128
-        elseif textureSize <= 256 then
-            textureSize = 256
-        elseif textureSize <= 512 then
-            textureSize = 512
-        elseif textureSize <= 1024 then
-            textureSize = 1024
-        end
-        return textureSize
-end
-
-
-function TrueTypeFontUtilBase:getCellSize(cellSize)
-        if cellSize <= 16 then
-            cellSize = 16
-        elseif cellSize <= 32 then
-            cellSize = 32
-        elseif cellSize <= 64 then
-            cellSize = 64
-        elseif cellSize <= 128 then
-            cellSize = 128
-        elseif cellSize <= 256 then
-            cellSize = 256
-        end
-        return cellSize
-end
-
-
-function TrueTypeFontUtilBase:getYOffset()
-        return ((self.scale - 1) * self.cellSize)
-end
-
-return TrueTypeFontUtilBase
 

@@ -1,79 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup.points
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.layer.pickup.points
 
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local GameConfigurationUtil = require("org.allbinary.game.configuration.GameConfigurationUtil")
-local CountedPickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactory")
-local IconLayerFactory = require("org.allbinary.game.layer.pickup.IconLayerFactory")
-local PickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactory")
-local PickedUpLayerInterfaceFactoryInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface")
-local PickedUpLayerTypeFactory = require("org.allbinary.game.layer.pickup.PickedUpLayerTypeFactory")
-local PickupProcessorInterface = require("org.allbinary.game.layer.pickup.PickupProcessorInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(require racket/class racket/lazy-require
+  "../../../../../../../allbinary_java.rkt"
+  "../../../../../../../org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactory.rkt"
+  "../../../../../../../org/allbinary/game/layer/pickup/PickupProcessorInterface.rkt")
+(lazy-require ["../../../../../../../org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory.rkt" (FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../../org/allbinary/game/configuration/GameConfigurationUtil.rkt" (GameConfigurationUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../../org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory.rkt" (CountedPickedUpLayerInterfaceFactory.jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY)])
+(lazy-require ["../../../../../../../org/allbinary/game/layer/pickup/IconLayerFactory.rkt" (IconLayerFactory.jm_getInstance_3)])
+(lazy-require ["../../../../../../../org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory.rkt" (PickedUpLayerTypeFactory.jm_getInstance_0)])
+(lazy-require ["./PointsLayerCircularStaticPool.rkt" (PointsLayerCircularStaticPool.jnew_2)])
+(lazy-require ["./PointsLayerFactory.rkt" (PointsLayerFactory.jnew_1)])
+(lazy-require ["./PointsResources.rkt" (PointsResources.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Points20kPickedUpLayerInterfaceFactory%
+  (class PickedUpLayerInterfaceFactory%
+    (super-new)
+    (field [f_pool JR.null])
+    (define/public (jm_getTotal_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 1))))
+    (define/public (jm_process_1 _sourceLayerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_pool this) jm_visit_1 _sourceLayerInterface))))))
+(define (Points20kPickedUpLayerInterfaceFactory.jclassValue) Points20kPickedUpLayerInterfaceFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define Points20kPickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface 'jnone)
+(define (Points20kPickedUpLayerInterfaceFactory.jstatic_pickedUpLayerInterfaceFactoryInterface)
+  (when (eq? Points20kPickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface 'jnone) (set! Points20kPickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface (CountedPickedUpLayerInterfaceFactory.jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY)))
+  Points20kPickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface)
+(define (Points20kPickedUpLayerInterfaceFactory.jsetstatic_pickedUpLayerInterfaceFactoryInterface value) (set! Points20kPickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface value))
 
-local Points20kPickedUpLayerInterfaceFactory = {}
-Points20kPickedUpLayerInterfaceFactory.__index = Points20kPickedUpLayerInterfaceFactory
-Points20kPickedUpLayerInterfaceFactory.className = "Points20kPickedUpLayerInterfaceFactory"
-setmetatable(Points20kPickedUpLayerInterfaceFactory, {__index = PickedUpLayerInterfaceFactory})
+(define (Points20kPickedUpLayerInterfaceFactory.jnew_0)
+  (define this (new Points20kPickedUpLayerInterfaceFactory% [jclass "Points20kPickedUpLayerInterfaceFactory"]))
+    (set-field! f_pool this (PointsLayerCircularStaticPool.jnew_2 (PointsLayerFactory.jnew_1 (JR.i32 (* (send (GameConfigurationUtil.jm_getInstance_0) jm_getCompetitionValue_0) 20000))) 1))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-function Points20kPickedUpLayerInterfaceFactory:_init_fields()
-    self.pool = PointsLayerCircularStaticPool.new(PointsLayerFactory.new(GameConfigurationUtil.getInstance():getCompetitionValue() * 20000), 1)
-end
+(define (Points20kPickedUpLayerInterfaceFactory.jm_init_0)
+    (let ()
+      (let/ec jreturn
+        (set! Points20kPickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface (Points20kPickedUpLayerInterfaceFactory.jnew_0)))))
 
-
--- throws Exception
-function Points20kPickedUpLayerInterfaceFactory.init()
-        Points20kPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = Points20kPickedUpLayerInterfaceFactory.new()
-end
-
-
-function Points20kPickedUpLayerInterfaceFactory.new()
-    local self = setmetatable(PickedUpLayerInterfaceFactory.new(PickedUpLayerTypeFactory.getInstance().POINTS, IconLayerFactory.getInstance(FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(PointsResources.getInstance().RESOURCE_2):getInstance(0), 10, 10), FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(PointsResources.getInstance().RESOURCE_2):getInstance(0)), Points20kPickedUpLayerInterfaceFactory)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function Points20kPickedUpLayerInterfaceFactory:getTotal()
-        return 1
-end
-
-
-function Points20kPickedUpLayerInterfaceFactory.getInstance()
-        return Points20kPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface
-end
+(define (Points20kPickedUpLayerInterfaceFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (Points20kPickedUpLayerInterfaceFactory.jstatic_pickedUpLayerInterfaceFactoryInterface)))))
 
 
--- throws Exception
-function Points20kPickedUpLayerInterfaceFactory:process(sourceLayerInterface)
-        self.pool:visit(sourceLayerInterface)
-end
-
-Points20kPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory.NULL_COUNTED_PICKUP_LAYER_FACTORY
-
-return Points20kPickedUpLayerInterfaceFactory
 

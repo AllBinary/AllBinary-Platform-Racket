@@ -23,11 +23,13 @@
     (super-new)
     (field [f_DEFAULT_SCALE_FACTOR 0])
     (field [f_DEFAULT_SCALE_VALUE 0])))
+(define (ScaleFactorFactory.jclassValue) ScaleFactorFactory%)
 
 (define ScaleFactorFactory.jcell_instance 'jnone)
 (define (ScaleFactorFactory.jstatic_instance)
   (when (eq? ScaleFactorFactory.jcell_instance 'jnone) (set! ScaleFactorFactory.jcell_instance (ScaleFactorFactory.jnew_0)))
   ScaleFactorFactory.jcell_instance)
+(define (ScaleFactorFactory.jsetstatic_instance value) (set! ScaleFactorFactory.jcell_instance value))
 
 (define (ScaleFactorFactory.jnew_0)
   (define this (new ScaleFactorFactory% [jclass "ScaleFactorFactory"]))

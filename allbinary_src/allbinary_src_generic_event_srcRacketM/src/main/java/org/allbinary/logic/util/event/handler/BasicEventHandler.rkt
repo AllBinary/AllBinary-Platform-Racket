@@ -1,142 +1,115 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.event.handler
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.util.event.handler
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicEventHandlerInterface = require("org.allbinary.logic.util.event.handler.BasicEventHandlerInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "./BasicEventHandlerInterface.rkt")
+(lazy-require ["../../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicEventHandler%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_eventListenerInterfaceList JR.null])
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null][_LISTENER JR.null][_eventListenerInterface JR.null][_index JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (set! _LISTENER " Listener: ")
+        (send _stringBuffer jm_append_1 "Total Listeners: ")
+        (send _stringBuffer jm_appendint_1 (send (get-field f_eventListenerInterfaceList this) jm_size_0))
+        (set! _eventListenerInterface JR.null)
+        (set! _index 0)
+        (let/ec jbreak (let jloop () (when (< _index (send (get-field f_eventListenerInterfaceList this) jm_size_0))
+                (let/ec jcontinue
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (set! _commonStrings (CommonStrings.jm_getInstance_0))
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_TOSTRING _commonStrings) _e))])
+                (set! _eventListenerInterface (vector-ref (get-field f_objectArray (get-field f_eventListenerInterfaceList this)) _index))
+                (send _stringBuffer jm_append_1 _LISTENER)
+                (send _stringBuffer jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 _eventListenerInterface)))
+            (set! _index (JR.i32 (+ _index 1)))) (jloop))))
+        (jreturn (send _stringBuffer jm_toString_0)))))
+    (define/public (jm_removeAllListeners_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_eventListenerInterfaceList this (BasicArrayListD.jnew_0)))))
+    (define/public (jm_addListenerSingleThreaded_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_eventListenerInterfaceList this) jm_contains_1 _eventListenerInterface))
+            (begin
+            (send (get-field f_eventListenerInterfaceList this) jm_add_1 _eventListenerInterface))))))
+    (define/public (jm_addListenerInterface_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_eventListenerInterfaceList this) jm_contains_1 _eventListenerInterface))
+            (begin
+            (send (get-field f_eventListenerInterfaceList this) jm_add_1 _eventListenerInterface))))))
+    (define/public (jm_removeListenerSingleThreaded_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_eventListenerInterfaceList this) jm_remove_1 _eventListenerInterface))))
+    (define/public (jm_removeListener_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_eventListenerInterfaceList this) jm_remove_1 _eventListenerInterface))))
+    (define/public (jm_fireEvent_1 _eventObject)
+    (let ([_index JR.null][_eventListenerInterface JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (set! _index 0)
+        (set! _eventListenerInterface JR.null)
+        (let/ec jbreak (let jloop () (when (< _index (send (get-field f_eventListenerInterfaceList this) jm_size_0))
+                (let/ec jcontinue
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (set! _commonStrings (CommonStrings.jm_getInstance_0))
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_FIRE_EVENT (EventStrings.jm_getInstance_0)) _e))])
+                (set! _eventListenerInterface (vector-ref (get-field f_objectArray (get-field f_eventListenerInterfaceList this)) _index))
+                (send this jm_process_2 _eventObject _eventListenerInterface))
+            (set! _index (JR.i32 (+ _index 1)))) (jloop)))))))
+    (define/public (jm_process_2 _eventObject _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (send _eventListenerInterface jm_onEvent_1 _eventObject))))
+    (define/public (jm_getEventListenerInterfaceListP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_eventListenerInterfaceList this)))))))
+(define (BasicEventHandler.jclassValue) BasicEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define BasicEventHandler.jcell_PERFORMANCE_MESSAGE 'jnone)
+(define (BasicEventHandler.jstatic_PERFORMANCE_MESSAGE)
+  (when (eq? BasicEventHandler.jcell_PERFORMANCE_MESSAGE 'jnone) (set! BasicEventHandler.jcell_PERFORMANCE_MESSAGE "Use Custom onEvent Methods for needed optimization"))
+  BasicEventHandler.jcell_PERFORMANCE_MESSAGE)
+(define (BasicEventHandler.jsetstatic_PERFORMANCE_MESSAGE value) (set! BasicEventHandler.jcell_PERFORMANCE_MESSAGE value))
 
-local BasicEventHandler = {}
-BasicEventHandler.__index = BasicEventHandler
-BasicEventHandler.className = "BasicEventHandler"
-
-function BasicEventHandler:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.eventListenerInterfaceList = nil
-end
-
-
-function BasicEventHandler.new()
-    local self = setmetatable({}, BasicEventHandler)
-    self:_init_fields()
-        self.eventListenerInterfaceList = BasicArrayListD.new()
-    return self
-end
-
-
-function BasicEventHandler:toString()
-        local stringBuffer = StringMaker.new()
-        local LISTENER = " Listener: "
-        stringBuffer:append("Total Listeners: ")
-        stringBuffer:appendint(self.eventListenerInterfaceList:size())
-        local eventListenerInterface = nil
-        local index = 0
-        while index < self.eventListenerInterfaceList:size() do
-            local try_ok, try_error = pcall(function()
-                eventListenerInterface = self.eventListenerInterfaceList.objectArray[index + 1]
-                stringBuffer:append(LISTENER)
-                stringBuffer:append(StringUtil.getInstance():toString(eventListenerInterface))
-            end)
-            if not try_ok then
-                local e = try_error
-                local commonStrings = CommonStrings.getInstance()
-                self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.TOSTRING, e)
-            end
-            index = index + 1
-        end
-        return tostring(stringBuffer)
-end
-BasicEventHandler.__tostring = function(self) return self:toString() end
-
-
-function BasicEventHandler:removeAllListeners()
-        self.eventListenerInterfaceList = BasicArrayListD.new()
-end
-
-
-function BasicEventHandler:addListenerSingleThreaded(eventListenerInterface)
-        if not self.eventListenerInterfaceList:contains(eventListenerInterface) then
-            self.eventListenerInterfaceList:add(eventListenerInterface)
-        end
-end
-
-
-function BasicEventHandler:addListenerInterface(eventListenerInterface)
-        if not self.eventListenerInterfaceList:contains(eventListenerInterface) then
-            self.eventListenerInterfaceList:add(eventListenerInterface)
-        end
-end
-
-
-function BasicEventHandler:removeListenerSingleThreaded(eventListenerInterface)
-        self.eventListenerInterfaceList:remove(eventListenerInterface)
-end
-
-
-function BasicEventHandler:removeListener(eventListenerInterface)
-        self.eventListenerInterfaceList:remove(eventListenerInterface)
-end
-
-
--- throws Exception
-function BasicEventHandler:fireEvent(eventObject)
-        local index = 0
-        local eventListenerInterface = nil
-        while index < self.eventListenerInterfaceList:size() do
-            local try_ok, try_error = pcall(function()
-                eventListenerInterface = self.eventListenerInterfaceList.objectArray[index + 1]
-                self:process(eventObject, eventListenerInterface)
-            end)
-            if not try_ok then
-                local e = try_error
-                local commonStrings = CommonStrings.getInstance()
-                self.logUtil:put(commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            index = index + 1
-        end
-end
+(define (BasicEventHandler.jnew_0)
+  (define this (new BasicEventHandler% [jclass "BasicEventHandler"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_eventListenerInterfaceList this (BasicArrayListD.jnew_0))))
+  this)
 
 
--- throws Exception
-function BasicEventHandler:process(eventObject, eventListenerInterface)
-        eventListenerInterface:onEvent(eventObject)
-end
-
-
-function BasicEventHandler:getEventListenerInterfaceListP()
-        return self.eventListenerInterfaceList
-end
-
-BasicEventHandler.PERFORMANCE_MESSAGE = "Use Custom onEvent Methods for needed optimization"
-
-return BasicEventHandler
 

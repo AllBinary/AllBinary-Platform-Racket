@@ -84,6 +84,7 @@
         (send _osBuffer jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 (send this jm_getCharacterSet_0)))
         (send _osBuffer jm_append_1 _NEW_LINE)
         (jreturn (send _osBuffer jm_toString_0)))))))
+(define (GenericOperatingSystem.jclassValue) GenericOperatingSystem%)
 
 (define (GenericOperatingSystem.jnew_0)
   (define this (new GenericOperatingSystem% [jclass "GenericOperatingSystem"]))

@@ -1,47 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.util.cache
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local CacheableInterface = require("org.allbinary.logic.util.cache.CacheableInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/util/BasicArrayListD.rkt"
+  "./CacheableInterface.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicArrayListCacheable%
+  (class BasicArrayListD%
+    (super-new)
+    (define/public (jm_getKey_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))))
+(define (BasicArrayListCacheable.jclassValue) BasicArrayListCacheable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BasicArrayListCacheable = {}
-BasicArrayListCacheable.__index = BasicArrayListCacheable
-BasicArrayListCacheable.className = "BasicArrayListCacheable"
-setmetatable(BasicArrayListCacheable, {__index = BasicArrayListD})
-
-function BasicArrayListCacheable.new()
-    local self = setmetatable(BasicArrayListD.new(), BasicArrayListCacheable)
-    return self
-end
+(define (BasicArrayListCacheable.jnew_0)
+  (define this (new BasicArrayListCacheable% [jclass "BasicArrayListCacheable"]))
+  this)
 
 
-function BasicArrayListCacheable:getKey()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-return BasicArrayListCacheable
 

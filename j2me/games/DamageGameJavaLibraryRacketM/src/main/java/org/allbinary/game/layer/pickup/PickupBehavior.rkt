@@ -1,171 +1,158 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.pickup
 
-local HealthInterfaceCompositeInterface = require("org.allbinary.game.health.HealthInterfaceCompositeInterface")
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local CollidableDestroyableDamageableLayer = require("org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer")
-local CountedLayerInterfaceFactoryPart = require("org.allbinary.game.part.CountedLayerInterfaceFactoryPart")
-local PartInterface = require("org.allbinary.game.part.PartInterface")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local PickupBehaviorInterface = require("org.allbinary.game.layer.pickup.PickupBehaviorInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./PickupBehaviorInterface.rkt")
+(lazy-require ["../../../../../org/allbinary/game/layer/CollidableCompositeLayer.rkt" (CollidableCompositeLayer.jm_getNullInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/part/CountedLayerInterfaceFactoryPart.rkt" (CountedLayerInterfaceFactoryPart.jstatic_NULL_COUNTED_LAYER_INTERFACE_FACTORY)])
+(lazy-require ["../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_putOE_4)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./PickedUpLayerTypeFactory.rkt" (PickedUpLayerTypeFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PickupBehavior%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_countedIndex 0])
+    (field [f_ownerLayerInterface JR.null])
+    (define/public (jm_doPickup_1 _pickupProcessorInterface)
+    (let ([_healthInterfaceCompositeInterface JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this "doPickup" _e))])
+            (set! _healthInterfaceCompositeInterface (get-field f_ownerLayerInterface this))
+            (when (JR.className (send _healthInterfaceCompositeInterface jm_getHealthInterface_0))
+                (begin
+                (send _pickupProcessorInterface jm_process_1 (get-field f_ownerLayerInterface this))))))))
+    (define/public (jm_doPickupLayer_1 _pickupLayerInterface)
+    (let ([_pickedUpLayerInterfaceFactoryInterface JR.null][_pickedUpLayerType JR.null][_pickedUpLayerTypeFactory JR.null][_pickupProcessorInterface JR.null][_collidableDestroyableDamageableLayer JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (PreLogUtil.jm_putOE_4 (get-field f_EXCEPTION _commonStrings) this "doPickup" _e))])
+            (set! _pickedUpLayerInterfaceFactoryInterface (send _pickupLayerInterface jm_getPickedUpLayerInterfaceFactoryInterface_0))
+            (set! _pickedUpLayerType (send _pickedUpLayerInterfaceFactoryInterface jm_getPickedUpLayerType_0))
+            (set! _pickedUpLayerTypeFactory (PickedUpLayerTypeFactory.jm_getInstance_0))
+            (if (or (or (or (eq? _pickedUpLayerType (get-field f_BEAM _pickedUpLayerTypeFactory)) (eq? _pickedUpLayerType (get-field f_MINE _pickedUpLayerTypeFactory))) (eq? _pickedUpLayerType (get-field f_PROJECTILE _pickedUpLayerTypeFactory))) (eq? _pickedUpLayerType (get-field f_ENHANCEMENT _pickedUpLayerTypeFactory)))
+                (begin
+                (send this jm_add_1 _pickedUpLayerInterfaceFactoryInterface))
+                (if (eq? (send _pickedUpLayerInterfaceFactoryInterface jm_getPickedUpLayerType_0) (get-field f_PART _pickedUpLayerTypeFactory))
+                (begin
+                (set! _collidableDestroyableDamageableLayer (get-field f_ownerLayerInterface this))
+                (send _collidableDestroyableDamageableLayer jm_addPart_1 _pickedUpLayerInterfaceFactoryInterface))
+                (if (eq? _pickedUpLayerType (get-field f_NONE _pickedUpLayerTypeFactory))
+                (begin
+                (void))
+                (begin
+                (set! _pickupProcessorInterface _pickedUpLayerInterfaceFactoryInterface)
+                (send this jm_doPickup_1 _pickupProcessorInterface)))))
+            (send _pickupLayerInterface jm_setPickedUp_0)))))
+    (define/public (jm_add_1 _countedPickedUpLayerInterfaceFactoryInterface)
+    (let ([_partIndex JR.null])
+      (let/ec jreturn
+        (set! _partIndex (JR.i32 (+ (send _countedPickedUpLayerInterfaceFactoryInterface jm_getId_0) (get-field f_countedIndex this))))
+        (send this jm_addAt_2 _countedPickedUpLayerInterfaceFactoryInterface _partIndex))))
+    (define/public (jm_addAt_2 _countedPickedUpLayerInterfaceFactoryInterface _partIndex)
+    (let ([_collidableDestroyableDamageableLayer JR.null][_countedLayerInterfaceFactory JR.null])
+      (let/ec jreturn
+        (set! _collidableDestroyableDamageableLayer (get-field f_ownerLayerInterface this))
+        (set! _countedLayerInterfaceFactory (vector-ref (send _collidableDestroyableDamageableLayer jm_getPartInterfaceArray_0) _partIndex))
+        (send _countedLayerInterfaceFactory jm_setTotal_1 (JR.i32 (+ (send _countedLayerInterfaceFactory jm_getTotal_0) (send _countedPickedUpLayerInterfaceFactoryInterface jm_getTotal_0)))))))
+    (define/public (jm_getFirstAvailableCountedLayerInterfaceFactory_1 _pickedUpLayerTypeArray)
+    (let ([_collidableDestroyableDamageableLayer JR.null][_partInterfaceArray JR.null][_size JR.null][_nextCountedLayerInterfaceFactory JR.null][_countedPickedUpLayerInterfaceFactory JR.null][_index2 JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _collidableDestroyableDamageableLayer (get-field f_ownerLayerInterface this))
+        (set! _partInterfaceArray (send _collidableDestroyableDamageableLayer jm_getPartInterfaceArray_0))
+        (set! _size (vector-length _partInterfaceArray))
+        (set! _nextCountedLayerInterfaceFactory JR.null)
+        (set! _countedPickedUpLayerInterfaceFactory JR.null)
+        (begin
+            (set! _index (get-field f_countedIndex this))
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _nextCountedLayerInterfaceFactory (vector-ref (send _collidableDestroyableDamageableLayer jm_getPartInterfaceArray_0) _index))
+            (set! _countedPickedUpLayerInterfaceFactory (send _nextCountedLayerInterfaceFactory jm_getCountedPickedUpLayerInterfaceFactory_0))
+            (begin
+                (set! _index2 (vector-length _pickedUpLayerTypeArray))
+                (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index2 1))]) (set! _index2 jvalue) jvalue) 0)
+                    (let/ec jcontinue
+                (when (eq? (send _countedPickedUpLayerInterfaceFactory jm_getPickedUpLayerType_0) (vector-ref _pickedUpLayerTypeArray _index2))
+                    (begin
+                    (when (> (send _nextCountedLayerInterfaceFactory jm_getTotal_0) 0)
+                        (begin
+                        (jreturn _nextCountedLayerInterfaceFactory)))))) (jloop))))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (jreturn (CountedLayerInterfaceFactoryPart.jstatic_NULL_COUNTED_LAYER_INTERFACE_FACTORY)))))
+    (define/public (jm_getCountedLayerInterfaceFactoryForSlot_1 _slotIndex)
+    (let ([_currentSlot JR.null][_collidableDestroyableDamageableLayer JR.null][_partInterfaceArray JR.null][_size JR.null][_nextCountedLayerInterfaceFactory JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _currentSlot 0)
+        (set! _collidableDestroyableDamageableLayer (get-field f_ownerLayerInterface this))
+        (set! _partInterfaceArray (send _collidableDestroyableDamageableLayer jm_getPartInterfaceArray_0))
+        (set! _size (vector-length _partInterfaceArray))
+        (set! _nextCountedLayerInterfaceFactory JR.null)
+        (begin
+            (set! _index (get-field f_countedIndex this))
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _nextCountedLayerInterfaceFactory (vector-ref (send _collidableDestroyableDamageableLayer jm_getPartInterfaceArray_0) _index))
+            (when (> (send _nextCountedLayerInterfaceFactory jm_getTotal_0) 0)
+                (begin
+                (if (= _currentSlot _slotIndex)
+                    (begin
+                    (jreturn _nextCountedLayerInterfaceFactory))
+                    (begin
+                    (set! _currentSlot (JR.i32 (+ _currentSlot 1))))))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (jreturn (CountedLayerInterfaceFactoryPart.jstatic_NULL_COUNTED_LAYER_INTERFACE_FACTORY)))))
+    (define/public (jm_getCountedIndex_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_countedIndex this)))))))
+(define (PickupBehavior.jclassValue) PickupBehavior%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define PickupBehavior.jcell_NULL_PICKUP_BEHAVIOR 'jnone)
+(define (PickupBehavior.jstatic_NULL_PICKUP_BEHAVIOR)
+  (when (eq? PickupBehavior.jcell_NULL_PICKUP_BEHAVIOR 'jnone) (set! PickupBehavior.jcell_NULL_PICKUP_BEHAVIOR (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  PickupBehavior.jcell_NULL_PICKUP_BEHAVIOR)
+(define (PickupBehavior.jsetstatic_NULL_PICKUP_BEHAVIOR value) (set! PickupBehavior.jcell_NULL_PICKUP_BEHAVIOR value))
 
-local PickupBehavior = {}
-PickupBehavior.__index = PickupBehavior
-PickupBehavior.className = "PickupBehavior"
+(define (PickupBehavior.jnew_2 _ownerLayerInterface _countedIndex)
+  (define this (new PickupBehavior% [jclass "PickupBehavior"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_ownerLayerInterface this _ownerLayerInterface)
+        (set-field! f_countedIndex this _countedIndex)))
+  this)
 
-function PickupBehavior:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.countedIndex = nil
-    self.ownerLayerInterface = nil
-end
-
-
-function PickupBehavior.getNullInstance()
-        if PickupBehavior.NULL_PICKUP_BEHAVIOR == NullUtil.getInstance().NULL_OBJECT then
-            PickupBehavior.NULL_PICKUP_BEHAVIOR = PickupBehavior.new(CollidableCompositeLayer.getNullInstance(), 0)
-        end
-        return PickupBehavior.NULL_PICKUP_BEHAVIOR
-end
-
-
-function PickupBehavior.new(ownerLayerInterface, countedIndex)
-    local self = setmetatable({}, PickupBehavior)
-    self:_init_fields()
-        self.ownerLayerInterface = ownerLayerInterface
-        self.countedIndex = countedIndex
-    return self
-end
-
-
-function PickupBehavior:doPickup(pickupProcessorInterface)
-        local try_ok, try_error = pcall(function()
-            local healthInterfaceCompositeInterface = self.ownerLayerInterface
-            if healthInterfaceCompositeInterface:getHealthInterface():isAlive() then
-                pickupProcessorInterface:process(self.ownerLayerInterface)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, "doPickup", e)
-        end
-end
-
-
-function PickupBehavior:doPickupLayer(pickupLayerInterface)
-        local try_ok, try_error = pcall(function()
-            local pickedUpLayerInterfaceFactoryInterface = pickupLayerInterface:getPickedUpLayerInterfaceFactoryInterface()
-            local pickedUpLayerType = pickedUpLayerInterfaceFactoryInterface:getPickedUpLayerType()
-            local pickedUpLayerTypeFactory = PickedUpLayerTypeFactory.getInstance()
-            if pickedUpLayerType == pickedUpLayerTypeFactory.BEAM or pickedUpLayerType == pickedUpLayerTypeFactory.MINE or pickedUpLayerType == pickedUpLayerTypeFactory.PROJECTILE or pickedUpLayerType == pickedUpLayerTypeFactory.ENHANCEMENT then
-                self:add(pickedUpLayerInterfaceFactoryInterface)
-            elseif pickedUpLayerInterfaceFactoryInterface:getPickedUpLayerType() == pickedUpLayerTypeFactory.PART then
-                local collidableDestroyableDamageableLayer = self.ownerLayerInterface
-                collidableDestroyableDamageableLayer:addPart(pickedUpLayerInterfaceFactoryInterface)
-            elseif pickedUpLayerType == pickedUpLayerTypeFactory.NONE then
-            else
-                local pickupProcessorInterface = pickedUpLayerInterfaceFactoryInterface
-                self:doPickup(pickupProcessorInterface)
-            end
-            pickupLayerInterface:setPickedUp()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            PreLogUtil.putOE(commonStrings.EXCEPTION, self, "doPickup", e)
-        end
-end
-
-
-function PickupBehavior:add(countedPickedUpLayerInterfaceFactoryInterface)
-        local partIndex = countedPickedUpLayerInterfaceFactoryInterface:getId() + self.countedIndex
-        self:addAt(countedPickedUpLayerInterfaceFactoryInterface, partIndex)
-end
-
-
-function PickupBehavior:addAt(countedPickedUpLayerInterfaceFactoryInterface, partIndex)
-        local collidableDestroyableDamageableLayer = self.ownerLayerInterface
-        local countedLayerInterfaceFactory = collidableDestroyableDamageableLayer:getPartInterfaceArray()[partIndex + 1]
-        countedLayerInterfaceFactory:setTotal(countedLayerInterfaceFactory:getTotal() + countedPickedUpLayerInterfaceFactoryInterface:getTotal())
-end
-
-
-function PickupBehavior:getFirstAvailableCountedLayerInterfaceFactory(pickedUpLayerTypeArray)
-        local collidableDestroyableDamageableLayer = self.ownerLayerInterface
-        local partInterfaceArray = collidableDestroyableDamageableLayer:getPartInterfaceArray()
-        local size = (partInterfaceArray.n or #partInterfaceArray)
-        local nextCountedLayerInterfaceFactory = nil
-        local countedPickedUpLayerInterfaceFactory = nil
-        for index = self.countedIndex, size - 1 do
-            nextCountedLayerInterfaceFactory = collidableDestroyableDamageableLayer:getPartInterfaceArray()[index + 1]
-            countedPickedUpLayerInterfaceFactory = nextCountedLayerInterfaceFactory:getCountedPickedUpLayerInterfaceFactory()
-            do
-                local index2 = (pickedUpLayerTypeArray.n or #pickedUpLayerTypeArray)
-                while (function() index2 = index2 - 1 return index2 end)() >= 0 do
-                if countedPickedUpLayerInterfaceFactory:getPickedUpLayerType() == pickedUpLayerTypeArray[index2 + 1] then
-                    if nextCountedLayerInterfaceFactory:getTotal() > 0 then
-                        return nextCountedLayerInterfaceFactory
-                    end
-                end
-                end
-            end
-        end
-        return CountedLayerInterfaceFactoryPart.NULL_COUNTED_LAYER_INTERFACE_FACTORY
-end
-
-
--- throws Exception
-function PickupBehavior:getCountedLayerInterfaceFactoryForSlot(slotIndex)
-        local currentSlot = 0
-        local collidableDestroyableDamageableLayer = self.ownerLayerInterface
-        local partInterfaceArray = collidableDestroyableDamageableLayer:getPartInterfaceArray()
-        local size = (partInterfaceArray.n or #partInterfaceArray)
-        local nextCountedLayerInterfaceFactory = nil
-        for index = self.countedIndex, size - 1 do
-            nextCountedLayerInterfaceFactory = collidableDestroyableDamageableLayer:getPartInterfaceArray()[index + 1]
-            if nextCountedLayerInterfaceFactory:getTotal() > 0 then
-                if currentSlot == slotIndex then
-                    return nextCountedLayerInterfaceFactory
-                else
-                    currentSlot = currentSlot + 1
-                end
-            end
-        end
-        return CountedLayerInterfaceFactoryPart.NULL_COUNTED_LAYER_INTERFACE_FACTORY
-end
+(define (PickupBehavior.jm_getNullInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (PickupBehavior.jstatic_NULL_PICKUP_BEHAVIOR) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! PickupBehavior.jcell_NULL_PICKUP_BEHAVIOR (PickupBehavior.jnew_2 (CollidableCompositeLayer.jm_getNullInstance_0) 0))))
+        (jreturn (PickupBehavior.jstatic_NULL_PICKUP_BEHAVIOR)))))
 
 
-function PickupBehavior:getCountedIndex()
-        return self.countedIndex
-end
-
-PickupBehavior.NULL_PICKUP_BEHAVIOR = NullUtil.getInstance().NULL_OBJECT
-
-return PickupBehavior
 

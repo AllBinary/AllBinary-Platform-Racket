@@ -159,11 +159,13 @@
                 (set! _index (JR.i32 (+ _index 1))) (jloop)))))
         (set! _angleOfTarget (send this jm_antiTan_2 (vector-ref _dx 0) (vector-ref _dy 0)))
         (jreturn _angleOfTarget))))))
+(define (NoDecimalTrigTable.jclassValue) NoDecimalTrigTable%)
 
 (define NoDecimalTrigTable.jcell_instance 'jnone)
 (define (NoDecimalTrigTable.jstatic_instance)
   (when (eq? NoDecimalTrigTable.jcell_instance 'jnone) (set! NoDecimalTrigTable.jcell_instance (NoDecimalTrigTable.jnew_0)))
   NoDecimalTrigTable.jcell_instance)
+(define (NoDecimalTrigTable.jsetstatic_instance value) (set! NoDecimalTrigTable.jcell_instance value))
 
 (define (NoDecimalTrigTable.jnew_0)
   (define this (new NoDecimalTrigTable% [jclass "NoDecimalTrigTable"]))

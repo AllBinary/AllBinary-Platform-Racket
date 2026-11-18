@@ -1,54 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.midlet
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["./DemoGameMidletState.rkt" (DemoGameMidletState.jnew_0)])
+(provide (all-defined-out))
+
+(define DemoGameMidletStateFactory%
+  (class JObject%
+    (super-new)
+    (field [f_NONE JR.null])
+    (field [f_START_DEMO JR.null])
+    (field [f_START_GAME JR.null])
+    (field [f_START_INPUT_MAPPING JR.null])))
+(define (DemoGameMidletStateFactory.jclassValue) DemoGameMidletStateFactory%)
+
+(define DemoGameMidletStateFactory.jcell_STATE 'jnone)
+(define (DemoGameMidletStateFactory.jstatic_STATE)
+  (when (eq? DemoGameMidletStateFactory.jcell_STATE 'jnone) (set! DemoGameMidletStateFactory.jcell_STATE (DemoGameMidletStateFactory.jnew_0)))
+  DemoGameMidletStateFactory.jcell_STATE)
+(define (DemoGameMidletStateFactory.jsetstatic_STATE value) (set! DemoGameMidletStateFactory.jcell_STATE value))
+
+(define (DemoGameMidletStateFactory.jnew_0)
+  (define this (new DemoGameMidletStateFactory% [jclass "DemoGameMidletStateFactory"]))
+    (set-field! f_NONE this (DemoGameMidletState.jnew_0))
+    (set-field! f_START_DEMO this (DemoGameMidletState.jnew_0))
+    (set-field! f_START_GAME this (DemoGameMidletState.jnew_0))
+    (set-field! f_START_INPUT_MAPPING this (DemoGameMidletState.jnew_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
+
+(define (DemoGameMidletStateFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DemoGameMidletStateFactory.jstatic_STATE)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local DemoGameMidletStateFactory = {}
-DemoGameMidletStateFactory.__index = DemoGameMidletStateFactory
-DemoGameMidletStateFactory.className = "DemoGameMidletStateFactory"
-
-function DemoGameMidletStateFactory:_init_fields()
-    self.NONE = DemoGameMidletState.new()
-    self.START_DEMO = DemoGameMidletState.new()
-    self.START_GAME = DemoGameMidletState.new()
-    self.START_INPUT_MAPPING = DemoGameMidletState.new()
-end
-
-
-function DemoGameMidletStateFactory.new()
-    local self = setmetatable({}, DemoGameMidletStateFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function DemoGameMidletStateFactory.getInstance()
-        return DemoGameMidletStateFactory.STATE
-end
-
-DemoGameMidletStateFactory.STATE = DemoGameMidletStateFactory.new()
-
-return DemoGameMidletStateFactory
 

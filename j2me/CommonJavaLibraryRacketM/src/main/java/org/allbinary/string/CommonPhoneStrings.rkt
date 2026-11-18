@@ -38,11 +38,13 @@
     (field [f_POUND JR.null])
     (field [f_STAR JR.null])
     (field [f_FIRE JR.null])))
+(define (CommonPhoneStrings.jclassValue) CommonPhoneStrings%)
 
 (define CommonPhoneStrings.jcell_instance 'jnone)
 (define (CommonPhoneStrings.jstatic_instance)
   (when (eq? CommonPhoneStrings.jcell_instance 'jnone) (set! CommonPhoneStrings.jcell_instance (CommonPhoneStrings.jnew_0)))
   CommonPhoneStrings.jcell_instance)
+(define (CommonPhoneStrings.jsetstatic_instance value) (set! CommonPhoneStrings.jcell_instance value))
 
 (define (CommonPhoneStrings.jnew_0)
   (define this (new CommonPhoneStrings% [jclass "CommonPhoneStrings"]))

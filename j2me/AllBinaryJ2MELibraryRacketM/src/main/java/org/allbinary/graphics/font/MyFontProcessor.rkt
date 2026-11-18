@@ -1,61 +1,55 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.font
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.font
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MyFontProcessor%
+  (class JObject%
+    (super-new)
+    (define/public (jm_process_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (MyFontProcessor.jclassValue) MyFontProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define MyFontProcessor.jcell_instance 'jnone)
+(define (MyFontProcessor.jstatic_instance)
+  (when (eq? MyFontProcessor.jcell_instance 'jnone) (set! MyFontProcessor.jcell_instance (MyFontProcessor.jnew_0)))
+  MyFontProcessor.jcell_instance)
+(define (MyFontProcessor.jsetstatic_instance value) (set! MyFontProcessor.jcell_instance value))
 
-local MyFontProcessor = {}
-MyFontProcessor.__index = MyFontProcessor
-MyFontProcessor.className = "MyFontProcessor"
+(define (MyFontProcessor.jnew_0)
+  (define this (new MyFontProcessor% [jclass "MyFontProcessor"]))
+  this)
 
-function MyFontProcessor.new()
-    local self = setmetatable({}, MyFontProcessor)
-    return self
-end
+(define (MyFontProcessor.jm_defaultCharWidth_1 _font)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send _font jm_charWidth_1 (char->integer #\C))))))
 
+(define (MyFontProcessor.jm_defaultStringWidth_2 _font _size)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (* (MyFontProcessor.jm_defaultCharWidth_1 _font) _size))))))
 
-function MyFontProcessor.defaultCharWidth(font)
-        return font:charWidth("C")
-end
-
-
-function MyFontProcessor.defaultStringWidth(font, size)
-        return MyFontProcessor.defaultCharWidth(font) * size
-end
-
-
-function MyFontProcessor.getInstance()
-        return MyFontProcessor.instance
-end
+(define (MyFontProcessor.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (MyFontProcessor.jstatic_instance)))))
 
 
-function MyFontProcessor:process(graphics)
-end
-
-MyFontProcessor.instance = MyFontProcessor.new()
-
-return MyFontProcessor
 

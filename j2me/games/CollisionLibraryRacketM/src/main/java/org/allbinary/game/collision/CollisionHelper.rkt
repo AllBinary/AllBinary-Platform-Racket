@@ -1,62 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.collision
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CollisionHelper%
+  (class JObject%
+    (super-new)
+    (field [f_sourceLayerInterface JR.null])
+    (define/public (jm_isCollidable_1 _layerInterface)
+    (let ()
+      (let/ec jreturn
+        (jreturn #t))))
+    (define/public (jm_getOwnerLayerInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_sourceLayerInterface this)))))
+    (define/public (jm_setOwnerLayerInterface_1 _sourceLayerInterface)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_sourceLayerInterface this _sourceLayerInterface))))))
+(define (CollisionHelper.jclassValue) CollisionHelper%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CollisionHelper = {}
-CollisionHelper.__index = CollisionHelper
-CollisionHelper.className = "CollisionHelper"
-
-function CollisionHelper:_init_fields()
-    self.sourceLayerInterface = nil
-end
-
-
-function CollisionHelper.new(sourceLayerInterface)
-    local self = setmetatable({}, CollisionHelper)
-    self:_init_fields()
-        self.sourceLayerInterface = sourceLayerInterface
-    return self
-end
-
-
-function CollisionHelper:isCollidable(layerInterface)
-        return true
-end
+(define (CollisionHelper.jnew_1 _sourceLayerInterface)
+  (define this (new CollisionHelper% [jclass "CollisionHelper"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_sourceLayerInterface this _sourceLayerInterface)))
+  this)
 
 
-function CollisionHelper:getOwnerLayerInterface()
-        return self.sourceLayerInterface
-end
-
-
-function CollisionHelper:setOwnerLayerInterface(sourceLayerInterface)
-        self.sourceLayerInterface = sourceLayerInterface
-end
-
-return CollisionHelper
 

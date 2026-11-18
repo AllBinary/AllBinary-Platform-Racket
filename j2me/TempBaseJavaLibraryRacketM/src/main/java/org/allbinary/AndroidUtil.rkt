@@ -21,6 +21,7 @@
 (define AndroidUtil%
   (class JObject%
     (super-new)))
+(define (AndroidUtil.jclassValue) AndroidUtil%)
 
 (define (AndroidUtil.jnew_0)
   (define this (new AndroidUtil% [jclass "AndroidUtil"]))

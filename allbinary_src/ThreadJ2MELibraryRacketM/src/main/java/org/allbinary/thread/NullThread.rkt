@@ -22,11 +22,13 @@
 (define NullThread%
   (class JObject%
     (super-new)))
+(define (NullThread.jclassValue) NullThread%)
 
 (define NullThread.jcell_NULL_THREAD 'jnone)
 (define (NullThread.jstatic_NULL_THREAD)
   (when (eq? NullThread.jcell_NULL_THREAD 'jnone) (set! NullThread.jcell_NULL_THREAD (Thread.jnew_0)))
   NullThread.jcell_NULL_THREAD)
+(define (NullThread.jsetstatic_NULL_THREAD value) (set! NullThread.jcell_NULL_THREAD value))
 
 (define (NullThread.jnew_0)
   (define this (new NullThread% [jclass "NullThread"]))

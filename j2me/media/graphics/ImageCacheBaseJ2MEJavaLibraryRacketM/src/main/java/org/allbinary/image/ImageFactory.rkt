@@ -1,75 +1,63 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.image
 
--- local InputStream = require("java.io.InputStream")
--- local Image = require("javax.microedition.lcdui.Image")
-local MIDPUtil = require("org.allbinary.MIDPUtil")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/io/InputStream.rkt")
+(lazy-require ["../../../javax/microedition/lcdui/Image.rkt" (Image.jm_createImage_1)])
+(lazy-require ["../../../org/allbinary/MIDPUtil.rkt" (MIDPUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;ImageCacheBaseJavaLibrary - J2ME
+(define ImageFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_createImageUrl_1 _url)
+    (let ()
+      (let/ec jreturn
+        (jreturn (Image.jm_createImage_1 _url)))))
+    (define/public (jm_createImage_3 _caller _width _height)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (MIDPUtil.jm_getInstance_0) jm_createImageWH_2 _width _height)))))
+    (define/public (jm_createImageFromInputStream_2 _key _inputStream)
+    (let ([_image JR.null])
+      (let/ec jreturn
+        (set! _image (send (MIDPUtil.jm_getInstance_0) jm_createImageFromInputStream_1 _inputStream))
+        (jreturn _image))))
+    (define/public (jm_createImageFromInputStream_1 _inputStream)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (MIDPUtil.jm_getInstance_0) jm_createImageFromInputStream_1 _inputStream)))))))
+(define (ImageFactory.jclassValue) ImageFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ImageFactory.jcell_instance 'jnone)
+(define (ImageFactory.jstatic_instance)
+  (when (eq? ImageFactory.jcell_instance 'jnone) (set! ImageFactory.jcell_instance (ImageFactory.jnew_0)))
+  ImageFactory.jcell_instance)
+(define (ImageFactory.jsetstatic_instance value) (set! ImageFactory.jcell_instance value))
 
---ImageCacheBaseJavaLibrary - J2ME
-local ImageFactory = {}
-ImageFactory.__index = ImageFactory
-ImageFactory.className = "ImageFactory"
+(define (ImageFactory.jnew_0)
+  (define this (new ImageFactory% [jclass "ImageFactory"]))
+  this)
 
-function ImageFactory.new()
-    local self = setmetatable({}, ImageFactory)
-    return self
-end
-
-
-function ImageFactory.getInstance()
-        return ImageFactory.instance
-end
-
-
--- throws Exception
-function ImageFactory:createImageUrl(url)
-        return Image.createImage(url)
-end
-
-
--- throws Exception
-function ImageFactory:createImage(caller, width, height)
-        return MIDPUtil.getInstance():createImageWH(width, height)
-end
-
-
--- throws Exception
-function ImageFactory:createImageFromInputStream(key, inputStream)
-        local image = MIDPUtil.getInstance():createImageFromInputStream(inputStream)
-        return image
-end
+(define (ImageFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageFactory.jstatic_instance)))))
 
 
--- throws Exception
--- Java overloaded method: Lua keeps the last definition
-function ImageFactory:createImageFromInputStream(inputStream)
-        return MIDPUtil.getInstance():createImageFromInputStream(inputStream)
-end
-
-ImageFactory.instance = ImageFactory.new()
-
-return ImageFactory
 

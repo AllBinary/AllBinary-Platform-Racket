@@ -1,80 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.midlet
 
--- local NullCanvas = require("javax.microedition.lcdui.NullCanvas")
-local Processor = require("org.allbinary.canvas.Processor")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/lang/Runnable.rkt")
+(lazy-require ["../../../javax/microedition/lcdui/NullCanvas.rkt" (NullCanvas.jstatic_NULL_CANVAS)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ExitRunnable%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_midlet JR.null])
+    (field [f_processor JR.null])
+    (field [f_isProgress #f])
+    (define/public (jm_run_0)
+    (let ()
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_RUN (get-field f_commonStrings this)) _e)
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e2)
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_RUN (get-field f_commonStrings this)) _e))])
+                (send (get-field f_processor this) jm_process_0)))])
+            (send (get-field f_logUtil this) jm_putF_3 (get-field f_START_RUNNABLE (get-field f_commonStrings this)) this (get-field f_RUN (get-field f_commonStrings this)))
+            (send (get-field f_midlet this) jm_destroyAppInRunnable_2 #f (get-field f_isProgress this))
+            (send (get-field f_midlet this) jm_setDisplay_1 (NullCanvas.jstatic_NULL_CANVAS))
+            (send (get-field f_midlet this) jm_notifyDestroyed_0)
+            (send (get-field f_logUtil this) jm_putF_3 (get-field f_END_RUNNABLE (get-field f_commonStrings this)) this (get-field f_RUN (get-field f_commonStrings this)))
+            (send (get-field f_processor this) jm_process_0)))))))
+(define (ExitRunnable.jclassValue) ExitRunnable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ExitRunnable = {}
-ExitRunnable.__index = ExitRunnable
-ExitRunnable.className = "ExitRunnable"
-
-function ExitRunnable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.midlet = nil
-    self.processor = nil
-    self.isProgress = nil
-end
+(define (ExitRunnable.jnew_3 _midlet _processor _isProgress)
+  (define this (new ExitRunnable% [jclass "ExitRunnable"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_midlet this _midlet)
+        (set-field! f_isProgress this _isProgress)
+        (set-field! f_processor this _processor)))
+  this)
 
 
-function ExitRunnable.new(midlet, processor, isProgress)
-    local self = setmetatable({}, ExitRunnable)
-    self:_init_fields()
-        self.midlet = midlet
-        self.isProgress = isProgress
-        self.processor = processor
-    return self
-end
-
-
-function ExitRunnable:run()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START_RUNNABLE, self, self.commonStrings.RUN)
-            self.midlet:destroyAppInRunnable(false, self.isProgress)
-            self.midlet:setDisplay(NullCanvas.NULL_CANVAS)
-            self.midlet:notifyDestroyed()
-            self.logUtil:putF(self.commonStrings.END_RUNNABLE, self, self.commonStrings.RUN)
-            self.processor:process()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.RUN, e)
-            local try_ok, try_error = pcall(function()
-                self.processor:process()
-            end)
-            if not try_ok then
-                local e2 = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.RUN, e)
-            end
-        end
-end
-
-return ExitRunnable
 

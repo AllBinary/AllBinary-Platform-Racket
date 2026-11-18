@@ -1,37 +1,33 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.part
 
-local AnimationInterfaceCompositeInterface = require("org.allbinary.animation.AnimationInterfaceCompositeInterface")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/AnimationInterfaceCompositeInterface.rkt"
+  "../../../../org/allbinary/graphics/paint/PaintableInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PartInterface%
+  (class JObject%
+    (super-new)))
+(define (PartInterface.jclassValue) PartInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (PartInterface.jnew_0)
+  (define this (new PartInterface% [jclass "PartInterface"]))
+  this)
 
--- Java interface
-local PartInterface = {}
-PartInterface.__index = PartInterface
-PartInterface.className = "PartInterface"
-setmetatable(PartInterface, {__index = PaintableInterface})
 
-return PartInterface
 

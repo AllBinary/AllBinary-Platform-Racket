@@ -1,138 +1,122 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.caption
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.caption
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Player = require("javax.microedition.media.Player")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local AnimationEventHandler = require("org.allbinary.animation.AnimationEventHandler")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/IndexedAnimation.rkt")
+(lazy-require ["../../../../org/allbinary/animation/AnimationEventHandler.rkt" (AnimationEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/util/event/AllBinaryEventObject.rkt" (AllBinaryEventObject.jnew_1)])
+(lazy-require ["../../../../org/allbinary/time/GameTickTimeDelayHelperFactory.rkt" (GameTickTimeDelayHelperFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/time/TimeDelayHelper.rkt" (TimeDelayHelper.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CaptionIndexedAnimation%
+  (class IndexedAnimation%
+    (super-new)
+    (field [f_animationInterface JR.null])
+    (field [f_movieIndexedAnimationInterface JR.null])
+    (field [f_captionDx 0])
+    (field [f_captionDy 0])
+    (field [f_dx 0])
+    (field [f_dy 0])
+    (field [f_time 0])
+    (field [f_END_EVENT JR.null])
+    (field [f_timeDelayHelper JR.null])
+    (field [f_player JR.null])
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn
+        (when (send (get-field f_timeDelayHelper this) jm_isTime_1 (get-field f_startTime (GameTickTimeDelayHelperFactory.jm_getInstance_0)))
+            (begin
+            (send (get-field f_movieIndexedAnimationInterface this) jm_nextFrame_0)))
+        (when (send this jm_isLastFrame_0)
+            (begin
+            (send (AnimationEventHandler.jm_getInstance_0) jm_fireEvent_1 (get-field f_END_EVENT this)))))))
+    (define/override (jm_isLastFrame_0)
+    (let ()
+      (let/ec jreturn
+        (if (eq? (send (get-field f_movieIndexedAnimationInterface this) jm_getFrame_0) (JR.i32 (- (send this jm_getSize_0) 1)))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))
+    (define/override (jm_previousFrame_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_movieIndexedAnimationInterface this) jm_previousFrame_0))))
+    (define/override (jm_setFrame_1 _index)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_movieIndexedAnimationInterface this) jm_setFrame_1 _index))))
+    (define/override (jm_getFrame_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_movieIndexedAnimationInterface this) jm_getFrame_0)))))
+    (define/override (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_movieIndexedAnimationInterface this) jm_getSize_0)))))
+    (define/override (jm_setSequence_1 _sequence)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_getSequence_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PrimitiveIntUtil.jm_getArrayInstance_0)))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationInterface this) jm_paintXY_3 _graphics (JR.i32 (+ _x (get-field f_captionDx this))) (JR.i32 (+ _y (get-field f_captionDy this))))
+        (send (get-field f_movieIndexedAnimationInterface this) jm_paintXY_3 _graphics (JR.i32 (+ (JR.i32 (+ _x (get-field f_captionDx this))) (get-field f_dx this))) (JR.i32 (+ (JR.i32 (+ _y (get-field f_captionDy this))) (get-field f_dy this)))))))
+    (define/override (jm_paintThreedXYZ_4 _graphics _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationInterface this) jm_paintThreedXYZ_4 _graphics (JR.i32 (+ _x (get-field f_captionDx this))) (JR.i32 (+ _y (get-field f_captionDy this))) _z)
+        (send (get-field f_movieIndexedAnimationInterface this) jm_paintThreedXYZ_4 _graphics (JR.i32 (+ (JR.i32 (+ _x (get-field f_captionDx this))) (get-field f_dx this))) (JR.i32 (+ (JR.i32 (+ _y (get-field f_captionDy this))) (get-field f_dy this))) _z))))))
+(define (CaptionIndexedAnimation.jclassValue) CaptionIndexedAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CaptionIndexedAnimation = {}
-CaptionIndexedAnimation.__index = CaptionIndexedAnimation
-CaptionIndexedAnimation.className = "CaptionIndexedAnimation"
-setmetatable(CaptionIndexedAnimation, {__index = IndexedAnimation})
-
-function CaptionIndexedAnimation:_init_fields()
-    self.animationInterface = nil
-    self.movieIndexedAnimationInterface = nil
-    self.captionDx = nil
-    self.captionDy = nil
-    self.dx = nil
-    self.dy = nil
-    self.time = nil
-    self.END_EVENT = nil
-    self.timeDelayHelper = nil
-    self.player = nil
-end
-
-
-function CaptionIndexedAnimation.new(animationInterface, movieIndexedAnimationInterface, player, captionDx, captionDy, dx, dy, time, animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), CaptionIndexedAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.animationInterface = animationInterface
-        self.movieIndexedAnimationInterface = movieIndexedAnimationInterface
-        self.captionDx = captionDx
-        self.captionDy = captionDy
-        self.dx = dx
-        self.dy = dy
-        self.time = time
-        self.END_EVENT = AllBinaryEventObject.new(self)
-        local timePerFrame = java_idiv(self.time, self:getSize())
-        self.timeDelayHelper = TimeDelayHelper.new(timePerFrame)
-        self.player = player
-        self.player:start()
-    return self
-end
-
-
--- throws Exception
-function CaptionIndexedAnimation:nextFrame()
-        if self.timeDelayHelper:isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) then
-            self.movieIndexedAnimationInterface:nextFrame()
-        end
-        if self:isLastFrame() then
-            AnimationEventHandler.getInstance():fireEvent(self.END_EVENT)
-        end
-end
-
-
-function CaptionIndexedAnimation:isLastFrame()
-        if self.movieIndexedAnimationInterface:getFrame() == self:getSize() - 1 then
-            return true
-        else
-            return false
-        end
-end
-
-
-function CaptionIndexedAnimation:previousFrame()
-        self.movieIndexedAnimationInterface:previousFrame()
-end
-
-
-function CaptionIndexedAnimation:setFrame(index)
-        self.movieIndexedAnimationInterface:setFrame(index)
-end
-
-
-function CaptionIndexedAnimation:getFrame()
-        return self.movieIndexedAnimationInterface:getFrame()
-end
-
-
-function CaptionIndexedAnimation:getSize()
-        return self.movieIndexedAnimationInterface:getSize()
-end
-
-
-function CaptionIndexedAnimation:setSequence(sequence)
-end
-
-
-function CaptionIndexedAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
+(define (CaptionIndexedAnimation.jnew_9 _animationInterface _movieIndexedAnimationInterface _player _captionDx _captionDy _dx _dy _time _animationBehavior)
+  (define this (new CaptionIndexedAnimation% [jclass "CaptionIndexedAnimation"]))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (let ([_timePerFrame JR.null])
+      (let/ec jreturn
+        (void)
+        (set-field! f_animationInterface this _animationInterface)
+        (set-field! f_movieIndexedAnimationInterface this _movieIndexedAnimationInterface)
+        (set-field! f_captionDx this _captionDx)
+        (set-field! f_captionDy this _captionDy)
+        (set-field! f_dx this _dx)
+        (set-field! f_dy this _dy)
+        (set-field! f_time this _time)
+        (set-field! f_END_EVENT this (AllBinaryEventObject.jnew_1 this))
+        (set! _timePerFrame (JR.idiv (get-field f_time this) (send this jm_getSize_0)))
+        (set-field! f_timeDelayHelper this (TimeDelayHelper.jnew_1 _timePerFrame))
+        (set-field! f_player this _player)
+        (send (get-field f_player this) jm_start_0)))
+  this)
 
 
-function CaptionIndexedAnimation:paintXY(graphics, x, y)
-        self.animationInterface:paintXY(graphics, x + self.captionDx, y + self.captionDy)
-        self.movieIndexedAnimationInterface:paintXY(graphics, x + self.captionDx + self.dx, y + self.captionDy + self.dy)
-end
-
-
-function CaptionIndexedAnimation:paintThreedXYZ(graphics, x, y, z)
-        self.animationInterface:paintThreedXYZ(graphics, x + self.captionDx, y + self.captionDy, z)
-        self.movieIndexedAnimationInterface:paintThreedXYZ(graphics, x + self.captionDx + self.dx, y + self.captionDy + self.dy, z)
-end
-
-return CaptionIndexedAnimation
 

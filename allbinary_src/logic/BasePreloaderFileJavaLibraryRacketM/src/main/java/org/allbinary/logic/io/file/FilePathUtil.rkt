@@ -1,54 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io.file
 
-local AbPathData = require("org.allbinary.logic.io.path.AbPathData")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/io/path/AbPathData.rkt" (AbPathData.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringValidationUtil.rkt" (StringValidationUtil.jm_getInstance_0)])
+(lazy-require ["./FilePathData.rkt" (FilePathData.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;Used to correct user input for paths
+(define FilePathUtil%
+  (class JObject%
+    (super-new)))
+(define (FilePathUtil.jclassValue) FilePathUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (FilePathUtil.jnew_0)
+  (define this (new FilePathUtil% [jclass "FilePathUtil"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
---Used to correct user input for paths
-local FilePathUtil = {}
-FilePathUtil.__index = FilePathUtil
-FilePathUtil.className = "FilePathUtil"
+(define (FilePathUtil.jm_adjust_1 _path)
+    (let ([_abPathData JR.null][_stringValidationUtil JR.null][_filePathData JR.null])
+      (let/ec jreturn
+        (set! _abPathData (AbPathData.jm_getInstance_0))
+        (set! _stringValidationUtil (StringValidationUtil.jm_getInstance_0))
+        (set! _filePathData (FilePathData.jm_getInstance_0))
+        (when (send _stringValidationUtil jm_isEmpty_1 _path)
+            (begin
+            (jreturn (get-field f_PATH_START _filePathData))))
+        (set! _path (JR.replace _path (get-field f_SEPARATORCHAR _abPathData) (get-field f_SEPARATORCHAR _filePathData)))
+        (jreturn _path))))
 
 
-function FilePathUtil.new()
-    local self = setmetatable({}, FilePathUtil)
-    return self
-end
-
-
-function FilePathUtil.adjust(path)
-        local abPathData = AbPathData.getInstance()
-        local stringValidationUtil = StringValidationUtil.getInstance()
-        local filePathData = FilePathData.getInstance()
-        if stringValidationUtil:isEmpty(path) then
-            return filePathData.PATH_START
-        end
-        path = path:replace(abPathData.SEPARATORCHAR, filePathData.SEPARATORCHAR)
-        return path
-end
-
-return FilePathUtil
 

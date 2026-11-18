@@ -1,78 +1,62 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./AnimationInterfaceFactoryInterface.rkt"
+  "./ProceduralAnimationInterfaceFactoryInterface.rkt")
+(lazy-require ["./NullRotationAnimation2.rkt" (NullRotationAnimation2.jnew_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define NullRotationAnimationFactory%
+  (class JObject%
+    (super-new)
+    (field [f_NULL_ROTATION_ANIMATION_ARRAY JR.null])
+    (field [f_NULL_ANIMATION JR.null])
+    (define/public (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_ANIMATION this)))))
+    (define/public (jm_getInstanceAnimation_1 _animationInterface)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_NULL_ANIMATION this)))))
+    (define/public (jm_setInitialScale_1 _scaleProperties)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullRotationAnimationFactory.jclassValue) NullRotationAnimationFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY 'jnone)
+(define (NullRotationAnimationFactory.jstatic_NULL_ROTATION_ANIMATION_FACTORY)
+  (when (eq? NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY 'jnone) (set! NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY (NullRotationAnimationFactory.jnew_0)))
+  NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY)
+(define (NullRotationAnimationFactory.jsetstatic_NULL_ROTATION_ANIMATION_FACTORY value) (set! NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (NullRotationAnimationFactory.jnew_0)
+  (define this (new NullRotationAnimationFactory% [jclass "NullRotationAnimationFactory"]))
+    (set-field! f_NULL_ROTATION_ANIMATION_ARRAY this (JR.newArray JR.null 0))
+    (set-field! f_NULL_ANIMATION this (NullRotationAnimation2.jnew_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local NullRotationAnimationFactory = {}
-NullRotationAnimationFactory.__index = NullRotationAnimationFactory
-NullRotationAnimationFactory.className = "NullRotationAnimationFactory"
-
-function NullRotationAnimationFactory:_init_fields()
-    self.NULL_ROTATION_ANIMATION_ARRAY = java_new_array(nil, 0)
-    self.NULL_ANIMATION = NullRotationAnimation2.new()
-end
-
-
-function NullRotationAnimationFactory.new()
-    local self = setmetatable({}, NullRotationAnimationFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function NullRotationAnimationFactory.getFactoryInstance()
-        return NullRotationAnimationFactory.NULL_ROTATION_ANIMATION_FACTORY
-end
-
-
-function NullRotationAnimationFactory:getInstance(instanceId)
-        return self.NULL_ANIMATION
-end
+(define (NullRotationAnimationFactory.jm_getFactoryInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullRotationAnimationFactory.jstatic_NULL_ROTATION_ANIMATION_FACTORY)))))
 
 
--- throws Exception
-function NullRotationAnimationFactory:getInstanceAnimation(animationInterface)
-        return self.NULL_ANIMATION
-end
-
-
-function NullRotationAnimationFactory:setInitialScale(scaleProperties)
-end
-
-NullRotationAnimationFactory.NULL_ROTATION_ANIMATION_FACTORY = NullRotationAnimationFactory.new()
-
-return NullRotationAnimationFactory
 

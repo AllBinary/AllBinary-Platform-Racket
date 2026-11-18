@@ -1,75 +1,60 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.terrain
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2011 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.terrain
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/AllBinaryEventObject.rkt")
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["./BasicTerrainInfo.rkt" (BasicTerrainInfo.jstatic_NULL_BASIC_TERRAIN_INFO)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TerrainEvent%
+  (class AllBinaryEventObject%
+    (super-new)
+    (field [f_basicTerrainInfo JR.null])
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 "TerrainEvent: \n")
+        (send _stringBuffer jm_append_1 "LayerInterface: ")
+        (send _stringBuffer jm_append_1 (send (get-field f_basicTerrainInfo this) jm_toString_0))
+        (jreturn (send _stringBuffer jm_toString_0)))))
+    (define/public (jm_getBasicTerrainInfo_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_basicTerrainInfo this)))))
+    (define/public (jm_setBasicTerrainInfo_1 _basicTerrainInfo)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_basicTerrainInfo this _basicTerrainInfo))))
+    (define/public (jm_setBasicTerrainInfoForCircularStaticPool_1 _basicTerrainInfo)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_basicTerrainInfo this _basicTerrainInfo))))))
+(define (TerrainEvent.jclassValue) TerrainEvent%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TerrainEvent = {}
-TerrainEvent.__index = TerrainEvent
-TerrainEvent.className = "TerrainEvent"
-setmetatable(TerrainEvent, {__index = AllBinaryEventObject})
-
-function TerrainEvent:_init_fields()
-    self.basicTerrainInfo = BasicTerrainInfo.NULL_BASIC_TERRAIN_INFO
-end
-
-
-function TerrainEvent.new(basicTerrainInfo)
-    local self = setmetatable(AllBinaryEventObject.new(basicTerrainInfo), TerrainEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setBasicTerrainInfo(self.basicTerrainInfo)
-    return self
-end
-
-
-function TerrainEvent:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("TerrainEvent: \n")
-        stringBuffer:append("LayerInterface: ")
-        stringBuffer:append(tostring(self.basicTerrainInfo))
-        return tostring(stringBuffer)
-end
-TerrainEvent.__tostring = function(self) return self:toString() end
-
-
-function TerrainEvent:getBasicTerrainInfo()
-        return self.basicTerrainInfo
-end
+(define (TerrainEvent.jnew_1 _basicTerrainInfo)
+  (define this (new TerrainEvent% [jclass "TerrainEvent"]))
+    (set-field! f_basicTerrainInfo this (BasicTerrainInfo.jstatic_NULL_BASIC_TERRAIN_INFO))
+    (let ()
+      (let/ec jreturn
+        (void)
+        (send this jm_setBasicTerrainInfo_1 (get-field f_basicTerrainInfo this))))
+  this)
 
 
-function TerrainEvent:setBasicTerrainInfo(basicTerrainInfo)
-        self.basicTerrainInfo = basicTerrainInfo
-end
-
-
-function TerrainEvent:setBasicTerrainInfoForCircularStaticPool(basicTerrainInfo)
-        self.basicTerrainInfo = basicTerrainInfo
-end
-
-return TerrainEvent
 

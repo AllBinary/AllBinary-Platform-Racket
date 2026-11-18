@@ -1,85 +1,77 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local RectangleFactory = require("org.allbinary.graphics.RectangleFactory")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local SWTJOGLProcessor = require("org.allbinary.graphics.threed.SWTJOGLProcessor")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/PointFactory.rkt" (PointFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/Rectangle.rkt" (Rectangle.jnew_3)])
+(lazy-require ["../../../../../org/allbinary/graphics/RectangleFactory.rkt" (RectangleFactory.jstatic_SINGLETON)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/font/MyFontProcessor.rkt" (MyFontProcessor.jm_defaultStringWidth_2)])
+(lazy-require ["../../../../../org/allbinary/graphics/opengles/OpenGLFeatureFactory.rkt" (OpenGLFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/threed/SWTJOGLProcessor.rkt" (SWTJOGLProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MyFormUtil%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_popupMenuRectangle JR.null])
+    (define/public (jm_updateMeasurement_1 _graphics)
+    (let ([_font JR.null][_displayInfo JR.null][_features JR.null][_isOpenGL JR.null][_TOTAL_CHAR_WIDTH JR.null][_width JR.null][_pointFactory JR.null])
+      (let/ec jreturn
+        (set! _font (send _graphics jm_getFont_0))
+        (set! _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (set! _features (Features.jm_getInstance_0))
+        (set! _isOpenGL (send _features jm_isDefault_1 (get-field f_OPENGL (OpenGLFeatureFactory.jm_getInstance_0))))
+        (set! _TOTAL_CHAR_WIDTH (if (and (send (SWTJOGLProcessor.jm_getInstance_0) jm_isJOGL_0) _isOpenGL) 2 3))
+        (set! _width (MyFontProcessor.jm_defaultStringWidth_2 _font _TOTAL_CHAR_WIDTH))
+        (set! _pointFactory (PointFactory.jm_getInstance_0))
+        (if (< (send _displayInfo jm_getLastHeight_0) 320)
+            (begin
+            (set-field! f_popupMenuRectangle this (Rectangle.jnew_3 (send _pointFactory jm_createXY_2 0 25) _width (JR.i32 (+ (JR.i32 (* (send _font jm_getHeight_0) 4)) 2)))))
+            (begin
+            (set-field! f_popupMenuRectangle this (Rectangle.jnew_3 (send _pointFactory jm_createXY_2 0 (JR.i32 (- (send _displayInfo jm_getLastHalfHeight_0) 70))) _width (JR.i32 (* (send _font jm_getHeight_0) 5)))))))))
+    (define/public (jm_getPopupMenuRectangle_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_popupMenuRectangle this)))))))
+(define (MyFormUtil.jclassValue) MyFormUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define MyFormUtil.jcell_instance 'jnone)
+(define (MyFormUtil.jstatic_instance)
+  (when (eq? MyFormUtil.jcell_instance 'jnone) (set! MyFormUtil.jcell_instance (MyFormUtil.jnew_0)))
+  MyFormUtil.jcell_instance)
+(define (MyFormUtil.jsetstatic_instance value) (set! MyFormUtil.jcell_instance value))
 
-local MyFormUtil = {}
-MyFormUtil.__index = MyFormUtil
-MyFormUtil.className = "MyFormUtil"
+(define (MyFormUtil.jnew_0)
+  (define this (new MyFormUtil% [jclass "MyFormUtil"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_popupMenuRectangle this (RectangleFactory.jstatic_SINGLETON))
+  this)
 
-function MyFormUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.popupMenuRectangle = RectangleFactory.SINGLETON
-end
-
-function MyFormUtil.new()
-    local self = setmetatable({}, MyFormUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function MyFormUtil.getInstance()
-        return MyFormUtil.instance
-end
-
-
-function MyFormUtil:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        local features = Features.getInstance()
-        local isOpenGL = features:isDefault(OpenGLFeatureFactory.getInstance().OPENGL)
-        local TOTAL_CHAR_WIDTH = (function() if SWTJOGLProcessor.getInstance():isJOGL() and isOpenGL then return 2 else return 3 end end)()
-        local width = MyFontProcessor.defaultStringWidth(font, TOTAL_CHAR_WIDTH)
-        local pointFactory = PointFactory.getInstance()
-        if displayInfo:getLastHeight() < 320 then
-            self.popupMenuRectangle = Rectangle.new(pointFactory:createXY(0, 25), width, (font:getHeight() * 4) + 2)
-        else
-            self.popupMenuRectangle = Rectangle.new(pointFactory:createXY(0, displayInfo:getLastHalfHeight() - 70), width, (font:getHeight() * 5))
-        end
-end
+(define (MyFormUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (MyFormUtil.jstatic_instance)))))
 
 
-function MyFormUtil:getPopupMenuRectangle()
-        return self.popupMenuRectangle
-end
-
-MyFormUtil.instance = MyFormUtil.new()
-
-return MyFormUtil
 

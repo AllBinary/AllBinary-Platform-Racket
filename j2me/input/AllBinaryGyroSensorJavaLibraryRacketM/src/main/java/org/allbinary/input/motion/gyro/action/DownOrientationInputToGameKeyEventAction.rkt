@@ -1,55 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gyro.action
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.gyro.action
 
-local PlatformInputMappingFactory = require("org.allbinary.game.input.PlatformInputMappingFactory")
-local GameKeyCompleteMotionGestureInputEvent = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEvent")
-local OrientationMotionGestureFactory = require("org.allbinary.input.gyro.OrientationMotionGestureFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent.rkt")
+(lazy-require ["../../../../../../org/allbinary/game/input/PlatformInputMappingFactory.rkt" (PlatformInputMappingFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/input/gyro/OrientationMotionGestureFactory.rkt" (OrientationMotionGestureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DownOrientationInputToGameKeyEventAction%
+  (class GameKeyCompleteMotionGestureInputEvent%
+    (super-new)))
+(define (DownOrientationInputToGameKeyEventAction.jclassValue) DownOrientationInputToGameKeyEventAction%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DownOrientationInputToGameKeyEventAction.jcell_instance 'jnone)
+(define (DownOrientationInputToGameKeyEventAction.jstatic_instance)
+  (when (eq? DownOrientationInputToGameKeyEventAction.jcell_instance 'jnone) (set! DownOrientationInputToGameKeyEventAction.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  DownOrientationInputToGameKeyEventAction.jcell_instance)
+(define (DownOrientationInputToGameKeyEventAction.jsetstatic_instance value) (set! DownOrientationInputToGameKeyEventAction.jcell_instance value))
 
-local DownOrientationInputToGameKeyEventAction = {}
-DownOrientationInputToGameKeyEventAction.__index = DownOrientationInputToGameKeyEventAction
-DownOrientationInputToGameKeyEventAction.className = "DownOrientationInputToGameKeyEventAction"
-setmetatable(DownOrientationInputToGameKeyEventAction, {__index = GameKeyCompleteMotionGestureInputEvent})
+(define (DownOrientationInputToGameKeyEventAction.jnew_0)
+  (define this (new DownOrientationInputToGameKeyEventAction% [jclass "DownOrientationInputToGameKeyEventAction"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
+
+(define (DownOrientationInputToGameKeyEventAction.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (DownOrientationInputToGameKeyEventAction.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! DownOrientationInputToGameKeyEventAction.jcell_instance (DownOrientationInputToGameKeyEventAction.jnew_0))))
+        (jreturn (DownOrientationInputToGameKeyEventAction.jstatic_instance)))))
 
 
-function DownOrientationInputToGameKeyEventAction.getInstance()
-        if DownOrientationInputToGameKeyEventAction.instance == NullUtil.getInstance().NULL_OBJECT then
-            DownOrientationInputToGameKeyEventAction.instance = DownOrientationInputToGameKeyEventAction.new()
-        end
-        return DownOrientationInputToGameKeyEventAction.instance
-end
-
-
-function DownOrientationInputToGameKeyEventAction.new()
-    local self = setmetatable(GameKeyCompleteMotionGestureInputEvent.new("Down Action", OrientationMotionGestureFactory.getInstance().DOWN, PlatformInputMappingFactory.getInstance():getPersistentInputMappingInstance():getInputMapping()), DownOrientationInputToGameKeyEventAction)
-        -- super(...) made self above
-    return self
-end
-
-DownOrientationInputToGameKeyEventAction.instance = NullUtil.getInstance().NULL_OBJECT
-
-return DownOrientationInputToGameKeyEventAction
 

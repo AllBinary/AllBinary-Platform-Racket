@@ -1,66 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/paint/PaintableInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TestInputInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_up_0)
+      (raise (JR.newException "AbstractMethodError" "up")))
+    (define/public (jm_down_0)
+      (raise (JR.newException "AbstractMethodError" "down")))
+    (define/public (jm_left_0)
+      (raise (JR.newException "AbstractMethodError" "left")))
+    (define/public (jm_right_0)
+      (raise (JR.newException "AbstractMethodError" "right")))
+    (define/public (jm_strafeLeft_0)
+      (raise (JR.newException "AbstractMethodError" "strafeLeft")))
+    (define/public (jm_strafeRight_0)
+      (raise (JR.newException "AbstractMethodError" "strafeRight")))))
+(define (TestInputInterface.jclassValue) TestInputInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local TestInputInterface = {}
-TestInputInterface.__index = TestInputInterface
-TestInputInterface.className = "TestInputInterface"
-setmetatable(TestInputInterface, {__index = PaintableInterface})
-
-
-function TestInputInterface:up()
-    error("abstract method up")
-end
-
-
-function TestInputInterface:down()
-    error("abstract method down")
-end
+(define (TestInputInterface.jnew_0)
+  (define this (new TestInputInterface% [jclass "TestInputInterface"]))
+  this)
 
 
-function TestInputInterface:left()
-    error("abstract method left")
-end
-
-
-function TestInputInterface:right()
-    error("abstract method right")
-end
-
-
-function TestInputInterface:strafeLeft()
-    error("abstract method strafeLeft")
-end
-
-
-function TestInputInterface:strafeRight()
-    error("abstract method strafeRight")
-end
-
-return TestInputInterface
 

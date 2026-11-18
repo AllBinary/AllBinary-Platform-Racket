@@ -1,60 +1,64 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.persistance
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define PersistanceStrings%
+  (class JObject%
+    (super-new)
+    (field [f_SAVING JR.null])
+    (field [f_NUMBER_OF_RECORDS JR.null])
+    (field [f_LOADING_ID JR.null])
+    (field [f_LOAD_ALL JR.null])
+    (field [f_DELETING_WITH_ID JR.null])
+    (field [f_CLOSING_RECORDSTORE JR.null])
+    (field [f_NOT_SAVING JR.null])
+    (field [f_ERROR_LOADING JR.null])
+    (field [f_ERROR_LOADING_ID JR.null])
+    (field [f_ID JR.null])
+    (field [f_GAME_ACTION_INPUT JR.null])))
+(define (PersistanceStrings.jclassValue) PersistanceStrings%)
+
+(define PersistanceStrings.jcell_instance 'jnone)
+(define (PersistanceStrings.jstatic_instance)
+  (when (eq? PersistanceStrings.jcell_instance 'jnone) (set! PersistanceStrings.jcell_instance (PersistanceStrings.jnew_0)))
+  PersistanceStrings.jcell_instance)
+(define (PersistanceStrings.jsetstatic_instance value) (set! PersistanceStrings.jcell_instance value))
+
+(define (PersistanceStrings.jnew_0)
+  (define this (new PersistanceStrings% [jclass "PersistanceStrings"]))
+    (set-field! f_SAVING this "Saving: ")
+    (set-field! f_NUMBER_OF_RECORDS this "Number of records: ")
+    (set-field! f_LOADING_ID this "Loading data with id: ")
+    (set-field! f_LOAD_ALL this "loadAll")
+    (set-field! f_DELETING_WITH_ID this "Deleting data with id: ")
+    (set-field! f_CLOSING_RECORDSTORE this "Closing RecordStore")
+    (set-field! f_NOT_SAVING this "Not Saving: ")
+    (set-field! f_ERROR_LOADING this "Error Loading gameActionInput: ")
+    (set-field! f_ERROR_LOADING_ID this "Error Loading id: ")
+    (set-field! f_ID this " id: ")
+    (set-field! f_GAME_ACTION_INPUT this " GameActionInput: ")
+  this)
+
+(define (PersistanceStrings.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PersistanceStrings.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PersistanceStrings = {}
-PersistanceStrings.__index = PersistanceStrings
-PersistanceStrings.className = "PersistanceStrings"
-
-function PersistanceStrings:_init_fields()
-    self.SAVING = "Saving: "
-    self.NUMBER_OF_RECORDS = "Number of records: "
-    self.LOADING_ID = "Loading data with id: "
-    self.LOAD_ALL = "loadAll"
-    self.DELETING_WITH_ID = "Deleting data with id: "
-    self.CLOSING_RECORDSTORE = "Closing RecordStore"
-    self.NOT_SAVING = "Not Saving: "
-    self.ERROR_LOADING = "Error Loading gameActionInput: "
-    self.ERROR_LOADING_ID = "Error Loading id: "
-    self.ID = " id: "
-    self.GAME_ACTION_INPUT = " GameActionInput: "
-end
-
-function PersistanceStrings.new()
-    local self = setmetatable({}, PersistanceStrings)
-    self:_init_fields()
-    return self
-end
-
-
-function PersistanceStrings.getInstance()
-        return PersistanceStrings.instance
-end
-
-PersistanceStrings.instance = PersistanceStrings.new()
-
-return PersistanceStrings
 

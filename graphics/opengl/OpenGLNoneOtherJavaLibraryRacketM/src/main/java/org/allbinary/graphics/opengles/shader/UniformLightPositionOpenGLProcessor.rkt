@@ -1,46 +1,37 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.opengles.shader
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local OpenGLObject3dProcessor = require("org.allbinary.graphics.opengles.shader.OpenGLObject3dProcessor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./OpenGLObject3dProcessor.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define UniformLightPositionOpenGLProcessor%
+  (class OpenGLObject3dProcessor%
+    (super-new)
+    (define/override (jm_process_2 _gl _unused)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (UniformLightPositionOpenGLProcessor.jclassValue) UniformLightPositionOpenGLProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local UniformLightPositionOpenGLProcessor = {}
-UniformLightPositionOpenGLProcessor.__index = UniformLightPositionOpenGLProcessor
-UniformLightPositionOpenGLProcessor.className = "UniformLightPositionOpenGLProcessor"
-setmetatable(UniformLightPositionOpenGLProcessor, {__index = OpenGLObject3dProcessor})
-
-
-function UniformLightPositionOpenGLProcessor.new(shaderComposite, handleIndex)
-    local self = setmetatable(OpenGLObject3dProcessor.new(), UniformLightPositionOpenGLProcessor)
-    return self
-end
+(define (UniformLightPositionOpenGLProcessor.jnew_2 _shaderComposite _handleIndex)
+  (define this (new UniformLightPositionOpenGLProcessor% [jclass "UniformLightPositionOpenGLProcessor"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function UniformLightPositionOpenGLProcessor:process(gl, unused)
-end
-
-return UniformLightPositionOpenGLProcessor
 

@@ -1,63 +1,55 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.analog
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input.analog
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["./AnalogLocationInput.rkt" (AnalogLocationInput.jnew_1 AnalogLocationInput.jstatic_NULL_ANALOG_LOCATION_INPUT)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AnalogLocationInputFactory%
+  (class JObject%
+    (super-new)
+    (field [f_list JR.null])
+    (define/public (jm_addPlayer_1 _playerInputId)
+    (let ([_analogLocationInput JR.null])
+      (let/ec jreturn
+        (set! _analogLocationInput (AnalogLocationInput.jstatic_NULL_ANALOG_LOCATION_INPUT))
+        (when (< _playerInputId (send (get-field f_list this) jm_size_0))
+            (begin
+            (set! _analogLocationInput (send (get-field f_list this) jm_get_1 _playerInputId))))
+        (when (eq? _analogLocationInput (AnalogLocationInput.jstatic_NULL_ANALOG_LOCATION_INPUT))
+            (begin
+            (set! _analogLocationInput (AnalogLocationInput.jnew_1 _playerInputId))
+            (send (get-field f_list this) jm_add_1 _analogLocationInput))))))
+    (define/public (jm_getInstanceForPlayer_1 _playerInputId)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_list this) jm_get_1 _playerInputId)))))
+    (define/public (jm_getList_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_list this)))))))
+(define (AnalogLocationInputFactory.jclassValue) AnalogLocationInputFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AnalogLocationInputFactory.jcell_instance 'jnone)
+(define (AnalogLocationInputFactory.jstatic_instance)
+  (when (eq? AnalogLocationInputFactory.jcell_instance 'jnone) (set! AnalogLocationInputFactory.jcell_instance (AnalogLocationInputFactory.jnew_0)))
+  AnalogLocationInputFactory.jcell_instance)
+(define (AnalogLocationInputFactory.jsetstatic_instance value) (set! AnalogLocationInputFactory.jcell_instance value))
 
-local AnalogLocationInputFactory = {}
-AnalogLocationInputFactory.__index = AnalogLocationInputFactory
-AnalogLocationInputFactory.className = "AnalogLocationInputFactory"
+(define (AnalogLocationInputFactory.jnew_0)
+  (define this (new AnalogLocationInputFactory% [jclass "AnalogLocationInputFactory"]))
+    (set-field! f_list this (BasicArrayListD.jnew_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function AnalogLocationInputFactory:_init_fields()
-    self.list = BasicArrayListD.new()
-end
-
-
-function AnalogLocationInputFactory.getInstance()
-        return AnalogLocationInputFactory.instance
-end
-
-
-function AnalogLocationInputFactory.new()
-    local self = setmetatable({}, AnalogLocationInputFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function AnalogLocationInputFactory:addPlayer(playerInputId)
-        local analogLocationInput = AnalogLocationInput.NULL_ANALOG_LOCATION_INPUT
-        if playerInputId < self.list:size() then
-            analogLocationInput = self.list:get(playerInputId)
-        end
-        if analogLocationInput == AnalogLocationInput.NULL_ANALOG_LOCATION_INPUT then
-            analogLocationInput = AnalogLocationInput.new(playerInputId)
-            self.list:add(analogLocationInput)
-        end
-end
-
-
-function AnalogLocationInputFactory:getInstanceForPlayer(playerInputId)
-        return self.list:get(playerInputId)
-end
+(define (AnalogLocationInputFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AnalogLocationInputFactory.jstatic_instance)))))
 
 
-function AnalogLocationInputFactory:getList()
-        return self.list
-end
-
-AnalogLocationInputFactory.instance = AnalogLocationInputFactory.new()
-
-return AnalogLocationInputFactory
 

@@ -1,62 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.damage
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.combat.damage
 
-local DamageableInterface = require("org.allbinary.game.combat.damage.DamageableInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./DamageableInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DamageableBaseBehavior%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className this)))))
+    (define/public (jm_damage_2 _damage _damageType)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getDamage_1 _damageType)
+    (let ()
+      (let/ec jreturn
+        (jreturn 6000))))))
+(define (DamageableBaseBehavior.jclassValue) DamageableBaseBehavior%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DamageableBaseBehavior.jcell_instance 'jnone)
+(define (DamageableBaseBehavior.jstatic_instance)
+  (when (eq? DamageableBaseBehavior.jcell_instance 'jnone) (set! DamageableBaseBehavior.jcell_instance (DamageableBaseBehavior.jnew_0)))
+  DamageableBaseBehavior.jcell_instance)
+(define (DamageableBaseBehavior.jsetstatic_instance value) (set! DamageableBaseBehavior.jcell_instance value))
 
-local DamageableBaseBehavior = {}
-DamageableBaseBehavior.__index = DamageableBaseBehavior
-DamageableBaseBehavior.className = "DamageableBaseBehavior"
+(define (DamageableBaseBehavior.jnew_0)
+  (define this (new DamageableBaseBehavior% [jclass "DamageableBaseBehavior"]))
+  this)
 
-function DamageableBaseBehavior.new()
-    local self = setmetatable({}, DamageableBaseBehavior)
-    return self
-end
-
-
-function DamageableBaseBehavior.getInstance()
-        return DamageableBaseBehavior.instance
-end
-
-
-function DamageableBaseBehavior:getName()
-        return getmetatable(self).className
-end
-
-
--- throws Exception
-function DamageableBaseBehavior:damage(damage, damageType)
-end
+(define (DamageableBaseBehavior.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DamageableBaseBehavior.jstatic_instance)))))
 
 
--- throws Exception
-function DamageableBaseBehavior:getDamage(damageType)
-        return 6000
-end
-
-DamageableBaseBehavior.instance = DamageableBaseBehavior.new()
-
-return DamageableBaseBehavior
 

@@ -61,11 +61,13 @@
             (begin
             (set! _closestDirection (get-field f_RIGHT_FRAME this))))
         (jreturn (send _closestDirection jm_intValue_0)))))))
+(define (AngleIncrementInfo.jclassValue) AngleIncrementInfo%)
 
 (define AngleIncrementInfo.jcell_INCREMENT 'jnone)
 (define (AngleIncrementInfo.jstatic_INCREMENT)
   (when (eq? AngleIncrementInfo.jcell_INCREMENT 'jnone) (set! AngleIncrementInfo.jcell_INCREMENT "Inc: "))
   AngleIncrementInfo.jcell_INCREMENT)
+(define (AngleIncrementInfo.jsetstatic_INCREMENT value) (set! AngleIncrementInfo.jcell_INCREMENT value))
 
 (define (AngleIncrementInfo.jnew_1 _angleIncrement)
   (define this (new AngleIncrementInfo% [jclass "AngleIncrementInfo"]))

@@ -30,11 +30,13 @@
     (define/public (jm_fireEvent_1 _value)
     (let ()
       (let/ec jreturn (void))))))
+(define (ResizableListenerHandler.jclassValue) ResizableListenerHandler%)
 
 (define ResizableListenerHandler.jcell_instance 'jnone)
 (define (ResizableListenerHandler.jstatic_instance)
   (when (eq? ResizableListenerHandler.jcell_instance 'jnone) (set! ResizableListenerHandler.jcell_instance (ResizableListenerHandler.jnew_0)))
   ResizableListenerHandler.jcell_instance)
+(define (ResizableListenerHandler.jsetstatic_instance value) (set! ResizableListenerHandler.jcell_instance value))
 
 (define (ResizableListenerHandler.jnew_0)
   (define this (new ResizableListenerHandler% [jclass "ResizableListenerHandler"]))

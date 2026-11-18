@@ -1,82 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define BasicLayerProcessor%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_list JR.null])
+    (define/public (jm_add_1 _layerInterface)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_list this) jm_contains_1 _layerInterface))
+            (begin
+            (send (get-field f_list this) jm_add_1 _layerInterface))))))
+    (define/public (jm_process_1 _allBinaryLayerManager)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (CommonStrings.jm_getInstance_0)))))))
+    (define/public (jm_getList_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_list this)))))))
+(define (BasicLayerProcessor.jclassValue) BasicLayerProcessor%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicLayerProcessor.jcell_NULL_LAYER_PROCESSOR 'jnone)
+(define (BasicLayerProcessor.jstatic_NULL_LAYER_PROCESSOR)
+  (when (eq? BasicLayerProcessor.jcell_NULL_LAYER_PROCESSOR 'jnone) (set! BasicLayerProcessor.jcell_NULL_LAYER_PROCESSOR (BasicLayerProcessor.jnew_0)))
+  BasicLayerProcessor.jcell_NULL_LAYER_PROCESSOR)
+(define (BasicLayerProcessor.jsetstatic_NULL_LAYER_PROCESSOR value) (set! BasicLayerProcessor.jcell_NULL_LAYER_PROCESSOR value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BasicLayerProcessor = {}
-BasicLayerProcessor.__index = BasicLayerProcessor
-BasicLayerProcessor.className = "BasicLayerProcessor"
-
-function BasicLayerProcessor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.list = BasicArrayListD.new()
-end
-
-
-function BasicLayerProcessor.new()
-    local self = setmetatable({}, BasicLayerProcessor)
-    self:_init_fields()
-    return self
-end
+(define (BasicLayerProcessor.jnew_0)
+  (define this (new BasicLayerProcessor% [jclass "BasicLayerProcessor"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_list this (BasicArrayListD.jnew_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function BasicLayerProcessor:add(layerInterface)
-        if not self.list:contains(layerInterface) then
-            self.list:add(layerInterface)
-        end
-end
-
-
--- throws Exception
-function BasicLayerProcessor:process(allBinaryLayerManager)
-        error(java_exception("Exception", CommonStrings.getInstance().NOT_IMPLEMENTED), 0)
-end
-
-
-function BasicLayerProcessor:getList()
-        return self.list
-end
-
-BasicLayerProcessor.NULL_LAYER_PROCESSOR = BasicLayerProcessor.new()
-
-return BasicLayerProcessor
 

@@ -1,134 +1,95 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.midlet
 
-local GameCanvasRunnableInterface = require("org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ClientInformationFactory = require("org.allbinary.logic.system.security.licensing.ClientInformationFactory")
-local PrimaryThreadPool = require("org.allbinary.thread.PrimaryThreadPool")
-local NullGameCanvasRunnable = require("org.allbinary.game.displayable.canvas.NullGameCanvasRunnable")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local GameMidlet = require("org.allbinary.game.midlet.GameMidlet")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./GameMidlet.rkt")
+(lazy-require ["../../../../org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory.rkt" (ProgressCanvasFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/thread/PrimaryThreadPool.rkt" (PrimaryThreadPool.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/displayable/canvas/NullGameCanvasRunnable.rkt" (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE)])
+(lazy-require ["./DemoRunnable.rkt" (DemoRunnable.jnew_1)])
+(lazy-require ["./CreateGameRunnable.rkt" (CreateGameRunnable.jnew_2)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define DemoGameMidlet%
+  (class GameMidlet%
+    (super-new)
+    (define/public (jm_isContinue_0)
+    (let ([_hashtable JR.null])
+      (let/ec jreturn
+        (set! _hashtable (send this jm_getStartStateHashtable_0))
+        (if (and (not (JR.null? _hashtable)) (> (send _hashtable jm_size_0) 0))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))
+    (define/public (jm_getHighestLevel_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 1))))
+    (define/public (jm_createDemoGameCanvasRunnableInterface_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (jreturn (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE)))))
+    (define/public (jm_createGameCanvasRunnable_1 _allBinaryGameLayerManager)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_createGameCanvasRunnableInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_createGameCanvasRunnable_1 (send this jm_createGameLayerManager_0))))))
+    (define/public (jm_demoSetup_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_postDemoSetup_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_setDemo_0)
+    (let ([_progressCanvas JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (send _progressCanvas jm_start_0)
+        (send (PrimaryThreadPool.jm_getInstance_0) jm_runTask_1 (DemoRunnable.jnew_1 this)))))
+    (define/override (jm_createGame_0)
+    (let ([_CREATE_GAME JR.null][_progressCanvas JR.null][_hashtable JR.null])
+      (let/ec jreturn
+        (set! _CREATE_GAME "createGame")
+        (JR.className (get-field f_logUtil this))
+        (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (send _progressCanvas jm_start_0)
+        (set! _hashtable (send this jm_getStartStateHashtable_0))
+        (send this jm_setStartStateHashtable_1 (get-field f_NULL_TABLE (StdUtil.jm_getInstance_0)))
+        (send (PrimaryThreadPool.jm_getInstance_0) jm_runTask_1 (CreateGameRunnable.jnew_2 this _hashtable))
+        (JR.className (get-field f_logUtil this)))))
+    (define/public (jm_isReady_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #t))))))
+(define (DemoGameMidlet.jclassValue) DemoGameMidlet%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local DemoGameMidlet = {}
-DemoGameMidlet.__index = DemoGameMidlet
-DemoGameMidlet.className = "DemoGameMidlet"
-setmetatable(DemoGameMidlet, {__index = GameMidlet})
-
-
-function DemoGameMidlet.new(clientInformationFactory)
-    local self = setmetatable(GameMidlet.new(clientInformationFactory), DemoGameMidlet)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function DemoGameMidlet:isContinue()
-        local hashtable = self:getStartStateHashtable()
-        if hashtable ~= nil and hashtable:size() > 0 then
-            return true
-        else
-            return false
-        end
-end
-
-
-function DemoGameMidlet:getHighestLevel()
-        return 1
-end
-
-
--- throws Exception
-function DemoGameMidlet:createDemoGameCanvasRunnableInterface()
-        self.logUtil:putF(self.commonStrings.NOT_IMPLEMENTED, self, self.commonStrings.CREATE)
-        return NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE
-end
-
-
--- throws Exception
-function DemoGameMidlet:createGameCanvasRunnable(allBinaryGameLayerManager)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function DemoGameMidlet:createGameCanvasRunnableInterface()
-        return self:createGameCanvasRunnable(self:createGameLayerManager())
-end
+(define (DemoGameMidlet.jnew_1 _clientInformationFactory)
+  (define this (new DemoGameMidlet% [jclass "DemoGameMidlet"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function DemoGameMidlet:demoSetup()
-end
-
-
-function DemoGameMidlet:postDemoSetup()
-end
-
-
--- throws Exception
-function DemoGameMidlet:setDemo()
-        self.logUtil:putF(self.commonStrings.START, self, "setDemo")
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        progressCanvas:start()
-        PrimaryThreadPool.getInstance():runTask(DemoRunnable.new(self))
-end
-
-
--- throws Exception
-function DemoGameMidlet:createGame()
-        local CREATE_GAME = "createGame"
-        self.logUtil:putF(self.commonStrings.START, self, CREATE_GAME)
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        progressCanvas:start()
-        local hashtable = self:getStartStateHashtable()
-        self:setStartStateHashtable(StdUtil.getInstance().NULL_TABLE)
-        PrimaryThreadPool.getInstance():runTask(CreateGameRunnable.new(self, hashtable))
-        self.logUtil:putF(self.commonStrings.END, self, CREATE_GAME)
-end
-
-
-function DemoGameMidlet:isReady()
-        return true
-end
-
-return DemoGameMidlet
 

@@ -1,51 +1,44 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping.event
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input.mapping.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local InputMappingEventListenerInterface = require("org.allbinary.game.input.mapping.event.InputMappingEventListenerInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "./InputMappingEventListenerInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullInputMappingEventListener%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onInputMappingEvent_1 _inputMappingEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullInputMappingEventListener.jclassValue) NullInputMappingEventListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullInputMappingEventListener.jcell_NULL_INPUT_MAPPING_EVENT_LISTENER 'jnone)
+(define (NullInputMappingEventListener.jstatic_NULL_INPUT_MAPPING_EVENT_LISTENER)
+  (when (eq? NullInputMappingEventListener.jcell_NULL_INPUT_MAPPING_EVENT_LISTENER 'jnone) (set! NullInputMappingEventListener.jcell_NULL_INPUT_MAPPING_EVENT_LISTENER (NullInputMappingEventListener.jnew_0)))
+  NullInputMappingEventListener.jcell_NULL_INPUT_MAPPING_EVENT_LISTENER)
+(define (NullInputMappingEventListener.jsetstatic_NULL_INPUT_MAPPING_EVENT_LISTENER value) (set! NullInputMappingEventListener.jcell_NULL_INPUT_MAPPING_EVENT_LISTENER value))
 
-local NullInputMappingEventListener = {}
-NullInputMappingEventListener.__index = NullInputMappingEventListener
-NullInputMappingEventListener.className = "NullInputMappingEventListener"
-
-function NullInputMappingEventListener.new()
-    local self = setmetatable({}, NullInputMappingEventListener)
-    return self
-end
-
-
--- throws Exception
-function NullInputMappingEventListener:onInputMappingEvent(inputMappingEvent)
-end
+(define (NullInputMappingEventListener.jnew_0)
+  (define this (new NullInputMappingEventListener% [jclass "NullInputMappingEventListener"]))
+  this)
 
 
-function NullInputMappingEventListener:onEvent(eventObject)
-end
-
-NullInputMappingEventListener.NULL_INPUT_MAPPING_EVENT_LISTENER = NullInputMappingEventListener.new()
-
-return NullInputMappingEventListener
 

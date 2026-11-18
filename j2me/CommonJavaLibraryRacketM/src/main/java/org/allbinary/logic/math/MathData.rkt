@@ -29,11 +29,13 @@
     (field [f_MINUS JR.null])
     (field [f_DIVIDE JR.null])
     (field [f_MULTIPLY JR.null])))
+(define (MathData.jclassValue) MathData%)
 
 (define MathData.jcell_instance 'jnone)
 (define (MathData.jstatic_instance)
   (when (eq? MathData.jcell_instance 'jnone) (set! MathData.jcell_instance (MathData.jnew_0)))
   MathData.jcell_instance)
+(define (MathData.jsetstatic_instance value) (set! MathData.jcell_instance value))
 
 (define (MathData.jnew_0)
   (define this (new MathData% [jclass "MathData"]))

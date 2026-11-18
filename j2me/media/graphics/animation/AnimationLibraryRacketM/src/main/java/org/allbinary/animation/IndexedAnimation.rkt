@@ -1,136 +1,101 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local Animation = require("org.allbinary.animation.Animation")
-local IndexedAnimationInterface = require("org.allbinary.animation.IndexedAnimationInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./Animation.rkt"
+  "./IndexedAnimationInterface.rkt")
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define IndexedAnimation%
+  (class Animation%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_animationBehaviorP JR.null])
+    (define/public (jm_getAnimationBehavior_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_animationBehaviorP this)))))
+    (define/public (jm_reset_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationBehaviorP this) jm_reset_0)
+        (send this jm_setFrame_1 0))))
+    (define/public (jm_setFrame_1 _index)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getFrame_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_getAnimationSize_0)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_previousFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isLastFrame_0)
+    (let ()
+      (let/ec jreturn
+        (if (= (send this jm_getFrame_0) (JR.i32 (- (send this jm_getSize_0) 1)))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))
+    (define/public (jm_setSequence_1 _sequence)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getSequence_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PrimitiveIntUtil.jm_getArrayInstance_0)))))
+    (define/public (jm_setState_1 _indexedAnimation)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setFrame_1 (send _indexedAnimation jm_getFrame_0))
+        (send this jm_setDx_1 (send _indexedAnimation jm_getDx_0))
+        (send this jm_setDy_1 (send _indexedAnimation jm_getDy_0)))))
+    (define/public (jm_getWidth_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_getHeight_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))))
+(define (IndexedAnimation.jclassValue) IndexedAnimation%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local IndexedAnimation = {}
-IndexedAnimation.__index = IndexedAnimation
-IndexedAnimation.className = "IndexedAnimation"
-setmetatable(IndexedAnimation, {__index = Animation})
-
-function IndexedAnimation:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.animationBehaviorP = nil
-end
-
-
-function IndexedAnimation.new(animationBehavior)
-    local self = setmetatable(Animation.new(), IndexedAnimation)
-    self:_init_fields()
-        self.animationBehaviorP = animationBehavior
-    return self
-end
-
-
-function IndexedAnimation:getAnimationBehavior()
-        return self.animationBehaviorP
-end
-
-
-function IndexedAnimation:reset()
-        self.animationBehaviorP:reset()
-        self:setFrame(0)
-end
-
-
-function IndexedAnimation:setFrame(index)
-end
-
-
-function IndexedAnimation:getFrame()
-        return 0
-end
-
-
--- throws Exception
-function IndexedAnimation:getAnimationSize()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
-function IndexedAnimation:getSize()
-        return 0
-end
-
-
-function IndexedAnimation:previousFrame()
-end
-
-
-function IndexedAnimation:isLastFrame()
-        if self:getFrame() == self:getSize() - 1 then
-            return true
-        else
-            return false
-        end
-end
+(define (IndexedAnimation.jnew_1 _animationBehavior)
+  (define this (new IndexedAnimation% [jclass "IndexedAnimation"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_animationBehaviorP this _animationBehavior)))
+  this)
 
 
-function IndexedAnimation:setSequence(sequence)
-end
-
-
-function IndexedAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
-function IndexedAnimation:setState(indexedAnimation)
-        self:setFrame(indexedAnimation:getFrame())
-        self:setDx(indexedAnimation:getDx())
-        self:setDy(indexedAnimation:getDy())
-end
-
-
-function IndexedAnimation:getWidth()
-        return 0
-end
-
-
-function IndexedAnimation:getHeight()
-        return 0
-end
-
-return IndexedAnimation
 

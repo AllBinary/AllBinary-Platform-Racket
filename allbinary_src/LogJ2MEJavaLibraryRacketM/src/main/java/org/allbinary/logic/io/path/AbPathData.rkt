@@ -25,11 +25,13 @@
     (field [f_EXTENSION_SEP JR.null])
     (field [f_SEPARATORCHAR 0])
     (field [f_SEPARATOR JR.null])))
+(define (AbPathData.jclassValue) AbPathData%)
 
 (define AbPathData.jcell_instance 'jnone)
 (define (AbPathData.jstatic_instance)
   (when (eq? AbPathData.jcell_instance 'jnone) (set! AbPathData.jcell_instance (AbPathData.jnew_0)))
   AbPathData.jcell_instance)
+(define (AbPathData.jsetstatic_instance value) (set! AbPathData.jcell_instance value))
 
 (define (AbPathData.jnew_0)
   (define this (new AbPathData% [jclass "AbPathData"]))

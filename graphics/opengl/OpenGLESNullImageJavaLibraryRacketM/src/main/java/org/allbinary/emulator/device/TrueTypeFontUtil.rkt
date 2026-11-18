@@ -1,100 +1,72 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.emulator.device
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2011 AllBinary 
+;; 
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;; 
+;; Created By: Travis Berthelot 
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.emulator.device
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
--- local Image = require("javax.microedition.lcdui.Image")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local OpenGLESImage = require("org.allbinary.image.opengles.OpenGLESImage")
-local TrueTypeFontUtilBase = require("org.allbinary.emulator.device.TrueTypeFontUtilBase")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./TrueTypeFontUtilBase.rkt")
+(lazy-require ["../../../../org/allbinary/image/opengles/OpenGLESImage.rkt" (OpenGLESImage.jstatic_NULL_OPENGL_IMAGE)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define TrueTypeFontUtil%
+  (class TrueTypeFontUtilBase%
+    (super-new)
+    (field [f_fontImage JR.null])
+    (define/override (jm_getAsTextureSize_1 _textureSize)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/override (jm_getCellSize_1 _cellSize)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_getFontBitmap_4 _filename _fontSize _cellSize _basicColor)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_saveFontAtlasAsFile_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getFontBitmapGL_4 _gl _filename _cellSize _basicColor)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_getFontWidths_2 _filename _fontSize)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "RuntimeException")))))))
+(define (TrueTypeFontUtil.jclassValue) TrueTypeFontUtil%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TrueTypeFontUtil.jcell_instance 'jnone)
+(define (TrueTypeFontUtil.jstatic_instance)
+  (when (eq? TrueTypeFontUtil.jcell_instance 'jnone) (set! TrueTypeFontUtil.jcell_instance (TrueTypeFontUtil.jnew_0)))
+  TrueTypeFontUtil.jcell_instance)
+(define (TrueTypeFontUtil.jsetstatic_instance value) (set! TrueTypeFontUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (TrueTypeFontUtil.jnew_0)
+  (define this (new TrueTypeFontUtil% [jclass "TrueTypeFontUtil"]))
+    (set-field! f_fontImage this (OpenGLESImage.jstatic_NULL_OPENGL_IMAGE))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-local TrueTypeFontUtil = {}
-TrueTypeFontUtil.__index = TrueTypeFontUtil
-TrueTypeFontUtil.className = "TrueTypeFontUtil"
-setmetatable(TrueTypeFontUtil, {__index = TrueTypeFontUtilBase})
-
-function TrueTypeFontUtil:_init_fields()
-    self.fontImage = OpenGLESImage.NULL_OPENGL_IMAGE
-end
-
-
-function TrueTypeFontUtil.getInstance()
-        return TrueTypeFontUtil.instance
-end
-
-
-function TrueTypeFontUtil.new()
-    local self = setmetatable(TrueTypeFontUtilBase.new(1), TrueTypeFontUtil)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function TrueTypeFontUtil:getAsTextureSize(textureSize)
-        error(java_exception("RuntimeException"), 0)
-end
+(define (TrueTypeFontUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TrueTypeFontUtil.jstatic_instance)))))
 
 
-function TrueTypeFontUtil:getCellSize(cellSize)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function TrueTypeFontUtil:getFontBitmap(filename, fontSize, cellSize, basicColor)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function TrueTypeFontUtil:saveFontAtlasAsFile()
-end
-
-
-function TrueTypeFontUtil:getFontBitmapGL(gl, filename, cellSize, basicColor)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function TrueTypeFontUtil:getFontWidths(filename, fontSize)
-        error(java_exception("RuntimeException"), 0)
-end
-
-TrueTypeFontUtil.instance = TrueTypeFontUtil.new()
-
-return TrueTypeFontUtil
 

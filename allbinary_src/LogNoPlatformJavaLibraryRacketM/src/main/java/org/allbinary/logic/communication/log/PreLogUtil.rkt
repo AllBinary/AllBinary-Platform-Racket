@@ -23,6 +23,7 @@
 (define PreLogUtil%
   (class JObject%
     (super-new)))
+(define (PreLogUtil.jclassValue) PreLogUtil%)
 
 (define (PreLogUtil.jnew_0)
   (define this (new PreLogUtil% [jclass "PreLogUtil"]))

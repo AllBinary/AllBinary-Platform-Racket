@@ -1,54 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
--- local Command = require("javax.microedition.lcdui.Command")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/Command.rkt" (Command.jnew_4 Command.jstatic_SCREEN)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HighScoreCommands%
+  (class JObject%
+    (super-new)
+    (field [f_DISPLAY JR.null])
+    (field [f_PERSONAL JR.null])
+    (field [f_WORLD JR.null])))
+(define (HighScoreCommands.jclassValue) HighScoreCommands%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define HighScoreCommands.jcell_instance 'jnone)
+(define (HighScoreCommands.jstatic_instance)
+  (when (eq? HighScoreCommands.jcell_instance 'jnone) (set! HighScoreCommands.jcell_instance (HighScoreCommands.jnew_0)))
+  HighScoreCommands.jcell_instance)
+(define (HighScoreCommands.jsetstatic_instance value) (set! HighScoreCommands.jcell_instance value))
 
-local HighScoreCommands = {}
-HighScoreCommands.__index = HighScoreCommands
-HighScoreCommands.className = "HighScoreCommands"
+(define (HighScoreCommands.jnew_0)
+  (define this (new HighScoreCommands% [jclass "HighScoreCommands"]))
+    (set-field! f_DISPLAY this (Command.jnew_4 "Scores" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_PERSONAL this (Command.jnew_4 "Personal" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+    (set-field! f_WORLD this (Command.jnew_4 "World" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (Command.jstatic_SCREEN) 1))
+  this)
 
-function HighScoreCommands:_init_fields()
-    self.DISPLAY = Command.new("Scores", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.PERSONAL = Command.new("Personal", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.WORLD = Command.new("World", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-end
-
-function HighScoreCommands.new()
-    local self = setmetatable({}, HighScoreCommands)
-    self:_init_fields()
-    return self
-end
+(define (HighScoreCommands.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (HighScoreCommands.jstatic_instance)))))
 
 
-function HighScoreCommands.getInstance()
-        return HighScoreCommands.instance
-end
-
-HighScoreCommands.instance = HighScoreCommands.new()
-
-return HighScoreCommands
 

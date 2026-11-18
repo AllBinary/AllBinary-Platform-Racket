@@ -1,57 +1,50 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.midlet
 
-local GameState = require("org.allbinary.game.state.GameState")
-local GameStateFactory = require("org.allbinary.game.state.GameStateFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/game/state/GameStateFactory.rkt" (GameStateFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonLabels.rkt" (CommonLabels.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameMidletStateFactory%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_currentGameState JR.null])
+    (define/public (jm_getCurrentGameState_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_currentGameState this)))))
+    (define/public (jm_setCurrentGameState_1 _currentGameState)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_CURRENT (CommonLabels.jm_getInstance_0))) jm_append_1 " GameState: ") jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 _currentGameState)) jm_toString_0) this "setCurrentGameState")
+        (set-field! f_currentGameState this _currentGameState))))))
+(define (GameMidletStateFactory.jclassValue) GameMidletStateFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameMidletStateFactory.jcell_INSTANCE 'jnone)
+(define (GameMidletStateFactory.jstatic_INSTANCE)
+  (when (eq? GameMidletStateFactory.jcell_INSTANCE 'jnone) (set! GameMidletStateFactory.jcell_INSTANCE (GameMidletStateFactory.jnew_0)))
+  GameMidletStateFactory.jcell_INSTANCE)
+(define (GameMidletStateFactory.jsetstatic_INSTANCE value) (set! GameMidletStateFactory.jcell_INSTANCE value))
 
-local GameMidletStateFactory = {}
-GameMidletStateFactory.__index = GameMidletStateFactory
-GameMidletStateFactory.className = "GameMidletStateFactory"
+(define (GameMidletStateFactory.jnew_0)
+  (define this (new GameMidletStateFactory% [jclass "GameMidletStateFactory"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_currentGameState this (get-field f_NO_GAME_STATE (GameStateFactory.jm_getInstance_0)))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function GameMidletStateFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.currentGameState = GameStateFactory.getInstance().NO_GAME_STATE
-end
-
-
-function GameMidletStateFactory.new()
-    local self = setmetatable({}, GameMidletStateFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function GameMidletStateFactory.getInstance()
-        return GameMidletStateFactory.INSTANCE
-end
-
-
-function GameMidletStateFactory:getCurrentGameState()
-        return self.currentGameState
-end
+(define (GameMidletStateFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameMidletStateFactory.jstatic_INSTANCE)))))
 
 
-function GameMidletStateFactory:setCurrentGameState(currentGameState)
-        self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().CURRENT):append(" GameState: "):append(StringUtil.getInstance():toString(currentGameState))), self, "setCurrentGameState")
-        self.currentGameState = currentGameState
-end
-
-GameMidletStateFactory.INSTANCE = GameMidletStateFactory.new()
-
-return GameMidletStateFactory
 

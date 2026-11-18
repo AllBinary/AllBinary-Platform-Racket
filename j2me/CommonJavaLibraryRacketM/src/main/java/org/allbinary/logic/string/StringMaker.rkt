@@ -114,6 +114,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (JR.fromChars (get-field f_charArray this) 0 (get-field f_currentLength this))))))))
+(define (StringMaker.jclassValue) StringMaker%)
 
 (define (StringMaker.jnew_0)
   (define this (new StringMaker% [jclass "StringMaker"]))

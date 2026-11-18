@@ -31,11 +31,13 @@
       (let/ec jreturn
         (set! _thread (Thread.jnew_1 _runnable))
         (send _thread jm_start_0))))))
+(define (ThreadObjectUtil.jclassValue) ThreadObjectUtil%)
 
 (define ThreadObjectUtil.jcell_instance 'jnone)
 (define (ThreadObjectUtil.jstatic_instance)
   (when (eq? ThreadObjectUtil.jcell_instance 'jnone) (set! ThreadObjectUtil.jcell_instance (ThreadObjectUtil.jnew_0)))
   ThreadObjectUtil.jcell_instance)
+(define (ThreadObjectUtil.jsetstatic_instance value) (set! ThreadObjectUtil.jcell_instance value))
 
 (define (ThreadObjectUtil.jnew_0)
   (define this (new ThreadObjectUtil% [jclass "ThreadObjectUtil"]))

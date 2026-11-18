@@ -38,11 +38,13 @@
     (define/override (jm_completedTask_1 _task)
     (let ()
       (let/ec jreturn (void))))))
+(define (PathFindingThreadPool.jclassValue) PathFindingThreadPool%)
 
 (define PathFindingThreadPool.jcell_instance 'jnone)
 (define (PathFindingThreadPool.jstatic_instance)
   (when (eq? PathFindingThreadPool.jcell_instance 'jnone) (set! PathFindingThreadPool.jcell_instance (PathFindingThreadPool.jnew_3 "PathFinding" 1 1)))
   PathFindingThreadPool.jcell_instance)
+(define (PathFindingThreadPool.jsetstatic_instance value) (set! PathFindingThreadPool.jcell_instance value))
 
 (define (PathFindingThreadPool.jnew_3 _poolName _numThreads _priority)
   (define this (new PathFindingThreadPool% [jclass "PathFindingThreadPool"]))

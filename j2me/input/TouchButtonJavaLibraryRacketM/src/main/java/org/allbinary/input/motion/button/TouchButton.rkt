@@ -1,144 +1,129 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local CellPosition = require("org.allbinary.graphics.CellPosition")
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local RectangleFactory = require("org.allbinary.graphics.RectangleFactory")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/graphics/paint/Paintable.rkt")
+(lazy-require ["../../../../../org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory.rkt" (FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/PointFactory.rkt" (PointFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/Rectangle.rkt" (Rectangle.jnew_3)])
+(lazy-require ["../../../../../org/allbinary/graphics/RectangleFactory.rkt" (RectangleFactory.jstatic_SINGLETON)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TouchButton%
+  (class Paintable%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_touchButtonInput JR.null])
+    (field [f_animationInterface JR.null])
+    (field [f_hintAnimationInterface JR.null])
+    (field [f_rawRectangle JR.null])
+    (field [f_xBorder 0])
+    (field [f_yBorder 0])
+    (field [f_rectangleP JR.null])
+    (field [f_cellPositionP JR.null])
+    (field [f_animationX 0])
+    (field [f_animationY 0])
+    (field [f_hintAnimationY 0])
+    (define/public (jm_paintHint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_hintAnimationInterface this) jm_paintXY_3 _graphics (get-field f_animationX this) (get-field f_hintAnimationY this)))))
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationInterface this) jm_paintXY_3 _graphics (get-field f_animationX this) (get-field f_animationY this)))))
+    (define/public (jm_updateRectangle_0)
+    (let ([_pointFactory JR.null][_x JR.null][_y JR.null][_point JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this "updateRectangle" _e))])
+            (set! _pointFactory (PointFactory.jm_getInstance_0))
+            (set! _x (JR.i32 (* (send (get-field f_rawRectangle this) jm_getWidth_0) (send (get-field f_cellPositionP this) jm_getColumn_0))))
+            (set! _y (JR.i32 (* (send (get-field f_rawRectangle this) jm_getHeight_0) (send (get-field f_cellPositionP this) jm_getRow_0))))
+            (set-field! f_rectangleP this (Rectangle.jnew_3 (send _pointFactory jm_createXY_2 (JR.i32 (+ _x (get-field f_xBorder this))) (JR.i32 (+ _y (get-field f_yBorder this)))) (send (get-field f_rawRectangle this) jm_getWidth_0) (send (get-field f_rawRectangle this) jm_getHeight_0)))
+            (set! _point (send (get-field f_rectangleP this) jm_getPoint_0))
+            (set-field! f_animationX this (send _point jm_getX_0))
+            (set-field! f_animationY this (send _point jm_getY_0))
+            (set-field! f_hintAnimationY this (JR.i32 (- (get-field f_animationY this) 32)))))))
+    (define/public (jm_getCellPosition_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_cellPositionP this)))))
+    (define/public (jm_getRectangle_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_rectangleP this)))))
+    (define/public (jm_getTouchButtonInput_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_touchButtonInput this)))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null][_stringUtil JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (set! _stringUtil (StringUtil.jm_getInstance_0))
+        (send _stringBuffer jm_append_1 "TouchButton: ")
+        (send _stringBuffer jm_append_1 (send _stringUtil jm_toString_1 (send this jm_getRectangle_0)))
+        (send _stringBuffer jm_append_1 " CellPosition: ")
+        (send _stringBuffer jm_append_1 (send _stringUtil jm_toString_1 (get-field f_cellPositionP this)))
+        (send _stringBuffer jm_append_1 " xBorder: ")
+        (send _stringBuffer jm_appendint_1 (get-field f_xBorder this))
+        (send _stringBuffer jm_append_1 " yBorder: ")
+        (send _stringBuffer jm_appendint_1 (get-field f_yBorder this))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (TouchButton.jclassValue) TouchButton%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (TouchButton.jnew_7 _touchButtonInput _animationInterface _hintAnimationInterface _rawRectangle _cellPosition _xBorder _yBorder)
+  (define this (new TouchButton% [jclass "TouchButton"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    
+    
+    
+    
+    
+    
+    (set-field! f_rectangleP this (RectangleFactory.jstatic_SINGLETON))
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_touchButtonInput this _touchButtonInput)
+        (set-field! f_animationInterface this _animationInterface)
+        (set-field! f_hintAnimationInterface this _hintAnimationInterface)
+        (set-field! f_rawRectangle this _rawRectangle)
+        (set-field! f_cellPositionP this _cellPosition)
+        (set-field! f_xBorder this _xBorder)
+        (set-field! f_yBorder this _yBorder)
+        (send this jm_updateRectangle_0)
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "Created: ") jm_append_1 (send this jm_toString_0)) jm_toString_0) this (get-field f_CONSTRUCTOR (get-field f_commonStrings this)))))
+  this)
 
-local TouchButton = {}
-TouchButton.__index = TouchButton
-TouchButton.className = "TouchButton"
-setmetatable(TouchButton, {__index = Paintable})
-
-function TouchButton:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.touchButtonInput = nil
-    self.animationInterface = nil
-    self.hintAnimationInterface = nil
-    self.rawRectangle = nil
-    self.xBorder = nil
-    self.yBorder = nil
-    self.rectangleP = RectangleFactory.SINGLETON
-    self.cellPositionP = nil
-    self.animationX = 0
-    self.animationY = 0
-    self.hintAnimationY = 0
-end
-
-
--- throws Exception
-function TouchButton.createButton(touchButtonInput, touchButtonResource, rawRectangle, cellPosition, xBorder, yBorder)
-        return TouchButton.new(touchButtonInput, FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(touchButtonResource.RESOURCE):getInstance(0), FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(touchButtonResource.HINT):getInstance(0), rawRectangle, cellPosition, xBorder, yBorder)
-end
-
-
-function TouchButton.new(touchButtonInput, animationInterface, hintAnimationInterface, rawRectangle, cellPosition, xBorder, yBorder)
-    local self = setmetatable(Paintable.new(), TouchButton)
-    self:_init_fields()
-        self.touchButtonInput = touchButtonInput
-        self.animationInterface = animationInterface
-        self.hintAnimationInterface = hintAnimationInterface
-        self.rawRectangle = rawRectangle
-        self.cellPositionP = cellPosition
-        self.xBorder = xBorder
-        self.yBorder = yBorder
-        self:updateRectangle()
-        self.logUtil:putF(tostring(StringMaker.new():append("Created: "):append(tostring(self))), self, self.commonStrings.CONSTRUCTOR)
-    return self
-end
+(define (TouchButton.jm_createButton_6 _touchButtonInput _touchButtonResource _rawRectangle _cellPosition _xBorder _yBorder)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TouchButton.jnew_7 _touchButtonInput (JR.className (send (FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0) jm_get_1 (get-field f_RESOURCE _touchButtonResource))) (JR.className (send (FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0) jm_get_1 (get-field f_HINT _touchButtonResource))) _rawRectangle _cellPosition _xBorder _yBorder)))))
 
 
-function TouchButton:paintHint(graphics)
-        self.hintAnimationInterface:paintXY(graphics, self.animationX, self.hintAnimationY)
-end
-
-
-function TouchButton:paint(graphics)
-        self.animationInterface:paintXY(graphics, self.animationX, self.animationY)
-end
-
-
-function TouchButton:updateRectangle()
-        local try_ok, try_error = pcall(function()
-            local pointFactory = PointFactory.getInstance()
-            local x = self.rawRectangle:getWidth() * self.cellPositionP:getColumn()
-            local y = self.rawRectangle:getHeight() * self.cellPositionP:getRow()
-            self.rectangleP = Rectangle.new(pointFactory:createXY(x + self.xBorder, y + self.yBorder), self.rawRectangle:getWidth(), self.rawRectangle:getHeight())
-            local point = self.rectangleP:getPoint()
-            self.animationX = point:getX()
-            self.animationY = point:getY()
-            self.hintAnimationY = self.animationY - 32
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "updateRectangle", e)
-        end
-end
-
-
-function TouchButton:getCellPosition()
-        return self.cellPositionP
-end
-
-
-function TouchButton:getRectangle()
-        return self.rectangleP
-end
-
-
-function TouchButton:getTouchButtonInput()
-        return self.touchButtonInput
-end
-
-
-function TouchButton:toString()
-        local stringBuffer = StringMaker.new()
-        local stringUtil = StringUtil.getInstance()
-        stringBuffer:append("TouchButton: ")
-        stringBuffer:append(stringUtil:toString(self:getRectangle()))
-        stringBuffer:append(" CellPosition: ")
-        stringBuffer:append(stringUtil:toString(self.cellPositionP))
-        stringBuffer:append(" xBorder: ")
-        stringBuffer:appendint(self.xBorder)
-        stringBuffer:append(" yBorder: ")
-        stringBuffer:appendint(self.yBorder)
-        return tostring(stringBuffer)
-end
-TouchButton.__tostring = function(self) return self:toString() end
-
-return TouchButton
 

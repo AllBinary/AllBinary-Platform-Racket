@@ -1,160 +1,132 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2011 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/lang/Integer.rkt")
+(lazy-require ["../../../org/allbinary/graphics/displayable/CanvasStrings.rkt" (CanvasStrings.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.rkt" (SmallIntegerSingletonFactory.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define Layer%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_x 0])
+    (field [f_y 0])
+    (field [f_z 0])
+    (field [f_width 0])
+    (field [f_height 0])
+    (field [f_visible #f])
+    (define/public (jm_setPosition_3 _x _y _z)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_x this _x)
+        (set-field! f_y this _y)
+        (set-field! f_z this _z))))
+    (define/public (jm_moveDXY_2 _dx _dy)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_x this (JR.i32 (+ (get-field f_x this) _dx)))
+        (set-field! f_y this (JR.i32 (+ (get-field f_y this) _dy))))))
+    (define/public (jm_moveDXYZ_3 _dx _dy _dz)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_x this (JR.i32 (+ (get-field f_x this) _dx)))
+        (set-field! f_y this (JR.i32 (+ (get-field f_y this) _dy)))
+        (set-field! f_z this (JR.i32 (+ (get-field f_z this) _dz))))))
+    (define/public (jm_getXP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_x this)))))
+    (define/public (jm_getYP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_y this)))))
+    (define/public (jm_getZP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_z this)))))
+    (define/public (jm_getWidth_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_width this)))))
+    (define/public (jm_getHeight_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_height this)))))
+    (define/public (jm_getDepth_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_setVisible_1 _visible)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_visible this _visible))))
+    (define/public (jm_isVisible_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_visible this)))))
+    (define/public (jm_paint_1 _graphics)
+    (let ([_commonStrings JR.null][_canvasStrings JR.null])
+      (let/ec jreturn
+        (set! _commonStrings (CommonStrings.jm_getInstance_0))
+        (set! _canvasStrings (CanvasStrings.jm_getInstance_0))
+        (send (get-field f_logUtil this) jm_putF_3 (get-field f_NOT_IMPLEMENTED _commonStrings) this (get-field f_PAINT _canvasStrings)))))
+    (define/public (jm_setLayerWidth_1 _width)
+    (let ()
+      (let/ec jreturn
+        (when (< _width 0)
+            (begin
+            (raise (JR.newException "IllegalArgumentException"))))
+        (set-field! f_width this _width))))
+    (define/public (jm_setLayerHeight_1 _height)
+    (let ()
+      (let/ec jreturn
+        (when (< _height 0)
+            (begin
+            (raise (JR.newException "IllegalArgumentException"))))
+        (set-field! f_height this _height))))
+    (define/public (jm_toStringAppend_1 _stringBuffer)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (Layer.jclassValue) Layer%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Layer.jcell_ID 'jnone)
+(define (Layer.jstatic_ID)
+  (when (eq? Layer.jcell_ID 'jnone) (set! Layer.jcell_ID (send (SmallIntegerSingletonFactory.jm_getInstance_0) jm_getAt_1 0)))
+  Layer.jcell_ID)
+(define (Layer.jsetstatic_ID value) (set! Layer.jcell_ID value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local Layer = {}
-Layer.__index = Layer
-Layer.className = "Layer"
-
-function Layer:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.x = 0
-    self.y = 0
-    self.z = 3
-    self.width = 0
-    self.height = 0
-    self.visible = true
-end
-
-
-function Layer.new(width, height)
-    local self = setmetatable({}, Layer)
-    self:_init_fields()
-        self:setLayerWidth(width)
-        self:setLayerHeight(height)
-    return self
-end
-
-
-function Layer:setPosition(x, y, z)
-        self.x = x
-        self.y = y
-        self.z = z
-end
-
-
-function Layer:moveDXY(dx, dy)
-        self.x = self.x + (dx)
-        self.y = self.y + (dy)
-end
-
-
-function Layer:moveDXYZ(dx, dy, dz)
-        self.x = self.x + (dx)
-        self.y = self.y + (dy)
-        self.z = self.z + (dz)
-end
-
-
-function Layer:getXP()
-        return self.x
-end
-
-
-function Layer:getYP()
-        return self.y
-end
-
-
-function Layer:getZP()
-        return self.z
-end
-
-
-function Layer:getWidth()
-        return self.width
-end
-
-
-function Layer:getHeight()
-        return self.height
-end
-
-
-function Layer:getDepth()
-        return 0
-end
-
-
-function Layer:setVisible(visible)
-        self.visible = visible
-end
-
-
-function Layer:isVisible()
-        return self.visible
-end
-
-
-function Layer:paint(graphics)
-        local commonStrings = CommonStrings.getInstance()
-        local canvasStrings = CanvasStrings.getInstance()
-        self.logUtil:putF(commonStrings.NOT_IMPLEMENTED, self, canvasStrings.PAINT)
-end
+(define (Layer.jnew_2 _width _height)
+  (define this (new Layer% [jclass "Layer"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    
+    
+    (set-field! f_z this 3)
+    
+    
+    (set-field! f_visible this #t)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setLayerWidth_1 _width)
+        (send this jm_setLayerHeight_1 _height)))
+  this)
 
 
-function Layer:setLayerWidth(width)
-        if width < 0 then
-            error(java_exception("IllegalArgumentException"), 0)
-        end
-        self.width = width
-end
-
-
-function Layer:setLayerHeight(height)
-        if height < 0 then
-            error(java_exception("IllegalArgumentException"), 0)
-        end
-        self.height = height
-end
-
-
-function Layer:toStringAppend(stringBuffer)
-end
-
-Layer.ID = SmallIntegerSingletonFactory.getInstance():getAt(0)
-
-return Layer
 

@@ -1,106 +1,93 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
--- local ByteArrayInputStream = require("java.io.ByteArrayInputStream")
--- local DataInputStream = require("java.io.DataInputStream")
--- local EOFException = require("java.io.EOFException")
--- local IOException = require("java.io.IOException")
--- local RecordComparator = require("javax.microedition.rms.RecordComparator")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/ByteArrayInputStream.rkt"
+  "../../../../java/io/DataInputStream.rkt"
+  "../../../../java/io/EOFException.rkt"
+  "../../../../java/io/IOException.rkt"
+  "../../../../javax/microedition/rms/RecordComparator.rkt"
+  "../../../../java/lang/Long.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ScoreComparator%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_isHighestBest #f])
+    (define/public (jm_getBestScore_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (if (get-field f_isHighestBest this) (Long.jstatic_MAX_VALUE) 0)))))
+    (define/public (jm_compare_2 _recordOne _recordTwo)
+    (let ([_byteArrayInputStreamOne JR.null][_inputStreamOne JR.null][_byteArrayInputStreamTwo JR.null][_inputStreamTwo JR.null][_scoreOne JR.null][_scoreTwo JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (set! _byteArrayInputStreamOne (ByteArrayInputStream.jnew_1 _recordOne))
+        (set! _inputStreamOne (DataInputStream.jnew_1 _byteArrayInputStreamOne))
+        (set! _byteArrayInputStreamTwo (ByteArrayInputStream.jnew_1 _recordTwo))
+        (set! _inputStreamTwo (DataInputStream.jnew_1 _byteArrayInputStreamTwo))
+        (set! _scoreOne 0)
+        (set! _scoreTwo 0)
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this "compare" _e))])
+            (send _inputStreamOne jm_readUTF_0)
+            (send _inputStreamTwo jm_readUTF_0)
+            (set! _scoreOne (send _inputStreamOne jm_readLong_0))
+            (set! _scoreTwo (send _inputStreamTwo jm_readLong_0)))
+        (if (get-field f_isHighestBest this)
+            (begin
+            (jreturn (send this jm_getHighTooLow_2 _scoreOne _scoreTwo)))
+            (begin
+            (jreturn (send this jm_getLowTooHigh_2 _scoreOne _scoreTwo)))))))
+    (define/public (jm_getHighTooLow_2 _scoreOne _scoreTwo)
+    (let ()
+      (let/ec jreturn
+        (if (> _scoreOne _scoreTwo)
+            (begin
+            (jreturn (RecordComparator.jstatic_PRECEDES)))
+            (if (< _scoreOne _scoreTwo)
+            (begin
+            (jreturn (RecordComparator.jstatic_FOLLOWS)))
+            (begin
+            (jreturn (RecordComparator.jstatic_EQUIVALENT))))))))
+    (define/public (jm_getLowTooHigh_2 _scoreOne _scoreTwo)
+    (let ()
+      (let/ec jreturn
+        (if (< _scoreOne _scoreTwo)
+            (begin
+            (jreturn (RecordComparator.jstatic_PRECEDES)))
+            (if (> _scoreOne _scoreTwo)
+            (begin
+            (jreturn (RecordComparator.jstatic_FOLLOWS)))
+            (begin
+            (jreturn (RecordComparator.jstatic_EQUIVALENT))))))))))
+(define (ScoreComparator.jclassValue) ScoreComparator%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ScoreComparator = {}
-ScoreComparator.__index = ScoreComparator
-ScoreComparator.className = "ScoreComparator"
-
-function ScoreComparator:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.isHighestBest = nil
-end
-
-
-function ScoreComparator.new(isHighestBest)
-    local self = setmetatable({}, ScoreComparator)
-    self:_init_fields()
-        self.isHighestBest = isHighestBest
-    return self
-end
-
-
-function ScoreComparator:getBestScore()
-        return (function() if self.isHighestBest then return Long.MAX_VALUE else return 0 end end)()
-end
-
-
-function ScoreComparator:compare(recordOne, recordTwo)
-        local byteArrayInputStreamOne = ByteArrayInputStream.new(recordOne)
-        local inputStreamOne = DataInputStream.new(byteArrayInputStreamOne)
-        local byteArrayInputStreamTwo = ByteArrayInputStream.new(recordTwo)
-        local inputStreamTwo = DataInputStream.new(byteArrayInputStreamTwo)
-        local scoreOne = 0
-        local scoreTwo = 0
-        local try_ok, try_error = pcall(function()
-            inputStreamOne:readUTF()
-            inputStreamTwo:readUTF()
-            scoreOne = inputStreamOne:readLong()
-            scoreTwo = inputStreamTwo:readLong()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, "compare", e)
-        end
-        if self.isHighestBest then
-            return self:getHighTooLow(scoreOne, scoreTwo)
-        else
-            return self:getLowTooHigh(scoreOne, scoreTwo)
-        end
-end
-
-
-function ScoreComparator:getHighTooLow(scoreOne, scoreTwo)
-        if scoreOne > scoreTwo then
-            return RecordComparator.PRECEDES
-        elseif scoreOne < scoreTwo then
-            return RecordComparator.FOLLOWS
-        else
-            return RecordComparator.EQUIVALENT
-        end
-end
+(define (ScoreComparator.jnew_1 _isHighestBest)
+  (define this (new ScoreComparator% [jclass "ScoreComparator"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_isHighestBest this _isHighestBest)))
+  this)
 
 
-function ScoreComparator:getLowTooHigh(scoreOne, scoreTwo)
-        if scoreOne < scoreTwo then
-            return RecordComparator.PRECEDES
-        elseif scoreOne > scoreTwo then
-            return RecordComparator.FOLLOWS
-        else
-            return RecordComparator.EQUIVALENT
-        end
-end
-
-return ScoreComparator
 

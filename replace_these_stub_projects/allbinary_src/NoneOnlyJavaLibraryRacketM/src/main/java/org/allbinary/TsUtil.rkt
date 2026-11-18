@@ -71,11 +71,13 @@
     (let ()
       (let/ec jreturn
         (System.jm_gc_0))))))
+(define (TsUtil.jclassValue) TsUtil%)
 
 (define TsUtil.jcell_instance 'jnone)
 (define (TsUtil.jstatic_instance)
   (when (eq? TsUtil.jcell_instance 'jnone) (set! TsUtil.jcell_instance (TsUtil.jnew_0)))
   TsUtil.jcell_instance)
+(define (TsUtil.jsetstatic_instance value) (set! TsUtil.jcell_instance value))
 
 (define (TsUtil.jnew_0)
   (define this (new TsUtil% [jclass "TsUtil"]))

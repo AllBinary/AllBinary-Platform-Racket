@@ -1,56 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.util.cache
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageCacheable%
+  (class JObject%
+    (super-new)
+    (field [f_name JR.null])
+    (define/public (jm_getKey_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_name this)))))
+    (define/override (jm_toString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_name this)))))))
+(define (ImageCacheable.jclassValue) ImageCacheable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageCacheable = {}
-ImageCacheable.__index = ImageCacheable
-ImageCacheable.className = "ImageCacheable"
-
-function ImageCacheable:_init_fields()
-    self.name = StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function ImageCacheable.new(name, anyType)
-    local self = setmetatable({}, ImageCacheable)
-    self:_init_fields()
-    return self
-end
-
-
-function ImageCacheable:getKey()
-        return self.name
-end
+(define (ImageCacheable.jnew_2 _name _anyType)
+  (define this (new ImageCacheable% [jclass "ImageCacheable"]))
+    (set-field! f_name this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function ImageCacheable:toString()
-        return self.name
-end
-ImageCacheable.__tostring = function(self) return self:toString() end
-
-return ImageCacheable
 

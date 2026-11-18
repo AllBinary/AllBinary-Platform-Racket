@@ -1,60 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;;
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;
+;; Created By: Travis Berthelot
+;; 
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ReleaseHelper%
+  (class JObject%
+    (super-new)
+    (field [f_touchButtonRecognizer JR.null])
+    (define/public (jm_release_2 _touchButtonInput _deviceId)
+    (let ([_nextTouchButtonInput JR.null][_gameKeyEvent JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _nextTouchButtonInput JR.null)
+        (set! _gameKeyEvent JR.null)
+        (begin
+            (set! _index (JR.i32 (- (JR.className (get-field f_currentlyPressedTouchButtonSingleton (get-field f_touchButtonRecognizer this))) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (set! _nextTouchButtonInput (JR.className (get-field f_currentlyPressedTouchButtonSingleton (get-field f_touchButtonRecognizer this))))
+            (set! _gameKeyEvent (send _nextTouchButtonInput jm_getGameKeyEvent_0))
+            (JR.className (get-field f_upGameKeyEventHandler (get-field f_touchButtonRecognizer this)))
+            (JR.className (JR.className (get-field f_upGameKeyEventHandler (get-field f_touchButtonRecognizer this))))
+            (JR.className (get-field f_currentlyPressedTouchButtonSingleton (get-field f_touchButtonRecognizer this))))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))))
+(define (ReleaseHelper.jclassValue) ReleaseHelper%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ReleaseHelper = {}
-ReleaseHelper.__index = ReleaseHelper
-ReleaseHelper.className = "ReleaseHelper"
-
-function ReleaseHelper:_init_fields()
-    self.touchButtonRecognizer = nil
-end
+(define (ReleaseHelper.jnew_1 _touchButtonRecognizer)
+  (define this (new ReleaseHelper% [jclass "ReleaseHelper"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_touchButtonRecognizer this _touchButtonRecognizer)))
+  this)
 
 
-function ReleaseHelper.new(touchButtonRecognizer)
-    local self = setmetatable({}, ReleaseHelper)
-    self:_init_fields()
-        self.touchButtonRecognizer = touchButtonRecognizer
-    return self
-end
-
-
--- throws Exception
-function ReleaseHelper:release(touchButtonInput, deviceId)
-        local nextTouchButtonInput = nil
-        local gameKeyEvent = nil
-        for index = self.touchButtonRecognizer.currentlyPressedTouchButtonSingleton:size() - 1, 0, -1 do
-            nextTouchButtonInput = self.touchButtonRecognizer.currentlyPressedTouchButtonSingleton:get(index)
-            gameKeyEvent = nextTouchButtonInput:getGameKeyEvent()
-            self.touchButtonRecognizer.upGameKeyEventHandler:fireEvent(gameKeyEvent)
-            self.touchButtonRecognizer.upGameKeyEventHandler:getInstanceForDevice(deviceId):fireEvent(gameKeyEvent)
-            self.touchButtonRecognizer.currentlyPressedTouchButtonSingleton:removeAt(index)
-        end
-end
-
-return ReleaseHelper
 

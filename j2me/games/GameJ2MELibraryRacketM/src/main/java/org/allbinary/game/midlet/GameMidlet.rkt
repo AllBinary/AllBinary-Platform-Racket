@@ -1,719 +1,675 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.midlet
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/util/Enumeration.rkt"
+  "../../../../javax/microedition/lcdui/Canvas.rkt"
+  "../../../../javax/microedition/lcdui/CommandListener.rkt"
+  "../../../../org/allbinary/midlet/ProgressMidlet.rkt"
+  "../../../../java/lang/Thread.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/NullCanvas.rkt" (NullCanvas.jstatic_NULL_CANVAS)])
+(lazy-require ["../../../../org/allbinary/J2MEUtil.rkt" (J2MEUtil.jm_isHTML_0)])
+(lazy-require ["../../../../org/allbinary/TsUtil.rkt" (TsUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/business/advertisement/GameAdStateFactory.rkt" (GameAdStateFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/canvas/FullScreenUtil.rkt" (FullScreenUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/canvas/GameStatisticsFactory.rkt" (GameStatisticsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/debug/DebugFactory.rkt" (DebugFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/GameInfo.rkt" (GameInfo.jnew_5)])
+(lazy-require ["../../../../org/allbinary/game/GameMode.rkt" (GameMode.jstatic_SERVER)])
+(lazy-require ["../../../../org/allbinary/game/GameStrings.rkt" (GameStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/GameTypeFactory.rkt" (GameTypeFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/PlayerTypesFactory.rkt" (PlayerTypesFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/commands/GameCommandsFactory.rkt" (GameCommandsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/GameOptionsForm.rkt" (GameOptionsForm.jclassValue)])
+(lazy-require ["../../../../org/allbinary/game/configuration/GameOptionsFormFactory.rkt" (GameOptionsFormFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/InGameFeatures.rkt" (InGameFeatures.jnew_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/InGameOptionsForm.rkt" (InGameOptionsForm.jstatic_DISPLAY InGameOptionsForm.jstatic_DEFAULT)])
+(lazy-require ["../../../../org/allbinary/game/configuration/InGameOptionsFormFactory.rkt" (InGameOptionsFormFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/LoadGameForm.rkt" (LoadGameForm.jnew_4)])
+(lazy-require ["../../../../org/allbinary/game/configuration/event/ChangedGameFeatureListener.rkt" (ChangedGameFeatureListener.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/event/GameFeatureEventHandler.rkt" (GameFeatureEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/feature/GameFeatureFormUtil.rkt" (GameFeatureFormUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/feature/MainFeatureFactory.rkt" (MainFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/persistance/GamePersistanceSingleton.rkt" (GamePersistanceSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/displayable/canvas/BasicPaintablesCanvas.rkt" (BasicPaintablesCanvas.jnew_4)])
+(lazy-require ["../../../../org/allbinary/game/displayable/canvas/DemoCanvas.rkt" (DemoCanvas.jclassValue)])
+(lazy-require ["../../../../org/allbinary/game/displayable/canvas/GameEventHandlerUtil.rkt" (GameEventHandlerUtil.jm_removeAllListeners_0)])
+(lazy-require ["../../../../org/allbinary/game/displayable/canvas/GameInputMappingCanvas.rkt" (GameInputMappingCanvas.jnew_4 GameInputMappingCanvas.jstatic_DEFAULT GameInputMappingCanvas.jstatic_DISPLAY GameInputMappingCanvas.jclassValue)])
+(lazy-require ["../../../../org/allbinary/game/displayable/canvas/GameInputMappingInstructionsCanvas.rkt" (GameInputMappingInstructionsCanvas.jnew_2 GameInputMappingInstructionsCanvas.jstatic_DISPLAY GameInputMappingInstructionsCanvas.jstatic_CLOSE)])
+(lazy-require ["../../../../org/allbinary/game/displayable/canvas/NullGameCanvasRunnable.rkt" (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE)])
+(lazy-require ["../../../../org/allbinary/game/input/TextNotificationUtil.rkt" (TextNotificationUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/layer/AllBinaryGameLayerManager.rkt" (AllBinaryGameLayerManager.jnew_3)])
+(lazy-require ["../../../../org/allbinary/game/layer/hud/event/GameNotificationEventHandler.rkt" (GameNotificationEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/score/HighScoreCommands.rkt" (HighScoreCommands.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/score/HighScoreCommandsFactory.rkt" (HighScoreCommandsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/score/displayable/HighScoreTextBox.rkt" (HighScoreTextBox.jclassValue)])
+(lazy-require ["../../../../org/allbinary/game/score/displayable/HighScoreUtil.rkt" (HighScoreUtil.jstatic_SUBMIT_TEXTBOX_COMMAND)])
+(lazy-require ["../../../../org/allbinary/game/score/displayable/HighScoresCanvas.rkt" (HighScoresCanvas.jclassValue)])
+(lazy-require ["../../../../org/allbinary/game/state/GameStateFactory.rkt" (GameStateFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/ResizableListenerHandler.rkt" (ResizableListenerHandler.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory.rkt" (ProgressCanvasFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/color/ColorChangeEventHandler.rkt" (ColorChangeEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/CanvasStrings.rkt" (CanvasStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/command/MyCommandsFactory.rkt" (MyCommandsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/screen/AboutCommandProcessor.rkt" (AboutCommandProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/screen/AboutPaintableFactory.rkt" (AboutPaintableFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/screen/CommandForm.rkt" (CommandForm.jm_getNullCommandForm_0)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/screen/WebCommandProcessor.rkt" (WebCommandProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/input/AllBinarySensorManager.rkt" (AllBinarySensorManager.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/input/event/VirtualKeyboardEventHandler.rkt" (VirtualKeyboardEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler.rkt" (BasicMotionGesturesHandler.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.rkt" (SmallIntegerSingletonFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/logic/system/security/licensing/InApplicationPurchaseFactory.rkt" (InApplicationPurchaseFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/system/security/licensing/LockableFeatureFactory.rkt" (LockableFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/media/audio/AllBinaryMediaManager.rkt" (AllBinaryMediaManager.jm_setMuted_1)])
+(lazy-require ["../../../../org/allbinary/midlet/MidletStrings.rkt" (MidletStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/thread/NullThread.rkt" (NullThread.jstatic_NULL_THREAD)])
+(lazy-require ["../../../../org/allbinary/thread/ThreadFactoryUtil.rkt" (ThreadFactoryUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/thread/ThreadUtil.rkt" (ThreadUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/time/TimeDelayHelper.rkt" (TimeDelayHelper.jnew_1)])
+(lazy-require ["../../../../org/allbinary/util/EnumerationUtil.rkt" (EnumerationUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["./GameMidletStateFactory.rkt" (GameMidletStateFactory.jm_getInstance_0)])
+(lazy-require ["./GameMidletEventHandler.rkt" (GameMidletEventHandler.jm_getInstance_0)])
+(lazy-require ["./DemoGameMidletEvent.rkt" (DemoGameMidletEvent.jnew_2)])
+(lazy-require ["./DemoGameMidletStateFactory.rkt" (DemoGameMidletStateFactory.jm_getInstance_0)])
+(provide (all-defined-out))
+
+(define GameMidlet%
+  (class ProgressMidlet%
+    (super-new)
+    (field [f_enumerationUtil JR.null])
+    (field [f_basicColorFactory JR.null])
+    (field [f_features JR.null])
+    (field [f_midletStrings JR.null])
+    (field [f_myCommandsFactory JR.null])
+    (field [f_gameStrings JR.null])
+    (field [f_gameAdStateFactory JR.null])
+    (field [f_gameStateFactory JR.null])
+    (field [f_tsUtil JR.null])
+    (field [f_DISPLAYABLE JR.null])
+    (field [f_COMMAND_NAME JR.null])
+    (field [f_NO_COMMAND JR.null])
+    (field [f_NO_DISPLAYABLE JR.null])
+    (field [f_COMMAND_ACTION JR.null])
+    (field [f_PAUSE_APP_BACKGROUND JR.null])
+    (field [f_UN_PAUSE_APP_BACKGROUND JR.null])
+    (field [f_aboutCommandProcessor JR.null])
+    (field [f_webCommandProcessor JR.null])
+    (field [f_gameMidletStateFactory JR.null])
+    (field [f_gameStartTimeHelper JR.null])
+    (field [f_fullScreenUtil JR.null])
+    (field [f_debugInterface JR.null])
+    (field [f_allbinaryGameCanvasRunnableInterface JR.null])
+    (field [f_thread JR.null])
+    (field [f_loadGameForm JR.null])
+    (field [f_isFullScreen #f])
+    (field [f_resized #f])
+    (field [f_startedBefore #f])
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setDemo_0)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_createGame_0)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_mediaShutdown_0)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_stopAll_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_pauseApp_0)
+    (let ([_gameAdState JR.null])
+      (let/ec jreturn
+        (send this jm_pauseAppBackground_1 #t)
+        (set! _gameAdState (send (get-field f_gameAdStateFactory this) jm_getCurrentInstance_0))
+        (JR.className (send _gameAdState jm_getAdvertisements_0)))))
+    (define/public (jm_pauseAppBackground_1 _background)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (if (not (eq? (get-field f_allbinaryGameCanvasRunnableInterface this) (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE)))
+            (begin
+            (send (get-field f_allbinaryGameCanvasRunnableInterface this) jm_pause_0))
+            (begin
+            (JR.className (get-field f_logUtil this))))
+        (send (AllBinarySensorManager.jm_getInstance_0) jm_shutdown_0))))
+    (define/public (jm_unPauseApp_0)
+    (let ([_gameAdState JR.null])
+      (let/ec jreturn
+        (send this jm_unPauseAppBackground_1 #t)
+        (set! _gameAdState (send (get-field f_gameAdStateFactory this) jm_getCurrentInstance_0))
+        (JR.className (send _gameAdState jm_getAdvertisements_0)))))
+    (define/public (jm_unPauseAppBackground_1 _background)
+    (let ([_gameCanvasRunnableInterface JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (send (AllBinarySensorManager.jm_getInstance_0) jm_init_0)
+        (set! _gameCanvasRunnableInterface (get-field f_allbinaryGameCanvasRunnableInterface this))
+        (if (not (eq? _gameCanvasRunnableInterface (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE)))
+            (begin
+            (send _gameCanvasRunnableInterface jm_unPause_0))
+            (begin
+            (JR.className (get-field f_logUtil this)))))))
+    (define/override (jm_destroyAppInRunnable_2 _unconditional _isProgress)
+    (let ([_progressCanvas JR.null])
+      (let/ec jreturn
+        (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (when _isProgress
+            (begin
+            (send _progressCanvas jm_start_0)
+            (send this jm_commandAction_2 (get-field f_SET_DISPLAYABLE (get-field f_myCommandsFactory this)) _progressCanvas)))
+        (send this jm_destroyApp_1 _unconditional)
+        (when _isProgress
+            (begin
+            (send _progressCanvas jm_end_0))))))
+    (define/override (jm_destroyApp_1 _unconditional)
+    (let ([_METHOD_NAME JR.null][_gameAdState JR.null])
+      (let/ec jreturn
+        (set! _METHOD_NAME "GameMidlet::destroyApp")
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (PreLogUtil.jm_put_3 (send (GameStatisticsFactory.jm_getInstance_0) jm_toString_0) this _METHOD_NAME)
+            (set! _gameAdState (send (get-field f_gameAdStateFactory this) jm_getCurrentInstance_0))
+            (JR.className (send _gameAdState jm_getAdvertisements_0))
+            (if (not (send this jm_isDestroyed_0))
+                (begin
+                (send this jm_stopGameCanvasRunnableInterface_0)
+                (send this jm_setGameCanvasRunnableInterface_1 (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE))
+                (send this jm_mediaShutdown_0))
+                (begin
+                (JR.className (get-field f_logUtil this))))
+            (super jm_destroyApp_1 #t)
+            (PreLogUtil.jm_put_3 (get-field f_END (get-field f_commonStrings this)) this _METHOD_NAME))
+        (JR.className (get-field f_logUtil this)))))
+    (define/override (jm_startApp_0)
+    (let ([_gameAdState JR.null][_START_APP JR.null][_gameCanvasRunnableInterface JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this))
+            (send this jm_destroyApp_1 #f)
+            (send this jm_notifyDestroyed_0))])
+            (set! _gameAdState (send (get-field f_gameAdStateFactory this) jm_getCurrentInstance_0))
+            (JR.className (send _gameAdState jm_getAdvertisements_0))
+            (set! _START_APP "startApp")
+            (JR.className (get-field f_logUtil this))
+            (set! _gameCanvasRunnableInterface (get-field f_allbinaryGameCanvasRunnableInterface this))
+            (if (eq? _gameCanvasRunnableInterface (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE))
+                (begin
+                (send (get-field f_gameMidletStateFactory this) jm_setCurrentGameState_1 (get-field f_NO_GAME_STATE (get-field f_gameStateFactory this)))
+                (send this jm_setDemo_0))
+                (begin
+                (JR.className (get-field f_logUtil this))
+                (if (eq? _gameCanvasRunnableInterface (send this jm_getCurrentDisplayable_0))
+                    (begin
+                    (send this jm_unPauseAppBackground_1 #f))
+                    (begin
+                    (JR.className (get-field f_logUtil this))))))))))
+    (define/override (jm_commandAction_2 _command _displayable)
+    (let ([_displayableAsString JR.null][_label JR.null][_gameCommandsFactory JR.null][_allbinaryGameCanvasRunnableInterface JR.null][_gameCanvasRunnableInterface JR.null][_mainFeatureFactory JR.null][_isFullScreen JR.null][_virtualKeyboardEventHandler JR.null][_highScoreTextBox JR.null][_keyValuePersistance JR.null][_loadGameForm JR.null][_index JR.null][_menuListener JR.null][_layerManager JR.null][_stringBuffer JR.null][_inGameOptionsForm JR.null][_progressCanvas JR.null][_inGameOptionsFormFactory JR.null][_tempDisplayable JR.null][_gameInputMappingCanvas JR.null][_highScoresCanvas JR.null][_gameCanvas JR.null][_inApplicationPurchaseFactory JR.null][_list JR.null][_lockableFeature JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this))
+            (when (not (eq? _command (get-field f_EXIT_COMMAND (GameCommandsFactory.jm_getInstance_0))))
+                (begin
+                (send this jm_exitProgress_1 #f))))])
+            (set! _displayableAsString (get-field f_NO_DISPLAYABLE this))
+            (when (not (JR.null? _displayable))
+                (begin
+                (set! _displayableAsString (send _displayable jm_toString_0))))
+            (set! _label (get-field f_NO_COMMAND this))
+            (when (not (JR.null? _command))
+                (begin
+                (set! _label (send _command jm_getLabel_0))))
+            (PreLogUtil.jm_put_3 (send (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_COMMAND_NAME this)) jm_append_1 _label) jm_append_1 (get-field f_DISPLAYABLE this)) jm_append_1 _displayableAsString) jm_toString_0) this (get-field f_COMMAND_ACTION this))
+            (set! _gameCommandsFactory (GameCommandsFactory.jm_getInstance_0))
+            (set! _allbinaryGameCanvasRunnableInterface (get-field f_allbinaryGameCanvasRunnableInterface this))
+            (set! _gameCanvasRunnableInterface _allbinaryGameCanvasRunnableInterface)
+            (if (eq? _command (get-field f_SHOW_GAME_CANVAS _gameCommandsFactory))
+                (begin
+                (when (and (not (eq? (JR.className (send this jm_getDisplay_0)) _gameCanvasRunnableInterface)) (not (= (send _allbinaryGameCanvasRunnableInterface jm_getType_0) (JR.className (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE)))))
+                    (begin
+                    (send this jm_setDisplay_1 _gameCanvasRunnableInterface)))
+                (send this jm_unPauseAppBackground_1 #f))
+                (if (eq? _command (get-field f_CLOSE_AND_SHOW_GAME_CANVAS _gameCommandsFactory))
+                (begin
+                (set! _menuListener _displayable)
+                (send _menuListener jm_close_0)
+                (send this jm_setDisplay_1 _gameCanvasRunnableInterface)
+                (send this jm_unPauseAppBackground_1 #f))
+                (if (eq? _command (get-field f_EXIT_COMMAND _gameCommandsFactory))
+                (begin
+                (when (= (JR.className (send (GameMidletEventHandler.jm_getInstance_0) jm_getEventListenerInterfaceListP_0)) 0)
+                    (begin
+                    (send this jm_exitProgress_1 #t)))
+                (send (GameMidletEventHandler.jm_getInstance_0) jm_fireEvent_1 (DemoGameMidletEvent.jnew_2 this (get-field f_NONE (DemoGameMidletStateFactory.jm_getInstance_0)))))
+                (if (eq? _command (get-field f_EXIT_WITHOUT_PROGRESS_COMMAND _gameCommandsFactory))
+                (begin
+                (send this jm_exitProgress_1 #f))
+                (if (or (or (eq? _command (get-field f_START_COMMAND _gameCommandsFactory)) (eq? _command (get-field f_RESTART_COMMAND _gameCommandsFactory))) (eq? _command (get-field f_CONTINUE_COMMAND _gameCommandsFactory)))
+                (begin
+                (if (or (not (eq? (send (get-field f_gameMidletStateFactory this) jm_getCurrentGameState_0) (get-field f_PLAYING_GAME_STATE (get-field f_gameStateFactory this)))) (eq? _command (get-field f_RESTART_COMMAND _gameCommandsFactory)))
+                    (begin
+                    (if (send (get-field f_gameStartTimeHelper this) jm_isTimeTNT_0)
+                        (begin
+                        (if (and (eq? _command (get-field f_START_COMMAND _gameCommandsFactory)) (send this jm_isDemoLoading_0))
+                            (begin
+                            (JR.className (get-field f_logUtil this)))
+                            (begin
+                            (set-field! f_startedBefore this #t)
+                            (send this jm_createGame_0)
+                            (send (get-field f_gameMidletStateFactory this) jm_setCurrentGameState_1 (get-field f_PLAYING_GAME_STATE (get-field f_gameStateFactory this))))))
+                        (begin
+                        (JR.className (get-field f_logUtil this)))))
+                    (begin
+                    (JR.className (get-field f_logUtil this)))))
+                (if (eq? _command (get-field f_BUY_COMMAND _gameCommandsFactory))
+                (begin
+                (set! _inApplicationPurchaseFactory (InApplicationPurchaseFactory.jm_getInstance_0))
+                (set! _list (send (LockableFeatureFactory.jm_getInstance_0) jm_getList_0))
+                (set! _lockableFeature (send _list jm_get_1 0))
+                (if (and (> (send _list jm_size_0) 0) (not (send _inApplicationPurchaseFactory jm_isPurchased_1 _lockableFeature)))
+                    (begin
+                    (send _inApplicationPurchaseFactory jm_purchase_1 _lockableFeature))
+                    (begin
+                    (send (TextNotificationUtil.jm_getInstance_0) jm_fireSuccess_1 "Already Purchased"))))
+                (if (eq? _command (get-field f_QUIT_COMMAND _gameCommandsFactory))
+                (begin
+                (when (send (get-field f_gameStartTimeHelper this) jm_isTimeTNT_0)
+                    (begin
+                    (when (is-a? _displayable (HighScoreTextBox.jclassValue))
+                        (begin
+                        (set! _menuListener _displayable)
+                        (send _menuListener jm_close_0)))
+                    (send this jm_stopGameCanvasRunnableInterface_0)
+                    (send (get-field f_gameMidletStateFactory this) jm_setCurrentGameState_1 (get-field f_NO_GAME_STATE (get-field f_gameStateFactory this)))
+                    (send this jm_setDemo_0))))
+                (if (eq? _command (get-field f_RESUME_COMMAND (get-field f_myCommandsFactory this)))
+                (begin
+                (send this jm_unPauseAppBackground_1 #f))
+                (if (eq? _command (get-field f_PAUSE_COMMAND (get-field f_myCommandsFactory this)))
+                (begin
+                (send this jm_pauseAppBackground_1 #f))
+                (if (eq? _command (get-field f_SET_DISPLAYABLE (get-field f_myCommandsFactory this)))
+                (begin
+                (send this jm_pauseAppBackground_1 #f)
+                (send this jm_setDisplay_1 _displayable))
+                (if (eq? _command (get-field f_SET_MENU_DISPLAYABLE _gameCommandsFactory))
+                (begin
+                (send this jm_pauseAppBackground_1 #f)
+                (set! _menuListener _displayable)
+                (send _menuListener jm_open_0)
+                (send this jm_setDisplay_1 _displayable))
+                (if (eq? _command (get-field f_START_TRACE _gameCommandsFactory))
+                (begin
+                (send (get-field f_debugInterface this) jm_start_0)
+                (set! _gameCanvas _allbinaryGameCanvasRunnableInterface)
+                (send _gameCanvas jm_addCommand_1 (get-field f_STOP_TRACE _gameCommandsFactory))
+                (send _gameCanvas jm_removeCommand_1 (get-field f_START_TRACE _gameCommandsFactory)))
+                (if (eq? _command (get-field f_STOP_TRACE _gameCommandsFactory))
+                (begin
+                (send this jm_pauseAppBackground_1 #f)
+                (send (get-field f_debugInterface this) jm_stop_0)
+                (send this jm_unPauseAppBackground_1 #f)
+                (set! _gameCanvas _allbinaryGameCanvasRunnableInterface)
+                (send _gameCanvas jm_addCommand_1 (get-field f_START_TRACE _gameCommandsFactory))
+                (send _gameCanvas jm_removeCommand_1 (get-field f_STOP_TRACE _gameCommandsFactory)))
+                (if (eq? _command (get-field f_DEFAULT_OPTIONS _gameCommandsFactory))
+                (begin
+                (set! _tempDisplayable _displayable)
+                (when (is-a? _tempDisplayable (GameOptionsForm.jclassValue))
+                    (begin
+                    (send (GameFeatureFormUtil.jm_getInstance_0) jm_setDefault_1 _tempDisplayable))))
+                (if (eq? _command (GameInputMappingInstructionsCanvas.jstatic_DISPLAY))
+                (begin
+                (set! _tempDisplayable _displayable)
+                (when (is-a? _tempDisplayable (GameInputMappingCanvas.jclassValue))
+                    (begin
+                    (set! _gameInputMappingCanvas _tempDisplayable)
+                    (send _gameInputMappingCanvas jm_update_0)))
+                (send this jm_commandAction_2 (get-field f_SET_MENU_DISPLAYABLE _gameCommandsFactory) (send this jm_getInputMappingInstructionsCanvas_0)))
+                (if (send (HighScoreCommandsFactory.jm_getInstance_0) jm_isHighScoreCommand_1 _command)
+                (begin
+                (set! _tempDisplayable _displayable)
+                (when (is-a? _tempDisplayable (HighScoresCanvas.jclassValue))
+                    (begin
+                    (set! _highScoresCanvas _tempDisplayable)
+                    (send _highScoresCanvas jm_updateCommand_1 _command))))
+                (if (eq? _command (get-field f_DISPLAY (HighScoreCommands.jm_getInstance_0)))
+                (begin
+                (send this jm_commandAction_2 (get-field f_SET_MENU_DISPLAYABLE _gameCommandsFactory) (send this jm_createHighScoresCanvas_0)))
+                (if (eq? _command (GameInputMappingInstructionsCanvas.jstatic_CLOSE))
+                (begin
+                (set! _menuListener _displayable)
+                (send _menuListener jm_close_0)
+                (send this jm_commandAction_2 (GameInputMappingCanvas.jstatic_DISPLAY) (NullCanvas.jstatic_NULL_CANVAS)))
+                (if (eq? _command (GameInputMappingCanvas.jstatic_DISPLAY))
+                (begin
+                (when (J2MEUtil.jm_isHTML_0)
+                    (begin
+                    (send this jm_pauseAppBackground_1 #f)))
+                (send this jm_commandAction_2 (get-field f_SET_MENU_DISPLAYABLE _gameCommandsFactory) (send this jm_getInputMappingCanvas_0)))
+                (if (eq? _command (GameInputMappingCanvas.jstatic_DEFAULT))
+                (begin
+                (set! _tempDisplayable _displayable)
+                (when (is-a? _tempDisplayable (GameInputMappingCanvas.jclassValue))
+                    (begin
+                    (set! _gameInputMappingCanvas _tempDisplayable)
+                    (send _gameInputMappingCanvas jm_setDefault_0))))
+                (if (eq? _command (InGameOptionsForm.jstatic_DISPLAY))
+                (begin
+                (send this jm_pauseAppBackground_1 #f)
+                (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+                (send _progressCanvas jm_addNormalPortion_2 50 "In Game Options")
+                (set! _layerManager (send this jm_createGameLayerManager_0))
+                (set! _inGameOptionsFormFactory (InGameOptionsFormFactory.jm_getInstance_0))
+                (send _inGameOptionsFormFactory jm_init_5 this (InGameFeatures.jnew_0) "Options In Game" (send _layerManager jm_getBackgroundBasicColor_0) (send _layerManager jm_getForegroundBasicColor_0))
+                (set! _inGameOptionsForm (send _inGameOptionsFormFactory jm_get_0))
+                (send _inGameOptionsForm jm_setItemStateListener_1 _allbinaryGameCanvasRunnableInterface)
+                (send this jm_commandAction_2 (get-field f_SET_MENU_DISPLAYABLE _gameCommandsFactory) _inGameOptionsForm))
+                (if (eq? _command (InGameOptionsForm.jstatic_DEFAULT))
+                (begin
+                (set! _inGameOptionsForm (send (InGameOptionsFormFactory.jm_getInstance_0) jm_get_0))
+                (send (GameFeatureFormUtil.jm_getInstance_0) jm_setDefault_1 _inGameOptionsForm))
+                (if (eq? _command (get-field f_DISPLAY_OPTIONS _gameCommandsFactory))
+                (begin
+                (AllBinaryMediaManager.jm_setMuted_1 #t)
+                (send this jm_stopAll_0)
+                (set! _mainFeatureFactory (MainFeatureFactory.jm_getInstance_0))
+                (set-field! f_isFullScreen this (send (get-field f_features this) jm_isFeature_1 (get-field f_FULL_SCREEN _mainFeatureFactory)))
+                (send (ResizableListenerHandler.jm_getInstance_0) jm_fireEvent_1 #t)
+                (send this jm_setResized_1 #f)
+                (send this jm_commandAction_2 (get-field f_SET_MENU_DISPLAYABLE _gameCommandsFactory) (send this jm_getGameOptionsForm_0)))
+                (if (eq? _command (get-field f_CLOSE_OPTIONS _gameCommandsFactory))
+                (begin
+                (send (ResizableListenerHandler.jm_getInstance_0) jm_fireEvent_1 #f)
+                (send this jm_commandAction_2 (get-field f_CLOSE_AND_SHOW_GAME_CANVAS _gameCommandsFactory) _displayable)
+                (set! _stringBuffer (StringMaker.jnew_0))
+                (send _stringBuffer jm_append_1 "Close isFullScreen/change: ")
+                (send _stringBuffer jm_appendboolean_1 (get-field f_isFullScreen this))
+                (send _stringBuffer jm_appendboolean_1 (send (get-field f_fullScreenUtil this) jm_isScreenChange_1 (get-field f_isFullScreen this)))
+                (send _stringBuffer jm_append_1 " isResized: ")
+                (send _stringBuffer jm_appendboolean_1 (send this jm_isResized_0))
+                (PreLogUtil.jm_put_3 (send _stringBuffer jm_toString_0) this (get-field f_COMMAND_ACTION this))
+                (when (or (send this jm_isResized_0) (send (get-field f_fullScreenUtil this) jm_isScreenChange_1 (get-field f_isFullScreen this)))
+                    (begin
+                    (send this jm_updateFullScreen_0)))
+                (AllBinaryMediaManager.jm_setMuted_1 #f))
+                (if (eq? _command (get-field f_DISPLAY_LOAD_FORM _gameCommandsFactory))
+                (begin
+                (send this jm_pauseAppBackground_1 #f)
+                (set! _keyValuePersistance (GamePersistanceSingleton.jm_getInstance_0))
+                (send _keyValuePersistance jm_clear_0)
+                (send _keyValuePersistance jm_loadAll_1 (get-field f_abeClientInformation this))
+                (if (eq? (send this jm_getLoadGameForm_0) (CommandForm.jm_getNullCommandForm_0))
+                    (begin
+                    (set! _layerManager (send this jm_createGameLayerManager_0))
+                    (send this jm_setLoadGameForm_1 (LoadGameForm.jnew_4 this "Load Game" (send _layerManager jm_getBackgroundBasicColor_0) (send _layerManager jm_getForegroundBasicColor_0))))
+                    (begin
+                    (send (send this jm_getLoadGameForm_0) jm_update_0)))
+                (send this jm_commandAction_2 (get-field f_SET_MENU_DISPLAYABLE _gameCommandsFactory) (send this jm_getLoadGameForm_0)))
+                (if (eq? _command (get-field f_LOAD_FILE _gameCommandsFactory))
+                (begin
+                (set! _loadGameForm (send this jm_getLoadGameForm_0))
+                (set! _index (send _loadGameForm jm_getSelectedId_0))
+                (when (not (= _index (JR.i32 (- 1))))
+                    (begin
+                    (set! _keyValuePersistance (GamePersistanceSingleton.jm_getInstance_0))
+                    (send this jm_setStartStateHashtable_1 (send _keyValuePersistance jm_get_1 _index))
+                    (set! _menuListener (send this jm_getLoadGameForm_0))
+                    (send _menuListener jm_close_0)
+                    (PreLogUtil.jm_put_3 (send (BasicMotionGesturesHandler.jm_getInstance_0) jm_toString_0) this (get-field f_COMMAND_ACTION this))
+                    (send this jm_commandAction_2 (get-field f_START_COMMAND _gameCommandsFactory) (NullCanvas.jstatic_NULL_CANVAS))
+                    (PreLogUtil.jm_put_3 (send (BasicMotionGesturesHandler.jm_getInstance_0) jm_toString_0) this (get-field f_COMMAND_ACTION this)))))
+                (if (eq? _command (get-field f_DELETE_FILE _gameCommandsFactory))
+                (begin
+                (set! _loadGameForm (send this jm_getLoadGameForm_0))
+                (set! _index (send _loadGameForm jm_getSelectedText_0))
+                (when (not (= _index (JR.i32 (- 1))))
+                    (begin
+                    (set! _keyValuePersistance (GamePersistanceSingleton.jm_getInstance_0))
+                    (send _keyValuePersistance jm_delete_2 (get-field f_abeClientInformation this) _index)
+                    (send _keyValuePersistance jm_clear_0)
+                    (send _keyValuePersistance jm_loadAllSize_2 (get-field f_abeClientInformation this) 1)
+                    (send (send this jm_getLoadGameForm_0) jm_update_0))))
+                (if (eq? _command (get-field f_SAVE _gameCommandsFactory))
+                (begin
+                (set! _keyValuePersistance (GamePersistanceSingleton.jm_getInstance_0))
+                (send this jm_pauseAppBackground_1 #f)
+                (send _keyValuePersistance jm_save_2 (get-field f_abeClientInformation this) (send this jm_getCurrentStateHashtable_0))
+                (send this jm_unPauseAppBackground_1 #f))
+                (if (eq? _command (HighScoreUtil.jstatic_SUBMIT_TEXTBOX_COMMAND))
+                (begin
+                (JR.className (get-field f_logUtil this))
+                (when (is-a? _displayable (HighScoreTextBox.jclassValue))
+                    (begin
+                    (set! _highScoreTextBox _displayable)
+                    (set-field! f_submitted _highScoreTextBox #t)))
+                (send _allbinaryGameCanvasRunnableInterface jm_setHighScoreSubmitted_1 #t)
+                (send this jm_commandAction_2 (get-field f_CLOSE_AND_SHOW_GAME_CANVAS _gameCommandsFactory) _displayable))
+                (if (eq? _command (get-field f_DISPLAY_ABOUT _gameCommandsFactory))
+                (begin
+                (send (get-field f_aboutCommandProcessor this) jm_process_3 this (get-field f_SET_MENU_DISPLAYABLE _gameCommandsFactory) (send this jm_getAboutCanvas_0)))
+                (if (eq? _command (get-field f_OPEN_WEB_URL _gameCommandsFactory))
+                (begin
+                (send (get-field f_webCommandProcessor this) jm_process_3 this (get-field f_OPEN_WEB_URL _gameCommandsFactory) (NullCanvas.jstatic_NULL_CANVAS)))
+                (if (eq? _command (get-field f_TOGGLE_KEYBOARD _gameCommandsFactory))
+                (begin
+                (set! _virtualKeyboardEventHandler (VirtualKeyboardEventHandler.jm_getInstance_0))
+                (send _virtualKeyboardEventHandler jm_fireEvent_1 (get-field f_SHOW_EVENT _virtualKeyboardEventHandler)))
+                (when (= (send (get-field f_tsUtil this) jm_compareTo_2 (send _command jm_getLabel_0) (JR.className (get-field f_TOGGLE_FULLSCREEN _gameCommandsFactory))) 0)
+                (begin
+                (set! _mainFeatureFactory (MainFeatureFactory.jm_getInstance_0))
+                (set! _isFullScreen (send (get-field f_features this) jm_isFeature_1 (get-field f_FULL_SCREEN _mainFeatureFactory)))
+                (if _isFullScreen
+                    (begin
+                    (send (get-field f_features this) jm_removeDefault_1 (get-field f_FULL_SCREEN _mainFeatureFactory)))
+                    (begin
+                    (send (get-field f_features this) jm_addDefault_1 (get-field f_FULL_SCREEN _mainFeatureFactory))))
+                (send this jm_updateFullScreen_0)))))))))))))))))))))))))))))))))))))))
+    (define/public (jm_updateFullScreen_0)
+    (let ([_mainFeatureFactory JR.null][_isFullScreen JR.null][_displayable JR.null][_canvas JR.null])
+      (let/ec jreturn
+        (set! _mainFeatureFactory (MainFeatureFactory.jm_getInstance_0))
+        (set! _isFullScreen (send (get-field f_features this) jm_isFeature_1 (get-field f_FULL_SCREEN _mainFeatureFactory)))
+        (set! _displayable (JR.className (send this jm_getDisplay_0)))
+        (when (is-a? _displayable Canvas%)
+            (begin
+            (set! _canvas _displayable)
+            (send _canvas jm_setFullScreenMode_1 _isFullScreen))))))
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_PERFORMANCE_MESSAGE (EventStrings.jm_getInstance_0)) this))))
+    (define/public (jm_getInputMappingInstructionsCanvas_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameInputMappingInstructionsCanvas.jnew_2 this (send this jm_createGameLayerManager_0))))))
+    (define/public (jm_getInputMappingCanvas_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameInputMappingCanvas.jnew_4 (get-field f_abeClientInformation this) this (send this jm_createGameLayerManager_0) (send this jm_getHelpPaintable_0))))))
+    (define/public (jm_getAboutCanvas_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (BasicPaintablesCanvas.jnew_4 this (get-field f_ABOUT (CanvasStrings.jm_getInstance_0)) (send this jm_createGameLayerManager_0) (get-field f_paintableArray (AboutPaintableFactory.jm_getInstance_0)))))))
+    (define/public (jm_getHelpPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_createHighScoresCanvas_0)
+    (let ()
+      (let/ec jreturn
+        (raise (JR.newException "Exception" (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)))))))
+    (define/public (jm_startGameCanvasRunnableInterface_0)
+    (let ([_threadFactoryUtil JR.null])
+      (let/ec jreturn
+        (set! _threadFactoryUtil (ThreadFactoryUtil.jm_getInstance_0))
+        (set-field! f_thread this (send _threadFactoryUtil jm_getInstanceGameCanvasRunnable_1 (get-field f_allbinaryGameCanvasRunnableInterface this)))
+        (JR.className (get-field f_logUtil this))
+        (send (get-field f_allbinaryGameCanvasRunnableInterface this) jm_setThread_1 (get-field f_thread this))
+        (send _threadFactoryUtil jm_start_1 (get-field f_thread this)))))
+    (define/public (jm_stopGameCanvasRunnableInterface_0)
+    (let ([_gameCanvasRunnableInterface JR.null][_progressCanvas JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (send (GameNotificationEventHandler.jm_getInstance_0) jm_removeAllListeners_0)
+        (send (ColorChangeEventHandler.jm_getInstance_0) jm_removeAllListeners_0)
+        (GameEventHandlerUtil.jm_removeAllListeners_0)
+        (set! _gameCanvasRunnableInterface (get-field f_allbinaryGameCanvasRunnableInterface this))
+        (if (not (eq? _gameCanvasRunnableInterface (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE)))
+            (begin
+            (JR.className (get-field f_logUtil this))
+            (send _gameCanvasRunnableInterface jm_setRunning_1 #f))
+            (begin
+            (JR.className (get-field f_logUtil this))))
+        (send (ThreadUtil.jm_getInstance_0) jm_join_1 (get-field f_thread this))
+        (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (if (send (get-field f_features this) jm_isFeature_1 (get-field f_LOAD_ALL (MainFeatureFactory.jm_getInstance_0)))
+            (begin
+            (send _progressCanvas jm_addNormalPortion_2 50 "Stopped Game Runnable"))
+            (begin
+            (send _progressCanvas jm_addNormalPortion_2 50 "Stopped Main Runnable")))
+        (JR.className (get-field f_logUtil this)))))
+    (define/public (jm_getGameCanvasRunnableInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_allbinaryGameCanvasRunnableInterface this)))))
+    (define/public (jm_setGameCanvasRunnableInterface_1 _gameCanvasRunnableInterface)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_allbinaryGameCanvasRunnableInterface this _gameCanvasRunnableInterface))))
+    (define/public (jm_createGameLayerManager_0)
+    (let ([_gameInfo JR.null])
+      (let/ec jreturn
+        (set! _gameInfo (GameInfo.jnew_5 (get-field f_SINGLE_PLAYER (GameTypeFactory.jm_getInstance_0)) (GameMode.jstatic_SERVER) (get-field f_PLAYER_TYPE_ONE (PlayerTypesFactory.jm_getInstance_0)) 1 1))
+        (jreturn (AllBinaryGameLayerManager.jnew_3 (get-field f_BLACK (get-field f_basicColorFactory this)) (get-field f_WHITE (get-field f_basicColorFactory this)) _gameInfo)))))
+    (define/public (jm_getGameOptionsForm_0)
+    (let ([_layerManager JR.null])
+      (let/ec jreturn
+        (set! _layerManager (send this jm_createGameLayerManager_0))
+        (jreturn (send (GameOptionsFormFactory.jm_getInstance_0) jm_init_4 this "Game Options" (send _layerManager jm_getBackgroundBasicColor_0) (send _layerManager jm_getForegroundBasicColor_0))))))
+    (define/public (jm_save_0)
+    (let ([_hashtable JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (set! _hashtable (send this jm_getCurrentStateHashtable_0))
+        (send (GamePersistanceSingleton.jm_getInstance_0) jm_save_2 (get-field f_abeClientInformation this) _hashtable))))
+    (define/override (jm_getCurrentStateHashtable_0)
+    (let ([_hashtable JR.null][_currentHashtable JR.null][_enumeration JR.null][_key JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (set! _hashtable (send (StdUtil.jm_getInstance_0) jm_createHashtable_0))
+        (when (not (eq? (get-field f_allbinaryGameCanvasRunnableInterface this) (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE)))
+            (begin
+            (set! _currentHashtable (send (get-field f_allbinaryGameCanvasRunnableInterface this) jm_getCurrentStateHashtable_0))
+            (set! _enumeration (send _currentHashtable jm_keys_0))
+            (set! _key JR.null)
+            (let/ec jbreak (let jloop () (when (send (get-field f_enumerationUtil this) jm_hasMoreElements_1 _enumeration)
+                    (let/ec jcontinue
+                (set! _key (send (get-field f_enumerationUtil this) jm_nextElement_1 _enumeration))
+                (send _hashtable jm_put_2 _key (send _currentHashtable jm_get_1 _key))) (jloop))))))
+        (jreturn _hashtable))))
+    (define/public (jm_setLoadGameForm_1 _loadGameForm)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_loadGameForm this _loadGameForm))))
+    (define/public (jm_getLoadGameForm_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_loadGameForm this)))))
+    (define/public (jm_setResized_1 _resized)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_resized this _resized))))
+    (define/public (jm_isResized_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_resized this)))))
+    (define/public (jm_isDemoLoading_0)
+    (let ([_displayable JR.null][_demoCanvas JR.null])
+      (let/ec jreturn
+        (when (get-field f_startedBefore this)
+            (begin
+            (jreturn #f)))
+        (set! _displayable (JR.className (send this jm_getDisplay_0)))
+        (when (is-a? _displayable (DemoCanvas.jclassValue))
+            (begin
+            (set! _demoCanvas _displayable)
+            (when (send _demoCanvas jm_isDemoLoading_0)
+                (begin
+                (jreturn #t)))))
+        (jreturn #f))))))
+(define (GameMidlet.jclassValue) GameMidlet%)
+
+(define (GameMidlet.jnew_1 _clientInformationFactory)
+  (define this (new GameMidlet% [jclass "GameMidlet"]))
+    (set-field! f_enumerationUtil this (EnumerationUtil.jm_getInstance_0))
+    (set-field! f_basicColorFactory this (BasicColorFactory.jm_getInstance_0))
+    (set-field! f_features this (Features.jm_getInstance_0))
+    (set-field! f_midletStrings this (MidletStrings.jm_getInstance_0))
+    (set-field! f_myCommandsFactory this (MyCommandsFactory.jm_getInstance_0))
+    (set-field! f_gameStrings this (GameStrings.jm_getInstance_0))
+    (set-field! f_gameAdStateFactory this (GameAdStateFactory.jm_getInstance_0))
+    (set-field! f_gameStateFactory this (GameStateFactory.jm_getInstance_0))
+    (set-field! f_tsUtil this (TsUtil.jm_getInstance_0))
+    (set-field! f_DISPLAYABLE this " Displayable: ")
+    (set-field! f_COMMAND_NAME this "command Name/Label: ")
+    (set-field! f_NO_COMMAND this "No Command")
+    (set-field! f_NO_DISPLAYABLE this "No Displayable")
+    (set-field! f_COMMAND_ACTION this (send (send (send (StringMaker.jnew_0) jm_append_1 "GameMidlet::") jm_append_1 (get-field f_COMMAND_ACTION (get-field f_midletStrings this))) jm_toString_0))
+    (set-field! f_PAUSE_APP_BACKGROUND this "pauseAppBackground")
+    (set-field! f_UN_PAUSE_APP_BACKGROUND this "unPauseAppBackground")
+    (set-field! f_aboutCommandProcessor this (AboutCommandProcessor.jm_getInstance_0))
+    (set-field! f_webCommandProcessor this (WebCommandProcessor.jm_getInstance_0))
+    (set-field! f_gameMidletStateFactory this (GameMidletStateFactory.jm_getInstance_0))
+    (set-field! f_gameStartTimeHelper this (TimeDelayHelper.jnew_1 240))
+    (set-field! f_fullScreenUtil this (FullScreenUtil.jm_getInstance_0))
+    
+    (set-field! f_allbinaryGameCanvasRunnableInterface this (NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE))
+    (set-field! f_thread this (NullThread.jstatic_NULL_THREAD))
+    
+    
+    
+    (set-field! f_startedBefore this #f)
+    (let ([_progressCanvas JR.null])
+      (let/ec jreturn
+        (void)
+        (send (SmallIntegerSingletonFactory.jm_getInstance_0) jm_initWithRange_2 #x291 6)
+        (set-field! f_loadGameForm this (CommandForm.jm_getNullCommandForm_0))
+        (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (send _progressCanvas jm_init_1 this)
+        (send (GameFeatureEventHandler.jm_getInstance_0) jm_addListenerInterface_1 (ChangedGameFeatureListener.jm_getInstance_0))
+        (send (GamePersistanceSingleton.jm_getInstance_0) jm_clear_0)
+        (set-field! f_debugInterface this (DebugFactory.jm_getInstance_0))
+        (send this jm_init_0)))
+  this)
 
--- local Enumeration = require("java.util.Enumeration")
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local NullCanvas = require("javax.microedition.lcdui.NullCanvas")
--- local MIDletStateChangeException = require("javax.microedition.midlet.MIDletStateChangeException")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local TsUtil = require("org.allbinary.TsUtil")
-local GameAdStateFactory = require("org.allbinary.business.advertisement.GameAdStateFactory")
-local FullScreenUtil = require("org.allbinary.canvas.FullScreenUtil")
-local GameStatisticsFactory = require("org.allbinary.canvas.GameStatisticsFactory")
-local DebugFactory = require("org.allbinary.debug.DebugFactory")
-local DebugInterface = require("org.allbinary.debug.DebugInterface")
-local GameAdState = require("org.allbinary.game.GameAdState")
-local GameInfo = require("org.allbinary.game.GameInfo")
-local GameMode = require("org.allbinary.game.GameMode")
-local GameStrings = require("org.allbinary.game.GameStrings")
-local GameTypeFactory = require("org.allbinary.game.GameTypeFactory")
-local PlayerTypesFactory = require("org.allbinary.game.PlayerTypesFactory")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local GameOptionsForm = require("org.allbinary.game.configuration.GameOptionsForm")
-local GameOptionsFormFactory = require("org.allbinary.game.configuration.GameOptionsFormFactory")
-local InGameFeatures = require("org.allbinary.game.configuration.InGameFeatures")
-local InGameOptionsForm = require("org.allbinary.game.configuration.InGameOptionsForm")
-local InGameOptionsFormFactory = require("org.allbinary.game.configuration.InGameOptionsFormFactory")
-local LoadGameForm = require("org.allbinary.game.configuration.LoadGameForm")
-local ChangedGameFeatureListener = require("org.allbinary.game.configuration.event.ChangedGameFeatureListener")
-local GameFeatureEventHandler = require("org.allbinary.game.configuration.event.GameFeatureEventHandler")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFormUtil = require("org.allbinary.game.configuration.feature.GameFeatureFormUtil")
-local MainFeatureFactory = require("org.allbinary.game.configuration.feature.MainFeatureFactory")
-local GamePersistanceSingleton = require("org.allbinary.game.configuration.persistance.GamePersistanceSingleton")
-local KeyValuePersistance = require("org.allbinary.game.configuration.persistance.KeyValuePersistance")
-local AllBinaryGameCanvas = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvas")
-local BasicPaintablesCanvas = require("org.allbinary.game.displayable.canvas.BasicPaintablesCanvas")
-local DemoCanvas = require("org.allbinary.game.displayable.canvas.DemoCanvas")
-local GameCanvasRunnableInterface = require("org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface")
-local GameEventHandlerUtil = require("org.allbinary.game.displayable.canvas.GameEventHandlerUtil")
-local GameInputMappingCanvas = require("org.allbinary.game.displayable.canvas.GameInputMappingCanvas")
-local GameInputMappingInstructionsCanvas = require("org.allbinary.game.displayable.canvas.GameInputMappingInstructionsCanvas")
-local MenuListener = require("org.allbinary.game.displayable.canvas.MenuListener")
-local NullGameCanvasRunnable = require("org.allbinary.game.displayable.canvas.NullGameCanvasRunnable")
-local TextNotificationUtil = require("org.allbinary.game.input.TextNotificationUtil")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local GameNotificationEventHandler = require("org.allbinary.game.layer.hud.event.GameNotificationEventHandler")
-local HelpPaintable = require("org.allbinary.game.paint.help.HelpPaintable")
-local HighScoreCommands = require("org.allbinary.game.score.HighScoreCommands")
-local HighScoreCommandsFactory = require("org.allbinary.game.score.HighScoreCommandsFactory")
-local HighScoreTextBox = require("org.allbinary.game.score.displayable.HighScoreTextBox")
-local HighScoreUtil = require("org.allbinary.game.score.displayable.HighScoreUtil")
-local HighScoresCanvas = require("org.allbinary.game.score.displayable.HighScoresCanvas")
-local GameStateFactory = require("org.allbinary.game.state.GameStateFactory")
-local ResizableListenerHandler = require("org.allbinary.graphics.ResizableListenerHandler")
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local ColorChangeEventHandler = require("org.allbinary.graphics.color.ColorChangeEventHandler")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local MyCommandsFactory = require("org.allbinary.graphics.displayable.command.MyCommandsFactory")
-local AboutCommandProcessor = require("org.allbinary.graphics.displayable.screen.AboutCommandProcessor")
-local AboutPaintableFactory = require("org.allbinary.graphics.displayable.screen.AboutPaintableFactory")
-local CommandForm = require("org.allbinary.graphics.displayable.screen.CommandForm")
-local WebCommandProcessor = require("org.allbinary.graphics.displayable.screen.WebCommandProcessor")
-local AllBinarySensorManager = require("org.allbinary.input.AllBinarySensorManager")
-local VirtualKeyboardEventHandler = require("org.allbinary.input.event.VirtualKeyboardEventHandler")
-local BasicMotionGesturesHandler = require("org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local ClientInformationFactory = require("org.allbinary.logic.system.security.licensing.ClientInformationFactory")
-local InApplicationPurchaseFactory = require("org.allbinary.logic.system.security.licensing.InApplicationPurchaseFactory")
-local LockableFeature = require("org.allbinary.logic.system.security.licensing.LockableFeature")
-local LockableFeatureFactory = require("org.allbinary.logic.system.security.licensing.LockableFeatureFactory")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local AllBinaryMediaManager = require("org.allbinary.media.audio.AllBinaryMediaManager")
-local MidletStrings = require("org.allbinary.midlet.MidletStrings")
-local ProgressMidlet = require("org.allbinary.midlet.ProgressMidlet")
-local NullThread = require("org.allbinary.thread.NullThread")
-local ThreadFactoryUtil = require("org.allbinary.thread.ThreadFactoryUtil")
-local ThreadUtil = require("org.allbinary.thread.ThreadUtil")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local EnumerationUtil = require("org.allbinary.util.EnumerationUtil")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
-
-local function java_instanceof(object, class)
-    local metatable = getmetatable(object)
-    while metatable do
-        if metatable == class then return true end
-        local parent = getmetatable(metatable)
-        metatable = parent and parent.__index
-    end
-    return false
-end
-
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameMidlet = {}
-GameMidlet.__index = GameMidlet
-GameMidlet.className = "GameMidlet"
-setmetatable(GameMidlet, {__index = ProgressMidlet})
-
-function GameMidlet:_init_fields()
-    self.enumerationUtil = EnumerationUtil.getInstance()
-    self.basicColorFactory = BasicColorFactory.getInstance()
-    self.features = Features.getInstance()
-    self.midletStrings = MidletStrings.getInstance()
-    self.myCommandsFactory = MyCommandsFactory.getInstance()
-    self.gameStrings = GameStrings.getInstance()
-    self.gameAdStateFactory = GameAdStateFactory.getInstance()
-    self.gameStateFactory = GameStateFactory.getInstance()
-    self.tsUtil = TsUtil.getInstance()
-    self.DISPLAYABLE = " Displayable: "
-    self.COMMAND_NAME = "command Name/Label: "
-    self.NO_COMMAND = "No Command"
-    self.NO_DISPLAYABLE = "No Displayable"
-    self.COMMAND_ACTION = tostring(StringMaker.new():append("GameMidlet::"):append(self.midletStrings.COMMAND_ACTION))
-    self.PAUSE_APP_BACKGROUND = "pauseAppBackground"
-    self.UN_PAUSE_APP_BACKGROUND = "unPauseAppBackground"
-    self.aboutCommandProcessor = AboutCommandProcessor.getInstance()
-    self.webCommandProcessor = WebCommandProcessor.getInstance()
-    self.gameMidletStateFactory = GameMidletStateFactory.getInstance()
-    self.gameStartTimeHelper = TimeDelayHelper.new(240)
-    self.fullScreenUtil = FullScreenUtil.getInstance()
-    self.debugInterface = nil
-    self.allbinaryGameCanvasRunnableInterface = NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE
-    self.thread = NullThread.NULL_THREAD
-    self.loadGameForm = nil
-    self.isFullScreen = false
-    self.resized = false
-    self.startedBefore = false
-end
-
-
-function GameMidlet.new(clientInformationFactory)
-    local self = setmetatable(ProgressMidlet.new(clientInformationFactory), GameMidlet)
-    self:_init_fields()
-        -- super(...) made self above
-        SmallIntegerSingletonFactory.getInstance():initWithRange(0x291, 6)
-        self.loadGameForm = CommandForm.getNullCommandForm()
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        progressCanvas:init(self)
-        GameFeatureEventHandler.getInstance():addListenerInterface(ChangedGameFeatureListener.getInstance())
-        GamePersistanceSingleton.getInstance():clear()
-        self.debugInterface = DebugFactory.getInstance()
-        self:init()
-    return self
-end
-
-
-function GameMidlet:init()
-end
-
-
--- throws Exception
-function GameMidlet:setDemo()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function GameMidlet:createGame()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function GameMidlet:mediaShutdown()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
-function GameMidlet:stopAll()
-end
-
-
-function GameMidlet:pauseApp()
-        self:pauseAppBackground(true)
-        local gameAdState = self.gameAdStateFactory:getCurrentInstance()
-        gameAdState:getAdvertisements():stopAll()
-end
-
-
-function GameMidlet:pauseAppBackground(background)
-        self.logUtil:putF(self.commonStrings.START, self, self.PAUSE_APP_BACKGROUND)
-        if self.allbinaryGameCanvasRunnableInterface ~= NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE then
-            self.allbinaryGameCanvasRunnableInterface:pause()
-        else
-            self.logUtil:putF("<<<<<< Null", self, self.PAUSE_APP_BACKGROUND)
-        end
-        AllBinarySensorManager.getInstance():shutdown()
-end
-
-
-function GameMidlet:unPauseApp()
-        self:unPauseAppBackground(true)
-        local gameAdState = self.gameAdStateFactory:getCurrentInstance()
-        gameAdState:getAdvertisements():startAll()
-end
-
-
-function GameMidlet:unPauseAppBackground(background)
-        self.logUtil:putF(self.commonStrings.START, self, self.UN_PAUSE_APP_BACKGROUND)
-        AllBinarySensorManager.getInstance():init()
-        local gameCanvasRunnableInterface = self.allbinaryGameCanvasRunnableInterface
-        if gameCanvasRunnableInterface ~= NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE then
-            gameCanvasRunnableInterface:unPause()
-        else
-            self.logUtil:putF("<<<<<< Null", self, self.UN_PAUSE_APP_BACKGROUND)
-        end
-end
-
-
-function GameMidlet:destroyAppInRunnable(unconditional, isProgress)
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        if isProgress then
-            progressCanvas:start()
-            self:commandAction(self.myCommandsFactory.SET_DISPLAYABLE, progressCanvas)
-        end
-        self:destroyApp(unconditional)
-        if isProgress then
-            progressCanvas:end_()
-        end
-end
-
-
-function GameMidlet:destroyApp(unconditional)
-        local METHOD_NAME = "GameMidlet::destroyApp"
-        local try_ok, try_error = pcall(function()
-            PreLogUtil.put(tostring(GameStatisticsFactory.getInstance()), self, METHOD_NAME)
-            local gameAdState = self.gameAdStateFactory:getCurrentInstance()
-            gameAdState:getAdvertisements():stopAll()
-            if not self:isDestroyed() then
-                self:stopGameCanvasRunnableInterface()
-                self:setGameCanvasRunnableInterface(NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE)
-                self:mediaShutdown()
-            else
-                self.logUtil:putF("Midlet Managment Error: Midlet Should Only Be Destroyed Once", self, METHOD_NAME)
-            end
-            ProgressMidlet.destroyApp(self, true)
-            PreLogUtil.put(self.commonStrings.END, self, METHOD_NAME)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, METHOD_NAME, e)
-        end
-        self.logUtil:putF(self.commonStrings.END, self, METHOD_NAME)
-end
-
-
--- throws MIDletStateChangeException
-function GameMidlet:startApp()
-        local try_ok, try_error = pcall(function()
-            local gameAdState = self.gameAdStateFactory:getCurrentInstance()
-            gameAdState:getAdvertisements():startAll()
-            local START_APP = "startApp"
-            self.logUtil:putF(self.commonStrings.START, self, START_APP)
-            local gameCanvasRunnableInterface = self.allbinaryGameCanvasRunnableInterface
-            if gameCanvasRunnableInterface == NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE then
-                self.gameMidletStateFactory:setCurrentGameState(self.gameStateFactory.NO_GAME_STATE)
-                self:setDemo()
-            else
-                self.logUtil:putF("GameCanvasRunnableInterface is available", self, START_APP)
-                if gameCanvasRunnableInterface == self:getCurrentDisplayable() then
-                    self:unPauseAppBackground(false)
-                else
-                    self.logUtil:putF("GameCanvasRunnableInterface is not current displayable", self, START_APP)
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "startApp", e)
-            self:destroyApp(false)
-            self:notifyDestroyed()
-        end
-end
-
-
-function GameMidlet:commandAction(command, displayable)
-        local try_ok, try_error = pcall(function()
-            local displayableAsString = self.NO_DISPLAYABLE
-            if displayable ~= nil then
-                displayableAsString = tostring(displayable)
-            end
-            local label = self.NO_COMMAND
-            if command ~= nil then
-                label = command:getLabel()
-            end
-            PreLogUtil.put(tostring(StringMaker.new():append(self.COMMAND_NAME):append(label):append(self.DISPLAYABLE):append(displayableAsString)), self, self.COMMAND_ACTION)
-            local gameCommandsFactory = GameCommandsFactory.getInstance()
-            local allbinaryGameCanvasRunnableInterface = self.allbinaryGameCanvasRunnableInterface
-            local gameCanvasRunnableInterface = allbinaryGameCanvasRunnableInterface
-            if command == gameCommandsFactory.SHOW_GAME_CANVAS then
-                if self:getDisplay():getCurrent() ~= gameCanvasRunnableInterface and allbinaryGameCanvasRunnableInterface:getType() ~= NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE:getType() then
-                    self:setDisplay(gameCanvasRunnableInterface)
-                end
-                self:unPauseAppBackground(false)
-            elseif command == gameCommandsFactory.CLOSE_AND_SHOW_GAME_CANVAS then
-                local menuListener = displayable
-                menuListener:close()
-                self:setDisplay(gameCanvasRunnableInterface)
-                self:unPauseAppBackground(false)
-            elseif command == gameCommandsFactory.EXIT_COMMAND then
-                if GameMidletEventHandler.getInstance():getEventListenerInterfaceListP():size() == 0 then
-                    self:exitProgress(true)
-                end
-                GameMidletEventHandler.getInstance():fireEvent(DemoGameMidletEvent.new(self, DemoGameMidletStateFactory.getInstance().NONE))
-            elseif command == gameCommandsFactory.EXIT_WITHOUT_PROGRESS_COMMAND then
-                self:exitProgress(false)
-            elseif command == gameCommandsFactory.START_COMMAND or command == gameCommandsFactory.RESTART_COMMAND or command == gameCommandsFactory.CONTINUE_COMMAND then
-                if self.gameMidletStateFactory:getCurrentGameState() ~= self.gameStateFactory.PLAYING_GAME_STATE or command == gameCommandsFactory.RESTART_COMMAND then
-                    if self.gameStartTimeHelper:isTimeTNT() then
-                        if command == gameCommandsFactory.START_COMMAND and self:isDemoLoading() then
-                            self.logUtil:putF("Trying to Start Game Before Loading Complete", self, self.midletStrings.COMMAND_ACTION)
-                        else
-                            self.startedBefore = true
-                            self:createGame()
-                            self.gameMidletStateFactory:setCurrentGameState(self.gameStateFactory.PLAYING_GAME_STATE)
-                        end
-                    else
-                        self.logUtil:putF("Starting Game Too Often", self, self.midletStrings.COMMAND_ACTION)
-                    end
-                else
-                    self.logUtil:putF("Already in playing state", self, self.COMMAND_ACTION)
-                end
-            elseif command == gameCommandsFactory.BUY_COMMAND then
-                local inApplicationPurchaseFactory = InApplicationPurchaseFactory.getInstance()
-                local list = LockableFeatureFactory.getInstance():getList()
-                local lockableFeature = list:get(0)
-                if list:size() > 0 and not inApplicationPurchaseFactory:isPurchased(lockableFeature) then
-                    inApplicationPurchaseFactory:purchase(lockableFeature)
-                else
-                    TextNotificationUtil.getInstance():fireSuccess("Already Purchased")
-                end
-            elseif command == gameCommandsFactory.QUIT_COMMAND then
-                if self.gameStartTimeHelper:isTimeTNT() then
-                    if java_instanceof(displayable, HighScoreTextBox) then
-                        local menuListener = displayable
-                        menuListener:close()
-                    end
-                    self:stopGameCanvasRunnableInterface()
-                    self.gameMidletStateFactory:setCurrentGameState(self.gameStateFactory.NO_GAME_STATE)
-                    self:setDemo()
-                end
-            elseif command == self.myCommandsFactory.RESUME_COMMAND then
-                self:unPauseAppBackground(false)
-            elseif command == self.myCommandsFactory.PAUSE_COMMAND then
-                self:pauseAppBackground(false)
-            elseif command == self.myCommandsFactory.SET_DISPLAYABLE then
-                self:pauseAppBackground(false)
-                self:setDisplay(displayable)
-            elseif command == gameCommandsFactory.SET_MENU_DISPLAYABLE then
-                self:pauseAppBackground(false)
-                local menuListener = displayable
-                menuListener:open()
-                self:setDisplay(displayable)
-            elseif command == gameCommandsFactory.START_TRACE then
-                self.debugInterface:start()
-                local gameCanvas = allbinaryGameCanvasRunnableInterface
-                gameCanvas:addCommand(gameCommandsFactory.STOP_TRACE)
-                gameCanvas:removeCommand(gameCommandsFactory.START_TRACE)
-            elseif command == gameCommandsFactory.STOP_TRACE then
-                self:pauseAppBackground(false)
-                self.debugInterface:stop()
-                self:unPauseAppBackground(false)
-                local gameCanvas = allbinaryGameCanvasRunnableInterface
-                gameCanvas:addCommand(gameCommandsFactory.START_TRACE)
-                gameCanvas:removeCommand(gameCommandsFactory.STOP_TRACE)
-            elseif command == gameCommandsFactory.DEFAULT_OPTIONS then
-                local tempDisplayable = displayable
-                if java_instanceof(tempDisplayable, GameOptionsForm) then
-                    GameFeatureFormUtil.getInstance():setDefault(tempDisplayable)
-                end
-            elseif command == GameInputMappingInstructionsCanvas.DISPLAY then
-                local tempDisplayable = displayable
-                if java_instanceof(tempDisplayable, GameInputMappingCanvas) then
-                    local gameInputMappingCanvas = tempDisplayable
-                    gameInputMappingCanvas:update()
-                end
-                self:commandAction(gameCommandsFactory.SET_MENU_DISPLAYABLE, self:getInputMappingInstructionsCanvas())
-            elseif HighScoreCommandsFactory.getInstance():isHighScoreCommand(command) then
-                local tempDisplayable = displayable
-                if java_instanceof(tempDisplayable, HighScoresCanvas) then
-                    local highScoresCanvas = tempDisplayable
-                    highScoresCanvas:updateCommand(command)
-                end
-            elseif command == HighScoreCommands.getInstance().DISPLAY then
-                self:commandAction(gameCommandsFactory.SET_MENU_DISPLAYABLE, self:createHighScoresCanvas())
-            elseif command == GameInputMappingInstructionsCanvas.CLOSE then
-                local menuListener = displayable
-                menuListener:close()
-                self:commandAction(GameInputMappingCanvas.DISPLAY, NullCanvas.NULL_CANVAS)
-            elseif command == GameInputMappingCanvas.DISPLAY then
-                if J2MEUtil.isHTML() then
-                    self:pauseAppBackground(false)
-                end
-                self:commandAction(gameCommandsFactory.SET_MENU_DISPLAYABLE, self:getInputMappingCanvas())
-            elseif command == GameInputMappingCanvas.DEFAULT then
-                local tempDisplayable = displayable
-                if java_instanceof(tempDisplayable, GameInputMappingCanvas) then
-                    local gameInputMappingCanvas = tempDisplayable
-                    gameInputMappingCanvas:setDefault()
-                end
-            elseif command == InGameOptionsForm.DISPLAY then
-                self:pauseAppBackground(false)
-                local progressCanvas = ProgressCanvasFactory.getInstance()
-                progressCanvas:addNormalPortion(50, "In Game Options")
-                local layerManager = self:createGameLayerManager()
-                local inGameOptionsFormFactory = InGameOptionsFormFactory.getInstance()
-                inGameOptionsFormFactory:init(self, InGameFeatures.new(), "Options In Game", layerManager:getBackgroundBasicColor(), layerManager:getForegroundBasicColor())
-                local inGameOptionsForm = inGameOptionsFormFactory:get()
-                inGameOptionsForm:setItemStateListener(allbinaryGameCanvasRunnableInterface)
-                self:commandAction(gameCommandsFactory.SET_MENU_DISPLAYABLE, inGameOptionsForm)
-            elseif command == InGameOptionsForm.DEFAULT then
-                local inGameOptionsForm = InGameOptionsFormFactory.getInstance():get()
-                GameFeatureFormUtil.getInstance():setDefault(inGameOptionsForm)
-            elseif command == gameCommandsFactory.DISPLAY_OPTIONS then
-                AllBinaryMediaManager.setMuted(true)
-                self:stopAll()
-                local mainFeatureFactory = MainFeatureFactory.getInstance()
-                self.isFullScreen = self.features:isFeature(mainFeatureFactory.FULL_SCREEN)
-                ResizableListenerHandler.getInstance():fireEvent(true)
-                self:setResized(false)
-                self:commandAction(gameCommandsFactory.SET_MENU_DISPLAYABLE, self:getGameOptionsForm())
-            elseif command == gameCommandsFactory.CLOSE_OPTIONS then
-                ResizableListenerHandler.getInstance():fireEvent(false)
-                self:commandAction(gameCommandsFactory.CLOSE_AND_SHOW_GAME_CANVAS, displayable)
-                local stringBuffer = StringMaker.new()
-                stringBuffer:append("Close isFullScreen/change: ")
-                stringBuffer:appendboolean(self.isFullScreen)
-                stringBuffer:appendboolean(self.fullScreenUtil:isScreenChange(self.isFullScreen))
-                stringBuffer:append(" isResized: ")
-                stringBuffer:appendboolean(self:isResized())
-                PreLogUtil.put(tostring(stringBuffer), self, self.COMMAND_ACTION)
-                if self:isResized() or self.fullScreenUtil:isScreenChange(self.isFullScreen) then
-                    self:updateFullScreen()
-                end
-                AllBinaryMediaManager.setMuted(false)
-            elseif command == gameCommandsFactory.DISPLAY_LOAD_FORM then
-                self:pauseAppBackground(false)
-                local keyValuePersistance = GamePersistanceSingleton.getInstance()
-                keyValuePersistance:clear()
-                keyValuePersistance:loadAll(self.abeClientInformation)
-                if self:getLoadGameForm() == CommandForm.getNullCommandForm() then
-                    local layerManager = self:createGameLayerManager()
-                    self:setLoadGameForm(LoadGameForm.new(self, "Load Game", layerManager:getBackgroundBasicColor(), layerManager:getForegroundBasicColor()))
-                else
-                    self:getLoadGameForm():update()
-                end
-                self:commandAction(gameCommandsFactory.SET_MENU_DISPLAYABLE, self:getLoadGameForm())
-            elseif command == gameCommandsFactory.LOAD_FILE then
-                local loadGameForm = self:getLoadGameForm()
-                local index = loadGameForm:getSelectedId()
-                if index ~= -1 then
-                    local keyValuePersistance = GamePersistanceSingleton.getInstance()
-                    self:setStartStateHashtable(keyValuePersistance:get(index))
-                    local menuListener = self:getLoadGameForm()
-                    menuListener:close()
-                    PreLogUtil.put(tostring(BasicMotionGesturesHandler.getInstance()), self, self.COMMAND_ACTION)
-                    self:commandAction(gameCommandsFactory.START_COMMAND, NullCanvas.NULL_CANVAS)
-                    PreLogUtil.put(tostring(BasicMotionGesturesHandler.getInstance()), self, self.COMMAND_ACTION)
-                end
-            elseif command == gameCommandsFactory.DELETE_FILE then
-                local loadGameForm = self:getLoadGameForm()
-                local index = loadGameForm:getSelectedText()
-                if index ~= -1 then
-                    local keyValuePersistance = GamePersistanceSingleton.getInstance()
-                    keyValuePersistance:delete(self.abeClientInformation, index)
-                    keyValuePersistance:clear()
-                    keyValuePersistance:loadAllSize(self.abeClientInformation, 1)
-                    self:getLoadGameForm():update()
-                end
-            elseif command == gameCommandsFactory.SAVE then
-                local keyValuePersistance = GamePersistanceSingleton.getInstance()
-                self:pauseAppBackground(false)
-                keyValuePersistance:save(self.abeClientInformation, self:getCurrentStateHashtable())
-                self:unPauseAppBackground(false)
-            elseif command == HighScoreUtil.SUBMIT_TEXTBOX_COMMAND then
-                self.logUtil:putF("Submitted Score", self, self.COMMAND_ACTION)
-                if java_instanceof(displayable, HighScoreTextBox) then
-                    local highScoreTextBox = displayable
-                    highScoreTextBox.submitted = true
-                end
-                allbinaryGameCanvasRunnableInterface:setHighScoreSubmitted(true)
-                self:commandAction(gameCommandsFactory.CLOSE_AND_SHOW_GAME_CANVAS, displayable)
-            elseif command == gameCommandsFactory.DISPLAY_ABOUT then
-                self.aboutCommandProcessor:process(self, gameCommandsFactory.SET_MENU_DISPLAYABLE, self:getAboutCanvas())
-            elseif command == gameCommandsFactory.OPEN_WEB_URL then
-                self.webCommandProcessor:process(self, gameCommandsFactory.OPEN_WEB_URL, NullCanvas.NULL_CANVAS)
-            elseif command == gameCommandsFactory.TOGGLE_KEYBOARD then
-                local virtualKeyboardEventHandler = VirtualKeyboardEventHandler.getInstance()
-                virtualKeyboardEventHandler:fireEvent(virtualKeyboardEventHandler.SHOW_EVENT)
-            elseif self.tsUtil:compareTo(command:getLabel(), gameCommandsFactory.TOGGLE_FULLSCREEN:getLabel()) == 0 then
-                local mainFeatureFactory = MainFeatureFactory.getInstance()
-                local isFullScreen = self.features:isFeature(mainFeatureFactory.FULL_SCREEN)
-                if isFullScreen then
-                    self.features:removeDefault(mainFeatureFactory.FULL_SCREEN)
-                else
-                    self.features:addDefault(mainFeatureFactory.FULL_SCREEN)
-                end
-                self:updateFullScreen()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(tostring(StringMaker.new():append(self.commonStrings.EXCEPTION_LABEL):append(command:getLabel())), self, self.midletStrings.COMMAND_ACTION, e)
-            if command ~= GameCommandsFactory.getInstance().EXIT_COMMAND then
-                self:exitProgress(false)
-            end
-        end
-end
-
-
-function GameMidlet:updateFullScreen()
-        local mainFeatureFactory = MainFeatureFactory.getInstance()
-        local isFullScreen = self.features:isFeature(mainFeatureFactory.FULL_SCREEN)
-        local displayable = self:getDisplay():getCurrent()
-        if java_instanceof(displayable, Canvas) then
-            local canvas = displayable
-            canvas:setFullScreenMode(isFullScreen)
-        end
-end
-
-
-function GameMidlet:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
--- throws Exception
-function GameMidlet:getInputMappingInstructionsCanvas()
-        return GameInputMappingInstructionsCanvas.new(self, self:createGameLayerManager())
-end
-
-
--- throws Exception
-function GameMidlet:getInputMappingCanvas()
-        return GameInputMappingCanvas.new(self.abeClientInformation, self, self:createGameLayerManager(), self:getHelpPaintable())
-end
-
-
--- throws Exception
-function GameMidlet:getAboutCanvas()
-        return BasicPaintablesCanvas.new(self, CanvasStrings.getInstance().ABOUT, self:createGameLayerManager(), AboutPaintableFactory.getInstance().paintableArray)
-end
-
-
--- throws Exception
-function GameMidlet:getHelpPaintable()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function GameMidlet:createHighScoresCanvas()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function GameMidlet:startGameCanvasRunnableInterface()
-        local threadFactoryUtil = ThreadFactoryUtil.getInstance()
-        self.thread = threadFactoryUtil:getInstanceGameCanvasRunnable(self.allbinaryGameCanvasRunnableInterface)
-        self.logUtil:putF(tostring(StringMaker.new():append("Thread Priority: "):appendint(java_int(self.thread:getPriority()))), self, "startGameCanvasRunnableInterface")
-        self.allbinaryGameCanvasRunnableInterface:setThread(self.thread)
-        threadFactoryUtil:start(self.thread)
-end
-
-
--- throws Exception
-function GameMidlet:stopGameCanvasRunnableInterface()
-        self.logUtil:putF(self.commonStrings.START, self, self.gameStrings.STOP_GAME_CANVAS_RUNNABLE_INTERFACE)
-        GameNotificationEventHandler.getInstance():removeAllListeners()
-        ColorChangeEventHandler.getInstance():removeAllListeners()
-        GameEventHandlerUtil.removeAllListeners()
-        local gameCanvasRunnableInterface = self.allbinaryGameCanvasRunnableInterface
-        if gameCanvasRunnableInterface ~= NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE then
-            self.logUtil:putF(tostring(StringMaker.new():append("Set Running False: "):append(tostring(gameCanvasRunnableInterface))), self, self.gameStrings.STOP_GAME_CANVAS_RUNNABLE_INTERFACE)
-            gameCanvasRunnableInterface:setRunning(false)
-        else
-            self.logUtil:putF("StopGame - Could Not Stop", self, self.gameStrings.STOP_GAME_CANVAS_RUNNABLE_INTERFACE)
-        end
-        ThreadUtil.getInstance():join(self.thread)
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        if self.features:isFeature(MainFeatureFactory.getInstance().LOAD_ALL) then
-            progressCanvas:addNormalPortion(50, "Stopped Game Runnable")
-        else
-            progressCanvas:addNormalPortion(50, "Stopped Main Runnable")
-        end
-        self.logUtil:putF(self.commonStrings.END, self, self.gameStrings.STOP_GAME_CANVAS_RUNNABLE_INTERFACE)
-end
-
-
-function GameMidlet:getGameCanvasRunnableInterface()
-        return self.allbinaryGameCanvasRunnableInterface
-end
-
-
-function GameMidlet:setGameCanvasRunnableInterface(gameCanvasRunnableInterface)
-        self.allbinaryGameCanvasRunnableInterface = gameCanvasRunnableInterface
-end
-
-
-function GameMidlet:createGameLayerManager()
-        local gameInfo = GameInfo.new(GameTypeFactory.getInstance().SINGLE_PLAYER, GameMode.SERVER, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, 1, 1)
-        return AllBinaryGameLayerManager.new(self.basicColorFactory.BLACK, self.basicColorFactory.WHITE, gameInfo)
-end
-
-
-function GameMidlet:getGameOptionsForm()
-        local layerManager = self:createGameLayerManager()
-        return GameOptionsFormFactory.getInstance():init(self, "Game Options", layerManager:getBackgroundBasicColor(), layerManager:getForegroundBasicColor())
-end
-
-
--- throws Exception
-function GameMidlet:save()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.SAVE)
-        local hashtable = self:getCurrentStateHashtable()
-        GamePersistanceSingleton.getInstance():save(self.abeClientInformation, hashtable)
-end
-
-
--- throws Exception
-function GameMidlet:getCurrentStateHashtable()
-        self.logUtil:putF(self.commonStrings.START, self, "getCurrentStateHashtable")
-        local hashtable = StdUtil.getInstance():createHashtable()
-        if self.allbinaryGameCanvasRunnableInterface ~= NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE then
-            local currentHashtable = self.allbinaryGameCanvasRunnableInterface:getCurrentStateHashtable()
-            local enumeration = currentHashtable:keys()
-            local key = nil
-            while self.enumerationUtil:hasMoreElements(enumeration) do
-                key = self.enumerationUtil:nextElement(enumeration)
-                hashtable:put(key, currentHashtable:get(key))
-            end
-        end
-        return hashtable
-end
-
-
-function GameMidlet:setLoadGameForm(loadGameForm)
-        self.loadGameForm = loadGameForm
-end
-
-
-function GameMidlet:getLoadGameForm()
-        return self.loadGameForm
-end
-
-
-function GameMidlet:setResized(resized)
-        self.resized = resized
-end
-
-
-function GameMidlet:isResized()
-        return self.resized
-end
-
-
-function GameMidlet:isDemoLoading()
-        if self.startedBefore then
-            return false
-        end
-        local displayable = self:getDisplay():getCurrent()
-        if java_instanceof(displayable, DemoCanvas) then
-            local demoCanvas = displayable
-            if demoCanvas:isDemoLoading() then
-                return true
-            end
-        end
-        return false
-end
-
-return GameMidlet
 

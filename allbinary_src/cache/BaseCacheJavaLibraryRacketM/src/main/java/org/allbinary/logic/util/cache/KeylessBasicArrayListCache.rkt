@@ -67,6 +67,7 @@
             (send _stringBuffer jm_appendint_1 (send _basicArrayList jm_size_0)))
                 (set! _index (JR.i32 (- _index 1))) (jloop)))))
         (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (KeylessBasicArrayListCache.jclassValue) KeylessBasicArrayListCache%)
 
 (define (KeylessBasicArrayListCache.jnew_0)
   (define this (new KeylessBasicArrayListCache% [jclass "KeylessBasicArrayListCache"]))

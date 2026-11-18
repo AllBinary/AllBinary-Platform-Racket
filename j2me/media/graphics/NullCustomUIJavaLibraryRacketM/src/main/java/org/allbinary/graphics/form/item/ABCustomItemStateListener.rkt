@@ -1,22 +1,19 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define ABCustomItemStateListener%
+  (class JObject%
+    (super-new)))
+(define (ABCustomItemStateListener.jclassValue) ABCustomItemStateListener%)
+
+(define (ABCustomItemStateListener.jnew_0)
+  (define this (new ABCustomItemStateListener% [jclass "ABCustomItemStateListener"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local ABCustomItemStateListener = {}
-ABCustomItemStateListener.__index = ABCustomItemStateListener
-ABCustomItemStateListener.className = "ABCustomItemStateListener"
-
-return ABCustomItemStateListener
 

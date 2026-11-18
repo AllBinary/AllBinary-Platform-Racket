@@ -1,64 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item
 
--- local Command = require("javax.microedition.lcdui.Command")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local ScreenInfo = require("org.allbinary.graphics.form.ScreenInfo")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/logic/util/visitor/Visitor.rkt")
+(lazy-require ["../../../../../org/allbinary/game/commands/GameCommandsFactory.rkt" (GameCommandsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/form/ScreenInfo.rkt" (ScreenInfo.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/java/bool/BooleanFactory.rkt" (BooleanFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LimitCommandsVisitor%
+  (class Visitor%
+    (super-new)
+    (field [f_isNotSmallDisplay #f])
+    (define/override (jm_visit_1 _anyType)
+    (let ([_command JR.null][_booleanFactory JR.null])
+      (let/ec jreturn
+        (set! _command _anyType)
+        (set! _booleanFactory (BooleanFactory.jm_getInstance_0))
+        (if (or (or (or (get-field f_isNotSmallDisplay this) (= (send _command jm_getPriority_0) 1)) (eq? _command (get-field f_EXIT_COMMAND (GameCommandsFactory.jm_getInstance_0)))) (eq? _command (get-field f_EXIT_WITHOUT_PROGRESS_COMMAND (GameCommandsFactory.jm_getInstance_0))))
+            (begin
+            (jreturn (get-field f_TRUE _booleanFactory)))
+            (begin
+            (jreturn (get-field f_FALSE _booleanFactory)))))))))
+(define (LimitCommandsVisitor.jclassValue) LimitCommandsVisitor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LimitCommandsVisitor = {}
-LimitCommandsVisitor.__index = LimitCommandsVisitor
-LimitCommandsVisitor.className = "LimitCommandsVisitor"
-setmetatable(LimitCommandsVisitor, {__index = Visitor})
-
-function LimitCommandsVisitor:_init_fields()
-    self.isNotSmallDisplay = nil
-end
-
-
-function LimitCommandsVisitor.new()
-    local self = setmetatable(Visitor.new(), LimitCommandsVisitor)
-    self:_init_fields()
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        self.isNotSmallDisplay = (displayInfo:isPortrait() and displayInfo:getLastHeight() > ScreenInfo.getInstance().SMALL_WIDTH) or (not displayInfo:isPortrait() and displayInfo:getLastHeight() > ScreenInfo.getInstance().SMALL_HEIGHT)
-    return self
-end
+(define (LimitCommandsVisitor.jnew_0)
+  (define this (new LimitCommandsVisitor% [jclass "LimitCommandsVisitor"]))
+    
+    (let ([_displayInfo JR.null])
+      (let/ec jreturn
+        (set! _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (set-field! f_isNotSmallDisplay this (or (and (send _displayInfo jm_isPortrait_0) (> (send _displayInfo jm_getLastHeight_0) (get-field f_SMALL_WIDTH (ScreenInfo.jm_getInstance_0)))) (and (not (send _displayInfo jm_isPortrait_0)) (> (send _displayInfo jm_getLastHeight_0) (get-field f_SMALL_HEIGHT (ScreenInfo.jm_getInstance_0))))))))
+  this)
 
 
-function LimitCommandsVisitor:visit(anyType)
-        local command = anyType
-        local booleanFactory = BooleanFactory.getInstance()
-        if self.isNotSmallDisplay or command:getPriority() == 1 or command == GameCommandsFactory.getInstance().EXIT_COMMAND or command == GameCommandsFactory.getInstance().EXIT_WITHOUT_PROGRESS_COMMAND then
-            return booleanFactory.TRUE
-        else
-            return booleanFactory.FALSE
-        end
-end
-
-return LimitCommandsVisitor
 

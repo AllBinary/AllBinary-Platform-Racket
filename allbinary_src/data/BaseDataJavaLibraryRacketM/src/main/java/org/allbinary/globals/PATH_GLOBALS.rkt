@@ -29,11 +29,13 @@
     (field [f_VIEWS_PATH JR.null])
     (field [f_LOG_PATH JR.null])
     (field [f_BACKUP_PATH JR.null])))
+(define (PATH_GLOBALS.jclassValue) PATH_GLOBALS%)
 
 (define PATH_GLOBALS.jcell_instance 'jnone)
 (define (PATH_GLOBALS.jstatic_instance)
   (when (eq? PATH_GLOBALS.jcell_instance 'jnone) (set! PATH_GLOBALS.jcell_instance (PATH_GLOBALS.jnew_0)))
   PATH_GLOBALS.jcell_instance)
+(define (PATH_GLOBALS.jsetstatic_instance value) (set! PATH_GLOBALS.jcell_instance value))
 
 (define (PATH_GLOBALS.jnew_0)
   (define this (new PATH_GLOBALS% [jclass "PATH_GLOBALS"]))

@@ -1,114 +1,88 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image.sprite
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local RotationAnimation = require("org.allbinary.animation.RotationAnimation")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/animation/RotationAnimation.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(lazy-require ["../../../../../org/allbinary/util/CircularIndexUtil.rkt" (CircularIndexUtil.jm_createInstance_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HackRotationSpriteIndexedAnimation%
+  (class RotationAnimation%
+    (super-new)
+    (field [f_sprite JR.null])
+    (field [f_image JR.null])
+    (define/override (jm_getAnimationSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send this jm_getSize_0)))))
+    (define/public (jm_paintFrame_4 _g _frame _x _y)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setFrame_1 _frame)
+        (send this jm_paintXY_3 _g _x _y))))
+    (define/override (jm_paintXY_3 _g _x _y)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_sprite this) jm_setPosition_2 _x _y)
+        (send this jm_paint_1 _g))))
+    (define/public (jm_paint_1 _g)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_sprite this) jm_paint_1 _g))))
+    (define/override (jm_nextRotation_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_sprite this) jm_nextFrame_0))))
+    (define/override (jm_previousRotation_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_sprite this) jm_prevFrame_0))))
+    (define/override (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_sprite this) jm_getRawFrameCount_0)))))
+    (define/override (jm_setFrame_1 _frame)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_sprite this) jm_setFrame_1 _frame))))
+    (define/override (jm_getFrame_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_sprite this) jm_getFrame_0)))))
+    (define/override (jm_setSequence_1 _sequence)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_getSequence_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PrimitiveIntUtil.jm_getArrayInstance_0)))))))
+(define (HackRotationSpriteIndexedAnimation.jclassValue) HackRotationSpriteIndexedAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local HackRotationSpriteIndexedAnimation = {}
-HackRotationSpriteIndexedAnimation.__index = HackRotationSpriteIndexedAnimation
-HackRotationSpriteIndexedAnimation.className = "HackRotationSpriteIndexedAnimation"
-setmetatable(HackRotationSpriteIndexedAnimation, {__index = RotationAnimation})
-
-function HackRotationSpriteIndexedAnimation:_init_fields()
-    self.sprite = nil
-    self.image = nil
-end
-
-
-function HackRotationSpriteIndexedAnimation.new(sprite, image, angleInfo, animationBehavior)
-    local self = setmetatable(RotationAnimation.new(angleInfo, CircularIndexUtil.createInstance(360 / angleInfo:getAngleIncrementInfo():getAngleIncrement()), animationBehavior), HackRotationSpriteIndexedAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.sprite = sprite
-        self.image = image
-    return self
-end
-
-
--- throws Exception
-function HackRotationSpriteIndexedAnimation:getAnimationSize()
-        return self:getSize()
-end
-
-
-function HackRotationSpriteIndexedAnimation:paintFrame(g, frame, x, y)
-        self:setFrame(frame)
-        self:paintXY(g, x, y)
-end
-
-
-function HackRotationSpriteIndexedAnimation:paintXY(g, x, y)
-        self.sprite:setPosition(x, y)
-        self:paint(g)
-end
-
-
-function HackRotationSpriteIndexedAnimation:paint(g)
-        self.sprite:paint(g)
-end
-
-
-function HackRotationSpriteIndexedAnimation:nextRotation()
-        self.sprite:nextFrame()
-end
-
-
-function HackRotationSpriteIndexedAnimation:previousRotation()
-        self.sprite:prevFrame()
-end
+(define (HackRotationSpriteIndexedAnimation.jnew_4 _sprite _image _angleInfo _animationBehavior)
+  (define this (new HackRotationSpriteIndexedAnimation% [jclass "HackRotationSpriteIndexedAnimation"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_sprite this _sprite)
+        (set-field! f_image this _image)))
+  this)
 
 
-function HackRotationSpriteIndexedAnimation:getSize()
-        return self.sprite:getRawFrameCount()
-end
-
-
-function HackRotationSpriteIndexedAnimation:setFrame(frame)
-        self.sprite:setFrame(frame)
-end
-
-
-function HackRotationSpriteIndexedAnimation:getFrame()
-        return self.sprite:getFrame()
-end
-
-
-function HackRotationSpriteIndexedAnimation:setSequence(sequence)
-end
-
-
-function HackRotationSpriteIndexedAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-return HackRotationSpriteIndexedAnimation
 

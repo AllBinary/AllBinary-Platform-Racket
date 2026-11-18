@@ -21,6 +21,7 @@
 (define HardDriveInterface%
   (class JObject%
     (super-new)))
+(define (HardDriveInterface.jclassValue) HardDriveInterface%)
 
 (define (HardDriveInterface.jnew_0)
   (define this (new HardDriveInterface% [jclass "HardDriveInterface"]))

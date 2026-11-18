@@ -1,49 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
-local TouchButtonResource = require("org.allbinary.input.motion.button.TouchButtonResource")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./TouchButtonResource.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TouchButtonGenericActionResource%
+  (class TouchButtonResource%
+    (super-new)))
+(define (TouchButtonGenericActionResource.jclassValue) TouchButtonGenericActionResource%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define TouchButtonGenericActionResource.jcell_instance 'jnone)
+(define (TouchButtonGenericActionResource.jstatic_instance)
+  (when (eq? TouchButtonGenericActionResource.jcell_instance 'jnone) (set! TouchButtonGenericActionResource.jcell_instance (TouchButtonGenericActionResource.jnew_0)))
+  TouchButtonGenericActionResource.jcell_instance)
+(define (TouchButtonGenericActionResource.jsetstatic_instance value) (set! TouchButtonGenericActionResource.jcell_instance value))
 
-local TouchButtonGenericActionResource = {}
-TouchButtonGenericActionResource.__index = TouchButtonGenericActionResource
-TouchButtonGenericActionResource.className = "TouchButtonGenericActionResource"
-setmetatable(TouchButtonGenericActionResource, {__index = TouchButtonResource})
+(define (TouchButtonGenericActionResource.jnew_0)
+  (define this (new TouchButtonGenericActionResource% [jclass "TouchButtonGenericActionResource"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
+
+(define (TouchButtonGenericActionResource.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TouchButtonGenericActionResource.jstatic_instance)))))
 
 
-function TouchButtonGenericActionResource.getInstance()
-        return TouchButtonGenericActionResource.instance
-end
-
-
-function TouchButtonGenericActionResource.new()
-    local self = setmetatable(TouchButtonResource.new("/touch_button_generic_action_64_by_64.png", "/touch_button_generic_action_hint_64_by_64.png"), TouchButtonGenericActionResource)
-        -- super(...) made self above
-    return self
-end
-
-TouchButtonGenericActionResource.instance = TouchButtonGenericActionResource.new()
-
-return TouchButtonGenericActionResource
 

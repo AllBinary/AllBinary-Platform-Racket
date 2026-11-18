@@ -67,11 +67,13 @@
                     (begin
                     (raise (JR.newException "Exception" (JR.concat "Specific Windows OS Not Supported: " _osName))))))))))))
             (jreturn _operatingSystemInterface)))))))
+(define (WindowsOperatingSystemFactory.jclassValue) WindowsOperatingSystemFactory%)
 
 (define WindowsOperatingSystemFactory.jcell_instance 'jnone)
 (define (WindowsOperatingSystemFactory.jstatic_instance)
   (when (eq? WindowsOperatingSystemFactory.jcell_instance 'jnone) (set! WindowsOperatingSystemFactory.jcell_instance (WindowsOperatingSystemFactory.jnew_0)))
   WindowsOperatingSystemFactory.jcell_instance)
+(define (WindowsOperatingSystemFactory.jsetstatic_instance value) (set! WindowsOperatingSystemFactory.jcell_instance value))
 
 (define (WindowsOperatingSystemFactory.jnew_0)
   (define this (new WindowsOperatingSystemFactory% [jclass "WindowsOperatingSystemFactory"]))

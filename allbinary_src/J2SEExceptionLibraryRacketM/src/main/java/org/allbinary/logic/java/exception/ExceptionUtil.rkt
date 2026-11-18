@@ -36,16 +36,19 @@
             (set! _output (send _byteArrayOutputStream jm_toString_0))
             (jreturn _output)))
         (jreturn (get-field f_NONE this)))))))
+(define (ExceptionUtil.jclassValue) ExceptionUtil%)
 
 (define ExceptionUtil.jcell_instance 'jnone)
 (define (ExceptionUtil.jstatic_instance)
   (when (eq? ExceptionUtil.jcell_instance 'jnone) (set! ExceptionUtil.jcell_instance (ExceptionUtil.jnew_0)))
   ExceptionUtil.jcell_instance)
+(define (ExceptionUtil.jsetstatic_instance value) (set! ExceptionUtil.jcell_instance value))
 
 (define ExceptionUtil.jcell_PRETEND_EXCEPTION 'jnone)
 (define (ExceptionUtil.jstatic_PRETEND_EXCEPTION)
   (when (eq? ExceptionUtil.jcell_PRETEND_EXCEPTION 'jnone) (set! ExceptionUtil.jcell_PRETEND_EXCEPTION (JR.newException "Exception" "Not Really An Exception")))
   ExceptionUtil.jcell_PRETEND_EXCEPTION)
+(define (ExceptionUtil.jsetstatic_PRETEND_EXCEPTION value) (set! ExceptionUtil.jcell_PRETEND_EXCEPTION value))
 
 (define (ExceptionUtil.jnew_0)
   (define this (new ExceptionUtil% [jclass "ExceptionUtil"]))

@@ -1,72 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.pickup
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ViewPosition = require("org.allbinary.view.ViewPosition")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/layer/AllBinaryLayer.rkt")
+(lazy-require ["../../../../../org/allbinary/animation/NullAnimationFactory.rkt" (NullAnimationFactory.jm_getFactoryInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/PointFactory.rkt" (PointFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/Rectangle.rkt" (Rectangle.jnew_3)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/view/ViewPosition.rkt" (ViewPosition.jm_getInstanceD_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define IconLayer%
+  (class AllBinaryLayer%
+    (super-new)
+    (field [f_animationInterface JR.null])
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationInterface this) jm_paintXY_3 _graphics (get-field f_x this) (get-field f_y this)))))
+    (define/override (jm_paintThreed_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_animationInterface this) jm_paintThreedXYZ_4 _graphics (get-field f_x this) (get-field f_y this) (get-field f_z this)))))
+    (define/public (jm_getAnimationInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_animationInterface this)))))))
+(define (IconLayer.jclassValue) IconLayer%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define IconLayer.jcell_NULL_ICON_LAYER 'jnone)
+(define (IconLayer.jstatic_NULL_ICON_LAYER)
+  (when (eq? IconLayer.jcell_NULL_ICON_LAYER 'jnone) (set! IconLayer.jcell_NULL_ICON_LAYER (IconLayer.jnew_3 (JR.className (NullAnimationFactory.jm_getFactoryInstance_0)) 0 0)))
+  IconLayer.jcell_NULL_ICON_LAYER)
+(define (IconLayer.jsetstatic_NULL_ICON_LAYER value) (set! IconLayer.jcell_NULL_ICON_LAYER value))
 
-local IconLayer = {}
-IconLayer.__index = IconLayer
-IconLayer.className = "IconLayer"
-setmetatable(IconLayer, {__index = AllBinaryLayer})
-
-function IconLayer:_init_fields()
-    self.animationInterface = nil
-end
-
-
-function IconLayer.new(animationInterface, width, height)
-    local self = setmetatable(AllBinaryLayer.new(StringUtil.getInstance().EMPTY_STRING, Rectangle.new(PointFactory.getInstance().ZERO_ZERO, width, height), ViewPosition.getInstanceD()), IconLayer)
-    self:_init_fields()
-        -- super(...) made self above
-        self.animationInterface = animationInterface
-    return self
-end
-
-
-function IconLayer:paint(graphics)
-        self.animationInterface:paintXY(graphics, self.x, self.y)
-end
-
-
-function IconLayer:paintThreed(graphics)
-        self.animationInterface:paintThreedXYZ(graphics, self.x, self.y, self.z)
-end
+(define (IconLayer.jnew_3 _animationInterface _width _height)
+  (define this (new IconLayer% [jclass "IconLayer"]))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_animationInterface this _animationInterface)))
+  this)
 
 
-function IconLayer:getAnimationInterface()
-        return self.animationInterface
-end
-
-IconLayer.NULL_ICON_LAYER = IconLayer.new(NullAnimationFactory.getFactoryInstance():getInstance(0), 0, 0)
-
-return IconLayer
 

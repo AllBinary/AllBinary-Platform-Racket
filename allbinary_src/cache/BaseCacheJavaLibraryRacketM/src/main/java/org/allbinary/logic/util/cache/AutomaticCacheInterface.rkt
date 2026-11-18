@@ -24,6 +24,7 @@
     (super-new)
     (define/public (jm_get_1 _key)
       (raise (JR.newException "AbstractMethodError" "get")))))
+(define (AutomaticCacheInterface.jclassValue) AutomaticCacheInterface%)
 
 (define (AutomaticCacheInterface.jnew_0)
   (define this (new AutomaticCacheInterface% [jclass "AutomaticCacheInterface"]))

@@ -48,11 +48,13 @@
     (field [f_QUOTE_END JR.null])
     (field [f_COMMENT JR.null])
     (field [f_INDENT JR.null])))
+(define (CommonSeps.jclassValue) CommonSeps%)
 
 (define CommonSeps.jcell_instance 'jnone)
 (define (CommonSeps.jstatic_instance)
   (when (eq? CommonSeps.jcell_instance 'jnone) (set! CommonSeps.jcell_instance (CommonSeps.jnew_0)))
   CommonSeps.jcell_instance)
+(define (CommonSeps.jsetstatic_instance value) (set! CommonSeps.jcell_instance value))
 
 (define (CommonSeps.jnew_0)
   (define this (new CommonSeps% [jclass "CommonSeps"]))

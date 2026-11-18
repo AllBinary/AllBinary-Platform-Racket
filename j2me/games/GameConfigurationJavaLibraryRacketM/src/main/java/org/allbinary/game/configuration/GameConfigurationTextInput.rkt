@@ -1,88 +1,88 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration
 
--- local TextField = require("javax.microedition.lcdui.TextField")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GameConfigurationTextInput%
+  (class JObject%
+    (super-new)
+    (field [f_label JR.null])
+    (field [f_text JR.null])
+    (define/public (jm_setText_1 _text)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_text this _text))))
+    (define/public (jm_getText_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_text this)))))
+    (define/public (jm_setLabel_1 _label)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_label this _label))))
+    (define/public (jm_getLabel_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_label this)))))))
+(define (GameConfigurationTextInput.jclassValue) GameConfigurationTextInput%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GameConfigurationTextInput.jcell_hashtable 'jnone)
+(define (GameConfigurationTextInput.jstatic_hashtable)
+  (when (eq? GameConfigurationTextInput.jcell_hashtable 'jnone) (set! GameConfigurationTextInput.jcell_hashtable (send (StdUtil.jm_getInstance_0) jm_createHashtable_0)))
+  GameConfigurationTextInput.jcell_hashtable)
+(define (GameConfigurationTextInput.jsetstatic_hashtable value) (set! GameConfigurationTextInput.jcell_hashtable value))
 
-local GameConfigurationTextInput = {}
-GameConfigurationTextInput.__index = GameConfigurationTextInput
-GameConfigurationTextInput.className = "GameConfigurationTextInput"
+(define GameConfigurationTextInput.jcell_SIMULATOR_IP 'jnone)
+(define (GameConfigurationTextInput.jstatic_SIMULATOR_IP)
+  (when (eq? GameConfigurationTextInput.jcell_SIMULATOR_IP 'jnone) (set! GameConfigurationTextInput.jcell_SIMULATOR_IP (GameConfigurationTextInput.jnew_2 "IP: " "192.168.1.3")))
+  GameConfigurationTextInput.jcell_SIMULATOR_IP)
+(define (GameConfigurationTextInput.jsetstatic_SIMULATOR_IP value) (set! GameConfigurationTextInput.jcell_SIMULATOR_IP value))
 
-function GameConfigurationTextInput:_init_fields()
-    self.label = StringUtil.getInstance().EMPTY_STRING
-    self.text = StringUtil.getInstance().EMPTY_STRING
-end
+(define GameConfigurationTextInput.jcell_SIMULATOR_PORT 'jnone)
+(define (GameConfigurationTextInput.jstatic_SIMULATOR_PORT)
+  (when (eq? GameConfigurationTextInput.jcell_SIMULATOR_PORT 'jnone) (set! GameConfigurationTextInput.jcell_SIMULATOR_PORT (GameConfigurationTextInput.jnew_2 "Port: " "8010")))
+  GameConfigurationTextInput.jcell_SIMULATOR_PORT)
+(define (GameConfigurationTextInput.jsetstatic_SIMULATOR_PORT value) (set! GameConfigurationTextInput.jcell_SIMULATOR_PORT value))
 
+(define (GameConfigurationTextInput.jnew_2 _label _text)
+  (define this (new GameConfigurationTextInput% [jclass "GameConfigurationTextInput"]))
+    (set-field! f_label this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (set-field! f_text this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (let ()
+      (let/ec jreturn
+        (send this jm_setText_1 _text)
+        (send this jm_setLabel_1 _label)
+        (JR.className (GameConfigurationTextInput.jstatic_hashtable))))
+  this)
 
-function GameConfigurationTextInput.new(label, text)
-    local self = setmetatable({}, GameConfigurationTextInput)
-    self:_init_fields()
-        self:setText(text)
-        self:setLabel(label)
-        GameConfigurationTextInput.hashtable:put(self:getLabel(), self)
-    return self
-end
+(define (GameConfigurationTextInput.jm_update_1 _textField)
+    (let ([_anyType JR.null][_gameConfigurationTextInput JR.null])
+      (let/ec jreturn
+        (set! _anyType (send _textField jm_getLabel_0))
+        (set! _gameConfigurationTextInput (JR.className (GameConfigurationTextInput.jstatic_hashtable)))
+        (send _gameConfigurationTextInput jm_setText_1 (send _textField jm_getString_0)))))
 
-
-function GameConfigurationTextInput.update(textField)
-        local anyType = textField:getLabel()
-        local gameConfigurationTextInput = GameConfigurationTextInput.hashtable:get(anyType)
-        gameConfigurationTextInput:setText(textField:getString())
-end
-
-
-function GameConfigurationTextInput:setText(text)
-        self.text = text
-end
-
-
-function GameConfigurationTextInput:getText()
-        return self.text
-end
-
-
-function GameConfigurationTextInput:setLabel(label)
-        self.label = label
-end
+(define (GameConfigurationTextInput.jm_getHashtable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameConfigurationTextInput.jstatic_hashtable)))))
 
 
-function GameConfigurationTextInput:getLabel()
-        return self.label
-end
-
-
-function GameConfigurationTextInput.getHashtable()
-        return GameConfigurationTextInput.hashtable
-end
-
-GameConfigurationTextInput.hashtable = StdUtil.getInstance():createHashtable()
-GameConfigurationTextInput.SIMULATOR_IP = GameConfigurationTextInput.new("IP: ", "192.168.1.3")
-GameConfigurationTextInput.SIMULATOR_PORT = GameConfigurationTextInput.new("Port: ", "8010")
-
-return GameConfigurationTextInput
 

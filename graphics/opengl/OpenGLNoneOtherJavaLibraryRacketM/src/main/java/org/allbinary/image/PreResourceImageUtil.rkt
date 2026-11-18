@@ -1,61 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.image
 
--- local GL = require("javax.microedition.khronos.opengles.GL")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PreResourceImageUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_encapsulate_1 _image)
+    (let ()
+      (let/ec jreturn
+        (jreturn _image))))
+    (define/public (jm_updateGL_2 _gl _image)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_update_2 _graphics _image)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (PreResourceImageUtil.jclassValue) PreResourceImageUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define PreResourceImageUtil.jcell_instance 'jnone)
+(define (PreResourceImageUtil.jstatic_instance)
+  (when (eq? PreResourceImageUtil.jcell_instance 'jnone) (set! PreResourceImageUtil.jcell_instance (PreResourceImageUtil.jnew_0)))
+  PreResourceImageUtil.jcell_instance)
+(define (PreResourceImageUtil.jsetstatic_instance value) (set! PreResourceImageUtil.jcell_instance value))
 
-local PreResourceImageUtil = {}
-PreResourceImageUtil.__index = PreResourceImageUtil
-PreResourceImageUtil.className = "PreResourceImageUtil"
+(define (PreResourceImageUtil.jnew_0)
+  (define this (new PreResourceImageUtil% [jclass "PreResourceImageUtil"]))
+  this)
 
-function PreResourceImageUtil.new()
-    local self = setmetatable({}, PreResourceImageUtil)
-    return self
-end
-
-
-function PreResourceImageUtil.getInstance()
-        return PreResourceImageUtil.instance
-end
-
-
-function PreResourceImageUtil:encapsulate(image)
-        return image
-end
-
-
-function PreResourceImageUtil:updateGL(gl, image)
-end
+(define (PreResourceImageUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PreResourceImageUtil.jstatic_instance)))))
 
 
-function PreResourceImageUtil:update(graphics, image)
-end
-
-PreResourceImageUtil.instance = PreResourceImageUtil.new()
-
-return PreResourceImageUtil
 

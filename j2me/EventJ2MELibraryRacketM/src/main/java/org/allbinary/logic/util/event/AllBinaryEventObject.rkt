@@ -31,11 +31,13 @@
     (let ()
       (let/ec jreturn
         (set-field! f_source this _source))))))
+(define (AllBinaryEventObject.jclassValue) AllBinaryEventObject%)
 
 (define AllBinaryEventObject.jcell_NULL_EVENT 'jnone)
 (define (AllBinaryEventObject.jstatic_NULL_EVENT)
   (when (eq? AllBinaryEventObject.jcell_NULL_EVENT 'jnone) (set! AllBinaryEventObject.jcell_NULL_EVENT (AllBinaryEventObject.jnew_1 (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))))
   AllBinaryEventObject.jcell_NULL_EVENT)
+(define (AllBinaryEventObject.jsetstatic_NULL_EVENT value) (set! AllBinaryEventObject.jcell_NULL_EVENT value))
 
 (define (AllBinaryEventObject.jnew_1 _anyType)
   (define this (new AllBinaryEventObject% [jclass "AllBinaryEventObject"]))

@@ -1,293 +1,255 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
--- local ByteArrayInputStream = require("java.io.ByteArrayInputStream")
--- local DataInputStream = require("java.io.DataInputStream")
--- local EOFException = require("java.io.EOFException")
--- local IOException = require("java.io.IOException")
--- local RecordComparator = require("javax.microedition.rms.RecordComparator")
--- local RecordEnumeration = require("javax.microedition.rms.RecordEnumeration")
--- local RecordStore = require("javax.microedition.rms.RecordStore")
--- local RecordStoreException = require("javax.microedition.rms.RecordStoreException")
--- local RecordStoreNotFoundException = require("javax.microedition.rms.RecordStoreNotFoundException")
-local TsUtil = require("org.allbinary.TsUtil")
-local GameInfo = require("org.allbinary.game.GameInfo")
-local NullRecordComparator = require("org.allbinary.game.configuration.persistance.NullRecordComparator")
-local NullRecordFilter = require("org.allbinary.game.configuration.persistance.NullRecordFilter")
-local NullRecordStore = require("org.allbinary.game.configuration.persistance.NullRecordStore")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local PlatformRecordIdUtil = require("org.allbinary.persistance.PlatformRecordIdUtil")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local HighScores = require("org.allbinary.game.score.HighScores")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/ByteArrayInputStream.rkt"
+  "../../../../java/io/DataInputStream.rkt"
+  "../../../../java/io/EOFException.rkt"
+  "../../../../java/io/IOException.rkt"
+  "./HighScores.rkt")
+(lazy-require ["../../../../javax/microedition/rms/RecordComparator.rkt" (RecordComparator.jstatic_PRECEDES RecordComparator.jstatic_FOLLOWS)])
+(lazy-require ["../../../../javax/microedition/rms/RecordStore.rkt" (RecordStore.jm_openRecordStore_2)])
+(lazy-require ["../../../../org/allbinary/TsUtil.rkt" (TsUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/GameInfo.rkt" (GameInfo.jstatic_NONE)])
+(lazy-require ["../../../../org/allbinary/game/configuration/persistance/NullRecordComparator.rkt" (NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR)])
+(lazy-require ["../../../../org/allbinary/game/configuration/persistance/NullRecordFilter.rkt" (NullRecordFilter.jstatic_NULL_RECORD_FILTER)])
+(lazy-require ["../../../../org/allbinary/game/configuration/persistance/NullRecordStore.rkt" (NullRecordStore.jstatic_NULL_RECORD_STORE)])
+(lazy-require ["../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/persistance/PlatformRecordIdUtil.rkt" (PlatformRecordIdUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["./HighScore.rkt" (HighScore.jnew_4)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define RecordStoreHighScores%
+  (class HighScores%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_platformRecordIdUtil JR.null])
+    (field [f_tsUtil JR.null])
+    (field [f_RECORD_ID JR.null])
+    (field [f_MAXHIGHSCORES 0])
+    (field [f_gameInfo JR.null])
+    (field [f_abeClientInformation JR.null])
+    (field [f_recordComparatorInterface JR.null])
+    (define/public (jm_getRecordId_1 _abeClientInformation)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_platformRecordIdUtil this) jm_getRecordId_2 _abeClientInformation (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_UNDERSCORE (CommonSeps.jm_getInstance_0))) jm_append_1 (send this jm_getName_0)) jm_append_1 (get-field f_RECORD_ID this)) jm_toString_0))))))
+    (define/override (jm_addHighScore_1 _newHighScore)
+    (let ([_recordStore JR.null][_highScoreBytes JR.null][_recordId JR.null])
+      (let/ec jreturn
+        (set! _recordStore (NullRecordStore.jstatic_NULL_RECORD_STORE))
+        (dynamic-wind void (lambda () (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_ADD (get-field f_commonStrings this)) _e))])
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "Adding HighScore: ") jm_appendlong_1 (send _newHighScore jm_getScore_0)) jm_toString_0) this (get-field f_ADD (get-field f_commonStrings this)))
+            (when (send this jm_isTooManyHighScores_0)
+                (begin
+                (send (get-field f_logUtil this) jm_putF_3 "Removing Lowest Score" this (get-field f_ADD (get-field f_commonStrings this)))
+                (send this jm_removeLowestHighScore_0)))
+            (set! _recordStore (RecordStore.jm_openRecordStore_2 (send this jm_getRecordId_1 (get-field f_abeClientInformation this)) #t))
+            (set! _highScoreBytes (send _newHighScore jm_getAsBytes_0))
+            (set! _recordId (send _recordStore jm_addRecord_3 _highScoreBytes 0 (vector-length _highScoreBytes)))
+            (send this jm_load_0)))
+            (lambda ()
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_ADD (get-field f_commonStrings this)) _e))])
+                (when (not (JR.null? _recordStore))
+                    (begin
+                    (PreLogUtil.jm_put_3 "Closing RecordStore" this (get-field f_ADD (get-field f_commonStrings this)))
+                    (send _recordStore jm_closeRecordStore_0)))))))))
+    (define/public (jm_removeLowestHighScore_0)
+    (let ([_recordStore JR.null][_recordEnum JR.null][_scoreComparator JR.null][_bestHighScore JR.null][_recordAsBytes JR.null][_byteArrayInputStream JR.null][_inputStream JR.null][_id JR.null][_name JR.null][_nextScore JR.null][_nextCurrentHighScore JR.null])
+      (let/ec jreturn
+        (set! _recordStore (NullRecordStore.jstatic_NULL_RECORD_STORE))
+        (dynamic-wind void (lambda () (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this "removeLowestHighScore" _e))])
+            (set! _recordStore (RecordStore.jm_openRecordStore_2 (send this jm_getRecordId_1 (get-field f_abeClientInformation this)) #t))
+            (set! _recordEnum (send _recordStore jm_enumerateRecords_3 (NullRecordFilter.jstatic_NULL_RECORD_FILTER) (NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR) #t))
+            (set! _scoreComparator (get-field f_recordComparatorInterface this))
+            (set! _bestHighScore (HighScore.jnew_4 (JR.i32 (- 1)) "none" (GameInfo.jstatic_NONE) (send _scoreComparator jm_getBestScore_0)))
+            (set! _recordAsBytes JR.null)
+            (set! _byteArrayInputStream JR.null)
+            (set! _inputStream JR.null)
+            (let/ec jbreak (let jloop () (when (send _recordEnum jm_hasNextElement_0)
+                    (let/ec jcontinue
+                (set! _id (send _recordEnum jm_nextRecordId_0))
+                (set! _recordAsBytes (send (get-field f_tsUtil this) jm_getRecord_2 _recordStore _id))
+                (when (not (JR.null? _recordAsBytes))
+                    (begin
+                    (set! _byteArrayInputStream (ByteArrayInputStream.jnew_1 _recordAsBytes))
+                    (set! _inputStream (DataInputStream.jnew_1 _byteArrayInputStream))
+                    (set! _name (send _inputStream jm_readUTF_0))
+                    (set! _nextScore (send _inputStream jm_readLong_0))
+                    (set! _nextCurrentHighScore (HighScore.jnew_4 _id _name (GameInfo.jstatic_NONE) _nextScore))
+                    (when (= (send (get-field f_recordComparatorInterface this) jm_compare_2 (send _nextCurrentHighScore jm_getAsBytes_0) (send _bestHighScore jm_getAsBytes_0)) (RecordComparator.jstatic_FOLLOWS))
+                        (begin
+                        (set! _bestHighScore _nextCurrentHighScore)))))) (jloop))))
+            (when (not (= (send _bestHighScore jm_getId_0) (JR.i32 (- 1))))
+                (begin
+                (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "Removing Lowest HighScore: ") jm_appendlong_1 (send _bestHighScore jm_getScore_0)) jm_toString_0) this (get-field f_LOAD (get-field f_commonStrings this)))
+                (send _recordStore jm_deleteRecord_1 (send _bestHighScore jm_getId_0))))))
+            (lambda ()
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this "removeLowestHighScore" _e))])
+                (when (not (JR.null? _recordStore))
+                    (begin
+                    (PreLogUtil.jm_put_3 "Closing RecordStore" this "removeLowestHighScore")
+                    (send _recordStore jm_closeRecordStore_0)))))))))
+    (define/public (jm_load_0)
+    (let ([_recordStore JR.null][_recordEnum JR.null][_recordAsBytes JR.null][_byteArrayInputStream JR.null][_inputStream JR.null][_id JR.null][_name JR.null][_score JR.null][_newHighScore JR.null][_list JR.null][_size JR.null][_lastIndex JR.null][_highScore JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _recordStore (NullRecordStore.jstatic_NULL_RECORD_STORE))
+        (dynamic-wind void (lambda () (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 "No High Scores" this (get-field f_LOAD (get-field f_commonStrings this)) _e))])
+            (set! _recordStore (RecordStore.jm_openRecordStore_2 (send this jm_getRecordId_1 (get-field f_abeClientInformation this)) #t))
+            (send this jm_setList_1 (BasicArrayListD.jnew_0))
+            (set! _recordEnum (send _recordStore jm_enumerateRecords_3 (NullRecordFilter.jstatic_NULL_RECORD_FILTER) (NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR) #t))
+            (set! _recordAsBytes JR.null)
+            (set! _byteArrayInputStream JR.null)
+            (set! _inputStream JR.null)
+            (let/ec jbreak (let jloop () (when (send _recordEnum jm_hasNextElement_0)
+                    (let/ec jcontinue
+                (set! _id (send _recordEnum jm_nextRecordId_0))
+                (set! _recordAsBytes (send (get-field f_tsUtil this) jm_getRecord_2 _recordStore _id))
+                (when (not (JR.null? _recordAsBytes))
+                    (begin
+                    (set! _byteArrayInputStream (ByteArrayInputStream.jnew_1 _recordAsBytes))
+                    (set! _inputStream (DataInputStream.jnew_1 _byteArrayInputStream))
+                    (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                        (send (get-field f_logUtil this) jm_put_4 "EOF" this (get-field f_LOAD (get-field f_commonStrings this)) _e)
+                        (raise _e))])
+                        (set! _name (send _inputStream jm_readUTF_0))
+                        (set! _score (send _inputStream jm_readLong_0))
+                        (set! _newHighScore (HighScore.jnew_4 _id _name (GameInfo.jstatic_NONE) _score))
+                        (set! _list (send this jm_getList_0))
+                        (set! _size (send _list jm_size_0))
+                        (set! _lastIndex _size)
+                        (begin
+                            (set! _index 0)
+                            (let/ec jbreak (let jloop () (when (< _index _size)
+                                (let/ec jcontinue
+                            (set! _highScore (vector-ref (get-field f_objectArray _list) _index))
+                            (when (= (send (get-field f_recordComparatorInterface this) jm_compare_2 (send _newHighScore jm_getAsBytes_0) (send _highScore jm_getAsBytes_0)) (RecordComparator.jstatic_PRECEDES))
+                                (begin
+                                (set! _lastIndex _index)
+                                (jbreak (void)))))
+                                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+                        (send _list jm_addAt_2 _lastIndex _newHighScore))))) (jloop))))))
+            (lambda ()
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_LOAD (get-field f_commonStrings this)) _e))])
+                (when (not (JR.null? _recordStore))
+                    (begin
+                    (PreLogUtil.jm_put_3 "Closing RecordStore" this (get-field f_LOAD (get-field f_commonStrings this)))
+                    (send _recordStore jm_closeRecordStore_0)))))))))
+    (define/public (jm_isTooManyHighScores_0)
+    (let ()
+      (let/ec jreturn
+        (if (and (not (JR.null? (send this jm_getList_0))) (< (JR.className (send this jm_getList_0)) (get-field f_MAXHIGHSCORES this)))
+            (begin
+            (jreturn #f))
+            (begin
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "HighScores RecordStore Max Reached: ") jm_appendint_1 (get-field f_MAXHIGHSCORES this)) jm_toString_0) this "isTooManyHighScores")
+            (jreturn #t))))))
+    (define/override (jm_isBestScore_1 _newHighScore)
+    (let ([_list JR.null][_size JR.null][_highScore JR.null][_index JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_ADD (get-field f_commonStrings this)) _e)
+            (raise _e))])
+            (if (not (send this jm_isTooManyHighScores_0))
+                (begin
+                (send (get-field f_logUtil this) jm_putF_3 "Slot Available for a High Score" this "isBestScore")
+                (jreturn #t))
+                (begin
+                (set! _list (send this jm_getList_0))
+                (set! _size (send _list jm_size_0))
+                (begin
+                    (set! _index 0)
+                    (let/ec jbreak (let jloop () (when (< _index _size)
+                        (let/ec jcontinue
+                    (set! _highScore (vector-ref (get-field f_objectArray _list) _index))
+                    (when (= (send (get-field f_recordComparatorInterface this) jm_compare_2 (send _newHighScore jm_getAsBytes_0) (send _highScore jm_getAsBytes_0)) (RecordComparator.jstatic_FOLLOWS))
+                        (begin
+                        (send (get-field f_logUtil this) jm_putF_3 "Obtained a High Score" this "isBestScore")
+                        (jreturn #t))))
+                        (set! _index (JR.i32 (+ _index 1))) (jloop)))))))
+            (send (get-field f_logUtil this) jm_putF_3 "Not a High Score" this "isBestScore")
+            (jreturn #f)))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null][_list JR.null][_size JR.null][_highScore JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 (super jm_toString_0))
+        (set! _list (send this jm_getList_0))
+        (set! _size (send _list jm_size_0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _highScore (vector-ref (get-field f_objectArray _list) _index))
+            (send _stringBuffer jm_append_1 (send _highScore jm_getScoreString_0))
+            (send _stringBuffer jm_append_1 (get-field f_COMMA_SEP (CommonSeps.jm_getInstance_0))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (RecordStoreHighScores.jclassValue) RecordStoreHighScores%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define RecordStoreHighScores.jcell_hashTable 'jnone)
+(define (RecordStoreHighScores.jstatic_hashTable)
+  (when (eq? RecordStoreHighScores.jcell_hashTable 'jnone) (set! RecordStoreHighScores.jcell_hashTable (send (StdUtil.jm_getInstance_0) jm_createHashtable_0)))
+  RecordStoreHighScores.jcell_hashTable)
+(define (RecordStoreHighScores.jsetstatic_hashTable value) (set! RecordStoreHighScores.jcell_hashTable value))
 
-local RecordStoreHighScores = {}
-RecordStoreHighScores.__index = RecordStoreHighScores
-RecordStoreHighScores.className = "RecordStoreHighScores"
-setmetatable(RecordStoreHighScores, {__index = HighScores})
+(define (RecordStoreHighScores.jnew_6 _abeClientInformation _gameInfo _name _heading _columnTwoHeading _recordComparatorInterface)
+  (define this (new RecordStoreHighScores% [jclass "RecordStoreHighScores"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_platformRecordIdUtil this (PlatformRecordIdUtil.jm_getInstance_0))
+    (set-field! f_tsUtil this (TsUtil.jm_getInstance_0))
+    (set-field! f_RECORD_ID this "_HS")
+    (set-field! f_MAXHIGHSCORES this 100)
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_abeClientInformation this _abeClientInformation)
+        (set-field! f_gameInfo this _gameInfo)
+        (set-field! f_recordComparatorInterface this _recordComparatorInterface)
+        (send this jm_load_0)))
+  this)
 
-function RecordStoreHighScores:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.platformRecordIdUtil = PlatformRecordIdUtil.getInstance()
-    self.tsUtil = TsUtil.getInstance()
-    self.RECORD_ID = "_HS"
-    self.MAXHIGHSCORES = 100
-    self.gameInfo = nil
-    self.abeClientInformation = nil
-    self.recordComparatorInterface = nil
-end
-
-
-function RecordStoreHighScores.new(abeClientInformation, gameInfo, name, heading, columnTwoHeading, recordComparatorInterface)
-    local self = setmetatable(HighScores.new(name, heading, columnTwoHeading), RecordStoreHighScores)
-    self:_init_fields()
-        -- super(...) made self above
-        self.abeClientInformation = abeClientInformation
-        self.gameInfo = gameInfo
-        self.recordComparatorInterface = recordComparatorInterface
-        self:load()
-    return self
-end
-
-
-function RecordStoreHighScores.getInstance(abeClientInformation, gameInfo, highScoreName, heading, columnTwoHeading, recordComparatorInterface)
-        local highScoresCanBeNull = RecordStoreHighScores.hashTable:get(highScoreName)
-        if highScoresCanBeNull == nil then
-            local highScores = RecordStoreHighScores.new(abeClientInformation, gameInfo, highScoreName, heading, columnTwoHeading, recordComparatorInterface)
-            RecordStoreHighScores.hashTable:put(highScores:getName(), highScores)
-            return highScores
-        end
-        return highScoresCanBeNull
-end
-
-
-function RecordStoreHighScores:getRecordId(abeClientInformation)
-        return self.platformRecordIdUtil:getRecordId(abeClientInformation, tostring(StringMaker.new():append(CommonSeps.getInstance().UNDERSCORE):append(self:getName()):append(self.RECORD_ID)))
-end
-
-
-function RecordStoreHighScores:addHighScore(newHighScore)
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(tostring(StringMaker.new():append("Adding HighScore: "):appendlong(java_int(newHighScore:getScore()))), self, self.commonStrings.ADD)
-            if self:isTooManyHighScores() then
-                self.logUtil:putF("Removing Lowest Score", self, self.commonStrings.ADD)
-                self:removeLowestHighScore()
-            end
-            recordStore = RecordStore.openRecordStore(self:getRecordId(self.abeClientInformation), true)
-            local highScoreBytes = newHighScore:getAsBytes()
-            local recordId = recordStore:addRecord(highScoreBytes, 0, (highScoreBytes.n or #highScoreBytes))
-            self:load()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.ADD, e)
-        end
-        do -- finally
-            local try_ok, try_error = pcall(function()
-                if recordStore ~= nil then
-                    PreLogUtil.put("Closing RecordStore", self, self.commonStrings.ADD)
-                    recordStore:closeRecordStore()
-                end
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.ADD, e)
-            end
-        end
-end
-
-
-function RecordStoreHighScores:removeLowestHighScore()
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            recordStore = RecordStore.openRecordStore(self:getRecordId(self.abeClientInformation), true)
-            local recordEnum = recordStore:enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true)
-            local scoreComparator = (self.recordComparatorInterface)
-            local bestHighScore = HighScore.new(-1, "none", GameInfo.NONE, scoreComparator:getBestScore())
-            local recordAsBytes = nil
-            local byteArrayInputStream = nil
-            local inputStream = nil
-            while recordEnum:hasNextElement() do
-                local id = recordEnum:nextRecordId()
-                recordAsBytes = self.tsUtil:getRecord(recordStore, id)
-                if recordAsBytes ~= nil then
-                    byteArrayInputStream = ByteArrayInputStream.new(recordAsBytes)
-                    inputStream = DataInputStream.new(byteArrayInputStream)
-                    local name = inputStream:readUTF()
-                    local nextScore = inputStream:readLong()
-                    local nextCurrentHighScore = HighScore.new(id, name, GameInfo.NONE, nextScore)
-                    if self.recordComparatorInterface:compare(nextCurrentHighScore:getAsBytes(), bestHighScore:getAsBytes()) == RecordComparator.FOLLOWS then
-                        bestHighScore = nextCurrentHighScore
-                    end
-                end
-            end
-            if bestHighScore:getId() ~= -1 then
-                self.logUtil:putF(tostring(StringMaker.new():append("Removing Lowest HighScore: "):appendlong(java_int(bestHighScore:getScore()))), self, self.commonStrings.LOAD)
-                recordStore:deleteRecord(bestHighScore:getId())
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "removeLowestHighScore", e)
-        end
-        do -- finally
-            local try_ok, try_error = pcall(function()
-                if recordStore ~= nil then
-                    PreLogUtil.put("Closing RecordStore", self, "removeLowestHighScore")
-                    recordStore:closeRecordStore()
-                end
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, "removeLowestHighScore", e)
-            end
-        end
-end
-
-
-function RecordStoreHighScores:load()
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            recordStore = RecordStore.openRecordStore(self:getRecordId(self.abeClientInformation), true)
-            self:setList(BasicArrayListD.new())
-            local recordEnum = recordStore:enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true)
-            local recordAsBytes = nil
-            local byteArrayInputStream = nil
-            local inputStream = nil
-            while recordEnum:hasNextElement() do
-                local id = recordEnum:nextRecordId()
-                recordAsBytes = self.tsUtil:getRecord(recordStore, id)
-                if recordAsBytes ~= nil then
-                    byteArrayInputStream = ByteArrayInputStream.new(recordAsBytes)
-                    inputStream = DataInputStream.new(byteArrayInputStream)
-                    local try_ok, try_error = pcall(function()
-                        local name = inputStream:readUTF()
-                        local score = inputStream:readLong()
-                        local newHighScore = HighScore.new(id, name, GameInfo.NONE, score)
-                        local list = self:getList()
-                        local size = list:size()
-                        local lastIndex = size
-                        for index = 0, size - 1 do
-                            local highScore = list.objectArray[index + 1]
-                            if self.recordComparatorInterface:compare(newHighScore:getAsBytes(), highScore:getAsBytes()) == RecordComparator.PRECEDES then
-                                lastIndex = index
-                                break
-                            end
-                        end
-                        list:addAt(lastIndex, newHighScore)
-                    end)
-                    if not try_ok then
-                        local e = try_error
-                        self.logUtil:put("EOF", self, self.commonStrings.LOAD, e)
-                        error(e, 0)
-                    end
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put("No High Scores", self, self.commonStrings.LOAD, e)
-        end
-        do -- finally
-            local try_ok, try_error = pcall(function()
-                if recordStore ~= nil then
-                    PreLogUtil.put("Closing RecordStore", self, self.commonStrings.LOAD)
-                    recordStore:closeRecordStore()
-                end
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.LOAD, e)
-            end
-        end
-end
-
-
-function RecordStoreHighScores:isTooManyHighScores()
-        if self:getList() ~= nil and self:getList():size() < self.MAXHIGHSCORES then
-            return false
-        else
-            self.logUtil:putF(tostring(StringMaker.new():append("HighScores RecordStore Max Reached: "):appendint(self.MAXHIGHSCORES)), self, "isTooManyHighScores")
-            return true
-        end
-end
-
-
--- throws Exception
-function RecordStoreHighScores:isBestScore(newHighScore)
-        local try_ok, try_error = pcall(function()
-            if not self:isTooManyHighScores() then
-                self.logUtil:putF("Slot Available for a High Score", self, "isBestScore")
-                return true
-            else
-                local list = self:getList()
-                local size = list:size()
-                for index = 0, size - 1 do
-                    local highScore = list.objectArray[index + 1]
-                    if self.recordComparatorInterface:compare(newHighScore:getAsBytes(), highScore:getAsBytes()) == RecordComparator.FOLLOWS then
-                        self.logUtil:putF("Obtained a High Score", self, "isBestScore")
-                        return true
-                    end
-                end
-            end
-            self.logUtil:putF("Not a High Score", self, "isBestScore")
-            return false
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.ADD, e)
-            error(e, 0)
-        end
-end
+(define (RecordStoreHighScores.jm_getInstance_6 _abeClientInformation _gameInfo _highScoreName _heading _columnTwoHeading _recordComparatorInterface)
+    (let ([_highScoresCanBeNull JR.null][_highScores JR.null])
+      (let/ec jreturn
+        (set! _highScoresCanBeNull (JR.className (RecordStoreHighScores.jstatic_hashTable)))
+        (when (JR.null? _highScoresCanBeNull)
+            (begin
+            (set! _highScores (RecordStoreHighScores.jnew_6 _abeClientInformation _gameInfo _highScoreName _heading _columnTwoHeading _recordComparatorInterface))
+            (JR.className (RecordStoreHighScores.jstatic_hashTable))
+            (jreturn _highScores)))
+        (jreturn _highScoresCanBeNull))))
 
 
-function RecordStoreHighScores:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(tostring(HighScores))
-        local list = self:getList()
-        local size = list:size()
-        for index = 0, size - 1 do
-            local highScore = list.objectArray[index + 1]
-            stringBuffer:append(highScore:getScoreString())
-            stringBuffer:append(CommonSeps.getInstance().COMMA_SEP)
-        end
-        return tostring(stringBuffer)
-end
-RecordStoreHighScores.__tostring = function(self) return self:toString() end
-
-RecordStoreHighScores.hashTable = StdUtil.getInstance():createHashtable()
-
-return RecordStoreHighScores
 

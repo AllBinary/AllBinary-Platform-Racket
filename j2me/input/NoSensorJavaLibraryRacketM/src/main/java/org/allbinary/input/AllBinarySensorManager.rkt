@@ -1,86 +1,77 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input
 
-local AccelerometerSensorFactory = require("org.allbinary.input.accelerometer.AccelerometerSensorFactory")
-local GyroSensorFactory = require("org.allbinary.input.gyro.GyroSensorFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/input/accelerometer/AccelerometerSensorFactory.rkt" (AccelerometerSensorFactory.jm_init_0)])
+(lazy-require ["../../../org/allbinary/input/gyro/GyroSensorFactory.rkt" (GyroSensorFactory.jm_init_0)])
+(lazy-require ["../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AllBinarySensorManager%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_ORIENTATION_SENSOR_INPUT JR.null])
+    (field [f_ORIENTATION_TYPE JR.null])
+    (field [f_list JR.null])
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getSensorNamesList_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_list this)))))
+    (define/public (jm_shutdown_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (AllBinarySensorManager.jclassValue) AllBinarySensorManager%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AllBinarySensorManager.jcell_instance 'jnone)
+(define (AllBinarySensorManager.jstatic_instance)
+  (when (eq? AllBinarySensorManager.jcell_instance 'jnone) (set! AllBinarySensorManager.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  AllBinarySensorManager.jcell_instance)
+(define (AllBinarySensorManager.jsetstatic_instance value) (set! AllBinarySensorManager.jcell_instance value))
 
-local AllBinarySensorManager = {}
-AllBinarySensorManager.__index = AllBinarySensorManager
-AllBinarySensorManager.className = "AllBinarySensorManager"
+(define (AllBinarySensorManager.jnew_0)
+  (define this (new AllBinarySensorManager% [jclass "AllBinarySensorManager"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_ORIENTATION_SENSOR_INPUT this "Orientation Sensor Input")
+    (set-field! f_ORIENTATION_TYPE this "Orientation Type")
+    (set-field! f_list this (BasicArrayListD.jnew_0))
+    (let ()
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_CONSTRUCTOR (get-field f_commonStrings this)) _e))])
+            (GyroSensorFactory.jm_init_0)
+            (AccelerometerSensorFactory.jm_init_0))))
+  this)
 
-function AllBinarySensorManager:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.ORIENTATION_SENSOR_INPUT = "Orientation Sensor Input"
-    self.ORIENTATION_TYPE = "Orientation Type"
-    self.list = BasicArrayListD.new()
-end
-
-
-function AllBinarySensorManager.getInstance()
-        if AllBinarySensorManager.instance == NullUtil.getInstance().NULL_OBJECT then
-            AllBinarySensorManager.instance = AllBinarySensorManager.new()
-        end
-        return AllBinarySensorManager.instance
-end
-
-
-function AllBinarySensorManager.new()
-    local self = setmetatable({}, AllBinarySensorManager)
-    self:_init_fields()
-        local try_ok, try_error = pcall(function()
-            GyroSensorFactory.init()
-            AccelerometerSensorFactory.init()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.CONSTRUCTOR, e)
-        end
-    return self
-end
-
-
-function AllBinarySensorManager:init()
-end
-
-
-function AllBinarySensorManager:getSensorNamesList()
-        return self.list
-end
+(define (AllBinarySensorManager.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (AllBinarySensorManager.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! AllBinarySensorManager.jcell_instance (AllBinarySensorManager.jnew_0))))
+        (jreturn (AllBinarySensorManager.jstatic_instance)))))
 
 
-function AllBinarySensorManager:shutdown()
-end
-
-AllBinarySensorManager.instance = NullUtil.getInstance().NULL_OBJECT
-
-return AllBinarySensorManager
 

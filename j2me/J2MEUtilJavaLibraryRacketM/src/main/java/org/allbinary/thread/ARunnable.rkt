@@ -25,6 +25,7 @@
     (define/public (jm_run_0)
     (let ()
       (let/ec jreturn (void))))))
+(define (ARunnable.jclassValue) ARunnable%)
 
 (define (ARunnable.jnew_0)
   (define this (new ARunnable% [jclass "ARunnable"]))

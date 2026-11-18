@@ -1,51 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageCompleteUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_waitForImage_2 _image _name)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ImageCompleteUtil.jclassValue) ImageCompleteUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ImageCompleteUtil.jcell_instance 'jnone)
+(define (ImageCompleteUtil.jstatic_instance)
+  (when (eq? ImageCompleteUtil.jcell_instance 'jnone) (set! ImageCompleteUtil.jcell_instance (ImageCompleteUtil.jnew_0)))
+  ImageCompleteUtil.jcell_instance)
+(define (ImageCompleteUtil.jsetstatic_instance value) (set! ImageCompleteUtil.jcell_instance value))
 
-local ImageCompleteUtil = {}
-ImageCompleteUtil.__index = ImageCompleteUtil
-ImageCompleteUtil.className = "ImageCompleteUtil"
+(define (ImageCompleteUtil.jnew_0)
+  (define this (new ImageCompleteUtil% [jclass "ImageCompleteUtil"]))
+  this)
 
-function ImageCompleteUtil.new()
-    local self = setmetatable({}, ImageCompleteUtil)
-    return self
-end
-
-
-function ImageCompleteUtil.getInstance()
-        return ImageCompleteUtil.instance
-end
+(define (ImageCompleteUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageCompleteUtil.jstatic_instance)))))
 
 
--- throws Exception
-function ImageCompleteUtil:waitForImage(image, name)
-end
-
-ImageCompleteUtil.instance = ImageCompleteUtil.new()
-
-return ImageCompleteUtil
 

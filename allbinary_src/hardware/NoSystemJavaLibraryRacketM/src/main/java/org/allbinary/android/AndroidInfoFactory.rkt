@@ -26,11 +26,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_version this)))))))
+(define (AndroidInfoFactory.jclassValue) AndroidInfoFactory%)
 
 (define AndroidInfoFactory.jcell_instance 'jnone)
 (define (AndroidInfoFactory.jstatic_instance)
   (when (eq? AndroidInfoFactory.jcell_instance 'jnone) (set! AndroidInfoFactory.jcell_instance (AndroidInfoFactory.jnew_0)))
   AndroidInfoFactory.jcell_instance)
+(define (AndroidInfoFactory.jsetstatic_instance value) (set! AndroidInfoFactory.jcell_instance value))
 
 (define (AndroidInfoFactory.jnew_0)
   (define this (new AndroidInfoFactory% [jclass "AndroidInfoFactory"]))

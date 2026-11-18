@@ -1,74 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local BaseTouchInput = require("org.allbinary.input.motion.button.BaseTouchInput")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./BaseTouchInput.rkt")
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListUtil.rkt" (BasicArrayListUtil.jm_getInstance_0)])
+(lazy-require ["./CommonButtons.rkt" (CommonButtons.jm_getInstance_0)])
+(lazy-require ["./TouchButtonLocationHelper.rkt" (TouchButtonLocationHelper.jnew_0)])
+(lazy-require ["./BasicTouchButtonCellPositionFactory.rkt" (BasicTouchButtonCellPositionFactory.jnew_0)])
+(lazy-require ["./TouchButton.rkt" (TouchButton.jm_createButton_6)])
+(lazy-require ["./BasicTouchInputFactory.rkt" (BasicTouchInputFactory.jm_getInstance_0)])
+(lazy-require ["./TouchButtonUpResource.rkt" (TouchButtonUpResource.jm_getInstance_0)])
+(lazy-require ["./TouchButtonDownResource.rkt" (TouchButtonDownResource.jm_getInstance_0)])
+(lazy-require ["./TouchButtonTurnLeftResource.rkt" (TouchButtonTurnLeftResource.jm_getInstance_0)])
+(lazy-require ["./TouchButtonTurnRightResource.rkt" (TouchButtonTurnRightResource.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicTouchButtonsBuilder%
+  (class BaseTouchInput%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (define/override (jm_getList_0)
+    (let ([_list JR.null][_commonButtons JR.null][_touchButtonLocationHelper JR.null][_basicTouchButtonCellPositionFactory JR.null][_UP JR.null][_DOWN JR.null][_LEFT JR.null][_RIGHT JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_GET_LIST (get-field f_commonStrings this)) _e)
+            (jreturn (send (BasicArrayListUtil.jm_getInstance_0) jm_getImmutableInstance_0)))])
+            (send (get-field f_logUtil this) jm_putF_3 (get-field f_START (get-field f_commonStrings this)) this (get-field f_CONSTRUCTOR (get-field f_commonStrings this)))
+            (set! _list (BasicArrayListD.jnew_0))
+            (set! _commonButtons (CommonButtons.jm_getInstance_0))
+            (set! _touchButtonLocationHelper (TouchButtonLocationHelper.jnew_0))
+            (set! _basicTouchButtonCellPositionFactory (BasicTouchButtonCellPositionFactory.jnew_0))
+            (set! _UP (TouchButton.jm_createButton_6 (get-field f_UP (BasicTouchInputFactory.jm_getInstance_0)) (TouchButtonUpResource.jm_getInstance_0) (get-field f_NORMAL_BUTTON _commonButtons) (get-field f_SECOND_FROM_BOTTOM_LEFT _basicTouchButtonCellPositionFactory) (send _touchButtonLocationHelper jm_getColumnsRemainderHalf_0) (send _touchButtonLocationHelper jm_getRowsRemainderHalf_0)))
+            (set! _DOWN (TouchButton.jm_createButton_6 (get-field f_DOWN (BasicTouchInputFactory.jm_getInstance_0)) (TouchButtonDownResource.jm_getInstance_0) (get-field f_NORMAL_BUTTON _commonButtons) (get-field f_BOTTOM_LEFT _basicTouchButtonCellPositionFactory) (send _touchButtonLocationHelper jm_getColumnsRemainderHalf_0) (send _touchButtonLocationHelper jm_getRowsRemainderHalf_0)))
+            (set! _LEFT (TouchButton.jm_createButton_6 (get-field f_SPECIAL_BUTTON_FOUR (BasicTouchInputFactory.jm_getInstance_0)) (TouchButtonTurnLeftResource.jm_getInstance_0) (get-field f_NORMAL_BUTTON _commonButtons) (get-field f_BOTTOM_SECOND_FROM_RIGHT _basicTouchButtonCellPositionFactory) (send _touchButtonLocationHelper jm_getColumnsRemainderHalf_0) (send _touchButtonLocationHelper jm_getRowsRemainderHalf_0)))
+            (set! _RIGHT (TouchButton.jm_createButton_6 (get-field f_SPECIAL_BUTTON_THREE (BasicTouchInputFactory.jm_getInstance_0)) (TouchButtonTurnRightResource.jm_getInstance_0) (get-field f_NORMAL_BUTTON _commonButtons) (get-field f_BOTTOM_RIGHT _basicTouchButtonCellPositionFactory) (send _touchButtonLocationHelper jm_getColumnsRemainderHalf_0) (send _touchButtonLocationHelper jm_getRowsRemainderHalf_0)))
+            (send _list jm_add_1 _UP)
+            (send _list jm_add_1 _LEFT)
+            (send _list jm_add_1 _RIGHT)
+            (send _list jm_add_1 _DOWN)
+            (jreturn _list)))))))
+(define (BasicTouchButtonsBuilder.jclassValue) BasicTouchButtonsBuilder%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BasicTouchButtonsBuilder = {}
-BasicTouchButtonsBuilder.__index = BasicTouchButtonsBuilder
-BasicTouchButtonsBuilder.className = "BasicTouchButtonsBuilder"
-setmetatable(BasicTouchButtonsBuilder, {__index = BaseTouchInput})
-
-function BasicTouchButtonsBuilder:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-function BasicTouchButtonsBuilder.new()
-    local self = setmetatable(BaseTouchInput.new(), BasicTouchButtonsBuilder)
-    self:_init_fields()
-    return self
-end
+(define (BasicTouchButtonsBuilder.jnew_0)
+  (define this (new BasicTouchButtonsBuilder% [jclass "BasicTouchButtonsBuilder"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+  this)
 
 
-function BasicTouchButtonsBuilder:getList()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-            local list = BasicArrayListD.new()
-            local commonButtons = CommonButtons.getInstance()
-            local touchButtonLocationHelper = TouchButtonLocationHelper.new()
-            local basicTouchButtonCellPositionFactory = BasicTouchButtonCellPositionFactory.new()
-            local UP = TouchButton.createButton(BasicTouchInputFactory.getInstance().UP, TouchButtonUpResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_LEFT, touchButtonLocationHelper:getColumnsRemainderHalf(), touchButtonLocationHelper:getRowsRemainderHalf())
-            local DOWN = TouchButton.createButton(BasicTouchInputFactory.getInstance().DOWN, TouchButtonDownResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_LEFT, touchButtonLocationHelper:getColumnsRemainderHalf(), touchButtonLocationHelper:getRowsRemainderHalf())
-            local LEFT = TouchButton.createButton(BasicTouchInputFactory.getInstance().SPECIAL_BUTTON_FOUR, TouchButtonTurnLeftResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_SECOND_FROM_RIGHT, touchButtonLocationHelper:getColumnsRemainderHalf(), touchButtonLocationHelper:getRowsRemainderHalf())
-            local RIGHT = TouchButton.createButton(BasicTouchInputFactory.getInstance().SPECIAL_BUTTON_THREE, TouchButtonTurnRightResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_RIGHT, touchButtonLocationHelper:getColumnsRemainderHalf(), touchButtonLocationHelper:getRowsRemainderHalf())
-            list:add(UP)
-            list:add(LEFT)
-            list:add(RIGHT)
-            list:add(DOWN)
-            return list
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.GET_LIST, e)
-            return BasicArrayListUtil.getInstance():getImmutableInstance()
-        end
-end
-
-return BasicTouchButtonsBuilder
 

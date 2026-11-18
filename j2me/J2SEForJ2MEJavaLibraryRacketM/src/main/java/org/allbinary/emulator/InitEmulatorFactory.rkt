@@ -1,60 +1,52 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.emulator
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2011 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.emulator
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define InitEmulatorFactory%
+  (class JObject%
+    (super-new)
+    (field [f_initEmulator #f])
+    (define/public (jm_setInitEmulator_1 _initEmulator)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_initEmulator this _initEmulator))))
+    (define/public (jm_isInitEmulator_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_initEmulator this)))))))
+(define (InitEmulatorFactory.jclassValue) InitEmulatorFactory%)
+
+(define InitEmulatorFactory.jcell_instance 'jnone)
+(define (InitEmulatorFactory.jstatic_instance)
+  (when (eq? InitEmulatorFactory.jcell_instance 'jnone) (set! InitEmulatorFactory.jcell_instance (InitEmulatorFactory.jnew_0)))
+  InitEmulatorFactory.jcell_instance)
+(define (InitEmulatorFactory.jsetstatic_instance value) (set! InitEmulatorFactory.jcell_instance value))
+
+(define (InitEmulatorFactory.jnew_0)
+  (define this (new InitEmulatorFactory% [jclass "InitEmulatorFactory"]))
+    (set-field! f_initEmulator this #f)
+  this)
+
+(define (InitEmulatorFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (InitEmulatorFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local InitEmulatorFactory = {}
-InitEmulatorFactory.__index = InitEmulatorFactory
-InitEmulatorFactory.className = "InitEmulatorFactory"
-
-function InitEmulatorFactory:_init_fields()
-    self.initEmulator = false
-end
-
-function InitEmulatorFactory.new()
-    local self = setmetatable({}, InitEmulatorFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function InitEmulatorFactory.getInstance()
-        return InitEmulatorFactory.instance
-end
-
-
-function InitEmulatorFactory:setInitEmulator(initEmulator)
-        self.initEmulator = initEmulator
-end
-
-
-function InitEmulatorFactory:isInitEmulator()
-        return self.initEmulator
-end
-
-InitEmulatorFactory.instance = InitEmulatorFactory.new()
-
-return InitEmulatorFactory
 

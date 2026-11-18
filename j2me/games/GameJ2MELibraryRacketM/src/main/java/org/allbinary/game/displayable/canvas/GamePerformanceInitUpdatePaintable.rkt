@@ -1,101 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local GameStatisticsFactory = require("org.allbinary.canvas.GameStatisticsFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local InitUpdatePaintable = require("org.allbinary.graphics.paint.InitUpdatePaintable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/graphics/font/UpdateMyFontInterface.rkt"
+  "../../../../../org/allbinary/graphics/paint/InitUpdatePaintable.rkt")
+(lazy-require ["../../../../../org/allbinary/canvas/GameStatisticsFactory.rkt" (GameStatisticsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/font/MyFontProcessor.rkt" (MyFontProcessor.jm_defaultStringWidth_2 MyFontProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/font/UpdateMyFontProcessor.rkt" (UpdateMyFontProcessor.jnew_1)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define GamePerformanceInitUpdatePaintable%
+  (class InitUpdatePaintable%
+    (super-new)
+    (field [f_halfHeight 0])
+    (field [f_yArray JR.null])
+    (field [f_myFontProcessor JR.null])
+    (field [f_baseRefreshHelperCharArray JR.null])
+    (field [f_defaultStringWidth 0])
+    (field [f_RED 0])
+    (define/public (jm_updateMeasurement_1 _graphics)
+    (let ([_font JR.null])
+      (let/ec jreturn
+        (set! _font (send _graphics jm_getFont_0))
+        (set-field! f_defaultStringWidth this (MyFontProcessor.jm_defaultStringWidth_2 _font 2))
+        (set-field! f_myFontProcessor this (MyFontProcessor.jm_getInstance_0)))))
+    (define/override (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_update_0)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_baseRefreshHelperCharArray this (send (GameStatisticsFactory.jm_getInstance_0) jm_to2DCharArray_0)))))
+    (define/override (jm_paint_1 _graphics)
+    (let ([_charArray JR.null][_charArray2 JR.null][_size2 JR.null][_size3 JR.null][_size JR.null][_index JR.null])
+      (let/ec jreturn
+        (send (get-field f_myFontProcessor this) jm_process_1 _graphics)
+        (send _graphics jm_setColor_1 (get-field f_RED this))
+        (set! _charArray JR.null)
+        (set! _charArray2 JR.null)
+        (set! _size2 0)
+        (set! _size3 0)
+        (set! _size (JR.i32 (- (vector-length (get-field f_baseRefreshHelperCharArray this)) 2)))
+        (begin
+            (set! _index _size)
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (set! _charArray (vector-ref (get-field f_baseRefreshHelperCharArray this) _index))
+            (set! _charArray2 (vector-ref (get-field f_baseRefreshHelperCharArray this) (JR.i32 (+ _index 1))))
+            (set! _size2 (vector-length _charArray))
+            (set! _size3 (vector-length _charArray2))
+            (send _graphics jm_drawChars_6 _charArray 0 _size2 0 (vector-ref (get-field f_yArray this) _index) 0)
+            (send _graphics jm_drawChars_6 _charArray2 0 _size3 (JR.i32 (* _size2 (get-field f_defaultStringWidth this))) (vector-ref (get-field f_yArray this) (JR.i32 (+ _index 1))) 0))
+                (set! _index (JR.i32 (- _index 2))) (jloop))))))))))
+(define (GamePerformanceInitUpdatePaintable.jclassValue) GamePerformanceInitUpdatePaintable%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GamePerformanceInitUpdatePaintable = {}
-GamePerformanceInitUpdatePaintable.__index = GamePerformanceInitUpdatePaintable
-GamePerformanceInitUpdatePaintable.className = "GamePerformanceInitUpdatePaintable"
-setmetatable(GamePerformanceInitUpdatePaintable, {__index = InitUpdatePaintable})
-
-function GamePerformanceInitUpdatePaintable:_init_fields()
-    self.halfHeight = DisplayInfoSingleton.getInstance():getLastHalfHeight()
-    self.yArray = {self.halfHeight + 30, self.halfHeight + 30, self.halfHeight + 30 + 15, self.halfHeight + 30 + 15, self.halfHeight + 30 + 30, self.halfHeight + 30 + 30, self.halfHeight + 30 + 45, self.halfHeight + 30 + 45}
-    self.myFontProcessor = UpdateMyFontProcessor.new(self)
-    self.baseRefreshHelperCharArray = java_new_array("\0", 0, 0)
-    self.defaultStringWidth = 0
-    self.RED = math.tointeger(BasicColorFactory.getInstance().RED // 1)
-end
-
-function GamePerformanceInitUpdatePaintable.new()
-    local self = setmetatable(InitUpdatePaintable.new(), GamePerformanceInitUpdatePaintable)
-    self:_init_fields()
-    return self
-end
+(define (GamePerformanceInitUpdatePaintable.jnew_0)
+  (define this (new GamePerformanceInitUpdatePaintable% [jclass "GamePerformanceInitUpdatePaintable"]))
+    (set-field! f_halfHeight this (send (DisplayInfoSingleton.jm_getInstance_0) jm_getLastHalfHeight_0))
+    (set-field! f_yArray this (vector (JR.i32 (+ (get-field f_halfHeight this) 30)) (JR.i32 (+ (get-field f_halfHeight this) 30)) (JR.i32 (+ (JR.i32 (+ (get-field f_halfHeight this) 30)) 15)) (JR.i32 (+ (JR.i32 (+ (get-field f_halfHeight this) 30)) 15)) (JR.i32 (+ (JR.i32 (+ (get-field f_halfHeight this) 30)) 30)) (JR.i32 (+ (JR.i32 (+ (get-field f_halfHeight this) 30)) 30)) (JR.i32 (+ (JR.i32 (+ (get-field f_halfHeight this) 30)) 45)) (JR.i32 (+ (JR.i32 (+ (get-field f_halfHeight this) 30)) 45))))
+    (set-field! f_myFontProcessor this (UpdateMyFontProcessor.jnew_1 this))
+    (set-field! f_baseRefreshHelperCharArray this (JR.newArray 0 0 0))
+    
+    (set-field! f_RED this (JR.className (get-field f_RED (BasicColorFactory.jm_getInstance_0))))
+  this)
 
 
-function GamePerformanceInitUpdatePaintable:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.defaultStringWidth = MyFontProcessor.defaultStringWidth(font, 2)
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function GamePerformanceInitUpdatePaintable:init()
-end
-
-
-function GamePerformanceInitUpdatePaintable:update()
-        self.baseRefreshHelperCharArray = GameStatisticsFactory.getInstance():to2DCharArray()
-end
-
-
-function GamePerformanceInitUpdatePaintable:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        graphics:setColor(self.RED)
-        local charArray = nil
-        local charArray2 = nil
-        local size2 = 0
-        local size3 = 0
-        local size = (self.baseRefreshHelperCharArray.n or #self.baseRefreshHelperCharArray) - 2
-        for index = size, 0, -2 do
-            charArray = self.baseRefreshHelperCharArray[index + 1]
-            charArray2 = self.baseRefreshHelperCharArray[index + 1 + 1]
-            size2 = (charArray.n or #charArray)
-            size3 = (charArray2.n or #charArray2)
-            graphics:drawChars(charArray, 0, size2, 0, self.yArray[index + 1], 0)
-            graphics:drawChars(charArray2, 0, size3, size2 * self.defaultStringWidth, self.yArray[index + 1 + 1], 0)
-        end
-end
-
-return GamePerformanceInitUpdatePaintable
 

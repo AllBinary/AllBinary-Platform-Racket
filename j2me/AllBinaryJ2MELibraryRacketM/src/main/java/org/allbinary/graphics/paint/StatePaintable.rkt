@@ -1,46 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.paint
 
-local StateControlledInterface = require("org.allbinary.graphics.displayable.StateControlledInterface")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/displayable/StateControlledInterface.rkt"
+  "./Paintable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define StatePaintable%
+  (class Paintable%
+    (super-new)
+    (define/public (jm_setState_1 _state)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (StatePaintable.jclassValue) StatePaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local StatePaintable = {}
-StatePaintable.__index = StatePaintable
-StatePaintable.className = "StatePaintable"
-setmetatable(StatePaintable, {__index = Paintable})
-
-
-function StatePaintable.new()
-    local self = setmetatable(Paintable.new(), StatePaintable)
-    return self
-end
+(define (StatePaintable.jnew_0)
+  (define this (new StatePaintable% [jclass "StatePaintable"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function StatePaintable:setState(state)
-end
-
-return StatePaintable
 

@@ -1,31 +1,23 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graph
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graph
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define V%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))))
+(define (V.jclassValue) V%)
+
+(define (V.jnew_0)
+  (define this (new V% [jclass "V"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local V = {}
-V.__index = V
-V.className = "V"
-
-function V.new()
-    local self = setmetatable({}, V)
-    return self
-end
-
-
-function V:getId()
-        return 0
-end
-
-return V
 

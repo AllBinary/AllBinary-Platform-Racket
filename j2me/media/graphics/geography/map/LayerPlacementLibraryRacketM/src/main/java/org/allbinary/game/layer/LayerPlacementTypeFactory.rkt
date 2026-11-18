@@ -1,55 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer
 
-local DirectionFactory = require("org.allbinary.direction.DirectionFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../org/allbinary/direction/DirectionFactory.rkt" (DirectionFactory.jm_getInstance_0)])
+(lazy-require ["./LayerPlacementType.rkt" (LayerPlacementType.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LayerPlacementTypeFactory%
+  (class JObject%
+    (super-new)
+    (field [f_MAP JR.null])
+    (field [f_LEFT JR.null])
+    (field [f_DOWN JR.null])
+    (field [f_UP JR.null])
+    (field [f_RIGHT JR.null])))
+(define (LayerPlacementTypeFactory.jclassValue) LayerPlacementTypeFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LayerPlacementTypeFactory.jcell_instance 'jnone)
+(define (LayerPlacementTypeFactory.jstatic_instance)
+  (when (eq? LayerPlacementTypeFactory.jcell_instance 'jnone) (set! LayerPlacementTypeFactory.jcell_instance (LayerPlacementTypeFactory.jnew_0)))
+  LayerPlacementTypeFactory.jcell_instance)
+(define (LayerPlacementTypeFactory.jsetstatic_instance value) (set! LayerPlacementTypeFactory.jcell_instance value))
 
-local LayerPlacementTypeFactory = {}
-LayerPlacementTypeFactory.__index = LayerPlacementTypeFactory
-LayerPlacementTypeFactory.className = "LayerPlacementTypeFactory"
+(define (LayerPlacementTypeFactory.jnew_0)
+  (define this (new LayerPlacementTypeFactory% [jclass "LayerPlacementTypeFactory"]))
+    (set-field! f_MAP this (LayerPlacementType.jnew_1 (Integer.jstatic_MAX_VALUE)))
+    (set-field! f_LEFT this (LayerPlacementType.jnew_1 (JR.className (get-field f_LEFT (DirectionFactory.jm_getInstance_0)))))
+    (set-field! f_DOWN this (LayerPlacementType.jnew_1 (JR.className (get-field f_DOWN (DirectionFactory.jm_getInstance_0)))))
+    (set-field! f_UP this (LayerPlacementType.jnew_1 (JR.className (get-field f_UP (DirectionFactory.jm_getInstance_0)))))
+    (set-field! f_RIGHT this (LayerPlacementType.jnew_1 (JR.className (get-field f_RIGHT (DirectionFactory.jm_getInstance_0)))))
+  this)
 
-function LayerPlacementTypeFactory:_init_fields()
-    self.MAP = LayerPlacementType.new(Integer.MAX_VALUE)
-    self.LEFT = LayerPlacementType.new(DirectionFactory.getInstance().LEFT:getValue())
-    self.DOWN = LayerPlacementType.new(DirectionFactory.getInstance().DOWN:getValue())
-    self.UP = LayerPlacementType.new(DirectionFactory.getInstance().UP:getValue())
-    self.RIGHT = LayerPlacementType.new(DirectionFactory.getInstance().RIGHT:getValue())
-end
-
-function LayerPlacementTypeFactory.new()
-    local self = setmetatable({}, LayerPlacementTypeFactory)
-    self:_init_fields()
-    return self
-end
+(define (LayerPlacementTypeFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LayerPlacementTypeFactory.jstatic_instance)))))
 
 
-function LayerPlacementTypeFactory.getInstance()
-        return LayerPlacementTypeFactory.instance
-end
-
-LayerPlacementTypeFactory.instance = LayerPlacementTypeFactory.new()
-
-return LayerPlacementTypeFactory
 

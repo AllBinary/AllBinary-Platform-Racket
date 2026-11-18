@@ -1,48 +1,36 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2011 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer.event
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/EventListenerInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LayerManagerEventListenerInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onCreateLayerManagerEvent_1 _layerManagerEvent)
+      (raise (JR.newException "AbstractMethodError" "onCreateLayerManagerEvent")))
+    (define/public (jm_onDeleteLayerManagerEvent_1 _layerManagerEvent)
+      (raise (JR.newException "AbstractMethodError" "onDeleteLayerManagerEvent")))))
+(define (LayerManagerEventListenerInterface.jclassValue) LayerManagerEventListenerInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local LayerManagerEventListenerInterface = {}
-LayerManagerEventListenerInterface.__index = LayerManagerEventListenerInterface
-LayerManagerEventListenerInterface.className = "LayerManagerEventListenerInterface"
-setmetatable(LayerManagerEventListenerInterface, {__index = EventListenerInterface})
-
-
--- throws Exception
-function LayerManagerEventListenerInterface:onCreateLayerManagerEvent(layerManagerEvent)
-    error("abstract method onCreateLayerManagerEvent")
-end
+(define (LayerManagerEventListenerInterface.jnew_0)
+  (define this (new LayerManagerEventListenerInterface% [jclass "LayerManagerEventListenerInterface"]))
+  this)
 
 
--- throws Exception
-function LayerManagerEventListenerInterface:onDeleteLayerManagerEvent(layerManagerEvent)
-    error("abstract method onDeleteLayerManagerEvent")
-end
-
-return LayerManagerEventListenerInterface
 

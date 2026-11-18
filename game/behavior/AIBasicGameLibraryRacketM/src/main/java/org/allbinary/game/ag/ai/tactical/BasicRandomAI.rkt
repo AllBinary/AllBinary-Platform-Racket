@@ -1,91 +1,82 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.tactical
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai.tactical
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local InputProbability = require("org.allbinary.game.ag.ai.InputProbability")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local MyRandomFactory = require("org.allbinary.game.rand.MyRandomFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/game/ai/BasicAI.rkt"
+  "../../../../../../java/lang/Integer.rkt")
+(lazy-require ["../../../../../../javax/microedition/lcdui/Canvas.rkt" (Canvas.jstatic_UP Canvas.jstatic_DOWN Canvas.jstatic_LEFT Canvas.jstatic_RIGHT Canvas.jstatic_KEY_NUM1 Canvas.jstatic_KEY_NUM7 Canvas.jstatic_KEY_NUM9)])
+(lazy-require ["../../../../../../org/allbinary/game/rand/MyRandomFactory.rkt" (MyRandomFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../../org/allbinary/time/GameTickTimeDelayHelperFactory.rkt" (GameTickTimeDelayHelperFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicRandomAI%
+  (class BasicAI%
+    (super-new)
+    (field [f_i_random 0])
+    (field [f_inputProbability JR.null])
+    (field [f_visitor JR.null])
+    (field [f_keyArray JR.null])
+    (field [f_myRandomFactory JR.null])
+    (define/override (jm_processAI_1 _allBinaryLayerManager)
+    (let ([_repeat JR.null][_repeatLikelyhoodIntegerArray JR.null][_likelyhoodIntegerArray JR.null][_size JR.null][_likelyhoodIntegerKeyArray JR.null][_key JR.null][_index JR.null])
+      (let/ec jreturn
+        (when (JR.className (send (get-field f_inputProbability this) jm_getTimeDelayHelper_0))
+            (begin
+            (set-field! f_i_random this (send (get-field f_myRandomFactory this) jm_getAbsoluteNextInt_1 (send (get-field f_inputProbability this) jm_getMax_0)))
+            (set! _repeat #f)
+            (set! _repeatLikelyhoodIntegerArray (send (get-field f_inputProbability this) jm_getRepeatLikelyhoodIntegerArray_0))
+            (when (and (not (= (send this jm_getLastKey_0) (JR.i32 (- 1)))) (>= (JR.className (vector-ref _repeatLikelyhoodIntegerArray (send this jm_getLastKey_0))) (get-field f_i_random this)))
+                (begin
+                (set! _repeat #t)))
+            (when (not _repeat)
+                (begin
+                (set! _likelyhoodIntegerArray (send (get-field f_inputProbability this) jm_getLikelyhoodIntegerArray_0))
+                (set-field! f_i_random this (send (get-field f_myRandomFactory this) jm_getAbsoluteNextInt_1 (send (get-field f_inputProbability this) jm_getMax_0)))
+                (set! _size (vector-length (get-field f_keyArray this)))
+                (set! _likelyhoodIntegerKeyArray JR.null)
+                (begin
+                    (set! _index 0)
+                    (let/ec jbreak (let jloop () (when (< _index _size)
+                        (let/ec jcontinue
+                    (set! _key (vector-ref (get-field f_keyArray this) _index))
+                    (set! _likelyhoodIntegerKeyArray (vector-ref _likelyhoodIntegerArray _key))
+                    (when (and (>= (vector-length _likelyhoodIntegerArray) _key) (not (JR.null? (vector-ref _likelyhoodIntegerKeyArray 0))))
+                        (begin
+                        (when (and (>= (get-field f_i_random this) (JR.className (vector-ref _likelyhoodIntegerKeyArray 0))) (< (get-field f_i_random this) (JR.className (vector-ref _likelyhoodIntegerKeyArray 1))))
+                            (begin
+                            (send this jm_setLastKey_1 _key)
+                            (jbreak (void)))))))
+                        (set! _index (JR.i32 (+ _index 1))) (jloop)))))))
+            (send (get-field f_visitor this) jm_visit_1 this))))))))
+(define (BasicRandomAI.jclassValue) BasicRandomAI%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BasicRandomAI = {}
-BasicRandomAI.__index = BasicRandomAI
-BasicRandomAI.className = "BasicRandomAI"
-setmetatable(BasicRandomAI, {__index = BasicAI})
-
-function BasicRandomAI:_init_fields()
-    self.i_random = 0
-    self.inputProbability = nil
-    self.visitor = nil
-    self.keyArray = {Canvas.UP, Canvas.DOWN, Canvas.LEFT, Canvas.RIGHT, Canvas.KEY_NUM1, Canvas.KEY_NUM7, Canvas.KEY_NUM9}
-    self.myRandomFactory = MyRandomFactory.getInstance()
-end
+(define (BasicRandomAI.jnew_4 _ownerLayerInterface _gameInput _inputProbability _visitor)
+  (define this (new BasicRandomAI% [jclass "BasicRandomAI"]))
+    (set-field! f_i_random this 0)
+    
+    
+    (set-field! f_keyArray this (vector (Canvas.jstatic_UP) (Canvas.jstatic_DOWN) (Canvas.jstatic_LEFT) (Canvas.jstatic_RIGHT) (Canvas.jstatic_KEY_NUM1) (Canvas.jstatic_KEY_NUM7) (Canvas.jstatic_KEY_NUM9)))
+    (set-field! f_myRandomFactory this (MyRandomFactory.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_inputProbability this _inputProbability)
+        (set-field! f_visitor this _visitor)))
+  this)
 
 
-function BasicRandomAI.new(ownerLayerInterface, gameInput, inputProbability, visitor)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), BasicRandomAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.inputProbability = inputProbability
-        self.visitor = visitor
-    return self
-end
-
-
--- throws Exception
-function BasicRandomAI:processAI(allBinaryLayerManager)
-        if self.inputProbability:getTimeDelayHelper():isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) then
-            self.i_random = self.myRandomFactory:getAbsoluteNextInt(self.inputProbability:getMax())
-            local repeat_ = false
-            local repeatLikelyhoodIntegerArray = self.inputProbability:getRepeatLikelyhoodIntegerArray()
-            if self:getLastKey() ~= -1 and math.tointeger(repeatLikelyhoodIntegerArray[self:getLastKey() + 1] // 1) >= self.i_random then
-                repeat_ = true
-            end
-            if not repeat_ then
-                local likelyhoodIntegerArray = self.inputProbability:getLikelyhoodIntegerArray()
-                self.i_random = self.myRandomFactory:getAbsoluteNextInt(self.inputProbability:getMax())
-                local size = (self.keyArray.n or #self.keyArray)
-                local likelyhoodIntegerKeyArray = nil
-                for index = 0, size - 1 do
-                    local key = self.keyArray[index + 1]
-                    likelyhoodIntegerKeyArray = likelyhoodIntegerArray[key + 1]
-                    if (likelyhoodIntegerArray.n or #likelyhoodIntegerArray) >= key and likelyhoodIntegerKeyArray[1] ~= nil then
-                        if self.i_random >= math.tointeger(likelyhoodIntegerKeyArray[1] // 1) and self.i_random < math.tointeger(likelyhoodIntegerKeyArray[2] // 1) then
-                            self:setLastKey(key)
-                            break
-                        end
-                    end
-                end
-            end
-            self.visitor:visit(self)
-        end
-end
-
-return BasicRandomAI
 

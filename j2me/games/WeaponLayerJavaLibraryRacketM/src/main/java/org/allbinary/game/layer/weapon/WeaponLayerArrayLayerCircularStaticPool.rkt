@@ -1,111 +1,89 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.weapon
 
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/util/CircularIndexUtil.rkt" (CircularIndexUtil.jm_createInstance_1)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define WeaponLayerArrayLayerCircularStaticPool%
+  (class JObject%
+    (super-new)
+    (field [f_MAX 0])
+    (field [f_circularIndexUtil JR.null])
+    (field [f_WEAPONLAYER_ARRAY JR.null])
+    (field [f_TWO_WEAPONLAYER_ARRAY JR.null])
+    (field [f_THREE_WEAPONLAYER_ARRAY JR.null])
+    (define/public (jm_init_0)
+    (let ([_WEAPONLAYER_ARRAY JR.null][_TWO_WEAPONLAYER_ARRAY JR.null][_THREE_WEAPONLAYER_ARRAY JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _WEAPONLAYER_ARRAY (JR.newArray JR.null (JR.i32 (* (get-field f_MAX this) 2))))
+        (set! _TWO_WEAPONLAYER_ARRAY (JR.newArray JR.null (get-field f_MAX this)))
+        (set! _THREE_WEAPONLAYER_ARRAY (JR.newArray JR.null (get-field f_MAX this)))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index (get-field f_MAX this))
+                (let/ec jcontinue
+            (vector-set! _WEAPONLAYER_ARRAY _index (JR.newArray JR.null 1))
+            (vector-set! _TWO_WEAPONLAYER_ARRAY _index (JR.newArray JR.null 2))
+            (vector-set! _THREE_WEAPONLAYER_ARRAY _index (JR.newArray JR.null 3)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (set-field! f_WEAPONLAYER_ARRAY this _WEAPONLAYER_ARRAY)
+        (set-field! f_TWO_WEAPONLAYER_ARRAY this _TWO_WEAPONLAYER_ARRAY)
+        (set-field! f_THREE_WEAPONLAYER_ARRAY this _THREE_WEAPONLAYER_ARRAY))))
+    (define/public (jm_getWeaponLayerArrays_1 _size)
+    (let ()
+      (let/ec jreturn
+        (if (= _size 1)
+            (begin
+            (jreturn (get-field f_WEAPONLAYER_ARRAY this)))
+            (if (= _size 2)
+            (begin
+            (jreturn (get-field f_TWO_WEAPONLAYER_ARRAY this)))
+            (when (= _size 3)
+            (begin
+            (jreturn (get-field f_THREE_WEAPONLAYER_ARRAY this))))))
+        (raise (JR.newException "RuntimeException")))))
+    (define/public (jm_getInstanceArray_1 _size)
+    (let ([_weaponLayerArray JR.null])
+      (let/ec jreturn
+        (set! _weaponLayerArray (vector-ref (send this jm_getWeaponLayerArrays_1 _size) (send (get-field f_circularIndexUtil this) jm_getIndex_0)))
+        (send (get-field f_circularIndexUtil this) jm_next_0)
+        (jreturn _weaponLayerArray))))))
+(define (WeaponLayerArrayLayerCircularStaticPool.jclassValue) WeaponLayerArrayLayerCircularStaticPool%)
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define WeaponLayerArrayLayerCircularStaticPool.jcell_instance 'jnone)
+(define (WeaponLayerArrayLayerCircularStaticPool.jstatic_instance)
+  (when (eq? WeaponLayerArrayLayerCircularStaticPool.jcell_instance 'jnone) (set! WeaponLayerArrayLayerCircularStaticPool.jcell_instance (WeaponLayerArrayLayerCircularStaticPool.jnew_0)))
+  WeaponLayerArrayLayerCircularStaticPool.jcell_instance)
+(define (WeaponLayerArrayLayerCircularStaticPool.jsetstatic_instance value) (set! WeaponLayerArrayLayerCircularStaticPool.jcell_instance value))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define (WeaponLayerArrayLayerCircularStaticPool.jnew_0)
+  (define this (new WeaponLayerArrayLayerCircularStaticPool% [jclass "WeaponLayerArrayLayerCircularStaticPool"]))
+    (set-field! f_MAX this 5)
+    (set-field! f_circularIndexUtil this (CircularIndexUtil.jm_createInstance_1 (get-field f_MAX this)))
+    
+    
+    
+  this)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local WeaponLayerArrayLayerCircularStaticPool = {}
-WeaponLayerArrayLayerCircularStaticPool.__index = WeaponLayerArrayLayerCircularStaticPool
-WeaponLayerArrayLayerCircularStaticPool.className = "WeaponLayerArrayLayerCircularStaticPool"
-
-function WeaponLayerArrayLayerCircularStaticPool:_init_fields()
-    self.MAX = 5
-    self.circularIndexUtil = CircularIndexUtil.createInstance(self.MAX)
-    self.WEAPONLAYER_ARRAY = nil
-    self.TWO_WEAPONLAYER_ARRAY = nil
-    self.THREE_WEAPONLAYER_ARRAY = nil
-end
-
-function WeaponLayerArrayLayerCircularStaticPool.new()
-    local self = setmetatable({}, WeaponLayerArrayLayerCircularStaticPool)
-    self:_init_fields()
-    return self
-end
-
-
-function WeaponLayerArrayLayerCircularStaticPool.getInstance()
-        return WeaponLayerArrayLayerCircularStaticPool.instance
-end
-
-
-function WeaponLayerArrayLayerCircularStaticPool:init()
-        local WEAPONLAYER_ARRAY = java_new_array(nil, self.MAX * 2)
-        local TWO_WEAPONLAYER_ARRAY = java_new_array(nil, self.MAX)
-        local THREE_WEAPONLAYER_ARRAY = java_new_array(nil, self.MAX)
-        for index = 0, self.MAX - 1 do
-            WEAPONLAYER_ARRAY[index + 1] = java_new_array(nil, 1)
-            TWO_WEAPONLAYER_ARRAY[index + 1] = java_new_array(nil, 2)
-            THREE_WEAPONLAYER_ARRAY[index + 1] = java_new_array(nil, 3)
-        end
-        self.WEAPONLAYER_ARRAY = WEAPONLAYER_ARRAY
-        self.TWO_WEAPONLAYER_ARRAY = TWO_WEAPONLAYER_ARRAY
-        self.THREE_WEAPONLAYER_ARRAY = THREE_WEAPONLAYER_ARRAY
-end
-
-
-function WeaponLayerArrayLayerCircularStaticPool:getWeaponLayerArrays(size)
-        if size == 1 then
-            return self.WEAPONLAYER_ARRAY
-        elseif size == 2 then
-            return self.TWO_WEAPONLAYER_ARRAY
-        elseif size == 3 then
-            return self.THREE_WEAPONLAYER_ARRAY
-        end
-        error(java_exception("RuntimeException"), 0)
-end
+(define (WeaponLayerArrayLayerCircularStaticPool.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (WeaponLayerArrayLayerCircularStaticPool.jstatic_instance)))))
 
 
--- throws Exception
-function WeaponLayerArrayLayerCircularStaticPool:getInstanceArray(size)
-        local weaponLayerArray = self:getWeaponLayerArrays(size)[self.circularIndexUtil:getIndex() + 1]
-        self.circularIndexUtil:next()
-        return weaponLayerArray
-end
-
-WeaponLayerArrayLayerCircularStaticPool.instance = WeaponLayerArrayLayerCircularStaticPool.new()
-
-return WeaponLayerArrayLayerCircularStaticPool
 

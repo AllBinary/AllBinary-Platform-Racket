@@ -1,45 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["./LastKeyAIVisitor.rkt" (LastKeyAIVisitor.jnew_0)])
+(provide (all-defined-out))
+
+(define LastKeyAIVisitorFactory%
+  (class JObject%
+    (super-new)))
+(define (LastKeyAIVisitorFactory.jclassValue) LastKeyAIVisitorFactory%)
+
+(define LastKeyAIVisitorFactory.jcell_instance 'jnone)
+(define (LastKeyAIVisitorFactory.jstatic_instance)
+  (when (eq? LastKeyAIVisitorFactory.jcell_instance 'jnone) (set! LastKeyAIVisitorFactory.jcell_instance (LastKeyAIVisitor.jnew_0)))
+  LastKeyAIVisitorFactory.jcell_instance)
+(define (LastKeyAIVisitorFactory.jsetstatic_instance value) (set! LastKeyAIVisitorFactory.jcell_instance value))
+
+(define (LastKeyAIVisitorFactory.jnew_0)
+  (define this (new LastKeyAIVisitorFactory% [jclass "LastKeyAIVisitorFactory"]))
+  this)
+
+(define (LastKeyAIVisitorFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LastKeyAIVisitorFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LastKeyAIVisitorFactory = {}
-LastKeyAIVisitorFactory.__index = LastKeyAIVisitorFactory
-LastKeyAIVisitorFactory.className = "LastKeyAIVisitorFactory"
-
-function LastKeyAIVisitorFactory.new()
-    local self = setmetatable({}, LastKeyAIVisitorFactory)
-    return self
-end
-
-
-function LastKeyAIVisitorFactory.getInstance()
-        return LastKeyAIVisitorFactory.instance
-end
-
-LastKeyAIVisitorFactory.instance = LastKeyAIVisitor.new()
-
-return LastKeyAIVisitorFactory
 

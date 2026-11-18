@@ -1,60 +1,54 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.math
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define J2SEMath%
+  (class JObject%
+    (super-new)
+    (define/public (jm_round_1 _value)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.d2i _value)))))
+    (define/public (jm_abs_1 _value)
+    (let ()
+      (let/ec jreturn
+        (jreturn (if (< _value 0.0) (- _value) _value)))))
+    (define/public (jm_absdouble_1 _value)
+    (let ()
+      (let/ec jreturn
+        (jreturn (if (< _value 0.0) (- _value) _value)))))))
+(define (J2SEMath.jclassValue) J2SEMath%)
+
+(define J2SEMath.jcell_instance 'jnone)
+(define (J2SEMath.jstatic_instance)
+  (when (eq? J2SEMath.jcell_instance 'jnone) (set! J2SEMath.jcell_instance (J2SEMath.jnew_0)))
+  J2SEMath.jcell_instance)
+(define (J2SEMath.jsetstatic_instance value) (set! J2SEMath.jcell_instance value))
+
+(define (J2SEMath.jnew_0)
+  (define this (new J2SEMath% [jclass "J2SEMath"]))
+  this)
+
+(define (J2SEMath.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (J2SEMath.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local J2SEMath = {}
-J2SEMath.__index = J2SEMath
-J2SEMath.className = "J2SEMath"
-
-function J2SEMath.new()
-    local self = setmetatable({}, J2SEMath)
-    return self
-end
-
-
-function J2SEMath.getInstance()
-        return J2SEMath.instance
-end
-
-
-function J2SEMath:round(value)
-        return java_int(value)
-end
-
-
-function J2SEMath:abs(value)
-        return (function() if (value < 0.0) then return -value else return value end end)()
-end
-
-
-function J2SEMath:absdouble(value)
-        return (function() if (value < 0.0) then return -value else return value end end)()
-end
-
-J2SEMath.instance = J2SEMath.new()
-
-return J2SEMath
 

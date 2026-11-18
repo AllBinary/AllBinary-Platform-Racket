@@ -1,53 +1,46 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ItemIndexPaintable%
+  (class JObject%
+    (super-new)
+    (define/public (jm_paint_5 _graphics _index _item _dx _dy)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))))
+(define (ItemIndexPaintable.jclassValue) ItemIndexPaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ItemIndexPaintable.jcell_instance 'jnone)
+(define (ItemIndexPaintable.jstatic_instance)
+  (when (eq? ItemIndexPaintable.jcell_instance 'jnone) (set! ItemIndexPaintable.jcell_instance (ItemIndexPaintable.jnew_0)))
+  ItemIndexPaintable.jcell_instance)
+(define (ItemIndexPaintable.jsetstatic_instance value) (set! ItemIndexPaintable.jcell_instance value))
 
-local ItemIndexPaintable = {}
-ItemIndexPaintable.__index = ItemIndexPaintable
-ItemIndexPaintable.className = "ItemIndexPaintable"
+(define (ItemIndexPaintable.jnew_0)
+  (define this (new ItemIndexPaintable% [jclass "ItemIndexPaintable"]))
+  this)
 
-function ItemIndexPaintable.new()
-    local self = setmetatable({}, ItemIndexPaintable)
-    return self
-end
-
-
-function ItemIndexPaintable.getInstance()
-        return ItemIndexPaintable.instance
-end
+(define (ItemIndexPaintable.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ItemIndexPaintable.jstatic_instance)))))
 
 
--- throws Exception
-function ItemIndexPaintable:paint(graphics, index, item, dx, dy)
-        return 0
-end
-
-ItemIndexPaintable.instance = ItemIndexPaintable.new()
-
-return ItemIndexPaintable
 

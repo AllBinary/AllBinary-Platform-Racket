@@ -1,59 +1,51 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.opengles.shader
 
--- local EGLConfig = require("javax.microedition.khronos.egl.EGLConfig")
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local RendererStrings = require("org.allbinary.graphics.opengles.renderer.RendererStrings")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/opengles/renderer/RendererStrings.rkt" (RendererStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ShaderUpdater%
+  (class JObject%
+    (super-new)
+    (field [f_commonStrings JR.null])
+    (field [f_rendererStrings JR.null])
+    (define/public (jm_onSurfaceCreated_2 _gl _eglConfig)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ShaderUpdater.jclassValue) ShaderUpdater%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ShaderUpdater.jcell_instance 'jnone)
+(define (ShaderUpdater.jstatic_instance)
+  (when (eq? ShaderUpdater.jcell_instance 'jnone) (set! ShaderUpdater.jcell_instance (ShaderUpdater.jnew_0)))
+  ShaderUpdater.jcell_instance)
+(define (ShaderUpdater.jsetstatic_instance value) (set! ShaderUpdater.jcell_instance value))
 
-local ShaderUpdater = {}
-ShaderUpdater.__index = ShaderUpdater
-ShaderUpdater.className = "ShaderUpdater"
+(define (ShaderUpdater.jnew_0)
+  (define this (new ShaderUpdater% [jclass "ShaderUpdater"]))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_rendererStrings this (RendererStrings.jm_getInstance_0))
+  this)
 
-function ShaderUpdater:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.rendererStrings = RendererStrings.getInstance()
-end
-
-function ShaderUpdater.new()
-    local self = setmetatable({}, ShaderUpdater)
-    self:_init_fields()
-    return self
-end
-
-
-function ShaderUpdater.getInstance()
-        return ShaderUpdater.instance
-end
+(define (ShaderUpdater.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ShaderUpdater.jstatic_instance)))))
 
 
-function ShaderUpdater:onSurfaceCreated(gl, eglConfig)
-end
-
-ShaderUpdater.instance = ShaderUpdater.new()
-
-return ShaderUpdater
 

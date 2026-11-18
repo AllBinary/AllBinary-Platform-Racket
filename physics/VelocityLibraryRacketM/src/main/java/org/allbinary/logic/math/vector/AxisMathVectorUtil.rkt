@@ -1,66 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.vector
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.math.vector
 
-local NoDecimalTrigTable = require("org.allbinary.math.NoDecimalTrigTable")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/math/NoDecimalTrigTable.rkt" (NoDecimalTrigTable.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AxisMathVectorUtil%
+  (class JObject%
+    (super-new)
+    (field [f_noDecimalTrigTable JR.null])
+    (define/public (jm_calculateX_2 _magnitude _angle)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.ldiv (JR.i64 (* _magnitude (send (get-field f_noDecimalTrigTable this) jm_cos_1 _angle))) 10)))))
+    (define/public (jm_calculateY_2 _magnitude _angle)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.ldiv (JR.i64 (* _magnitude (send (get-field f_noDecimalTrigTable this) jm_sin_1 _angle))) 10)))))
+    (define/public (jm_calculateZ_2 _magnitude _otherAngle)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.ldiv (JR.i64 (* _magnitude (send (get-field f_noDecimalTrigTable this) jm_sin_1 _otherAngle))) 10)))))))
+(define (AxisMathVectorUtil.jclassValue) AxisMathVectorUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AxisMathVectorUtil.jcell_instance 'jnone)
+(define (AxisMathVectorUtil.jstatic_instance)
+  (when (eq? AxisMathVectorUtil.jcell_instance 'jnone) (set! AxisMathVectorUtil.jcell_instance (AxisMathVectorUtil.jnew_0)))
+  AxisMathVectorUtil.jcell_instance)
+(define (AxisMathVectorUtil.jsetstatic_instance value) (set! AxisMathVectorUtil.jcell_instance value))
 
-local AxisMathVectorUtil = {}
-AxisMathVectorUtil.__index = AxisMathVectorUtil
-AxisMathVectorUtil.className = "AxisMathVectorUtil"
+(define (AxisMathVectorUtil.jnew_0)
+  (define this (new AxisMathVectorUtil% [jclass "AxisMathVectorUtil"]))
+    (set-field! f_noDecimalTrigTable this (NoDecimalTrigTable.jm_getInstance_0))
+  this)
 
-function AxisMathVectorUtil:_init_fields()
-    self.noDecimalTrigTable = NoDecimalTrigTable.getInstance()
-end
-
-function AxisMathVectorUtil.new()
-    local self = setmetatable({}, AxisMathVectorUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function AxisMathVectorUtil.getInstance()
-        return AxisMathVectorUtil.instance
-end
-
-
-function AxisMathVectorUtil:calculateX(magnitude, angle)
-        return magnitude * self.noDecimalTrigTable:cos(angle) / 10
-end
-
-
-function AxisMathVectorUtil:calculateY(magnitude, angle)
-        return magnitude * self.noDecimalTrigTable:sin(angle) / 10
-end
+(define (AxisMathVectorUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AxisMathVectorUtil.jstatic_instance)))))
 
 
-function AxisMathVectorUtil:calculateZ(magnitude, otherAngle)
-        return magnitude * self.noDecimalTrigTable:sin(otherAngle) / 10
-end
-
-AxisMathVectorUtil.instance = AxisMathVectorUtil.new()
-
-return AxisMathVectorUtil
 

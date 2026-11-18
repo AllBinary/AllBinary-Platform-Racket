@@ -1,75 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local Direction = require("org.allbinary.direction.Direction")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local Angle = require("org.allbinary.math.Angle")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local VectorBaseRotationAnimation = require("org.allbinary.animation.VectorBaseRotationAnimation")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./VectorBaseRotationAnimation.rkt")
+(lazy-require ["../../../org/allbinary/math/AngleFactory.rkt" (AngleFactory.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/math/AngleInfo.rkt" (AngleInfo.jm_getInstance_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define VectorRotationAnimation%
+  (class VectorBaseRotationAnimation%
+    (super-new)
+    (define/override (jm_setFrameByDirection_1 _direction)
+    (let ([_angle JR.null])
+      (let/ec jreturn
+        (set! _angle (JR.className (get-field f_directionUtil this)))
+        (send this jm_adjustFrameToAngle_1 _angle))))
+    (define/override (jm_setFrameToAngle_1 _angle)
+    (let ()
+      (let/ec jreturn
+        (send this jm_adjustFrameToAngle_1 _angle))))
+    (define/override (jm_setFrame_1 _index)
+    (let ()
+      (let/ec jreturn
+        (super jm_setFrame_1 _index)
+        (JR.className (get-field f_angleInfo this)))))
+    (define/override (jm_adjustFrame_1 _newAngle)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setFrame_1 (JR.className (get-field f_frameUtil this))))))
+    (define/override (jm_adjustFrameToAngle_1 _newAngle)
+    (let ()
+      (let/ec jreturn
+        (send this jm_adjustFrame_1 (send _newAngle jm_getValue_0)))))))
+(define (VectorRotationAnimation.jclassValue) VectorRotationAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local VectorRotationAnimation = {}
-VectorRotationAnimation.__index = VectorRotationAnimation
-VectorRotationAnimation.className = "VectorRotationAnimation"
-setmetatable(VectorRotationAnimation, {__index = VectorBaseRotationAnimation})
-
-
-function VectorRotationAnimation.new(currentPoints, basicColor, animationBehavior)
-    local self = setmetatable(VectorBaseRotationAnimation.new(AngleInfo.getInstance(java_int((AngleFactory.getInstance().TOTAL_ANGLE / (currentPoints.n or #currentPoints)))), currentPoints, basicColor, animationBehavior), VectorRotationAnimation)
-        -- super(...) made self above
-        self.angleInfo:adjustAngle(self:getFrame())
-    return self
-end
-
-
-function VectorRotationAnimation:setFrameByDirection(direction)
-        local angle = self.directionUtil:getFrameAngle(direction)
-        self:adjustFrameToAngle(angle)
-end
-
-
-function VectorRotationAnimation:setFrameToAngle(angle)
-        self:adjustFrameToAngle(angle)
-end
-
-
-function VectorRotationAnimation:setFrame(index)
-        VectorBaseRotationAnimation.setFrame(self, index)
-        self.angleInfo:adjustAngle(self:getFrame())
-end
+(define (VectorRotationAnimation.jnew_3 _currentPoints _basicColor _animationBehavior)
+  (define this (new VectorRotationAnimation% [jclass "VectorRotationAnimation"]))
+    (let ()
+      (let/ec jreturn
+        (void)
+        (JR.className (get-field f_angleInfo this))))
+  this)
 
 
-function VectorRotationAnimation:adjustFrame(newAngle)
-        self:setFrame(self.frameUtil:getFrameForAngle(newAngle, java_int(self.angleInfo:getAngleIncrementInfo():getAngleIncrement())))
-end
-
-
-function VectorRotationAnimation:adjustFrameToAngle(newAngle)
-        self:adjustFrame(newAngle:getValue())
-end
-
-return VectorRotationAnimation
 

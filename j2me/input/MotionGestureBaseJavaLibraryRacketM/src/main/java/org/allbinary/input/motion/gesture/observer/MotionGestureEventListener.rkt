@@ -1,87 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.gesture.observer
 
-local BaseMotionGestureEventListener = require("org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "./BaseMotionGestureEventListener.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MotionGestureEventListener%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onPressedMotionGestureEvent_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "onPressedMotionGestureEvent")))
+    (define/public (jm_onUpMotionGestureEvent_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "onUpMotionGestureEvent")))
+    (define/public (jm_onDownMotionGestureEvent_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "onDownMotionGestureEvent")))
+    (define/public (jm_onLeftMotionGestureEvent_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "onLeftMotionGestureEvent")))
+    (define/public (jm_onRightMotionGestureEvent_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "onRightMotionGestureEvent")))
+    (define/public (jm_onDiagonalDownRightMotionGestureEvent_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "onDiagonalDownRightMotionGestureEvent")))
+    (define/public (jm_onDiagonalDownLeftMotionGestureEvent_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "onDiagonalDownLeftMotionGestureEvent")))
+    (define/public (jm_onDiagonalUpRightMotionGestureEvent_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "onDiagonalUpRightMotionGestureEvent")))
+    (define/public (jm_onDiagonalUpLeftMotionGestureEvent_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "onDiagonalUpLeftMotionGestureEvent")))
+    (define/public (jm_released_1 _ev)
+      (raise (JR.newException "AbstractMethodError" "released")))))
+(define (MotionGestureEventListener.jclassValue) MotionGestureEventListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local MotionGestureEventListener = {}
-MotionGestureEventListener.__index = MotionGestureEventListener
-MotionGestureEventListener.className = "MotionGestureEventListener"
-setmetatable(MotionGestureEventListener, {__index = BaseMotionGestureEventListener})
-
-
-function MotionGestureEventListener:onPressedMotionGestureEvent(ev)
-    error("abstract method onPressedMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onUpMotionGestureEvent(ev)
-    error("abstract method onUpMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDownMotionGestureEvent(ev)
-    error("abstract method onDownMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onLeftMotionGestureEvent(ev)
-    error("abstract method onLeftMotionGestureEvent")
-end
+(define (MotionGestureEventListener.jnew_0)
+  (define this (new MotionGestureEventListener% [jclass "MotionGestureEventListener"]))
+  this)
 
 
-function MotionGestureEventListener:onRightMotionGestureEvent(ev)
-    error("abstract method onRightMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDiagonalDownRightMotionGestureEvent(ev)
-    error("abstract method onDiagonalDownRightMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDiagonalDownLeftMotionGestureEvent(ev)
-    error("abstract method onDiagonalDownLeftMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDiagonalUpRightMotionGestureEvent(ev)
-    error("abstract method onDiagonalUpRightMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDiagonalUpLeftMotionGestureEvent(ev)
-    error("abstract method onDiagonalUpLeftMotionGestureEvent")
-end
-
-
--- throws Exception
-function MotionGestureEventListener:released(ev)
-    error("abstract method released")
-end
-
-return MotionGestureEventListener
 

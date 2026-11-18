@@ -66,11 +66,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (if (>= _value _value2) _value _value2)))))))
+(define (MathUtil.jclassValue) MathUtil%)
 
 (define MathUtil.jcell_instance 'jnone)
 (define (MathUtil.jstatic_instance)
   (when (eq? MathUtil.jcell_instance 'jnone) (set! MathUtil.jcell_instance (MathUtil.jnew_0)))
   MathUtil.jcell_instance)
+(define (MathUtil.jsetstatic_instance value) (set! MathUtil.jcell_instance value))
 
 (define (MathUtil.jnew_0)
   (define this (new MathUtil% [jclass "MathUtil"]))

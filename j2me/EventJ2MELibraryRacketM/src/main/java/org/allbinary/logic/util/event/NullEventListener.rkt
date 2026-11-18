@@ -25,11 +25,13 @@
     (define/public (jm_onEvent_1 _eventObject)
     (let ()
       (let/ec jreturn (void))))))
+(define (NullEventListener.jclassValue) NullEventListener%)
 
 (define NullEventListener.jcell_NULL_EVENT_LISTENER 'jnone)
 (define (NullEventListener.jstatic_NULL_EVENT_LISTENER)
   (when (eq? NullEventListener.jcell_NULL_EVENT_LISTENER 'jnone) (set! NullEventListener.jcell_NULL_EVENT_LISTENER (NullEventListener.jnew_0)))
   NullEventListener.jcell_NULL_EVENT_LISTENER)
+(define (NullEventListener.jsetstatic_NULL_EVENT_LISTENER value) (set! NullEventListener.jcell_NULL_EVENT_LISTENER value))
 
 (define (NullEventListener.jnew_0)
   (define this (new NullEventListener% [jclass "NullEventListener"]))

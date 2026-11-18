@@ -37,6 +37,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_name this)))))))
+(define (ImmutableBasicArrayList.jclassValue) ImmutableBasicArrayList%)
 
 (define (ImmutableBasicArrayList.jnew_2 _name _size)
   (define this (new ImmutableBasicArrayList% [jclass "ImmutableBasicArrayList"]))

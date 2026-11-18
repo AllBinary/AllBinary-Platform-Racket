@@ -1,42 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.view.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.view.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/AllBinaryEventObject.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ViewPositionEvent%
+  (class AllBinaryEventObject%
+    (super-new)))
+(define (ViewPositionEvent.jclassValue) ViewPositionEvent%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ViewPositionEvent = {}
-ViewPositionEvent.__index = ViewPositionEvent
-ViewPositionEvent.className = "ViewPositionEvent"
-setmetatable(ViewPositionEvent, {__index = AllBinaryEventObject})
+(define (ViewPositionEvent.jnew_1 _anyType)
+  (define this (new ViewPositionEvent% [jclass "ViewPositionEvent"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function ViewPositionEvent.new(anyType)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), ViewPositionEvent)
-        -- super(...) made self above
-    return self
-end
-
-return ViewPositionEvent
 

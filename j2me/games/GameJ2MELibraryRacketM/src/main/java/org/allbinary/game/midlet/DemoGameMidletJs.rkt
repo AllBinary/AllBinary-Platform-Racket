@@ -1,41 +1,33 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2026 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.midlet
 
-local GameCanvasRunnableInterface = require("org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DemoGameMidletJs%
+  (class JObject%
+    (super-new)
+    (define/public (jm_createDemoGameCanvasRunnableInterface_0)
+      (raise (JR.newException "AbstractMethodError" "createDemoGameCanvasRunnableInterface")))))
+(define (DemoGameMidletJs.jclassValue) DemoGameMidletJs%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local DemoGameMidletJs = {}
-DemoGameMidletJs.__index = DemoGameMidletJs
-DemoGameMidletJs.className = "DemoGameMidletJs"
+(define (DemoGameMidletJs.jnew_0)
+  (define this (new DemoGameMidletJs% [jclass "DemoGameMidletJs"]))
+  this)
 
 
--- throws Exception
-function DemoGameMidletJs:createDemoGameCanvasRunnableInterface()
-    error("abstract method createDemoGameCanvasRunnableInterface")
-end
-
-return DemoGameMidletJs
 

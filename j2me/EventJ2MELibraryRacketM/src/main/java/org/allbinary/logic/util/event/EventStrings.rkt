@@ -25,11 +25,13 @@
     (field [f_TOTAL_LISTENERS JR.null])
     (field [f_LISTENER_LABEL JR.null])
     (field [f_FIRE_EVENT JR.null])))
+(define (EventStrings.jclassValue) EventStrings%)
 
 (define EventStrings.jcell_instance 'jnone)
 (define (EventStrings.jstatic_instance)
   (when (eq? EventStrings.jcell_instance 'jnone) (set! EventStrings.jcell_instance (EventStrings.jnew_0)))
   EventStrings.jcell_instance)
+(define (EventStrings.jsetstatic_instance value) (set! EventStrings.jcell_instance value))
 
 (define (EventStrings.jnew_0)
   (define this (new EventStrings% [jclass "EventStrings"]))

@@ -39,6 +39,7 @@
     (let ()
       (let/ec jreturn
         (set-field! f_description this _value))))))
+(define (LogConfigType.jclassValue) LogConfigType%)
 
 (define (LogConfigType.jnew_2 _name _description)
   (define this (new LogConfigType% [jclass "LogConfigType"]))

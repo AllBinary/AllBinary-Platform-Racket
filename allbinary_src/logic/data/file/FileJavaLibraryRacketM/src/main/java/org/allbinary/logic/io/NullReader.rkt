@@ -1,72 +1,58 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;; 
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;; 
+;; Created By: Travis Berthelot 
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io
 
--- local IOException = require("java.io.IOException")
--- local Reader = require("java.io.Reader")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/IOException.rkt"
+  "../../../../java/io/Reader.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullReader%
+  (class Reader%
+    (super-new)
+    (define/override (jm_read_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (- 1))))))
+    (define/override (jm_read_3 _cbuf _off _len)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (- 1))))))
+    (define/override (jm_ready_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/override (jm_skip_1 _n)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/override (jm_close_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullReader.jclassValue) NullReader%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullReader.jcell_NULL_READER 'jnone)
+(define (NullReader.jstatic_NULL_READER)
+  (when (eq? NullReader.jcell_NULL_READER 'jnone) (set! NullReader.jcell_NULL_READER (NullReader.jnew_0)))
+  NullReader.jcell_NULL_READER)
+(define (NullReader.jsetstatic_NULL_READER value) (set! NullReader.jcell_NULL_READER value))
 
-local NullReader = {}
-NullReader.__index = NullReader
-NullReader.className = "NullReader"
-setmetatable(NullReader, {__index = Reader})
-
-function NullReader.new()
-    local self = setmetatable(Reader.new(), NullReader)
-    return self
-end
-
-
--- throws IOException
-function NullReader:read()
-        return -1
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullReader:read(cbuf, off, len)
-        return -1
-end
-
-
--- throws IOException
-function NullReader:ready()
-        return false
-end
+(define (NullReader.jnew_0)
+  (define this (new NullReader% [jclass "NullReader"]))
+  this)
 
 
--- throws IOException
-function NullReader:skip(n)
-        return 0
-end
-
-
-function NullReader:close()
-end
-
-NullReader.NULL_READER = NullReader.new()
-
-return NullReader
 

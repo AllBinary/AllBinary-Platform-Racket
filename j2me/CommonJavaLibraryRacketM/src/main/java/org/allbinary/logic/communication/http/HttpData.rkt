@@ -26,11 +26,13 @@
     (field [f_PARAM_SEP JR.null])
     (field [f_URL_PARAM_SEP JR.null])
     (field [f_URL_LABEL JR.null])))
+(define (HttpData.jclassValue) HttpData%)
 
 (define HttpData.jcell_instance 'jnone)
 (define (HttpData.jstatic_instance)
   (when (eq? HttpData.jcell_instance 'jnone) (set! HttpData.jcell_instance (HttpData.jnew_0)))
   HttpData.jcell_instance)
+(define (HttpData.jsetstatic_instance value) (set! HttpData.jcell_instance value))
 
 (define (HttpData.jnew_0)
   (define this (new HttpData% [jclass "HttpData"]))

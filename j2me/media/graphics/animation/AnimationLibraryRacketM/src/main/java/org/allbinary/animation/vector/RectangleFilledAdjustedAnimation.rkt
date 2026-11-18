@@ -1,84 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.vector
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ColorCompositeInterface = require("org.allbinary.graphics.color.ColorCompositeInterface")
-local RectangleFilledAnimation = require("org.allbinary.animation.vector.RectangleFilledAnimation")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/color/ColorCompositeInterface.rkt"
+  "./RectangleFilledAnimation.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define RectangleFilledAdjustedAnimation%
+  (class RectangleFilledAnimation%
+    (super-new)
+    (field [f_offsetX 0])
+    (field [f_offsetY 0])
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_basicSetColorUtil this))
+        (super jm_paintXY_3 _graphics (JR.i32 (+ _x (get-field f_offsetX this))) (JR.i32 (+ _y (get-field f_offsetY this)))))))
+    (define/public (jm_setOffsetX_1 _offsetX)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_offsetX this _offsetX))))
+    (define/public (jm_setOffsetY_1 _offsetY)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_offsetY this _offsetY))))
+    (define/override (jm_getBasicColorP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (super jm_getBasicColorP_0)))))
+    (define/override (jm_setBasicColorP_1 _basicColor)
+    (let ()
+      (let/ec jreturn
+        (super jm_setBasicColorP_1 _basicColor))))))
+(define (RectangleFilledAdjustedAnimation.jclassValue) RectangleFilledAdjustedAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local RectangleFilledAdjustedAnimation = {}
-RectangleFilledAdjustedAnimation.__index = RectangleFilledAdjustedAnimation
-RectangleFilledAdjustedAnimation.className = "RectangleFilledAdjustedAnimation"
-setmetatable(RectangleFilledAdjustedAnimation, {__index = RectangleFilledAnimation})
-
-function RectangleFilledAdjustedAnimation:_init_fields()
-    self.offsetX = nil
-    self.offsetY = nil
-end
-
-
-function RectangleFilledAdjustedAnimation.new(width, height, offsetX, offsetY, basicColor)
-    local self = setmetatable(RectangleFilledAnimation.new(width, height, basicColor), RectangleFilledAdjustedAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.offsetX = offsetX
-        self.offsetY = offsetY
-        self:setBasicColorP(basicColor)
-    return self
-end
-
-
-function RectangleFilledAdjustedAnimation:nextFrame()
-end
-
-
-function RectangleFilledAdjustedAnimation:paintXY(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-        RectangleFilledAnimation.paintXY(self, graphics, x + self.offsetX, y + self.offsetY)
-end
-
-
-function RectangleFilledAdjustedAnimation:setOffsetX(offsetX)
-        self.offsetX = offsetX
-end
+(define (RectangleFilledAdjustedAnimation.jnew_5 _width _height _offsetX _offsetY _basicColor)
+  (define this (new RectangleFilledAdjustedAnimation% [jclass "RectangleFilledAdjustedAnimation"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_offsetX this _offsetX)
+        (set-field! f_offsetY this _offsetY)
+        (send this jm_setBasicColorP_1 _basicColor)))
+  this)
 
 
-function RectangleFilledAdjustedAnimation:setOffsetY(offsetY)
-        self.offsetY = offsetY
-end
-
-
-function RectangleFilledAdjustedAnimation:getBasicColorP()
-        return RectangleFilledAnimation.getBasicColorP(self)
-end
-
-
-function RectangleFilledAdjustedAnimation:setBasicColorP(basicColor)
-        RectangleFilledAnimation.setBasicColorP(self, basicColor)
-end
-
-return RectangleFilledAdjustedAnimation
 

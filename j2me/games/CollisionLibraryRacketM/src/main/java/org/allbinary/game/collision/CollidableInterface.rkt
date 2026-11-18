@@ -1,61 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.collision
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local NamedInterface = require("org.allbinary.layer.NamedInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/layer/NamedInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CollidableInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_isCollidable_1 _ownerLayer)
+      (raise (JR.newException "AbstractMethodError" "isCollidable")))
+    (define/public (jm_isCollision_2 _ownerLayer _collidableInterfaceCompositeInterface)
+      (raise (JR.newException "AbstractMethodError" "isCollision")))
+    (define/public (jm_collide_2 _ownerLayer _collidableInterfaceCompositeInterface)
+      (raise (JR.newException "AbstractMethodError" "collide")))
+    (define/public (jm_getCollisionTypeWith_1 _layerInterface)
+      (raise (JR.newException "AbstractMethodError" "getCollisionTypeWith")))))
+(define (CollidableInterface.jclassValue) CollidableInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local CollidableInterface = {}
-CollidableInterface.__index = CollidableInterface
-CollidableInterface.className = "CollidableInterface"
-setmetatable(CollidableInterface, {__index = NamedInterface})
-
-
--- throws Exception
-function CollidableInterface:isCollidable(ownerLayer)
-    error("abstract method isCollidable")
-end
+(define (CollidableInterface.jnew_0)
+  (define this (new CollidableInterface% [jclass "CollidableInterface"]))
+  this)
 
 
--- throws Exception
-function CollidableInterface:isCollision(ownerLayer, collidableInterfaceCompositeInterface)
-    error("abstract method isCollision")
-end
-
-
--- throws Exception
-function CollidableInterface:collide(ownerLayer, collidableInterfaceCompositeInterface)
-    error("abstract method collide")
-end
-
-
-function CollidableInterface:getCollisionTypeWith(layerInterface)
-    error("abstract method getCollisionTypeWith")
-end
-
-return CollidableInterface
 

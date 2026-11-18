@@ -1,65 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local NullCanvas = require("javax.microedition.lcdui.NullCanvas")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local MotionGestureEvent = require("org.allbinary.input.motion.gesture.observer.MotionGestureEvent")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local BasicMenuInputProcessor = require("org.allbinary.game.displayable.canvas.BasicMenuInputProcessor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./BasicMenuInputProcessor.rkt")
+(lazy-require ["../../../../../javax/microedition/lcdui/NullCanvas.rkt" (NullCanvas.jstatic_NULL_CANVAS)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListUtil.rkt" (BasicArrayListUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NoMenuInputProcessor%
+  (class BasicMenuInputProcessor%
+    (super-new)
+    (define/override (jm_onDownGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_onUpGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_onMotionGestureEvent_1 _motionGestureEvent)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NoMenuInputProcessor.jclassValue) NoMenuInputProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NoMenuInputProcessor.jcell_SINGLETON 'jnone)
+(define (NoMenuInputProcessor.jstatic_SINGLETON)
+  (when (eq? NoMenuInputProcessor.jcell_SINGLETON 'jnone) (set! NoMenuInputProcessor.jcell_SINGLETON (NoMenuInputProcessor.jnew_0)))
+  NoMenuInputProcessor.jcell_SINGLETON)
+(define (NoMenuInputProcessor.jsetstatic_SINGLETON value) (set! NoMenuInputProcessor.jcell_SINGLETON value))
 
-local NoMenuInputProcessor = {}
-NoMenuInputProcessor.__index = NoMenuInputProcessor
-NoMenuInputProcessor.className = "NoMenuInputProcessor"
-setmetatable(NoMenuInputProcessor, {__index = BasicMenuInputProcessor})
+(define (NoMenuInputProcessor.jnew_0)
+  (define this (new NoMenuInputProcessor% [jclass "NoMenuInputProcessor"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-
-function NoMenuInputProcessor.getInstance()
-        return NoMenuInputProcessor.SINGLETON
-end
-
-
-function NoMenuInputProcessor.new()
-    local self = setmetatable(BasicMenuInputProcessor.new(BasicArrayListUtil.getInstance():getImmutableInstance(), -1, NullCanvas.NULL_CANVAS), NoMenuInputProcessor)
-        -- super(...) made self above
-    return self
-end
-
-
-function NoMenuInputProcessor:onDownGameKeyEvent(gameKeyEvent)
-end
-
-
-function NoMenuInputProcessor:onUpGameKeyEvent(gameKeyEvent)
-end
+(define (NoMenuInputProcessor.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NoMenuInputProcessor.jstatic_SINGLETON)))))
 
 
-function NoMenuInputProcessor:onMotionGestureEvent(motionGestureEvent)
-end
-
-NoMenuInputProcessor.SINGLETON = NoMenuInputProcessor.new()
-
-return NoMenuInputProcessor
 

@@ -1,51 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define FormType%
+  (class JObject%
+    (super-new)
+    (field [f_name JR.null])
+    (define/override (jm_toString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_name this)))))))
+(define (FormType.jclassValue) FormType%)
+
+(define (FormType.jnew_1 _name)
+  (define this (new FormType% [jclass "FormType"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_name this _name)))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local FormType = {}
-FormType.__index = FormType
-FormType.className = "FormType"
-
-function FormType:_init_fields()
-    self.name = nil
-end
-
-
-function FormType.new(name)
-    local self = setmetatable({}, FormType)
-    self:_init_fields()
-        self.name = name
-    return self
-end
-
-
-function FormType:toString()
-        return self.name
-end
-FormType.__tostring = function(self) return self:toString() end
-
-return FormType
 

@@ -1,48 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.java
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.java
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PrimitiveArrayToString%
+  (class JObject%
+    (super-new)))
+(define (PrimitiveArrayToString.jclassValue) PrimitiveArrayToString%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (PrimitiveArrayToString.jnew_0)
+  (define this (new PrimitiveArrayToString% [jclass "PrimitiveArrayToString"]))
+  this)
 
-local PrimitiveArrayToString = {}
-PrimitiveArrayToString.__index = PrimitiveArrayToString
-PrimitiveArrayToString.className = "PrimitiveArrayToString"
+(define (PrimitiveArrayToString.jm_toString_1 _floats)
+    (let ([_stringBuffer JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index (vector-length _floats))
+                (let/ec jcontinue
+            (send _stringBuffer jm_appendfloat_1 (vector-ref _floats _index)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (jreturn (send _stringBuffer jm_toString_0)))))
 
-function PrimitiveArrayToString.new()
-    local self = setmetatable({}, PrimitiveArrayToString)
-    return self
-end
 
-
-function PrimitiveArrayToString.toString(floats)
-        local stringBuffer = StringMaker.new()
-        for index = 0, (floats.n or #floats) - 1 do
-            stringBuffer:appendfloat(floats[index + 1])
-        end
-        return tostring(stringBuffer)
-end
-
-return PrimitiveArrayToString
 

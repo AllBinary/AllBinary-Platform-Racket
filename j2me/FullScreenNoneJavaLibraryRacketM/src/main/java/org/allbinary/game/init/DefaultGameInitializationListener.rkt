@@ -1,92 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.init
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.init
 
-local GameInitializedEvent = require("org.allbinary.game.configuration.event.GameInitializedEvent")
-local GameInitializedEventHandler = require("org.allbinary.game.configuration.event.GameInitializedEventHandler")
-local GameInitializedListenerInterface = require("org.allbinary.game.configuration.event.GameInitializedListenerInterface")
-local FeatureResourceInitializationUtil = require("org.allbinary.game.resource.FeatureResourceInitializationUtil")
-local SWTJOGLProcessor = require("org.allbinary.graphics.threed.SWTJOGLProcessor")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/game/configuration/event/GameInitializedListenerInterface.rkt"
+  "../../../../java/lang/Thread.rkt")
+(lazy-require ["../../../../org/allbinary/game/configuration/event/GameInitializedEventHandler.rkt" (GameInitializedEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/resource/FeatureResourceInitializationUtil.rkt" (FeatureResourceInitializationUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/threed/SWTJOGLProcessor.rkt" (SWTJOGLProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DefaultGameInitializationListener%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_swtJOGLProcessor JR.null])
+    (field [f_firstTime #f])
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_PERFORMANCE_MESSAGE (EventStrings.jm_getInstance_0)) this))))
+    (define/public (jm_onGameInitialized_1 _gameInitializedEvent)
+    (let ([_ON_GAME_INITIALIZED JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (set! _ON_GAME_INITIALIZED "onGameInitialized")
+        (set! _commonStrings (CommonStrings.jm_getInstance_0))
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this _ON_GAME_INITIALIZED _e))])
+            (send (get-field f_logUtil this) jm_putF_3 (get-field f_START _commonStrings) this _ON_GAME_INITIALIZED)
+            (let/ec jbreak (let jloop () (when (not (send (get-field f_swtJOGLProcessor this) jm_isHolderCreated_0))
+                    (let/ec jcontinue
+                (send (get-field f_logUtil this) jm_putF_3 (get-field f_UPDATE _commonStrings) this _ON_GAME_INITIALIZED)
+                (Thread.jm_sleep_1 20)) (jloop))))
+            (send (FeatureResourceInitializationUtil.jm_getInstance_0) jm_init_1 (send _gameInitializedEvent jm_getLevel_0))
+            (if (get-field f_firstTime this)
+                (begin
+                (set-field! f_firstTime this #f))
+                (begin
+                (send (get-field f_swtJOGLProcessor this) jm_onSurfaceChanged_0)))))))))
+(define (DefaultGameInitializationListener.jclassValue) DefaultGameInitializationListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local function java_sleep(milliseconds)
-    local finish = os.clock() + milliseconds / 1000
-    while os.clock() < finish do end
-end
-
-local DefaultGameInitializationListener = {}
-DefaultGameInitializationListener.__index = DefaultGameInitializationListener
-DefaultGameInitializationListener.className = "DefaultGameInitializationListener"
-
-function DefaultGameInitializationListener:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.swtJOGLProcessor = SWTJOGLProcessor.getInstance()
-    self.firstTime = true
-end
+(define (DefaultGameInitializationListener.jnew_0)
+  (define this (new DefaultGameInitializationListener% [jclass "DefaultGameInitializationListener"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_swtJOGLProcessor this (SWTJOGLProcessor.jm_getInstance_0))
+    (set-field! f_firstTime this #t)
+    (let ([_gameInitializedEventHandler JR.null])
+      (let/ec jreturn
+        (set! _gameInitializedEventHandler (GameInitializedEventHandler.jm_getInstance_0))
+        (send _gameInitializedEventHandler jm_removeAllListeners_0)
+        (send _gameInitializedEventHandler jm_addListenerInterface_1 this)))
+  this)
 
 
-function DefaultGameInitializationListener.new()
-    local self = setmetatable({}, DefaultGameInitializationListener)
-    self:_init_fields()
-        local gameInitializedEventHandler = GameInitializedEventHandler.getInstance()
-        gameInitializedEventHandler:removeAllListeners()
-        gameInitializedEventHandler:addListenerInterface(self)
-    return self
-end
-
-
-function DefaultGameInitializationListener:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function DefaultGameInitializationListener:onGameInitialized(gameInitializedEvent)
-        local ON_GAME_INITIALIZED = "onGameInitialized"
-        local commonStrings = CommonStrings.getInstance()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(commonStrings.START, self, ON_GAME_INITIALIZED)
-            while not self.swtJOGLProcessor:isHolderCreated() do
-                self.logUtil:putF(commonStrings.UPDATE, self, ON_GAME_INITIALIZED)
-                java_sleep(20)
-            end
-            FeatureResourceInitializationUtil.getInstance():init(gameInitializedEvent:getLevel())
-            if self.firstTime then
-                self.firstTime = false
-            else
-                self.swtJOGLProcessor:onSurfaceChanged()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(commonStrings.EXCEPTION, self, ON_GAME_INITIALIZED, e)
-        end
-end
-
-return DefaultGameInitializationListener
 

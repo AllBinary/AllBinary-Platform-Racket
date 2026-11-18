@@ -1,43 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io
 
--- local DataInputStream = require("java.io.DataInputStream")
--- local InputStream = require("java.io.InputStream")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/DataInputStream.rkt"
+  "../../../../java/io/InputStream.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AbDataInputStream%
+  (class DataInputStream%
+    (super-new)))
+(define (AbDataInputStream.jclassValue) AbDataInputStream%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AbDataInputStream = {}
-AbDataInputStream.__index = AbDataInputStream
-AbDataInputStream.className = "AbDataInputStream"
-setmetatable(AbDataInputStream, {__index = DataInputStream})
+(define (AbDataInputStream.jnew_1 _out)
+  (define this (new AbDataInputStream% [jclass "AbDataInputStream"]))
+    (let ()
+      (let/ec jreturn
+        (JR.superInit this 'jsuper_1 _out)))
+  this)
 
 
-function AbDataInputStream.new(out)
-    local self = setmetatable(DataInputStream.new(out), AbDataInputStream)
-        -- super(...) made self above
-    return self
-end
-
-return AbDataInputStream
 

@@ -52,11 +52,13 @@
                     (begin
                     (raise (JR.newException "Exception" (JR.concat "Specific Linux OS Not Supported: " _osName)))))))
             (jreturn _operatingSystemInterface)))))))
+(define (LinuxOperatingSystemFactory.jclassValue) LinuxOperatingSystemFactory%)
 
 (define LinuxOperatingSystemFactory.jcell_instance 'jnone)
 (define (LinuxOperatingSystemFactory.jstatic_instance)
   (when (eq? LinuxOperatingSystemFactory.jcell_instance 'jnone) (set! LinuxOperatingSystemFactory.jcell_instance (LinuxOperatingSystemFactory.jnew_0)))
   LinuxOperatingSystemFactory.jcell_instance)
+(define (LinuxOperatingSystemFactory.jsetstatic_instance value) (set! LinuxOperatingSystemFactory.jcell_instance value))
 
 (define (LinuxOperatingSystemFactory.jnew_0)
   (define this (new LinuxOperatingSystemFactory% [jclass "LinuxOperatingSystemFactory"]))

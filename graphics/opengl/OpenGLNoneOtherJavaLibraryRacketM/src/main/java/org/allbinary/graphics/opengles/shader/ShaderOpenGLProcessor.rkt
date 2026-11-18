@@ -1,50 +1,37 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.opengles.shader
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local OpenGLProcessor = require("org.allbinary.graphics.opengles.OpenGLProcessor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/graphics/opengles/OpenGLProcessor.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ShaderOpenGLProcessor%
+  (class OpenGLProcessor%
+    (super-new)
+    (define/public (jm_process0_1 _gl)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_process1_1 _gl)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_process_1 _gl)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_process2_1 _gl)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_process3_1 _gl)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ShaderOpenGLProcessor.jclassValue) ShaderOpenGLProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ShaderOpenGLProcessor = {}
-ShaderOpenGLProcessor.__index = ShaderOpenGLProcessor
-ShaderOpenGLProcessor.className = "ShaderOpenGLProcessor"
-setmetatable(ShaderOpenGLProcessor, {__index = OpenGLProcessor})
-
-
-function ShaderOpenGLProcessor.new()
-    local self = setmetatable(OpenGLProcessor.new(), ShaderOpenGLProcessor)
-    return self
-end
-
-
-function ShaderOpenGLProcessor:process0(gl)
-end
-
-
-function ShaderOpenGLProcessor:process1(gl)
-end
-
-
-function ShaderOpenGLProcessor:process(gl)
-end
+(define (ShaderOpenGLProcessor.jnew_0)
+  (define this (new ShaderOpenGLProcessor% [jclass "ShaderOpenGLProcessor"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function ShaderOpenGLProcessor:process2(gl)
-end
-
-
-function ShaderOpenGLProcessor:process3(gl)
-end
-
-return ShaderOpenGLProcessor
 

@@ -1,57 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local VectorAnimation = require("org.allbinary.animation.VectorAnimation")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./VectorAnimation.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AdjustedVectorAnimation%
+  (class VectorAnimation%
+    (super-new)
+    (field [f_dx 0])
+    (field [f_dy 0])
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (super jm_paintXY_3 _graphics (JR.i32 (+ _x (get-field f_dx this))) (JR.i32 (+ _y (get-field f_dy this)))))))))
+(define (AdjustedVectorAnimation.jclassValue) AdjustedVectorAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AdjustedVectorAnimation = {}
-AdjustedVectorAnimation.__index = AdjustedVectorAnimation
-AdjustedVectorAnimation.className = "AdjustedVectorAnimation"
-setmetatable(AdjustedVectorAnimation, {__index = VectorAnimation})
-
-function AdjustedVectorAnimation:_init_fields()
-    self.dx = nil
-    self.dy = nil
-end
-
-
-function AdjustedVectorAnimation.new(currentPoints, basicColor, dx, dy, animationBehavior)
-    local self = setmetatable(VectorAnimation.new(currentPoints, basicColor, animationBehavior), AdjustedVectorAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.dx = dx
-        self.dy = dy
-    return self
-end
+(define (AdjustedVectorAnimation.jnew_5 _currentPoints _basicColor _dx _dy _animationBehavior)
+  (define this (new AdjustedVectorAnimation% [jclass "AdjustedVectorAnimation"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_dx this _dx)
+        (set-field! f_dy this _dy)))
+  this)
 
 
-function AdjustedVectorAnimation:paintXY(graphics, x, y)
-        VectorAnimation.paintXY(self, graphics, x + self.dx, y + self.dy)
-end
-
-return AdjustedVectorAnimation
 

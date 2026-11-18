@@ -1,42 +1,37 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../javax/microedition/lcdui/Canvas.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;Temp should not be in any build
+(define NullDisplayable%
+  (class Canvas%
+    (super-new)
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullDisplayable.jclassValue) NullDisplayable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullDisplayable.jcell_SINGLETON 'jnone)
+(define (NullDisplayable.jstatic_SINGLETON)
+  (when (eq? NullDisplayable.jcell_SINGLETON 'jnone) (set! NullDisplayable.jcell_SINGLETON (NullDisplayable.jnew_0)))
+  NullDisplayable.jcell_SINGLETON)
+(define (NullDisplayable.jsetstatic_SINGLETON value) (set! NullDisplayable.jcell_SINGLETON value))
 
---Temp should not be in any build
-local NullDisplayable = {}
-NullDisplayable.__index = NullDisplayable
-NullDisplayable.className = "NullDisplayable"
-setmetatable(NullDisplayable, {__index = Canvas})
+(define (NullDisplayable.jnew_0)
+  (define this (new NullDisplayable% [jclass "NullDisplayable"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function NullDisplayable.getInstance()
-        return NullDisplayable.SINGLETON
-end
-
-
-function NullDisplayable.new()
-    local self = setmetatable(Canvas.new(), NullDisplayable)
-    return self
-end
+(define (NullDisplayable.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullDisplayable.jstatic_SINGLETON)))))
 
 
-function NullDisplayable:paint(graphics)
-end
-
-NullDisplayable.SINGLETON = NullDisplayable.new()
-
-return NullDisplayable
 

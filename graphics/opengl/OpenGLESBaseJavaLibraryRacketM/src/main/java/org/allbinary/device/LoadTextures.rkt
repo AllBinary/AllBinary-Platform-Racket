@@ -1,44 +1,34 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.device
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.device
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LoadTextures%
+  (class JObject%
+    (super-new)
+    (define/public (jm_load_1 _gl)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (LoadTextures.jclassValue) LoadTextures%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LoadTextures = {}
-LoadTextures.__index = LoadTextures
-LoadTextures.className = "LoadTextures"
-
-function LoadTextures.new()
-    local self = setmetatable({}, LoadTextures)
-    return self
-end
+(define (LoadTextures.jnew_0)
+  (define this (new LoadTextures% [jclass "LoadTextures"]))
+  this)
 
 
--- throws Exception
-function LoadTextures:load(gl)
-end
-
-return LoadTextures
 

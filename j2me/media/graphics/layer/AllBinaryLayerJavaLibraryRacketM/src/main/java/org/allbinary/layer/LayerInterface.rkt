@@ -1,129 +1,71 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer
 
-local GroupInterfaceCompositeInterface = require("org.allbinary.game.identification.GroupInterfaceCompositeInterface")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local NamedInterface = require("org.allbinary.layer.NamedInterface")
-local PositionInterface = require("org.allbinary.layer.PositionInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../org/allbinary/game/identification/GroupInterfaceCompositeInterface.rkt"
+  "../../../org/allbinary/graphics/paint/PaintableInterface.rkt"
+  "./NamedInterface.rkt"
+  "./PositionInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LayerInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getHeight_0)
+      (raise (JR.newException "AbstractMethodError" "getHeight")))
+    (define/public (jm_getWidth_0)
+      (raise (JR.newException "AbstractMethodError" "getWidth")))
+    (define/public (jm_getHalfHeight_0)
+      (raise (JR.newException "AbstractMethodError" "getHalfHeight")))
+    (define/public (jm_getHalfWidth_0)
+      (raise (JR.newException "AbstractMethodError" "getHalfWidth")))
+    (define/public (jm_getXP_0)
+      (raise (JR.newException "AbstractMethodError" "getXP")))
+    (define/public (jm_getYP_0)
+      (raise (JR.newException "AbstractMethodError" "getYP")))
+    (define/public (jm_getZP_0)
+      (raise (JR.newException "AbstractMethodError" "getZP")))
+    (define/public (jm_getX2_0)
+      (raise (JR.newException "AbstractMethodError" "getX2")))
+    (define/public (jm_getY2_0)
+      (raise (JR.newException "AbstractMethodError" "getY2")))
+    (define/public (jm_getZ2_0)
+      (raise (JR.newException "AbstractMethodError" "getZ2")))
+    (define/public (jm_isVisible_0)
+      (raise (JR.newException "AbstractMethodError" "isVisible")))
+    (define/public (jm_moveDXYZ_3 _dx _dy _dz)
+      (raise (JR.newException "AbstractMethodError" "moveDXYZ")))
+    (define/public (jm_setVisible_1 _visible)
+      (raise (JR.newException "AbstractMethodError" "setVisible")))
+    (define/public (jm_implmentsTickableInterface_0)
+      (raise (JR.newException "AbstractMethodError" "implmentsTickableInterface")))
+    (define/public (jm_implmentsCollidableInterface_0)
+      (raise (JR.newException "AbstractMethodError" "implmentsCollidableInterface")))
+    (define/public (jm_implmentsGameInputInterface_0)
+      (raise (JR.newException "AbstractMethodError" "implmentsGameInputInterface")))
+    (define/public (jm_implmentsArtificialIntelligenceCompositeInterface_0)
+      (raise (JR.newException "AbstractMethodError" "implmentsArtificialIntelligenceCompositeInterface")))
+    (define/public (jm_getType_0)
+      (raise (JR.newException "AbstractMethodError" "getType")))))
+(define (LayerInterface.jclassValue) LayerInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local LayerInterface = {}
-LayerInterface.__index = LayerInterface
-LayerInterface.className = "LayerInterface"
-setmetatable(LayerInterface, {__index = NamedInterface})
-
-
-function LayerInterface:getHeight()
-    error("abstract method getHeight")
-end
-
-
-function LayerInterface:getWidth()
-    error("abstract method getWidth")
-end
-
-
-function LayerInterface:getHalfHeight()
-    error("abstract method getHalfHeight")
-end
-
-
-function LayerInterface:getHalfWidth()
-    error("abstract method getHalfWidth")
-end
-
-
-function LayerInterface:getXP()
-    error("abstract method getXP")
-end
-
-
-function LayerInterface:getYP()
-    error("abstract method getYP")
-end
-
-
-function LayerInterface:getZP()
-    error("abstract method getZP")
-end
+(define (LayerInterface.jnew_0)
+  (define this (new LayerInterface% [jclass "LayerInterface"]))
+  this)
 
 
-function LayerInterface:getX2()
-    error("abstract method getX2")
-end
-
-
-function LayerInterface:getY2()
-    error("abstract method getY2")
-end
-
-
-function LayerInterface:getZ2()
-    error("abstract method getZ2")
-end
-
-
-function LayerInterface:isVisible()
-    error("abstract method isVisible")
-end
-
-
-function LayerInterface:moveDXYZ(dx, dy, dz)
-    error("abstract method moveDXYZ")
-end
-
-
-function LayerInterface:setVisible(visible)
-    error("abstract method setVisible")
-end
-
-
-function LayerInterface:implmentsTickableInterface()
-    error("abstract method implmentsTickableInterface")
-end
-
-
-function LayerInterface:implmentsCollidableInterface()
-    error("abstract method implmentsCollidableInterface")
-end
-
-
-function LayerInterface:implmentsGameInputInterface()
-    error("abstract method implmentsGameInputInterface")
-end
-
-
-function LayerInterface:implmentsArtificialIntelligenceCompositeInterface()
-    error("abstract method implmentsArtificialIntelligenceCompositeInterface")
-end
-
-
-function LayerInterface:getType()
-    error("abstract method getType")
-end
-
-return LayerInterface
 

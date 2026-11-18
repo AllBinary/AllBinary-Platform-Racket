@@ -73,6 +73,7 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_maxDigits this)))))))
+(define (PrimitiveLongUtil.jclassValue) PrimitiveLongUtil%)
 
 (define (PrimitiveLongUtil.jnew_2 _powerOfTen _unused)
   (define this (new PrimitiveLongUtil% [jclass "PrimitiveLongUtil"]))

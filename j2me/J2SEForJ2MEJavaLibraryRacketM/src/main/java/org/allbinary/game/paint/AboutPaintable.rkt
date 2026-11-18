@@ -1,118 +1,117 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.paint
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/font/UpdateMyFontInterface.rkt"
+  "../../../../org/allbinary/graphics/paint/Paintable.rkt")
+(lazy-require ["../../../../org/allbinary/graphics/Anchor.rkt" (Anchor.jstatic_TOP_LEFT)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/CanvasStrings.rkt" (CanvasStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/font/MyFontProcessor.rkt" (MyFontProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/font/UpdateMyFontProcessor.rkt" (UpdateMyFontProcessor.jnew_1)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+;J2SEForJ2ME
+(define AboutPaintable%
+  (class Paintable%
+    (super-new)
+    (field [f_displayInfoSingleton JR.null])
+    (field [f_ABOUT JR.null])
+    (field [f_info JR.null])
+    (field [f_developers JR.null])
+    (field [f_paintableArray JR.null])
+    (field [f_myFontProcessor JR.null])
+    (field [f_charHeight 0])
+    (field [f_aboutBeginWidth 0])
+    (field [f_infoBeginWidth JR.null])
+    (field [f_developersBeginWidth JR.null])
+    (field [f_anchor 0])
+    (define/public (jm_updateMeasurement_1 _graphics)
+    (let ([_font JR.null][_infoSize JR.null][_index JR.null][_size JR.null])
+      (let/ec jreturn
+        (set! _font (send _graphics jm_getFont_0))
+        (set-field! f_charHeight this (send _font jm_getHeight_0))
+        (set-field! f_aboutBeginWidth this (arithmetic-shift (send _font jm_stringWidth_1 (get-field f_ABOUT this)) (- (bitwise-and 1 31))))
+        (set! _infoSize (vector-length (get-field f_info this)))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _infoSize)
+                (let/ec jcontinue
+            (vector-set! (get-field f_infoBeginWidth this) _index (arithmetic-shift (send _font jm_stringWidth_1 (vector-ref (get-field f_info this) _index)) (- (bitwise-and 1 31)))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (set! _size (vector-length (get-field f_developers this)))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (vector-set! (get-field f_developersBeginWidth this) _index (arithmetic-shift (send _font jm_stringWidth_1 (vector-ref (get-field f_developers this) _index)) (- (bitwise-and 1 31)))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (set-field! f_myFontProcessor this (MyFontProcessor.jm_getInstance_0)))))
+    (define/public (jm_getPaintableArrayInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_paintableArray this)))))
+    (define/override (jm_paint_1 _graphics)
+    (let ([_halfWidth JR.null][_infoSize JR.null][_index JR.null][_size JR.null])
+      (let/ec jreturn
+        (send (get-field f_myFontProcessor this) jm_process_1 _graphics)
+        (set! _halfWidth (send (get-field f_displayInfoSingleton this) jm_getLastHalfWidth_0))
+        (send _graphics jm_drawString_4 (get-field f_ABOUT this) (JR.i32 (- _halfWidth (get-field f_aboutBeginWidth this))) (JR.i32 (* 2 (get-field f_charHeight this))) (get-field f_anchor this))
+        (set! _infoSize (vector-length (get-field f_info this)))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _infoSize)
+                (let/ec jcontinue
+            (send _graphics jm_drawString_4 (vector-ref (get-field f_info this) _index) (JR.i32 (- _halfWidth (vector-ref (get-field f_infoBeginWidth this) _index))) (JR.i32 (* (JR.i32 (+ 4 _index)) (get-field f_charHeight this))) (get-field f_anchor this)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (set! _size (vector-length (get-field f_developers this)))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (send _graphics jm_drawString_4 (vector-ref (get-field f_developers this) _index) (JR.i32 (- _halfWidth (vector-ref (get-field f_developersBeginWidth this) _index))) (JR.i32 (* (JR.i32 (+ (JR.i32 (+ 5 _infoSize)) _index)) (get-field f_charHeight this))) (get-field f_anchor this)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop))))))))))
+(define (AboutPaintable.jclassValue) AboutPaintable%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define (AboutPaintable.jnew_2 _info _developers)
+  (define this (new AboutPaintable% [jclass "AboutPaintable"]))
+    (set-field! f_displayInfoSingleton this (DisplayInfoSingleton.jm_getInstance_0))
+    (set-field! f_ABOUT this (get-field f_ABOUT (CanvasStrings.jm_getInstance_0)))
+    
+    
+    (set-field! f_paintableArray this (vector this))
+    (set-field! f_myFontProcessor this (UpdateMyFontProcessor.jnew_1 this))
+    
+    
+    
+    
+    (set-field! f_anchor this (Anchor.jstatic_TOP_LEFT))
+    (let ()
+      (let/ec jreturn
+        (set-field! f_info this _info)
+        (set-field! f_infoBeginWidth this (JR.newArray 0 (vector-length (get-field f_info this))))
+        (set-field! f_developers this _developers)
+        (set-field! f_developersBeginWidth this (JR.newArray 0 (vector-length (get-field f_developers this))))))
+  this)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
---J2SEForJ2ME
-local AboutPaintable = {}
-AboutPaintable.__index = AboutPaintable
-AboutPaintable.className = "AboutPaintable"
-setmetatable(AboutPaintable, {__index = Paintable})
-
-function AboutPaintable:_init_fields()
-    self.displayInfoSingleton = DisplayInfoSingleton.getInstance()
-    self.ABOUT = CanvasStrings.getInstance().ABOUT
-    self.info = nil
-    self.developers = nil
-    self.paintableArray = {self}
-    self.myFontProcessor = UpdateMyFontProcessor.new(self)
-    self.charHeight = 0
-    self.aboutBeginWidth = 0
-    self.infoBeginWidth = nil
-    self.developersBeginWidth = nil
-    self.anchor = Anchor.TOP_LEFT
-end
+(define (AboutPaintable.jm_getInstance_2 _info _developers)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AboutPaintable.jnew_2 _info _developers)))))
 
 
-function AboutPaintable.getInstance(info, developers)
-        return AboutPaintable.new(info, developers)
-end
-
-
-function AboutPaintable.new(info, developers)
-    local self = setmetatable(Paintable.new(), AboutPaintable)
-    self:_init_fields()
-        self.info = info
-        self.infoBeginWidth = java_new_array(0, (self.info.n or #self.info))
-        self.developers = developers
-        self.developersBeginWidth = java_new_array(0, (self.developers.n or #self.developers))
-    return self
-end
-
-
-function AboutPaintable:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.charHeight = font:getHeight()
-        self.aboutBeginWidth = (((font:stringWidth(self.ABOUT)) // (1 << (1))))
-        local infoSize = (self.info.n or #self.info)
-        for index = 0, infoSize - 1 do
-            self.infoBeginWidth[index + 1] = (((font:stringWidth(self.info[index + 1])) // (1 << (1))))
-        end
-        local size = (self.developers.n or #self.developers)
-        for index = 0, size - 1 do
-            self.developersBeginWidth[index + 1] = (((font:stringWidth(self.developers[index + 1])) // (1 << (1))))
-        end
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function AboutPaintable:getPaintableArrayInstance()
-        return self.paintableArray
-end
-
-
-function AboutPaintable:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        local halfWidth = self.displayInfoSingleton:getLastHalfWidth()
-        graphics:drawString(self.ABOUT, halfWidth - self.aboutBeginWidth, 2 * self.charHeight, self.anchor)
-        local infoSize = (self.info.n or #self.info)
-        for index = 0, infoSize - 1 do
-            graphics:drawString(self.info[index + 1], halfWidth - self.infoBeginWidth[index + 1], (4 + index) * self.charHeight, self.anchor)
-        end
-        local size = (self.developers.n or #self.developers)
-        for index = 0, size - 1 do
-            graphics:drawString(self.developers[index + 1], halfWidth - self.developersBeginWidth[index + 1], (5 + infoSize + index) * self.charHeight, self.anchor)
-        end
-end
-
-return AboutPaintable
 

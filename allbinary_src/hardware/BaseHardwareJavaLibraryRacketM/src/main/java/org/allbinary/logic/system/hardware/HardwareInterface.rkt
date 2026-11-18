@@ -29,6 +29,7 @@
       (raise (JR.newException "AbstractMethodError" "compareTo")))
     (define/public (jm_difference_1 _hardwareInterface)
       (raise (JR.newException "AbstractMethodError" "difference")))))
+(define (HardwareInterface.jclassValue) HardwareInterface%)
 
 (define (HardwareInterface.jnew_0)
   (define this (new HardwareInterface% [jclass "HardwareInterface"]))

@@ -1,56 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system.security.licensing
 
-local LockedUtilInterface = require("org.allbinary.logic.system.security.licensing.LockedUtilInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "./LockedUtilInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LockedUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_isLocked_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #t))))
+    (define/public (jm_isLockedFeature_1 _lockableFeatrue)
+    (let ()
+      (let/ec jreturn
+        (jreturn #t))))))
+(define (LockedUtil.jclassValue) LockedUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LockedUtil.jcell_instance 'jnone)
+(define (LockedUtil.jstatic_instance)
+  (when (eq? LockedUtil.jcell_instance 'jnone) (set! LockedUtil.jcell_instance (LockedUtil.jnew_0)))
+  LockedUtil.jcell_instance)
+(define (LockedUtil.jsetstatic_instance value) (set! LockedUtil.jcell_instance value))
 
-local LockedUtil = {}
-LockedUtil.__index = LockedUtil
-LockedUtil.className = "LockedUtil"
+(define (LockedUtil.jnew_0)
+  (define this (new LockedUtil% [jclass "LockedUtil"]))
+  this)
 
-function LockedUtil.new()
-    local self = setmetatable({}, LockedUtil)
-    return self
-end
-
-
-function LockedUtil.getInstance()
-        return LockedUtil.instance
-end
-
-
-function LockedUtil:isLocked()
-        return true
-end
+(define (LockedUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LockedUtil.jstatic_instance)))))
 
 
-function LockedUtil:isLockedFeature(lockableFeatrue)
-        return true
-end
-
-LockedUtil.instance = LockedUtil.new()
-
-return LockedUtil
 

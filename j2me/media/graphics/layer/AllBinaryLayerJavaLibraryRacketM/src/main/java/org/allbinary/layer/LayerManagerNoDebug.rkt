@@ -1,47 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;; 
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer
 
-local LayerManagerLoggingBase = require("org.allbinary.layer.LayerManagerLoggingBase")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./LayerManagerLoggingBase.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LayerManagerNoDebug%
+  (class LayerManagerLoggingBase%
+    (super-new)))
+(define (LayerManagerNoDebug.jclassValue) LayerManagerNoDebug%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LayerManagerNoDebug.jcell_instance 'jnone)
+(define (LayerManagerNoDebug.jstatic_instance)
+  (when (eq? LayerManagerNoDebug.jcell_instance 'jnone) (set! LayerManagerNoDebug.jcell_instance (LayerManagerNoDebug.jnew_0)))
+  LayerManagerNoDebug.jcell_instance)
+(define (LayerManagerNoDebug.jsetstatic_instance value) (set! LayerManagerNoDebug.jcell_instance value))
 
-local LayerManagerNoDebug = {}
-LayerManagerNoDebug.__index = LayerManagerNoDebug
-LayerManagerNoDebug.className = "LayerManagerNoDebug"
-setmetatable(LayerManagerNoDebug, {__index = LayerManagerLoggingBase})
+(define (LayerManagerNoDebug.jnew_0)
+  (define this (new LayerManagerNoDebug% [jclass "LayerManagerNoDebug"]))
+  this)
 
-function LayerManagerNoDebug.new()
-    local self = setmetatable(LayerManagerLoggingBase.new(), LayerManagerNoDebug)
-    return self
-end
+(define (LayerManagerNoDebug.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LayerManagerNoDebug.jstatic_instance)))))
 
 
-function LayerManagerNoDebug.getInstance()
-        return LayerManagerNoDebug.instance
-end
-
-LayerManagerNoDebug.instance = LayerManagerNoDebug.new()
-
-return LayerManagerNoDebug
 

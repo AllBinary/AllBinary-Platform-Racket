@@ -57,11 +57,13 @@
             (jreturn (JR.toString _anyType)))
             (begin
             (jreturn (get-field f_NULL_STRING this)))))))))
+(define (StringUtil.jclassValue) StringUtil%)
 
 (define StringUtil.jcell_instance 'jnone)
 (define (StringUtil.jstatic_instance)
   (when (eq? StringUtil.jcell_instance 'jnone) (set! StringUtil.jcell_instance (StringUtil.jnew_0)))
   StringUtil.jcell_instance)
+(define (StringUtil.jsetstatic_instance value) (set! StringUtil.jcell_instance value))
 
 (define (StringUtil.jnew_0)
   (define this (new StringUtil% [jclass "StringUtil"]))

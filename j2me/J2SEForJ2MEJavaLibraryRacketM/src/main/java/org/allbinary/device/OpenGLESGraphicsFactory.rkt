@@ -1,31 +1,24 @@
--- Generated Code Do Not Modify
--- package org.allbinary.device
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.device
+
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["./OpenGLESNullGraphicsFactory.rkt" (OpenGLESNullGraphicsFactory.jm_getInstance_0)])
+(provide (all-defined-out))
+
+(define OpenGLESGraphicsFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getOpenGLESGraphicsInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (OpenGLESNullGraphicsFactory.jm_getInstance_0)))))))
+(define (OpenGLESGraphicsFactory.jclassValue) OpenGLESGraphicsFactory%)
+
+(define (OpenGLESGraphicsFactory.jnew_0)
+  (define this (new OpenGLESGraphicsFactory% [jclass "OpenGLESGraphicsFactory"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLESGraphicsFactory = {}
-OpenGLESGraphicsFactory.__index = OpenGLESGraphicsFactory
-OpenGLESGraphicsFactory.className = "OpenGLESGraphicsFactory"
-
-function OpenGLESGraphicsFactory.new()
-    local self = setmetatable({}, OpenGLESGraphicsFactory)
-    return self
-end
-
-
-function OpenGLESGraphicsFactory:getOpenGLESGraphicsInstance()
-        return OpenGLESNullGraphicsFactory.getInstance()
-end
-
-return OpenGLESGraphicsFactory
 

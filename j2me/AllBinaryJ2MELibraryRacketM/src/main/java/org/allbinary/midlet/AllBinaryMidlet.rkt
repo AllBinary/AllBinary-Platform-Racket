@@ -1,167 +1,143 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.midlet
 
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Display = require("javax.microedition.lcdui.Display")
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local NullCanvas = require("javax.microedition.lcdui.NullCanvas")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
--- local MIDletStateChangeException = require("javax.microedition.midlet.MIDletStateChangeException")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local Memory = require("org.allbinary.system.Memory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../javax/microedition/lcdui/CommandListener.rkt"
+  "../../../javax/microedition/midlet/MIDlet.rkt")
+(lazy-require ["../../../javax/microedition/lcdui/Display.rkt" (Display.jm_getDisplay_1)])
+(lazy-require ["../../../javax/microedition/lcdui/NullCanvas.rkt" (NullCanvas.jstatic_NULL_CANVAS)])
+(lazy-require ["../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonLabels.rkt" (CommonLabels.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/system/Memory.rkt" (Memory.jm_getInfo_0)])
+(lazy-require ["../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AllBinaryMidlet%
+  (class MIDlet%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_SET_DISPLAY JR.null])
+    (field [f_SETTING_ JR.null])
+    (field [f__DISPLAY_ JR.null])
+    (field [f_SETTING_NO_TITLE JR.null])
+    (field [f_hashtable JR.null])
+    (field [f_midletDestroyed #f])
+    (define/public (jm_setDisplay_1 _newDisplay)
+    (let ([_title JR.null][_display JR.null])
+      (let/ec jreturn
+        (set! _title (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+        (when (not (eq? _newDisplay (NullCanvas.jstatic_NULL_CANVAS)))
+            (begin
+            (set! _title (send _newDisplay jm_getTitle_0))
+            (send (get-field f_logUtil this) jm_putF_3 (send (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_SETTING_ this)) jm_append_1 _title) jm_append_1 (get-field f__DISPLAY_ this)) jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 _newDisplay)) jm_toString_0) this (get-field f_SET_DISPLAY this))))
+        (set! _display (send this jm_getDisplay_0))
+        (send _display jm_setCurrent_1 _newDisplay))))
+    (define/public (jm_getDisplay_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (Display.jm_getDisplay_1 this)))))
+    (define/public (jm_getCurrentDisplayable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (Display.jm_getDisplay_1 this))))))
+    (define/public (jm_setDestroyed_1 _destroyed)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_midletDestroyed this _destroyed))))
+    (define/public (jm_isDestroyed_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_midletDestroyed this)))))
+    (define/override (jm_startApp_0)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_PERFORMANCE_MESSAGE (EventStrings.jm_getInstance_0)) this))))
+    (define/override (jm_pauseApp_0)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_PERFORMANCE_MESSAGE (EventStrings.jm_getInstance_0)) this))))
+    (define/public (jm_destroyAppInRunnable_2 _unconditional _isProgress)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_destroyApp_1 _unconditional)
+    (let ([_METHOD_NAME JR.null])
+      (let/ec jreturn
+        (set! _METHOD_NAME "AllBinaryMidlet::destroyApp")
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this _METHOD_NAME _e))])
+            (send (get-field f_logUtil this) jm_putF_3 (get-field f_START (get-field f_commonStrings this)) this _METHOD_NAME)
+            (PreLogUtil.jm_put_3 (Memory.jm_getInfo_0) this _METHOD_NAME)
+            (send this jm_setDestroyed_1 #t)))))
+    (define/public (jm_setStartStateHashtable_1 _hashtable)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_START_LABEL (CommonLabels.jm_getInstance_0))) jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 _hashtable)) jm_toString_0) this "setStartStateHashtable")
+        (set-field! f_hashtable this _hashtable))))
+    (define/public (jm_getStartStateHashtable_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_START_LABEL (CommonLabels.jm_getInstance_0))) jm_append_1 (send (StringUtil.jm_getInstance_0) jm_toString_1 (get-field f_hashtable this))) jm_toString_0) this "getStartStateHashtable")
+        (jreturn (get-field f_hashtable this)))))
+    (define/public (jm_getCurrentStateHashtable_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 (get-field f_START (get-field f_commonStrings this)) this "getStateHashtable")
+        (jreturn (get-field f_NULL_TABLE (StdUtil.jm_getInstance_0))))))
+    (define/public (jm_commandAction_2 _command _displayable)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (AllBinaryMidlet.jclassValue) AllBinaryMidlet%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AllBinaryMidlet.jcell_NULL_ALLBINARY_MIDLET 'jnone)
+(define (AllBinaryMidlet.jstatic_NULL_ALLBINARY_MIDLET)
+  (when (eq? AllBinaryMidlet.jcell_NULL_ALLBINARY_MIDLET 'jnone) (set! AllBinaryMidlet.jcell_NULL_ALLBINARY_MIDLET (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  AllBinaryMidlet.jcell_NULL_ALLBINARY_MIDLET)
+(define (AllBinaryMidlet.jsetstatic_NULL_ALLBINARY_MIDLET value) (set! AllBinaryMidlet.jcell_NULL_ALLBINARY_MIDLET value))
 
-local AllBinaryMidlet = {}
-AllBinaryMidlet.__index = AllBinaryMidlet
-AllBinaryMidlet.className = "AllBinaryMidlet"
-setmetatable(AllBinaryMidlet, {__index = MIDlet})
+(define (AllBinaryMidlet.jnew_0)
+  (define this (new AllBinaryMidlet% [jclass "AllBinaryMidlet"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_SET_DISPLAY this "setDisplay")
+    (set-field! f_SETTING_ this "Setting: ")
+    (set-field! f__DISPLAY_ this " Display: ")
+    (set-field! f_SETTING_NO_TITLE this "Setting: No Title, Display: ")
+    (set-field! f_hashtable this (send (StdUtil.jm_getInstance_0) jm_createHashtable_0))
+    
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 (get-field f_CONSTRUCTOR (get-field f_commonStrings this)) this "AllBinaryMidlet::AllBinaryMidlet")))
+  this)
 
-function AllBinaryMidlet:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.SET_DISPLAY = "setDisplay"
-    self.SETTING_ = "Setting: "
-    self._DISPLAY_ = " Display: "
-    self.SETTING_NO_TITLE = "Setting: No Title, Display: "
-    self.hashtable = StdUtil.getInstance():createHashtable()
-    self.midletDestroyed = false
-end
-
-
-function AllBinaryMidlet.getNullInstance()
-        if AllBinaryMidlet.NULL_ALLBINARY_MIDLET == NullUtil.getInstance().NULL_OBJECT then
-            AllBinaryMidlet.NULL_ALLBINARY_MIDLET = AllBinaryMidlet.new()
-        end
-        return AllBinaryMidlet.NULL_ALLBINARY_MIDLET
-end
-
-
-function AllBinaryMidlet.new()
-    local self = setmetatable(MIDlet.new(), AllBinaryMidlet)
-    self:_init_fields()
-        self.logUtil:putF(self.commonStrings.CONSTRUCTOR, self, "AllBinaryMidlet::AllBinaryMidlet")
-    return self
-end
-
-
-function AllBinaryMidlet:setDisplay(newDisplay)
-        local title = StringUtil.getInstance().EMPTY_STRING
-        if newDisplay ~= NullCanvas.NULL_CANVAS then
-            title = newDisplay:getTitle()
-            self.logUtil:putF(tostring(StringMaker.new():append(self.SETTING_):append(title):append(self._DISPLAY_):append(StringUtil.getInstance():toString(newDisplay))), self, self.SET_DISPLAY)
-        end
-        local display = self:getDisplay()
-        display:setCurrent(newDisplay)
-end
-
-
-function AllBinaryMidlet:getDisplay()
-        return Display.getDisplay(self)
-end
-
-
-function AllBinaryMidlet:getCurrentDisplayable()
-        return Display.getDisplay(self):getCurrent()
-end
-
-
-function AllBinaryMidlet:setDestroyed(destroyed)
-        self.midletDestroyed = destroyed
-end
-
-
-function AllBinaryMidlet:isDestroyed()
-        return self.midletDestroyed
-end
-
-
--- throws MIDletStateChangeException
-function AllBinaryMidlet:startApp()
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function AllBinaryMidlet:pauseApp()
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function AllBinaryMidlet:destroyAppInRunnable(unconditional, isProgress)
-end
-
-
-function AllBinaryMidlet:destroyApp(unconditional)
-        local METHOD_NAME = "AllBinaryMidlet::destroyApp"
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START, self, METHOD_NAME)
-            PreLogUtil.put(Memory.getInfo(), self, METHOD_NAME)
-            self:setDestroyed(true)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, METHOD_NAME, e)
-        end
-end
-
-
--- throws Exception
-function AllBinaryMidlet:setStartStateHashtable(hashtable)
-        self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append(StringUtil.getInstance():toString(hashtable))), self, "setStartStateHashtable")
-        self.hashtable = hashtable
-end
+(define (AllBinaryMidlet.jm_getNullInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (AllBinaryMidlet.jstatic_NULL_ALLBINARY_MIDLET) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! AllBinaryMidlet.jcell_NULL_ALLBINARY_MIDLET (AllBinaryMidlet.jnew_0))))
+        (jreturn (AllBinaryMidlet.jstatic_NULL_ALLBINARY_MIDLET)))))
 
 
--- throws Exception
-function AllBinaryMidlet:getStartStateHashtable()
-        self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append(StringUtil.getInstance():toString(self.hashtable))), self, "getStartStateHashtable")
-        return self.hashtable
-end
-
-
--- throws Exception
-function AllBinaryMidlet:getCurrentStateHashtable()
-        self.logUtil:putF(self.commonStrings.START, self, "getStateHashtable")
-        return StdUtil.getInstance().NULL_TABLE
-end
-
-
-function AllBinaryMidlet:commandAction(command, displayable)
-end
-
-AllBinaryMidlet.NULL_ALLBINARY_MIDLET = NullUtil.getInstance().NULL_OBJECT
-
-return AllBinaryMidlet
 

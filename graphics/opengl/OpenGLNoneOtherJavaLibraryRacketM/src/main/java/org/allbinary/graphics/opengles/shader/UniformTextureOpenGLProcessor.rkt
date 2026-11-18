@@ -1,46 +1,37 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.opengles.shader
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local OpenGLObject3dProcessor = require("org.allbinary.graphics.opengles.shader.OpenGLObject3dProcessor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./OpenGLObject3dProcessor.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define UniformTextureOpenGLProcessor%
+  (class OpenGLObject3dProcessor%
+    (super-new)
+    (define/override (jm_process_3 _gl _unused _index)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (UniformTextureOpenGLProcessor.jclassValue) UniformTextureOpenGLProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local UniformTextureOpenGLProcessor = {}
-UniformTextureOpenGLProcessor.__index = UniformTextureOpenGLProcessor
-UniformTextureOpenGLProcessor.className = "UniformTextureOpenGLProcessor"
-setmetatable(UniformTextureOpenGLProcessor, {__index = OpenGLObject3dProcessor})
-
-
-function UniformTextureOpenGLProcessor.new(shaderComposite, handleIndex)
-    local self = setmetatable(OpenGLObject3dProcessor.new(), UniformTextureOpenGLProcessor)
-    return self
-end
+(define (UniformTextureOpenGLProcessor.jnew_2 _shaderComposite _handleIndex)
+  (define this (new UniformTextureOpenGLProcessor% [jclass "UniformTextureOpenGLProcessor"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function UniformTextureOpenGLProcessor:process(gl, unused, index)
-end
-
-return UniformTextureOpenGLProcessor
 

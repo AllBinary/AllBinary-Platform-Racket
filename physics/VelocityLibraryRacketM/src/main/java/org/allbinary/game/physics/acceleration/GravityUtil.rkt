@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.acceleration
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.physics.acceleration
 
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GravityUtil%
+  (class JObject%
+    (super-new)
+    (field [f_GAME_GRAVITY_VELOCITY 0])
+    (field [f_MAX_GAME_VELOCITY 0])
+    (define/public (jm_process_2 _velocityProperties _customGravity)
+    (let ()
+      (let/ec jreturn
+        (JR.className (send _velocityProperties jm_getVelocityYBasicDecimalP_0)))))))
+(define (GravityUtil.jclassValue) GravityUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define GravityUtil.jcell_instance 'jnone)
+(define (GravityUtil.jstatic_instance)
+  (when (eq? GravityUtil.jcell_instance 'jnone) (set! GravityUtil.jcell_instance (GravityUtil.jnew_0)))
+  GravityUtil.jcell_instance)
+(define (GravityUtil.jsetstatic_instance value) (set! GravityUtil.jcell_instance value))
 
-local GravityUtil = {}
-GravityUtil.__index = GravityUtil
-GravityUtil.className = "GravityUtil"
+(define (GravityUtil.jnew_0)
+  (define this (new GravityUtil% [jclass "GravityUtil"]))
+    (set-field! f_GAME_GRAVITY_VELOCITY this 1800)
+    (set-field! f_MAX_GAME_VELOCITY this 18000)
+  this)
 
-function GravityUtil:_init_fields()
-    self.GAME_GRAVITY_VELOCITY = 1800
-    self.MAX_GAME_VELOCITY = 18000
-end
-
-function GravityUtil.new()
-    local self = setmetatable({}, GravityUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function GravityUtil.getInstance()
-        return GravityUtil.instance
-end
+(define (GravityUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GravityUtil.jstatic_instance)))))
 
 
-function GravityUtil:process(velocityProperties, customGravity)
-        velocityProperties:getVelocityYBasicDecimalP():addint(customGravity)
-end
-
-GravityUtil.instance = GravityUtil.new()
-
-return GravityUtil
 

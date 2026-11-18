@@ -1,82 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.weapon
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.combat.weapon
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define SimpleWeaponProperties%
+  (class JObject%
+    (super-new)
+    (field [f_damage 0])
+    (field [f_dissipation 0])
+    (field [f_range 0])
+    (define/public (jm_set_1 _simpleWeaponProperties)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setDamage_1 (send _simpleWeaponProperties jm_getDamage_0))
+        (send this jm_setDissipation_1 (send _simpleWeaponProperties jm_getDissipation_0))
+        (send this jm_setRange_1 (send _simpleWeaponProperties jm_getRange_0)))))
+    (define/public (jm_setDamage_1 _damage)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_damage this _damage))))
+    (define/public (jm_getDamage_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_damage this)))))
+    (define/public (jm_setDissipation_1 _dissipation)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_dissipation this _dissipation))))
+    (define/public (jm_getDissipation_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_dissipation this)))))
+    (define/public (jm_getRange_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_range this)))))
+    (define/public (jm_setRange_1 _range)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_range this _range))))))
+(define (SimpleWeaponProperties.jclassValue) SimpleWeaponProperties%)
+
+(define (SimpleWeaponProperties.jnew_0)
+  (define this (new SimpleWeaponProperties% [jclass "SimpleWeaponProperties"]))
+    
+    
+    
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SimpleWeaponProperties = {}
-SimpleWeaponProperties.__index = SimpleWeaponProperties
-SimpleWeaponProperties.className = "SimpleWeaponProperties"
-
-function SimpleWeaponProperties:_init_fields()
-    self.damage = 0
-    self.dissipation = 0
-    self.range = 0
-end
-
-function SimpleWeaponProperties.new()
-    local self = setmetatable({}, SimpleWeaponProperties)
-    self:_init_fields()
-    return self
-end
-
-
-function SimpleWeaponProperties:set(simpleWeaponProperties)
-        self:setDamage(simpleWeaponProperties:getDamage())
-        self:setDissipation(simpleWeaponProperties:getDissipation())
-        self:setRange(simpleWeaponProperties:getRange())
-end
-
-
-function SimpleWeaponProperties:setDamage(damage)
-        self.damage = damage
-end
-
-
-function SimpleWeaponProperties:getDamage()
-        return self.damage
-end
-
-
-function SimpleWeaponProperties:setDissipation(dissipation)
-        self.dissipation = dissipation
-end
-
-
-function SimpleWeaponProperties:getDissipation()
-        return self.dissipation
-end
-
-
-function SimpleWeaponProperties:getRange()
-        return self.range
-end
-
-
-function SimpleWeaponProperties:setRange(range)
-        self.range = range
-end
-
-return SimpleWeaponProperties
 

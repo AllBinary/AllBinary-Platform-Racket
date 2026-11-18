@@ -63,6 +63,7 @@
     (let ()
       (let/ec jreturn
         (set-field! f_index this 0))))))
+(define (IndexedBasicArrayListCache.jclassValue) IndexedBasicArrayListCache%)
 
 (define (IndexedBasicArrayListCache.jnew_0)
   (define this (new IndexedBasicArrayListCache% [jclass "IndexedBasicArrayListCache"]))

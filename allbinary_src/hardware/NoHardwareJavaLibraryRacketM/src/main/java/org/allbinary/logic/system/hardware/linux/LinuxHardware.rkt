@@ -88,6 +88,7 @@
     (let ()
       (let/ec jreturn
         (jreturn #f))))))
+(define (LinuxHardware.jclassValue) LinuxHardware%)
 
 (define (LinuxHardware.jnew_0)
   (define this (new LinuxHardware% [jclass "LinuxHardware"]))

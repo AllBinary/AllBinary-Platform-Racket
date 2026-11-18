@@ -1,89 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.audio
 
--- local Player = require("javax.microedition.media.Player")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local SoundInterface = require("org.allbinary.media.audio.SoundInterface")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/lang/Runnable.rkt"
+  "./SoundInterface.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(lazy-require ["./NoPlayer.rkt" (NoPlayer.jstatic_NO_PLAYER)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Sound%
+  (class JObject%
+    (super-new)
+    (field [f_resource JR.null])
+    (field [f_player JR.null])
+    (define/public (jm_getResource_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_resource this)))))
+    (define/public (jm_getPlayerP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_player this)))))
+    (define/public (jm_setPlayerP_1 _player)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_player this _player))))
+    (define/public (jm_init_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getDuration_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (- 1))))))
+    (define/public (jm_run_0)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (PreLogUtil.jm_put_3 (get-field f_EXCEPTION _commonStrings) this (get-field f_RUN _commonStrings)))])
+            (send (get-field f_player this) jm_start_0)))))))
+(define (Sound.jclassValue) Sound%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local Sound = {}
-Sound.__index = Sound
-Sound.className = "Sound"
-
-function Sound:_init_fields()
-    self.resource = nil
-    self.player = NoPlayer.NO_PLAYER
-end
-
-
-function Sound.new(resource)
-    local self = setmetatable({}, Sound)
-    self:_init_fields()
-        self.resource = resource
-    return self
-end
-
-
-function Sound:getResource()
-        return self.resource
-end
-
-
-function Sound:getPlayerP()
-        return self.player
-end
-
-
-function Sound:setPlayerP(player)
-        self.player = player
-end
-
-
--- throws Exception
-function Sound:init()
-end
+(define (Sound.jnew_1 _resource)
+  (define this (new Sound% [jclass "Sound"]))
+    
+    (set-field! f_player this (NoPlayer.jstatic_NO_PLAYER))
+    (let ()
+      (let/ec jreturn
+        (set-field! f_resource this _resource)))
+  this)
 
 
-function Sound:getDuration()
-        return -1
-end
-
-
-function Sound:run()
-        local try_ok, try_error = pcall(function()
-            self.player:start()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            PreLogUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN)
-        end
-end
-
-return Sound
 

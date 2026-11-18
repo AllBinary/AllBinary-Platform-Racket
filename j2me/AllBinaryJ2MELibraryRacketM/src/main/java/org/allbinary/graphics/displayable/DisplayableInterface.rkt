@@ -1,61 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.displayable
 
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DisplayableInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_addCommand_1 _cmd)
+      (raise (JR.newException "AbstractMethodError" "addCommand")))
+    (define/public (jm_getHeight_0)
+      (raise (JR.newException "AbstractMethodError" "getHeight")))
+    (define/public (jm_getWidth_0)
+      (raise (JR.newException "AbstractMethodError" "getWidth")))
+    (define/public (jm_removeCommand_1 _cmd)
+      (raise (JR.newException "AbstractMethodError" "removeCommand")))
+    (define/public (jm_setCommandListener_1 _l)
+      (raise (JR.newException "AbstractMethodError" "setCommandListener")))))
+(define (DisplayableInterface.jclassValue) DisplayableInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local DisplayableInterface = {}
-DisplayableInterface.__index = DisplayableInterface
-DisplayableInterface.className = "DisplayableInterface"
-
-
-function DisplayableInterface:addCommand(cmd)
-    error("abstract method addCommand")
-end
-
-
-function DisplayableInterface:getHeight()
-    error("abstract method getHeight")
-end
+(define (DisplayableInterface.jnew_0)
+  (define this (new DisplayableInterface% [jclass "DisplayableInterface"]))
+  this)
 
 
-function DisplayableInterface:getWidth()
-    error("abstract method getWidth")
-end
-
-
-function DisplayableInterface:removeCommand(cmd)
-    error("abstract method removeCommand")
-end
-
-
-function DisplayableInterface:setCommandListener(l)
-    error("abstract method setCommandListener")
-end
-
-return DisplayableInterface
 

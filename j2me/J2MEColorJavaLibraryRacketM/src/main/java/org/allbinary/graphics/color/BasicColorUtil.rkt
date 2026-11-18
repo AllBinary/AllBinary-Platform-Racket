@@ -50,11 +50,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (bitwise-ior (JR.i32 (- #xFFFFFF _color)) (get-field f_ALPHA this))))))))
+(define (BasicColorUtil.jclassValue) BasicColorUtil%)
 
 (define BasicColorUtil.jcell_instance 'jnone)
 (define (BasicColorUtil.jstatic_instance)
   (when (eq? BasicColorUtil.jcell_instance 'jnone) (set! BasicColorUtil.jcell_instance (BasicColorUtil.jnew_0)))
   BasicColorUtil.jcell_instance)
+(define (BasicColorUtil.jsetstatic_instance value) (set! BasicColorUtil.jcell_instance value))
 
 (define (BasicColorUtil.jnew_0)
   (define this (new BasicColorUtil% [jclass "BasicColorUtil"]))

@@ -22,11 +22,13 @@
 (define NullRunnable%
   (class ARunnable%
     (super-new)))
+(define (NullRunnable.jclassValue) NullRunnable%)
 
 (define NullRunnable.jcell_instance 'jnone)
 (define (NullRunnable.jstatic_instance)
   (when (eq? NullRunnable.jcell_instance 'jnone) (set! NullRunnable.jcell_instance (NullRunnable.jnew_0)))
   NullRunnable.jcell_instance)
+(define (NullRunnable.jsetstatic_instance value) (set! NullRunnable.jcell_instance value))
 
 (define (NullRunnable.jnew_0)
   (define this (new NullRunnable% [jclass "NullRunnable"]))

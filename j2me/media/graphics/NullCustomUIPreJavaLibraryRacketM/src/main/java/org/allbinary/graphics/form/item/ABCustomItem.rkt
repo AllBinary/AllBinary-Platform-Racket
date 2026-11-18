@@ -1,101 +1,83 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Screen = require("javax.microedition.lcdui.Screen")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ABCustomItem%
+  (class JObject%
+    (super-new)
+    (define/public (jm_setOwner_1 _owner)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_paintUnselected_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_isFocusable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_getLabel_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))))
+    (define/public (jm_setLabel_1 _label)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getHeight_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_setHeight_1 _height)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getValue_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0.0))))
+    (define/public (jm_setValue_1 _value)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getMinimumWidth_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_getMinimumHeight_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_preMeasurement_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ABCustomItem.jclassValue) ABCustomItem%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ABCustomItem.jcell_NULL_CUSTOM_ITEM 'jnone)
+(define (ABCustomItem.jstatic_NULL_CUSTOM_ITEM)
+  (when (eq? ABCustomItem.jcell_NULL_CUSTOM_ITEM 'jnone) (set! ABCustomItem.jcell_NULL_CUSTOM_ITEM (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  ABCustomItem.jcell_NULL_CUSTOM_ITEM)
+(define (ABCustomItem.jsetstatic_NULL_CUSTOM_ITEM value) (set! ABCustomItem.jcell_NULL_CUSTOM_ITEM value))
 
-local ABCustomItem = {}
-ABCustomItem.__index = ABCustomItem
-ABCustomItem.className = "ABCustomItem"
+(define (ABCustomItem.jnew_3 _label _backgroundBasicColor _foregroundBasicColor)
+  (define this (new ABCustomItem% [jclass "ABCustomItem"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function ABCustomItem.getNullInstance()
-        if ABCustomItem.NULL_CUSTOM_ITEM == NullUtil.getInstance().NULL_OBJECT then
-            ABCustomItem.NULL_CUSTOM_ITEM = ABCustomItem.new(StringUtil.getInstance().EMPTY_STRING, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
-        end
-        return ABCustomItem.NULL_CUSTOM_ITEM
-end
-
-
-function ABCustomItem.new(label, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable({}, ABCustomItem)
-    return self
-end
-
-
-function ABCustomItem:setOwner(owner)
-end
-
-
-function ABCustomItem:paintXY(graphics, x, y)
-end
-
-
-function ABCustomItem:paintUnselected(graphics, x, y)
-end
-
-
-function ABCustomItem:isFocusable()
-        return false
-end
-
-
-function ABCustomItem:getLabel()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function ABCustomItem:setLabel(label)
-end
-
-
-function ABCustomItem:getHeight()
-        return 0
-end
-
-
-function ABCustomItem:setHeight(height)
-end
-
-
-function ABCustomItem:getValue()
-        return 0.0
-end
-
-
-function ABCustomItem:setValue(value)
-end
+(define (ABCustomItem.jm_getNullInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (ABCustomItem.jstatic_NULL_CUSTOM_ITEM) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! ABCustomItem.jcell_NULL_CUSTOM_ITEM (ABCustomItem.jnew_3 (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (get-field f_BLACK (BasicColorFactory.jm_getInstance_0)) (get-field f_WHITE (BasicColorFactory.jm_getInstance_0))))))
+        (jreturn (ABCustomItem.jstatic_NULL_CUSTOM_ITEM)))))
 
 
-function ABCustomItem:getMinimumWidth()
-        return 0
-end
-
-
-function ABCustomItem:getMinimumHeight()
-        return 0
-end
-
-
-function ABCustomItem:preMeasurement(graphics)
-end
-
-ABCustomItem.NULL_CUSTOM_ITEM = NullUtil.getInstance().NULL_OBJECT
-
-return ABCustomItem
 

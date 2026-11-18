@@ -53,6 +53,7 @@
             (begin
             (set! _className (send _clazz jm_getName_0))))
         (jreturn (send (get-field f_logFormatUtil this) jm_get_4 _className (get-field f_functionName this) (get-field f_specialMessage this) (get-field f_exception this))))))))
+(define (Log.jclassValue) Log%)
 
 (define (Log.jnew_4 _specialMessage _anyType _functionName _exception)
   (define this (new Log% [jclass "Log"]))

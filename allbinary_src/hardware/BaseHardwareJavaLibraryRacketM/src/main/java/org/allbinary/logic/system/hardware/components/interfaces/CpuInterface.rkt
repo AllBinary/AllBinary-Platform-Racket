@@ -39,6 +39,7 @@
       (raise (JR.newException "AbstractMethodError" "getCacheSize")))
     (define/public (jm_compareTo_1 _cpuInterface)
       (raise (JR.newException "AbstractMethodError" "compareTo")))))
+(define (CpuInterface.jclassValue) CpuInterface%)
 
 (define (CpuInterface.jnew_0)
   (define this (new CpuInterface% [jclass "CpuInterface"]))

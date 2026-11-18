@@ -1,139 +1,109 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.layer.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(lazy-require ["../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LayerManagerEventHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (field [f_list JR.null])
+    (field [f_CREATE JR.null])
+    (field [f_DELETE JR.null])
+    (define/public (jm_addListener_1 _layerManagerEventListener)
+    (let ()
+      (let/ec jreturn
+        (when (not (send (get-field f_list this) jm_contains_1 _layerManagerEventListener))
+            (begin
+            (send (get-field f_list this) jm_add_1 _layerManagerEventListener))))))
+    (define/override (jm_removeAllListeners_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_list this) jm_clear_0)
+        (super jm_removeAllListeners_0))))
+    (define/override (jm_removeListener_1 _eventListenerInterface)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_list this) jm_remove_1 _eventListenerInterface)
+        (super jm_removeListener_1 _eventListenerInterface))))
+    (define/override (jm_fireEvent_1 _eventObject)
+    (let ([_layerManagerEventListener JR.null][_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (send (get-field f_list this) jm_size_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (JR.className (get-field f_logUtil this)))])
+                (set! _layerManagerEventListener (vector-ref (get-field f_objectArray (get-field f_list this)) _index))
+                (send _layerManagerEventListener jm_onCreateLayerManagerEvent_1 _eventObject))) (jloop)))))
+        (super jm_fireEvent_1 _eventObject))))
+    (define/public (jm_fireDeleteEvent_1 _eventObject)
+    (let ([_layerManagerEventListener JR.null][_index JR.null][_eventListenerInterfaceList JR.null][_eventListenerInterface JR.null][_layerManagerEventListenerInterface JR.null][_listenerIndex JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index (send (get-field f_list this) jm_size_0))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (JR.className (get-field f_logUtil this)))])
+                (set! _layerManagerEventListener (vector-ref (get-field f_objectArray (get-field f_list this)) _index))
+                (send _layerManagerEventListener jm_onDeleteLayerManagerEvent_1 _eventObject))) (jloop)))))
+        (set! _eventListenerInterfaceList (get-field f_eventListenerInterfaceList this))
+        (set! _eventListenerInterface JR.null)
+        (set! _layerManagerEventListenerInterface JR.null)
+        (set! _listenerIndex 0)
+        (let/ec jbreak (let jloop () (when (< _listenerIndex (send _eventListenerInterfaceList jm_size_0))
+                (let/ec jcontinue
+            (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+                (JR.className (get-field f_logUtil this)))])
+                (set! _eventListenerInterface (vector-ref (get-field f_objectArray _eventListenerInterfaceList) _listenerIndex))
+                (set! _layerManagerEventListenerInterface _eventListenerInterface)
+                (send _layerManagerEventListenerInterface jm_onDeleteLayerManagerEvent_1 _eventObject))
+            (set! _listenerIndex (JR.i32 (+ _listenerIndex 1)))) (jloop)))))))
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_layerManagerEventListenerInterface JR.null])
+      (let/ec jreturn
+        (set! _layerManagerEventListenerInterface _eventListenerInterface)
+        (send _layerManagerEventListenerInterface jm_onCreateLayerManagerEvent_1 _eventObject))))))
+(define (LayerManagerEventHandler.jclassValue) LayerManagerEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define LayerManagerEventHandler.jcell_instance 'jnone)
+(define (LayerManagerEventHandler.jstatic_instance)
+  (when (eq? LayerManagerEventHandler.jcell_instance 'jnone) (set! LayerManagerEventHandler.jcell_instance (LayerManagerEventHandler.jnew_0)))
+  LayerManagerEventHandler.jcell_instance)
+(define (LayerManagerEventHandler.jsetstatic_instance value) (set! LayerManagerEventHandler.jcell_instance value))
 
-local LayerManagerEventHandler = {}
-LayerManagerEventHandler.__index = LayerManagerEventHandler
-LayerManagerEventHandler.className = "LayerManagerEventHandler"
-setmetatable(LayerManagerEventHandler, {__index = BasicEventHandler})
+(define (LayerManagerEventHandler.jnew_0)
+  (define this (new LayerManagerEventHandler% [jclass "LayerManagerEventHandler"]))
+    (set-field! f_list this (BasicArrayListD.jnew_0))
+    (set-field! f_CREATE this "Create")
+    (set-field! f_DELETE this "Delete")
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function LayerManagerEventHandler:_init_fields()
-    self.list = BasicArrayListD.new()
-    self.CREATE = "Create"
-    self.DELETE = "Delete"
-end
-
-
-function LayerManagerEventHandler.getInstance()
-        return LayerManagerEventHandler.instance
-end
-
-
-function LayerManagerEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), LayerManagerEventHandler)
-    self:_init_fields()
-    return self
-end
-
-
-function LayerManagerEventHandler:addListener(layerManagerEventListener)
-        if not self.list:contains(layerManagerEventListener) then
-            self.list:add(layerManagerEventListener)
-        end
-end
-
-
-function LayerManagerEventHandler:removeAllListeners()
-        self.list:clear()
-        BasicEventHandler.removeAllListeners(self)
-end
-
-
-function LayerManagerEventHandler:removeListener(eventListenerInterface)
-        self.list:remove(eventListenerInterface)
-        BasicEventHandler.removeListener(self, eventListenerInterface)
-end
-
-
--- throws Exception
-function LayerManagerEventHandler:fireEvent(eventObject)
-        do
-            local index = self.list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local try_ok, try_error = pcall(function()
-                local layerManagerEventListener = self.list.objectArray[index + 1]
-                layerManagerEventListener:onCreateLayerManagerEvent(eventObject)
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            end
-        end
-        BasicEventHandler.fireEvent(self, eventObject)
-end
-
-
--- throws Exception
-function LayerManagerEventHandler:fireDeleteEvent(eventObject)
-        do
-            local index = self.list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local try_ok, try_error = pcall(function()
-                local layerManagerEventListener = self.list.objectArray[index + 1]
-                layerManagerEventListener:onDeleteLayerManagerEvent(eventObject)
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            end
-        end
-        local eventListenerInterfaceList = self.eventListenerInterfaceList
-        local eventListenerInterface = nil
-        local layerManagerEventListenerInterface = nil
-        local listenerIndex = 0
-        while listenerIndex < eventListenerInterfaceList:size() do
-            local try_ok, try_error = pcall(function()
-                eventListenerInterface = eventListenerInterfaceList.objectArray[listenerIndex + 1]
-                layerManagerEventListenerInterface = (eventListenerInterface)
-                layerManagerEventListenerInterface:onDeleteLayerManagerEvent(eventObject)
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            listenerIndex = listenerIndex + 1
-        end
-end
+(define (LayerManagerEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (LayerManagerEventHandler.jstatic_instance)))))
 
 
--- throws Exception
-function LayerManagerEventHandler:process(eventObject, eventListenerInterface)
-        local layerManagerEventListenerInterface = (eventListenerInterface)
-        layerManagerEventListenerInterface:onCreateLayerManagerEvent(eventObject)
-end
-
-LayerManagerEventHandler.instance = LayerManagerEventHandler.new()
-
-return LayerManagerEventHandler
 

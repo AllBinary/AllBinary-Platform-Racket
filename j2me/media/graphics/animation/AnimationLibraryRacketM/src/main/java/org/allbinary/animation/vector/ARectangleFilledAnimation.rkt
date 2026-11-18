@@ -1,47 +1,35 @@
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.vector
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local RectangleFilledAnimation = require("org.allbinary.animation.vector.RectangleFilledAnimation")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./RectangleFilledAnimation.rkt")
+(lazy-require ["../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ARectangleFilledAnimation%
+  (class RectangleFilledAnimation%
+    (super-new)
+    (field [f_x 0])
+    (field [f_y 0])
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_paintXY_3 _graphics _unusedX _unusedY)
+    (let ()
+      (let/ec jreturn
+        (super jm_paintXY_3 _graphics (get-field f_x this) (get-field f_y this)))))))
+(define (ARectangleFilledAnimation.jclassValue) ARectangleFilledAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ARectangleFilledAnimation = {}
-ARectangleFilledAnimation.__index = ARectangleFilledAnimation
-ARectangleFilledAnimation.className = "ARectangleFilledAnimation"
-setmetatable(ARectangleFilledAnimation, {__index = RectangleFilledAnimation})
-
-function ARectangleFilledAnimation:_init_fields()
-    self.x = 0
-    self.y = 0
-end
-
-
-function ARectangleFilledAnimation.new()
-    local self = setmetatable(RectangleFilledAnimation.new(0, 0, BasicColorFactory.getInstance().BLACK), ARectangleFilledAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
+(define (ARectangleFilledAnimation.jnew_0)
+  (define this (new ARectangleFilledAnimation% [jclass "ARectangleFilledAnimation"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function ARectangleFilledAnimation:nextFrame()
-end
-
-
-function ARectangleFilledAnimation:paintXY(graphics, unusedX, unusedY)
-        RectangleFilledAnimation.paintXY(self, graphics, self.x, self.y)
-end
-
-return ARectangleFilledAnimation
 

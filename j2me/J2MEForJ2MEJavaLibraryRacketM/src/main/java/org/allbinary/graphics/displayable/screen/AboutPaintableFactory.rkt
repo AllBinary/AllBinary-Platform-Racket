@@ -1,66 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2022 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2022 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;; 
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.displayable.screen
 
-local AboutPaintable = require("org.allbinary.game.paint.AboutPaintable")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/game/paint/AboutPaintable.rkt" (AboutPaintable.jm_getInstance_2)])
+(lazy-require ["../../../../../org/allbinary/graphics/paint/NullPaintable.rkt" (NullPaintable.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define AboutPaintableFactory%
+  (class JObject%
+    (super-new)
+    (field [f_paintableArray JR.null])))
+(define (AboutPaintableFactory.jclassValue) AboutPaintableFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AboutPaintableFactory.jcell_instance 'jnone)
+(define (AboutPaintableFactory.jstatic_instance)
+  (when (eq? AboutPaintableFactory.jcell_instance 'jnone) (set! AboutPaintableFactory.jcell_instance (AboutPaintableFactory.jnew_0)))
+  AboutPaintableFactory.jcell_instance)
+(define (AboutPaintableFactory.jsetstatic_instance value) (set! AboutPaintableFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (AboutPaintableFactory.jnew_0)
+  (define this (new AboutPaintableFactory% [jclass "AboutPaintableFactory"]))
+    (set-field! f_paintableArray this (vector (NullPaintable.jm_getInstance_0)))
+    (let ([_INFO JR.null][_DEVELOPERS JR.null])
+      (let/ec jreturn
+        (set! _INFO (vector "Built with the" "AllBinary Platform" (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) "Comments or Questions:" "support@allbinary.com"))
+        (set! _DEVELOPERS (vector "Developed By:" "Travis Berthelot"))
+        (set-field! f_paintableArray this (send (AboutPaintable.jm_getInstance_2 _INFO _DEVELOPERS) jm_getPaintableArrayInstance_0))))
+  this)
 
-local AboutPaintableFactory = {}
-AboutPaintableFactory.__index = AboutPaintableFactory
-AboutPaintableFactory.className = "AboutPaintableFactory"
-
-function AboutPaintableFactory:_init_fields()
-    self.paintableArray = {NullPaintable.getInstance()}
-end
-
-
-function AboutPaintableFactory.getInstance()
-        return AboutPaintableFactory.instance
-end
+(define (AboutPaintableFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AboutPaintableFactory.jstatic_instance)))))
 
 
-function AboutPaintableFactory.new()
-    local self = setmetatable({}, AboutPaintableFactory)
-    self:_init_fields()
-        local INFO = {"Built with the", "AllBinary Platform", StringUtil.getInstance().EMPTY_STRING, "Comments or Questions:", "support@allbinary.com"}
-        local DEVELOPERS = {"Developed By:", "Travis Berthelot"}
-        self.paintableArray = AboutPaintable.getInstance(INFO, DEVELOPERS):getPaintableArrayInstance()
-    return self
-end
-
-AboutPaintableFactory.instance = AboutPaintableFactory.new()
-
-return AboutPaintableFactory
 

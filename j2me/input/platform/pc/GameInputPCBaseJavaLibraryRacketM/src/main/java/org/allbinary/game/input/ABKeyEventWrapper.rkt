@@ -1,240 +1,421 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2026 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
--- local KeyEvent = require("java.awt.event.KeyEvent")
-local JsType = require("jsinterop.annotations.JsType")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/awt/event/KeyEvent.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ABKeyEventWrapper%
+  (class JObject%
+    (super-new)
+    (field [f_VK_ENTER 0])
+    (field [f_VK_BACK_SPACE 0])
+    (field [f_VK_TAB 0])
+    (field [f_VK_CANCEL 0])
+    (field [f_VK_CLEAR 0])
+    (field [f_VK_SHIFT 0])
+    (field [f_VK_CONTROL 0])
+    (field [f_VK_ALT 0])
+    (field [f_VK_PAUSE 0])
+    (field [f_VK_CAPS_LOCK 0])
+    (field [f_VK_ESCAPE 0])
+    (field [f_VK_SPACE 0])
+    (field [f_VK_PAGE_UP 0])
+    (field [f_VK_PAGE_DOWN 0])
+    (field [f_VK_END 0])
+    (field [f_VK_HOME 0])
+    (field [f_VK_LEFT 0])
+    (field [f_VK_UP 0])
+    (field [f_VK_RIGHT 0])
+    (field [f_VK_DOWN 0])
+    (field [f_VK_COMMA 0])
+    (field [f_VK_MINUS 0])
+    (field [f_VK_PERIOD 0])
+    (field [f_VK_SLASH 0])
+    (field [f_VK_0 0])
+    (field [f_VK_1 0])
+    (field [f_VK_2 0])
+    (field [f_VK_3 0])
+    (field [f_VK_4 0])
+    (field [f_VK_5 0])
+    (field [f_VK_6 0])
+    (field [f_VK_7 0])
+    (field [f_VK_8 0])
+    (field [f_VK_9 0])
+    (field [f_VK_SEMICOLON 0])
+    (field [f_VK_EQUALS 0])
+    (field [f_VK_A 0])
+    (field [f_VK_B 0])
+    (field [f_VK_C 0])
+    (field [f_VK_D 0])
+    (field [f_VK_E 0])
+    (field [f_VK_F 0])
+    (field [f_VK_G 0])
+    (field [f_VK_H 0])
+    (field [f_VK_I 0])
+    (field [f_VK_J 0])
+    (field [f_VK_K 0])
+    (field [f_VK_L 0])
+    (field [f_VK_M 0])
+    (field [f_VK_N 0])
+    (field [f_VK_O 0])
+    (field [f_VK_P 0])
+    (field [f_VK_Q 0])
+    (field [f_VK_R 0])
+    (field [f_VK_S 0])
+    (field [f_VK_T 0])
+    (field [f_VK_U 0])
+    (field [f_VK_V 0])
+    (field [f_VK_W 0])
+    (field [f_VK_X 0])
+    (field [f_VK_Y 0])
+    (field [f_VK_Z 0])
+    (field [f_VK_OPEN_BRACKET 0])
+    (field [f_VK_BACK_SLASH 0])
+    (field [f_VK_CLOSE_BRACKET 0])
+    (field [f_VK_NUMPAD0 0])
+    (field [f_VK_NUMPAD1 0])
+    (field [f_VK_NUMPAD2 0])
+    (field [f_VK_NUMPAD3 0])
+    (field [f_VK_NUMPAD4 0])
+    (field [f_VK_NUMPAD5 0])
+    (field [f_VK_NUMPAD6 0])
+    (field [f_VK_NUMPAD7 0])
+    (field [f_VK_NUMPAD8 0])
+    (field [f_VK_NUMPAD9 0])
+    (field [f_VK_MULTIPLY 0])
+    (field [f_VK_ADD 0])
+    (field [f_VK_SEPARATER 0])
+    (field [f_VK_SEPARATOR 0])
+    (field [f_VK_SUBTRACT 0])
+    (field [f_VK_DECIMAL 0])
+    (field [f_VK_DIVIDE 0])
+    (field [f_VK_DELETE 0])
+    (field [f_VK_NUM_LOCK 0])
+    (field [f_VK_SCROLL_LOCK 0])
+    (field [f_VK_F1 0])
+    (field [f_VK_F2 0])
+    (field [f_VK_F3 0])
+    (field [f_VK_F4 0])
+    (field [f_VK_F5 0])
+    (field [f_VK_F6 0])
+    (field [f_VK_F7 0])
+    (field [f_VK_F8 0])
+    (field [f_VK_F9 0])
+    (field [f_VK_F10 0])
+    (field [f_VK_F11 0])
+    (field [f_VK_F12 0])
+    (field [f_VK_F13 0])
+    (field [f_VK_F14 0])
+    (field [f_VK_F15 0])
+    (field [f_VK_F16 0])
+    (field [f_VK_F17 0])
+    (field [f_VK_F18 0])
+    (field [f_VK_F19 0])
+    (field [f_VK_F20 0])
+    (field [f_VK_F21 0])
+    (field [f_VK_F22 0])
+    (field [f_VK_F23 0])
+    (field [f_VK_F24 0])
+    (field [f_VK_PRINTSCREEN 0])
+    (field [f_VK_INSERT 0])
+    (field [f_VK_HELP 0])
+    (field [f_VK_META 0])
+    (field [f_VK_BACK_QUOTE 0])
+    (field [f_VK_QUOTE 0])
+    (field [f_VK_KP_UP 0])
+    (field [f_VK_KP_DOWN 0])
+    (field [f_VK_KP_LEFT 0])
+    (field [f_VK_KP_RIGHT 0])
+    (field [f_VK_DEAD_GRAVE 0])
+    (field [f_VK_DEAD_ACUTE 0])
+    (field [f_VK_DEAD_CIRCUMFLEX 0])
+    (field [f_VK_DEAD_TILDE 0])
+    (field [f_VK_DEAD_MACRON 0])
+    (field [f_VK_DEAD_BREVE 0])
+    (field [f_VK_DEAD_ABOVEDOT 0])
+    (field [f_VK_DEAD_DIAERESIS 0])
+    (field [f_VK_DEAD_ABOVERING 0])
+    (field [f_VK_DEAD_DOUBLEACUTE 0])
+    (field [f_VK_DEAD_CARON 0])
+    (field [f_VK_DEAD_CEDILLA 0])
+    (field [f_VK_DEAD_OGONEK 0])
+    (field [f_VK_DEAD_IOTA 0])
+    (field [f_VK_DEAD_VOICED_SOUND 0])
+    (field [f_VK_DEAD_SEMIVOICED_SOUND 0])
+    (field [f_VK_AMPERSAND 0])
+    (field [f_VK_ASTERISK 0])
+    (field [f_VK_QUOTEDBL 0])
+    (field [f_VK_LESS 0])
+    (field [f_VK_GREATER 0])
+    (field [f_VK_BRACELEFT 0])
+    (field [f_VK_BRACERIGHT 0])
+    (field [f_VK_AT 0])
+    (field [f_VK_COLON 0])
+    (field [f_VK_CIRCUMFLEX 0])
+    (field [f_VK_DOLLAR 0])
+    (field [f_VK_EURO_SIGN 0])
+    (field [f_VK_EXCLAMATION_MARK 0])
+    (field [f_VK_INVERTED_EXCLAMATION_MARK 0])
+    (field [f_VK_LEFT_PARENTHESIS 0])
+    (field [f_VK_NUMBER_SIGN 0])
+    (field [f_VK_PLUS 0])
+    (field [f_VK_RIGHT_PARENTHESIS 0])
+    (field [f_VK_UNDERSCORE 0])
+    (field [f_VK_WINDOWS 0])
+    (field [f_VK_CONTEXT_MENU 0])
+    (field [f_VK_FINAL 0])
+    (field [f_VK_CONVERT 0])
+    (field [f_VK_NONCONVERT 0])
+    (field [f_VK_ACCEPT 0])
+    (field [f_VK_MODECHANGE 0])
+    (field [f_VK_KANA 0])
+    (field [f_VK_KANJI 0])
+    (field [f_VK_ALPHANUMERIC 0])
+    (field [f_VK_KATAKANA 0])
+    (field [f_VK_HIRAGANA 0])
+    (field [f_VK_FULL_WIDTH 0])
+    (field [f_VK_HALF_WIDTH 0])
+    (field [f_VK_ROMAN_CHARACTERS 0])
+    (field [f_VK_ALL_CANDIDATES 0])
+    (field [f_VK_PREVIOUS_CANDIDATE 0])
+    (field [f_VK_CODE_INPUT 0])
+    (field [f_VK_JAPANESE_KATAKANA 0])
+    (field [f_VK_JAPANESE_HIRAGANA 0])
+    (field [f_VK_JAPANESE_ROMAN 0])
+    (field [f_VK_KANA_LOCK 0])
+    (field [f_VK_INPUT_METHOD_ON_OFF 0])
+    (field [f_VK_CUT 0])
+    (field [f_VK_COPY 0])
+    (field [f_VK_PASTE 0])
+    (field [f_VK_UNDO 0])
+    (field [f_VK_AGAIN 0])
+    (field [f_VK_FIND 0])
+    (field [f_VK_PROPS 0])
+    (field [f_VK_STOP 0])
+    (field [f_VK_COMPOSE 0])
+    (field [f_VK_ALT_GRAPH 0])
+    (field [f_VK_BEGIN 0])
+    (field [f_VK_UNDEFINED 0])))
+(define (ABKeyEventWrapper.jclassValue) ABKeyEventWrapper%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ABKeyEventWrapper.jcell_instance 'jnone)
+(define (ABKeyEventWrapper.jstatic_instance)
+  (when (eq? ABKeyEventWrapper.jcell_instance 'jnone) (set! ABKeyEventWrapper.jcell_instance (ABKeyEventWrapper.jnew_0)))
+  ABKeyEventWrapper.jcell_instance)
+(define (ABKeyEventWrapper.jsetstatic_instance value) (set! ABKeyEventWrapper.jcell_instance value))
 
-local ABKeyEventWrapper = {}
-ABKeyEventWrapper.__index = ABKeyEventWrapper
-ABKeyEventWrapper.className = "ABKeyEventWrapper"
+(define (ABKeyEventWrapper.jnew_0)
+  (define this (new ABKeyEventWrapper% [jclass "ABKeyEventWrapper"]))
+    (set-field! f_VK_ENTER this (KeyEvent.jstatic_VK_ENTER))
+    (set-field! f_VK_BACK_SPACE this (KeyEvent.jstatic_VK_BACK_SPACE))
+    (set-field! f_VK_TAB this (KeyEvent.jstatic_VK_TAB))
+    (set-field! f_VK_CANCEL this (KeyEvent.jstatic_VK_CANCEL))
+    (set-field! f_VK_CLEAR this (KeyEvent.jstatic_VK_CLEAR))
+    (set-field! f_VK_SHIFT this (KeyEvent.jstatic_VK_SHIFT))
+    (set-field! f_VK_CONTROL this (KeyEvent.jstatic_VK_CONTROL))
+    (set-field! f_VK_ALT this (KeyEvent.jstatic_VK_ALT))
+    (set-field! f_VK_PAUSE this (KeyEvent.jstatic_VK_PAUSE))
+    (set-field! f_VK_CAPS_LOCK this (KeyEvent.jstatic_VK_CAPS_LOCK))
+    (set-field! f_VK_ESCAPE this (KeyEvent.jstatic_VK_ESCAPE))
+    (set-field! f_VK_SPACE this (KeyEvent.jstatic_VK_SPACE))
+    (set-field! f_VK_PAGE_UP this (KeyEvent.jstatic_VK_PAGE_UP))
+    (set-field! f_VK_PAGE_DOWN this (KeyEvent.jstatic_VK_PAGE_DOWN))
+    (set-field! f_VK_END this (KeyEvent.jstatic_VK_END))
+    (set-field! f_VK_HOME this (KeyEvent.jstatic_VK_HOME))
+    (set-field! f_VK_LEFT this (KeyEvent.jstatic_VK_LEFT))
+    (set-field! f_VK_UP this (KeyEvent.jstatic_VK_UP))
+    (set-field! f_VK_RIGHT this (KeyEvent.jstatic_VK_RIGHT))
+    (set-field! f_VK_DOWN this (KeyEvent.jstatic_VK_DOWN))
+    (set-field! f_VK_COMMA this (KeyEvent.jstatic_VK_COMMA))
+    (set-field! f_VK_MINUS this (KeyEvent.jstatic_VK_MINUS))
+    (set-field! f_VK_PERIOD this (KeyEvent.jstatic_VK_PERIOD))
+    (set-field! f_VK_SLASH this (KeyEvent.jstatic_VK_SLASH))
+    (set-field! f_VK_0 this (KeyEvent.jstatic_VK_0))
+    (set-field! f_VK_1 this (KeyEvent.jstatic_VK_1))
+    (set-field! f_VK_2 this (KeyEvent.jstatic_VK_2))
+    (set-field! f_VK_3 this (KeyEvent.jstatic_VK_3))
+    (set-field! f_VK_4 this (KeyEvent.jstatic_VK_4))
+    (set-field! f_VK_5 this (KeyEvent.jstatic_VK_5))
+    (set-field! f_VK_6 this (KeyEvent.jstatic_VK_6))
+    (set-field! f_VK_7 this (KeyEvent.jstatic_VK_7))
+    (set-field! f_VK_8 this (KeyEvent.jstatic_VK_8))
+    (set-field! f_VK_9 this (KeyEvent.jstatic_VK_9))
+    (set-field! f_VK_SEMICOLON this (KeyEvent.jstatic_VK_SEMICOLON))
+    (set-field! f_VK_EQUALS this (KeyEvent.jstatic_VK_EQUALS))
+    (set-field! f_VK_A this (KeyEvent.jstatic_VK_A))
+    (set-field! f_VK_B this (KeyEvent.jstatic_VK_B))
+    (set-field! f_VK_C this (KeyEvent.jstatic_VK_C))
+    (set-field! f_VK_D this (KeyEvent.jstatic_VK_D))
+    (set-field! f_VK_E this (KeyEvent.jstatic_VK_E))
+    (set-field! f_VK_F this (KeyEvent.jstatic_VK_F))
+    (set-field! f_VK_G this (KeyEvent.jstatic_VK_G))
+    (set-field! f_VK_H this (KeyEvent.jstatic_VK_H))
+    (set-field! f_VK_I this (KeyEvent.jstatic_VK_I))
+    (set-field! f_VK_J this (KeyEvent.jstatic_VK_J))
+    (set-field! f_VK_K this (KeyEvent.jstatic_VK_K))
+    (set-field! f_VK_L this (KeyEvent.jstatic_VK_L))
+    (set-field! f_VK_M this (KeyEvent.jstatic_VK_M))
+    (set-field! f_VK_N this (KeyEvent.jstatic_VK_N))
+    (set-field! f_VK_O this (KeyEvent.jstatic_VK_O))
+    (set-field! f_VK_P this (KeyEvent.jstatic_VK_P))
+    (set-field! f_VK_Q this (KeyEvent.jstatic_VK_Q))
+    (set-field! f_VK_R this (KeyEvent.jstatic_VK_R))
+    (set-field! f_VK_S this (KeyEvent.jstatic_VK_S))
+    (set-field! f_VK_T this (KeyEvent.jstatic_VK_T))
+    (set-field! f_VK_U this (KeyEvent.jstatic_VK_U))
+    (set-field! f_VK_V this (KeyEvent.jstatic_VK_V))
+    (set-field! f_VK_W this (KeyEvent.jstatic_VK_W))
+    (set-field! f_VK_X this (KeyEvent.jstatic_VK_X))
+    (set-field! f_VK_Y this (KeyEvent.jstatic_VK_Y))
+    (set-field! f_VK_Z this (KeyEvent.jstatic_VK_Z))
+    (set-field! f_VK_OPEN_BRACKET this (KeyEvent.jstatic_VK_OPEN_BRACKET))
+    (set-field! f_VK_BACK_SLASH this (KeyEvent.jstatic_VK_BACK_SLASH))
+    (set-field! f_VK_CLOSE_BRACKET this (KeyEvent.jstatic_VK_CLOSE_BRACKET))
+    (set-field! f_VK_NUMPAD0 this (KeyEvent.jstatic_VK_NUMPAD0))
+    (set-field! f_VK_NUMPAD1 this (KeyEvent.jstatic_VK_NUMPAD1))
+    (set-field! f_VK_NUMPAD2 this (KeyEvent.jstatic_VK_NUMPAD2))
+    (set-field! f_VK_NUMPAD3 this (KeyEvent.jstatic_VK_NUMPAD3))
+    (set-field! f_VK_NUMPAD4 this (KeyEvent.jstatic_VK_NUMPAD4))
+    (set-field! f_VK_NUMPAD5 this (KeyEvent.jstatic_VK_NUMPAD5))
+    (set-field! f_VK_NUMPAD6 this (KeyEvent.jstatic_VK_NUMPAD6))
+    (set-field! f_VK_NUMPAD7 this (KeyEvent.jstatic_VK_NUMPAD7))
+    (set-field! f_VK_NUMPAD8 this (KeyEvent.jstatic_VK_NUMPAD8))
+    (set-field! f_VK_NUMPAD9 this (KeyEvent.jstatic_VK_NUMPAD9))
+    (set-field! f_VK_MULTIPLY this (KeyEvent.jstatic_VK_MULTIPLY))
+    (set-field! f_VK_ADD this (KeyEvent.jstatic_VK_ADD))
+    (set-field! f_VK_SEPARATER this (KeyEvent.jstatic_VK_SEPARATER))
+    (set-field! f_VK_SEPARATOR this (KeyEvent.jstatic_VK_SEPARATOR))
+    (set-field! f_VK_SUBTRACT this (KeyEvent.jstatic_VK_SUBTRACT))
+    (set-field! f_VK_DECIMAL this (KeyEvent.jstatic_VK_DECIMAL))
+    (set-field! f_VK_DIVIDE this (KeyEvent.jstatic_VK_DIVIDE))
+    (set-field! f_VK_DELETE this (KeyEvent.jstatic_VK_DELETE))
+    (set-field! f_VK_NUM_LOCK this (KeyEvent.jstatic_VK_NUM_LOCK))
+    (set-field! f_VK_SCROLL_LOCK this (KeyEvent.jstatic_VK_SCROLL_LOCK))
+    (set-field! f_VK_F1 this (KeyEvent.jstatic_VK_F1))
+    (set-field! f_VK_F2 this (KeyEvent.jstatic_VK_F2))
+    (set-field! f_VK_F3 this (KeyEvent.jstatic_VK_F3))
+    (set-field! f_VK_F4 this (KeyEvent.jstatic_VK_F4))
+    (set-field! f_VK_F5 this (KeyEvent.jstatic_VK_F5))
+    (set-field! f_VK_F6 this (KeyEvent.jstatic_VK_F6))
+    (set-field! f_VK_F7 this (KeyEvent.jstatic_VK_F7))
+    (set-field! f_VK_F8 this (KeyEvent.jstatic_VK_F8))
+    (set-field! f_VK_F9 this (KeyEvent.jstatic_VK_F9))
+    (set-field! f_VK_F10 this (KeyEvent.jstatic_VK_F10))
+    (set-field! f_VK_F11 this (KeyEvent.jstatic_VK_F11))
+    (set-field! f_VK_F12 this (KeyEvent.jstatic_VK_F12))
+    (set-field! f_VK_F13 this (KeyEvent.jstatic_VK_F13))
+    (set-field! f_VK_F14 this (KeyEvent.jstatic_VK_F14))
+    (set-field! f_VK_F15 this (KeyEvent.jstatic_VK_F15))
+    (set-field! f_VK_F16 this (KeyEvent.jstatic_VK_F16))
+    (set-field! f_VK_F17 this (KeyEvent.jstatic_VK_F17))
+    (set-field! f_VK_F18 this (KeyEvent.jstatic_VK_F18))
+    (set-field! f_VK_F19 this (KeyEvent.jstatic_VK_F19))
+    (set-field! f_VK_F20 this (KeyEvent.jstatic_VK_F20))
+    (set-field! f_VK_F21 this (KeyEvent.jstatic_VK_F21))
+    (set-field! f_VK_F22 this (KeyEvent.jstatic_VK_F22))
+    (set-field! f_VK_F23 this (KeyEvent.jstatic_VK_F23))
+    (set-field! f_VK_F24 this (KeyEvent.jstatic_VK_F24))
+    (set-field! f_VK_PRINTSCREEN this (KeyEvent.jstatic_VK_PRINTSCREEN))
+    (set-field! f_VK_INSERT this (KeyEvent.jstatic_VK_INSERT))
+    (set-field! f_VK_HELP this (KeyEvent.jstatic_VK_HELP))
+    (set-field! f_VK_META this (KeyEvent.jstatic_VK_META))
+    (set-field! f_VK_BACK_QUOTE this (KeyEvent.jstatic_VK_BACK_QUOTE))
+    (set-field! f_VK_QUOTE this (KeyEvent.jstatic_VK_QUOTE))
+    (set-field! f_VK_KP_UP this (KeyEvent.jstatic_VK_KP_UP))
+    (set-field! f_VK_KP_DOWN this (KeyEvent.jstatic_VK_KP_DOWN))
+    (set-field! f_VK_KP_LEFT this (KeyEvent.jstatic_VK_KP_LEFT))
+    (set-field! f_VK_KP_RIGHT this (KeyEvent.jstatic_VK_KP_RIGHT))
+    (set-field! f_VK_DEAD_GRAVE this (KeyEvent.jstatic_VK_DEAD_GRAVE))
+    (set-field! f_VK_DEAD_ACUTE this (KeyEvent.jstatic_VK_DEAD_ACUTE))
+    (set-field! f_VK_DEAD_CIRCUMFLEX this (KeyEvent.jstatic_VK_DEAD_CIRCUMFLEX))
+    (set-field! f_VK_DEAD_TILDE this (KeyEvent.jstatic_VK_DEAD_TILDE))
+    (set-field! f_VK_DEAD_MACRON this (KeyEvent.jstatic_VK_DEAD_MACRON))
+    (set-field! f_VK_DEAD_BREVE this (KeyEvent.jstatic_VK_DEAD_BREVE))
+    (set-field! f_VK_DEAD_ABOVEDOT this (KeyEvent.jstatic_VK_DEAD_ABOVEDOT))
+    (set-field! f_VK_DEAD_DIAERESIS this (KeyEvent.jstatic_VK_DEAD_DIAERESIS))
+    (set-field! f_VK_DEAD_ABOVERING this (KeyEvent.jstatic_VK_DEAD_ABOVERING))
+    (set-field! f_VK_DEAD_DOUBLEACUTE this (KeyEvent.jstatic_VK_DEAD_DOUBLEACUTE))
+    (set-field! f_VK_DEAD_CARON this (KeyEvent.jstatic_VK_DEAD_CARON))
+    (set-field! f_VK_DEAD_CEDILLA this (KeyEvent.jstatic_VK_DEAD_CEDILLA))
+    (set-field! f_VK_DEAD_OGONEK this (KeyEvent.jstatic_VK_DEAD_OGONEK))
+    (set-field! f_VK_DEAD_IOTA this (KeyEvent.jstatic_VK_DEAD_IOTA))
+    (set-field! f_VK_DEAD_VOICED_SOUND this (KeyEvent.jstatic_VK_DEAD_VOICED_SOUND))
+    (set-field! f_VK_DEAD_SEMIVOICED_SOUND this (KeyEvent.jstatic_VK_DEAD_SEMIVOICED_SOUND))
+    (set-field! f_VK_AMPERSAND this (KeyEvent.jstatic_VK_AMPERSAND))
+    (set-field! f_VK_ASTERISK this (KeyEvent.jstatic_VK_ASTERISK))
+    (set-field! f_VK_QUOTEDBL this (KeyEvent.jstatic_VK_QUOTEDBL))
+    (set-field! f_VK_LESS this (KeyEvent.jstatic_VK_LESS))
+    (set-field! f_VK_GREATER this (KeyEvent.jstatic_VK_GREATER))
+    (set-field! f_VK_BRACELEFT this (KeyEvent.jstatic_VK_BRACELEFT))
+    (set-field! f_VK_BRACERIGHT this (KeyEvent.jstatic_VK_BRACERIGHT))
+    (set-field! f_VK_AT this (KeyEvent.jstatic_VK_AT))
+    (set-field! f_VK_COLON this (KeyEvent.jstatic_VK_COLON))
+    (set-field! f_VK_CIRCUMFLEX this (KeyEvent.jstatic_VK_CIRCUMFLEX))
+    (set-field! f_VK_DOLLAR this (KeyEvent.jstatic_VK_DOLLAR))
+    (set-field! f_VK_EURO_SIGN this (KeyEvent.jstatic_VK_EURO_SIGN))
+    (set-field! f_VK_EXCLAMATION_MARK this (KeyEvent.jstatic_VK_EXCLAMATION_MARK))
+    (set-field! f_VK_INVERTED_EXCLAMATION_MARK this (KeyEvent.jstatic_VK_INVERTED_EXCLAMATION_MARK))
+    (set-field! f_VK_LEFT_PARENTHESIS this (KeyEvent.jstatic_VK_LEFT_PARENTHESIS))
+    (set-field! f_VK_NUMBER_SIGN this (KeyEvent.jstatic_VK_NUMBER_SIGN))
+    (set-field! f_VK_PLUS this (KeyEvent.jstatic_VK_PLUS))
+    (set-field! f_VK_RIGHT_PARENTHESIS this (KeyEvent.jstatic_VK_RIGHT_PARENTHESIS))
+    (set-field! f_VK_UNDERSCORE this (KeyEvent.jstatic_VK_UNDERSCORE))
+    (set-field! f_VK_WINDOWS this (KeyEvent.jstatic_VK_WINDOWS))
+    (set-field! f_VK_CONTEXT_MENU this (KeyEvent.jstatic_VK_CONTEXT_MENU))
+    (set-field! f_VK_FINAL this (KeyEvent.jstatic_VK_FINAL))
+    (set-field! f_VK_CONVERT this (KeyEvent.jstatic_VK_CONVERT))
+    (set-field! f_VK_NONCONVERT this (KeyEvent.jstatic_VK_NONCONVERT))
+    (set-field! f_VK_ACCEPT this (KeyEvent.jstatic_VK_ACCEPT))
+    (set-field! f_VK_MODECHANGE this (KeyEvent.jstatic_VK_MODECHANGE))
+    (set-field! f_VK_KANA this (KeyEvent.jstatic_VK_KANA))
+    (set-field! f_VK_KANJI this (KeyEvent.jstatic_VK_KANJI))
+    (set-field! f_VK_ALPHANUMERIC this (KeyEvent.jstatic_VK_ALPHANUMERIC))
+    (set-field! f_VK_KATAKANA this (KeyEvent.jstatic_VK_KATAKANA))
+    (set-field! f_VK_HIRAGANA this (KeyEvent.jstatic_VK_HIRAGANA))
+    (set-field! f_VK_FULL_WIDTH this (KeyEvent.jstatic_VK_FULL_WIDTH))
+    (set-field! f_VK_HALF_WIDTH this (KeyEvent.jstatic_VK_HALF_WIDTH))
+    (set-field! f_VK_ROMAN_CHARACTERS this (KeyEvent.jstatic_VK_ROMAN_CHARACTERS))
+    (set-field! f_VK_ALL_CANDIDATES this (KeyEvent.jstatic_VK_ALL_CANDIDATES))
+    (set-field! f_VK_PREVIOUS_CANDIDATE this (KeyEvent.jstatic_VK_PREVIOUS_CANDIDATE))
+    (set-field! f_VK_CODE_INPUT this (KeyEvent.jstatic_VK_CODE_INPUT))
+    (set-field! f_VK_JAPANESE_KATAKANA this (KeyEvent.jstatic_VK_JAPANESE_KATAKANA))
+    (set-field! f_VK_JAPANESE_HIRAGANA this (KeyEvent.jstatic_VK_JAPANESE_HIRAGANA))
+    (set-field! f_VK_JAPANESE_ROMAN this (KeyEvent.jstatic_VK_JAPANESE_ROMAN))
+    (set-field! f_VK_KANA_LOCK this (KeyEvent.jstatic_VK_KANA_LOCK))
+    (set-field! f_VK_INPUT_METHOD_ON_OFF this (KeyEvent.jstatic_VK_INPUT_METHOD_ON_OFF))
+    (set-field! f_VK_CUT this (KeyEvent.jstatic_VK_CUT))
+    (set-field! f_VK_COPY this (KeyEvent.jstatic_VK_COPY))
+    (set-field! f_VK_PASTE this (KeyEvent.jstatic_VK_PASTE))
+    (set-field! f_VK_UNDO this (KeyEvent.jstatic_VK_UNDO))
+    (set-field! f_VK_AGAIN this (KeyEvent.jstatic_VK_AGAIN))
+    (set-field! f_VK_FIND this (KeyEvent.jstatic_VK_FIND))
+    (set-field! f_VK_PROPS this (KeyEvent.jstatic_VK_PROPS))
+    (set-field! f_VK_STOP this (KeyEvent.jstatic_VK_STOP))
+    (set-field! f_VK_COMPOSE this (KeyEvent.jstatic_VK_COMPOSE))
+    (set-field! f_VK_ALT_GRAPH this (KeyEvent.jstatic_VK_ALT_GRAPH))
+    (set-field! f_VK_BEGIN this (KeyEvent.jstatic_VK_BEGIN))
+    (set-field! f_VK_UNDEFINED this (KeyEvent.jstatic_VK_UNDEFINED))
+  this)
 
-function ABKeyEventWrapper:_init_fields()
-    self.VK_ENTER = KeyEvent.VK_ENTER
-    self.VK_BACK_SPACE = KeyEvent.VK_BACK_SPACE
-    self.VK_TAB = KeyEvent.VK_TAB
-    self.VK_CANCEL = KeyEvent.VK_CANCEL
-    self.VK_CLEAR = KeyEvent.VK_CLEAR
-    self.VK_SHIFT = KeyEvent.VK_SHIFT
-    self.VK_CONTROL = KeyEvent.VK_CONTROL
-    self.VK_ALT = KeyEvent.VK_ALT
-    self.VK_PAUSE = KeyEvent.VK_PAUSE
-    self.VK_CAPS_LOCK = KeyEvent.VK_CAPS_LOCK
-    self.VK_ESCAPE = KeyEvent.VK_ESCAPE
-    self.VK_SPACE = KeyEvent.VK_SPACE
-    self.VK_PAGE_UP = KeyEvent.VK_PAGE_UP
-    self.VK_PAGE_DOWN = KeyEvent.VK_PAGE_DOWN
-    self.VK_END = KeyEvent.VK_END
-    self.VK_HOME = KeyEvent.VK_HOME
-    self.VK_LEFT = KeyEvent.VK_LEFT
-    self.VK_UP = KeyEvent.VK_UP
-    self.VK_RIGHT = KeyEvent.VK_RIGHT
-    self.VK_DOWN = KeyEvent.VK_DOWN
-    self.VK_COMMA = KeyEvent.VK_COMMA
-    self.VK_MINUS = KeyEvent.VK_MINUS
-    self.VK_PERIOD = KeyEvent.VK_PERIOD
-    self.VK_SLASH = KeyEvent.VK_SLASH
-    self.VK_0 = KeyEvent.VK_0
-    self.VK_1 = KeyEvent.VK_1
-    self.VK_2 = KeyEvent.VK_2
-    self.VK_3 = KeyEvent.VK_3
-    self.VK_4 = KeyEvent.VK_4
-    self.VK_5 = KeyEvent.VK_5
-    self.VK_6 = KeyEvent.VK_6
-    self.VK_7 = KeyEvent.VK_7
-    self.VK_8 = KeyEvent.VK_8
-    self.VK_9 = KeyEvent.VK_9
-    self.VK_SEMICOLON = KeyEvent.VK_SEMICOLON
-    self.VK_EQUALS = KeyEvent.VK_EQUALS
-    self.VK_A = KeyEvent.VK_A
-    self.VK_B = KeyEvent.VK_B
-    self.VK_C = KeyEvent.VK_C
-    self.VK_D = KeyEvent.VK_D
-    self.VK_E = KeyEvent.VK_E
-    self.VK_F = KeyEvent.VK_F
-    self.VK_G = KeyEvent.VK_G
-    self.VK_H = KeyEvent.VK_H
-    self.VK_I = KeyEvent.VK_I
-    self.VK_J = KeyEvent.VK_J
-    self.VK_K = KeyEvent.VK_K
-    self.VK_L = KeyEvent.VK_L
-    self.VK_M = KeyEvent.VK_M
-    self.VK_N = KeyEvent.VK_N
-    self.VK_O = KeyEvent.VK_O
-    self.VK_P = KeyEvent.VK_P
-    self.VK_Q = KeyEvent.VK_Q
-    self.VK_R = KeyEvent.VK_R
-    self.VK_S = KeyEvent.VK_S
-    self.VK_T = KeyEvent.VK_T
-    self.VK_U = KeyEvent.VK_U
-    self.VK_V = KeyEvent.VK_V
-    self.VK_W = KeyEvent.VK_W
-    self.VK_X = KeyEvent.VK_X
-    self.VK_Y = KeyEvent.VK_Y
-    self.VK_Z = KeyEvent.VK_Z
-    self.VK_OPEN_BRACKET = KeyEvent.VK_OPEN_BRACKET
-    self.VK_BACK_SLASH = KeyEvent.VK_BACK_SLASH
-    self.VK_CLOSE_BRACKET = KeyEvent.VK_CLOSE_BRACKET
-    self.VK_NUMPAD0 = KeyEvent.VK_NUMPAD0
-    self.VK_NUMPAD1 = KeyEvent.VK_NUMPAD1
-    self.VK_NUMPAD2 = KeyEvent.VK_NUMPAD2
-    self.VK_NUMPAD3 = KeyEvent.VK_NUMPAD3
-    self.VK_NUMPAD4 = KeyEvent.VK_NUMPAD4
-    self.VK_NUMPAD5 = KeyEvent.VK_NUMPAD5
-    self.VK_NUMPAD6 = KeyEvent.VK_NUMPAD6
-    self.VK_NUMPAD7 = KeyEvent.VK_NUMPAD7
-    self.VK_NUMPAD8 = KeyEvent.VK_NUMPAD8
-    self.VK_NUMPAD9 = KeyEvent.VK_NUMPAD9
-    self.VK_MULTIPLY = KeyEvent.VK_MULTIPLY
-    self.VK_ADD = KeyEvent.VK_ADD
-    self.VK_SEPARATER = KeyEvent.VK_SEPARATER
-    self.VK_SEPARATOR = KeyEvent.VK_SEPARATOR
-    self.VK_SUBTRACT = KeyEvent.VK_SUBTRACT
-    self.VK_DECIMAL = KeyEvent.VK_DECIMAL
-    self.VK_DIVIDE = KeyEvent.VK_DIVIDE
-    self.VK_DELETE = KeyEvent.VK_DELETE
-    self.VK_NUM_LOCK = KeyEvent.VK_NUM_LOCK
-    self.VK_SCROLL_LOCK = KeyEvent.VK_SCROLL_LOCK
-    self.VK_F1 = KeyEvent.VK_F1
-    self.VK_F2 = KeyEvent.VK_F2
-    self.VK_F3 = KeyEvent.VK_F3
-    self.VK_F4 = KeyEvent.VK_F4
-    self.VK_F5 = KeyEvent.VK_F5
-    self.VK_F6 = KeyEvent.VK_F6
-    self.VK_F7 = KeyEvent.VK_F7
-    self.VK_F8 = KeyEvent.VK_F8
-    self.VK_F9 = KeyEvent.VK_F9
-    self.VK_F10 = KeyEvent.VK_F10
-    self.VK_F11 = KeyEvent.VK_F11
-    self.VK_F12 = KeyEvent.VK_F12
-    self.VK_F13 = KeyEvent.VK_F13
-    self.VK_F14 = KeyEvent.VK_F14
-    self.VK_F15 = KeyEvent.VK_F15
-    self.VK_F16 = KeyEvent.VK_F16
-    self.VK_F17 = KeyEvent.VK_F17
-    self.VK_F18 = KeyEvent.VK_F18
-    self.VK_F19 = KeyEvent.VK_F19
-    self.VK_F20 = KeyEvent.VK_F20
-    self.VK_F21 = KeyEvent.VK_F21
-    self.VK_F22 = KeyEvent.VK_F22
-    self.VK_F23 = KeyEvent.VK_F23
-    self.VK_F24 = KeyEvent.VK_F24
-    self.VK_PRINTSCREEN = KeyEvent.VK_PRINTSCREEN
-    self.VK_INSERT = KeyEvent.VK_INSERT
-    self.VK_HELP = KeyEvent.VK_HELP
-    self.VK_META = KeyEvent.VK_META
-    self.VK_BACK_QUOTE = KeyEvent.VK_BACK_QUOTE
-    self.VK_QUOTE = KeyEvent.VK_QUOTE
-    self.VK_KP_UP = KeyEvent.VK_KP_UP
-    self.VK_KP_DOWN = KeyEvent.VK_KP_DOWN
-    self.VK_KP_LEFT = KeyEvent.VK_KP_LEFT
-    self.VK_KP_RIGHT = KeyEvent.VK_KP_RIGHT
-    self.VK_DEAD_GRAVE = KeyEvent.VK_DEAD_GRAVE
-    self.VK_DEAD_ACUTE = KeyEvent.VK_DEAD_ACUTE
-    self.VK_DEAD_CIRCUMFLEX = KeyEvent.VK_DEAD_CIRCUMFLEX
-    self.VK_DEAD_TILDE = KeyEvent.VK_DEAD_TILDE
-    self.VK_DEAD_MACRON = KeyEvent.VK_DEAD_MACRON
-    self.VK_DEAD_BREVE = KeyEvent.VK_DEAD_BREVE
-    self.VK_DEAD_ABOVEDOT = KeyEvent.VK_DEAD_ABOVEDOT
-    self.VK_DEAD_DIAERESIS = KeyEvent.VK_DEAD_DIAERESIS
-    self.VK_DEAD_ABOVERING = KeyEvent.VK_DEAD_ABOVERING
-    self.VK_DEAD_DOUBLEACUTE = KeyEvent.VK_DEAD_DOUBLEACUTE
-    self.VK_DEAD_CARON = KeyEvent.VK_DEAD_CARON
-    self.VK_DEAD_CEDILLA = KeyEvent.VK_DEAD_CEDILLA
-    self.VK_DEAD_OGONEK = KeyEvent.VK_DEAD_OGONEK
-    self.VK_DEAD_IOTA = KeyEvent.VK_DEAD_IOTA
-    self.VK_DEAD_VOICED_SOUND = KeyEvent.VK_DEAD_VOICED_SOUND
-    self.VK_DEAD_SEMIVOICED_SOUND = KeyEvent.VK_DEAD_SEMIVOICED_SOUND
-    self.VK_AMPERSAND = KeyEvent.VK_AMPERSAND
-    self.VK_ASTERISK = KeyEvent.VK_ASTERISK
-    self.VK_QUOTEDBL = KeyEvent.VK_QUOTEDBL
-    self.VK_LESS = KeyEvent.VK_LESS
-    self.VK_GREATER = KeyEvent.VK_GREATER
-    self.VK_BRACELEFT = KeyEvent.VK_BRACELEFT
-    self.VK_BRACERIGHT = KeyEvent.VK_BRACERIGHT
-    self.VK_AT = KeyEvent.VK_AT
-    self.VK_COLON = KeyEvent.VK_COLON
-    self.VK_CIRCUMFLEX = KeyEvent.VK_CIRCUMFLEX
-    self.VK_DOLLAR = KeyEvent.VK_DOLLAR
-    self.VK_EURO_SIGN = KeyEvent.VK_EURO_SIGN
-    self.VK_EXCLAMATION_MARK = KeyEvent.VK_EXCLAMATION_MARK
-    self.VK_INVERTED_EXCLAMATION_MARK = KeyEvent.VK_INVERTED_EXCLAMATION_MARK
-    self.VK_LEFT_PARENTHESIS = KeyEvent.VK_LEFT_PARENTHESIS
-    self.VK_NUMBER_SIGN = KeyEvent.VK_NUMBER_SIGN
-    self.VK_PLUS = KeyEvent.VK_PLUS
-    self.VK_RIGHT_PARENTHESIS = KeyEvent.VK_RIGHT_PARENTHESIS
-    self.VK_UNDERSCORE = KeyEvent.VK_UNDERSCORE
-    self.VK_WINDOWS = KeyEvent.VK_WINDOWS
-    self.VK_CONTEXT_MENU = KeyEvent.VK_CONTEXT_MENU
-    self.VK_FINAL = KeyEvent.VK_FINAL
-    self.VK_CONVERT = KeyEvent.VK_CONVERT
-    self.VK_NONCONVERT = KeyEvent.VK_NONCONVERT
-    self.VK_ACCEPT = KeyEvent.VK_ACCEPT
-    self.VK_MODECHANGE = KeyEvent.VK_MODECHANGE
-    self.VK_KANA = KeyEvent.VK_KANA
-    self.VK_KANJI = KeyEvent.VK_KANJI
-    self.VK_ALPHANUMERIC = KeyEvent.VK_ALPHANUMERIC
-    self.VK_KATAKANA = KeyEvent.VK_KATAKANA
-    self.VK_HIRAGANA = KeyEvent.VK_HIRAGANA
-    self.VK_FULL_WIDTH = KeyEvent.VK_FULL_WIDTH
-    self.VK_HALF_WIDTH = KeyEvent.VK_HALF_WIDTH
-    self.VK_ROMAN_CHARACTERS = KeyEvent.VK_ROMAN_CHARACTERS
-    self.VK_ALL_CANDIDATES = KeyEvent.VK_ALL_CANDIDATES
-    self.VK_PREVIOUS_CANDIDATE = KeyEvent.VK_PREVIOUS_CANDIDATE
-    self.VK_CODE_INPUT = KeyEvent.VK_CODE_INPUT
-    self.VK_JAPANESE_KATAKANA = KeyEvent.VK_JAPANESE_KATAKANA
-    self.VK_JAPANESE_HIRAGANA = KeyEvent.VK_JAPANESE_HIRAGANA
-    self.VK_JAPANESE_ROMAN = KeyEvent.VK_JAPANESE_ROMAN
-    self.VK_KANA_LOCK = KeyEvent.VK_KANA_LOCK
-    self.VK_INPUT_METHOD_ON_OFF = KeyEvent.VK_INPUT_METHOD_ON_OFF
-    self.VK_CUT = KeyEvent.VK_CUT
-    self.VK_COPY = KeyEvent.VK_COPY
-    self.VK_PASTE = KeyEvent.VK_PASTE
-    self.VK_UNDO = KeyEvent.VK_UNDO
-    self.VK_AGAIN = KeyEvent.VK_AGAIN
-    self.VK_FIND = KeyEvent.VK_FIND
-    self.VK_PROPS = KeyEvent.VK_PROPS
-    self.VK_STOP = KeyEvent.VK_STOP
-    self.VK_COMPOSE = KeyEvent.VK_COMPOSE
-    self.VK_ALT_GRAPH = KeyEvent.VK_ALT_GRAPH
-    self.VK_BEGIN = KeyEvent.VK_BEGIN
-    self.VK_UNDEFINED = KeyEvent.VK_UNDEFINED
-end
-
-function ABKeyEventWrapper.new()
-    local self = setmetatable({}, ABKeyEventWrapper)
-    self:_init_fields()
-    return self
-end
+(define (ABKeyEventWrapper.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ABKeyEventWrapper.jstatic_instance)))))
 
 
-function ABKeyEventWrapper.getInstance()
-        return ABKeyEventWrapper.instance
-end
-
-ABKeyEventWrapper.instance = ABKeyEventWrapper.new()
-
-return ABKeyEventWrapper
 

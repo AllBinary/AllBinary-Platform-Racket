@@ -1,42 +1,38 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.persistance
 
--- local RecordStore = require("javax.microedition.rms.RecordStore")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../javax/microedition/rms/RecordStore.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullRecordStore%
+  (class RecordStore%
+    (super-new)))
+(define (NullRecordStore.jclassValue) NullRecordStore%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullRecordStore.jcell_NULL_RECORD_STORE 'jnone)
+(define (NullRecordStore.jstatic_NULL_RECORD_STORE)
+  (when (eq? NullRecordStore.jcell_NULL_RECORD_STORE 'jnone) (set! NullRecordStore.jcell_NULL_RECORD_STORE (NullRecordStore.jnew_0)))
+  NullRecordStore.jcell_NULL_RECORD_STORE)
+(define (NullRecordStore.jsetstatic_NULL_RECORD_STORE value) (set! NullRecordStore.jcell_NULL_RECORD_STORE value))
 
-local NullRecordStore = {}
-NullRecordStore.__index = NullRecordStore
-NullRecordStore.className = "NullRecordStore"
-setmetatable(NullRecordStore, {__index = RecordStore})
+(define (NullRecordStore.jnew_0)
+  (define this (new NullRecordStore% [jclass "NullRecordStore"]))
+  this)
 
-function NullRecordStore.new()
-    local self = setmetatable(RecordStore.new(), NullRecordStore)
-    return self
-end
 
-NullRecordStore.NULL_RECORD_STORE = NullRecordStore.new()
-
-return NullRecordStore
 

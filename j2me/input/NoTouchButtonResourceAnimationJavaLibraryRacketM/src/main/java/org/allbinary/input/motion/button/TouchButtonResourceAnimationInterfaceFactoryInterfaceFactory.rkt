@@ -1,87 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
-local BaseResourceAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local ResourceLoadingLevelFactory = require("org.allbinary.game.resource.ResourceLoadingLevelFactory")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local ImageCache = require("org.allbinary.image.ImageCache")
-local ImageCacheFactory = require("org.allbinary.image.ImageCacheFactory")
-local StdUtil = require("org.allbinary.logic.StdUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/animation/resource/BaseResourceAnimationInterfaceFactoryInterfaceFactory.rkt")
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/resource/ResourceLoadingLevelFactory.rkt" (ResourceLoadingLevelFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/opengles/OpenGLFeatureFactory.rkt" (OpenGLFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/image/ImageCacheFactory.rkt" (ImageCacheFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/StdUtil.rkt" (StdUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory%
+  (class BaseResourceAnimationInterfaceFactoryInterfaceFactory%
+    (super-new)
+    (define/override (jm_init_1 _level)
+    (let ()
+      (let/ec jreturn
+        (send this jm_initImageCache_2 (ImageCacheFactory.jm_getInstance_0) _level))))
+    (define/override (jm_initImageCache_2 _imageCache _level)
+    (let ()
+      (let/ec jreturn
+        (when (send this jm_isInitialized_0)
+            (begin
+            (jreturn (void))))
+        (super jm_init_1 _level))))
+    (define/override (jm_isLoadingLevel_1 _level)
+    (let ([_resourceLoadingLevelFactory JR.null])
+      (let/ec jreturn
+        (set! _resourceLoadingLevelFactory (ResourceLoadingLevelFactory.jm_getInstance_0))
+        (if (= _level (JR.className (get-field f_LOAD_TOUCH _resourceLoadingLevelFactory)))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn (super jm_isLoadingLevel_1 _level)))))))
+    (define/override (jm_isFeature_0)
+    (let ()
+      (let/ec jreturn
+        (if (not (send (Features.jm_getInstance_0) jm_isDefault_1 (get-field f_OPENGL (OpenGLFeatureFactory.jm_getInstance_0))))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))))
+(define (TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.jclassValue) TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.jnew_1 _name)
+  (define this (new TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory% [jclass "TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-local TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory = {}
-TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.__index = TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory
-TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.className = "TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory"
-setmetatable(TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory, {__index = BaseResourceAnimationInterfaceFactoryInterfaceFactory})
-
-
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.createFactory()
-        return TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.new("TouchButton Animations")
-end
-
-
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.new(name)
-    local self = setmetatable(BaseResourceAnimationInterfaceFactoryInterfaceFactory.new(name, StdUtil.getInstance():createHashtable(), StdUtil.getInstance():createHashtable(), StdUtil.getInstance():createHashtable()), TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory:init(level)
-        self:initImageCache(ImageCacheFactory.getInstance(), level)
-end
-
-
--- throws Exception
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory:initImageCache(imageCache, level)
-        if self:isInitialized() then
-            return
-        end
-        BaseResourceAnimationInterfaceFactoryInterfaceFactory.init(self, level)
-end
-
-
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory:isLoadingLevel(level)
-        local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-        if level == resourceLoadingLevelFactory.LOAD_TOUCH:getLevel() then
-            return true
-        else
-            return BaseResourceAnimationInterfaceFactoryInterfaceFactory.isLoadingLevel(self, level)
-        end
-end
+(define (TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.jm_createFactory_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.jnew_1 "TouchButton Animations")))))
 
 
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory:isFeature()
-        if not Features.getInstance():isDefault(OpenGLFeatureFactory.getInstance().OPENGL) then
-            return true
-        else
-            return false
-        end
-end
-
-return TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory
 

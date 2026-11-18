@@ -39,11 +39,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (ABHashtable.jnew_0)))))))
+(define (StdUtil.jclassValue) StdUtil%)
 
 (define StdUtil.jcell_instance 'jnone)
 (define (StdUtil.jstatic_instance)
   (when (eq? StdUtil.jcell_instance 'jnone) (set! StdUtil.jcell_instance (StdUtil.jnew_0)))
   StdUtil.jcell_instance)
+(define (StdUtil.jsetstatic_instance value) (set! StdUtil.jcell_instance value))
 
 (define (StdUtil.jnew_0)
   (define this (new StdUtil% [jclass "StdUtil"]))

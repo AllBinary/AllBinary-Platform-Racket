@@ -1,91 +1,93 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input.event
 
-local LocalPlayerInputIdFactory = require("org.allbinary.game.input.LocalPlayerInputIdFactory")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local DownGameKeyEventHandlerBase = require("org.allbinary.game.input.event.DownGameKeyEventHandlerBase")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./DownGameKeyEventHandlerBase.rkt")
+(lazy-require ["../../../../../org/allbinary/game/input/LocalPlayerInputIdFactory.rkt" (LocalPlayerInputIdFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DownGameKeyEventHandler%
+  (class DownGameKeyEventHandlerBase%
+    (super-new)
+    (field [f_playerInputIdFactory JR.null])
+    (define/public (jm_getInstanceForDevice_1 _deviceId)
+    (let ([_playerInputId JR.null])
+      (let/ec jreturn
+        (set! _playerInputId (send (get-field f_playerInputIdFactory this) jm_getPlayerForDevice_1 _deviceId))
+        (jreturn (vector-ref (DownGameKeyEventHandler.jstatic_instanceArray) _playerInputId)))))
+    (define/public (jm_getInstanceForPlayer_1 _playerInputId)
+    (let ()
+      (let/ec jreturn
+        (jreturn (vector-ref (DownGameKeyEventHandler.jstatic_instanceArray) _playerInputId)))))
+    (define/override (jm_removeAllListeners_0)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (super jm_removeAllListeners_0)
+        (begin
+            (set! _index (JR.i32 (- (vector-length (DownGameKeyEventHandler.jstatic_instanceArray)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (JR.className (vector-ref (DownGameKeyEventHandler.jstatic_instanceArray) _index)))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))
+    (define/override (jm_removeListenerSingleThreaded_1 _eventListenerInterface)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (super jm_removeListenerSingleThreaded_1 _eventListenerInterface)
+        (begin
+            (set! _index (JR.i32 (- (vector-length (DownGameKeyEventHandler.jstatic_instanceArray)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (JR.className (vector-ref (DownGameKeyEventHandler.jstatic_instanceArray) _index)))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))
+    (define/override (jm_removeListener_1 _eventListenerInterface)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (super jm_removeListener_1 _eventListenerInterface)
+        (begin
+            (set! _index (JR.i32 (- (vector-length (DownGameKeyEventHandler.jstatic_instanceArray)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (JR.className (vector-ref (DownGameKeyEventHandler.jstatic_instanceArray) _index)))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))))
+(define (DownGameKeyEventHandler.jclassValue) DownGameKeyEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DownGameKeyEventHandler.jcell_instance 'jnone)
+(define (DownGameKeyEventHandler.jstatic_instance)
+  (when (eq? DownGameKeyEventHandler.jcell_instance 'jnone) (set! DownGameKeyEventHandler.jcell_instance (DownGameKeyEventHandler.jnew_0)))
+  DownGameKeyEventHandler.jcell_instance)
+(define (DownGameKeyEventHandler.jsetstatic_instance value) (set! DownGameKeyEventHandler.jcell_instance value))
 
-local DownGameKeyEventHandler = {}
-DownGameKeyEventHandler.__index = DownGameKeyEventHandler
-DownGameKeyEventHandler.className = "DownGameKeyEventHandler"
-setmetatable(DownGameKeyEventHandler, {__index = DownGameKeyEventHandlerBase})
+(define DownGameKeyEventHandler.jcell_instanceArray 'jnone)
+(define (DownGameKeyEventHandler.jstatic_instanceArray)
+  (when (eq? DownGameKeyEventHandler.jcell_instanceArray 'jnone) (set! DownGameKeyEventHandler.jcell_instanceArray (vector (DownGameKeyEventHandlerBase.jnew_0) (DownGameKeyEventHandlerBase.jnew_0) (DownGameKeyEventHandlerBase.jnew_0) (DownGameKeyEventHandlerBase.jnew_0) (DownGameKeyEventHandlerBase.jnew_0) (DownGameKeyEventHandlerBase.jnew_0))))
+  DownGameKeyEventHandler.jcell_instanceArray)
+(define (DownGameKeyEventHandler.jsetstatic_instanceArray value) (set! DownGameKeyEventHandler.jcell_instanceArray value))
 
-function DownGameKeyEventHandler:_init_fields()
-    self.playerInputIdFactory = LocalPlayerInputIdFactory.getInstance()
-end
+(define (DownGameKeyEventHandler.jnew_0)
+  (define this (new DownGameKeyEventHandler% [jclass "DownGameKeyEventHandler"]))
+    (set-field! f_playerInputIdFactory this (LocalPlayerInputIdFactory.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function DownGameKeyEventHandler.getInstance()
-        return DownGameKeyEventHandler.instance
-end
-
-
-function DownGameKeyEventHandler:getInstanceForDevice(deviceId)
-        local playerInputId = self.playerInputIdFactory:getPlayerForDevice(deviceId)
-        return DownGameKeyEventHandler.instanceArray[playerInputId + 1]
-end
-
-
-function DownGameKeyEventHandler:getInstanceForPlayer(playerInputId)
-        return DownGameKeyEventHandler.instanceArray[playerInputId + 1]
-end
+(define (DownGameKeyEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DownGameKeyEventHandler.jstatic_instance)))))
 
 
-function DownGameKeyEventHandler.new()
-    local self = setmetatable(DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandler)
-    self:_init_fields()
-    return self
-end
-
-
-function DownGameKeyEventHandler:removeAllListeners()
-        DownGameKeyEventHandlerBase.removeAllListeners(self)
-        for index = (DownGameKeyEventHandler.instanceArray.n or #DownGameKeyEventHandler.instanceArray) - 1, 0, -1 do
-            DownGameKeyEventHandler.instanceArray[index + 1]:removeAllListeners()
-        end
-end
-
-
-function DownGameKeyEventHandler:removeListenerSingleThreaded(eventListenerInterface)
-        DownGameKeyEventHandlerBase.removeListenerSingleThreaded(self, eventListenerInterface)
-        for index = (DownGameKeyEventHandler.instanceArray.n or #DownGameKeyEventHandler.instanceArray) - 1, 0, -1 do
-            DownGameKeyEventHandler.instanceArray[index + 1]:removeListenerSingleThreaded(eventListenerInterface)
-        end
-end
-
-
-function DownGameKeyEventHandler:removeListener(eventListenerInterface)
-        DownGameKeyEventHandlerBase.removeListener(self, eventListenerInterface)
-        for index = (DownGameKeyEventHandler.instanceArray.n or #DownGameKeyEventHandler.instanceArray) - 1, 0, -1 do
-            DownGameKeyEventHandler.instanceArray[index + 1]:removeListener(eventListenerInterface)
-        end
-end
-
-DownGameKeyEventHandler.instance = DownGameKeyEventHandler.new()
-DownGameKeyEventHandler.instanceArray = {DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new()}
-
-return DownGameKeyEventHandler
 

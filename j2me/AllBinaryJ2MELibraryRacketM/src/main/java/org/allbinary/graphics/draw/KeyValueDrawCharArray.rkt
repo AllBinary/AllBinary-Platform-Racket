@@ -1,76 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.draw
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.draw
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local CharArrayFactory = require("org.allbinary.logic.java.character.CharArrayFactory")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/font/UpdateMyFontInterface.rkt")
+(lazy-require ["../../../../org/allbinary/logic/java/character/CharArrayFactory.rkt" (CharArrayFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/font/MyFontProcessor.rkt" (MyFontProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/font/UpdateMyFontProcessor.rkt" (UpdateMyFontProcessor.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define KeyValueDrawCharArray%
+  (class JObject%
+    (super-new)
+    (field [f_myFontProcessor JR.null])
+    (field [f_LABEL JR.null])
+    (field [f_labelX 0])
+    (field [f_valueX 0])
+    (field [f_value JR.null])
+    (field [f_len 0])
+    (define/public (jm_updateMeasurement_1 _graphics)
+    (let ([_labelWidth JR.null])
+      (let/ec jreturn
+        (set! _labelWidth (JR.i32 (- (JR.className (send _graphics jm_getFont_0)) (string-length (get-field f_LABEL this)))))
+        (set-field! f_valueX this (JR.i32 (+ _labelWidth (get-field f_labelX this))))
+        (set-field! f_myFontProcessor this (MyFontProcessor.jm_getInstance_0)))))
+    (define/public (jm_paint_2 _graphics _y)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_myFontProcessor this) jm_process_1 _graphics)
+        (send _graphics jm_drawString_4 (get-field f_LABEL this) (get-field f_labelX this) _y 0)
+        (send _graphics jm_drawChars_6 (get-field f_value this) 0 (get-field f_len this) (get-field f_valueX this) _y 0))))
+    (define/public (jm_update_2 _value _len)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_value this _value)
+        (set-field! f_len this _len))))))
+(define (KeyValueDrawCharArray.jclassValue) KeyValueDrawCharArray%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local KeyValueDrawCharArray = {}
-KeyValueDrawCharArray.__index = KeyValueDrawCharArray
-KeyValueDrawCharArray.className = "KeyValueDrawCharArray"
-
-function KeyValueDrawCharArray:_init_fields()
-    self.myFontProcessor = UpdateMyFontProcessor.new(self)
-    self.LABEL = nil
-    self.labelX = nil
-    self.valueX = 0
-    self.value = CharArrayFactory.getInstance():getZeroCharArray()
-    self.len = 0
-end
-
-
-function KeyValueDrawCharArray.new(label, x)
-    local self = setmetatable({}, KeyValueDrawCharArray)
-    self:_init_fields()
-        self.LABEL = label
-        self.labelX = x
-    return self
-end
-
-
-function KeyValueDrawCharArray:updateMeasurement(graphics)
-        local labelWidth = graphics:getFont():stringWidth(self.LABEL) - #self.LABEL
-        self.valueX = labelWidth + self.labelX
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function KeyValueDrawCharArray:paint(graphics, y)
-        self.myFontProcessor:process(graphics)
-        graphics:drawString(self.LABEL, self.labelX, y, 0)
-        graphics:drawChars(self.value, 0, self.len, self.valueX, y, 0)
-end
+(define (KeyValueDrawCharArray.jnew_2 _label _x)
+  (define this (new KeyValueDrawCharArray% [jclass "KeyValueDrawCharArray"]))
+    (set-field! f_myFontProcessor this (UpdateMyFontProcessor.jnew_1 this))
+    
+    
+    
+    (set-field! f_value this (send (CharArrayFactory.jm_getInstance_0) jm_getZeroCharArray_0))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_LABEL this _label)
+        (set-field! f_labelX this _x)))
+  this)
 
 
-function KeyValueDrawCharArray:update(value, len)
-        self.value = value
-        self.len = len
-end
-
-return KeyValueDrawCharArray
 

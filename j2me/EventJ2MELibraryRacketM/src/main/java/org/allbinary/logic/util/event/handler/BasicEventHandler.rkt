@@ -116,6 +116,7 @@
                 (send _stringBuffer jm_append_1 (send _eventListenerInterface jm_toString_0)))
             (set! _index (JR.i32 (+ _index 1)))) (jloop))))
         (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (BasicEventHandler.jclassValue) BasicEventHandler%)
 
 (define (BasicEventHandler.jnew_0)
   (define this (new BasicEventHandler% [jclass "BasicEventHandler"]))

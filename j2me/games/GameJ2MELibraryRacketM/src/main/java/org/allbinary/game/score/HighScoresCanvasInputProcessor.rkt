@@ -1,88 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local PlayerGameInput = require("org.allbinary.game.input.PlayerGameInput")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local HighScoresCanvas = require("org.allbinary.game.score.displayable.HighScoresCanvas")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/game/input/PlayerGameInput.rkt")
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HighScoresCanvasInputProcessor%
+  (class PlayerGameInput%
+    (super-new)
+    (field [f_highScoresCanvas JR.null])
+    (define/public (jm_open_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_close_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_onPressGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn
+        (super jm_onPressGameKeyEvent_1 _gameKeyEvent)
+        (send this jm_update_0))))
+    (define/override (jm_onDownGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn
+        (super jm_onDownGameKeyEvent_1 _gameKeyEvent)
+        (send this jm_update_0))))
+    (define/override (jm_onUpGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn
+        (super jm_onUpGameKeyEvent_1 _gameKeyEvent)
+        (send this jm_update_0))))
+    (define/public (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getHighScoresCanvas_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_highScoresCanvas this)))))))
+(define (HighScoresCanvasInputProcessor.jclassValue) HighScoresCanvasInputProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local HighScoresCanvasInputProcessor = {}
-HighScoresCanvasInputProcessor.__index = HighScoresCanvasInputProcessor
-HighScoresCanvasInputProcessor.className = "HighScoresCanvasInputProcessor"
-setmetatable(HighScoresCanvasInputProcessor, {__index = PlayerGameInput})
-
-function HighScoresCanvasInputProcessor:_init_fields()
-    self.highScoresCanvas = nil
-end
-
-
-function HighScoresCanvasInputProcessor.new(highScoresCanvas)
-    local self = setmetatable(PlayerGameInput.new(BasicArrayListD.new(), BasicArrayListD.new(), -1), HighScoresCanvasInputProcessor)
-    self:_init_fields()
-        -- super(...) made self above
-        self.highScoresCanvas = highScoresCanvas
-    return self
-end
-
-
-function HighScoresCanvasInputProcessor:open()
-end
-
-
-function HighScoresCanvasInputProcessor:close()
-end
-
-
-function HighScoresCanvasInputProcessor:onPressGameKeyEvent(gameKeyEvent)
-        PlayerGameInput.onPressGameKeyEvent(self, gameKeyEvent)
-        self:update()
-end
-
-
-function HighScoresCanvasInputProcessor:onDownGameKeyEvent(gameKeyEvent)
-        PlayerGameInput.onDownGameKeyEvent(self, gameKeyEvent)
-        self:update()
-end
+(define (HighScoresCanvasInputProcessor.jnew_1 _highScoresCanvas)
+  (define this (new HighScoresCanvasInputProcessor% [jclass "HighScoresCanvasInputProcessor"]))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_highScoresCanvas this _highScoresCanvas)))
+  this)
 
 
-function HighScoresCanvasInputProcessor:onUpGameKeyEvent(gameKeyEvent)
-        PlayerGameInput.onUpGameKeyEvent(self, gameKeyEvent)
-        self:update()
-end
-
-
-function HighScoresCanvasInputProcessor:paint(graphics)
-end
-
-
-function HighScoresCanvasInputProcessor:getHighScoresCanvas()
-        return self.highScoresCanvas
-end
-
-return HighScoresCanvasInputProcessor
 

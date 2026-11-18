@@ -38,11 +38,13 @@
             (set! _basicColor (send (BasicColorFactory.jm_getInstance_0) jm_createInstance_1 (send _integer jm_intValue_0)))
             (send (get-field f_hashtable this) jm_put_2 _integer _basicColor)))
         (jreturn _basicColor))))))
+(define (BasicColorCacheFactory.jclassValue) BasicColorCacheFactory%)
 
 (define BasicColorCacheFactory.jcell_instance 'jnone)
 (define (BasicColorCacheFactory.jstatic_instance)
   (when (eq? BasicColorCacheFactory.jcell_instance 'jnone) (set! BasicColorCacheFactory.jcell_instance (BasicColorCacheFactory.jnew_0)))
   BasicColorCacheFactory.jcell_instance)
+(define (BasicColorCacheFactory.jsetstatic_instance value) (set! BasicColorCacheFactory.jcell_instance value))
 
 (define (BasicColorCacheFactory.jnew_0)
   (define this (new BasicColorCacheFactory% [jclass "BasicColorCacheFactory"]))

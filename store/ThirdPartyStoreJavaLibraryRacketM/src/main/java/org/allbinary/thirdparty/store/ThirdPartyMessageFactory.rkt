@@ -1,52 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.thirdparty.store
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.thirdparty.store
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define ThirdPartyMessageFactory%
+  (class JObject%
+    (super-new)
+    (field [f_AUTHORIZED JR.null])
+    (field [f_NOT_AUTHORIZED JR.null])
+    (field [f_LINKAGE_ERROR JR.null])))
+(define (ThirdPartyMessageFactory.jclassValue) ThirdPartyMessageFactory%)
+
+(define ThirdPartyMessageFactory.jcell_instance 'jnone)
+(define (ThirdPartyMessageFactory.jstatic_instance)
+  (when (eq? ThirdPartyMessageFactory.jcell_instance 'jnone) (set! ThirdPartyMessageFactory.jcell_instance (ThirdPartyMessageFactory.jnew_0)))
+  ThirdPartyMessageFactory.jcell_instance)
+(define (ThirdPartyMessageFactory.jsetstatic_instance value) (set! ThirdPartyMessageFactory.jcell_instance value))
+
+(define (ThirdPartyMessageFactory.jnew_0)
+  (define this (new ThirdPartyMessageFactory% [jclass "ThirdPartyMessageFactory"]))
+    (set-field! f_AUTHORIZED this "Authorized")
+    (set-field! f_NOT_AUTHORIZED this "Not Authorized")
+    (set-field! f_LINKAGE_ERROR this "Linkage Error")
+  this)
+
+(define (ThirdPartyMessageFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ThirdPartyMessageFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ThirdPartyMessageFactory = {}
-ThirdPartyMessageFactory.__index = ThirdPartyMessageFactory
-ThirdPartyMessageFactory.className = "ThirdPartyMessageFactory"
-
-function ThirdPartyMessageFactory:_init_fields()
-    self.AUTHORIZED = "Authorized"
-    self.NOT_AUTHORIZED = "Not Authorized"
-    self.LINKAGE_ERROR = "Linkage Error"
-end
-
-function ThirdPartyMessageFactory.new()
-    local self = setmetatable({}, ThirdPartyMessageFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function ThirdPartyMessageFactory.getInstance()
-        return ThirdPartyMessageFactory.instance
-end
-
-ThirdPartyMessageFactory.instance = ThirdPartyMessageFactory.new()
-
-return ThirdPartyMessageFactory
 

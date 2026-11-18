@@ -22,19 +22,20 @@
 (define ABHashtable%
   (class Hashtable%
     (super-new)))
+(define (ABHashtable.jclassValue) ABHashtable%)
 
 (define (ABHashtable.jnew_1 _initialCapacity)
   (define this (new ABHashtable% [jclass "ABHashtable"]))
     (let ()
       (let/ec jreturn
-        (void)))
+        (JR.superInit this 'jsuper_1 _initialCapacity)))
   this)
 
 (define (ABHashtable.jnew_0)
   (define this (new ABHashtable% [jclass "ABHashtable"]))
     (let ()
       (let/ec jreturn
-        (void)))
+        (JR.superInit this 'jsuper_0)))
   this)
 
 

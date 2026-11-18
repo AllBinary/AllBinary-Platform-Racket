@@ -1,59 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Anchor = require("org.allbinary.graphics.Anchor")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/graphics/Anchor.rkt" (Anchor.jstatic_TOP_LEFT)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageRotationUtil%
+  (class JObject%
+    (super-new)
+    (field [f_anchor 0])
+    (define/public (jm_createRotatedImage_2 _originalImage _rotationInDegrees)
+    (let ()
+      (let/ec jreturn
+        (jreturn _originalImage))))))
+(define (ImageRotationUtil.jclassValue) ImageRotationUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ImageRotationUtil.jcell_instance 'jnone)
+(define (ImageRotationUtil.jstatic_instance)
+  (when (eq? ImageRotationUtil.jcell_instance 'jnone) (set! ImageRotationUtil.jcell_instance (ImageRotationUtil.jnew_0)))
+  ImageRotationUtil.jcell_instance)
+(define (ImageRotationUtil.jsetstatic_instance value) (set! ImageRotationUtil.jcell_instance value))
 
-local ImageRotationUtil = {}
-ImageRotationUtil.__index = ImageRotationUtil
-ImageRotationUtil.className = "ImageRotationUtil"
+(define (ImageRotationUtil.jnew_0)
+  (define this (new ImageRotationUtil% [jclass "ImageRotationUtil"]))
+    (set-field! f_anchor this (Anchor.jstatic_TOP_LEFT))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function ImageRotationUtil:_init_fields()
-    self.anchor = Anchor.TOP_LEFT
-end
-
-
-function ImageRotationUtil.getInstance()
-        return ImageRotationUtil.instance
-end
-
-
-function ImageRotationUtil.new()
-    local self = setmetatable({}, ImageRotationUtil)
-    self:_init_fields()
-    return self
-end
+(define (ImageRotationUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageRotationUtil.jstatic_instance)))))
 
 
--- throws Exception
-function ImageRotationUtil:createRotatedImage(originalImage, rotationInDegrees)
-        return originalImage
-end
-
-ImageRotationUtil.instance = ImageRotationUtil.new()
-
-return ImageRotationUtil
 

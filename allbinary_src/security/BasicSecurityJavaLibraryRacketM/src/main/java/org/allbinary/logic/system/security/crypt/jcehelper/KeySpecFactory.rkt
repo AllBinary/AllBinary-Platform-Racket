@@ -1,93 +1,72 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt.jcehelper
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system.security.crypt.jcehelper
 
--- local KeySpec = require("java.security.spec.KeySpec")
--- local DESKeySpec = require("javax.crypto.spec.DESKeySpec")
--- local DESedeKeySpec = require("javax.crypto.spec.DESedeKeySpec")
-local TsUtil = require("org.allbinary.TsUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../../../allbinary_java.rkt"
+  "../../../../../../../java/security/spec/KeySpec.rkt"
+  "../../../../../../../javax/crypto/spec/DESKeySpec.rkt"
+  "../../../../../../../javax/crypto/spec/DESedeKeySpec.rkt")
+(lazy-require ["../../../../../../../org/allbinary/TsUtil.rkt" (TsUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_putOE_4)])
+(lazy-require ["../../../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define KeySpecFactory%
+  (class JObject%
+    (super-new)
+    (field [f_DES JR.null])
+    (field [f_DESEDE JR.null])
+    (field [f_BLOWFISH JR.null])
+    (define/public (jm_getInstance_2 _algorithm _keyData)
+    (let ([_tsUtil JR.null][_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (PreLogUtil.jm_putOE_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_GET_INSTANCE _commonStrings) _e)
+            (raise (JR.newException "RuntimeException")))])
+            (set! _tsUtil (TsUtil.jm_getInstance_0))
+            (if (= (send _tsUtil jm_compareTo_2 _algorithm (get-field f_DES this)) 0)
+                (begin
+                (jreturn (DESKeySpec.jnew_1 _keyData)))
+                (if (= (send _tsUtil jm_compareTo_2 _algorithm (get-field f_DESEDE this)) 0)
+                (begin
+                (jreturn (DESedeKeySpec.jnew_1 _keyData)))
+                (begin
+                (raise (JR.newException "RuntimeException")))))))))))
+(define (KeySpecFactory.jclassValue) KeySpecFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define KeySpecFactory.jcell_instance 'jnone)
+(define (KeySpecFactory.jstatic_instance)
+  (when (eq? KeySpecFactory.jcell_instance 'jnone) (set! KeySpecFactory.jcell_instance (KeySpecFactory.jnew_0)))
+  KeySpecFactory.jcell_instance)
+(define (KeySpecFactory.jsetstatic_instance value) (set! KeySpecFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (KeySpecFactory.jnew_0)
+  (define this (new KeySpecFactory% [jclass "KeySpecFactory"]))
+    (set-field! f_DES this "DES")
+    (set-field! f_DESEDE this "DESede")
+    (set-field! f_BLOWFISH this "Blowfish")
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local KeySpecFactory = {}
-KeySpecFactory.__index = KeySpecFactory
-KeySpecFactory.className = "KeySpecFactory"
-
-function KeySpecFactory:_init_fields()
-    self.DES = "DES"
-    self.DESEDE = "DESede"
-    self.BLOWFISH = "Blowfish"
-end
-
-
-function KeySpecFactory.getInstance()
-        return KeySpecFactory.instance
-end
-
-
-function KeySpecFactory.new()
-    local self = setmetatable({}, KeySpecFactory)
-    self:_init_fields()
-    return self
-end
+(define (KeySpecFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (KeySpecFactory.jstatic_instance)))))
 
 
--- Java overloaded method: Lua keeps the last definition
-function KeySpecFactory:getInstance(algorithm, keyData)
-        local try_ok, try_error = pcall(function()
-            local tsUtil = TsUtil.getInstance()
-            if tsUtil:compareTo(algorithm, self.DES) == 0 then
-                return DESKeySpec.new(keyData)
-            elseif tsUtil:compareTo(algorithm, self.DESEDE) == 0 then
-                return DESedeKeySpec.new(keyData)
-            else
-                error(java_exception("RuntimeException"), 0)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            PreLogUtil.putOE(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
-            error(java_exception("RuntimeException"), 0)
-        end
-end
-
-KeySpecFactory.instance = KeySpecFactory.new()
-
-return KeySpecFactory
 

@@ -1,125 +1,100 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local GameAdStateFactory = require("org.allbinary.business.advertisement.GameAdStateFactory")
-local GameAdState = require("org.allbinary.game.GameAdState")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local CurrentDisplayableFactory = require("org.allbinary.graphics.opengles.CurrentDisplayableFactory")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local DemoGameBehavior = require("org.allbinary.game.displayable.canvas.DemoGameBehavior")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./DemoGameBehavior.rkt")
+(lazy-require ["../../../../../org/allbinary/business/advertisement/GameAdStateFactory.rkt" (GameAdStateFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/opengles/CurrentDisplayableFactory.rkt" (CurrentDisplayableFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/opengles/OpenGLFeatureFactory.rkt" (OpenGLFeatureFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BaseGameBehavior%
+  (class DemoGameBehavior%
+    (super-new)
+    (define/override (jm_init_0)
+    (let ([_gameAdState JR.null])
+      (let/ec jreturn
+        (set! _gameAdState (send (GameAdStateFactory.jm_getInstance_0) jm_getCurrentInstance_0))
+        (send _gameAdState jm_playingAdState_0))))
+    (define/override (jm_pause_1 _allBinaryGameCanvas)
+    (let ([_features JR.null][_currentDisplayableFactory JR.null])
+      (let/ec jreturn
+        (set! _features (Features.jm_getInstance_0))
+        (when (send _features jm_isDefault_1 (get-field f_OPENGL_AS_GAME_THREAD (OpenGLFeatureFactory.jm_getInstance_0)))
+            (begin
+            (set! _currentDisplayableFactory (CurrentDisplayableFactory.jm_getInstance_0))
+            (send _currentDisplayableFactory jm_setRunnable_1 (get-field f_gamePauseRunnable _allBinaryGameCanvas)))))))
+    (define/override (jm_unPause_1 _allBinaryGameCanvas)
+    (let ([_currentDisplayableFactory JR.null])
+      (let/ec jreturn
+        (when (send (Features.jm_getInstance_0) jm_isDefault_1 (get-field f_OPENGL_AS_GAME_THREAD (OpenGLFeatureFactory.jm_getInstance_0)))
+            (begin
+            (set! _currentDisplayableFactory (CurrentDisplayableFactory.jm_getInstance_0))
+            (send _currentDisplayableFactory jm_setRunnable_1 (get-field f_gameRunnable _allBinaryGameCanvas))
+            (send _currentDisplayableFactory jm_setDisplayable_1 _allBinaryGameCanvas))))))
+    (define/override (jm_updateTouch_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_updateTouch2_0))))
+    (define/override (jm_updateScreenButtonPaintable_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_updateScreenButtonPaintable2_0))))
+    (define/override (jm_setGameState_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_updateGameState_0))))
+    (define/override (jm_removeAllGameKeyInputListeners_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_removeAllGameKeyInputListeners2_0))))
+    (define/override (jm_updateEndGameProcessor_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_updateEndGameProcessor2_0))))
+    (define/override (jm_buildGame_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_buildGame2_0))))
+    (define/override (jm_run_1 _allBinaryGameCanvas)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_run2_0))))
+    (define/override (jm_setHighScore_6 _abeClientInformation _allBinaryGameCanvas _name _score _autoSubmit _isLast)
+    (let ()
+      (let/ec jreturn
+        (send _allBinaryGameCanvas jm_setHighScore2_5 _abeClientInformation _name _score _autoSubmit _isLast))))))
+(define (BaseGameBehavior.jclassValue) BaseGameBehavior%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define BaseGameBehavior.jcell_instanceC 'jnone)
+(define (BaseGameBehavior.jstatic_instanceC)
+  (when (eq? BaseGameBehavior.jcell_instanceC 'jnone) (set! BaseGameBehavior.jcell_instanceC (BaseGameBehavior.jnew_0)))
+  BaseGameBehavior.jcell_instanceC)
+(define (BaseGameBehavior.jsetstatic_instanceC value) (set! BaseGameBehavior.jcell_instanceC value))
 
-local BaseGameBehavior = {}
-BaseGameBehavior.__index = BaseGameBehavior
-BaseGameBehavior.className = "BaseGameBehavior"
-setmetatable(BaseGameBehavior, {__index = DemoGameBehavior})
+(define (BaseGameBehavior.jnew_0)
+  (define this (new BaseGameBehavior% [jclass "BaseGameBehavior"]))
+  this)
 
-function BaseGameBehavior.new()
-    local self = setmetatable(DemoGameBehavior.new(), BaseGameBehavior)
-    return self
-end
-
-
-function BaseGameBehavior.getInstance()
-        return BaseGameBehavior.instanceC
-end
-
-
--- throws Exception
-function BaseGameBehavior:init()
-        local gameAdState = GameAdStateFactory.getInstance():getCurrentInstance()
-        gameAdState:playingAdState()
-end
-
-
-function BaseGameBehavior:pause(allBinaryGameCanvas)
-        local features = Features.getInstance()
-        if features:isDefault(OpenGLFeatureFactory.getInstance().OPENGL_AS_GAME_THREAD) then
-            local currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
-            currentDisplayableFactory:setRunnable(allBinaryGameCanvas.gamePauseRunnable)
-        end
-end
-
-
-function BaseGameBehavior:unPause(allBinaryGameCanvas)
-        if Features.getInstance():isDefault(OpenGLFeatureFactory.getInstance().OPENGL_AS_GAME_THREAD) then
-            local currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
-            currentDisplayableFactory:setRunnable(allBinaryGameCanvas.gameRunnable)
-            currentDisplayableFactory:setDisplayable(allBinaryGameCanvas)
-        end
-end
-
-
--- throws Exception
-function BaseGameBehavior:updateTouch(allBinaryGameCanvas)
-        allBinaryGameCanvas:updateTouch2()
-end
-
-
--- throws Exception
-function BaseGameBehavior:updateScreenButtonPaintable(allBinaryGameCanvas)
-        allBinaryGameCanvas:updateScreenButtonPaintable2()
-end
-
-
--- throws Exception
-function BaseGameBehavior:setGameState(allBinaryGameCanvas)
-        allBinaryGameCanvas:updateGameState()
-end
-
-
-function BaseGameBehavior:removeAllGameKeyInputListeners(allBinaryGameCanvas)
-        allBinaryGameCanvas:removeAllGameKeyInputListeners2()
-end
-
-
--- throws Exception
-function BaseGameBehavior:updateEndGameProcessor(allBinaryGameCanvas)
-        allBinaryGameCanvas:updateEndGameProcessor2()
-end
+(define (BaseGameBehavior.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (BaseGameBehavior.jstatic_instanceC)))))
 
 
--- throws Exception
-function BaseGameBehavior:buildGame(allBinaryGameCanvas)
-        allBinaryGameCanvas:buildGame2()
-end
-
-
--- throws Exception
-function BaseGameBehavior:run(allBinaryGameCanvas)
-        allBinaryGameCanvas:run2()
-end
-
-
--- throws Exception
-function BaseGameBehavior:setHighScore(abeClientInformation, allBinaryGameCanvas, name, score, autoSubmit, isLast)
-        allBinaryGameCanvas:setHighScore2(abeClientInformation, name, score, autoSubmit, isLast)
-end
-
-BaseGameBehavior.instanceC = BaseGameBehavior.new()
-
-return BaseGameBehavior
 

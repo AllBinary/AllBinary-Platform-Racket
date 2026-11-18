@@ -1,66 +1,51 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CustomCustomItem = require("org.allbinary.graphics.form.item.CustomCustomItem")
-local ABCustomItemInterface = require("org.allbinary.graphics.form.item.ABCustomItemInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./CustomCustomItem.rkt"
+  "./ABCustomItemInterface.rkt")
+(lazy-require ["./ABStringComponent.rkt" (ABStringComponent.jstatic_NULL_STRING_COMPONENT)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ABTextItem%
+  (class CustomCustomItem%
+    (super-new)
+    (define/public (jm_keyPressed_1 _keyCode)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_paintUnselected_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_getLabelStringComponent_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ABStringComponent.jstatic_NULL_STRING_COMPONENT)))))
+    (define/override (jm_getMinimumWidth_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (super jm_getMinimumWidth_0)))))
+    (define/override (jm_getMinimumHeight_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (super jm_getMinimumHeight_0)))))
+    (define/override (jm_getLabel_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (super jm_getLabel_0)))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (super jm_paintXY_3 _graphics _x _y))))))
+(define (ABTextItem.jclassValue) ABTextItem%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ABTextItem = {}
-ABTextItem.__index = ABTextItem
-ABTextItem.className = "ABTextItem"
-setmetatable(ABTextItem, {__index = CustomCustomItem})
-
-
-function ABTextItem.new(label, layout, altText, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(CustomCustomItem.new(label, backgroundBasicColor, foregroundBasicColor), ABTextItem)
-        -- super(...) made self above
-    return self
-end
-
-
-function ABTextItem:keyPressed(keyCode)
-end
-
-
-function ABTextItem:paintUnselected(graphics, x, y)
-end
-
-
-function ABTextItem:getLabelStringComponent()
-        return ABStringComponent.NULL_STRING_COMPONENT
-end
-
-
-function ABTextItem:getMinimumWidth()
-        return CustomCustomItem.getMinimumWidth(self)
-end
-
-
-function ABTextItem:getMinimumHeight()
-        return CustomCustomItem.getMinimumHeight(self)
-end
+(define (ABTextItem.jnew_5 _label _layout _altText _backgroundBasicColor _foregroundBasicColor)
+  (define this (new ABTextItem% [jclass "ABTextItem"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function ABTextItem:getLabel()
-        return CustomCustomItem.getLabel(self)
-end
-
-
-function ABTextItem:paintXY(graphics, x, y)
-        CustomCustomItem.paintXY(self, graphics, x, y)
-end
-
-return ABTextItem
 

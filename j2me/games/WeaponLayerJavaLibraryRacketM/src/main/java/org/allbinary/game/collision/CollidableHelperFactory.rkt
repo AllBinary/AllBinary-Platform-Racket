@@ -1,50 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.collision
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/feature/GameFeatureFactory.rkt" (GameFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/layer/AllBinaryLayer.rkt" (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER)])
+(lazy-require ["./SourceCollisionHelper.rkt" (SourceCollisionHelper.jnew_1)])
+(lazy-require ["./CollisionHelper.rkt" (CollisionHelper.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CollidableHelperFactory%
+  (class JObject%
+    (super-new)))
+(define (CollidableHelperFactory.jclassValue) CollidableHelperFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (CollidableHelperFactory.jnew_0)
+  (define this (new CollidableHelperFactory% [jclass "CollidableHelperFactory"]))
+  this)
 
-local CollidableHelperFactory = {}
-CollidableHelperFactory.__index = CollidableHelperFactory
-CollidableHelperFactory.className = "CollidableHelperFactory"
-
-function CollidableHelperFactory.new()
-    local self = setmetatable({}, CollidableHelperFactory)
-    return self
-end
+(define (CollidableHelperFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (if (send (Features.jm_getInstance_0) jm_isFeature_1 (get-field f_COLLISIONS_WITH_SOURCE (GameFeatureFactory.jm_getInstance_0)))
+            (begin
+            (jreturn (CollisionHelper.jnew_1 (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER))))
+            (begin
+            (jreturn (SourceCollisionHelper.jnew_1 (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER))))))))
 
 
-function CollidableHelperFactory.getInstance()
-        if Features.getInstance():isFeature(GameFeatureFactory.getInstance().COLLISIONS_WITH_SOURCE) then
-            return CollisionHelper.new(AllBinaryLayer.NULL_ALLBINARY_LAYER)
-        else
-            return SourceCollisionHelper.new(AllBinaryLayer.NULL_ALLBINARY_LAYER)
-        end
-end
-
-return CollidableHelperFactory
 

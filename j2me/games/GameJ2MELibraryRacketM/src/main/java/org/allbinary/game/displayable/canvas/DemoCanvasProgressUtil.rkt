@@ -1,66 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local PaintableComposite = require("org.allbinary.graphics.paint.PaintableComposite")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory.rkt" (ProgressCanvasFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/paint/PaintableComposite.rkt" (PaintableComposite.jnew_1)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define DemoCanvasProgressUtil%
+  (class JObject%
+    (super-new)))
+(define (DemoCanvasProgressUtil.jclassValue) DemoCanvasProgressUtil%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define (DemoCanvasProgressUtil.jnew_0)
+  (define this (new DemoCanvasProgressUtil% [jclass "DemoCanvasProgressUtil"]))
+  this)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (DemoCanvasProgressUtil.jm_showProgress_1 _demoCanvas)
+    (let ()
+      (let/ec jreturn
+        (DemoCanvasProgressUtil.jm_showProgressOptionallyInTheBackground_2 _demoCanvas #f))))
 
-local DemoCanvasProgressUtil = {}
-DemoCanvasProgressUtil.__index = DemoCanvasProgressUtil
-DemoCanvasProgressUtil.className = "DemoCanvasProgressUtil"
-
-function DemoCanvasProgressUtil.new()
-    local self = setmetatable({}, DemoCanvasProgressUtil)
-    return self
-end
-
-
-function DemoCanvasProgressUtil.showProgress(demoCanvas)
-        DemoCanvasProgressUtil.showProgressOptionallyInTheBackground(demoCanvas, false)
-end
+(define (DemoCanvasProgressUtil.jm_showProgressOptionallyInTheBackground_2 _demoCanvas _background)
+    (let ([_progressCanvas JR.null][_paintableArray JR.null])
+      (let/ec jreturn
+        (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (send _progressCanvas jm_startBackground_1 _background)
+        (set! _paintableArray (JR.newArray JR.null 2))
+        (vector-set! _paintableArray 0 _progressCanvas)
+        (vector-set! _paintableArray 1 (send _demoCanvas jm_getDefaultPaintableInterface_0))
+        (send _demoCanvas jm_setDefaultPaintableInterface_1 (PaintableComposite.jnew_1 _paintableArray))
+        (send _demoCanvas jm_setPaintableInterface_1 (send _demoCanvas jm_getDefaultPaintableInterface_0)))))
 
 
-function DemoCanvasProgressUtil.showProgressOptionallyInTheBackground(demoCanvas, background)
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        progressCanvas:startBackground(background)
-        local paintableArray = java_new_array(nil, 2)
-        paintableArray[1] = progressCanvas
-        paintableArray[2] = demoCanvas:getDefaultPaintableInterface()
-        demoCanvas:setDefaultPaintableInterface(PaintableComposite.new(paintableArray))
-        demoCanvas:setPaintableInterface(demoCanvas:getDefaultPaintableInterface())
-end
-
-return DemoCanvasProgressUtil
 

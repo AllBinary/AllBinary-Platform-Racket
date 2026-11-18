@@ -1,124 +1,111 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["./GameKeyFactory.rkt" (GameKeyFactory.jm_getInstance_0)])
+(lazy-require ["./InputFactory.rkt" (InputFactory.jm_getInstance_0)])
+(provide (all-defined-out))
+
+(define J2MEKeyFactory%
+  (class JObject%
+    (super-new)
+    (field [f_gameKeyFactory JR.null])
+    (define/public (jm_init_0)
+    (let ([_gameKeyArray JR.null][_inputFactory JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _gameKeyArray (vector (get-field f_DOWN (get-field f_gameKeyFactory this)) (get-field f_FIRE (get-field f_gameKeyFactory this)) (get-field f_GAME_A (get-field f_gameKeyFactory this)) (get-field f_GAME_B (get-field f_gameKeyFactory this)) (get-field f_GAME_C (get-field f_gameKeyFactory this)) (get-field f_GAME_D (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM0 (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM1 (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM2 (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM3 (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM4 (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM5 (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM6 (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM7 (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM8 (get-field f_gameKeyFactory this)) (get-field f_KEY_NUM9 (get-field f_gameKeyFactory this)) (get-field f_KEY_POUND (get-field f_gameKeyFactory this)) (get-field f_KEY_STAR (get-field f_gameKeyFactory this)) (get-field f_LEFT (get-field f_gameKeyFactory this)) (get-field f_LEVEL_DOWN (get-field f_gameKeyFactory this)) (get-field f_LEVEL_UP (get-field f_gameKeyFactory this)) (get-field f_NONE (get-field f_gameKeyFactory this)) (get-field f_RIGHT (get-field f_gameKeyFactory this)) (get-field f_UP (get-field f_gameKeyFactory this))))
+        (set! _inputFactory (InputFactory.jm_getInstance_0))
+        (begin
+            (set! _index (vector-length _gameKeyArray))
+            (let/ec jbreak (let jloop () (when (>= (let ([jvalue (JR.i32 (- _index 1))]) (set! _index jvalue) jvalue) 0)
+                (let/ec jcontinue
+            (send _inputFactory jm_add_2 (JR.className (vector-ref _gameKeyArray _index)) (vector-ref _gameKeyArray _index))) (jloop))))))))
+    (define/public (jm_isSubmission_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_FIRE (get-field f_gameKeyFactory this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isDelete_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_GAME_D (get-field f_gameKeyFactory this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isBackSpace_1 _input)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_isUp_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_UP (get-field f_gameKeyFactory this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isDown_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_DOWN (get-field f_gameKeyFactory this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isLeft_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_LEFT (get-field f_gameKeyFactory this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isRight_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_RIGHT (get-field f_gameKeyFactory this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isEnter_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_FIRE (get-field f_gameKeyFactory this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))))
+(define (J2MEKeyFactory.jclassValue) J2MEKeyFactory%)
+
+(define J2MEKeyFactory.jcell_instance 'jnone)
+(define (J2MEKeyFactory.jstatic_instance)
+  (when (eq? J2MEKeyFactory.jcell_instance 'jnone) (set! J2MEKeyFactory.jcell_instance (J2MEKeyFactory.jnew_0)))
+  J2MEKeyFactory.jcell_instance)
+(define (J2MEKeyFactory.jsetstatic_instance value) (set! J2MEKeyFactory.jcell_instance value))
+
+(define (J2MEKeyFactory.jnew_0)
+  (define this (new J2MEKeyFactory% [jclass "J2MEKeyFactory"]))
+    (set-field! f_gameKeyFactory this (GameKeyFactory.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
+
+(define (J2MEKeyFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (J2MEKeyFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local J2MEKeyFactory = {}
-J2MEKeyFactory.__index = J2MEKeyFactory
-J2MEKeyFactory.className = "J2MEKeyFactory"
-
-function J2MEKeyFactory:_init_fields()
-    self.gameKeyFactory = GameKeyFactory.getInstance()
-end
-
-
-function J2MEKeyFactory.getInstance()
-        return J2MEKeyFactory.instance
-end
-
-
-function J2MEKeyFactory.new()
-    local self = setmetatable({}, J2MEKeyFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function J2MEKeyFactory:init()
-        local gameKeyArray = {self.gameKeyFactory.DOWN, self.gameKeyFactory.FIRE, self.gameKeyFactory.GAME_A, self.gameKeyFactory.GAME_B, self.gameKeyFactory.GAME_C, self.gameKeyFactory.GAME_D, self.gameKeyFactory.KEY_NUM0, self.gameKeyFactory.KEY_NUM1, self.gameKeyFactory.KEY_NUM2, self.gameKeyFactory.KEY_NUM3, self.gameKeyFactory.KEY_NUM4, self.gameKeyFactory.KEY_NUM5, self.gameKeyFactory.KEY_NUM6, self.gameKeyFactory.KEY_NUM7, self.gameKeyFactory.KEY_NUM8, self.gameKeyFactory.KEY_NUM9, self.gameKeyFactory.KEY_POUND, self.gameKeyFactory.KEY_STAR, self.gameKeyFactory.LEFT, self.gameKeyFactory.LEVEL_DOWN, self.gameKeyFactory.LEVEL_UP, self.gameKeyFactory.NONE, self.gameKeyFactory.RIGHT, self.gameKeyFactory.UP}
-        local inputFactory = InputFactory.getInstance()
-        do
-            local index = (gameKeyArray.n or #gameKeyArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            inputFactory:add(gameKeyArray[index + 1]:getId(), gameKeyArray[index + 1])
-            end
-        end
-end
-
-
-function J2MEKeyFactory:isSubmission(input)
-        if input == self.gameKeyFactory.FIRE then
-            return true
-        end
-        return false
-end
-
-
-function J2MEKeyFactory:isDelete(input)
-        if input == self.gameKeyFactory.GAME_D then
-            return true
-        end
-        return false
-end
-
-
-function J2MEKeyFactory:isBackSpace(input)
-        return false
-end
-
-
-function J2MEKeyFactory:isUp(input)
-        if input == self.gameKeyFactory.UP then
-            return true
-        end
-        return false
-end
-
-
-function J2MEKeyFactory:isDown(input)
-        if input == self.gameKeyFactory.DOWN then
-            return true
-        end
-        return false
-end
-
-
-function J2MEKeyFactory:isLeft(input)
-        if input == self.gameKeyFactory.LEFT then
-            return true
-        end
-        return false
-end
-
-
-function J2MEKeyFactory:isRight(input)
-        if input == self.gameKeyFactory.RIGHT then
-            return true
-        end
-        return false
-end
-
-
-function J2MEKeyFactory:isEnter(input)
-        if input == self.gameKeyFactory.FIRE then
-            return true
-        end
-        return false
-end
-
-J2MEKeyFactory.instance = J2MEKeyFactory.new()
-
-return J2MEKeyFactory
 

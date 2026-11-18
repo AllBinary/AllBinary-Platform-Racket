@@ -26,11 +26,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_zeroCharArray this)))))))
+(define (CharArrayFactory.jclassValue) CharArrayFactory%)
 
 (define CharArrayFactory.jcell_instance 'jnone)
 (define (CharArrayFactory.jstatic_instance)
   (when (eq? CharArrayFactory.jcell_instance 'jnone) (set! CharArrayFactory.jcell_instance (CharArrayFactory.jnew_0)))
   CharArrayFactory.jcell_instance)
+(define (CharArrayFactory.jsetstatic_instance value) (set! CharArrayFactory.jcell_instance value))
 
 (define (CharArrayFactory.jnew_0)
   (define this (new CharArrayFactory% [jclass "CharArrayFactory"]))

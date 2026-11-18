@@ -34,6 +34,7 @@
                 (let/ec jcontinue
             (vector-set! (get-field f_OBJECT_ARRAY this) _index (send _allBinaryEventObjectFactoryInterface jm_getInstance_0)))
                 (set! _index (JR.i32 (+ _index 1))) (jloop))))))))))
+(define (AllBinaryEventCircularPool.jclassValue) AllBinaryEventCircularPool%)
 
 (define (AllBinaryEventCircularPool.jnew_1 _max)
   (define this (new AllBinaryEventCircularPool% [jclass "AllBinaryEventCircularPool"]))

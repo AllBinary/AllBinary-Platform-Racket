@@ -1,196 +1,262 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local PositionStrings = require("org.allbinary.math.PositionStrings")
-local CommonPhoneStrings = require("org.allbinary.string.CommonPhoneStrings")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/math/PositionStrings.rkt" (PositionStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonPhoneStrings.rkt" (CommonPhoneStrings.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["./PCGameKey.rkt" (PCGameKey.jnew_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PCKeyFactory%
+  (class JObject%
+    (super-new)
+    (field [f_UNKNOWN JR.null])
+    (field [f_ENTER JR.null])
+    (field [f__A JR.null])
+    (field [f__B JR.null])
+    (field [f__C JR.null])
+    (field [f__D JR.null])
+    (field [f__E JR.null])
+    (field [f__F JR.null])
+    (field [f__G JR.null])
+    (field [f__H JR.null])
+    (field [f__I JR.null])
+    (field [f__J JR.null])
+    (field [f__K JR.null])
+    (field [f__L JR.null])
+    (field [f__M JR.null])
+    (field [f__N JR.null])
+    (field [f__O JR.null])
+    (field [f__P JR.null])
+    (field [f__Q JR.null])
+    (field [f__R JR.null])
+    (field [f__S JR.null])
+    (field [f__T JR.null])
+    (field [f__U JR.null])
+    (field [f__V JR.null])
+    (field [f__W JR.null])
+    (field [f__X JR.null])
+    (field [f__Y JR.null])
+    (field [f__Z JR.null])
+    (field [f_a JR.null])
+    (field [f_b JR.null])
+    (field [f_c JR.null])
+    (field [f_d JR.null])
+    (field [f_e JR.null])
+    (field [f_f JR.null])
+    (field [f_g JR.null])
+    (field [f_h JR.null])
+    (field [f_i JR.null])
+    (field [f_j JR.null])
+    (field [f_k JR.null])
+    (field [f_l JR.null])
+    (field [f_m JR.null])
+    (field [f_n JR.null])
+    (field [f_o JR.null])
+    (field [f_p JR.null])
+    (field [f_q JR.null])
+    (field [f_r JR.null])
+    (field [f_s JR.null])
+    (field [f_t JR.null])
+    (field [f_u JR.null])
+    (field [f_v JR.null])
+    (field [f_w JR.null])
+    (field [f_x JR.null])
+    (field [f_y JR.null])
+    (field [f_z JR.null])
+    (field [f_ZERO JR.null])
+    (field [f_ONE JR.null])
+    (field [f_TWO JR.null])
+    (field [f_THREE JR.null])
+    (field [f_FOUR JR.null])
+    (field [f_FIVE JR.null])
+    (field [f_SIX JR.null])
+    (field [f_SEVEN JR.null])
+    (field [f_EIGHT JR.null])
+    (field [f_NINE JR.null])
+    (field [f_DPAD_UP JR.null])
+    (field [f_DPAD_DOWN JR.null])
+    (field [f_DPAD_LEFT JR.null])
+    (field [f_DPAD_RIGHT JR.null])
+    (field [f_DPAD_UP2 JR.null])
+    (field [f_DPAD_DOWN2 JR.null])
+    (field [f_DPAD_LEFT2 JR.null])
+    (field [f_DPAD_RIGHT2 JR.null])
+    (field [f_COMMA JR.null])
+    (field [f_SPACE JR.null])
+    (field [f_DEL JR.null])
+    (field [f_STAR JR.null])
+    (field [f_QUESTION JR.null])
+    (field [f_PERIOD JR.null])
+    (field [f_ESCAPE JR.null])
+    (field [f_BACK_SPACE JR.null])
+    (define/public (jm_isSubmission_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_ENTER this))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isDelete_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_DEL this))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isBackSpace_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_BACK_SPACE this))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isUp_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (or (eq? _input (get-field f_DPAD_UP this)) (eq? _input (get-field f_DPAD_UP2 this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isDown_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (or (eq? _input (get-field f_DPAD_DOWN this)) (eq? _input (get-field f_DPAD_DOWN2 this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isLeft_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (or (eq? _input (get-field f_DPAD_LEFT this)) (eq? _input (get-field f_DPAD_LEFT2 this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isRight_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (or (eq? _input (get-field f_DPAD_RIGHT this)) (eq? _input (get-field f_DPAD_RIGHT2 this)))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))
+    (define/public (jm_isEnter_1 _input)
+    (let ()
+      (let/ec jreturn
+        (when (eq? _input (get-field f_ENTER this))
+            (begin
+            (jreturn #t)))
+        (jreturn #f))))))
+(define (PCKeyFactory.jclassValue) PCKeyFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define PCKeyFactory.jcell_SINGLETON 'jnone)
+(define (PCKeyFactory.jstatic_SINGLETON)
+  (when (eq? PCKeyFactory.jcell_SINGLETON 'jnone) (set! PCKeyFactory.jcell_SINGLETON (PCKeyFactory.jnew_0)))
+  PCKeyFactory.jcell_SINGLETON)
+(define (PCKeyFactory.jsetstatic_SINGLETON value) (set! PCKeyFactory.jcell_SINGLETON value))
 
-local PCKeyFactory = {}
-PCKeyFactory.__index = PCKeyFactory
-PCKeyFactory.className = "PCKeyFactory"
+(define (PCKeyFactory.jnew_0)
+  (define this (new PCKeyFactory% [jclass "PCKeyFactory"]))
+    (set-field! f_UNKNOWN this (PCGameKey.jnew_2 254 "UNKNOWN"))
+    (set-field! f_ENTER this (PCGameKey.jnew_2 13 "Enter"))
+    (set-field! f__A this (PCGameKey.jnew_2 65 "A"))
+    (set-field! f__B this (PCGameKey.jnew_2 66 "B"))
+    (set-field! f__C this (PCGameKey.jnew_2 67 "C"))
+    (set-field! f__D this (PCGameKey.jnew_2 68 "D"))
+    (set-field! f__E this (PCGameKey.jnew_2 69 "E"))
+    (set-field! f__F this (PCGameKey.jnew_2 70 "F"))
+    (set-field! f__G this (PCGameKey.jnew_2 71 "G"))
+    (set-field! f__H this (PCGameKey.jnew_2 72 "H"))
+    (set-field! f__I this (PCGameKey.jnew_2 73 "I"))
+    (set-field! f__J this (PCGameKey.jnew_2 74 "J"))
+    (set-field! f__K this (PCGameKey.jnew_2 75 "K"))
+    (set-field! f__L this (PCGameKey.jnew_2 76 "L"))
+    (set-field! f__M this (PCGameKey.jnew_2 77 "M"))
+    (set-field! f__N this (PCGameKey.jnew_2 78 "N"))
+    (set-field! f__O this (PCGameKey.jnew_2 79 "O"))
+    (set-field! f__P this (PCGameKey.jnew_2 80 "P"))
+    (set-field! f__Q this (PCGameKey.jnew_2 81 "Q"))
+    (set-field! f__R this (PCGameKey.jnew_2 82 "R"))
+    (set-field! f__S this (PCGameKey.jnew_2 83 "S"))
+    (set-field! f__T this (PCGameKey.jnew_2 84 "T"))
+    (set-field! f__U this (PCGameKey.jnew_2 85 "U"))
+    (set-field! f__V this (PCGameKey.jnew_2 86 "V"))
+    (set-field! f__W this (PCGameKey.jnew_2 87 "W"))
+    (set-field! f__X this (PCGameKey.jnew_2 88 "X"))
+    (set-field! f__Y this (PCGameKey.jnew_2 89 "Y"))
+    (set-field! f__Z this (PCGameKey.jnew_2 90 "Z"))
+    (set-field! f_a this (PCGameKey.jnew_2 97 "a"))
+    (set-field! f_b this (PCGameKey.jnew_2 98 "b"))
+    (set-field! f_c this (PCGameKey.jnew_2 99 "c"))
+    (set-field! f_d this (PCGameKey.jnew_2 100 "d"))
+    (set-field! f_e this (PCGameKey.jnew_2 101 "e"))
+    (set-field! f_f this (PCGameKey.jnew_2 102 "f"))
+    (set-field! f_g this (PCGameKey.jnew_2 103 "g"))
+    (set-field! f_h this (PCGameKey.jnew_2 104 "h"))
+    (set-field! f_i this (PCGameKey.jnew_2 105 "i"))
+    (set-field! f_j this (PCGameKey.jnew_2 106 "j"))
+    (set-field! f_k this (PCGameKey.jnew_2 107 "k"))
+    (set-field! f_l this (PCGameKey.jnew_2 108 "l"))
+    (set-field! f_m this (PCGameKey.jnew_2 109 "m"))
+    (set-field! f_n this (PCGameKey.jnew_2 110 "n"))
+    (set-field! f_o this (PCGameKey.jnew_2 111 "o"))
+    (set-field! f_p this (PCGameKey.jnew_2 112 "p"))
+    (set-field! f_q this (PCGameKey.jnew_2 113 "q"))
+    (set-field! f_r this (PCGameKey.jnew_2 114 "r"))
+    (set-field! f_s this (PCGameKey.jnew_2 115 "s"))
+    (set-field! f_t this (PCGameKey.jnew_2 116 "t"))
+    (set-field! f_u this (PCGameKey.jnew_2 117 "u"))
+    (set-field! f_v this (PCGameKey.jnew_2 118 "v"))
+    (set-field! f_w this (PCGameKey.jnew_2 119 "w"))
+    (set-field! f_x this (PCGameKey.jnew_2 120 (get-field f_X (PositionStrings.jm_getInstance_0))))
+    (set-field! f_y this (PCGameKey.jnew_2 121 (get-field f_Y (PositionStrings.jm_getInstance_0))))
+    (set-field! f_z this (PCGameKey.jnew_2 122 "z"))
+    (set-field! f_ZERO this (PCGameKey.jnew_2 48 (get-field f_ZERO (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_ONE this (PCGameKey.jnew_2 49 (get-field f_ONE (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_TWO this (PCGameKey.jnew_2 50 (get-field f_TWO (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_THREE this (PCGameKey.jnew_2 51 (get-field f_THREE (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_FOUR this (PCGameKey.jnew_2 52 (get-field f_FOUR (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_FIVE this (PCGameKey.jnew_2 53 (get-field f_FIVE (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_SIX this (PCGameKey.jnew_2 54 (get-field f_SIX (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_SEVEN this (PCGameKey.jnew_2 55 (get-field f_SEVEN (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_EIGHT this (PCGameKey.jnew_2 56 (get-field f_EIGHT (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_NINE this (PCGameKey.jnew_2 57 (get-field f_NINE (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_DPAD_UP this (PCGameKey.jnew_2 38 (get-field f_UP (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_DPAD_DOWN this (PCGameKey.jnew_2 40 (get-field f_DOWN (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_DPAD_LEFT this (PCGameKey.jnew_2 37 (get-field f_LEFT (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_DPAD_RIGHT this (PCGameKey.jnew_2 39 (get-field f_RIGHT (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_DPAD_UP2 this (get-field f_DPAD_UP this))
+    (set-field! f_DPAD_DOWN2 this (get-field f_DPAD_DOWN this))
+    (set-field! f_DPAD_LEFT2 this (get-field f_DPAD_LEFT this))
+    (set-field! f_DPAD_RIGHT2 this (get-field f_DPAD_RIGHT this))
+    (set-field! f_COMMA this (PCGameKey.jnew_2 44 "COMMA"))
+    (set-field! f_SPACE this (PCGameKey.jnew_2 32 "SPACE"))
+    (set-field! f_DEL this (PCGameKey.jnew_2 46 "DEL"))
+    (set-field! f_STAR this (PCGameKey.jnew_2 42 (get-field f_STAR (CommonPhoneStrings.jm_getInstance_0))))
+    (set-field! f_QUESTION this (PCGameKey.jnew_2 47 "?"))
+    (set-field! f_PERIOD this (PCGameKey.jnew_2 46 (get-field f_PERIOD (CommonSeps.jm_getInstance_0))))
+    (set-field! f_ESCAPE this (PCGameKey.jnew_2 27 "Esc"))
+    (set-field! f_BACK_SPACE this (PCGameKey.jnew_2 8 "Backspace"))
+  this)
 
-function PCKeyFactory:_init_fields()
-    self.UNKNOWN = PCGameKey.new(254, "UNKNOWN")
-    self.ENTER = PCGameKey.new(13, "Enter")
-    self._A = PCGameKey.new(65, "A")
-    self._B = PCGameKey.new(66, "B")
-    self._C = PCGameKey.new(67, "C")
-    self._D = PCGameKey.new(68, "D")
-    self._E = PCGameKey.new(69, "E")
-    self._F = PCGameKey.new(70, "F")
-    self._G = PCGameKey.new(71, "G")
-    self._H = PCGameKey.new(72, "H")
-    self._I = PCGameKey.new(73, "I")
-    self._J = PCGameKey.new(74, "J")
-    self._K = PCGameKey.new(75, "K")
-    self._L = PCGameKey.new(76, "L")
-    self._M = PCGameKey.new(77, "M")
-    self._N = PCGameKey.new(78, "N")
-    self._O = PCGameKey.new(79, "O")
-    self._P = PCGameKey.new(80, "P")
-    self._Q = PCGameKey.new(81, "Q")
-    self._R = PCGameKey.new(82, "R")
-    self._S = PCGameKey.new(83, "S")
-    self._T = PCGameKey.new(84, "T")
-    self._U = PCGameKey.new(85, "U")
-    self._V = PCGameKey.new(86, "V")
-    self._W = PCGameKey.new(87, "W")
-    self._X = PCGameKey.new(88, "X")
-    self._Y = PCGameKey.new(89, "Y")
-    self._Z = PCGameKey.new(90, "Z")
-    self.a = PCGameKey.new(97, "a")
-    self.b = PCGameKey.new(98, "b")
-    self.c = PCGameKey.new(99, "c")
-    self.d = PCGameKey.new(100, "d")
-    self.e = PCGameKey.new(101, "e")
-    self.f = PCGameKey.new(102, "f")
-    self.g = PCGameKey.new(103, "g")
-    self.h = PCGameKey.new(104, "h")
-    self.i = PCGameKey.new(105, "i")
-    self.j = PCGameKey.new(106, "j")
-    self.k = PCGameKey.new(107, "k")
-    self.l = PCGameKey.new(108, "l")
-    self.m = PCGameKey.new(109, "m")
-    self.n = PCGameKey.new(110, "n")
-    self.o = PCGameKey.new(111, "o")
-    self.p = PCGameKey.new(112, "p")
-    self.q = PCGameKey.new(113, "q")
-    self.r = PCGameKey.new(114, "r")
-    self.s = PCGameKey.new(115, "s")
-    self.t = PCGameKey.new(116, "t")
-    self.u = PCGameKey.new(117, "u")
-    self.v = PCGameKey.new(118, "v")
-    self.w = PCGameKey.new(119, "w")
-    self.x = PCGameKey.new(120, PositionStrings.getInstance().X)
-    self.y = PCGameKey.new(121, PositionStrings.getInstance().Y)
-    self.z = PCGameKey.new(122, "z")
-    self.ZERO = PCGameKey.new(48, CommonPhoneStrings.getInstance().ZERO)
-    self.ONE = PCGameKey.new(49, CommonPhoneStrings.getInstance().ONE)
-    self.TWO = PCGameKey.new(50, CommonPhoneStrings.getInstance().TWO)
-    self.THREE = PCGameKey.new(51, CommonPhoneStrings.getInstance().THREE)
-    self.FOUR = PCGameKey.new(52, CommonPhoneStrings.getInstance().FOUR)
-    self.FIVE = PCGameKey.new(53, CommonPhoneStrings.getInstance().FIVE)
-    self.SIX = PCGameKey.new(54, CommonPhoneStrings.getInstance().SIX)
-    self.SEVEN = PCGameKey.new(55, CommonPhoneStrings.getInstance().SEVEN)
-    self.EIGHT = PCGameKey.new(56, CommonPhoneStrings.getInstance().EIGHT)
-    self.NINE = PCGameKey.new(57, CommonPhoneStrings.getInstance().NINE)
-    self.DPAD_UP = PCGameKey.new(38, CommonPhoneStrings.getInstance().UP)
-    self.DPAD_DOWN = PCGameKey.new(40, CommonPhoneStrings.getInstance().DOWN)
-    self.DPAD_LEFT = PCGameKey.new(37, CommonPhoneStrings.getInstance().LEFT)
-    self.DPAD_RIGHT = PCGameKey.new(39, CommonPhoneStrings.getInstance().RIGHT)
-    self.DPAD_UP2 = self.DPAD_UP
-    self.DPAD_DOWN2 = self.DPAD_DOWN
-    self.DPAD_LEFT2 = self.DPAD_LEFT
-    self.DPAD_RIGHT2 = self.DPAD_RIGHT
-    self.COMMA = PCGameKey.new(44, "COMMA")
-    self.SPACE = PCGameKey.new(32, "SPACE")
-    self.DEL = PCGameKey.new(46, "DEL")
-    self.STAR = PCGameKey.new(42, CommonPhoneStrings.getInstance().STAR)
-    self.QUESTION = PCGameKey.new(47, "?")
-    self.PERIOD = PCGameKey.new(46, CommonSeps.getInstance().PERIOD)
-    self.ESCAPE = PCGameKey.new(27, "Esc")
-    self.BACK_SPACE = PCGameKey.new(8, "Backspace")
-end
-
-function PCKeyFactory.new()
-    local self = setmetatable({}, PCKeyFactory)
-    self:_init_fields()
-    return self
-end
+(define (PCKeyFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PCKeyFactory.jstatic_SINGLETON)))))
 
 
-function PCKeyFactory.getInstance()
-        return PCKeyFactory.SINGLETON
-end
-
-
-function PCKeyFactory:isSubmission(input)
-        if input == self.ENTER then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isDelete(input)
-        if input == self.DEL then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isBackSpace(input)
-        if input == self.BACK_SPACE then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isUp(input)
-        if input == self.DPAD_UP or input == self.DPAD_UP2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isDown(input)
-        if input == self.DPAD_DOWN or input == self.DPAD_DOWN2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isLeft(input)
-        if input == self.DPAD_LEFT or input == self.DPAD_LEFT2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isRight(input)
-        if input == self.DPAD_RIGHT or input == self.DPAD_RIGHT2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isEnter(input)
-        if input == self.ENTER then
-            return true
-        end
-        return false
-end
-
-PCKeyFactory.SINGLETON = PCKeyFactory.new()
-
-return PCKeyFactory
 

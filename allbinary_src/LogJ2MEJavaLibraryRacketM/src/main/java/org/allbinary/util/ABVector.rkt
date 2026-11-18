@@ -22,6 +22,7 @@
 (define ABVector%
   (class Vector%
     (super-new)))
+(define (ABVector.jclassValue) ABVector%)
 
 (define (ABVector.jnew_0)
   (define this (new ABVector% [jclass "ABVector"]))

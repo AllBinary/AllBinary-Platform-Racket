@@ -34,11 +34,13 @@
     (let ()
       (let/ec jreturn
         (raise (JR.newException "RuntimeException")))))))
+(define (LogFormatUtil.jclassValue) LogFormatUtil%)
 
 (define LogFormatUtil.jcell_instance 'jnone)
 (define (LogFormatUtil.jstatic_instance)
   (when (eq? LogFormatUtil.jcell_instance 'jnone) (set! LogFormatUtil.jcell_instance (LogFormatUtil.jnew_0)))
   LogFormatUtil.jcell_instance)
+(define (LogFormatUtil.jsetstatic_instance value) (set! LogFormatUtil.jcell_instance value))
 
 (define (LogFormatUtil.jnew_0)
   (define this (new LogFormatUtil% [jclass "LogFormatUtil"]))

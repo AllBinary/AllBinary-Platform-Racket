@@ -1,79 +1,65 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
-local VelocityInterfaceCompositeInterface = require("org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/ai/BasicAI.rkt")
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define StopAtEdgeAI%
+  (class BasicAI%
+    (super-new)
+    (define/override (jm_processAI_1 _allBinaryLayerManager)
+    (let ([_ownerLayerInterface JR.null][_velocityInterfaceCompositeInterface JR.null][_velocityProperties JR.null][_x JR.null][_y JR.null][_x2 JR.null][_y2 JR.null][_width JR.null][_height JR.null][_displayInfo JR.null])
+      (let/ec jreturn
+        (set! _ownerLayerInterface (send this jm_getOwnerLayerInterface_0))
+        (set! _velocityInterfaceCompositeInterface _ownerLayerInterface)
+        (set! _velocityProperties (send _velocityInterfaceCompositeInterface jm_getVelocityProperties_0))
+        (set! _x (send _ownerLayerInterface jm_getXP_0))
+        (set! _y (send _ownerLayerInterface jm_getYP_0))
+        (set! _x2 (send _ownerLayerInterface jm_getX2_0))
+        (set! _y2 (send _ownerLayerInterface jm_getY2_0))
+        (set! _width (send _ownerLayerInterface jm_getWidth_0))
+        (set! _height (send _ownerLayerInterface jm_getHeight_0))
+        (set! _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (when (> (JR.i32 (+ _x2 (JR.className (send _velocityProperties jm_getVelocityXBasicDecimalP_0)))) (send _displayInfo jm_getLastWidth_0))
+            (begin
+            (send _ownerLayerInterface jm_setPosition_3 (JR.i32 (- (send _displayInfo jm_getLastWidth_0) _width)) _y (send _ownerLayerInterface jm_getZP_0))
+            (JR.className (send _velocityProperties jm_getVelocityYBasicDecimalP_0))))
+        (when (> (JR.i32 (+ _y2 (JR.className (send _velocityProperties jm_getVelocityYBasicDecimalP_0)))) (send _displayInfo jm_getLastHeight_0))
+            (begin
+            (send _ownerLayerInterface jm_setPosition_3 _x (JR.i32 (- (send _displayInfo jm_getLastHeight_0) _height)) (send _ownerLayerInterface jm_getZP_0))
+            (JR.className (send _velocityProperties jm_getVelocityXBasicDecimalP_0))))
+        (when (< (JR.i32 (+ _x (JR.className (send _velocityProperties jm_getVelocityXBasicDecimalP_0)))) 0)
+            (begin
+            (send _ownerLayerInterface jm_setPosition_3 0 _y (send _ownerLayerInterface jm_getZP_0))
+            (JR.className (send _velocityProperties jm_getVelocityYBasicDecimalP_0))))
+        (when (< (JR.i32 (+ _y (JR.className (send _velocityProperties jm_getVelocityYBasicDecimalP_0)))) 0)
+            (begin
+            (send _ownerLayerInterface jm_setPosition_3 _x 0 (send _ownerLayerInterface jm_getZP_0))
+            (JR.className (send _velocityProperties jm_getVelocityXBasicDecimalP_0)))))))))
+(define (StopAtEdgeAI.jclassValue) StopAtEdgeAI%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local StopAtEdgeAI = {}
-StopAtEdgeAI.__index = StopAtEdgeAI
-StopAtEdgeAI.className = "StopAtEdgeAI"
-setmetatable(StopAtEdgeAI, {__index = BasicAI})
+(define (StopAtEdgeAI.jnew_2 _ownerLayerInterface _gameInput)
+  (define this (new StopAtEdgeAI% [jclass "StopAtEdgeAI"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function StopAtEdgeAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), StopAtEdgeAI)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function StopAtEdgeAI:processAI(allBinaryLayerManager)
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local velocityInterfaceCompositeInterface = (ownerLayerInterface)
-        local velocityProperties = velocityInterfaceCompositeInterface:getVelocityProperties()
-        local x = ownerLayerInterface:getXP()
-        local y = ownerLayerInterface:getYP()
-        local x2 = ownerLayerInterface:getX2()
-        local y2 = ownerLayerInterface:getY2()
-        local width = ownerLayerInterface:getWidth()
-        local height = ownerLayerInterface:getHeight()
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        if x2 + velocityProperties:getVelocityXBasicDecimalP():getScaled() > displayInfo:getLastWidth() then
-            ownerLayerInterface:setPosition(displayInfo:getLastWidth() - width, y, ownerLayerInterface:getZP())
-            velocityProperties:getVelocityYBasicDecimalP():setint(0)
-        end
-        if y2 + velocityProperties:getVelocityYBasicDecimalP():getScaled() > displayInfo:getLastHeight() then
-            ownerLayerInterface:setPosition(x, displayInfo:getLastHeight() - height, ownerLayerInterface:getZP())
-            velocityProperties:getVelocityXBasicDecimalP():setint(0)
-        end
-        if x + velocityProperties:getVelocityXBasicDecimalP():getScaled() < 0 then
-            ownerLayerInterface:setPosition(0, y, ownerLayerInterface:getZP())
-            velocityProperties:getVelocityYBasicDecimalP():setint(0)
-        end
-        if y + velocityProperties:getVelocityYBasicDecimalP():getScaled() < 0 then
-            ownerLayerInterface:setPosition(x, 0, ownerLayerInterface:getZP())
-            velocityProperties:getVelocityXBasicDecimalP():setint(0)
-        end
-end
-
-return StopAtEdgeAI
 

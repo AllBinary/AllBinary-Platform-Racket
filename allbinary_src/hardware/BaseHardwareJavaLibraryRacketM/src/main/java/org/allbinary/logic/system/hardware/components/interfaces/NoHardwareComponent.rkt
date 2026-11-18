@@ -34,11 +34,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_NULL_STRING (StringUtil.jm_getInstance_0))))))))
+(define (NoHardwareComponent.jclassValue) NoHardwareComponent%)
 
 (define NoHardwareComponent.jcell_instance 'jnone)
 (define (NoHardwareComponent.jstatic_instance)
   (when (eq? NoHardwareComponent.jcell_instance 'jnone) (set! NoHardwareComponent.jcell_instance (NoHardwareComponent.jnew_0)))
   NoHardwareComponent.jcell_instance)
+(define (NoHardwareComponent.jsetstatic_instance value) (set! NoHardwareComponent.jcell_instance value))
 
 (define (NoHardwareComponent.jnew_0)
   (define this (new NoHardwareComponent% [jclass "NoHardwareComponent"]))

@@ -26,11 +26,13 @@
 (define PreLogUtil%
   (class JObject%
     (super-new)))
+(define (PreLogUtil.jclassValue) PreLogUtil%)
 
 (define PreLogUtil.jcell_LOG_SUCCESS 'jnone)
 (define (PreLogUtil.jstatic_LOG_SUCCESS)
   (when (eq? PreLogUtil.jcell_LOG_SUCCESS 'jnone) (set! PreLogUtil.jcell_LOG_SUCCESS "org.allbinary: "))
   PreLogUtil.jcell_LOG_SUCCESS)
+(define (PreLogUtil.jsetstatic_LOG_SUCCESS value) (set! PreLogUtil.jcell_LOG_SUCCESS value))
 
 (define (PreLogUtil.jnew_0)
   (define this (new PreLogUtil% [jclass "PreLogUtil"]))

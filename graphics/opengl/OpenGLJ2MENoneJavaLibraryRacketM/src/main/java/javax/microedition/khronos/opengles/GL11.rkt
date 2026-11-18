@@ -1,24 +1,20 @@
--- Generated Code Do Not Modify
--- package javax.microedition.khronos.opengles
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package javax.microedition.khronos.opengles
 
-local GL10 = require("javax.microedition.khronos.opengles.GL10")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./GL10.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define GL11%
+  (class JObject%
+    (super-new)))
+(define (GL11.jclassValue) GL11%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (GL11.jnew_0)
+  (define this (new GL11% [jclass "GL11"]))
+  this)
 
--- Java interface
-local GL11 = {}
-GL11.__index = GL11
-GL11.className = "GL11"
-setmetatable(GL11, {__index = GL10})
 
-return GL11
 

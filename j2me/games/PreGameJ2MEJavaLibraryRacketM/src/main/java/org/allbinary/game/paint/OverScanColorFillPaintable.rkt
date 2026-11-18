@@ -1,50 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ColorFillPaintable = require("org.allbinary.game.paint.ColorFillPaintable")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./ColorFillPaintable.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OverScanColorFillPaintable%
+  (class ColorFillPaintable%
+    (super-new)
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send _graphics jm_setColor_1 (get-field f_colorP this))
+        (send _graphics jm_fillRect_4 (JR.i32 (- (send _graphics jm_getClipX_0))) (JR.i32 (- (send _graphics jm_getClipY_0))) (JR.i32 (+ (JR.className (get-field f_displayInfoSingleton this)) (JR.i32 (* (send _graphics jm_getClipX_0) 2)))) (JR.i32 (+ (JR.className (get-field f_displayInfoSingleton this)) (JR.i32 (* (send _graphics jm_getClipY_0) 2))))))))))
+(define (OverScanColorFillPaintable.jclassValue) OverScanColorFillPaintable%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OverScanColorFillPaintable = {}
-OverScanColorFillPaintable.__index = OverScanColorFillPaintable
-OverScanColorFillPaintable.className = "OverScanColorFillPaintable"
-setmetatable(OverScanColorFillPaintable, {__index = ColorFillPaintable})
-
-
-function OverScanColorFillPaintable.new(basicColor)
-    local self = setmetatable(ColorFillPaintable.new(basicColor), OverScanColorFillPaintable)
-        -- super(...) made self above
-    return self
-end
+(define (OverScanColorFillPaintable.jnew_1 _basicColor)
+  (define this (new OverScanColorFillPaintable% [jclass "OverScanColorFillPaintable"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function OverScanColorFillPaintable:paint(graphics)
-        graphics:setColor(self.colorP)
-        graphics:fillRect(-graphics:getClipX(), -graphics:getClipY(), self.displayInfoSingleton:getLastWidth() + (graphics:getClipX() * 2), self.displayInfoSingleton:getLastHeight() + (graphics:getClipY() * 2))
-end
-
-return OverScanColorFillPaintable
 

@@ -39,11 +39,13 @@
     (let ()
       (let/ec jreturn
         (JR.className (get-field f_logUtil this)))))))
+(define (PrimaryThreadPool.jclassValue) PrimaryThreadPool%)
 
 (define PrimaryThreadPool.jcell_THREAD_POOL 'jnone)
 (define (PrimaryThreadPool.jstatic_THREAD_POOL)
   (when (eq? PrimaryThreadPool.jcell_THREAD_POOL 'jnone) (set! PrimaryThreadPool.jcell_THREAD_POOL (ThreadPool.jnew_3 "Primary" 1 (ThreadPool.jstatic_NORMAL_PRIORITY))))
   PrimaryThreadPool.jcell_THREAD_POOL)
+(define (PrimaryThreadPool.jsetstatic_THREAD_POOL value) (set! PrimaryThreadPool.jcell_THREAD_POOL value))
 
 (define (PrimaryThreadPool.jnew_3 _poolName _numThreads _priority)
   (define this (new PrimaryThreadPool% [jclass "PrimaryThreadPool"]))

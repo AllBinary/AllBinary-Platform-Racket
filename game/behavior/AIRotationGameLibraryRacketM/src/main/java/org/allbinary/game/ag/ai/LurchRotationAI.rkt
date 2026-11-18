@@ -1,77 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai
 
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local RotationAnimationInterface = require("org.allbinary.animation.RotationAnimationInterface")
-local RotationAnimationInterfaceCompositeInterface = require("org.allbinary.animation.RotationAnimationInterfaceCompositeInterface")
-local LurchAI = require("org.allbinary.game.ag.ai.tactical.LurchAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AngleIncrementInfo = require("org.allbinary.math.AngleIncrementInfo")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/ag/ai/tactical/LurchAI.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LurchRotationAI%
+  (class LurchAI%
+    (super-new)
+    (field [f_rotationAnimationInterface JR.null])
+    (define/override (jm_reverse_0)
+    (let ()
+      (let/ec jreturn
+        (super jm_reverse_0)
+        (send this jm_update_0))))
+    (define/public (jm_update_0)
+    (let ([_rotationAnimationInterface JR.null][_angleIncrementInfo JR.null][_rotationAnimationInterfaceCompositeInterface JR.null])
+      (let/ec jreturn
+        (if (eq? (get-field f_currentRelativeAngle this) 0)
+            (begin
+            (set! _rotationAnimationInterface (get-field f_rotationAnimationInterface this))
+            (set! _angleIncrementInfo (JR.className (send _rotationAnimationInterface jm_getAngleInfoP_0)))
+            (set! _rotationAnimationInterfaceCompositeInterface (send this jm_getOwnerLayerInterface_0))
+            (send _rotationAnimationInterfaceCompositeInterface jm_setFrame_1 (JR.className (get-field f_RIGHT_FRAME _angleIncrementInfo))))
+            (when (eq? (get-field f_currentRelativeAngle this) 180)
+            (begin
+            (set! _rotationAnimationInterface (get-field f_rotationAnimationInterface this))
+            (set! _angleIncrementInfo (JR.className (send _rotationAnimationInterface jm_getAngleInfoP_0)))
+            (set! _rotationAnimationInterfaceCompositeInterface (send this jm_getOwnerLayerInterface_0))
+            (send _rotationAnimationInterfaceCompositeInterface jm_setFrame_1 (JR.className (get-field f_LEFT_FRAME _angleIncrementInfo)))))))))))
+(define (LurchRotationAI.jclassValue) LurchRotationAI%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LurchRotationAI = {}
-LurchRotationAI.__index = LurchRotationAI
-LurchRotationAI.className = "LurchRotationAI"
-setmetatable(LurchRotationAI, {__index = LurchAI})
-
-function LurchRotationAI:_init_fields()
-    self.rotationAnimationInterface = nil
-end
-
-
-function LurchRotationAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(LurchAI.new(ownerLayerInterface, gameInput), LurchRotationAI)
-    self:_init_fields()
-        -- super(...) made self above
-        local rotationAnimationInterfaceCompositeInterface = self:getOwnerLayerInterface()
-        self.rotationAnimationInterface = rotationAnimationInterfaceCompositeInterface:getRotationAnimationInterface()
-        self:update()
-    return self
-end
-
-
-function LurchRotationAI:reverse()
-        LurchAI.reverse(self)
-        self:update()
-end
+(define (LurchRotationAI.jnew_2 _ownerLayerInterface _gameInput)
+  (define this (new LurchRotationAI% [jclass "LurchRotationAI"]))
+    
+    (let ([_rotationAnimationInterfaceCompositeInterface JR.null])
+      (let/ec jreturn
+        (void)
+        (set! _rotationAnimationInterfaceCompositeInterface (send this jm_getOwnerLayerInterface_0))
+        (set-field! f_rotationAnimationInterface this (send _rotationAnimationInterfaceCompositeInterface jm_getRotationAnimationInterface_0))
+        (send this jm_update_0)))
+  this)
 
 
-function LurchRotationAI:update()
-        if self.currentRelativeAngle == 0 then
-            local rotationAnimationInterface = self.rotationAnimationInterface
-            local angleIncrementInfo = rotationAnimationInterface:getAngleInfoP():getAngleIncrementInfo()
-            local rotationAnimationInterfaceCompositeInterface = self:getOwnerLayerInterface()
-            rotationAnimationInterfaceCompositeInterface:setFrame(math.tointeger(angleIncrementInfo.RIGHT_FRAME // 1))
-        elseif self.currentRelativeAngle == 180 then
-            local rotationAnimationInterface = self.rotationAnimationInterface
-            local angleIncrementInfo = rotationAnimationInterface:getAngleInfoP():getAngleIncrementInfo()
-            local rotationAnimationInterfaceCompositeInterface = self:getOwnerLayerInterface()
-            rotationAnimationInterfaceCompositeInterface:setFrame(math.tointeger(angleIncrementInfo.LEFT_FRAME // 1))
-        end
-end
-
-return LurchRotationAI
 

@@ -1,72 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/AnimationInterfaceFactoryInterface.rkt")
+(lazy-require ["../../../../org/allbinary/animation/AnimationBehavior.rkt" (AnimationBehavior.jm_getInstance_0)])
+(lazy-require ["./ImageArrayAnimation.rkt" (ImageArrayAnimation.jnew_2)])
+(lazy-require ["./AdjustedImageArrayAnimation.rkt" (AdjustedImageArrayAnimation.jnew_4)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageArrayAnimationFactory%
+  (class JObject%
+    (super-new)
+    (field [f_dx 0])
+    (field [f_dy 0])
+    (field [f_imageArray JR.null])
+    (field [f_animationBehaviorFactory JR.null])
+    (define/public (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (if (or (not (= (get-field f_dx this) 0)) (not (= (get-field f_dy this) 0)))
+            (begin
+            (jreturn (AdjustedImageArrayAnimation.jnew_4 (get-field f_imageArray this) (get-field f_dx this) (get-field f_dy this) (send (get-field f_animationBehaviorFactory this) jm_getOrCreateInstance_0))))
+            (begin
+            (jreturn (ImageArrayAnimation.jnew_2 (get-field f_imageArray this) (AnimationBehavior.jm_getInstance_0))))))))
+    (define/public (jm_setInitialScale_1 _scaleProperties)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (ImageArrayAnimationFactory.jclassValue) ImageArrayAnimationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageArrayAnimationFactory = {}
-ImageArrayAnimationFactory.__index = ImageArrayAnimationFactory
-ImageArrayAnimationFactory.className = "ImageArrayAnimationFactory"
-
-function ImageArrayAnimationFactory:_init_fields()
-    self.dx = 0
-    self.dy = 0
-    self.imageArray = nil
-    self.animationBehaviorFactory = nil
-end
-
-
-function ImageArrayAnimationFactory.new(imageArray, dx, dy, animationBehaviorFactory)
-    local self = setmetatable({}, ImageArrayAnimationFactory)
-    self:_init_fields()
-        self.imageArray = imageArray
-        self.animationBehaviorFactory = animationBehaviorFactory
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
--- throws Exception
-function ImageArrayAnimationFactory:getInstance(instanceId)
-        if self.dx ~= 0 or self.dy ~= 0 then
-            return AdjustedImageArrayAnimation.new(self.imageArray, self.dx, self.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return ImageArrayAnimation.new(self.imageArray, AnimationBehavior.getInstance())
-        end
-end
+(define (ImageArrayAnimationFactory.jnew_4 _imageArray _dx _dy _animationBehaviorFactory)
+  (define this (new ImageArrayAnimationFactory% [jclass "ImageArrayAnimationFactory"]))
+    (set-field! f_dx this 0)
+    (set-field! f_dy this 0)
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_imageArray this _imageArray)
+        (set-field! f_animationBehaviorFactory this _animationBehaviorFactory)
+        (set-field! f_dx this _dx)
+        (set-field! f_dy this _dy)))
+  this)
 
 
-function ImageArrayAnimationFactory:setInitialScale(scaleProperties)
-end
-
-return ImageArrayAnimationFactory
 

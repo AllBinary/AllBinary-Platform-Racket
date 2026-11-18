@@ -21,6 +21,7 @@
 (define VideoInterface%
   (class JObject%
     (super-new)))
+(define (VideoInterface.jclassValue) VideoInterface%)
 
 (define (VideoInterface.jnew_0)
   (define this (new VideoInterface% [jclass "VideoInterface"]))

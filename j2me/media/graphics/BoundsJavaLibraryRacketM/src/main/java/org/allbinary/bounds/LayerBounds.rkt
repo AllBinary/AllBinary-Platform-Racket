@@ -1,72 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.bounds
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.bounds
 
-local BoundsChangeEvent = require("org.allbinary.bounds.event.BoundsChangeEvent")
-local BoundsChangeEventListener = require("org.allbinary.bounds.event.BoundsChangeEventListener")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../org/allbinary/bounds/event/BoundsChangeEventListener.rkt")
+(lazy-require ["../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define LayerBounds%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_rectangle JR.null])
+    (define/public (jm_getRectangleP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_rectangle this)))))
+    (define/public (jm_visit_1 _boundsVisitorInterface)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_PERFORMANCE_MESSAGE (EventStrings.jm_getInstance_0)) this))))
+    (define/public (jm_onBoundsChangeEvent_1 _boundsChangeEvent)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_rectangle this (send _boundsChangeEvent jm_getRectangle_0)))))))
+(define (LayerBounds.jclassValue) LayerBounds%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LayerBounds = {}
-LayerBounds.__index = LayerBounds
-LayerBounds.className = "LayerBounds"
-
-function LayerBounds:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.rectangle = nil
-end
-
-
-function LayerBounds.new(rectangle)
-    local self = setmetatable({}, LayerBounds)
-    self:_init_fields()
-        self.rectangle = rectangle
-    return self
-end
-
-
-function LayerBounds:getRectangleP()
-        return self.rectangle
-end
-
-
-function LayerBounds:visit(boundsVisitorInterface)
-end
+(define (LayerBounds.jnew_1 _rectangle)
+  (define this (new LayerBounds% [jclass "LayerBounds"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_rectangle this _rectangle)))
+  this)
 
 
-function LayerBounds:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function LayerBounds:onBoundsChangeEvent(boundsChangeEvent)
-        self.rectangle = boundsChangeEvent:getRectangle()
-end
-
-return LayerBounds
 

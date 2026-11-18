@@ -21,6 +21,7 @@
 (define MonitorInterface%
   (class JObject%
     (super-new)))
+(define (MonitorInterface.jclassValue) MonitorInterface%)
 
 (define (MonitorInterface.jnew_0)
   (define this (new MonitorInterface% [jclass "MonitorInterface"]))

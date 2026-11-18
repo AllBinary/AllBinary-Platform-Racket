@@ -23,6 +23,7 @@
     (super-new)
     (define/public (jm_visit_1 _anyType)
       (raise (JR.newException "AbstractMethodError" "visit")))))
+(define (VisitorInterface.jclassValue) VisitorInterface%)
 
 (define (VisitorInterface.jnew_0)
   (define this (new VisitorInterface% [jclass "VisitorInterface"]))

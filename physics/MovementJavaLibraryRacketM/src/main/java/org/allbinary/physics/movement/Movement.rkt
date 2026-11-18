@@ -1,55 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local MovementInterface = require("org.allbinary.physics.movement.MovementInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./MovementInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Movement%
+  (class JObject%
+    (super-new)
+    (define/public (jm_init_3 _speedBasicDecimal _angle _otherAngle)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_process_1 _layer)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_stop_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (Movement.jclassValue) Movement%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local Movement = {}
-Movement.__index = Movement
-Movement.className = "Movement"
-
-
-function Movement.new()
-    local self = setmetatable({}, Movement)
-    return self
-end
-
-
-function Movement:init(speedBasicDecimal, angle, otherAngle)
-end
+(define (Movement.jnew_0)
+  (define this (new Movement% [jclass "Movement"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
--- throws Exception
-function Movement:process(layer)
-end
-
-
-function Movement:stop()
-end
-
-return Movement
 

@@ -1,75 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.io
 
--- local BufferedReader = require("java.io.BufferedReader")
--- local FileReader = require("java.io.FileReader")
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
-local AbFileNativeUtil = require("org.allbinary.logic.io.file.AbFileNativeUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/BufferedReader.rkt"
+  "../../../../java/io/FileReader.rkt")
+(lazy-require ["../../../../org/allbinary/logic/io/file/AbFileNativeUtil.rkt" (AbFileNativeUtil.jm_get_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BufferedLineReader%
+  (class JObject%
+    (super-new)
+    (field [f_tmpIn JR.null])
+    (define/public (jm_readUpToLines_1 _readAheadIndex)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_readLine_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_tmpIn this) jm_readLine_0)))))
+    (define/public (jm_ready_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_tmpIn this) jm_ready_0)))))
+    (define/public (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))
+    (define/public (jm_getCurrent_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))))
+(define (BufferedLineReader.jclassValue) BufferedLineReader%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BufferedLineReader = {}
-BufferedLineReader.__index = BufferedLineReader
-BufferedLineReader.className = "BufferedLineReader"
-
-function BufferedLineReader:_init_fields()
-    self.tmpIn = nil
-end
-
-
-function BufferedLineReader.new(file)
-    local self = setmetatable({}, BufferedLineReader)
-    self:_init_fields()
-        self.tmpIn = BufferedReader.new(FileReader.new(AbFileNativeUtil.get(file)))
-    return self
-end
-
-
-function BufferedLineReader:readUpToLines(readAheadIndex)
-end
-
-
--- throws Exception
-function BufferedLineReader:readLine()
-        return self.tmpIn:readLine()
-end
-
-
--- throws Exception
-function BufferedLineReader:ready()
-        return self.tmpIn:ready()
-end
+(define (BufferedLineReader.jnew_1 _file)
+  (define this (new BufferedLineReader% [jclass "BufferedLineReader"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_tmpIn this (BufferedReader.jnew_1 (FileReader.jnew_1 (AbFileNativeUtil.jm_get_1 _file))))))
+  this)
 
 
-function BufferedLineReader:getSize()
-        return 0
-end
-
-
-function BufferedLineReader:getCurrent()
-        return 0
-end
-
-return BufferedLineReader
 

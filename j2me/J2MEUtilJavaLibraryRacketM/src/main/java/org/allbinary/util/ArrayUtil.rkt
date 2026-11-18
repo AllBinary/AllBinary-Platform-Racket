@@ -158,11 +158,13 @@
             (send _stringBuffer jm_append_1 (get-field f_COMMA_SEP _commonSeps)))
                 (set! _index (JR.i32 (+ _index 1))) (jloop)))))
         (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (ArrayUtil.jclassValue) ArrayUtil%)
 
 (define ArrayUtil.jcell_instance 'jnone)
 (define (ArrayUtil.jstatic_instance)
   (when (eq? ArrayUtil.jcell_instance 'jnone) (set! ArrayUtil.jcell_instance (ArrayUtil.jnew_0)))
   ArrayUtil.jcell_instance)
+(define (ArrayUtil.jsetstatic_instance value) (set! ArrayUtil.jcell_instance value))
 
 (define (ArrayUtil.jnew_0)
   (define this (new ArrayUtil% [jclass "ArrayUtil"]))

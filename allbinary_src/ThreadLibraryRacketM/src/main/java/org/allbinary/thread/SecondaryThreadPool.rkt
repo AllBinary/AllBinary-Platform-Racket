@@ -40,11 +40,13 @@
     (let ()
       (let/ec jreturn
         (JR.className (get-field f_logUtil this)))))))
+(define (SecondaryThreadPool.jclassValue) SecondaryThreadPool%)
 
 (define SecondaryThreadPool.jcell_instance 'jnone)
 (define (SecondaryThreadPool.jstatic_instance)
   (when (eq? SecondaryThreadPool.jcell_instance 'jnone) (set! SecondaryThreadPool.jcell_instance (SecondaryThreadPool.jnew_3 "Secondary" 1 (ThreadPool.jstatic_NORMAL_PRIORITY))))
   SecondaryThreadPool.jcell_instance)
+(define (SecondaryThreadPool.jsetstatic_instance value) (set! SecondaryThreadPool.jcell_instance value))
 
 (define (SecondaryThreadPool.jnew_3 _poolName _numThreads _priority)
   (define this (new SecondaryThreadPool% [jclass "SecondaryThreadPool"]))

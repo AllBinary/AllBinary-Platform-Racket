@@ -1,54 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.android.input.motion
 
-local AnalogLocationInput = require("org.allbinary.game.input.analog.AnalogLocationInput")
-local AnalogLocationInputFactory = require("org.allbinary.game.input.analog.AnalogLocationInputFactory")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local AnalogControllerVisitor = require("org.allbinary.android.input.motion.AnalogControllerVisitor")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./AnalogControllerVisitor.rkt")
+(lazy-require ["../../../../../org/allbinary/game/input/analog/AnalogLocationInputFactory.rkt" (AnalogLocationInputFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AllAnalogControllerVisitor%
+  (class AnalogControllerVisitor%
+    (super-new)
+    (define/override (jm_process_2 _allbinaryLayerManager _analogLocationInputProcessor)
+    (let ([_analogLocationInputList JR.null][_analogLocationInput JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _analogLocationInputList (send (AnalogLocationInputFactory.jm_getInstance_0) jm_getList_0))
+        (set! _analogLocationInput JR.null)
+        (begin
+            (set! _index (JR.i32 (- (send _analogLocationInputList jm_size_0) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (set! _analogLocationInput (send _analogLocationInputList jm_get_1 _index))
+            (send _analogLocationInputProcessor jm_process_2 _allbinaryLayerManager _analogLocationInput))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))))
+(define (AllAnalogControllerVisitor.jclassValue) AllAnalogControllerVisitor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AllAnalogControllerVisitor = {}
-AllAnalogControllerVisitor.__index = AllAnalogControllerVisitor
-AllAnalogControllerVisitor.className = "AllAnalogControllerVisitor"
-setmetatable(AllAnalogControllerVisitor, {__index = AnalogControllerVisitor})
-
-function AllAnalogControllerVisitor.new()
-    local self = setmetatable(AnalogControllerVisitor.new(), AllAnalogControllerVisitor)
-    return self
-end
+(define (AllAnalogControllerVisitor.jnew_0)
+  (define this (new AllAnalogControllerVisitor% [jclass "AllAnalogControllerVisitor"]))
+  this)
 
 
-function AllAnalogControllerVisitor:process(allbinaryLayerManager, analogLocationInputProcessor)
-        local analogLocationInputList = AnalogLocationInputFactory.getInstance():getList()
-        local analogLocationInput = nil
-        for index = analogLocationInputList:size() - 1, 0, -1 do
-            analogLocationInput = analogLocationInputList:get(index)
-            analogLocationInputProcessor:process(allbinaryLayerManager, analogLocationInput)
-        end
-end
-
-return AllAnalogControllerVisitor
 

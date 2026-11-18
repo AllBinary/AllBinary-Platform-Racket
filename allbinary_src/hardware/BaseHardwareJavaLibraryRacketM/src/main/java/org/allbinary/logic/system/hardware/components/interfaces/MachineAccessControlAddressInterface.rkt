@@ -21,6 +21,7 @@
 (define MachineAccessControlAddressInterface%
   (class JObject%
     (super-new)))
+(define (MachineAccessControlAddressInterface.jclassValue) MachineAccessControlAddressInterface%)
 
 (define (MachineAccessControlAddressInterface.jnew_0)
   (define this (new MachineAccessControlAddressInterface% [jclass "MachineAccessControlAddressInterface"]))

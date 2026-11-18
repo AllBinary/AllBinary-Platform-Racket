@@ -1,41 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../javax/microedition/lcdui/Graphics.rkt" (Graphics.jstatic_TOP Graphics.jstatic_LEFT)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define Anchor%
+  (class JObject%
+    (super-new)))
+(define (Anchor.jclassValue) Anchor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define Anchor.jcell_TOP_LEFT 'jnone)
+(define (Anchor.jstatic_TOP_LEFT)
+  (when (eq? Anchor.jcell_TOP_LEFT 'jnone) (set! Anchor.jcell_TOP_LEFT (bitwise-and (Graphics.jstatic_TOP) (Graphics.jstatic_LEFT))))
+  Anchor.jcell_TOP_LEFT)
+(define (Anchor.jsetstatic_TOP_LEFT value) (set! Anchor.jcell_TOP_LEFT value))
 
-local Anchor = {}
-Anchor.__index = Anchor
-Anchor.className = "Anchor"
+(define (Anchor.jnew_0)
+  (define this (new Anchor% [jclass "Anchor"]))
+  this)
 
-function Anchor.new()
-    local self = setmetatable({}, Anchor)
-    return self
-end
 
-Anchor.TOP_LEFT = Graphics.TOP & Graphics.LEFT
-
-return Anchor
 

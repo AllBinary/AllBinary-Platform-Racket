@@ -1,55 +1,50 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system
 
--- local InputStream = require("java.io.InputStream")
-local ResourceUtil = require("org.allbinary.data.resource.ResourceUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/io/InputStream.rkt")
+(lazy-require ["../../../../org/allbinary/data/resource/ResourceUtil.rkt" (ResourceUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PlatformAssetManager%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getResourceAsStream_1 _resource)
+    (let ([_resourceUtil JR.null][_inputStream JR.null])
+      (let/ec jreturn
+        (set! _resourceUtil (ResourceUtil.jm_getInstance_0))
+        (set! _inputStream (send _resourceUtil jm_getResourceAsStream_1 _resource))
+        (jreturn _inputStream))))))
+(define (PlatformAssetManager.jclassValue) PlatformAssetManager%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define PlatformAssetManager.jcell_instance 'jnone)
+(define (PlatformAssetManager.jstatic_instance)
+  (when (eq? PlatformAssetManager.jcell_instance 'jnone) (set! PlatformAssetManager.jcell_instance (PlatformAssetManager.jnew_0)))
+  PlatformAssetManager.jcell_instance)
+(define (PlatformAssetManager.jsetstatic_instance value) (set! PlatformAssetManager.jcell_instance value))
 
-local PlatformAssetManager = {}
-PlatformAssetManager.__index = PlatformAssetManager
-PlatformAssetManager.className = "PlatformAssetManager"
+(define (PlatformAssetManager.jnew_0)
+  (define this (new PlatformAssetManager% [jclass "PlatformAssetManager"]))
+  this)
 
-function PlatformAssetManager.new()
-    local self = setmetatable({}, PlatformAssetManager)
-    return self
-end
-
-
-function PlatformAssetManager.getInstance()
-        return PlatformAssetManager.instance
-end
+(define (PlatformAssetManager.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PlatformAssetManager.jstatic_instance)))))
 
 
--- throws Exception
-function PlatformAssetManager:getResourceAsStream(resource)
-        local resourceUtil = ResourceUtil.getInstance()
-        local inputStream = resourceUtil:getResourceAsStream(resource)
-        return inputStream
-end
-
-PlatformAssetManager.instance = PlatformAssetManager.new()
-
-return PlatformAssetManager
 

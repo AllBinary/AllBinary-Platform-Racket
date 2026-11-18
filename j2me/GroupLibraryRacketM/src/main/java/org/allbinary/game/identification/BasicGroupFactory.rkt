@@ -1,63 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.identification
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.identification
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["./Group.rkt" (Group.jnew_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicGroupFactory%
+  (class JObject%
+    (super-new)
+    (field [f_NAME JR.null])
+    (field [f_NO_SUCH_GROUP JR.null])
+    (field [f_GOOD JR.null])
+    (field [f_ENEMY JR.null])
+    (field [f_ENEMY_ON_LEVEL JR.null])
+    (field [f_NONE JR.null])
+    (field [f_GOOD_ARRAY JR.null])
+    (field [f_ENEMY_ARRAY JR.null])
+    (field [f_ENEMY_ON_LEVEL_ARRAY JR.null])
+    (field [f_NONE_ARRAY JR.null])))
+(define (BasicGroupFactory.jclassValue) BasicGroupFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define BasicGroupFactory.jcell_instance 'jnone)
+(define (BasicGroupFactory.jstatic_instance)
+  (when (eq? BasicGroupFactory.jcell_instance 'jnone) (set! BasicGroupFactory.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  BasicGroupFactory.jcell_instance)
+(define (BasicGroupFactory.jsetstatic_instance value) (set! BasicGroupFactory.jcell_instance value))
 
-local BasicGroupFactory = {}
-BasicGroupFactory.__index = BasicGroupFactory
-BasicGroupFactory.className = "BasicGroupFactory"
+(define (BasicGroupFactory.jnew_0)
+  (define this (new BasicGroupFactory% [jclass "BasicGroupFactory"]))
+    (set-field! f_NAME this "GROUP_NAME")
+    (set-field! f_NO_SUCH_GROUP this "No Such Group: ")
+    (set-field! f_GOOD this (Group.jnew_2 "Good Guys" (JR.i16 0)))
+    (set-field! f_ENEMY this (Group.jnew_2 "Bad Guys" (JR.i16 1)))
+    (set-field! f_ENEMY_ON_LEVEL this (Group.jnew_2 "Bad Guys on Level" (JR.i16 2)))
+    (set-field! f_NONE this (Group.jnew_2 "Not On A Team" (JR.i16 3)))
+    (set-field! f_GOOD_ARRAY this (vector (get-field f_GOOD this)))
+    (set-field! f_ENEMY_ARRAY this (vector (get-field f_ENEMY this)))
+    (set-field! f_ENEMY_ON_LEVEL_ARRAY this (vector (get-field f_ENEMY this) (get-field f_ENEMY_ON_LEVEL this)))
+    (set-field! f_NONE_ARRAY this (vector (get-field f_NONE this)))
+  this)
 
-function BasicGroupFactory:_init_fields()
-    self.NAME = "GROUP_NAME"
-    self.NO_SUCH_GROUP = "No Such Group: "
-    self.GOOD = Group.new("Good Guys", 0)
-    self.ENEMY = Group.new("Bad Guys", 1)
-    self.ENEMY_ON_LEVEL = Group.new("Bad Guys on Level", 2)
-    self.NONE = Group.new("Not On A Team", 3)
-    self.GOOD_ARRAY = {self.GOOD}
-    self.ENEMY_ARRAY = {self.ENEMY}
-    self.ENEMY_ON_LEVEL_ARRAY = {self.ENEMY, self.ENEMY_ON_LEVEL}
-    self.NONE_ARRAY = {self.NONE}
-end
-
-function BasicGroupFactory.new()
-    local self = setmetatable({}, BasicGroupFactory)
-    self:_init_fields()
-    return self
-end
+(define (BasicGroupFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (BasicGroupFactory.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! BasicGroupFactory.jcell_instance (BasicGroupFactory.jnew_0))))
+        (jreturn (BasicGroupFactory.jstatic_instance)))))
 
 
-function BasicGroupFactory.getInstance()
-        if BasicGroupFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            BasicGroupFactory.instance = BasicGroupFactory.new()
-        end
-        return BasicGroupFactory.instance
-end
-
-BasicGroupFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return BasicGroupFactory
 

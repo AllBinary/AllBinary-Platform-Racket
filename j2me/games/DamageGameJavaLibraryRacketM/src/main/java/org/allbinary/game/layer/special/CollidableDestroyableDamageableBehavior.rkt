@@ -1,79 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.layer.special
 
-local CollidableBaseBehavior = require("org.allbinary.game.collision.CollidableBaseBehavior")
-local CollidableInterfaceCompositeInterface = require("org.allbinary.game.collision.CollidableInterfaceCompositeInterface")
-local DamageUtil = require("org.allbinary.game.combat.damage.DamageUtil")
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/collision/CollidableBaseBehavior.rkt")
+(lazy-require ["../../../../../org/allbinary/game/combat/damage/DamageUtil.rkt" (DamageUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CollidableDestroyableDamageableBehavior%
+  (class CollidableBaseBehavior%
+    (super-new)
+    (field [f_damageUtil JR.null])
+    (define/override (jm_isCollision_2 _ownerLayer _collisionLayer)
+    (let ()
+      (let/ec jreturn
+        (when (not (eq? (vector-ref (send _ownerLayer jm_getGroupInterface_0) 0) (vector-ref (send _collisionLayer jm_getGroupInterface_0) 0)))
+            (begin
+            (jreturn (super jm_isCollision_2 _ownerLayer _collisionLayer))))
+        (jreturn #f))))
+    (define/override (jm_collide_2 _ownerLayer _collidableInterfaceCompositeInterface)
+    (let ([_ownerCollidableDestroyableDamageableLayer JR.null][_collidableDestroyableDamageableLayer JR.null])
+      (let/ec jreturn
+        (set! _ownerCollidableDestroyableDamageableLayer _ownerLayer)
+        (set! _collidableDestroyableDamageableLayer _collidableInterfaceCompositeInterface)
+        (send _ownerCollidableDestroyableDamageableLayer jm_damage_2 (send _collidableDestroyableDamageableLayer jm_getDamage_1 0) 0))))
+    (define/override (jm_isCollisionInterface_2 _ownerLayer _collidableInterfaceCompositeInterface)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 "No Longer Used" this)
+        (jreturn #f))))
+    (define/override (jm_collideInterface_2 _ownerLayer _collidableInterfaceCompositeInterface)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 "No Longer Used" this))))))
+(define (CollidableDestroyableDamageableBehavior.jclassValue) CollidableDestroyableDamageableBehavior%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CollidableDestroyableDamageableBehavior = {}
-CollidableDestroyableDamageableBehavior.__index = CollidableDestroyableDamageableBehavior
-CollidableDestroyableDamageableBehavior.className = "CollidableDestroyableDamageableBehavior"
-setmetatable(CollidableDestroyableDamageableBehavior, {__index = CollidableBaseBehavior})
-
-function CollidableDestroyableDamageableBehavior:_init_fields()
-    self.damageUtil = DamageUtil.getInstance()
-end
-
-
-function CollidableDestroyableDamageableBehavior.new(collidable)
-    local self = setmetatable(CollidableBaseBehavior.new(collidable), CollidableDestroyableDamageableBehavior)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function CollidableDestroyableDamageableBehavior:isCollision(ownerLayer, collisionLayer)
-        if ownerLayer:getGroupInterface()[1] ~= collisionLayer:getGroupInterface()[1] then
-            return CollidableBaseBehavior.isCollision(self, ownerLayer, collisionLayer)
-        end
-        return false
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableBehavior:collide(ownerLayer, collidableInterfaceCompositeInterface)
-        local ownerCollidableDestroyableDamageableLayer = ownerLayer
-        local collidableDestroyableDamageableLayer = collidableInterfaceCompositeInterface
-        ownerCollidableDestroyableDamageableLayer:damage(collidableDestroyableDamageableLayer:getDamage(0), 0)
-end
+(define (CollidableDestroyableDamageableBehavior.jnew_1 _collidable)
+  (define this (new CollidableDestroyableDamageableBehavior% [jclass "CollidableDestroyableDamageableBehavior"]))
+    (set-field! f_damageUtil this (DamageUtil.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function CollidableDestroyableDamageableBehavior:isCollisionInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        ForcedLogUtil.log("No Longer Used", self)
-        return false
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableBehavior:collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        ForcedLogUtil.log("No Longer Used", self)
-end
-
-return CollidableDestroyableDamageableBehavior
 

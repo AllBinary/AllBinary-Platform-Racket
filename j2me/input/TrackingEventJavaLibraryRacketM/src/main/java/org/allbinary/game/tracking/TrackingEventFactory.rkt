@@ -1,46 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.tracking
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.tracking
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local AllBinaryEventObjectFactoryInterface = require("org.allbinary.logic.util.event.AllBinaryEventObjectFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/AllBinaryEventObjectFactoryInterface.rkt")
+(lazy-require ["./TrackingEvent.rkt" (TrackingEvent.jnew_1)])
+(lazy-require ["./TrackingEventHandler.rkt" (TrackingEventHandler.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TrackingEventFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TrackingEvent.jnew_1 (TrackingEventHandler.jm_getInstance_0))))))))
+(define (TrackingEventFactory.jclassValue) TrackingEventFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TrackingEventFactory = {}
-TrackingEventFactory.__index = TrackingEventFactory
-TrackingEventFactory.className = "TrackingEventFactory"
-
-
-function TrackingEventFactory.new()
-    local self = setmetatable({}, TrackingEventFactory)
-    return self
-end
+(define (TrackingEventFactory.jnew_0)
+  (define this (new TrackingEventFactory% [jclass "TrackingEventFactory"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
 
-function TrackingEventFactory:getInstance()
-        return TrackingEvent.new(TrackingEventHandler.getInstance())
-end
-
-return TrackingEventFactory
 

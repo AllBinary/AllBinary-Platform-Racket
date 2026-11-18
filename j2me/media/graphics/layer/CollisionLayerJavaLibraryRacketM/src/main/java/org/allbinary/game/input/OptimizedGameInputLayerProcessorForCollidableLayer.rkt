@@ -1,61 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LayerProcessor = require("org.allbinary.layer.LayerProcessor")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/layer/LayerProcessor.rkt")
+(lazy-require ["./OptimizedGameInputLayerManager.rkt" (OptimizedGameInputLayerManager.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define OptimizedGameInputLayerProcessorForCollidableLayer%
+  (class LayerProcessor%
+    (super-new)
+    (define/override (jm_processAt_3 _allBinaryLayerManager _layerInterface _index)
+    (let ([_gameInputInterface JR.null])
+      (let/ec jreturn
+        (set! _gameInputInterface _layerInterface)
+        (send _gameInputInterface jm_processInput_1 _allBinaryLayerManager))))
+    (define/override (jm_isProcessorLayer_1 _layerInterface)
+    (let ()
+      (let/ec jreturn
+        (if (send _layerInterface jm_implmentsGameInputInterface_0)
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))))
+(define (OptimizedGameInputLayerProcessorForCollidableLayer.jclassValue) OptimizedGameInputLayerProcessorForCollidableLayer%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OptimizedGameInputLayerProcessorForCollidableLayer = {}
-OptimizedGameInputLayerProcessorForCollidableLayer.__index = OptimizedGameInputLayerProcessorForCollidableLayer
-OptimizedGameInputLayerProcessorForCollidableLayer.className = "OptimizedGameInputLayerProcessorForCollidableLayer"
-setmetatable(OptimizedGameInputLayerProcessorForCollidableLayer, {__index = LayerProcessor})
-
-
-function OptimizedGameInputLayerProcessorForCollidableLayer.new()
-    local self = setmetatable(LayerProcessor.new(OptimizedGameInputLayerManager.new()), OptimizedGameInputLayerProcessorForCollidableLayer)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function OptimizedGameInputLayerProcessorForCollidableLayer:processAt(allBinaryLayerManager, layerInterface, index)
-        local gameInputInterface = layerInterface
-        gameInputInterface:processInput(allBinaryLayerManager)
-end
+(define (OptimizedGameInputLayerProcessorForCollidableLayer.jnew_0)
+  (define this (new OptimizedGameInputLayerProcessorForCollidableLayer% [jclass "OptimizedGameInputLayerProcessorForCollidableLayer"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function OptimizedGameInputLayerProcessorForCollidableLayer:isProcessorLayer(layerInterface)
-        if layerInterface:implmentsGameInputInterface() then
-            return true
-        else
-            return false
-        end
-end
-
-return OptimizedGameInputLayerProcessorForCollidableLayer
 

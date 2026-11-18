@@ -1,155 +1,136 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.text
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local SWTJOGLProcessor = require("org.allbinary.graphics.threed.SWTJOGLProcessor")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/animation/IndexedAnimation.rkt"
+  "../../../../org/allbinary/graphics/font/UpdateMyFontInterface.rkt")
+(lazy-require ["../../../../org/allbinary/graphics/Anchor.rkt" (Anchor.jstatic_TOP_LEFT)])
+(lazy-require ["../../../../org/allbinary/graphics/font/MyFontProcessor.rkt" (MyFontProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/font/UpdateMyFontProcessor.rkt" (UpdateMyFontProcessor.jnew_1)])
+(lazy-require ["../../../../org/allbinary/graphics/threed/SWTJOGLProcessor.rkt" (SWTJOGLProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["./TextChangeListener.rkt" (TextChangeListener.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define TextAnimation%
+  (class IndexedAnimation%
+    (super-new)
+    (field [f_updateMyFontProcessor JR.null])
+    (field [f_myFontProcessor JR.null])
+    (field [f_textArrayP JR.null])
+    (field [f_anchor 0])
+    (field [f_fontHeight 0])
+    (field [f_offsetY 0])
+    (field [f_textChangeListener JR.null])
+    (define/public (jm_updateMeasurement_1 _graphics)
+    (let ([_font JR.null][_adjustedFontHeight JR.null])
+      (let/ec jreturn
+        (set! _font (send _graphics jm_getFont_0))
+        (set-field! f_fontHeight this (send _font jm_getHeight_0))
+        (set! _adjustedFontHeight (JR.d2i (- (* (JR.toDouble (get-field f_fontHeight this)) 2.00))))
+        (set-field! f_offsetY this (if (send (SWTJOGLProcessor.jm_getInstance_0) jm_isJOGL_0) _adjustedFontHeight 0))
+        (send (get-field f_textChangeListener this) jm_onMeasure_0)
+        (set-field! f_textChangeListener this (TextChangeListener.jm_getInstance_0))
+        (set-field! f_myFontProcessor this (MyFontProcessor.jm_getInstance_0)))))
+    (define/override (jm_nextFrame_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_myFontProcessor this) jm_process_1 _graphics)
+        (send this jm_paintXYNoUpdate_3 _graphics _x _y))))
+    (define/public (jm_paintXYNoUpdate_3 _graphics _x _y)
+    (let ([_size JR.null][_index JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_basicSetColorUtil this))
+        (set! _size (vector-length (get-field f_textArrayP this)))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (send _graphics jm_drawString_4 (vector-ref (get-field f_textArrayP this) _index) _x (JR.i32 (+ (JR.i32 (+ _y (get-field f_offsetY this))) (JR.i32 (* _index (get-field f_fontHeight this))))) (get-field f_anchor this)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop))))))))
+    (define/public (jm_setTextWithOnMeasure_2 _text _textChangeListener)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setText_1 _text)
+        (set-field! f_textChangeListener this _textChangeListener))))
+    (define/public (jm_setText_1 _text)
+    (let ([_list JR.null][_index JR.null][_startIndex JR.null][_endIndex JR.null][_textArray JR.null][_size JR.null])
+      (let/ec jreturn
+        (set! _list (BasicArrayListD.jnew_0))
+        (when (> (string-length _text) 0)
+            (begin
+            (set! _index 0)
+            (set! _startIndex 0)
+            (set! _endIndex 0)
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                    (let/ec jcontinue
+                (set! _startIndex _index)
+                (set! _index (JR.indexOf _text 10 _startIndex))
+                (set! _endIndex _index)
+                (when (< _index 0)
+                    (begin
+                    (set! _endIndex (string-length _text))))
+                (send _list jm_add_1 (JR.substring _text _startIndex _endIndex))
+                (when (< _index 0)
+                    (begin
+                    (jbreak (void))))
+                (set! _index (JR.i32 (+ _index 1)))) (jloop))))))
+        (if (> (send _list jm_size_0) 0)
+            (begin
+            (set! _textArray (JR.newArray JR.null (send _list jm_size_0)))
+            (set! _size (send _list jm_size_0))
+            (begin
+                (set! _index 0)
+                (let/ec jbreak (let jloop () (when (< _index _size)
+                    (let/ec jcontinue
+                (vector-set! _textArray _index (send _list jm_get_1 _index)))
+                    (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+            (set-field! f_textArrayP this _textArray))
+            (begin
+            (set-field! f_textArrayP this (get-field f_ONE_EMPTY_STRING_ARRAY (StringUtil.jm_getInstance_0)))))
+        (set-field! f_myFontProcessor this (get-field f_updateMyFontProcessor this)))))
+    (define/public (jm_getTextArray_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_textArrayP this)))))
+    (define/public (jm_getFontHeight_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_fontHeight this)))))))
+(define (TextAnimation.jclassValue) TextAnimation%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TextAnimation = {}
-TextAnimation.__index = TextAnimation
-TextAnimation.className = "TextAnimation"
-setmetatable(TextAnimation, {__index = IndexedAnimation})
-
-function TextAnimation:_init_fields()
-    self.updateMyFontProcessor = UpdateMyFontProcessor.new(self)
-    self.myFontProcessor = self.updateMyFontProcessor
-    self.textArrayP = StringUtil.getInstance().ONE_EMPTY_STRING_ARRAY
-    self.anchor = Anchor.TOP_LEFT
-    self.fontHeight = 0
-    self.offsetY = 0
-    self.textChangeListener = TextChangeListener.getInstance()
-end
-
-
-function TextAnimation.new(text, animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), TextAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setText(text)
-    return self
-end
-
-
-function TextAnimation:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.fontHeight = font:getHeight()
-        local adjustedFontHeight = java_int(-((self.fontHeight + 0.0) * 2.00))
-        self.offsetY = (function() if SWTJOGLProcessor.getInstance():isJOGL() then return adjustedFontHeight else return 0 end end)()
-        self.textChangeListener:onMeasure()
-        self.textChangeListener = TextChangeListener.getInstance()
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
--- throws Exception
-function TextAnimation:nextFrame()
-end
-
-
-function TextAnimation:paintXY(graphics, x, y)
-        self.myFontProcessor:process(graphics)
-        self:paintXYNoUpdate(graphics, x, y)
-end
-
-
-function TextAnimation:paintXYNoUpdate(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-        local size = (self.textArrayP.n or #self.textArrayP)
-        for index = 0, size - 1 do
-            graphics:drawString(self.textArrayP[index + 1], x, y + self.offsetY + (index * self.fontHeight), self.anchor)
-        end
-end
-
-
-function TextAnimation:setTextWithOnMeasure(text, textChangeListener)
-        self:setText(text)
-        self.textChangeListener = textChangeListener
-end
-
-
-function TextAnimation:setText(text)
-        local list = BasicArrayListD.new()
-        if #text > 0 then
-            local index = 0
-            local startIndex = 0
-            local endIndex = 0
-            while index >= 0 do
-                startIndex = index
-                index = ((string.find(text, "\n", (startIndex) + 1, true) or 0) - 1)
-                endIndex = index
-                if index < 0 then
-                    endIndex = #text
-                end
-                list:add(string.sub(text, (startIndex) + 1, endIndex))
-                if index < 0 then
-                    break
-                end
-                index = index + 1
-            end
-        end
-        if list:size() > 0 then
-            local textArray = java_new_array(nil, list:size())
-            local size = list:size()
-            for index = 0, size - 1 do
-                textArray[index + 1] = list:get(index)
-            end
-            self.textArrayP = textArray
-        else
-            self.textArrayP = StringUtil.getInstance().ONE_EMPTY_STRING_ARRAY
-        end
-        self.myFontProcessor = self.updateMyFontProcessor
-end
+(define (TextAnimation.jnew_2 _text _animationBehavior)
+  (define this (new TextAnimation% [jclass "TextAnimation"]))
+    (set-field! f_updateMyFontProcessor this (UpdateMyFontProcessor.jnew_1 this))
+    (set-field! f_myFontProcessor this (get-field f_updateMyFontProcessor this))
+    (set-field! f_textArrayP this (get-field f_ONE_EMPTY_STRING_ARRAY (StringUtil.jm_getInstance_0)))
+    (set-field! f_anchor this (Anchor.jstatic_TOP_LEFT))
+    (set-field! f_fontHeight this 0)
+    (set-field! f_offsetY this 0)
+    (set-field! f_textChangeListener this (TextChangeListener.jm_getInstance_0))
+    (let ()
+      (let/ec jreturn
+        (void)
+        (send this jm_setText_1 _text)))
+  this)
 
 
-function TextAnimation:getTextArray()
-        return self.textArrayP
-end
-
-
-function TextAnimation:getFontHeight()
-        return self.fontHeight
-end
-
-return TextAnimation
 

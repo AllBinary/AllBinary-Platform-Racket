@@ -1,69 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.android.input.motion
 
-local AnalogControllerConfigurationEvent = require("org.allbinary.android.input.motion.event.AnalogControllerConfigurationEvent")
-local AnalogControllerConfigurationEventHandler = require("org.allbinary.android.input.motion.event.AnalogControllerConfigurationEventHandler")
-local ScaleFactorFactory = require("org.allbinary.logic.math.ScaleFactorFactory")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent.rkt" (AnalogControllerConfigurationEvent.jnew_1)])
+(lazy-require ["../../../../../org/allbinary/android/input/motion/event/AnalogControllerConfigurationEventHandler.rkt" (AnalogControllerConfigurationEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/math/ScaleFactorFactory.rkt" (ScaleFactorFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AnalogControllerConfigurationFactory%
+  (class JObject%
+    (super-new)
+    (field [f_SCALE_FACTOR 0])
+    (field [f_SCALE_VALUE 0])
+    (field [f_available #f])
+    (field [f_analogControllerConfigurationEvent JR.null])
+    (define/public (jm_isAvailable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_available this)))))
+    (define/public (jm_setAvailable_1 _available)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_available this _available)
+        (send (AnalogControllerConfigurationEventHandler.jm_getInstance_0) jm_fireEvent_1 (get-field f_analogControllerConfigurationEvent this)))))))
+(define (AnalogControllerConfigurationFactory.jclassValue) AnalogControllerConfigurationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define AnalogControllerConfigurationFactory.jcell_instance 'jnone)
+(define (AnalogControllerConfigurationFactory.jstatic_instance)
+  (when (eq? AnalogControllerConfigurationFactory.jcell_instance 'jnone) (set! AnalogControllerConfigurationFactory.jcell_instance (AnalogControllerConfigurationFactory.jnew_0)))
+  AnalogControllerConfigurationFactory.jcell_instance)
+(define (AnalogControllerConfigurationFactory.jsetstatic_instance value) (set! AnalogControllerConfigurationFactory.jcell_instance value))
 
-local AnalogControllerConfigurationFactory = {}
-AnalogControllerConfigurationFactory.__index = AnalogControllerConfigurationFactory
-AnalogControllerConfigurationFactory.className = "AnalogControllerConfigurationFactory"
+(define (AnalogControllerConfigurationFactory.jnew_0)
+  (define this (new AnalogControllerConfigurationFactory% [jclass "AnalogControllerConfigurationFactory"]))
+    (set-field! f_SCALE_FACTOR this (get-field f_DEFAULT_SCALE_FACTOR (ScaleFactorFactory.jm_getInstance_0)))
+    (set-field! f_SCALE_VALUE this (get-field f_DEFAULT_SCALE_VALUE (ScaleFactorFactory.jm_getInstance_0)))
+    
+    (set-field! f_analogControllerConfigurationEvent this (AnalogControllerConfigurationEvent.jnew_1 this))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-function AnalogControllerConfigurationFactory:_init_fields()
-    self.SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR
-    self.SCALE_VALUE = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE
-    self.available = false
-    self.analogControllerConfigurationEvent = AnalogControllerConfigurationEvent.new(self)
-end
-
-
-function AnalogControllerConfigurationFactory.getInstance()
-        return AnalogControllerConfigurationFactory.instance
-end
-
-
-function AnalogControllerConfigurationFactory.new()
-    local self = setmetatable({}, AnalogControllerConfigurationFactory)
-    self:_init_fields()
-    return self
-end
+(define (AnalogControllerConfigurationFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AnalogControllerConfigurationFactory.jstatic_instance)))))
 
 
-function AnalogControllerConfigurationFactory:isAvailable()
-        return self.available
-end
-
-
--- throws Exception
-function AnalogControllerConfigurationFactory:setAvailable(available)
-        self.available = available
-        AnalogControllerConfigurationEventHandler.getInstance():fireEvent(self.analogControllerConfigurationEvent)
-end
-
-AnalogControllerConfigurationFactory.instance = AnalogControllerConfigurationFactory.new()
-
-return AnalogControllerConfigurationFactory
 

@@ -1,91 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input
 
-local AllMotionRecognizer = require("org.allbinary.input.motion.AllMotionRecognizer")
-local BasicMotionGesturesHandler = require("org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler")
-local GameMotionGestureListener = require("org.allbinary.input.motion.gesture.observer.GameMotionGestureListener")
-local MotionGestureReceiveInterfaceFactory = require("org.allbinary.input.motion.gesture.observer.MotionGestureReceiveInterfaceFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/input/motion/AllMotionRecognizer.rkt" (AllMotionRecognizer.jnew_0)])
+(lazy-require ["../../../org/allbinary/input/motion/gesture/observer/GameMotionGestureListener.rkt" (GameMotionGestureListener.jnew_1)])
+(lazy-require ["../../../org/allbinary/input/motion/gesture/observer/MotionGestureReceiveInterfaceFactory.rkt" (MotionGestureReceiveInterfaceFactory.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;TouchJ2ME
+(define TouchJ2ME%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_DEVICE_ID 0])
+    (field [f_motionRecognizer JR.null])
+    (define/public (jm_pointerDragged_2 _x _y)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this "pointerDragged" _e))])
+            (send (get-field f_motionRecognizer this) jm_processDraggedMotionEvent_4 _x _y (get-field f_DEVICE_ID this) 0)))))
+    (define/public (jm_pointerPressed_2 _x _y)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this "pointerPressed" _e))])
+            (send (get-field f_motionRecognizer this) jm_processStartMotionEvent_4 _x _y (get-field f_DEVICE_ID this) 0)))))
+    (define/public (jm_pointerReleased_2 _x _y)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this "pointerReleased" _e))])
+            (send (get-field f_motionRecognizer this) jm_processEndMotionEvent_4 _x _y (get-field f_DEVICE_ID this) 0)))))))
+(define (TouchJ2ME.jclassValue) TouchJ2ME%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
---TouchJ2ME
-local TouchJ2ME = {}
-TouchJ2ME.__index = TouchJ2ME
-TouchJ2ME.className = "TouchJ2ME"
-
-function TouchJ2ME:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.DEVICE_ID = 0
-    self.motionRecognizer = AllMotionRecognizer.new()
-end
-
-
-function TouchJ2ME.new()
-    local self = setmetatable({}, TouchJ2ME)
-    self:_init_fields()
-        local motionGesturesHandler = self.motionRecognizer:getMotionGestureRecognizer():getMotionGesturesHandler()
-        motionGesturesHandler:addListenerInterface(GameMotionGestureListener.new(MotionGestureReceiveInterfaceFactory.getInstance()))
-    return self
-end
-
-
-function TouchJ2ME:pointerDragged(x, y)
-        local try_ok, try_error = pcall(function()
-            self.motionRecognizer:processDraggedMotionEvent(x, y, self.DEVICE_ID, 0)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, "pointerDragged", e)
-        end
-end
-
-
-function TouchJ2ME:pointerPressed(x, y)
-        local try_ok, try_error = pcall(function()
-            self.motionRecognizer:processStartMotionEvent(x, y, self.DEVICE_ID, 0)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, "pointerPressed", e)
-        end
-end
+(define (TouchJ2ME.jnew_0)
+  (define this (new TouchJ2ME% [jclass "TouchJ2ME"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_DEVICE_ID this 0)
+    (set-field! f_motionRecognizer this (AllMotionRecognizer.jnew_0))
+    (let ([_motionGesturesHandler JR.null])
+      (let/ec jreturn
+        (set! _motionGesturesHandler (JR.className (send (get-field f_motionRecognizer this) jm_getMotionGestureRecognizer_0)))
+        (send _motionGesturesHandler jm_addListenerInterface_1 (GameMotionGestureListener.jnew_1 (MotionGestureReceiveInterfaceFactory.jm_getInstance_0)))))
+  this)
 
 
-function TouchJ2ME:pointerReleased(x, y)
-        local try_ok, try_error = pcall(function()
-            self.motionRecognizer:processEndMotionEvent(x, y, self.DEVICE_ID, 0)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, "pointerReleased", e)
-        end
-end
-
-return TouchJ2ME
 

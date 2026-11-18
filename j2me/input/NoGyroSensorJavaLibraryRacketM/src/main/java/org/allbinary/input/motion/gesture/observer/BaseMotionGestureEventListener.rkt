@@ -1,46 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.gesture.observer
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/logic/util/event/EventListenerInterface.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BaseMotionGestureEventListener%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onMotionGestureEvent_1 _motionGestureEvent)
+      (raise (JR.newException "AbstractMethodError" "onMotionGestureEvent")))
+    (define/public (jm_onScrolledMotionGestureEvent_1 _motionGestureEvent)
+      (raise (JR.newException "AbstractMethodError" "onScrolledMotionGestureEvent")))))
+(define (BaseMotionGestureEventListener.jclassValue) BaseMotionGestureEventListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local BaseMotionGestureEventListener = {}
-BaseMotionGestureEventListener.__index = BaseMotionGestureEventListener
-BaseMotionGestureEventListener.className = "BaseMotionGestureEventListener"
-setmetatable(BaseMotionGestureEventListener, {__index = EventListenerInterface})
-
-
-function BaseMotionGestureEventListener:onMotionGestureEvent(motionGestureEvent)
-    error("abstract method onMotionGestureEvent")
-end
+(define (BaseMotionGestureEventListener.jnew_0)
+  (define this (new BaseMotionGestureEventListener% [jclass "BaseMotionGestureEventListener"]))
+  this)
 
 
-function BaseMotionGestureEventListener:onScrolledMotionGestureEvent(motionGestureEvent)
-    error("abstract method onScrolledMotionGestureEvent")
-end
-
-return BaseMotionGestureEventListener
 

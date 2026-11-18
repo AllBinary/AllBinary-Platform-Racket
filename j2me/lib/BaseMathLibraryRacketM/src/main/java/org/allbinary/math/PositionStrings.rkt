@@ -29,11 +29,13 @@
     (field [f_DX_LABEL JR.null])
     (field [f_DY_LABEL JR.null])
     (field [f_DZ_LABEL JR.null])))
+(define (PositionStrings.jclassValue) PositionStrings%)
 
 (define PositionStrings.jcell_instance 'jnone)
 (define (PositionStrings.jstatic_instance)
   (when (eq? PositionStrings.jcell_instance 'jnone) (set! PositionStrings.jcell_instance (PositionStrings.jnew_0)))
   PositionStrings.jcell_instance)
+(define (PositionStrings.jsetstatic_instance value) (set! PositionStrings.jcell_instance value))
 
 (define (PositionStrings.jnew_0)
   (define this (new PositionStrings% [jclass "PositionStrings"]))

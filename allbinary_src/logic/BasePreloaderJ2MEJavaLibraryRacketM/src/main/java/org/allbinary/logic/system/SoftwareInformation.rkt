@@ -51,6 +51,7 @@
         (send _stringBuffer jm_append_1 _VERSION)
         (send _stringBuffer jm_append_1 (send this jm_getVersion_0))
         (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (SoftwareInformation.jclassValue) SoftwareInformation%)
 
 (define (SoftwareInformation.jnew_3 _name _version _shortName)
   (define this (new SoftwareInformation% [jclass "SoftwareInformation"]))

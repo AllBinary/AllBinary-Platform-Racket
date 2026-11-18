@@ -1,196 +1,150 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.resource
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2011 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.resource
 
-local BasicAnimationInterfaceFactoryInterface = require("org.allbinary.animation.BasicAnimationInterfaceFactoryInterface")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local ResourceLoadingLevelFactory = require("org.allbinary.game.resource.ResourceLoadingLevelFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local RectangleFactory = require("org.allbinary.graphics.RectangleFactory")
-local ImageCache = require("org.allbinary.image.ImageCache")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local FeatureResourceAnimationInterfaceFactoryInterface = require("org.allbinary.animation.resource.FeatureResourceAnimationInterfaceFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./FeatureResourceAnimationInterfaceFactoryInterface.rkt")
+(lazy-require ["../../../../org/allbinary/animation/NullAnimationFactory.rkt" (NullAnimationFactory.jstatic_NULL_NOT_FOR_USE_ANIMATION_FACTORY)])
+(lazy-require ["../../../../org/allbinary/game/resource/ResourceLoadingLevelFactory.rkt" (ResourceLoadingLevelFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/RectangleFactory.rkt" (RectangleFactory.jstatic_SINGLETON RectangleFactory.jstatic_ARRAY_OF_ARRAYS)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define BaseResourceAnimationInterfaceFactoryInterfaceFactory%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_hashtable JR.null])
+    (field [f_rectangleHashtable JR.null])
+    (field [f_rectangleArrayOfArraysHashtable JR.null])
+    (field [f_name JR.null])
+    (field [f_initialized #f])
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_name this)))))
+    (define/public (jm_init_1 _level)
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (set! _commonStrings (CommonStrings.jm_getInstance_0))
+        (send (get-field f_logUtil this) jm_putF_3 (send (send (send (StringMaker.jnew_0) jm_append_1 "Available List of Animations: ") jm_append_1 (send (get-field f_hashtable this) jm_toString_0)) jm_toString_0) this (get-field f_INIT _commonStrings))
+        (send this jm_setInitialized_1 #t))))
+    (define/public (jm_initImageCache_2 _imageCache _level)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_add_2 _resource _animationInterfaceFactoryInterface)
+    (let ()
+      (let/ec jreturn
+        (when (send (get-field f_hashtable this) jm_containsKey_1 _resource)
+            (begin
+            (raise (JR.newException "Exception" (send (send (send (StringMaker.jnew_0) jm_append_1 "Resource Already Created: ") jm_append_1 _resource) jm_toString_0)))))
+        (send (get-field f_hashtable this) jm_put_2 _resource _animationInterfaceFactoryInterface))))
+    (define/public (jm_getBasicAnimationInterfaceFactoryInstance_1 _resource)
+    (let ([_basicAnimationInterfaceFactoryInterfaceCanBeNull JR.null])
+      (let/ec jreturn
+        (set! _basicAnimationInterfaceFactoryInterfaceCanBeNull (send (get-field f_hashtable this) jm_get_1 _resource))
+        (when (JR.null? _basicAnimationInterfaceFactoryInterfaceCanBeNull)
+            (begin
+            (jreturn (NullAnimationFactory.jstatic_NULL_NOT_FOR_USE_ANIMATION_FACTORY))))
+        (jreturn _basicAnimationInterfaceFactoryInterfaceCanBeNull))))
+    (define/public (jm_getRectangle_1 _resource)
+    (let ([_rectangleCanBeNull JR.null])
+      (let/ec jreturn
+        (set! _rectangleCanBeNull (send (get-field f_rectangleHashtable this) jm_get_1 _resource))
+        (when (JR.null? _rectangleCanBeNull)
+            (begin
+            (jreturn (RectangleFactory.jstatic_SINGLETON))))
+        (jreturn _rectangleCanBeNull))))
+    (define/public (jm_addRectangle_2 _resource _rectangle)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_rectangleHashtable this) jm_put_2 _resource _rectangle))))
+    (define/public (jm_getRectangleArrayOfArrays_1 _resource)
+    (let ([_valueCanBeNull JR.null][_rectangleArrayOfArrays JR.null])
+      (let/ec jreturn
+        (set! _valueCanBeNull (send (get-field f_rectangleArrayOfArraysHashtable this) jm_get_1 _resource))
+        (if (not (JR.null? _valueCanBeNull))
+            (begin
+            (set! _rectangleArrayOfArrays _valueCanBeNull)
+            (jreturn _rectangleArrayOfArrays))
+            (begin
+            (jreturn (RectangleFactory.jstatic_ARRAY_OF_ARRAYS)))))))
+    (define/public (jm_addRectangleArrayOfArrays_2 _resource _rectangleArrayOfArrays)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_rectangleArrayOfArraysHashtable this) jm_put_2 _resource _rectangleArrayOfArrays))))
+    (define/public (jm_isFeature_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #f))))
+    (define/public (jm_isLoadingLevel_1 _level)
+    (let ([_resourceLoadingLevelFactory JR.null])
+      (let/ec jreturn
+        (set! _resourceLoadingLevelFactory (ResourceLoadingLevelFactory.jm_getInstance_0))
+        (if (= _level (JR.className (get-field f_LOAD_ALL _resourceLoadingLevelFactory)))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))
+    (define/override (jm_toString_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (send (send (send (send (StringMaker.jnew_0) jm_append_1 (JR.className this)) jm_append_1 (get-field f_SEMICOLON (CommonSeps.jm_getInstance_0))) jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0))) jm_append_1 (get-field f_name this)) jm_toString_0)))))
+    (define/public (jm_getHashtable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_hashtable this)))))
+    (define/public (jm_getRectangleHashtable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_rectangleHashtable this)))))
+    (define/public (jm_getRectangleArrayOfArraysHashtable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_rectangleArrayOfArraysHashtable this)))))
+    (define/public (jm_setInitialized_1 _initialized)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_initialized this _initialized))))
+    (define/public (jm_isInitialized_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_initialized this)))))))
+(define (BaseResourceAnimationInterfaceFactoryInterfaceFactory.jclassValue) BaseResourceAnimationInterfaceFactoryInterfaceFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BaseResourceAnimationInterfaceFactoryInterfaceFactory = {}
-BaseResourceAnimationInterfaceFactoryInterfaceFactory.__index = BaseResourceAnimationInterfaceFactoryInterfaceFactory
-BaseResourceAnimationInterfaceFactoryInterfaceFactory.className = "BaseResourceAnimationInterfaceFactoryInterfaceFactory"
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.hashtable = nil
-    self.rectangleHashtable = nil
-    self.rectangleArrayOfArraysHashtable = nil
-    self.name = nil
-    self.initialized = false
-end
-
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory.new(name, hashtable, rectangleHashtable, rectangleArrayHashtable)
-    local self = setmetatable({}, BaseResourceAnimationInterfaceFactoryInterfaceFactory)
-    self:_init_fields()
-        self.hashtable = hashtable
-        self.rectangleHashtable = rectangleHashtable
-        self.rectangleArrayOfArraysHashtable = rectangleArrayHashtable
-        self.name = name
-    return self
-end
-
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:getName()
-        return self.name
-end
-
-
--- throws Exception
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:init(level)
-        local commonStrings = CommonStrings.getInstance()
-        self.logUtil:putF(tostring(StringMaker.new():append("Available List of Animations: "):append(tostring(self.hashtable))), self, commonStrings.INIT)
-        self:setInitialized(true)
-end
-
-
--- throws Exception
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:initImageCache(imageCache, level)
-end
-
-
--- throws Exception
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:add(resource, animationInterfaceFactoryInterface)
-        if self.hashtable:containsKey(resource) then
-            error(java_exception("Exception", tostring(StringMaker.new():append("Resource Already Created: "):append(resource))), 0)
-        end
-        self.hashtable:put(resource, animationInterfaceFactoryInterface)
-end
-
-
--- throws Exception
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:getBasicAnimationInterfaceFactoryInstance(resource)
-        local basicAnimationInterfaceFactoryInterfaceCanBeNull = self.hashtable:get(resource)
-        if basicAnimationInterfaceFactoryInterfaceCanBeNull == nil then
-            return NullAnimationFactory.NULL_NOT_FOR_USE_ANIMATION_FACTORY
-        end
-        return basicAnimationInterfaceFactoryInterfaceCanBeNull
-end
-
-
--- throws Exception
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:getRectangle(resource)
-        local rectangleCanBeNull = self.rectangleHashtable:get(resource)
-        if rectangleCanBeNull == nil then
-            return RectangleFactory.SINGLETON
-        end
-        return rectangleCanBeNull
-end
-
-
--- throws Exception
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:addRectangle(resource, rectangle)
-        self.rectangleHashtable:put(resource, rectangle)
-end
-
-
--- throws Exception
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:getRectangleArrayOfArrays(resource)
-        local valueCanBeNull = self.rectangleArrayOfArraysHashtable:get(resource)
-        if valueCanBeNull ~= nil then
-            local rectangleArrayOfArrays = valueCanBeNull
-            return rectangleArrayOfArrays
-        else
-            return RectangleFactory.ARRAY_OF_ARRAYS
-        end
-end
-
-
--- throws Exception
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:addRectangleArrayOfArrays(resource, rectangleArrayOfArrays)
-        self.rectangleArrayOfArraysHashtable:put(resource, rectangleArrayOfArrays)
-end
-
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:isFeature()
-        return false
-end
+(define (BaseResourceAnimationInterfaceFactoryInterfaceFactory.jnew_4 _name _hashtable _rectangleHashtable _rectangleArrayHashtable)
+  (define this (new BaseResourceAnimationInterfaceFactoryInterfaceFactory% [jclass "BaseResourceAnimationInterfaceFactoryInterfaceFactory"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    
+    
+    
+    
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_hashtable this _hashtable)
+        (set-field! f_rectangleHashtable this _rectangleHashtable)
+        (set-field! f_rectangleArrayOfArraysHashtable this _rectangleArrayHashtable)
+        (set-field! f_name this _name)))
+  this)
 
 
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:isLoadingLevel(level)
-        local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-        if level == resourceLoadingLevelFactory.LOAD_ALL:getLevel() then
-            return true
-        else
-            return false
-        end
-end
-
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:toString()
-        return tostring(StringMaker.new():append(getmetatable(self).className):append(CommonSeps.getInstance().SEMICOLON):append(CommonSeps.getInstance().SPACE):append(self.name))
-end
-BaseResourceAnimationInterfaceFactoryInterfaceFactory.__tostring = function(self) return self:toString() end
-
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:getHashtable()
-        return self.hashtable
-end
-
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:getRectangleHashtable()
-        return self.rectangleHashtable
-end
-
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:getRectangleArrayOfArraysHashtable()
-        return self.rectangleArrayOfArraysHashtable
-end
-
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:setInitialized(initialized)
-        self.initialized = initialized
-end
-
-
-function BaseResourceAnimationInterfaceFactoryInterfaceFactory:isInitialized()
-        return self.initialized
-end
-
-return BaseResourceAnimationInterfaceFactoryInterfaceFactory
 

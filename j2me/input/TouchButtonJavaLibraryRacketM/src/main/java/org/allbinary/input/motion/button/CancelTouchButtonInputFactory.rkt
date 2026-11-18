@@ -1,77 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.button
 
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["../../../../../org/allbinary/game/input/InputFactory.rkt" (InputFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["./BasicTouchInputFactory.rkt" (BasicTouchInputFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define CancelTouchButtonInputFactory%
+  (class JObject%
+    (super-new)
+    (field [f_cancelInputArray JR.null])
+    (define/public (jm_getCancel_1 _touchButtonInput)
+    (let ()
+      (let/ec jreturn
+        (jreturn (vector-ref (get-field f_cancelInputArray this) (send _touchButtonInput jm_getSourceId_0))))))))
+(define (CancelTouchButtonInputFactory.jclassValue) CancelTouchButtonInputFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CancelTouchButtonInputFactory.jcell_instance 'jnone)
+(define (CancelTouchButtonInputFactory.jstatic_instance)
+  (when (eq? CancelTouchButtonInputFactory.jcell_instance 'jnone) (set! CancelTouchButtonInputFactory.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  CancelTouchButtonInputFactory.jcell_instance)
+(define (CancelTouchButtonInputFactory.jsetstatic_instance value) (set! CancelTouchButtonInputFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (CancelTouchButtonInputFactory.jnew_0)
+  (define this (new CancelTouchButtonInputFactory% [jclass "CancelTouchButtonInputFactory"]))
+    (set-field! f_cancelInputArray this (JR.newArray JR.null (get-field f_MAX (InputFactory.jm_getInstance_0))))
+    (let ([_basicTouchInputFactory JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _basicTouchInputFactory (BasicTouchInputFactory.jm_getInstance_0))
+        (begin
+            (set! _index (JR.i32 (- (vector-length (get-field f_cancelInputArray this)) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (vector-set! (get-field f_cancelInputArray this) _index (get-field f_NONE _basicTouchInputFactory)))
+                (set! _index (JR.i32 (- _index 1))) (jloop)))))
+        (vector-set! (get-field f_cancelInputArray this) (JR.className (get-field f_UP _basicTouchInputFactory)) (get-field f_DOWN _basicTouchInputFactory))
+        (vector-set! (get-field f_cancelInputArray this) (JR.className (get-field f_DOWN _basicTouchInputFactory)) (get-field f_UP _basicTouchInputFactory))
+        (vector-set! (get-field f_cancelInputArray this) (JR.className (get-field f_LEFT _basicTouchInputFactory)) (get-field f_RIGHT _basicTouchInputFactory))
+        (vector-set! (get-field f_cancelInputArray this) (JR.className (get-field f_RIGHT _basicTouchInputFactory)) (get-field f_LEFT _basicTouchInputFactory))))
+  this)
 
-local CancelTouchButtonInputFactory = {}
-CancelTouchButtonInputFactory.__index = CancelTouchButtonInputFactory
-CancelTouchButtonInputFactory.className = "CancelTouchButtonInputFactory"
-
-function CancelTouchButtonInputFactory:_init_fields()
-    self.cancelInputArray = java_new_array(nil, InputFactory.getInstance().MAX)
-end
-
-
-function CancelTouchButtonInputFactory.getInstance()
-        if CancelTouchButtonInputFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            CancelTouchButtonInputFactory.instance = CancelTouchButtonInputFactory.new()
-        end
-        return CancelTouchButtonInputFactory.instance
-end
-
-
-function CancelTouchButtonInputFactory.new()
-    local self = setmetatable({}, CancelTouchButtonInputFactory)
-    self:_init_fields()
-        local basicTouchInputFactory = BasicTouchInputFactory.getInstance()
-        for index = (self.cancelInputArray.n or #self.cancelInputArray) - 1, 0, -1 do
-            self.cancelInputArray[index + 1] = basicTouchInputFactory.NONE
-        end
-        self.cancelInputArray[basicTouchInputFactory.UP:getSourceId() + 1] = basicTouchInputFactory.DOWN
-        self.cancelInputArray[basicTouchInputFactory.DOWN:getSourceId() + 1] = basicTouchInputFactory.UP
-        self.cancelInputArray[basicTouchInputFactory.LEFT:getSourceId() + 1] = basicTouchInputFactory.RIGHT
-        self.cancelInputArray[basicTouchInputFactory.RIGHT:getSourceId() + 1] = basicTouchInputFactory.LEFT
-    return self
-end
+(define (CancelTouchButtonInputFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (CancelTouchButtonInputFactory.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! CancelTouchButtonInputFactory.jcell_instance (CancelTouchButtonInputFactory.jnew_0))))
+        (jreturn (CancelTouchButtonInputFactory.jstatic_instance)))))
 
 
-function CancelTouchButtonInputFactory:getCancel(touchButtonInput)
-        return self.cancelInputArray[touchButtonInput:getSourceId() + 1]
-end
-
-CancelTouchButtonInputFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return CancelTouchButtonInputFactory
 

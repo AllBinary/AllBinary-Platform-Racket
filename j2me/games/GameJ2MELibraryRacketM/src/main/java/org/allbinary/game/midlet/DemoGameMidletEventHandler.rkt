@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.midlet
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/handler/BasicEventHandler.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DemoGameMidletEventHandler%
+  (class BasicEventHandler%
+    (super-new)
+    (define/override (jm_process_2 _eventObject _eventListenerInterface)
+    (let ([_demoGameMidletEventListener JR.null])
+      (let/ec jreturn
+        (set! _demoGameMidletEventListener _eventListenerInterface)
+        (send _demoGameMidletEventListener jm_onDemoGameMidletEvent_1 _eventObject))))))
+(define (DemoGameMidletEventHandler.jclassValue) DemoGameMidletEventHandler%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define DemoGameMidletEventHandler.jcell_gameKeyEventHandler 'jnone)
+(define (DemoGameMidletEventHandler.jstatic_gameKeyEventHandler)
+  (when (eq? DemoGameMidletEventHandler.jcell_gameKeyEventHandler 'jnone) (set! DemoGameMidletEventHandler.jcell_gameKeyEventHandler (DemoGameMidletEventHandler.jnew_0)))
+  DemoGameMidletEventHandler.jcell_gameKeyEventHandler)
+(define (DemoGameMidletEventHandler.jsetstatic_gameKeyEventHandler value) (set! DemoGameMidletEventHandler.jcell_gameKeyEventHandler value))
 
-local DemoGameMidletEventHandler = {}
-DemoGameMidletEventHandler.__index = DemoGameMidletEventHandler
-DemoGameMidletEventHandler.className = "DemoGameMidletEventHandler"
-setmetatable(DemoGameMidletEventHandler, {__index = BasicEventHandler})
+(define (DemoGameMidletEventHandler.jnew_0)
+  (define this (new DemoGameMidletEventHandler% [jclass "DemoGameMidletEventHandler"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function DemoGameMidletEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), DemoGameMidletEventHandler)
-    return self
-end
-
-
-function DemoGameMidletEventHandler.getInstance()
-        return DemoGameMidletEventHandler.gameKeyEventHandler
-end
+(define (DemoGameMidletEventHandler.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (DemoGameMidletEventHandler.jstatic_gameKeyEventHandler)))))
 
 
--- throws Exception
-function DemoGameMidletEventHandler:process(eventObject, eventListenerInterface)
-        local demoGameMidletEventListener = eventListenerInterface
-        demoGameMidletEventListener:onDemoGameMidletEvent(eventObject)
-end
-
-DemoGameMidletEventHandler.gameKeyEventHandler = DemoGameMidletEventHandler.new()
-
-return DemoGameMidletEventHandler
 

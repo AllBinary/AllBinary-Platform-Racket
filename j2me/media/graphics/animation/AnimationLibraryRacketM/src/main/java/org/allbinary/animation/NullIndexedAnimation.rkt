@@ -1,36 +1,27 @@
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./IndexedAnimation.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullIndexedAnimation%
+  (class IndexedAnimation%
+    (super-new)
+    (define/override (jm_getAnimationSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))))
+(define (NullIndexedAnimation.jclassValue) NullIndexedAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local NullIndexedAnimation = {}
-NullIndexedAnimation.__index = NullIndexedAnimation
-NullIndexedAnimation.className = "NullIndexedAnimation"
-setmetatable(NullIndexedAnimation, {__index = IndexedAnimation})
-
-
-function NullIndexedAnimation.new(animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), NullIndexedAnimation)
-        -- super(...) made self above
-    return self
-end
+(define (NullIndexedAnimation.jnew_1 _animationBehavior)
+  (define this (new NullIndexedAnimation% [jclass "NullIndexedAnimation"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
--- throws Exception
-function NullIndexedAnimation:getAnimationSize()
-        return 0
-end
-
-return NullIndexedAnimation
 

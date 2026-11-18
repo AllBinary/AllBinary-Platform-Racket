@@ -40,11 +40,13 @@
             (begin
             (send (get-field f_logUtil this) jm_putF_3 "Waiting for Thread To Join/End" this (get-field f_JOIN this))
             (send _thread jm_join_0))))))))
+(define (ThreadUtil.jclassValue) ThreadUtil%)
 
 (define ThreadUtil.jcell_instance 'jnone)
 (define (ThreadUtil.jstatic_instance)
   (when (eq? ThreadUtil.jcell_instance 'jnone) (set! ThreadUtil.jcell_instance (ThreadUtil.jnew_0)))
   ThreadUtil.jcell_instance)
+(define (ThreadUtil.jsetstatic_instance value) (set! ThreadUtil.jcell_instance value))
 
 (define (ThreadUtil.jnew_0)
   (define this (new ThreadUtil% [jclass "ThreadUtil"]))

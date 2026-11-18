@@ -69,11 +69,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (send (send (send (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_INDEX_LABEL (CommonLabels.jm_getInstance_0))) jm_appendint_1 (get-field f_index this)) jm_append_1 "lastIndex: ") jm_appendint_1 (get-field f_lastIndex this)) jm_append_1 "size: ") jm_appendint_1 (get-field f_size this)) jm_toString_0)))))))
+(define (CircularIndexUtil.jclassValue) CircularIndexUtil%)
 
 (define CircularIndexUtil.jcell_NULL_CIRCULAR_INDEX_UTIL 'jnone)
 (define (CircularIndexUtil.jstatic_NULL_CIRCULAR_INDEX_UTIL)
   (when (eq? CircularIndexUtil.jcell_NULL_CIRCULAR_INDEX_UTIL 'jnone) (set! CircularIndexUtil.jcell_NULL_CIRCULAR_INDEX_UTIL (CircularIndexUtil.jnew_2 0 0)))
   CircularIndexUtil.jcell_NULL_CIRCULAR_INDEX_UTIL)
+(define (CircularIndexUtil.jsetstatic_NULL_CIRCULAR_INDEX_UTIL value) (set! CircularIndexUtil.jcell_NULL_CIRCULAR_INDEX_UTIL value))
 
 (define (CircularIndexUtil.jnew_2 _index _size)
   (define this (new CircularIndexUtil% [jclass "CircularIndexUtil"]))

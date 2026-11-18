@@ -1,1627 +1,1461 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;;
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;
+;; Created By: Travis Berthelot
+;; 
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../javax/microedition/lcdui/ChoiceGroup.rkt"
+  "../../../../../org/allbinary/canvas/RunnableCanvas.rkt"
+  "../../../../../org/allbinary/game/IntermissionCompositeInterface.rkt"
+  "../../../../../org/allbinary/game/IntermissionEnableListenerInterface.rkt"
+  "../../../../../org/allbinary/graphics/displayable/event/DisplayChangeEventListener.rkt"
+  "../../../../../org/allbinary/graphics/font/UpdateMyFontInterface.rkt"
+  "../../../../../java/lang/Integer.rkt"
+  "../../../../../java/lang/Thread.rkt"
+  "./AllBinaryGameCanvasInterface.rkt"
+  "./GameCanvasRunnableInterface.rkt"
+  "./MenuListener.rkt"
+  "./PopupMenuInterface.rkt")
+(lazy-require ["../../../../../javax/microedition/lcdui/NullCommandListener.rkt" (NullCommandListener.jstatic_NULL_COMMAND_LISTENER)])
+(lazy-require ["../../../../../org/allbinary/AndroidUtil.rkt" (AndroidUtil.jm_isAndroid_0)])
+(lazy-require ["../../../../../org/allbinary/J2MEUtil.rkt" (J2MEUtil.jm_isHTML_0)])
+(lazy-require ["../../../../../org/allbinary/business/advertisement/GameAdStateFactory.rkt" (GameAdStateFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/canvas/GameStatisticsFactory.rkt" (GameStatisticsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/canvas/Processor.rkt" (Processor.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/debug/DebugFactory.rkt" (DebugFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/debug/NoDebug.rkt" (NoDebug.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/GameInfo.rkt" (GameInfo.jnew_5 GameInfo.jstatic_LEVEL_NAME)])
+(lazy-require ["../../../../../org/allbinary/game/GameStrings.rkt" (GameStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/GameTypeFactory.rkt" (GameTypeFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/Intermission.rkt" (Intermission.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/game/PlayerTypesFactory.rkt" (PlayerTypesFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/commands/GameCommandsFactory.rkt" (GameCommandsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/InGameFeatures.rkt" (InGameFeatures.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/InGameOptionsForm.rkt" (InGameOptionsForm.jstatic_DISPLAY)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/event/ChangedGameFeatureListener.rkt" (ChangedGameFeatureListener.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/event/GameInitializedEventHandler.rkt" (GameInitializedEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/GameFeatureFactory.rkt" (GameFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/GameFeatureUtil.rkt" (GameFeatureUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/InputFeatureFactory.rkt" (InputFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/MainFeatureFactory.rkt" (MainFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/SensorFeatureFactory.rkt" (SensorFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/configuration/feature/TouchFeatureFactory.rkt" (TouchFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/displayable/GameLevelDisplayChangeEventListenersFactory.rkt" (GameLevelDisplayChangeEventListenersFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/init/BasicBuildGameInitializerFactory.rkt" (BasicBuildGameInitializerFactory.jstatic_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY)])
+(lazy-require ["../../../../../org/allbinary/game/init/GameInitializationUtil.rkt" (GameInitializationUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/input/GameInputStrings.rkt" (GameInputStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/input/NoPlayerGameInput.rkt" (NoPlayerGameInput.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/input/event/GameKeyEventHandler.rkt" (GameKeyEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/layer/AllBinaryGameLayerManager.rkt" (AllBinaryGameLayerManager.jm_getNullInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/layer/SWTUtil.rkt" (SWTUtil.jstatic_isSWT)])
+(lazy-require ["../../../../../org/allbinary/game/paint/ColorFillPaintableFactory.rkt" (ColorFillPaintableFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/resource/ResourceLoadingLevelFactory.rkt" (ResourceLoadingLevelFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/score/HighScore.rkt" (HighScore.jnew_4)])
+(lazy-require ["../../../../../org/allbinary/game/score/HighScoresPaintable.rkt" (HighScoresPaintable.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/game/score/NullHighScoresSingletonFactory.rkt" (NullHighScoresSingletonFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/score/displayable/HighScoreTextBox.rkt" (HighScoreTextBox.jnew_9)])
+(lazy-require ["../../../../../org/allbinary/game/state/GameStateFactory.rkt" (GameStateFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/GraphicsStrings.rkt" (GraphicsStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/ScreenCaptureFactory.rkt" (ScreenCaptureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory.rkt" (ProgressCanvasFactory.jm_getLazyInstance_0 ProgressCanvasFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/color/BasicColorSetUtil.rkt" (BasicColorSetUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/CanvasStrings.rkt" (CanvasStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/GameTickDisplayInfoSingleton.rkt" (GameTickDisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/command/MyCommandsFactory.rkt" (MyCommandsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/displayable/event/DisplayChangeEventHandler.rkt" (DisplayChangeEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/font/MyFontProcessor.rkt" (MyFontProcessor.jm_defaultCharWidth_1 MyFontProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/font/UpdateMyFontProcessor.rkt" (UpdateMyFontProcessor.jnew_1)])
+(lazy-require ["../../../../../org/allbinary/graphics/form/CommandCurrentSelectionFormFactory.rkt" (CommandCurrentSelectionFormFactory.jm_getInstance_8)])
+(lazy-require ["../../../../../org/allbinary/graphics/form/FormPaintable.rkt" (FormPaintable.jnew_1)])
+(lazy-require ["../../../../../org/allbinary/graphics/form/FormTypeFactory.rkt" (FormTypeFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/form/ScrollSelectionForm.rkt" (ScrollSelectionForm.jm_getNullScrollSelectionForm_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/form/ScrollSelectionFormNoneFactory.rkt" (ScrollSelectionFormNoneFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/opengles/CurrentDisplayableFactory.rkt" (CurrentDisplayableFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/opengles/OpenGLFeatureFactory.rkt" (OpenGLFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/opengles/OpenGLFeatureUtil.rkt" (OpenGLFeatureUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/opengles/OpenGLThreadUtil.rkt" (OpenGLThreadUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/paint/NullInitUpdatePaintable.rkt" (NullInitUpdatePaintable.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/graphics/paint/NullPaintable.rkt" (NullPaintable.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/image/opengles/OpenGLImageSpecificFactory.rkt" (OpenGLImageSpecificFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/gyro/SingleSensorGameUpdateProcessor.rkt" (SingleSensorGameUpdateProcessor.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/button/NoButtonsTouchInputFactory.rkt" (NoButtonsTouchInputFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/button/TouchButtonFactory.rkt" (TouchButtonFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/button/TouchButtonsPaintableFactory.rkt" (TouchButtonsPaintableFactory.jm_getInstance_1)])
+(lazy-require ["../../../../../org/allbinary/input/motion/button/TouchScreenFactory.rkt" (TouchScreenFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler.rkt" (BasicMotionGesturesHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/ForcedLogUtil.rkt" (ForcedLogUtil.jm_log_2)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/system/os/OperatingSystemFactory.rkt" (OperatingSystemFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/util/event/EventStrings.rkt" (EventStrings.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/media/audio/AllBinaryMediaManager.rkt" (AllBinaryMediaManager.jm_update_0)])
+(lazy-require ["../../../../../org/allbinary/media/audio/PrimaryPlayerQueueFactory.rkt" (PrimaryPlayerQueueFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/media/audio/SecondaryPlayerQueueFactory.rkt" (SecondaryPlayerQueueFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/media/audio/SelectSound.rkt" (SelectSound.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/thread/SecondaryThreadPool.rkt" (SecondaryThreadPool.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/time/GameTickTimeDelayHelperFactory.rkt" (GameTickTimeDelayHelperFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/time/TimeDelayHelper.rkt" (TimeDelayHelper.jnew_1)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListUtil.rkt" (BasicArrayListUtil.jm_getInstance_0)])
+(lazy-require ["./GameCanvasRunnable.rkt" (GameCanvasRunnable.jnew_1)])
+(lazy-require ["./GameCanvasPauseRunnable.rkt" (GameCanvasPauseRunnable.jnew_1)])
+(lazy-require ["./FormUtil.rkt" (FormUtil.jm_getInstance_0)])
+(lazy-require ["./MyFormUtil.rkt" (MyFormUtil.jm_getInstance_0)])
+(lazy-require ["./EndGameInfo.rkt" (EndGameInfo.jnew_0)])
+(lazy-require ["./NoMenuInputProcessor.rkt" (NoMenuInputProcessor.jm_getInstance_0)])
+(lazy-require ["./DemoGameBehavior.rkt" (DemoGameBehavior.jm_getInstance_0)])
+(lazy-require ["./BaseMenuBehavior.rkt" (BaseMenuBehavior.jm_getInstance_0)])
+(lazy-require ["./BaseGameBehavior.rkt" (BaseGameBehavior.jm_getInstance_0)])
+(lazy-require ["./BasicPopupMenuPaintable.rkt" (BasicPopupMenuPaintable.jnew_3)])
+(lazy-require ["./PopupMenuInputProcessor.rkt" (PopupMenuInputProcessor.jnew_4)])
+(lazy-require ["./InGameMenuBehavior.rkt" (InGameMenuBehavior.jm_getInstance_0)])
+(lazy-require ["./GameLimitedCommandTextItemArrayFactory.rkt" (GameLimitedCommandTextItemArrayFactory.jm_getInstance_0)])
+(lazy-require ["./PopupCommandFormInputProcessor.rkt" (PopupCommandFormInputProcessor.jnew_5)])
+(lazy-require ["./NullWaitGameRunnable.rkt" (NullWaitGameRunnable.jm_getInstance_0)])
+(lazy-require ["./GameProcessor.rkt" (GameProcessor.jnew_1)])
+(lazy-require ["./CheatGameInputProcessor.rkt" (CheatGameInputProcessor.jnew_1)])
+(lazy-require ["./EndGameProcessor.rkt" (EndGameProcessor.jnew_1)])
+(lazy-require ["./StartIntermissionProcessor.rkt" (StartIntermissionProcessor.jnew_1)])
+(lazy-require ["./EndGamePaintable.rkt" (EndGamePaintable.jnew_1)])
+(lazy-require ["./NullDemoPaintable.rkt" (NullDemoPaintable.jstatic_NULL_DEMO_PAINTABLE)])
+(lazy-require ["./GameCanvasInputProcessor.rkt" (GameCanvasInputProcessor.jnew_1)])
+(lazy-require ["./FormInputProcessor.rkt" (FormInputProcessor.jnew_1)])
+(lazy-require ["./SaveHighScoreRunnable.rkt" (SaveHighScoreRunnable.jnew_2)])
+(provide (all-defined-out))
+
+(define AllBinaryGameCanvas%
+  (class RunnableCanvas%
+    (super-new)
+    (inherit/super jm_setCurrentThreadFake_0 jm_process_0)
+    (field [f_basicColorFactory JR.null])
+    (field [f_basicSetColorUtil JR.null])
+    (field [f_touchFeatureFactory JR.null])
+    (field [f_openGLFeatureFactory JR.null])
+    (field [f_touchButtonFactory JR.null])
+    (field [f_gameAdStateFactory JR.null])
+    (field [f_gameStrings JR.null])
+    (field [f_gameInputStrings JR.null])
+    (field [f_gameStateFactory JR.null])
+    (field [f_gameTickTimeDelayHelper JR.null])
+    (field [f_gameTickDisplayInfoSingleton JR.null])
+    (field [f_gameRunnable JR.null])
+    (field [f_gamePauseRunnable JR.null])
+    (field [f_formUtil JR.null])
+    (field [f_myFormUtil JR.null])
+    (field [f_updateMyFontProcessor JR.null])
+    (field [f_myFontProcessor JR.null])
+    (field [f_gameSpecificPaintable JR.null])
+    (field [f_sensorGameUpdateProcessor JR.null])
+    (field [f_endGameInfo JR.null])
+    (field [f_startIntermissionInterface JR.null])
+    (field [f_endLevelIntermissionInterface JR.null])
+    (field [f_gameLayerManager JR.null])
+    (field [f_gameState JR.null])
+    (field [f_gameOver #f])
+    (field [f_initialized #f])
+    (field [f_gameStateTimeHelper JR.null])
+    (field [f_highScoresHelper JR.null])
+    (field [f_highScoreSubmitted #f])
+    (field [f_realHighScoresPaintable JR.null])
+    (field [f_highScoresPaintable JR.null])
+    (field [f_localPlayerGameInputList JR.null])
+    (field [f_isCheating #f])
+    (field [f_hashtable JR.null])
+    (field [f_isSingleKeyRepeatableProcessing #f])
+    (field [f_gameInitializationInterfaceFactoryInterface JR.null])
+    (field [f_touchButtonsPaintable JR.null])
+    (field [f_touchPaintable JR.null])
+    (field [f_cheatProcessor JR.null])
+    (field [f_gameInputProcessor JR.null])
+    (field [f_endGameProcessor JR.null])
+    (field [f_realEndGameProcessor JR.null])
+    (field [f_startIntermissionProcessor JR.null])
+    (field [f_realStartIntermissionProcessor JR.null])
+    (field [f_endGamePaintable JR.null])
+    (field [f_endGameStatePaintable JR.null])
+    (field [f_nonBotPaintable JR.null])
+    (field [f_intermissionPaintable JR.null])
+    (field [f_startIntermissionPaintable JR.null])
+    (field [f_mainStateProcessor JR.null])
+    (field [f_processGameProcessor JR.null])
+    (field [f_highScoresFactoryInterface JR.null])
+    (field [f_startLevel 0])
+    (field [f_mainMenuInputProcessor JR.null])
+    (field [f_popupMenuInputProcessor JR.null])
+    (field [f_menuInputProcessor JR.null])
+    (field [f_menuForm JR.null])
+    (field [f_formPaintable JR.null])
+    (field [f_openMenuPaintable JR.null])
+    (field [f_menuPaintable JR.null])
+    (field [f_currentTouchInputFactory JR.null])
+    (field [f_colorFillPaintable JR.null])
+    (field [f_baseGameStatistics JR.null])
+    (field [f_primaryPlayerQueue JR.null])
+    (field [f_secondaryPlayerQueue JR.null])
+    (field [f_BUILD_GAME JR.null])
+    (field [f_gameTypeFactory JR.null])
+    (field [f_screenCapture JR.null])
+    (field [f_basicMotionGesturesHandler JR.null])
+    (field [f_gameKeyEventHandler JR.null])
+    (field [f_gameBehavior JR.null])
+    (field [f_menuBehavior JR.null])
+    (field [f_progressPaintable JR.null])
+    (field [f_fontHeightP 0])
+    (field [f_gameCanvasStartListener JR.null])
+    (field [f_rawGameInputProcessor JR.null])
+    (field [f_rawInputProcessor JR.null])
+    (field [f_inputProcessor JR.null])
+    (field [f_YIELD_SLEEP 0])
+    (define/public (jm_updateMeasurement_1 _graphics)
+    (let ([_font JR.null][_popupMenuRectangle JR.null][_basicPopupMenuPaintable JR.null][_popupMenuInputProcessor JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (set! _font (send _graphics jm_getFont_0))
+            (JR.className (get-field f_logUtil this))
+            (set-field! f_fontHeightP this (send _font jm_getHeight_0))
+            (send (get-field f_myFormUtil this) jm_updateMeasurement_1 _graphics)
+            (set! _popupMenuRectangle (send (get-field f_myFormUtil this) jm_getPopupMenuRectangle_0))
+            (set! _basicPopupMenuPaintable (send this jm_getOpenMenuPaintable_0))
+            (send _basicPopupMenuPaintable jm_init_1 _popupMenuRectangle)
+            (when (not (eq? (send this jm_getPopupMenuInputProcessor_0) (NoMenuInputProcessor.jm_getInstance_0)))
+                (begin
+                (set! _popupMenuInputProcessor (send this jm_getPopupMenuInputProcessor_0))
+                (send _popupMenuInputProcessor jm_init_1 _popupMenuRectangle)))
+            (set-field! f_myFontProcessor this (MyFontProcessor.jm_getInstance_0))))))
+    (define/public (jm_getInGameMenuBehavior_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (InGameMenuBehavior.jm_getInstance_0)))))
+    (define/override (jm_setCurrentThread_0)
+    (let ()
+      (let/ec jreturn
+        (if (J2MEUtil.jm_isHTML_0)
+            (begin
+            (super jm_setCurrentThreadFake_0))
+            (begin
+            (super jm_setCurrentThread_0))))))
+    (define/public (jm_onEvent_1 _eventObject)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_PERFORMANCE_MESSAGE (EventStrings.jm_getInstance_0)) this))))
+    (define/public (jm_onDisplayChangeEvent_1 _displayChangeEvent)
+    (let ()
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (JR.className (get-field f_logUtil this))
+            (set-field! f_myFontProcessor this (get-field f_updateMyFontProcessor this))
+            (send (get-field f_menuBehavior this) jm_onDisplayChangeEvent_2 this _displayChangeEvent)))))
+    (define/public (jm_updateMenuFromEvent_1 _displayChangeEvent)
+    (let ([_formType JR.null][_rectangle JR.null])
+      (let/ec jreturn
+        (set! _formType (send (FormTypeFactory.jm_getInstance_0) jm_getFormType_0))
+        (set! _rectangle (send (get-field f_formUtil this) jm_createFormRectangle_0))
+        (send (get-field f_menuForm this) jm_init_2 _rectangle _formType)
+        (when (not (eq? (get-field f_currentTouchInputFactory this) (NoButtonsTouchInputFactory.jm_getInstance_0)))
+            (begin
+            (send (get-field f_touchButtonFactory this) jm_toggle_2 (send this jm_isPaused_0) (send (get-field f_currentTouchInputFactory this) jm_getList_0))))
+        (set-field! f_myFontProcessor this (get-field f_updateMyFontProcessor this)))))
+    (define/override (jm_processSleep_0)
+    (let ()
+      (let/ec jreturn
+        (super jm_processSleep_0)
+        (when (AllBinaryMediaManager.jm_update_0)
+            (begin
+            (when (not (send (get-field f_primaryPlayerQueue this) jm_process_0))
+                (begin
+                (send (get-field f_secondaryPlayerQueue this) jm_process_0)))))
+        (when (not (= (send (get-field f_menuInputProcessor this) jm_processInputList_0) (JR.i32 (- 1))))
+            (begin
+            (JR.className (get-field f_runnableCanvasRefreshHelper this)))))))
+    (define/public (jm_initPopupMenu_0)
+    (let ([_features JR.null][_popupMenuRectangle JR.null])
+      (let/ec jreturn
+        (if (eq? (get-field f_popupMenuInputProcessor this) (NoMenuInputProcessor.jm_getInstance_0))
+            (begin
+            (set! _features (Features.jm_getInstance_0))
+            (set! _popupMenuRectangle (send (get-field f_myFormUtil this) jm_getPopupMenuRectangle_0))
+            (when (send _features jm_isFeature_1 (get-field f_TOUCH_ENABLED (get-field f_touchFeatureFactory this)))
+                (begin
+                (send this jm_setOpenMenuPaintable_1 (BasicPopupMenuPaintable.jnew_3 _popupMenuRectangle (send (get-field f_gameLayerManager this) jm_getBackgroundBasicColor_0) (send (get-field f_gameLayerManager this) jm_getForegroundBasicColor_0)))
+                (send this jm_setPopupMenuInputProcessor_1 (PopupMenuInputProcessor.jnew_4 (BasicArrayListD.jnew_0) (JR.i32 (- 1)) this _popupMenuRectangle)))))
+            (begin
+            (void))))))
+    (define/public (jm_initMenu_0)
+    (let ()
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (send (get-field f_menuBehavior this) jm_initMenu_1 this)))))
+    (define/public (jm_initMenu2_0)
+    (let ([_formType JR.null][_gameLimitedCommandTextItemArrayFactory JR.null][_commandTextItemArrayFactory JR.null][_items JR.null][_rectangle JR.null][_scrollSelectionForm JR.null][_features JR.null])
+      (let/ec jreturn
+        (send this jm_closeMenu_0)
+        (set! _formType (send (FormTypeFactory.jm_getInstance_0) jm_getFormType_0))
+        (set! _gameLimitedCommandTextItemArrayFactory (GameLimitedCommandTextItemArrayFactory.jm_getInstance_0))
+        (set! _commandTextItemArrayFactory (send _gameLimitedCommandTextItemArrayFactory jm_getCommandTextItemArrayFactory_0))
+        (set! _items (send _commandTextItemArrayFactory jm_getInstance_3 (send this jm_getCommandStack_0) (send (get-field f_gameLayerManager this) jm_getBackgroundBasicColor_0) (send (get-field f_gameLayerManager this) jm_getForegroundBasicColor_0)))
+        (set! _rectangle (send (get-field f_formUtil this) jm_createFormRectangle_0))
+        (send this jm_setMenuForm_1 (CommandCurrentSelectionFormFactory.jm_getInstance_8 (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) _items _rectangle _formType 25 #f (send (get-field f_gameLayerManager this) jm_getBackgroundBasicColor_0) (send (get-field f_gameLayerManager this) jm_getForegroundBasicColor_0)))
+        (set! _scrollSelectionForm (send this jm_getMenuForm_0))
+        (set! _features (Features.jm_getInstance_0))
+        (if (send _features jm_isFeature_1 (get-field f_TOUCH_ENABLED (get-field f_touchFeatureFactory this)))
+            (begin
+            (set-field! f_mainMenuInputProcessor this (PopupCommandFormInputProcessor.jnew_5 (BasicArrayListD.jnew_0) (JR.i32 (- 1)) this _scrollSelectionForm (send this jm_getPopupMenuInputProcessor_0))))
+            (begin
+            (void)))
+        (send this jm_setMenuInputProcessor_1 (send this jm_getPopupMenuInputProcessor_0))
+        (if (not (eq? _scrollSelectionForm (ScrollSelectionFormNoneFactory.jm_getInstance_0)))
+            (begin
+            (send this jm_setFormPaintable_1 (FormPaintable.jnew_1 _scrollSelectionForm)))
+            (begin
+            (void)))
+        (send this jm_closeMenu_0))))
+    (define/public (jm_updateMenu_0)
+    (let ()
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (send (get-field f_menuBehavior this) jm_updateMenu_1 this)))))
+    (define/public (jm_updateMenu2_0)
+    (let ([_scrollSelectionForm JR.null][_gameLimitedCommandTextItemArrayFactory JR.null][_commandTextItemArrayFactory JR.null][_items JR.null][_size JR.null][_index JR.null][_formType JR.null][_rectangle JR.null])
+      (let/ec jreturn
+        (set! _scrollSelectionForm (send this jm_getMenuForm_0))
+        (send _scrollSelectionForm jm_deleteAll_0)
+        (set! _gameLimitedCommandTextItemArrayFactory (GameLimitedCommandTextItemArrayFactory.jm_getInstance_0))
+        (set! _commandTextItemArrayFactory (send _gameLimitedCommandTextItemArrayFactory jm_getCommandTextItemArrayFactory_0))
+        (set! _items (send _commandTextItemArrayFactory jm_getInstance_3 (send this jm_getCommandStack_0) (send (get-field f_gameLayerManager this) jm_getBackgroundBasicColor_0) (send (get-field f_gameLayerManager this) jm_getForegroundBasicColor_0)))
+        (set! _size (vector-length _items))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (send _scrollSelectionForm jm_append_1 (vector-ref _items _index)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (set! _formType (send (FormTypeFactory.jm_getInstance_0) jm_getFormType_0))
+        (set! _rectangle (send (get-field f_formUtil this) jm_createFormRectangle_0))
+        (send _scrollSelectionForm jm_init_2 _rectangle _formType))))
+    (define/override (jm_pause_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_gameBehavior this) jm_pause_1 this)
+        (send this jm_closeMenu_0)
+        (super jm_pause_0)
+        (send (get-field f_touchButtonFactory this) jm_toggle_2 (send this jm_isPaused_0) (send (BasicArrayListUtil.jm_getInstance_0) jm_getImmutableInstance_0))
+        (JR.className (get-field f_tsUtil this)))))
+    (define/override (jm_unPause_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (send this jm_closeMenu_0)
+        (JR.className (get-field f_tsUtil this))
+        (super jm_unPause_0)
+        (send (get-field f_touchButtonFactory this) jm_toggle_2 (send this jm_isPaused_0) (send (BasicArrayListUtil.jm_getInstance_0) jm_getImmutableInstance_0))
+        (send (get-field f_gameBehavior this) jm_unPause_1 this))))
+    (define/override (jm_isPausable_0)
+    (let ()
+      (let/ec jreturn
+        (if (eq? (send (CurrentDisplayableFactory.jm_getInstance_0) jm_getUsedRunnable_0) (NullWaitGameRunnable.jm_getInstance_0))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn #f))))))
+    (define/public (jm_popupMenu_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_menuBehavior this) jm_popupMenu_1 this))))
+    (define/public (jm_popupMenu2_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_primaryPlayerQueue this) jm_add_1 (SelectSound.jm_getInstance_0))
+        (send this jm_setMenuPaintable_1 (send this jm_getFormPaintable_0))
+        (send this jm_setMenuInputProcessor_1 (get-field f_mainMenuInputProcessor this))
+        (send (get-field f_basicMotionGesturesHandler this) jm_addListenerInterface_1 (get-field f_mainMenuInputProcessor this))
+        (send (get-field f_gameKeyEventHandler this) jm_addListener_1 (get-field f_mainMenuInputProcessor this)))))
+    (define/public (jm_toggleMenu_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (if (eq? (send this jm_getMenuPaintable_0) (send this jm_getOpenMenuPaintable_0))
+            (begin
+            (send this jm_pause_0)
+            (send this jm_updateMenu_0)
+            (send this jm_popupMenu_0))
+            (when (eq? (send this jm_getMenuPaintable_0) (send this jm_getFormPaintable_0))
+            (begin
+            (send (get-field f_primaryPlayerQueue this) jm_add_1 (SelectSound.jm_getInstance_0))
+            (send this jm_unPause_0)))))))
+    (define/public (jm_closeMenu_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_menuBehavior this) jm_closeMenu_1 this))))
+    (define/public (jm_closeMenu2_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setMenuPaintable_1 (send this jm_getOpenMenuPaintable_0))
+        (send (get-field f_basicMotionGesturesHandler this) jm_removeListener_1 (get-field f_mainMenuInputProcessor this))
+        (send (get-field f_gameKeyEventHandler this) jm_removeListener_1 (get-field f_mainMenuInputProcessor this))
+        (send this jm_setMenuInputProcessor_1 (send this jm_getPopupMenuInputProcessor_0)))))
+    (define/public (jm_open_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_basicMotionGesturesHandler this) jm_addListenerInterface_1 (get-field f_menuInputProcessor this))
+        (send (get-field f_gameKeyEventHandler this) jm_addListener_1 (get-field f_menuInputProcessor this)))))
+    (define/public (jm_close_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_basicMotionGesturesHandler this) jm_removeListener_1 (get-field f_menuInputProcessor this))
+        (send (get-field f_gameKeyEventHandler this) jm_removeListener_1 (get-field f_menuInputProcessor this))
+        (send (get-field f_primaryPlayerQueue this) jm_clear_0)
+        (send (get-field f_secondaryPlayerQueue this) jm_clear_0))))
+    (define/public (jm_processorInit_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setMainStateProcessor_1 (Processor.jm_getInstance_0))
+        (send this jm_setProcessGameProcessorInit_0))))
+    (define/public (jm_setProcessGameProcessorInit_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setProcessGameProcessor_1 (GameProcessor.jnew_1 this)))))
+    (define/public (jm_initSpecialPaint_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_menuBehavior this) jm_initSpecialPaint_1 this))))
+    (define/public (jm_init_2 _gameLayerManager _buffered)
+    (let ([_BUFF_MESSAGE JR.null][_features JR.null])
+      (let/ec jreturn
+        (send (get-field f_gameStateTimeHelper this) jm_setStartTimeTNT_0)
+        (send this jm_setHighScoreSubmitted_1 #f)
+        (send this jm_setLayerManager_1 _gameLayerManager)
+        (if (not _buffered)
+            (begin
+            (set! _BUFF_MESSAGE "XXX Not Buffering Causes Concurrency Issues XXX")
+            (JR.className (get-field f_logUtil this)))
+            (begin
+            (raise (JR.newException "Exception" "Buffering is disabled"))))
+        (send this jm_setGameInputProcessor_1 (Processor.jm_getInstance_0))
+        (set! _features (Features.jm_getInstance_0))
+        (if (send _features jm_isFeature_1 (get-field f_CHEATING (GameFeatureFactory.jm_getInstance_0)))
+            (begin
+            (set-field! f_isCheating this #t)
+            (set-field! f_cheatProcessor this (CheatGameInputProcessor.jnew_1 this))
+            (send (get-field f_gameKeyEventHandler this) jm_addListener_1 (get-field f_cheatProcessor this)))
+            (begin
+            (set-field! f_isCheating this #f)
+            (set-field! f_cheatProcessor this (NoPlayerGameInput.jm_getInstance_0))))
+        (set-field! f_realEndGameProcessor this (EndGameProcessor.jnew_1 this))
+        (send this jm_setEndGameProcessor_1 (Processor.jm_getInstance_0))
+        (set-field! f_realStartIntermissionProcessor this (StartIntermissionProcessor.jnew_1 this))
+        (set-field! f_startIntermissionProcessor this (Processor.jm_getInstance_0))
+        (send this jm_setEndGameStatePaintable_1 (EndGamePaintable.jnew_1 this))
+        (send this jm_setEndGamePaintable_1 (NullPaintable.jm_getInstance_0))
+        (send this jm_setIntermissionPaintable_1 (NullPaintable.jm_getInstance_0))
+        (send (send this jm_getStartIntermissionInterface_0) jm_setListener_1 this))))
+    (define/public (jm_notifyIntermission_1 _enable)
+    (let ()
+      (let/ec jreturn
+        (if _enable
+            (begin
+            (set-field! f_startIntermissionProcessor this (get-field f_realStartIntermissionProcessor this)))
+            (begin
+            (set-field! f_startIntermissionProcessor this (Processor.jm_getInstance_0))))
+        (if _enable
+            (begin
+            (send this jm_setIntermissionPaintable_1 (send this jm_getStartIntermissionPaintable_0)))
+            (begin
+            (send this jm_setIntermissionPaintable_1 (NullPaintable.jm_getInstance_0)))))))
+    (define/public (jm_mediaInit_0)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)) this))))
+    (define/public (jm_initConfigurable_1 _abeClientInformation)
+    (let ([_progressCanvas JR.null][_gameFeatureFactory JR.null][_changedGameFeatureListener JR.null][_features JR.null][_sensorFeatureFactory JR.null][_resourceLoadingLevelFactory JR.null])
+      (let/ec jreturn
+        (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (send _progressCanvas jm_addNormalPortion_2 50 "Setting Configurables")
+        (send (GameInitializationUtil.jm_getInstance_0) jm_initGame_3 _abeClientInformation this (get-field f_gameInitializationInterfaceFactoryInterface this))
+        (set! _gameFeatureFactory (GameFeatureFactory.jm_getInstance_0))
+        (set! _changedGameFeatureListener (ChangedGameFeatureListener.jm_getInstance_0))
+        (when (send _changedGameFeatureListener jm_isChangedFeature_1 (get-field f_SOUND _gameFeatureFactory))
+            (begin
+            (set! _features (Features.jm_getInstance_0))
+            (JR.className (get-field f_logUtil this))
+            (send this jm_mediaInit_0)
+            (send _changedGameFeatureListener jm_remove_1 (get-field f_SOUND _gameFeatureFactory))))
+        (set! _sensorFeatureFactory (SensorFeatureFactory.jm_getInstance_0))
+        (when (or (or (send _changedGameFeatureListener jm_isChangedFeature_1 (get-field f_ORIENTATION_SENSORS _sensorFeatureFactory)) (send _changedGameFeatureListener jm_isChangedFeature_1 (get-field f_NO_ORIENTATION _sensorFeatureFactory))) (send _changedGameFeatureListener jm_isChangedFeature_1 (get-field f_SIMULATED_ORIENTATION_SENSORS _sensorFeatureFactory)))
+            (begin
+            (send _changedGameFeatureListener jm_remove_1 (get-field f_NO_ORIENTATION _sensorFeatureFactory))
+            (send _changedGameFeatureListener jm_remove_1 (get-field f_ORIENTATION_SENSORS _sensorFeatureFactory))
+            (send _changedGameFeatureListener jm_remove_1 (get-field f_SIMULATED_ORIENTATION_SENSORS _sensorFeatureFactory))))
+        (set! _resourceLoadingLevelFactory (ResourceLoadingLevelFactory.jm_getInstance_0))
+        (send this jm_loadResourceLoadingLevel_1 (get-field f_LOAD_GAME _resourceLoadingLevelFactory)))))
+    (define/public (jm_initApp_1 _abeClientInformation)
+    (let ()
+      (let/ec jreturn
+        (send this jm_initConfigurable_1 _abeClientInformation)
+        (send this jm_processorInit_0)
+        (send (get-field f_sensorGameUpdateProcessor this) jm_process_1 (get-field f_gameLayerManager this))
+        (send (get-field f_sensorGameUpdateProcessor this) jm_sendNotifications_1 (get-field f_gameLayerManager this))
+        (send this jm_initTouch_0))))
+    (define/public (jm_initTouch_0)
+    (let ([_gameInitializedEvent JR.null][_resourceLoadingLevelFactory JR.null])
+      (let/ec jreturn
+        (set! _gameInitializedEvent (get-field f_EVENT (GameInitializationUtil.jm_getInstance_0)))
+        (set! _resourceLoadingLevelFactory (ResourceLoadingLevelFactory.jm_getInstance_0))
+        (send _gameInitializedEvent jm_setResourceLoadingLevel_1 (get-field f_LOAD_TOUCH _resourceLoadingLevelFactory))
+        (send (GameInitializedEventHandler.jm_getInstance_0) jm_fireEvent_1 _gameInitializedEvent)
+        (send (get-field f_touchButtonFactory this) jm_defaultList_0)
+        (send this jm_updateTouch_0)
+        (send this jm_postInitTouch_0))))
+    (define/public (jm_updateCurrentTouchInputFactory_1 _nextTouchInput)
+    (let ()
+      (let/ec jreturn
+        (when (not (eq? _nextTouchInput (get-field f_currentTouchInputFactory this)))
+            (begin
+            (set-field! f_currentTouchInputFactory this _nextTouchInput)
+            (PreLogUtil.jm_put_3 (send (get-field f_currentTouchInputFactory this) jm_toString_0) this (get-field f_UDPATE_CURRENT_TOUCH_INPUT_FACTORY (get-field f_gameInputStrings this)))
+            (send (get-field f_touchButtonFactory this) jm_toggle_2 (send this jm_isPaused_0) (send (get-field f_currentTouchInputFactory this) jm_getList_0)))))))
+    (define/public (jm_updateTouch_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_gameBehavior this) jm_updateTouch_1 this))))
+    (define/public (jm_updateTouch2_0)
+    (let ([_features JR.null])
+      (let/ec jreturn
+        (set! _features (Features.jm_getInstance_0))
+        (when (send _features jm_isFeature_1 (get-field f_AUTO_HIDE_SHOW_SCREEN_BUTTONS (get-field f_touchFeatureFactory this)))
+            (begin
+            (when (= (JR.i32 (- (JR.className (send (get-field f_gameLayerManager this) jm_getGameInfo_0)) (send this jm_getStartLevel_0))) 1)
+                (begin
+                (send this jm_setTouchPaintableP_1 (NullPaintable.jm_getInstance_0)))))))))
+    (define/public (jm_postInitTouch_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setTouchButtonsPaintable_1 (TouchButtonsPaintableFactory.jm_getInstance_1 (send (get-field f_gameLayerManager this) jm_getForegroundBasicColor_0)))
+        (send this jm_updateScreenButtonPaintable_0))))
+    (define/override (jm_initCommands_1 _cmdListener)
+    (let ()
+      (let/ec jreturn
+        (send this jm_removeAllCommands_0)
+        (send this jm_addCommands_0)
+        (send this jm_setCommandListener_1 _cmdListener))))
+    (define/public (jm_addCommands_0)
+    (let ([_gameCommandsFactory JR.null][_myCommandsFactory JR.null][_isOverScan JR.null])
+      (let/ec jreturn
+        (set! _gameCommandsFactory (GameCommandsFactory.jm_getInstance_0))
+        (set! _myCommandsFactory (MyCommandsFactory.jm_getInstance_0))
+        (when (not (eq? (DebugFactory.jm_getInstance_0) (NoDebug.jm_getInstance_0)))
+            (begin
+            (send this jm_addCommand_1 (get-field f_START_TRACE _gameCommandsFactory))))
+        (send this jm_addCommand_1 (get-field f_RESTART_COMMAND _gameCommandsFactory))
+        (send this jm_addCommand_1 (get-field f_PAUSE_COMMAND _myCommandsFactory))
+        (send this jm_addCommand_1 (get-field f_QUIT_COMMAND _gameCommandsFactory))
+        (set! _isOverScan (JR.className (send (OperatingSystemFactory.jm_getInstance_0) jm_getOperatingSystemInstance_0)))
+        (if (J2MEUtil.jm_isHTML_0)
+            (begin
+            (void))
+            (if (SWTUtil.jstatic_isSWT)
+            (begin
+            (void))
+            (when (not _isOverScan)
+            (begin
+            (when (and (send (TouchScreenFactory.jm_getInstance_0) jm_isTouch_0) (send (InGameFeatures.jnew_0) jm_isAny_0))
+                (begin
+                (send this jm_addCommand_1 (InGameOptionsForm.jstatic_DISPLAY))))
+            (send this jm_addCommand_1 (get-field f_SAVE _gameCommandsFactory))
+            (send this jm_addCommand_1 (get-field f_DISPLAY_LOAD_FORM _gameCommandsFactory)))))))))
+    (define/public (jm_itemStateChanged_1 _item)
+    (let ([_itemLabel JR.null][_gameFeatureUtil JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (set! _itemLabel (send _item jm_getLabel_0))
+            (JR.className (get-field f_logUtil this))
+            (when (is-a? _item ChoiceGroup%)
+                (begin
+                (set! _gameFeatureUtil (GameFeatureUtil.jm_getInstance_0))
+                (if (send _gameFeatureUtil jm_isExclusive_1 _itemLabel)
+                    (begin
+                    (send _gameFeatureUtil jm_updateExclusiveForChoiceGroup_1 _item))
+                    (begin
+                    (send _gameFeatureUtil jm_updateMultiple_1 _item)))))
+            (send (get-field f_sensorGameUpdateProcessor this) jm_process_1 (get-field f_gameLayerManager this))
+            (send this jm_updateTouch_0)
+            (send this jm_updateScreenButtonPaintable_0)
+            (send (get-field f_sensorGameUpdateProcessor this) jm_sendNotifications_1 (get-field f_gameLayerManager this))))))
+    (define/public (jm_updateScreenButtonPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_gameBehavior this) jm_updateScreenButtonPaintable_1 this))))
+    (define/public (jm_updateScreenButtonPaintable2_0)
+    (let ([_features JR.null])
+      (let/ec jreturn
+        (set! _features (Features.jm_getInstance_0))
+        (if (send _features jm_isFeature_1 (get-field f_AUTO_HIDE_SHOW_SCREEN_BUTTONS (get-field f_touchFeatureFactory this)))
+            (begin
+            (send this jm_setTouchPaintableP_1 (send this jm_getTouchButtonsPaintable_0))
+            (send this jm_setStartLevel_1 (JR.className (send (get-field f_gameLayerManager this) jm_getGameInfo_0))))
+            (if (send _features jm_isFeature_1 (get-field f_SHOW_SCREEN_BUTTONS (get-field f_touchFeatureFactory this)))
+            (begin
+            (send this jm_setTouchPaintableP_1 (send this jm_getTouchButtonsPaintable_0)))
+            (if (send _features jm_isFeature_1 (get-field f_HIDE_SCREEN_BUTTONS (get-field f_touchFeatureFactory this)))
+            (begin
+            (send this jm_setTouchPaintableP_1 (NullPaintable.jm_getInstance_0)))
+            (begin
+            (send this jm_setTouchPaintableP_1 (NullPaintable.jm_getInstance_0)))))))))
+    (define/public (jm_getLayerManager_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameLayerManager this)))))
+    (define/public (jm_setLayerManager_1 _layerManager)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_gameLayerManager this _layerManager))))
+    (define/public (jm_isGameOver_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameOver this)))))
+    (define/public (jm_setGameOver_1 _gameOver)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_gameOver this _gameOver))))
+    (define/public (jm_processGameOver_0)
+    (let ()
+      (let/ec jreturn
+        (PreLogUtil.jm_put_3 (get-field f_START (get-field f_commonStrings this)) this (get-field f_SET_GAME_OVER (get-field f_gameStrings this)))
+        (send this jm_setGameOver_1 #t)
+        (send this jm_removePauseCommand_0)
+        (send this jm_setGameState_1 (get-field f_SHOW_END_RESULT_GAME_STATE (get-field f_gameStateFactory this)))
+        (send this jm_setEndGamePaintable_1 (send this jm_getEndGameStatePaintable_0)))))
+    (define/public (jm_isHighScoreSubmitted_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_highScoreSubmitted this)))))
+    (define/public (jm_setHighScoreSubmitted_1 _highScoreSubmitted)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_highScoreSubmitted this _highScoreSubmitted)
+        (when _highScoreSubmitted
+            (begin
+            (send (get-field f_highScoresHelper this) jm_setSelectedHighScores_1 (NullHighScoresSingletonFactory.jm_getInstance_0))))
+        (JR.className (get-field f_logUtil this)))))
+    (define/public (jm_getGameState_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameState this)))))
+    (define/public (jm_setGameState_1 _gameState)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (set-field! f_gameState this _gameState)
+        (send (get-field f_gameStateTimeHelper this) jm_setStartTimeTNT_0)
+        (send this jm_updateEndGameProcessor_0)
+        (send this jm_updateGameKeyEventProcessor_0)
+        (send (get-field f_gameBehavior this) jm_setGameState_1 this))))
+    (define/public (jm_updateGameState_0)
+    (let ([_gameAdState JR.null])
+      (let/ec jreturn
+        (set! _gameAdState (send (get-field f_gameAdStateFactory this) jm_getCurrentInstance_0))
+        (send _gameAdState jm_processAdState_2 (get-field f_gameState this) (JR.className (send (get-field f_gameLayerManager this) jm_getGameInfo_0)))
+        (when (not (eq? (get-field f_gameState this) (get-field f_PLAYING_GAME_STATE (get-field f_gameStateFactory this))))
+            (begin
+            (send _gameAdState jm_processPageAdState_0))))))
+    (define/public (jm_updateGameKeyEventProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (if (or (not (eq? (send this jm_getGameState_0) (get-field f_PLAYING_GAME_STATE (get-field f_gameStateFactory this)))) (get-field f_isCheating this))
+            (begin
+            (void))
+            (begin
+            (void))))))
+    (define/public (jm_removeAllGameKeyInputListenersOnBuild_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_removeAllGameKeyInputListeners_0))))
+    (define/public (jm_removeAllGameKeyInputListeners_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_gameBehavior this) jm_removeAllGameKeyInputListeners_1 this))))
+    (define/public (jm_removeAllGameKeyInputListeners2_0)
+    (let ([_playerGameInput JR.null][_index JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (begin
+            (set! _index (JR.i32 (- (send (get-field f_localPlayerGameInputList this) jm_size_0) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (set! _playerGameInput (send (get-field f_localPlayerGameInputList this) jm_get_1 _index))
+            (send this jm_removeKeyInputListener_1 _playerGameInput)
+            (send _playerGameInput jm_removeNonAIInputGameKeyEvents_0))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))
+    (define/public (jm_removeKeyInputListener_1 _playerGameInput)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_gameKeyEventHandler this) jm_removeListener_1 _playerGameInput))))
+    (define/public (jm_updateEndGameProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_gameBehavior this) jm_updateEndGameProcessor_1 this))))
+    (define/public (jm_updateEndGameProcessor2_0)
+    (let ()
+      (let/ec jreturn
+        (if (or (eq? (send this jm_getGameState_0) (get-field f_SHOW_END_RESULT_GAME_STATE (get-field f_gameStateFactory this))) (eq? (send this jm_getGameState_0) (get-field f_SHOW_HIGH_SCORE_GAME_STATE (get-field f_gameStateFactory this))))
+            (begin
+            (send this jm_setEndGameProcessor_1 (get-field f_realEndGameProcessor this)))
+            (begin
+            (send this jm_setEndGameProcessor_1 (Processor.jm_getInstance_0)))))))
+    (define/public (jm_buildGameInit_1 _isPortion)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_cleanupGame_0)
+    (let ([_progressCanvas JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (send _progressCanvas jm_addNormalPortion_2 10 "Cleaning Up")
+        (send (get-field f_primaryPlayerQueue this) jm_clear_0)
+        (send (get-field f_secondaryPlayerQueue this) jm_clear_0)
+        (send (GameLevelDisplayChangeEventListenersFactory.jm_getInstance_0) jm_clear_0))))
+    (define/public (jm_loadResourceLoadingLevel_1 _resourceLoadingLevel)
+    (let ([_gameInitializedEvent JR.null])
+      (let/ec jreturn
+        (set! _gameInitializedEvent (get-field f_EVENT (GameInitializationUtil.jm_getInstance_0)))
+        (send _gameInitializedEvent jm_setResourceLoadingLevel_1 _resourceLoadingLevel)
+        (send (GameInitializedEventHandler.jm_getInstance_0) jm_fireEvent_1 _gameInitializedEvent))))
+    (define/public (jm_loadResources_1 _level)
+    (let ([_gameInitializedEvent JR.null])
+      (let/ec jreturn
+        (set! _gameInitializedEvent (get-field f_EVENT (GameInitializationUtil.jm_getInstance_0)))
+        (send _gameInitializedEvent jm_setLevel_1 _level)
+        (send (GameInitializedEventHandler.jm_getInstance_0) jm_fireEvent_1 _gameInitializedEvent))))
+    (define/public (jm_updateColor_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_buildGame_1 _portion)
+    (let ([_progressCanvas JR.null][_features JR.null])
+      (let/ec jreturn
+        (send (get-field f_screenCapture this) jm_endRecording_0)
+        (send (get-field f_screenCapture this) jm_startRecording_0)
+        (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (set! _features (Features.jm_getInstance_0))
+        (send _progressCanvas jm_addNormalPortion_2 _portion "Generic Build")
+        (send this jm_removeAllGameKeyInputListenersOnBuild_0)
+        (send this jm_updateTouch_0)
+        (send _progressCanvas jm_addNormalPortion_2 _portion "High Scores")
+        (send (get-field f_highScoresFactoryInterface this) jm_fetchHighScores_2 (send (get-field f_gameLayerManager this) jm_getGameInfo_0) (get-field f_highScoresHelper this))
+        (send this jm_setHighScoresPaintable_1 (NullPaintable.jm_getInstance_0))
+        (send _progressCanvas jm_addNormalPortion_2 _portion "Finishing.")
+        (send (send this jm_getEndGameInfoP_0) jm_update_2 (send (send this jm_getLayerManager_0) jm_getGameInfo_0) this)
+        (set-field! f_isSingleKeyRepeatableProcessing this (send _features jm_isFeature_1 (get-field f_SINGLE_KEY_REPEAT_PRESS (InputFeatureFactory.jm_getInstance_0))))
+        (send this jm_setGameOver_1 #f)
+        (send _progressCanvas jm_addNormalPortion_2 _portion "Finishing..")
+        (send this jm_updateColor_0)
+        (send (send this jm_getStartIntermissionPaintable_0) jm_update_0)
+        (when (not (send this jm_isRunningInAnotherThread_0))
+            (begin
+            (jreturn (void))))
+        (send _progressCanvas jm_addNormalPortion_2 _portion "Finishing...")
+        (when (or (send this jm_isMainCanvas_0) (not (send this jm_isInitialized_0)))
+            (begin
+            (if (send _features jm_isFeature_1 (get-field f_LOAD_ONDEMAND (MainFeatureFactory.jm_getInstance_0)))
+                (begin
+                (when (not (JR.null? (send this jm_getCustomCommandListener_0)))
+                    (begin
+                    (send _progressCanvas jm_end_0))))
+                (begin
+                (send _progressCanvas jm_end_0)))
+            (send this jm_setInitialized_1 #t)))
+        (if (eq? (send this jm_getCustomCommandListener_0) (NullCommandListener.jstatic_NULL_COMMAND_LISTENER))
+            (begin
+            (JR.className (get-field f_logUtil this))
+            (send (get-field f_gameCanvasStartListener this) jm_showGamePaintable_0))
+            (begin
+            (JR.className (get-field f_logUtil this))))
+        (send (get-field f_colorFillPaintable this) jm_setBasicColorP_1 (send (get-field f_gameLayerManager this) jm_getBackgroundBasicColor_0))
+        (send (get-field f_gameBehavior this) jm_buildGame_1 this))))
+    (define/public (jm_buildGame2_0)
+    (let ([_playerGameInput JR.null][_index JR.null])
+      (let/ec jreturn
+        (PreLogUtil.jm_put_3 (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_ENABLE_PLAYER_GAME_INPUTS (get-field f_gameInputStrings this))) jm_appendint_1 (send (get-field f_localPlayerGameInputList this) jm_size_0)) jm_toString_0) this (get-field f_BUILD_GAME this))
+        (set! _playerGameInput JR.null)
+        (begin
+            (set! _index (JR.i32 (- (send (get-field f_localPlayerGameInputList this) jm_size_0) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (set! _playerGameInput (send (get-field f_localPlayerGameInputList this) jm_get_1 _index))
+            (PreLogUtil.jm_put_3 (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_ENABLE_PLAYER_GAME_INPUT (get-field f_gameInputStrings this))) jm_append_1 (send _playerGameInput jm_toString_0)) jm_toString_0) this (get-field f_BUILD_GAME this))
+            (send _playerGameInput jm_removeNonAIInputGameKeyEvents_0)
+            (send this jm_addKeyInputListener_1 _playerGameInput))
+                (set! _index (JR.i32 (- _index 1))) (jloop))))))))
+    (define/public (jm_addKeyInputListener_1 _playerGameInput)
+    (let ()
+      (let/ec jreturn
+        (send (GameKeyEventHandler.jm_getInstance_0) jm_addListenerForPlayer_2 _playerGameInput (send _playerGameInput jm_getPlayerInputId_0)))))
+    (define/public (jm_setGameCanvasStartListener_1 _gameCanvasStartListener)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_gameCanvasStartListener this _gameCanvasStartListener))))
+    (define/public (jm_loadState_0)
+    (let ([_hashtable JR.null][_levelAsString JR.null][_level JR.null][_gameInfo JR.null])
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (set! _hashtable (send this jm_getLoadStateHashtable_0))
+        (when (and (not (JR.null? _hashtable)) (> (send _hashtable jm_size_0) 0))
+            (begin
+            (set! _levelAsString (send _hashtable jm_get_1 (GameInfo.jstatic_LEVEL_NAME)))
+            (set! _level (JR.className _levelAsString))
+            (set! _gameInfo (send (get-field f_gameLayerManager this) jm_getGameInfo_0))
+            (send _gameInfo jm_setCurrentLevel_1 _level))))))
+    (define/public (jm_getLoadStateHashtable_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (jreturn (get-field f_hashtable this)))))
+    (define/public (jm_setLoadStateHashtable_1 _hashtable)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_logUtil this))
+        (set-field! f_hashtable this _hashtable))))
+    (define/public (jm_getCurrentStateHashtable_0)
+    (let ([_hashtable JR.null][_level JR.null])
+      (let/ec jreturn
+        (set! _hashtable (JR.className (get-field f_stdUtil this)))
+        (set! _level (JR.className (send (get-field f_gameLayerManager this) jm_getGameInfo_0)))
+        (send _hashtable jm_put_2 (JR.toString (GameInfo.jstatic_LEVEL_NAME)) (JR.str _level))
+        (JR.className (get-field f_logUtil this))
+        (jreturn _hashtable))))
+    (define/public (jm_paintGameOver_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (ForcedLogUtil.jm_log_2 (get-field f_NOT_IMPLEMENTED (get-field f_commonStrings this)) this))))
+    (define/override (jm_draw_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_colorFillPaintable this) jm_paint_1 _graphics)
+        (send (get-field f_basicSetColorUtil this) jm_setBasicColorP_2 _graphics (send (get-field f_gameLayerManager this) jm_getForegroundBasicColor_0))
+        (send (get-field f_gameSpecificPaintable this) jm_paint_1 _graphics))))
+    (define/public (jm_clear_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_colorFillPaintable this) jm_paint_1 _graphics))))
+    (define/override (jm_paint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_myFontProcessor this) jm_process_1 _graphics)
+        (send (get-field f_baseGameStatistics this) jm_nextRefresh_0)
+        (send this jm_draw_1 _graphics)
+        (send (get-field f_menuPaintable this) jm_paint_1 _graphics)
+        (send (get-field f_progressPaintable this) jm_paint_1 _graphics))))
+    (define/public (jm_paintThreed_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_processEndLevelIntermissionGameState_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_nonBotPaint_1 _graphics)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_endGamePaintable this) jm_paint_1 _graphics)
+        (send (get-field f_intermissionPaintable this) jm_paint_1 _graphics)
+        (send this jm_paintIntermission_1 _graphics)
+        (send (get-field f_touchPaintable this) jm_paint_1 _graphics))))
+    (define/public (jm_paintIntermission_1 _graphics)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_keyPressed_1 _keyCode)
+    (let ()
+      (let/ec jreturn
+        (send this jm_keyPressedByDevice_2 _keyCode 0))))
+    (define/override (jm_keyReleased_1 _keyCode)
+    (let ()
+      (let/ec jreturn
+        (send this jm_keyReleasedByDevice_2 _keyCode 0))))
+    (define/override (jm_keyRepeated_1 _keyCode)
+    (let ()
+      (let/ec jreturn
+        (send this jm_keyRepeatedByDevice_2 _keyCode 0))))
+    (define/override (jm_keyPressedByDevice_2 _keyCode _deviceId)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_inputProcessor this) jm_keyPressedByDevice_2 _keyCode _deviceId))))
+    (define/override (jm_keyRepeatedByDevice_2 _keyCode _deviceId)
+    (let ()
+      (let/ec jreturn
+        (when (get-field f_isSingleKeyRepeatableProcessing this)
+            (begin
+            (send (get-field f_inputProcessor this) jm_keyPressedByDevice_2 _keyCode _deviceId))))))
+    (define/override (jm_keyReleasedByDevice_2 _keyCode _deviceId)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_inputProcessor this) jm_keyReleasedByDevice_3 this _keyCode _deviceId))))
+    (define/public (jm_handleRawKey_3 _keyCode _deviceId _repeated)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_endProgress_1 _isProgress)
+    (let ([_portion JR.null][_myCommandsFactory JR.null][_progressCanvas JR.null])
+      (let/ec jreturn
+        (set! _portion 30)
+        (when (and _isProgress (send this jm_isMainCanvas_0))
+            (begin
+            (set! _myCommandsFactory (MyCommandsFactory.jm_getInstance_0))
+            (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+            (send _progressCanvas jm_start_0)
+            (JR.className (send this jm_getCustomCommandListener_0))
+            (set! _portion 4)))
+        (jreturn _portion))))
+    (define/public (jm_processPlayingGame_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_cheatProcessor this) jm_update_0)
+        (JR.className (send (get-field f_sensorGameUpdateProcessor this) jm_getInputSensor_0))
+        (send (get-field f_gameInputProcessor this) jm_process_0)
+        (send (get-field f_gameLayerManager this) jm_process_0)
+        (send (get-field f_startIntermissionProcessor this) jm_process_0))))
+    (define/public (jm_threadInit_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_processGame_0)
+    (let ()
+      (let/ec jreturn
+        (super jm_process_0)
+        (when (AllBinaryMediaManager.jm_update_0)
+            (begin
+            (when (not (send (get-field f_primaryPlayerQueue this) jm_process_0))
+                (begin
+                (send (get-field f_secondaryPlayerQueue this) jm_process_0)))))
+        (send (get-field f_mainStateProcessor this) jm_process_0)
+        (send (get-field f_menuInputProcessor this) jm_processInputList_0)
+        (send (get-field f_endGameProcessor this) jm_process_0)
+        (send (get-field f_baseGameStatistics this) jm_nextFrame_0))))
+    (define/public (jm_notifyDonePainting_0)
+    (let ()
+      (let/ec jreturn
+        (begin
+            (JR.className (get-field f_threadObjectUtil this))))))
+    (define/public (jm_shouldWait_0)
+    (let ([_features JR.null][_openGLImageSpecificFactory JR.null])
+      (let/ec jreturn
+        (set! _features (Features.jm_getInstance_0))
+        (if (AndroidUtil.jm_isAndroid_0)
+            (begin
+            (void))
+            (if (send _features jm_isFeature_1 (get-field f_OPENGL_2D (get-field f_openGLFeatureFactory this)))
+            (begin
+            (void))
+            (begin
+            (when (send _features jm_isDefault_1 (get-field f_OPENGL (get-field f_openGLFeatureFactory this)))
+                (begin
+                (set! _openGLImageSpecificFactory (OpenGLImageSpecificFactory.jm_getInstance_0))
+                (let/ec jbreak (let jloop () (when (get-field f_updating _openGLImageSpecificFactory)
+                        (let/ec jcontinue
+                    (Thread.jm_sleep_1 (get-field f_YIELD_SLEEP this))) (jloop))))))))))))
+    (define/override (jm_run_0)
+    (let ([_progressCanvas JR.null][_gameAdState JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (JR.className (get-field f_logUtil this))
+            (set! _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+            (send _progressCanvas jm_addNormalPortion_2 50 "Game Thread")
+            (send this jm_setCurrentThread_0)
+            (send this jm_setRunning_1 #t)
+            (when (eq? (send this jm_getCustomCommandListener_0) (NullCommandListener.jstatic_NULL_COMMAND_LISTENER))
+                (begin
+                (Thread.jm_sleep_1 (get-field f_YIELD_SLEEP this))))
+            (send this jm_shouldWait_0)
+            (send this jm_threadInit_0)
+            (when (eq? (send this jm_getCustomCommandListener_0) (NullCommandListener.jstatic_NULL_COMMAND_LISTENER))
+                (begin
+                (Thread.jm_sleep_1 (get-field f_YIELD_SLEEP this))))
+            (send this jm_open_0)
+            (set! _gameAdState (send (get-field f_gameAdStateFactory this) jm_getCurrentInstance_0))
+            (send _gameAdState jm_init_0)
+            (send _gameAdState jm_setGameIsReady_1 #t)
+            (send (get-field f_gameBehavior this) jm_run_1 this)
+            (JR.className (get-field f_logUtil this))))))
+    (define/public (jm_run2_0)
+    (let ([_features JR.null][_currentDisplayableFactory JR.null])
+      (let/ec jreturn
+        (set! _features (Features.jm_getInstance_0))
+        (if (or (send _features jm_isDefault_1 (get-field f_OPENGL_AS_GAME_THREAD (get-field f_openGLFeatureFactory this))) (J2MEUtil.jm_isHTML_0))
+            (begin
+            (when (send _features jm_isDefault_1 (get-field f_OPENGL_AS_GAME_THREAD (get-field f_openGLFeatureFactory this)))
+                (begin
+                (JR.className (get-field f_logUtil this))))
+            (when (J2MEUtil.jm_isHTML_0)
+                (begin
+                (JR.className (get-field f_logUtil this))))
+            (set! _currentDisplayableFactory (CurrentDisplayableFactory.jm_getInstance_0))
+            (send _currentDisplayableFactory jm_setRunnable_1 (get-field f_gameRunnable this))
+            (send _currentDisplayableFactory jm_setDisplayable_1 this)
+            (send (OpenGLThreadUtil.jm_getInstance_0) jm_onResume_0))
+            (if (send _features jm_isDefault_1 (get-field f_OPENGL_AND_GAME_HAVE_DIFFERENT_THREADS (get-field f_openGLFeatureFactory this)))
+            (begin
+            (JR.className (get-field f_logUtil this))
+            (send (OpenGLThreadUtil.jm_getInstance_0) jm_onResume_0)
+            (let/ec jbreak (let jloop () (when (send this jm_isRunning_0)
+                    (let/ec jcontinue
+                (send this jm_run3_0)) (jloop))))
+            (send this jm_end_0))
+            (begin
+            (JR.className (get-field f_logUtil this))
+            (let/ec jbreak (let jloop () (when (send this jm_isRunning_0)
+                    (let/ec jcontinue
+                (send this jm_run3_0)) (jloop))))
+            (send this jm_end_0)))))))
+    (define/public (jm_run3_0)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_loopTimeHelper this))
+        (send (get-field f_gameTickDisplayInfoSingleton this) jm_update_0)
+        (send this jm_processGame_0)
+        (send this jm_processLoopSleep_0))))
+    (define/override (jm_setRunning_1 _running)
+    (let ([_features JR.null][_currentDisplayableFactory JR.null])
+      (let/ec jreturn
+        (super jm_setRunning_1 _running)
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (JR.className (get-field f_logUtil this)))])
+            (set! _features (Features.jm_getInstance_0))
+            (if _running
+                (begin
+                (void))
+                (begin
+                (when (or (send _features jm_isDefault_1 (get-field f_OPENGL (get-field f_openGLFeatureFactory this))) (SWTUtil.jstatic_isSWT))
+                    (begin
+                    (when (not (eq? (JR.className (send (get-field f_gameLayerManager this) jm_getGameInfo_0)) (get-field f_BOT (get-field f_gameTypeFactory this))))
+                        (begin
+                        (set! _currentDisplayableFactory (CurrentDisplayableFactory.jm_getInstance_0))
+                        (send _currentDisplayableFactory jm_clearRunnable_0)))
+                    (send this jm_end_0)))))))))
+    (define/public (jm_end_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_screenCapture this) jm_endRecording_0)
+        (send (get-field f_baseGameStatistics this) jm_add_1 (send (send (send (StringMaker.jnew_0) jm_append_1 (send (get-field f_baseGameStatistics this) jm_toString_0)) jm_append_1 (get-field f_NEW_LINE (CommonSeps.jm_getInstance_0))) jm_toString_0))
+        (send (get-field f_baseGameStatistics this) jm_init_0)
+        (send (get-field f_gameKeyEventHandler this) jm_removeListener_1 (get-field f_cheatProcessor this))
+        (send this jm_close_0)
+        (send this jm_removeAllGameKeyInputListeners_0)
+        (send this jm_endGameThread_0))))
+    (define/public (jm_endGameThread_0)
+    (let ([_gameAdState JR.null])
+      (let/ec jreturn
+        (send (DisplayChangeEventHandler.jm_getInstance_0) jm_removeListener_1 this)
+        (send (GameLevelDisplayChangeEventListenersFactory.jm_getInstance_0) jm_clear_0)
+        (set! _gameAdState (send (get-field f_gameAdStateFactory this) jm_getCurrentInstance_0))
+        (send _gameAdState jm_notPlayingAdState_0))))
+    (define/public (jm_createHighScore_1 _score)
+    (let ([_gameInfo JR.null])
+      (let/ec jreturn
+        (set! _gameInfo (send (get-field f_gameLayerManager this) jm_getGameInfo_0))
+        (jreturn (HighScore.jnew_4 0 "NONE" (GameInfo.jnew_5 (send _gameInfo jm_getGameType_0) (send _gameInfo jm_getGameMode_0) (get-field f_PLAYER_TYPE_ONE (PlayerTypesFactory.jm_getInstance_0)) 0 0) _score)))))
+    (define/public (jm_setHighScore_5 _abeClientInformation _name _score _autoSubmit _isLast)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_gameBehavior this) jm_setHighScore_6 _abeClientInformation this _name _score _autoSubmit _isLast))))
+    (define/public (jm_setHighScore2_5 _abeClientInformation _name _score _autoSubmit _isLast)
+    (let ([_highScore JR.null][_textBox JR.null])
+      (let/ec jreturn
+        (set! _highScore (send this jm_createHighScore_1 _score))
+        (set! _textBox (HighScoreTextBox.jnew_9 (get-field f_highScoresFactoryInterface this) (get-field f_highScoresHelper this) _abeClientInformation (send (get-field f_gameLayerManager this) jm_getGameInfo_0) (send this jm_getCustomCommandListener_0) _name _highScore (send (get-field f_gameLayerManager this) jm_getBackgroundBasicColor_0) (send (get-field f_gameLayerManager this) jm_getForegroundBasicColor_0)))
+        (when _isLast
+            (begin
+            (JR.className (send this jm_getCustomCommandListener_0))))
+        (when _autoSubmit
+            (begin
+            (send (SecondaryThreadPool.jm_getInstance_0) jm_runTask_1 (SaveHighScoreRunnable.jnew_2 _isLast _textBox)))))))
+    (define/public (jm_getGameStateTimeHelper_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameStateTimeHelper this)))))
+    (define/public (jm_setInitialized_1 _initialized)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_initialized this _initialized))))
+    (define/public (jm_isInitialized_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_initialized this)))))
+    (define/public (jm_getSourceId_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AllBinaryGameCanvas.jstatic_id)))))
+    (define/public (jm_setProgressPaintable_1 _paintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_progressPaintable this _paintable))))
+    (define/public (jm_getStartIntermissionInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_startIntermissionInterface this)))))
+    (define/public (jm_getEndLevelIntermissionInterface_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_endLevelIntermissionInterface this)))))
+    (define/public (jm_setTouchPaintableP_1 _paintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_touchPaintable this _paintable))))
+    (define/public (jm_getTouchPaintableP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_touchPaintable this)))))
+    (define/public (jm_setEndGamePaintable_1 _endGamePaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_endGamePaintable this _endGamePaintable))))
+    (define/public (jm_getEndGamePaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_endGamePaintable this)))))
+    (define/public (jm_setIntermissionPaintable_1 _intermissionPaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_intermissionPaintable this _intermissionPaintable))))
+    (define/public (jm_getIntermissionPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_intermissionPaintable this)))))
+    (define/public (jm_getEndGameInfoP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_endGameInfo this)))))
+    (define/public (jm_setHighScoresPaintable_1 _highScoresPaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_highScoresPaintable this _highScoresPaintable))))
+    (define/public (jm_getHighScoresPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_highScoresPaintable this)))))
+    (define/public (jm_getRealHighScoresPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_realHighScoresPaintable this)))))
+    (define/public (jm_clearPlayerGameInputList_0)
+    (let ([_playerGameInput JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _playerGameInput JR.null)
+        (begin
+            (set! _index (JR.i32 (- (send (get-field f_localPlayerGameInputList this) jm_size_0) 1)))
+            (let/ec jbreak (let jloop () (when (>= _index 0)
+                (let/ec jcontinue
+            (set! _playerGameInput (send (get-field f_localPlayerGameInputList this) jm_get_1 _index))
+            (send (get-field f_gameKeyEventHandler this) jm_removeListener_1 _playerGameInput))
+                (set! _index (JR.i32 (- _index 1))) (jloop)))))
+        (send (get-field f_localPlayerGameInputList this) jm_clear_0))))
+    (define/public (jm_addPlayerGameInput_1 _playerGameInput)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_localPlayerGameInputList this) jm_add_1 _playerGameInput))))
+    (define/public (jm_setMenuInputProcessor_1 _menuInputProcessor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_menuInputProcessor this _menuInputProcessor))))
+    (define/public (jm_getMenuInputProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_menuInputProcessor this)))))
+    (define/public (jm_getMenuForm_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_menuForm this)))))
+    (define/public (jm_setMenuForm_1 _menuForm)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_menuForm this _menuForm))))
+    (define/public (jm_getStartLevel_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_startLevel this)))))
+    (define/public (jm_setStartLevel_1 _startLevel)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_startLevel this _startLevel))))
+    (define/public (jm_setTouchButtonsPaintable_1 _touchButtonsPaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_touchButtonsPaintable this _touchButtonsPaintable))))
+    (define/public (jm_getTouchButtonsPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_touchButtonsPaintable this)))))
+    (define/public (jm_setGameInputProcessor_1 _gameInputProcessor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_gameInputProcessor this _gameInputProcessor))))
+    (define/public (jm_getGameInputProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameInputProcessor this)))))
+    (define/public (jm_setEndGameProcessor_1 _endGameProcessor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_endGameProcessor this _endGameProcessor))))
+    (define/public (jm_getEndGameProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_endGameProcessor this)))))
+    (define/public (jm_setEndGameStatePaintable_1 _endGameStatePaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_endGameStatePaintable this _endGameStatePaintable))))
+    (define/public (jm_getEndGameStatePaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_endGameStatePaintable this)))))
+    (define/public (jm_setNonBotPaintableP_1 _nonBotPaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_nonBotPaintable this _nonBotPaintable))))
+    (define/public (jm_getNonBotPaintableP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_nonBotPaintable this)))))
+    (define/public (jm_setStartIntermissionPaintable_1 _startIntermissionPaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_startIntermissionPaintable this _startIntermissionPaintable))))
+    (define/public (jm_getStartIntermissionPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_startIntermissionPaintable this)))))
+    (define/public (jm_setMainStateProcessor_1 _mainStateProcessor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_mainStateProcessor this _mainStateProcessor))))
+    (define/public (jm_getMainStateProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_mainStateProcessor this)))))
+    (define/public (jm_setProcessGameProcessor_1 _processGameProcessor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_processGameProcessor this _processGameProcessor))))
+    (define/public (jm_getProcessGameProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_processGameProcessor this)))))
+    (define/public (jm_setOpenMenuPaintable_1 _openMenuPaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_openMenuPaintable this _openMenuPaintable))))
+    (define/public (jm_getOpenMenuPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_openMenuPaintable this)))))
+    (define/public (jm_setPopupMenuInputProcessor_1 _popupMenuInputProcessor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_popupMenuInputProcessor this _popupMenuInputProcessor))))
+    (define/public (jm_getPopupMenuInputProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_popupMenuInputProcessor this)))))
+    (define/public (jm_getSensorGameUpdateProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_sensorGameUpdateProcessor this)))))
+    (define/public (jm_getRawGameInputProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_rawGameInputProcessor this)))))
+    (define/public (jm_getRawInputProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_rawInputProcessor this)))))
+    (define/public (jm_setInputProcessor_1 _inputProcessor)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_inputProcessor this _inputProcessor))))
+    (define/public (jm_getInputProcessor_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_inputProcessor this)))))
+    (define/public (jm_setMenuPaintable_1 _menuPaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_menuPaintable this _menuPaintable))))
+    (define/public (jm_getMenuPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_menuPaintable this)))))
+    (define/public (jm_setFormPaintable_1 _formPaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_formPaintable this _formPaintable))))
+    (define/public (jm_getFormPaintable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_formPaintable this)))))
+    (define/public (jm_setGameSpecificPaintableP_1 _gameSpecificPaintable)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_gameSpecificPaintable this _gameSpecificPaintable))))
+    (define/public (jm_getGameSpecificPaintableP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_gameSpecificPaintable this)))))
+    (define/override (jm_isSingleThread_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (or (send (OpenGLFeatureUtil.jm_getInstance_0) jm_isAnyThreed_0) (SWTUtil.jstatic_isSWT))))))
+    (define/public (jm_isRunningInAnotherThread_0)
+    (let ([_features JR.null][_openGLFeatureFactory JR.null])
+      (let/ec jreturn
+        (set! _features (Features.jm_getInstance_0))
+        (set! _openGLFeatureFactory (OpenGLFeatureFactory.jm_getInstance_0))
+        (if (send _features jm_isDefault_1 (get-field f_OPENGL_AS_GAME_THREAD _openGLFeatureFactory))
+            (begin
+            (jreturn #t))
+            (begin
+            (jreturn (send this jm_isRunning_0)))))))
+    (define/override (jm_getType_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AllBinaryGameCanvas.jstatic_TYPE)))))
+    (define/override (jm_getTitle_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (super jm_getTitle_0)))))
+    (define/override (jm_isPaused_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (super jm_isPaused_0)))))))
+(define (AllBinaryGameCanvas.jclassValue) AllBinaryGameCanvas%)
+
+(define AllBinaryGameCanvas.jcell_id 'jnone)
+(define (AllBinaryGameCanvas.jstatic_id)
+  (when (eq? AllBinaryGameCanvas.jcell_id 'jnone) (set! AllBinaryGameCanvas.jcell_id 0))
+  AllBinaryGameCanvas.jcell_id)
+(define (AllBinaryGameCanvas.jsetstatic_id value) (set! AllBinaryGameCanvas.jcell_id value))
+
+(define AllBinaryGameCanvas.jcell_TYPE 'jnone)
+(define (AllBinaryGameCanvas.jstatic_TYPE)
+  (when (eq? AllBinaryGameCanvas.jcell_TYPE 'jnone) (set! AllBinaryGameCanvas.jcell_TYPE 2))
+  AllBinaryGameCanvas.jcell_TYPE)
+(define (AllBinaryGameCanvas.jsetstatic_TYPE value) (set! AllBinaryGameCanvas.jcell_TYPE value))
+
+(define (AllBinaryGameCanvas.jnew_5 _commandListener _gameLayerManager _highScoresFactoryInterface _gameInitializationInterfaceFactoryInterface _buffered)
+  (define this (new AllBinaryGameCanvas% [jclass "AllBinaryGameCanvas"]))
+    (set-field! f_basicColorFactory this (BasicColorFactory.jm_getInstance_0))
+    (set-field! f_basicSetColorUtil this (BasicColorSetUtil.jm_getInstance_0))
+    (set-field! f_touchFeatureFactory this (TouchFeatureFactory.jm_getInstance_0))
+    (set-field! f_openGLFeatureFactory this (OpenGLFeatureFactory.jm_getInstance_0))
+    (set-field! f_touchButtonFactory this (TouchButtonFactory.jm_getInstance_0))
+    (set-field! f_gameAdStateFactory this (GameAdStateFactory.jm_getInstance_0))
+    (set-field! f_gameStrings this (GameStrings.jm_getInstance_0))
+    (set-field! f_gameInputStrings this (GameInputStrings.jm_getInstance_0))
+    (set-field! f_gameStateFactory this (GameStateFactory.jm_getInstance_0))
+    (set-field! f_gameTickTimeDelayHelper this (GameTickTimeDelayHelperFactory.jm_getInstance_0))
+    (set-field! f_gameTickDisplayInfoSingleton this (GameTickDisplayInfoSingleton.jm_getInstance_0))
+    (set-field! f_gameRunnable this (GameCanvasRunnable.jnew_1 this))
+    (set-field! f_gamePauseRunnable this (GameCanvasPauseRunnable.jnew_1 this))
+    (set-field! f_formUtil this (FormUtil.jm_getInstance_0))
+    (set-field! f_myFormUtil this (MyFormUtil.jm_getInstance_0))
+    (set-field! f_updateMyFontProcessor this (UpdateMyFontProcessor.jnew_1 this))
+    (set-field! f_myFontProcessor this (get-field f_updateMyFontProcessor this))
+    (set-field! f_gameSpecificPaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_sensorGameUpdateProcessor this (SingleSensorGameUpdateProcessor.jnew_0))
+    (set-field! f_endGameInfo this (EndGameInfo.jnew_0))
+    (set-field! f_startIntermissionInterface this (Intermission.jnew_0))
+    (set-field! f_endLevelIntermissionInterface this (Intermission.jnew_0))
+    (set-field! f_gameLayerManager this (AllBinaryGameLayerManager.jm_getNullInstance_0))
+    (set-field! f_gameState this (get-field f_NO_GAME_STATE (get-field f_gameStateFactory this)))
+    
+    
+    (set-field! f_gameStateTimeHelper this (TimeDelayHelper.jnew_1 0))
+    
+    
+    (set-field! f_realHighScoresPaintable this (HighScoresPaintable.jnew_0))
+    (set-field! f_highScoresPaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_localPlayerGameInputList this (BasicArrayListD.jnew_0))
+    
+    (set-field! f_hashtable this (get-field f_NULL_TABLE (get-field f_stdUtil this)))
+    
+    (set-field! f_gameInitializationInterfaceFactoryInterface this (BasicBuildGameInitializerFactory.jstatic_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY))
+    (set-field! f_touchButtonsPaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_touchPaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_cheatProcessor this (NoPlayerGameInput.jm_getInstance_0))
+    (set-field! f_gameInputProcessor this (Processor.jm_getInstance_0))
+    (set-field! f_endGameProcessor this (Processor.jm_getInstance_0))
+    (set-field! f_realEndGameProcessor this (Processor.jm_getInstance_0))
+    (set-field! f_startIntermissionProcessor this (Processor.jm_getInstance_0))
+    (set-field! f_realStartIntermissionProcessor this (Processor.jm_getInstance_0))
+    (set-field! f_endGamePaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_endGameStatePaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_nonBotPaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_intermissionPaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_startIntermissionPaintable this (NullInitUpdatePaintable.jm_getInstance_0))
+    (set-field! f_mainStateProcessor this (Processor.jm_getInstance_0))
+    (set-field! f_processGameProcessor this (Processor.jm_getInstance_0))
+    
+    
+    (set-field! f_mainMenuInputProcessor this (NoMenuInputProcessor.jm_getInstance_0))
+    (set-field! f_popupMenuInputProcessor this (NoMenuInputProcessor.jm_getInstance_0))
+    (set-field! f_menuInputProcessor this (NoMenuInputProcessor.jm_getInstance_0))
+    (set-field! f_menuForm this (ScrollSelectionForm.jm_getNullScrollSelectionForm_0))
+    (set-field! f_formPaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_openMenuPaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_menuPaintable this (NullPaintable.jm_getInstance_0))
+    (set-field! f_currentTouchInputFactory this (NoButtonsTouchInputFactory.jm_getInstance_0))
+    (set-field! f_colorFillPaintable this (send (ColorFillPaintableFactory.jm_getInstance_0) jm_getInstance_2 (get-field f_BLACK (get-field f_basicColorFactory this)) #t))
+    (set-field! f_baseGameStatistics this (GameStatisticsFactory.jm_getInstance_0))
+    (set-field! f_primaryPlayerQueue this (PrimaryPlayerQueueFactory.jm_getInstance_0))
+    (set-field! f_secondaryPlayerQueue this (SecondaryPlayerQueueFactory.jm_getInstance_0))
+    (set-field! f_BUILD_GAME this "buildGame")
+    (set-field! f_gameTypeFactory this (GameTypeFactory.jm_getInstance_0))
+    (set-field! f_screenCapture this (ScreenCaptureFactory.jm_getInstance_0))
+    (set-field! f_basicMotionGesturesHandler this (BasicMotionGesturesHandler.jm_getInstance_0))
+    (set-field! f_gameKeyEventHandler this (GameKeyEventHandler.jm_getInstance_0))
+    
+    
+    (set-field! f_progressPaintable this (ProgressCanvasFactory.jm_getLazyInstance_0))
+    
+    (set-field! f_gameCanvasStartListener this (NullDemoPaintable.jstatic_NULL_DEMO_PAINTABLE))
+    (set-field! f_rawGameInputProcessor this (GameCanvasInputProcessor.jnew_1 this))
+    (set-field! f_rawInputProcessor this (FormInputProcessor.jnew_1 this))
+    (set-field! f_inputProcessor this (send this jm_getRawGameInputProcessor_0))
+    (set-field! f_YIELD_SLEEP this 100)
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_highScoresHelper this (send _highScoresFactoryInterface jm_createHighScoresHelper_0))
+        (set-field! f_gameInitializationInterfaceFactoryInterface this _gameInitializationInterfaceFactoryInterface)
+        (send this jm_init_2 _gameLayerManager _buffered)
+        (set-field! f_highScoresFactoryInterface this _highScoresFactoryInterface)
+        (if (or (eq? (JR.className (send (get-field f_gameLayerManager this) jm_getGameInfo_0)) (get-field f_BOT (get-field f_gameTypeFactory this))) (eq? (JR.className (send (get-field f_gameLayerManager this) jm_getGameInfo_0)) (get-field f_NONE (get-field f_gameTypeFactory this))))
+            (begin
+            (set-field! f_gameBehavior this (DemoGameBehavior.jm_getInstance_0))
+            (set-field! f_menuBehavior this (BaseMenuBehavior.jm_getInstance_0)))
+            (begin
+            (set-field! f_gameBehavior this (BaseGameBehavior.jm_getInstance_0))
+            (set-field! f_menuBehavior this (send this jm_getInGameMenuBehavior_0))))
+        (send this jm_initPopupMenu_0)
+        (send this jm_initMenu_0)
+        (send this jm_initSpecialPaint_0)
+        (send (DisplayChangeEventHandler.jm_getInstance_0) jm_addListenerInterface_1 this)))
+  this)
 
--- local ChoiceGroup = require("javax.microedition.lcdui.ChoiceGroup")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Item = require("javax.microedition.lcdui.Item")
--- local NullCommandListener = require("javax.microedition.lcdui.NullCommandListener")
-local AndroidUtil = require("org.allbinary.AndroidUtil")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local GameAdStateFactory = require("org.allbinary.business.advertisement.GameAdStateFactory")
-local BaseGameStatistics = require("org.allbinary.canvas.BaseGameStatistics")
-local GameStatisticsFactory = require("org.allbinary.canvas.GameStatisticsFactory")
-local Processor = require("org.allbinary.canvas.Processor")
-local RunnableCanvas = require("org.allbinary.canvas.RunnableCanvas")
-local DebugFactory = require("org.allbinary.debug.DebugFactory")
-local NoDebug = require("org.allbinary.debug.NoDebug")
-local GameAdState = require("org.allbinary.game.GameAdState")
-local GameInfo = require("org.allbinary.game.GameInfo")
-local GameStrings = require("org.allbinary.game.GameStrings")
-local GameTypeFactory = require("org.allbinary.game.GameTypeFactory")
-local Intermission = require("org.allbinary.game.Intermission")
-local IntermissionCompositeInterface = require("org.allbinary.game.IntermissionCompositeInterface")
-local IntermissionEnableListenerInterface = require("org.allbinary.game.IntermissionEnableListenerInterface")
-local IntermissionInterface = require("org.allbinary.game.IntermissionInterface")
-local PlayerTypesFactory = require("org.allbinary.game.PlayerTypesFactory")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local InGameFeatures = require("org.allbinary.game.configuration.InGameFeatures")
-local InGameOptionsForm = require("org.allbinary.game.configuration.InGameOptionsForm")
-local ChangedGameFeatureListener = require("org.allbinary.game.configuration.event.ChangedGameFeatureListener")
-local GameInitializedEvent = require("org.allbinary.game.configuration.event.GameInitializedEvent")
-local GameInitializedEventHandler = require("org.allbinary.game.configuration.event.GameInitializedEventHandler")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local GameFeatureUtil = require("org.allbinary.game.configuration.feature.GameFeatureUtil")
-local InputFeatureFactory = require("org.allbinary.game.configuration.feature.InputFeatureFactory")
-local MainFeatureFactory = require("org.allbinary.game.configuration.feature.MainFeatureFactory")
-local SensorFeatureFactory = require("org.allbinary.game.configuration.feature.SensorFeatureFactory")
-local TouchFeatureFactory = require("org.allbinary.game.configuration.feature.TouchFeatureFactory")
-local GameLevelDisplayChangeEventListenersFactory = require("org.allbinary.game.displayable.GameLevelDisplayChangeEventListenersFactory")
-local BasicBuildGameInitializerFactory = require("org.allbinary.game.init.BasicBuildGameInitializerFactory")
-local GameInitializationUtil = require("org.allbinary.game.init.GameInitializationUtil")
-local GameInputStrings = require("org.allbinary.game.input.GameInputStrings")
-local InputProcessor = require("org.allbinary.game.input.InputProcessor")
-local NoPlayerGameInput = require("org.allbinary.game.input.NoPlayerGameInput")
-local PlayerGameInput = require("org.allbinary.game.input.PlayerGameInput")
-local GameKeyEventHandler = require("org.allbinary.game.input.event.GameKeyEventHandler")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local SWTUtil = require("org.allbinary.game.layer.SWTUtil")
-local ColorFillBasePaintable = require("org.allbinary.game.paint.ColorFillBasePaintable")
-local ColorFillPaintableFactory = require("org.allbinary.game.paint.ColorFillPaintableFactory")
-local ResourceLoadingLevel = require("org.allbinary.game.resource.ResourceLoadingLevel")
-local ResourceLoadingLevelFactory = require("org.allbinary.game.resource.ResourceLoadingLevelFactory")
-local HighScore = require("org.allbinary.game.score.HighScore")
-local HighScoresHelperBaseInterface = require("org.allbinary.game.score.HighScoresHelperBaseInterface")
-local HighScoresFactoryInterface = require("org.allbinary.game.score.HighScoresFactoryInterface")
-local HighScoresPaintable = require("org.allbinary.game.score.HighScoresPaintable")
-local NullHighScoresSingletonFactory = require("org.allbinary.game.score.NullHighScoresSingletonFactory")
-local HighScoreTextBox = require("org.allbinary.game.score.displayable.HighScoreTextBox")
-local GameState = require("org.allbinary.game.state.GameState")
-local GameStateFactory = require("org.allbinary.game.state.GameStateFactory")
-local GraphicsStrings = require("org.allbinary.graphics.GraphicsStrings")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local ScreenCapture = require("org.allbinary.graphics.ScreenCapture")
-local ScreenCaptureFactory = require("org.allbinary.graphics.ScreenCaptureFactory")
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local GameTickDisplayInfoSingleton = require("org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton")
-local MyCommandsFactory = require("org.allbinary.graphics.displayable.command.MyCommandsFactory")
-local DisplayChangeEvent = require("org.allbinary.graphics.displayable.event.DisplayChangeEvent")
-local DisplayChangeEventHandler = require("org.allbinary.graphics.displayable.event.DisplayChangeEventHandler")
-local DisplayChangeEventListener = require("org.allbinary.graphics.displayable.event.DisplayChangeEventListener")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local CommandCurrentSelectionFormFactory = require("org.allbinary.graphics.form.CommandCurrentSelectionFormFactory")
-local FormPaintable = require("org.allbinary.graphics.form.FormPaintable")
-local FormType = require("org.allbinary.graphics.form.FormType")
-local FormTypeFactory = require("org.allbinary.graphics.form.FormTypeFactory")
-local ScrollSelectionForm = require("org.allbinary.graphics.form.ScrollSelectionForm")
-local ScrollSelectionFormNoneFactory = require("org.allbinary.graphics.form.ScrollSelectionFormNoneFactory")
-local CommandTextItemArrayFactory = require("org.allbinary.graphics.form.item.CommandTextItemArrayFactory")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local CurrentDisplayableFactory = require("org.allbinary.graphics.opengles.CurrentDisplayableFactory")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local OpenGLFeatureUtil = require("org.allbinary.graphics.opengles.OpenGLFeatureUtil")
-local OpenGLThreadUtil = require("org.allbinary.graphics.opengles.OpenGLThreadUtil")
-local InitUpdatePaintable = require("org.allbinary.graphics.paint.InitUpdatePaintable")
-local NullInitUpdatePaintable = require("org.allbinary.graphics.paint.NullInitUpdatePaintable")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local OpenGLImageSpecificFactory = require("org.allbinary.image.opengles.OpenGLImageSpecificFactory")
-local SensorGameUpdateProcessor = require("org.allbinary.input.gyro.SensorGameUpdateProcessor")
-local SingleSensorGameUpdateProcessor = require("org.allbinary.input.gyro.SingleSensorGameUpdateProcessor")
-local BaseTouchInput = require("org.allbinary.input.motion.button.BaseTouchInput")
-local NoButtonsTouchInputFactory = require("org.allbinary.input.motion.button.NoButtonsTouchInputFactory")
-local TouchButtonFactory = require("org.allbinary.input.motion.button.TouchButtonFactory")
-local TouchButtonsPaintableFactory = require("org.allbinary.input.motion.button.TouchButtonsPaintableFactory")
-local TouchScreenFactory = require("org.allbinary.input.motion.button.TouchScreenFactory")
-local BasicMotionGesturesHandler = require("org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler")
-local ABSystemWrapper = require("org.allbinary.logic.ABSystemWrapper")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local OperatingSystemFactory = require("org.allbinary.logic.system.os.OperatingSystemFactory")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local AllBinaryMediaManager = require("org.allbinary.media.audio.AllBinaryMediaManager")
-local PlayerQueue = require("org.allbinary.media.audio.PlayerQueue")
-local PrimaryPlayerQueueFactory = require("org.allbinary.media.audio.PrimaryPlayerQueueFactory")
-local SecondaryPlayerQueueFactory = require("org.allbinary.media.audio.SecondaryPlayerQueueFactory")
-local SelectSound = require("org.allbinary.media.audio.SelectSound")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local SecondaryThreadPool = require("org.allbinary.thread.SecondaryThreadPool")
-local GameTickTimeDelayHelper = require("org.allbinary.time.GameTickTimeDelayHelper")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local AllBinaryGameCanvasInterface = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvasInterface")
-local GameCanvasRunnableInterface = require("org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface")
-local MenuListener = require("org.allbinary.game.displayable.canvas.MenuListener")
-local PopupMenuInterface = require("org.allbinary.game.displayable.canvas.PopupMenuInterface")
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
-
-local function java_instanceof(object, class)
-    local metatable = getmetatable(object)
-    while metatable do
-        if metatable == class then return true end
-        local parent = getmetatable(metatable)
-        metatable = parent and parent.__index
-    end
-    return false
-end
-
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local function java_sleep(milliseconds)
-    local finish = os.clock() + milliseconds / 1000
-    while os.clock() < finish do end
-end
-
-local AllBinaryGameCanvas = {}
-AllBinaryGameCanvas.__index = AllBinaryGameCanvas
-AllBinaryGameCanvas.className = "AllBinaryGameCanvas"
-setmetatable(AllBinaryGameCanvas, {__index = RunnableCanvas})
-
-function AllBinaryGameCanvas:_init_fields()
-    self.basicColorFactory = BasicColorFactory.getInstance()
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.touchFeatureFactory = TouchFeatureFactory.getInstance()
-    self.openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-    self.touchButtonFactory = TouchButtonFactory.getInstance()
-    self.gameAdStateFactory = GameAdStateFactory.getInstance()
-    self.gameStrings = GameStrings.getInstance()
-    self.gameInputStrings = GameInputStrings.getInstance()
-    self.gameStateFactory = GameStateFactory.getInstance()
-    self.gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-    self.gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
-    self.gameRunnable = GameCanvasRunnable.new(self)
-    self.gamePauseRunnable = GameCanvasPauseRunnable.new(self)
-    self.formUtil = FormUtil.getInstance()
-    self.myFormUtil = MyFormUtil.getInstance()
-    self.updateMyFontProcessor = UpdateMyFontProcessor.new(self)
-    self.myFontProcessor = self.updateMyFontProcessor
-    self.gameSpecificPaintable = NullPaintable.getInstance()
-    self.sensorGameUpdateProcessor = SingleSensorGameUpdateProcessor.new()
-    self.endGameInfo = EndGameInfo.new()
-    self.startIntermissionInterface = Intermission.new()
-    self.endLevelIntermissionInterface = Intermission.new()
-    self.gameLayerManager = AllBinaryGameLayerManager.getNullInstance()
-    self.gameState = self.gameStateFactory.NO_GAME_STATE
-    self.gameOver = false
-    self.initialized = false
-    self.gameStateTimeHelper = TimeDelayHelper.new(0)
-    self.highScoresHelper = nil
-    self.highScoreSubmitted = false
-    self.realHighScoresPaintable = HighScoresPaintable.new()
-    self.highScoresPaintable = NullPaintable.getInstance()
-    self.localPlayerGameInputList = BasicArrayListD.new()
-    self.isCheating = false
-    self.hashtable = self.stdUtil.NULL_TABLE
-    self.isSingleKeyRepeatableProcessing = false
-    self.gameInitializationInterfaceFactoryInterface = BasicBuildGameInitializerFactory.NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY
-    self.touchButtonsPaintable = NullPaintable.getInstance()
-    self.touchPaintable = NullPaintable.getInstance()
-    self.cheatProcessor = NoPlayerGameInput.getInstance()
-    self.gameInputProcessor = Processor.getInstance()
-    self.endGameProcessor = Processor.getInstance()
-    self.realEndGameProcessor = Processor.getInstance()
-    self.startIntermissionProcessor = Processor.getInstance()
-    self.realStartIntermissionProcessor = Processor.getInstance()
-    self.endGamePaintable = NullPaintable.getInstance()
-    self.endGameStatePaintable = NullPaintable.getInstance()
-    self.nonBotPaintable = NullPaintable.getInstance()
-    self.intermissionPaintable = NullPaintable.getInstance()
-    self.startIntermissionPaintable = NullInitUpdatePaintable.getInstance()
-    self.mainStateProcessor = Processor.getInstance()
-    self.processGameProcessor = Processor.getInstance()
-    self.highScoresFactoryInterface = nil
-    self.startLevel = 0
-    self.mainMenuInputProcessor = NoMenuInputProcessor.getInstance()
-    self.popupMenuInputProcessor = NoMenuInputProcessor.getInstance()
-    self.menuInputProcessor = NoMenuInputProcessor.getInstance()
-    self.menuForm = ScrollSelectionForm.getNullScrollSelectionForm()
-    self.formPaintable = NullPaintable.getInstance()
-    self.openMenuPaintable = NullPaintable.getInstance()
-    self.menuPaintable = NullPaintable.getInstance()
-    self.currentTouchInputFactory = NoButtonsTouchInputFactory.getInstance()
-    self.colorFillPaintable = ColorFillPaintableFactory.getInstance():getInstance(self.basicColorFactory.BLACK, true)
-    self.baseGameStatistics = GameStatisticsFactory.getInstance()
-    self.primaryPlayerQueue = PrimaryPlayerQueueFactory.getInstance()
-    self.secondaryPlayerQueue = SecondaryPlayerQueueFactory.getInstance()
-    self.BUILD_GAME = "buildGame"
-    self.gameTypeFactory = GameTypeFactory.getInstance()
-    self.screenCapture = ScreenCaptureFactory.getInstance()
-    self.basicMotionGesturesHandler = BasicMotionGesturesHandler.getInstance()
-    self.gameKeyEventHandler = GameKeyEventHandler.getInstance()
-    self.gameBehavior = nil
-    self.menuBehavior = nil
-    self.progressPaintable = ProgressCanvasFactory.getLazyInstance()
-    self.fontHeightP = 0
-    self.gameCanvasStartListener = NullDemoPaintable.NULL_DEMO_PAINTABLE
-    self.rawGameInputProcessor = GameCanvasInputProcessor.new(self)
-    self.rawInputProcessor = FormInputProcessor.new(self)
-    self.inputProcessor = self:getRawGameInputProcessor()
-    self.YIELD_SLEEP = 100
-end
-
-
-function AllBinaryGameCanvas.new(commandListener, gameLayerManager, highScoresFactoryInterface, gameInitializationInterfaceFactoryInterface, buffered)
-    local self = setmetatable(RunnableCanvas.new(commandListener, CanvasStrings.getInstance().EMPTY_CHILD_NAME_LIST, true), AllBinaryGameCanvas)
-    self:_init_fields()
-        -- super(...) made self above
-        self.highScoresHelper = highScoresFactoryInterface:createHighScoresHelper()
-        self.gameInitializationInterfaceFactoryInterface = gameInitializationInterfaceFactoryInterface
-        self:init(gameLayerManager, buffered)
-        self.highScoresFactoryInterface = highScoresFactoryInterface
-        if self.gameLayerManager:getGameInfo():getGameType() == self.gameTypeFactory.BOT or self.gameLayerManager:getGameInfo():getGameType() == self.gameTypeFactory.NONE then
-            self.gameBehavior = DemoGameBehavior.getInstance()
-            self.menuBehavior = BaseMenuBehavior.getInstance()
-        else
-            self.gameBehavior = BaseGameBehavior.getInstance()
-            self.menuBehavior = self:getInGameMenuBehavior()
-        end
-        self:initPopupMenu()
-        self:initMenu()
-        self:initSpecialPaint()
-        DisplayChangeEventHandler.getInstance():addListenerInterface(self)
-    return self
-end
-
-
-function AllBinaryGameCanvas:updateMeasurement(graphics)
-        local try_ok, try_error = pcall(function()
-            local font = graphics:getFont()
-            self.logUtil:putF(tostring(StringMaker.new():append(self.commonStrings.START):append(self.canvasStrings.FD_WIDTH):appendint(java_int(MyFontProcessor.defaultCharWidth(font))):append(self.canvasStrings.FD_HEIGHT):appendint(java_int(font:getHeight()))), self, self.canvasStrings.UPDATE_MEASUREMENT)
-            self.fontHeightP = font:getHeight()
-            self.myFormUtil:updateMeasurement(graphics)
-            local popupMenuRectangle = self.myFormUtil:getPopupMenuRectangle()
-            local basicPopupMenuPaintable = (self:getOpenMenuPaintable())
-            basicPopupMenuPaintable:init(popupMenuRectangle)
-            if self:getPopupMenuInputProcessor() ~= NoMenuInputProcessor.getInstance() then
-                local popupMenuInputProcessor = (self:getPopupMenuInputProcessor())
-                popupMenuInputProcessor:init(popupMenuRectangle)
-            end
-            self.myFontProcessor = MyFontProcessor.getInstance()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.canvasStrings.ON_DISPLAY_CHANGE_EVENT, e)
-        end
-end
-
-
-function AllBinaryGameCanvas:getInGameMenuBehavior()
-        return InGameMenuBehavior.getInstance()
-end
-
-
-function AllBinaryGameCanvas:setCurrentThread()
-        if J2MEUtil.isHTML() then
-            RunnableCanvas.setCurrentThreadFake(self)
-        else
-            RunnableCanvas.setCurrentThread(self)
-        end
-end
-
-
-function AllBinaryGameCanvas:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function AllBinaryGameCanvas:onDisplayChangeEvent(displayChangeEvent)
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(tostring(StringMaker.new():append(self.commonStrings.START):append(tostring(DisplayInfoSingleton.getInstance()))), self, self.canvasStrings.UPDATE_MEASUREMENT)
-            self.myFontProcessor = self.updateMyFontProcessor
-            self.menuBehavior:onDisplayChangeEvent(self, displayChangeEvent)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.canvasStrings.ON_DISPLAY_CHANGE_EVENT, e)
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateMenuFromEvent(displayChangeEvent)
-        local formType = FormTypeFactory.getInstance():getFormType()
-        local rectangle = self.formUtil:createFormRectangle()
-        self.menuForm:init(rectangle, formType)
-        if self.currentTouchInputFactory ~= NoButtonsTouchInputFactory.getInstance() then
-            self.touchButtonFactory:toggle(self:isPaused(), self.currentTouchInputFactory:getList())
-        end
-        self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:processSleep()
-        RunnableCanvas.processSleep(self)
-        if AllBinaryMediaManager.update() then
-            if not self.primaryPlayerQueue:process() then
-                self.secondaryPlayerQueue:process()
-            end
-        end
-        if self.menuInputProcessor:processInputList() ~= -1 then
-            self.runnableCanvasRefreshHelper:process()
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:initPopupMenu()
-        if self.popupMenuInputProcessor == NoMenuInputProcessor.getInstance() then
-            local features = Features.getInstance()
-            local popupMenuRectangle = self.myFormUtil:getPopupMenuRectangle()
-            if features:isFeature(self.touchFeatureFactory.TOUCH_ENABLED) then
-                self:setOpenMenuPaintable(BasicPopupMenuPaintable.new(popupMenuRectangle, self.gameLayerManager:getBackgroundBasicColor(), self.gameLayerManager:getForegroundBasicColor()))
-                self:setPopupMenuInputProcessor(PopupMenuInputProcessor.new(BasicArrayListD.new(), -1, self, popupMenuRectangle))
-            end
-        else
-        end
-end
-
-
-function AllBinaryGameCanvas:initMenu()
-        local try_ok, try_error = pcall(function()
-            self.menuBehavior:initMenu(self)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "initMenu", e)
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:initMenu2()
-        self:closeMenu()
-        local formType = FormTypeFactory.getInstance():getFormType()
-        local gameLimitedCommandTextItemArrayFactory = GameLimitedCommandTextItemArrayFactory.getInstance()
-        local commandTextItemArrayFactory = gameLimitedCommandTextItemArrayFactory:getCommandTextItemArrayFactory()
-        local items = commandTextItemArrayFactory:getInstance(self:getCommandStack(), self.gameLayerManager:getBackgroundBasicColor(), self.gameLayerManager:getForegroundBasicColor())
-        local rectangle = self.formUtil:createFormRectangle()
-        self:setMenuForm(CommandCurrentSelectionFormFactory.getInstance(StringUtil.getInstance().EMPTY_STRING, items, rectangle, formType, 25, false, self.gameLayerManager:getBackgroundBasicColor(), self.gameLayerManager:getForegroundBasicColor()))
-        local scrollSelectionForm = self:getMenuForm()
-        local features = Features.getInstance()
-        if features:isFeature(self.touchFeatureFactory.TOUCH_ENABLED) then
-            self.mainMenuInputProcessor = PopupCommandFormInputProcessor.new(BasicArrayListD.new(), -1, self, scrollSelectionForm, self:getPopupMenuInputProcessor())
-        else
-        end
-        self:setMenuInputProcessor(self:getPopupMenuInputProcessor())
-        if scrollSelectionForm ~= ScrollSelectionFormNoneFactory.getInstance() then
-            self:setFormPaintable(FormPaintable.new(scrollSelectionForm))
-        else
-        end
-        self:closeMenu()
-end
-
-
-function AllBinaryGameCanvas:updateMenu()
-        local try_ok, try_error = pcall(function()
-            self.menuBehavior:updateMenu(self)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "initMenu", e)
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateMenu2()
-        local scrollSelectionForm = self:getMenuForm()
-        scrollSelectionForm:deleteAll()
-        local gameLimitedCommandTextItemArrayFactory = GameLimitedCommandTextItemArrayFactory.getInstance()
-        local commandTextItemArrayFactory = gameLimitedCommandTextItemArrayFactory:getCommandTextItemArrayFactory()
-        local items = commandTextItemArrayFactory:getInstance(self:getCommandStack(), self.gameLayerManager:getBackgroundBasicColor(), self.gameLayerManager:getForegroundBasicColor())
-        local size = (items.n or #items)
-        for index = 0, size - 1 do
-            scrollSelectionForm:append(items[index + 1])
-        end
-        local formType = FormTypeFactory.getInstance():getFormType()
-        local rectangle = self.formUtil:createFormRectangle()
-        scrollSelectionForm:init(rectangle, formType)
-end
-
-
-function AllBinaryGameCanvas:pause()
-        self.gameBehavior:pause(self)
-        self:closeMenu()
-        RunnableCanvas.pause(self)
-        self.touchButtonFactory:toggle(self:isPaused(), BasicArrayListUtil.getInstance():getImmutableInstance())
-        self.tsUtil:gc()
-end
-
-
-function AllBinaryGameCanvas:unPause()
-        self.logUtil:putF(self.commonStrings.START, self, self.gameStrings.UNPAUSE)
-        self:closeMenu()
-        self.tsUtil:gc()
-        RunnableCanvas.unPause(self)
-        self.touchButtonFactory:toggle(self:isPaused(), BasicArrayListUtil.getInstance():getImmutableInstance())
-        self.gameBehavior:unPause(self)
-end
-
-
-function AllBinaryGameCanvas:isPausable()
-        if CurrentDisplayableFactory.getInstance():getUsedRunnable() == NullWaitGameRunnable.getInstance() then
-            return true
-        else
-            return false
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:popupMenu()
-        self.menuBehavior:popupMenu(self)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:popupMenu2()
-        self.primaryPlayerQueue:add(SelectSound.getInstance())
-        self:setMenuPaintable(self:getFormPaintable())
-        self:setMenuInputProcessor(self.mainMenuInputProcessor)
-        self.basicMotionGesturesHandler:addListenerInterface(self.mainMenuInputProcessor)
-        self.gameKeyEventHandler:addListener(self.mainMenuInputProcessor)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:toggleMenu()
-        self.logUtil:putF(self.commonStrings.START, self, self.gameStrings.TOGGLE_MENU)
-        if self:getMenuPaintable() == self:getOpenMenuPaintable() then
-            self:pause()
-            self:updateMenu()
-            self:popupMenu()
-        elseif self:getMenuPaintable() == self:getFormPaintable() then
-            self.primaryPlayerQueue:add(SelectSound.getInstance())
-            self:unPause()
-        end
-end
-
-
-function AllBinaryGameCanvas:closeMenu()
-        self.menuBehavior:closeMenu(self)
-end
-
-
-function AllBinaryGameCanvas:closeMenu2()
-        self:setMenuPaintable(self:getOpenMenuPaintable())
-        self.basicMotionGesturesHandler:removeListener(self.mainMenuInputProcessor)
-        self.gameKeyEventHandler:removeListener(self.mainMenuInputProcessor)
-        self:setMenuInputProcessor(self:getPopupMenuInputProcessor())
-end
-
-
-function AllBinaryGameCanvas:open()
-        self.basicMotionGesturesHandler:addListenerInterface(self.menuInputProcessor)
-        self.gameKeyEventHandler:addListener(self.menuInputProcessor)
-end
-
-
-function AllBinaryGameCanvas:close()
-        self.basicMotionGesturesHandler:removeListener(self.menuInputProcessor)
-        self.gameKeyEventHandler:removeListener(self.menuInputProcessor)
-        self.primaryPlayerQueue:clear()
-        self.secondaryPlayerQueue:clear()
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:processorInit()
-        self:setMainStateProcessor(Processor.getInstance())
-        self:setProcessGameProcessorInit()
-end
-
-
-function AllBinaryGameCanvas:setProcessGameProcessorInit()
-        self:setProcessGameProcessor(GameProcessor.new(self))
-end
-
-
-function AllBinaryGameCanvas:initSpecialPaint()
-        self.menuBehavior:initSpecialPaint(self)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:init(gameLayerManager, buffered)
-        self.gameStateTimeHelper:setStartTimeTNT()
-        self:setHighScoreSubmitted(false)
-        self:setLayerManager(gameLayerManager)
-        if not buffered then
-            local BUFF_MESSAGE = "XXX Not Buffering Causes Concurrency Issues XXX"
-            self.logUtil:putF(BUFF_MESSAGE, self, self.commonStrings.CONSTRUCTOR)
-        else
-            error(java_exception("Exception", "Buffering is disabled"), 0)
-        end
-        self:setGameInputProcessor(Processor.getInstance())
-        local features = Features.getInstance()
-        if features:isFeature(GameFeatureFactory.getInstance().CHEATING) then
-            self.isCheating = true
-            self.cheatProcessor = CheatGameInputProcessor.new(self)
-            self.gameKeyEventHandler:addListener(self.cheatProcessor)
-        else
-            self.isCheating = false
-            self.cheatProcessor = NoPlayerGameInput.getInstance()
-        end
-        self.realEndGameProcessor = EndGameProcessor.new(self)
-        self:setEndGameProcessor(Processor.getInstance())
-        self.realStartIntermissionProcessor = StartIntermissionProcessor.new(self)
-        self.startIntermissionProcessor = Processor.getInstance()
-        self:setEndGameStatePaintable(EndGamePaintable.new(self))
-        self:setEndGamePaintable(NullPaintable.getInstance())
-        self:setIntermissionPaintable(NullPaintable.getInstance())
-        self:getStartIntermissionInterface():setListener(self)
-end
-
-
-function AllBinaryGameCanvas:notifyIntermission(enable)
-        if enable then
-            self.startIntermissionProcessor = self.realStartIntermissionProcessor
-        else
-            self.startIntermissionProcessor = Processor.getInstance()
-        end
-        if enable then
-            self:setIntermissionPaintable(self:getStartIntermissionPaintable())
-        else
-            self:setIntermissionPaintable(NullPaintable.getInstance())
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:mediaInit()
-        ForcedLogUtil.log(self.commonStrings.NOT_IMPLEMENTED, self)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:initConfigurable(abeClientInformation)
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        progressCanvas:addNormalPortion(50, "Setting Configurables")
-        GameInitializationUtil.getInstance():initGame(abeClientInformation, self, self.gameInitializationInterfaceFactoryInterface)
-        local gameFeatureFactory = GameFeatureFactory.getInstance()
-        local changedGameFeatureListener = ChangedGameFeatureListener.getInstance()
-        if changedGameFeatureListener:isChangedFeature(gameFeatureFactory.SOUND) then
-            local features = Features.getInstance()
-            self.logUtil:putF(tostring(StringMaker.new():append("Sound Changing To: "):appendboolean(features:isFeature(gameFeatureFactory.SOUND))), self, "initConfigurable")
-            self:mediaInit()
-            changedGameFeatureListener:remove(gameFeatureFactory.SOUND)
-        end
-        local sensorFeatureFactory = SensorFeatureFactory.getInstance()
-        if changedGameFeatureListener:isChangedFeature(sensorFeatureFactory.ORIENTATION_SENSORS) or changedGameFeatureListener:isChangedFeature(sensorFeatureFactory.NO_ORIENTATION) or changedGameFeatureListener:isChangedFeature(sensorFeatureFactory.SIMULATED_ORIENTATION_SENSORS) then
-            changedGameFeatureListener:remove(sensorFeatureFactory.NO_ORIENTATION)
-            changedGameFeatureListener:remove(sensorFeatureFactory.ORIENTATION_SENSORS)
-            changedGameFeatureListener:remove(sensorFeatureFactory.SIMULATED_ORIENTATION_SENSORS)
-        end
-        local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-        self:loadResourceLoadingLevel(resourceLoadingLevelFactory.LOAD_GAME)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:initApp(abeClientInformation)
-        self:initConfigurable(abeClientInformation)
-        self:processorInit()
-        self.sensorGameUpdateProcessor:process(self.gameLayerManager)
-        self.sensorGameUpdateProcessor:sendNotifications(self.gameLayerManager)
-        self:initTouch()
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:initTouch()
-        local gameInitializedEvent = GameInitializationUtil.getInstance().EVENT
-        local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-        gameInitializedEvent:setResourceLoadingLevel(resourceLoadingLevelFactory.LOAD_TOUCH)
-        GameInitializedEventHandler.getInstance():fireEvent(gameInitializedEvent)
-        self.touchButtonFactory:defaultList()
-        self:updateTouch()
-        self:postInitTouch()
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateCurrentTouchInputFactory(nextTouchInput)
-        if nextTouchInput ~= self.currentTouchInputFactory then
-            self.currentTouchInputFactory = nextTouchInput
-            PreLogUtil.put(tostring(self.currentTouchInputFactory), self, self.gameInputStrings.UDPATE_CURRENT_TOUCH_INPUT_FACTORY)
-            self.touchButtonFactory:toggle(self:isPaused(), self.currentTouchInputFactory:getList())
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateTouch()
-        self.gameBehavior:updateTouch(self)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateTouch2()
-        local features = Features.getInstance()
-        if features:isFeature(self.touchFeatureFactory.AUTO_HIDE_SHOW_SCREEN_BUTTONS) then
-            if self.gameLayerManager:getGameInfo():getCurrentLevel() - self:getStartLevel() == 1 then
-                self:setTouchPaintableP(NullPaintable.getInstance())
-            end
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:postInitTouch()
-        self:setTouchButtonsPaintable(TouchButtonsPaintableFactory.getInstance(self.gameLayerManager:getForegroundBasicColor()))
-        self:updateScreenButtonPaintable()
-end
-
-
-function AllBinaryGameCanvas:initCommands(cmdListener)
-        self:removeAllCommands()
-        self:addCommands()
-        self:setCommandListener(cmdListener)
-end
-
-
-function AllBinaryGameCanvas:addCommands()
-        local gameCommandsFactory = GameCommandsFactory.getInstance()
-        local myCommandsFactory = MyCommandsFactory.getInstance()
-        if DebugFactory.getInstance() ~= NoDebug.getInstance() then
-            self:addCommand(gameCommandsFactory.START_TRACE)
-        end
-        self:addCommand(gameCommandsFactory.RESTART_COMMAND)
-        self:addCommand(myCommandsFactory.PAUSE_COMMAND)
-        self:addCommand(gameCommandsFactory.QUIT_COMMAND)
-        local isOverScan = OperatingSystemFactory.getInstance():getOperatingSystemInstance():isOverScan()
-        if J2MEUtil.isHTML() then
-        elseif SWTUtil.isSWT then
-        elseif not isOverScan then
-            if TouchScreenFactory.getInstance():isTouch() and InGameFeatures.new():isAny() then
-                self:addCommand(InGameOptionsForm.DISPLAY)
-            end
-            self:addCommand(gameCommandsFactory.SAVE)
-            self:addCommand(gameCommandsFactory.DISPLAY_LOAD_FORM)
-        end
-end
-
-
-function AllBinaryGameCanvas:itemStateChanged(item)
-        local try_ok, try_error = pcall(function()
-            local itemLabel = item:getLabel()
-            self.logUtil:putF(tostring(StringMaker.new():append(self.commonLabels.ITEM_LABEL):append(itemLabel)), self, "itemStateChanged")
-            if java_instanceof(item, ChoiceGroup) then
-                local gameFeatureUtil = GameFeatureUtil.getInstance()
-                if gameFeatureUtil:isExclusive(itemLabel) then
-                    gameFeatureUtil:updateExclusiveForChoiceGroup(item)
-                else
-                    gameFeatureUtil:updateMultiple(item)
-                end
-            end
-            self.sensorGameUpdateProcessor:process(self.gameLayerManager)
-            self:updateTouch()
-            self:updateScreenButtonPaintable()
-            self.sensorGameUpdateProcessor:sendNotifications(self.gameLayerManager)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "itemStateChanged", e)
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateScreenButtonPaintable()
-        self.gameBehavior:updateScreenButtonPaintable(self)
-end
-
-
-function AllBinaryGameCanvas:updateScreenButtonPaintable2()
-        local features = Features.getInstance()
-        if features:isFeature(self.touchFeatureFactory.AUTO_HIDE_SHOW_SCREEN_BUTTONS) then
-            self:setTouchPaintableP(self:getTouchButtonsPaintable())
-            self:setStartLevel(self.gameLayerManager:getGameInfo():getCurrentLevel())
-        elseif features:isFeature(self.touchFeatureFactory.SHOW_SCREEN_BUTTONS) then
-            self:setTouchPaintableP(self:getTouchButtonsPaintable())
-        elseif features:isFeature(self.touchFeatureFactory.HIDE_SCREEN_BUTTONS) then
-            self:setTouchPaintableP(NullPaintable.getInstance())
-        else
-            self:setTouchPaintableP(NullPaintable.getInstance())
-        end
-end
-
-
-function AllBinaryGameCanvas:getLayerManager()
-        return self.gameLayerManager
-end
-
-
-function AllBinaryGameCanvas:setLayerManager(layerManager)
-        self.gameLayerManager = layerManager
-end
-
-
-function AllBinaryGameCanvas:isGameOver()
-        return self.gameOver
-end
-
-
-function AllBinaryGameCanvas:setGameOver(gameOver)
-        self.gameOver = gameOver
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:processGameOver()
-        PreLogUtil.put(self.commonStrings.START, self, self.gameStrings.SET_GAME_OVER)
-        self:setGameOver(true)
-        self:removePauseCommand()
-        self:setGameState(self.gameStateFactory.SHOW_END_RESULT_GAME_STATE)
-        self:setEndGamePaintable(self:getEndGameStatePaintable())
-end
-
-
-function AllBinaryGameCanvas:isHighScoreSubmitted()
-        return self.highScoreSubmitted
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:setHighScoreSubmitted(highScoreSubmitted)
-        self.highScoreSubmitted = highScoreSubmitted
-        if highScoreSubmitted then
-            self.highScoresHelper:setSelectedHighScores(NullHighScoresSingletonFactory.getInstance())
-        end
-        self.logUtil:putF(tostring(StringMaker.new():append("isHighScoreSubmitted: "):appendboolean(highScoreSubmitted)), self, "setHighScoreSubmitted")
-end
-
-
-function AllBinaryGameCanvas:getGameState()
-        return self.gameState
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:setGameState(gameState)
-        self.logUtil:putF(tostring(StringMaker.new():append(self.gameStrings.GAME_STATE):append(self.stringUtil:toString(gameState))), self, self.gameStrings.SET_GAME_STATE)
-        self.gameState = gameState
-        self.gameStateTimeHelper:setStartTimeTNT()
-        self:updateEndGameProcessor()
-        self:updateGameKeyEventProcessor()
-        self.gameBehavior:setGameState(self)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateGameState()
-        local gameAdState = self.gameAdStateFactory:getCurrentInstance()
-        gameAdState:processAdState(self.gameState, self.gameLayerManager:getGameInfo():getGameType())
-        if self.gameState ~= self.gameStateFactory.PLAYING_GAME_STATE then
-            gameAdState:processPageAdState()
-        end
-end
-
-
-function AllBinaryGameCanvas:updateGameKeyEventProcessor()
-        if self:getGameState() ~= self.gameStateFactory.PLAYING_GAME_STATE or self.isCheating then
-        else
-        end
-end
-
-
-function AllBinaryGameCanvas:removeAllGameKeyInputListenersOnBuild()
-        self:removeAllGameKeyInputListeners()
-end
-
-
-function AllBinaryGameCanvas:removeAllGameKeyInputListeners()
-        self.gameBehavior:removeAllGameKeyInputListeners(self)
-end
-
-
-function AllBinaryGameCanvas:removeAllGameKeyInputListeners2()
-        self.logUtil:putF("Remove PlayerInput Listeners", self, "removeAllGameKeyInputListeners")
-        for index = self.localPlayerGameInputList:size() - 1, 0, -1 do
-            local playerGameInput = self.localPlayerGameInputList:get(index)
-            self:removeKeyInputListener(playerGameInput)
-            playerGameInput:removeNonAIInputGameKeyEvents()
-        end
-end
-
-
-function AllBinaryGameCanvas:removeKeyInputListener(playerGameInput)
-        self.gameKeyEventHandler:removeListener(playerGameInput)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateEndGameProcessor()
-        self.gameBehavior:updateEndGameProcessor(self)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateEndGameProcessor2()
-        if self:getGameState() == self.gameStateFactory.SHOW_END_RESULT_GAME_STATE or self:getGameState() == self.gameStateFactory.SHOW_HIGH_SCORE_GAME_STATE then
-            self:setEndGameProcessor(self.realEndGameProcessor)
-        else
-            self:setEndGameProcessor(Processor.getInstance())
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:buildGameInit(isPortion)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:cleanupGame()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CLEANUP)
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        progressCanvas:addNormalPortion(10, "Cleaning Up")
-        self.primaryPlayerQueue:clear()
-        self.secondaryPlayerQueue:clear()
-        GameLevelDisplayChangeEventListenersFactory.getInstance():clear()
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:loadResourceLoadingLevel(resourceLoadingLevel)
-        local gameInitializedEvent = GameInitializationUtil.getInstance().EVENT
-        gameInitializedEvent:setResourceLoadingLevel(resourceLoadingLevel)
-        GameInitializedEventHandler.getInstance():fireEvent(gameInitializedEvent)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:loadResources(level)
-        local gameInitializedEvent = GameInitializationUtil.getInstance().EVENT
-        gameInitializedEvent:setLevel(level)
-        GameInitializedEventHandler.getInstance():fireEvent(gameInitializedEvent)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:updateColor()
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:buildGame(portion)
-        self.screenCapture:endRecording()
-        self.screenCapture:startRecording()
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        local features = Features.getInstance()
-        progressCanvas:addNormalPortion(portion, "Generic Build")
-        self:removeAllGameKeyInputListenersOnBuild()
-        self:updateTouch()
-        progressCanvas:addNormalPortion(portion, "High Scores")
-        self.highScoresFactoryInterface:fetchHighScores(self.gameLayerManager:getGameInfo(), self.highScoresHelper)
-        self:setHighScoresPaintable(NullPaintable.getInstance())
-        progressCanvas:addNormalPortion(portion, "Finishing.")
-        self:getEndGameInfoP():update(self:getLayerManager():getGameInfo(), self)
-        self.isSingleKeyRepeatableProcessing = features:isFeature(InputFeatureFactory.getInstance().SINGLE_KEY_REPEAT_PRESS)
-        self:setGameOver(false)
-        progressCanvas:addNormalPortion(portion, "Finishing..")
-        self:updateColor()
-        self:getStartIntermissionPaintable():update()
-        if not self:isRunningInAnotherThread() then
-            return
-        end
-        progressCanvas:addNormalPortion(portion, "Finishing...")
-        if self:isMainCanvas() or not self:isInitialized() then
-            if features:isFeature(MainFeatureFactory.getInstance().LOAD_ONDEMAND) then
-                if self:getCustomCommandListener() ~= nil then
-                    progressCanvas:end_()
-                end
-            else
-                progressCanvas:end_()
-            end
-            self:setInitialized(true)
-        end
-        if self:getCustomCommandListener() == NullCommandListener.NULL_COMMAND_LISTENER then
-            self.logUtil:putF("Show Game Paintable in DemoCanvas Thread", self, self.BUILD_GAME)
-            self.gameCanvasStartListener:showGamePaintable()
-        else
-            self.logUtil:putF("No GameCanvasStartListener", self, self.BUILD_GAME)
-        end
-        self.colorFillPaintable:setBasicColorP(self.gameLayerManager:getBackgroundBasicColor())
-        self.gameBehavior:buildGame(self)
-end
-
-
-function AllBinaryGameCanvas:buildGame2()
-        PreLogUtil.put(tostring(StringMaker.new():append(self.gameInputStrings.ENABLE_PLAYER_GAME_INPUTS):appendint(self.localPlayerGameInputList:size())), self, self.BUILD_GAME)
-        local playerGameInput = nil
-        for index = self.localPlayerGameInputList:size() - 1, 0, -1 do
-            playerGameInput = self.localPlayerGameInputList:get(index)
-            PreLogUtil.put(tostring(StringMaker.new():append(self.gameInputStrings.ENABLE_PLAYER_GAME_INPUT):append(tostring(playerGameInput))), self, self.BUILD_GAME)
-            playerGameInput:removeNonAIInputGameKeyEvents()
-            self:addKeyInputListener(playerGameInput)
-        end
-end
-
-
-function AllBinaryGameCanvas:addKeyInputListener(playerGameInput)
-        GameKeyEventHandler.getInstance():addListenerForPlayer(playerGameInput, playerGameInput:getPlayerInputId())
-end
-
-
-function AllBinaryGameCanvas:setGameCanvasStartListener(gameCanvasStartListener)
-        self.gameCanvasStartListener = gameCanvasStartListener
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:loadState()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.LOAD)
-        local hashtable = self:getLoadStateHashtable()
-        if hashtable ~= nil and hashtable:size() > 0 then
-            local levelAsString = hashtable:get(GameInfo.LEVEL_NAME)
-            local level = math.tointeger(tostring(levelAsString) // 1)
-            local gameInfo = self.gameLayerManager:getGameInfo()
-            gameInfo:setCurrentLevel(level)
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:getLoadStateHashtable()
-        self.logUtil:putF(tostring(StringMaker.new():append(self.commonLabels.START_LABEL):append(self.stringUtil:toString(self.hashtable))), self, "getLoadStateHashtable")
-        return self.hashtable
-end
-
-
-function AllBinaryGameCanvas:setLoadStateHashtable(hashtable)
-        self.logUtil:putF(tostring(StringMaker.new():append(self.commonLabels.START_LABEL):append(self.stringUtil:toString(hashtable))), self, "setLoadStateHashtable")
-        self.hashtable = hashtable
-end
-
-
-function AllBinaryGameCanvas:getCurrentStateHashtable()
-        local hashtable = self.stdUtil:createHashtable()
-        local level = self.gameLayerManager:getGameInfo():getCurrentLevel()
-        hashtable:put(tostring(GameInfo.LEVEL_NAME), tostring(level))
-        self.logUtil:putF(tostring(StringMaker.new():append("End: "):append(self.stringUtil:toString(hashtable))), self, "getCurrentStateHashtable")
-        return hashtable
-end
-
-
-function AllBinaryGameCanvas:paintGameOver(graphics)
-        ForcedLogUtil.log(self.commonStrings.NOT_IMPLEMENTED, self)
-end
-
-
-function AllBinaryGameCanvas:draw(graphics)
-        self.colorFillPaintable:paint(graphics)
-        self.basicSetColorUtil:setBasicColorP(graphics, self.gameLayerManager:getForegroundBasicColor())
-        self.gameSpecificPaintable:paint(graphics)
-end
-
-
-function AllBinaryGameCanvas:clear(graphics)
-        self.colorFillPaintable:paint(graphics)
-end
-
-
-function AllBinaryGameCanvas:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        self.baseGameStatistics:nextRefresh()
-        self:draw(graphics)
-        self.menuPaintable:paint(graphics)
-        self.progressPaintable:paint(graphics)
-end
-
-
-function AllBinaryGameCanvas:paintThreed(graphics)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:processEndLevelIntermissionGameState()
-end
-
-
-function AllBinaryGameCanvas:nonBotPaint(graphics)
-        self.endGamePaintable:paint(graphics)
-        self.intermissionPaintable:paint(graphics)
-        self:paintIntermission(graphics)
-        self.touchPaintable:paint(graphics)
-end
-
-
-function AllBinaryGameCanvas:paintIntermission(graphics)
-end
-
-
-function AllBinaryGameCanvas:keyPressed(keyCode)
-        self:keyPressedByDevice(keyCode, 0)
-end
-
-
-function AllBinaryGameCanvas:keyReleased(keyCode)
-        self:keyReleasedByDevice(keyCode, 0)
-end
-
-
-function AllBinaryGameCanvas:keyRepeated(keyCode)
-        self:keyRepeatedByDevice(keyCode, 0)
-end
-
-
-function AllBinaryGameCanvas:keyPressedByDevice(keyCode, deviceId)
-        self.inputProcessor:keyPressedByDevice(keyCode, deviceId)
-end
-
-
-function AllBinaryGameCanvas:keyRepeatedByDevice(keyCode, deviceId)
-        if self.isSingleKeyRepeatableProcessing then
-            self.inputProcessor:keyPressedByDevice(keyCode, deviceId)
-        end
-end
-
-
-function AllBinaryGameCanvas:keyReleasedByDevice(keyCode, deviceId)
-        self.inputProcessor:keyReleasedByDevice(self, keyCode, deviceId)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:handleRawKey(keyCode, deviceId, repeated)
-end
-
-
-function AllBinaryGameCanvas:endProgress(isProgress)
-        local portion = 30
-        if isProgress and self:isMainCanvas() then
-            local myCommandsFactory = MyCommandsFactory.getInstance()
-            local progressCanvas = ProgressCanvasFactory.getInstance()
-            progressCanvas:start()
-            self:getCustomCommandListener():commandAction(myCommandsFactory.SET_DISPLAYABLE, progressCanvas)
-            portion = 4
-        end
-        return portion
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:processPlayingGame()
-        self.cheatProcessor:update()
-        self.sensorGameUpdateProcessor:getInputSensor():update()
-        self.gameInputProcessor:process()
-        self.gameLayerManager:process()
-        self.startIntermissionProcessor:process()
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:threadInit()
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:processGame()
-        RunnableCanvas.process(self)
-        if AllBinaryMediaManager.update() then
-            if not self.primaryPlayerQueue:process() then
-                self.secondaryPlayerQueue:process()
-            end
-        end
-        self.mainStateProcessor:process()
-        self.menuInputProcessor:processInputList()
-        self.endGameProcessor:process()
-        self.baseGameStatistics:nextFrame()
-end
-
-
-function AllBinaryGameCanvas:notifyDonePainting()
-        do -- synchronized (self)
-            self.threadObjectUtil:notifyObject(self)
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:shouldWait()
-        local features = Features.getInstance()
-        if AndroidUtil.isAndroid() then
-        elseif features:isFeature(self.openGLFeatureFactory.OPENGL_2D) then
-        else
-            if features:isDefault(self.openGLFeatureFactory.OPENGL) then
-                local openGLImageSpecificFactory = OpenGLImageSpecificFactory.getInstance()
-                while openGLImageSpecificFactory.updating do
-                    java_sleep(self.YIELD_SLEEP)
-                end
-            end
-        end
-end
-
-
-function AllBinaryGameCanvas:run()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START_RUNNABLE, self, self.commonStrings.RUN)
-            local progressCanvas = ProgressCanvasFactory.getInstance()
-            progressCanvas:addNormalPortion(50, "Game Thread")
-            self:setCurrentThread()
-            self:setRunning(true)
-            if self:getCustomCommandListener() == NullCommandListener.NULL_COMMAND_LISTENER then
-                java_sleep(self.YIELD_SLEEP)
-            end
-            self:shouldWait()
-            self:threadInit()
-            if self:getCustomCommandListener() == NullCommandListener.NULL_COMMAND_LISTENER then
-                java_sleep(self.YIELD_SLEEP)
-            end
-            self:open()
-            local gameAdState = self.gameAdStateFactory:getCurrentInstance()
-            gameAdState:init()
-            gameAdState:setGameIsReady(true)
-            self.gameBehavior:run(self)
-            self.logUtil:putF(self.commonStrings.END_RUNNABLE, self, self.commonStrings.RUN)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.RUN, e)
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:run2()
-        local features = Features.getInstance()
-        if features:isDefault(self.openGLFeatureFactory.OPENGL_AS_GAME_THREAD) or J2MEUtil.isHTML() then
-            if features:isDefault(self.openGLFeatureFactory.OPENGL_AS_GAME_THREAD) then
-                self.logUtil:putF(self.openGLFeatureFactory.OPENGL_AS_GAME_THREAD:getName(), self, self.commonStrings.RUN)
-            end
-            if J2MEUtil.isHTML() then
-                self.logUtil:putF(GraphicsStrings.getInstance().HTML, self, self.commonStrings.RUN)
-            end
-            local currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
-            currentDisplayableFactory:setRunnable(self.gameRunnable)
-            currentDisplayableFactory:setDisplayable(self)
-            OpenGLThreadUtil.getInstance():onResume()
-        elseif features:isDefault(self.openGLFeatureFactory.OPENGL_AND_GAME_HAVE_DIFFERENT_THREADS) then
-            self.logUtil:putF(self.openGLFeatureFactory.OPENGL_AND_GAME_HAVE_DIFFERENT_THREADS:getName(), self, self.commonStrings.RUN)
-            OpenGLThreadUtil.getInstance():onResume()
-            while self:isRunning() do
-                self:run3()
-            end
-            self:end_()
-        else
-            self.logUtil:putF("this thread", self, self.commonStrings.RUN)
-            while self:isRunning() do
-                self:run3()
-            end
-            self:end_()
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:run3()
-        self.loopTimeHelper:setStartTime(self.gameTickTimeDelayHelper:setStartTime())
-        self.gameTickDisplayInfoSingleton:update()
-        self:processGame()
-        self:processLoopSleep()
-end
-
-
-function AllBinaryGameCanvas:setRunning(running)
-        RunnableCanvas.setRunning(self, running)
-        local try_ok, try_error = pcall(function()
-            local features = Features.getInstance()
-            if running then
-            else
-                if features:isDefault(self.openGLFeatureFactory.OPENGL) or SWTUtil.isSWT then
-                    if self.gameLayerManager:getGameInfo():getGameType() ~= self.gameTypeFactory.BOT then
-                        local currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
-                        currentDisplayableFactory:clearRunnable()
-                    end
-                    self:end_()
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.SET_RUNNING, e)
-        end
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:end_()
-        self.screenCapture:endRecording()
-        self.baseGameStatistics:add(tostring(StringMaker.new():append(tostring(self.baseGameStatistics)):append(CommonSeps.getInstance().NEW_LINE)))
-        self.baseGameStatistics:init()
-        self.gameKeyEventHandler:removeListener(self.cheatProcessor)
-        self:close()
-        self:removeAllGameKeyInputListeners()
-        self:endGameThread()
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:endGameThread()
-        DisplayChangeEventHandler.getInstance():removeListener(self)
-        GameLevelDisplayChangeEventListenersFactory.getInstance():clear()
-        local gameAdState = self.gameAdStateFactory:getCurrentInstance()
-        gameAdState:notPlayingAdState()
-end
-
-
-function AllBinaryGameCanvas:createHighScore(score)
-        local gameInfo = self.gameLayerManager:getGameInfo()
-        return HighScore.new(0, "NONE", GameInfo.new(gameInfo:getGameType(), gameInfo:getGameMode(), PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, 0, 0), score)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:setHighScore(abeClientInformation, name, score, autoSubmit, isLast)
-        self.gameBehavior:setHighScore(abeClientInformation, self, name, score, autoSubmit, isLast)
-end
-
-
--- throws Exception
-function AllBinaryGameCanvas:setHighScore2(abeClientInformation, name, score, autoSubmit, isLast)
-        local highScore = self:createHighScore(score)
-        local textBox = HighScoreTextBox.new(self.highScoresFactoryInterface, self.highScoresHelper, abeClientInformation, self.gameLayerManager:getGameInfo(), self:getCustomCommandListener(), name, highScore, self.gameLayerManager:getBackgroundBasicColor(), self.gameLayerManager:getForegroundBasicColor())
-        if isLast then
-            self:getCustomCommandListener():commandAction(GameCommandsFactory.getInstance().SET_MENU_DISPLAYABLE, textBox)
-        end
-        if autoSubmit then
-            SecondaryThreadPool.getInstance():runTask(SaveHighScoreRunnable.new(isLast, textBox))
-        end
-end
-
-
-function AllBinaryGameCanvas:getGameStateTimeHelper()
-        return self.gameStateTimeHelper
-end
-
-
-function AllBinaryGameCanvas:setInitialized(initialized)
-        self.initialized = initialized
-end
-
-
-function AllBinaryGameCanvas:isInitialized()
-        return self.initialized
-end
-
-
-function AllBinaryGameCanvas:getSourceId()
-        return AllBinaryGameCanvas.id
-end
-
-
-function AllBinaryGameCanvas:setProgressPaintable(paintable)
-        self.progressPaintable = paintable
-end
-
-
-function AllBinaryGameCanvas:getStartIntermissionInterface()
-        return self.startIntermissionInterface
-end
-
-
-function AllBinaryGameCanvas:getEndLevelIntermissionInterface()
-        return self.endLevelIntermissionInterface
-end
-
-
-function AllBinaryGameCanvas:setTouchPaintableP(paintable)
-        self.touchPaintable = paintable
-end
-
-
-function AllBinaryGameCanvas:getTouchPaintableP()
-        return self.touchPaintable
-end
-
-
-function AllBinaryGameCanvas:setEndGamePaintable(endGamePaintable)
-        self.endGamePaintable = endGamePaintable
-end
-
-
-function AllBinaryGameCanvas:getEndGamePaintable()
-        return self.endGamePaintable
-end
-
-
-function AllBinaryGameCanvas:setIntermissionPaintable(intermissionPaintable)
-        self.intermissionPaintable = intermissionPaintable
-end
-
-
-function AllBinaryGameCanvas:getIntermissionPaintable()
-        return self.intermissionPaintable
-end
-
-
-function AllBinaryGameCanvas:getEndGameInfoP()
-        return self.endGameInfo
-end
-
-
-function AllBinaryGameCanvas:setHighScoresPaintable(highScoresPaintable)
-        self.highScoresPaintable = highScoresPaintable
-end
-
-
-function AllBinaryGameCanvas:getHighScoresPaintable()
-        return self.highScoresPaintable
-end
-
-
-function AllBinaryGameCanvas:getRealHighScoresPaintable()
-        return self.realHighScoresPaintable
-end
-
-
-function AllBinaryGameCanvas:clearPlayerGameInputList()
-        local playerGameInput = nil
-        for index = self.localPlayerGameInputList:size() - 1, 0, -1 do
-            playerGameInput = self.localPlayerGameInputList:get(index)
-            self.gameKeyEventHandler:removeListener(playerGameInput)
-        end
-        self.localPlayerGameInputList:clear()
-end
-
-
-function AllBinaryGameCanvas:addPlayerGameInput(playerGameInput)
-        self.localPlayerGameInputList:add(playerGameInput)
-end
-
-
-function AllBinaryGameCanvas:setMenuInputProcessor(menuInputProcessor)
-        self.menuInputProcessor = menuInputProcessor
-end
-
-
-function AllBinaryGameCanvas:getMenuInputProcessor()
-        return self.menuInputProcessor
-end
-
-
-function AllBinaryGameCanvas:getMenuForm()
-        return self.menuForm
-end
-
-
-function AllBinaryGameCanvas:setMenuForm(menuForm)
-        self.menuForm = menuForm
-end
-
-
-function AllBinaryGameCanvas:getStartLevel()
-        return self.startLevel
-end
-
-
-function AllBinaryGameCanvas:setStartLevel(startLevel)
-        self.startLevel = startLevel
-end
-
-
-function AllBinaryGameCanvas:setTouchButtonsPaintable(touchButtonsPaintable)
-        self.touchButtonsPaintable = touchButtonsPaintable
-end
-
-
-function AllBinaryGameCanvas:getTouchButtonsPaintable()
-        return self.touchButtonsPaintable
-end
-
-
-function AllBinaryGameCanvas:setGameInputProcessor(gameInputProcessor)
-        self.gameInputProcessor = gameInputProcessor
-end
-
-
-function AllBinaryGameCanvas:getGameInputProcessor()
-        return self.gameInputProcessor
-end
-
-
-function AllBinaryGameCanvas:setEndGameProcessor(endGameProcessor)
-        self.endGameProcessor = endGameProcessor
-end
-
-
-function AllBinaryGameCanvas:getEndGameProcessor()
-        return self.endGameProcessor
-end
-
-
-function AllBinaryGameCanvas:setEndGameStatePaintable(endGameStatePaintable)
-        self.endGameStatePaintable = endGameStatePaintable
-end
-
-
-function AllBinaryGameCanvas:getEndGameStatePaintable()
-        return self.endGameStatePaintable
-end
-
-
-function AllBinaryGameCanvas:setNonBotPaintableP(nonBotPaintable)
-        self.nonBotPaintable = nonBotPaintable
-end
-
-
-function AllBinaryGameCanvas:getNonBotPaintableP()
-        return self.nonBotPaintable
-end
-
-
-function AllBinaryGameCanvas:setStartIntermissionPaintable(startIntermissionPaintable)
-        self.startIntermissionPaintable = startIntermissionPaintable
-end
-
-
-function AllBinaryGameCanvas:getStartIntermissionPaintable()
-        return self.startIntermissionPaintable
-end
-
-
-function AllBinaryGameCanvas:setMainStateProcessor(mainStateProcessor)
-        self.mainStateProcessor = mainStateProcessor
-end
-
-
-function AllBinaryGameCanvas:getMainStateProcessor()
-        return self.mainStateProcessor
-end
-
-
-function AllBinaryGameCanvas:setProcessGameProcessor(processGameProcessor)
-        self.processGameProcessor = processGameProcessor
-end
-
-
-function AllBinaryGameCanvas:getProcessGameProcessor()
-        return self.processGameProcessor
-end
-
-
-function AllBinaryGameCanvas:setOpenMenuPaintable(openMenuPaintable)
-        self.openMenuPaintable = openMenuPaintable
-end
-
-
-function AllBinaryGameCanvas:getOpenMenuPaintable()
-        return self.openMenuPaintable
-end
-
-
-function AllBinaryGameCanvas:setPopupMenuInputProcessor(popupMenuInputProcessor)
-        self.popupMenuInputProcessor = popupMenuInputProcessor
-end
-
-
-function AllBinaryGameCanvas:getPopupMenuInputProcessor()
-        return self.popupMenuInputProcessor
-end
-
-
-function AllBinaryGameCanvas:getSensorGameUpdateProcessor()
-        return self.sensorGameUpdateProcessor
-end
-
-
-function AllBinaryGameCanvas:getRawGameInputProcessor()
-        return self.rawGameInputProcessor
-end
-
-
-function AllBinaryGameCanvas:getRawInputProcessor()
-        return self.rawInputProcessor
-end
-
-
-function AllBinaryGameCanvas:setInputProcessor(inputProcessor)
-        self.inputProcessor = inputProcessor
-end
-
-
-function AllBinaryGameCanvas:getInputProcessor()
-        return self.inputProcessor
-end
-
-
-function AllBinaryGameCanvas:setMenuPaintable(menuPaintable)
-        self.menuPaintable = menuPaintable
-end
-
-
-function AllBinaryGameCanvas:getMenuPaintable()
-        return self.menuPaintable
-end
-
-
-function AllBinaryGameCanvas:setFormPaintable(formPaintable)
-        self.formPaintable = formPaintable
-end
-
-
-function AllBinaryGameCanvas:getFormPaintable()
-        return self.formPaintable
-end
-
-
-function AllBinaryGameCanvas:setGameSpecificPaintableP(gameSpecificPaintable)
-        self.gameSpecificPaintable = gameSpecificPaintable
-end
-
-
-function AllBinaryGameCanvas:getGameSpecificPaintableP()
-        return self.gameSpecificPaintable
-end
-
-
-function AllBinaryGameCanvas:isSingleThread()
-        return OpenGLFeatureUtil.getInstance():isAnyThreed() or SWTUtil.isSWT
-end
-
-
-function AllBinaryGameCanvas:isRunningInAnotherThread()
-        local features = Features.getInstance()
-        local openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-        if features:isDefault(openGLFeatureFactory.OPENGL_AS_GAME_THREAD) then
-            return true
-        else
-            return self:isRunning()
-        end
-end
-
-
-function AllBinaryGameCanvas:getType()
-        return AllBinaryGameCanvas.TYPE
-end
-
-
-function AllBinaryGameCanvas:getTitle()
-        return RunnableCanvas.getTitle(self)
-end
-
-
-function AllBinaryGameCanvas:isPaused()
-        return RunnableCanvas.isPaused(self)
-end
-
-AllBinaryGameCanvas.id = 0
-AllBinaryGameCanvas.TYPE = 2
-
-return AllBinaryGameCanvas
 

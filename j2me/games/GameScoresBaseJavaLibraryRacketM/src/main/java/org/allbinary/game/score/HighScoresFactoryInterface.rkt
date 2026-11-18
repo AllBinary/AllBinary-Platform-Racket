@@ -1,50 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
-local GameInfo = require("org.allbinary.game.GameInfo")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HighScoresFactoryInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_fetchHighScores_2 _gameInfo _highScoresResultsListener)
+      (raise (JR.newException "AbstractMethodError" "fetchHighScores")))
+    (define/public (jm_fetchHighScoresPreload_3 _gameInfo _highScoresResultsListener _preload)
+      (raise (JR.newException "AbstractMethodError" "fetchHighScoresPreload")))
+    (define/public (jm_createHighScoresHelper_0)
+      (raise (JR.newException "AbstractMethodError" "createHighScoresHelper")))))
+(define (HighScoresFactoryInterface.jclassValue) HighScoresFactoryInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local HighScoresFactoryInterface = {}
-HighScoresFactoryInterface.__index = HighScoresFactoryInterface
-HighScoresFactoryInterface.className = "HighScoresFactoryInterface"
-
-
-function HighScoresFactoryInterface:fetchHighScores(gameInfo, highScoresResultsListener)
-    error("abstract method fetchHighScores")
-end
+(define (HighScoresFactoryInterface.jnew_0)
+  (define this (new HighScoresFactoryInterface% [jclass "HighScoresFactoryInterface"]))
+  this)
 
 
-function HighScoresFactoryInterface:fetchHighScoresPreload(gameInfo, highScoresResultsListener, preload)
-    error("abstract method fetchHighScoresPreload")
-end
-
-
-function HighScoresFactoryInterface:createHighScoresHelper()
-    error("abstract method createHighScoresHelper")
-end
-
-return HighScoresFactoryInterface
 

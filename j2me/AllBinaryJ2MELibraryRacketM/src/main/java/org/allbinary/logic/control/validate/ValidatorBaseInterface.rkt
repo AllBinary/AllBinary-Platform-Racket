@@ -1,56 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.control.validate
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.control.validate
 
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../java/lang/Boolean.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ValidatorBaseInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_isValid_0)
+      (raise (JR.newException "AbstractMethodError" "isValid")))
+    (define/public (jm_validationInfo_0)
+      (raise (JR.newException "AbstractMethodError" "validationInfo")))
+    (define/public (jm_toHashtable_0)
+      (raise (JR.newException "AbstractMethodError" "toHashtable")))
+    (define/public (jm_toList_0)
+      (raise (JR.newException "AbstractMethodError" "toList")))))
+(define (ValidatorBaseInterface.jclassValue) ValidatorBaseInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local ValidatorBaseInterface = {}
-ValidatorBaseInterface.__index = ValidatorBaseInterface
-ValidatorBaseInterface.className = "ValidatorBaseInterface"
-
-
-function ValidatorBaseInterface:isValid()
-    error("abstract method isValid")
-end
-
-
-function ValidatorBaseInterface:validationInfo()
-    error("abstract method validationInfo")
-end
+(define (ValidatorBaseInterface.jnew_0)
+  (define this (new ValidatorBaseInterface% [jclass "ValidatorBaseInterface"]))
+  this)
 
 
-function ValidatorBaseInterface:toHashtable()
-    error("abstract method toHashtable")
-end
-
-
-function ValidatorBaseInterface:toList()
-    error("abstract method toList")
-end
-
-return ValidatorBaseInterface
 

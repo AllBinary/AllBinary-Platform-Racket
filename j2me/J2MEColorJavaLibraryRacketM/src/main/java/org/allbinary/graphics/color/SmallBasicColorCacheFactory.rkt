@@ -49,11 +49,13 @@
         (set! _basicColor (send (BasicColorFactory.jm_getInstance_0) jm_createInstanceAN_3 (bitwise-and _colorAsInt _ALPHA_MASK) (bitwise-and _colorAsInt #x00FFFFFF) (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0))))
         (send this jm_add_1 _basicColor)
         (jreturn _basicColor))))))
+(define (SmallBasicColorCacheFactory.jclassValue) SmallBasicColorCacheFactory%)
 
 (define SmallBasicColorCacheFactory.jcell_instance 'jnone)
 (define (SmallBasicColorCacheFactory.jstatic_instance)
   (when (eq? SmallBasicColorCacheFactory.jcell_instance 'jnone) (set! SmallBasicColorCacheFactory.jcell_instance (SmallBasicColorCacheFactory.jnew_0)))
   SmallBasicColorCacheFactory.jcell_instance)
+(define (SmallBasicColorCacheFactory.jsetstatic_instance value) (set! SmallBasicColorCacheFactory.jcell_instance value))
 
 (define (SmallBasicColorCacheFactory.jnew_0)
   (define this (new SmallBasicColorCacheFactory% [jclass "SmallBasicColorCacheFactory"]))

@@ -1,75 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
-local GameInfo = require("org.allbinary.game.GameInfo")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local HighScoresBase = require("org.allbinary.game.score.HighScoresBase")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./HighScoresBase.rkt")
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["./HighScoresHelperBase.rkt" (HighScoresHelperBase.jnew_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define NoHighScoresFactory%
+  (class HighScoresBase%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_NO_HIGH_SCORES JR.null])
+    (define/override (jm_fetchHighScores_2 _gameInfo _highScoresResultsListener)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_logUtil this) jm_putF_3 "Getting No HighScores" this "fetchHighScores")
+        (send _highScoresResultsListener jm_setHighScoresArray_1 (get-field f_NO_HIGH_SCORES this)))))
+    (define/override (jm_createHighScoresHelper_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (HighScoresHelperBase.jnew_0)))))))
+(define (NoHighScoresFactory.jclassValue) NoHighScoresFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NoHighScoresFactory.jcell_instance 'jnone)
+(define (NoHighScoresFactory.jstatic_instance)
+  (when (eq? NoHighScoresFactory.jcell_instance 'jnone) (set! NoHighScoresFactory.jcell_instance (NoHighScoresFactory.jnew_0)))
+  NoHighScoresFactory.jcell_instance)
+(define (NoHighScoresFactory.jsetstatic_instance value) (set! NoHighScoresFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (NoHighScoresFactory.jnew_0)
+  (define this (new NoHighScoresFactory% [jclass "NoHighScoresFactory"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_NO_HIGH_SCORES this (JR.newArray JR.null 0))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local NoHighScoresFactory = {}
-NoHighScoresFactory.__index = NoHighScoresFactory
-NoHighScoresFactory.className = "NoHighScoresFactory"
-setmetatable(NoHighScoresFactory, {__index = HighScoresBase})
-
-function NoHighScoresFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.NO_HIGH_SCORES = java_new_array(nil, 0)
-end
-
-
-function NoHighScoresFactory.getInstance()
-        return NoHighScoresFactory.instance
-end
-
-
-function NoHighScoresFactory.new()
-    local self = setmetatable(HighScoresBase.new(), NoHighScoresFactory)
-    self:_init_fields()
-    return self
-end
+(define (NoHighScoresFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NoHighScoresFactory.jstatic_instance)))))
 
 
-function NoHighScoresFactory:fetchHighScores(gameInfo, highScoresResultsListener)
-        self.logUtil:putF("Getting No HighScores", self, "fetchHighScores")
-        highScoresResultsListener:setHighScoresArray(self.NO_HIGH_SCORES)
-end
-
-
-function NoHighScoresFactory:createHighScoresHelper()
-        return HighScoresHelperBase.new()
-end
-
-NoHighScoresFactory.instance = NoHighScoresFactory.new()
-
-return NoHighScoresFactory
 

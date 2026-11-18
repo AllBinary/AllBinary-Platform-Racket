@@ -1,77 +1,62 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.accelerometer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.accelerometer
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local SensorFeatureFactory = require("org.allbinary.game.configuration.feature.SensorFeatureFactory")
-local AllBinaryOrientationSensor = require("org.allbinary.input.gyro.AllBinaryOrientationSensor")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["../../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/configuration/feature/SensorFeatureFactory.rkt" (SensorFeatureFactory.jm_getInstance_0)])
+(lazy-require ["./NoAccelerometerSensor.rkt" (NoAccelerometerSensor.jnew_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define AccelerometerSensorFactory%
+  (class JObject%
+    (super-new)))
+(define (AccelerometerSensorFactory.jclassValue) AccelerometerSensorFactory%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AccelerometerSensorFactory.jcell_allBinaryAccelerometerSensor 'jnone)
+(define (AccelerometerSensorFactory.jstatic_allBinaryAccelerometerSensor)
+  (when (eq? AccelerometerSensorFactory.jcell_allBinaryAccelerometerSensor 'jnone) (set! AccelerometerSensorFactory.jcell_allBinaryAccelerometerSensor JR.null))
+  AccelerometerSensorFactory.jcell_allBinaryAccelerometerSensor)
+(define (AccelerometerSensorFactory.jsetstatic_allBinaryAccelerometerSensor value) (set! AccelerometerSensorFactory.jcell_allBinaryAccelerometerSensor value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (AccelerometerSensorFactory.jnew_0)
+  (define this (new AccelerometerSensorFactory% [jclass "AccelerometerSensorFactory"]))
+  this)
 
-local AccelerometerSensorFactory = {}
-AccelerometerSensorFactory.__index = AccelerometerSensorFactory
-AccelerometerSensorFactory.className = "AccelerometerSensorFactory"
+(define (AccelerometerSensorFactory.jm_init_0)
+    (let ([_features JR.null][_sensorFeatureFactory JR.null])
+      (let/ec jreturn
+        (set! _features (Features.jm_getInstance_0))
+        (set! _sensorFeatureFactory (SensorFeatureFactory.jm_getInstance_0))
+        (if (send _features jm_isFeature_1 (get-field f_ORIENTATION_SENSORS _sensorFeatureFactory))
+            (begin
+            (raise (JR.newException "Exception" "No Orientation Sensors")))
+            (if (send _features jm_isFeature_1 (get-field f_SIMULATED_ORIENTATION_SENSORS _sensorFeatureFactory))
+            (begin
+            (raise (JR.newException "Exception" "No Simulation Sensors")))
+            (if (send _features jm_isFeature_1 (get-field f_NO_ORIENTATION _sensorFeatureFactory))
+            (begin
+            (set! AccelerometerSensorFactory.jcell_allBinaryAccelerometerSensor (NoAccelerometerSensor.jnew_0)))
+            (begin
+            (raise (JR.newException "Exception" "Not Such SensorFeature")))))))))
 
-function AccelerometerSensorFactory.new()
-    local self = setmetatable({}, AccelerometerSensorFactory)
-    return self
-end
-
-
--- throws Exception
-function AccelerometerSensorFactory.init()
-        local features = Features.getInstance()
-        local sensorFeatureFactory = SensorFeatureFactory.getInstance()
-        if features:isFeature(sensorFeatureFactory.ORIENTATION_SENSORS) then
-            error(java_exception("Exception", "No Orientation Sensors"), 0)
-        elseif features:isFeature(sensorFeatureFactory.SIMULATED_ORIENTATION_SENSORS) then
-            error(java_exception("Exception", "No Simulation Sensors"), 0)
-        elseif features:isFeature(sensorFeatureFactory.NO_ORIENTATION) then
-            AccelerometerSensorFactory.allBinaryAccelerometerSensor = NoAccelerometerSensor.new()
-        else
-            error(java_exception("Exception", "Not Such SensorFeature"), 0)
-        end
-end
+(define (AccelerometerSensorFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AccelerometerSensorFactory.jstatic_allBinaryAccelerometerSensor)))))
 
 
-function AccelerometerSensorFactory.getInstance()
-        return AccelerometerSensorFactory.allBinaryAccelerometerSensor
-end
-
-AccelerometerSensorFactory.allBinaryAccelerometerSensor = nil
-
-return AccelerometerSensorFactory
 

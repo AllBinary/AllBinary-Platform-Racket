@@ -1,105 +1,94 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.score
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local GameKeyEventHandler = require("org.allbinary.game.input.event.GameKeyEventHandler")
-local GameKeyEventUtil = require("org.allbinary.game.input.event.GameKeyEventUtil")
-local HighScoresCanvas = require("org.allbinary.game.score.displayable.HighScoresCanvas")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local HighScoresCanvasInputProcessor = require("org.allbinary.game.score.HighScoresCanvasInputProcessor")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/font/UpdateMyFontInterface.rkt"
+  "./HighScoresCanvasInputProcessor.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/Canvas.rkt" (Canvas.jstatic_RIGHT Canvas.jstatic_LEFT)])
+(lazy-require ["../../../../org/allbinary/game/input/event/GameKeyEventHandler.rkt" (GameKeyEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/input/event/GameKeyEventUtil.rkt" (GameKeyEventUtil.jm_getKey_1)])
+(lazy-require ["../../../../org/allbinary/graphics/Anchor.rkt" (Anchor.jstatic_TOP_LEFT)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/font/MyFontProcessor.rkt" (MyFontProcessor.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/font/UpdateMyFontProcessor.rkt" (UpdateMyFontProcessor.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define HighScoresCanvasLevelChangeInputProcessor%
+  (class HighScoresCanvasInputProcessor%
+    (super-new)
+    (field [f_displayInfoSingleton JR.null])
+    (field [f_INSTRUCTIONS JR.null])
+    (field [f_myFontProcessor JR.null])
+    (field [f_anchor 0])
+    (field [f_fontHeight 0])
+    (define/public (jm_updateMeasurement_1 _graphics)
+    (let ([_font JR.null])
+      (let/ec jreturn
+        (set! _font (send _graphics jm_getFont_0))
+        (set-field! f_fontHeight this (send _font jm_getHeight_0))
+        (set-field! f_myFontProcessor this (MyFontProcessor.jm_getInstance_0)))))
+    (define/override (jm_open_0)
+    (let ()
+      (let/ec jreturn
+        (send (GameKeyEventHandler.jm_getInstance_0) jm_addListener_1 this))))
+    (define/override (jm_close_0)
+    (let ()
+      (let/ec jreturn
+        (send (GameKeyEventHandler.jm_getInstance_0) jm_removeListener_1 this))))
+    (define/override (jm_update_0)
+    (let ([_list JR.null][_size JR.null][_anyType JR.null][_key JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _list (send this jm_getGameKeyEventList_0))
+        (set! _size (send _list jm_size_0))
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index _size)
+                (let/ec jcontinue
+            (set! _anyType (vector-ref (get-field f_objectArray _list) _index))
+            (set! _key (GameKeyEventUtil.jm_getKey_1 _anyType))
+            (if (= _key (Canvas.jstatic_RIGHT))
+                (begin
+                (JR.className (JR.className (send this jm_getHighScoresCanvas_0))))
+                (when (= _key (Canvas.jstatic_LEFT))
+                (begin
+                (JR.className (JR.className (send this jm_getHighScoresCanvas_0))))))
+            (JR.className (send this jm_getHighScoresCanvas_0)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (send _list jm_clear_0))))
+    (define/override (jm_paint_1 _graphics)
+    (let ([_width JR.null][_topScoresWidth JR.null])
+      (let/ec jreturn
+        (send (get-field f_myFontProcessor this) jm_process_1 _graphics)
+        (set! _width (send (get-field f_displayInfoSingleton this) jm_getLastWidth_0))
+        (set! _topScoresWidth (arithmetic-shift (JR.className (send _graphics jm_getFont_0)) (- (bitwise-and 1 31))))
+        (send _graphics jm_drawString_4 (get-field f_INSTRUCTIONS this) (JR.i32 (- (arithmetic-shift _width (- (bitwise-and 1 31))) _topScoresWidth)) (JR.i32 (* (get-field f_fontHeight this) 2)) (get-field f_anchor this)))))))
+(define (HighScoresCanvasLevelChangeInputProcessor.jclassValue) HighScoresCanvasLevelChangeInputProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local HighScoresCanvasLevelChangeInputProcessor = {}
-HighScoresCanvasLevelChangeInputProcessor.__index = HighScoresCanvasLevelChangeInputProcessor
-HighScoresCanvasLevelChangeInputProcessor.className = "HighScoresCanvasLevelChangeInputProcessor"
-setmetatable(HighScoresCanvasLevelChangeInputProcessor, {__index = HighScoresCanvasInputProcessor})
-
-function HighScoresCanvasLevelChangeInputProcessor:_init_fields()
-    self.displayInfoSingleton = DisplayInfoSingleton.getInstance()
-    self.INSTRUCTIONS = "(Right = Next Track, Left = Previous Track)"
-    self.myFontProcessor = UpdateMyFontProcessor.new(self)
-    self.anchor = Anchor.TOP_LEFT
-    self.fontHeight = 0
-end
-
-
-function HighScoresCanvasLevelChangeInputProcessor.new(highScoresCanvas)
-    local self = setmetatable(HighScoresCanvasInputProcessor.new(highScoresCanvas), HighScoresCanvasLevelChangeInputProcessor)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function HighScoresCanvasLevelChangeInputProcessor:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.fontHeight = font:getHeight()
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function HighScoresCanvasLevelChangeInputProcessor:open()
-        GameKeyEventHandler.getInstance():addListener(self)
-end
-
-
-function HighScoresCanvasLevelChangeInputProcessor:close()
-        GameKeyEventHandler.getInstance():removeListener(self)
-end
-
-
-function HighScoresCanvasLevelChangeInputProcessor:update()
-        local list = self:getGameKeyEventList()
-        local size = list:size()
-        for index = 0, size - 1 do
-            local anyType = list.objectArray[index + 1]
-            local key = GameKeyEventUtil.getKey(anyType)
-            if key == Canvas.RIGHT then
-                self:getHighScoresCanvas():getGameInfo():nextGameLevel()
-            elseif key == Canvas.LEFT then
-                self:getHighScoresCanvas():getGameInfo():previousGameLevel()
-            end
-            self:getHighScoresCanvas():executeUpdate()
-        end
-        list:clear()
-end
+(define (HighScoresCanvasLevelChangeInputProcessor.jnew_1 _highScoresCanvas)
+  (define this (new HighScoresCanvasLevelChangeInputProcessor% [jclass "HighScoresCanvasLevelChangeInputProcessor"]))
+    (set-field! f_displayInfoSingleton this (DisplayInfoSingleton.jm_getInstance_0))
+    (set-field! f_INSTRUCTIONS this "(Right = Next Track, Left = Previous Track)")
+    (set-field! f_myFontProcessor this (UpdateMyFontProcessor.jnew_1 this))
+    (set-field! f_anchor this (Anchor.jstatic_TOP_LEFT))
+    (set-field! f_fontHeight this 0)
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
 
-function HighScoresCanvasLevelChangeInputProcessor:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        local width = self.displayInfoSingleton:getLastWidth()
-        local topScoresWidth = (((graphics:getFont():stringWidth(self.INSTRUCTIONS)) // (1 << (1))))
-        graphics:drawString(self.INSTRUCTIONS, (((width) // (1 << (1)))) - topScoresWidth, self.fontHeight * 2, self.anchor)
-end
-
-return HighScoresCanvasLevelChangeInputProcessor
 

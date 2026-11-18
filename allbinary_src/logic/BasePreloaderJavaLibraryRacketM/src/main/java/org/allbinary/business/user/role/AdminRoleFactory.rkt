@@ -78,11 +78,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_orderManagementRoles this)))))))
+(define (AdminRoleFactory.jclassValue) AdminRoleFactory%)
 
 (define AdminRoleFactory.jcell_instance 'jnone)
 (define (AdminRoleFactory.jstatic_instance)
   (when (eq? AdminRoleFactory.jcell_instance 'jnone) (set! AdminRoleFactory.jcell_instance (AdminRoleFactory.jnew_0)))
   AdminRoleFactory.jcell_instance)
+(define (AdminRoleFactory.jsetstatic_instance value) (set! AdminRoleFactory.jcell_instance value))
 
 (define (AdminRoleFactory.jnew_0)
   (define this (new AdminRoleFactory% [jclass "AdminRoleFactory"]))

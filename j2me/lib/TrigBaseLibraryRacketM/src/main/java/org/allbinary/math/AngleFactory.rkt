@@ -65,11 +65,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (get-field f_NOT_ANGLE this)))))))
+(define (AngleFactory.jclassValue) AngleFactory%)
 
 (define AngleFactory.jcell_instance 'jnone)
 (define (AngleFactory.jstatic_instance)
   (when (eq? AngleFactory.jcell_instance 'jnone) (set! AngleFactory.jcell_instance (AngleFactory.jnew_0)))
   AngleFactory.jcell_instance)
+(define (AngleFactory.jsetstatic_instance value) (set! AngleFactory.jcell_instance value))
 
 (define (AngleFactory.jnew_0)
   (define this (new AngleFactory% [jclass "AngleFactory"]))

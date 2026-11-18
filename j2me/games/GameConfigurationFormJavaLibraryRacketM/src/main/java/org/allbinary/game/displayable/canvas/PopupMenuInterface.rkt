@@ -1,51 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define PopupMenuInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_popupMenu_0)
+      (raise (JR.newException "AbstractMethodError" "popupMenu")))
+    (define/public (jm_closeMenu_0)
+      (raise (JR.newException "AbstractMethodError" "closeMenu")))
+    (define/public (jm_toggleMenu_0)
+      (raise (JR.newException "AbstractMethodError" "toggleMenu")))))
+(define (PopupMenuInterface.jclassValue) PopupMenuInterface%)
+
+(define (PopupMenuInterface.jnew_0)
+  (define this (new PopupMenuInterface% [jclass "PopupMenuInterface"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local PopupMenuInterface = {}
-PopupMenuInterface.__index = PopupMenuInterface
-PopupMenuInterface.className = "PopupMenuInterface"
-
-
--- throws Exception
-function PopupMenuInterface:popupMenu()
-    error("abstract method popupMenu")
-end
-
-
-function PopupMenuInterface:closeMenu()
-    error("abstract method closeMenu")
-end
-
-
--- throws Exception
-function PopupMenuInterface:toggleMenu()
-    error("abstract method toggleMenu")
-end
-
-return PopupMenuInterface
 

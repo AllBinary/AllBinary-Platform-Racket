@@ -1,59 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local PlayerGameInput = require("org.allbinary.game.input.PlayerGameInput")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./PlayerGameInput.rkt")
+(lazy-require ["../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NoPlayerGameInput%
+  (class PlayerGameInput%
+    (super-new)
+    (define/override (jm_onDownGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_onUpGameKeyEvent_1 _gameKeyEvent)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NoPlayerGameInput.jclassValue) NoPlayerGameInput%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NoPlayerGameInput.jcell_SINGLETON 'jnone)
+(define (NoPlayerGameInput.jstatic_SINGLETON)
+  (when (eq? NoPlayerGameInput.jcell_SINGLETON 'jnone) (set! NoPlayerGameInput.jcell_SINGLETON (NoPlayerGameInput.jnew_0)))
+  NoPlayerGameInput.jcell_SINGLETON)
+(define (NoPlayerGameInput.jsetstatic_SINGLETON value) (set! NoPlayerGameInput.jcell_SINGLETON value))
 
-local NoPlayerGameInput = {}
-NoPlayerGameInput.__index = NoPlayerGameInput
-NoPlayerGameInput.className = "NoPlayerGameInput"
-setmetatable(NoPlayerGameInput, {__index = PlayerGameInput})
+(define (NoPlayerGameInput.jnew_0)
+  (define this (new NoPlayerGameInput% [jclass "NoPlayerGameInput"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-
-function NoPlayerGameInput.getInstance()
-        return NoPlayerGameInput.SINGLETON
-end
-
-
-function NoPlayerGameInput.new()
-    local self = setmetatable(PlayerGameInput.new(BasicArrayListD.new(), BasicArrayListD.new(), -1), NoPlayerGameInput)
-        -- super(...) made self above
-    return self
-end
-
-
-function NoPlayerGameInput:onDownGameKeyEvent(gameKeyEvent)
-end
+(define (NoPlayerGameInput.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NoPlayerGameInput.jstatic_SINGLETON)))))
 
 
-function NoPlayerGameInput:onUpGameKeyEvent(gameKeyEvent)
-end
-
-NoPlayerGameInput.SINGLETON = NoPlayerGameInput.new()
-
-return NoPlayerGameInput
 

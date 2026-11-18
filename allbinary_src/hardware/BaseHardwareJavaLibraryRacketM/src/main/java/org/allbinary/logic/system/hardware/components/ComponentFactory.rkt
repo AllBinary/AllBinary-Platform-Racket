@@ -36,11 +36,13 @@
     (field [f_PIC JR.null])
     (field [f_Class JR.null])
     (field [f_UNKNOWN JR.null])))
+(define (ComponentFactory.jclassValue) ComponentFactory%)
 
 (define ComponentFactory.jcell_instance 'jnone)
 (define (ComponentFactory.jstatic_instance)
   (when (eq? ComponentFactory.jcell_instance 'jnone) (set! ComponentFactory.jcell_instance (ComponentFactory.jnew_0)))
   ComponentFactory.jcell_instance)
+(define (ComponentFactory.jsetstatic_instance value) (set! ComponentFactory.jcell_instance value))
 
 (define (ComponentFactory.jnew_0)
   (define this (new ComponentFactory% [jclass "ComponentFactory"]))

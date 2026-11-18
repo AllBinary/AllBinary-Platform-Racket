@@ -1,66 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.canvas
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local Memory = require("org.allbinary.system.Memory")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/graphics/opengles/OpenGLFeatureFactory.rkt" (OpenGLFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/system/Memory.rkt" (Memory.jm_getInfo_0)])
+(lazy-require ["./GameStatisticsFactory.rkt" (GameStatisticsFactory.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SpecialMessageUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_get_0)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 (Memory.jm_getInfo_0))
+        (send _stringBuffer jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0)))
+        (send _stringBuffer jm_append_1 (send (GameStatisticsFactory.jm_getInstance_0) jm_toString_0))
+        (send _stringBuffer jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0)))
+        (send _stringBuffer jm_append_1 " Option: ")
+        (if (send (Features.jm_getInstance_0) jm_isDefault_1 (get-field f_OPENGL_AUTO_SELECT (OpenGLFeatureFactory.jm_getInstance_0)))
+            (begin
+            (send _stringBuffer jm_append_1 (JR.className (get-field f_OPENGL_AUTO_SELECT (OpenGLFeatureFactory.jm_getInstance_0)))))
+            (begin
+            (send _stringBuffer jm_append_1 (JR.className (get-field f_OPENGL_MINIMUM (OpenGLFeatureFactory.jm_getInstance_0))))))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (SpecialMessageUtil.jclassValue) SpecialMessageUtil%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define SpecialMessageUtil.jcell_SINGLETON 'jnone)
+(define (SpecialMessageUtil.jstatic_SINGLETON)
+  (when (eq? SpecialMessageUtil.jcell_SINGLETON 'jnone) (set! SpecialMessageUtil.jcell_SINGLETON (SpecialMessageUtil.jnew_0)))
+  SpecialMessageUtil.jcell_SINGLETON)
+(define (SpecialMessageUtil.jsetstatic_SINGLETON value) (set! SpecialMessageUtil.jcell_SINGLETON value))
 
-local SpecialMessageUtil = {}
-SpecialMessageUtil.__index = SpecialMessageUtil
-SpecialMessageUtil.className = "SpecialMessageUtil"
+(define (SpecialMessageUtil.jnew_0)
+  (define this (new SpecialMessageUtil% [jclass "SpecialMessageUtil"]))
+  this)
 
-function SpecialMessageUtil.new()
-    local self = setmetatable({}, SpecialMessageUtil)
-    return self
-end
-
-
-function SpecialMessageUtil.getInstance()
-        return SpecialMessageUtil.SINGLETON
-end
+(define (SpecialMessageUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (SpecialMessageUtil.jstatic_SINGLETON)))))
 
 
-function SpecialMessageUtil:get()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(Memory.getInfo())
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(tostring(GameStatisticsFactory.getInstance()))
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(" Option: ")
-        if Features.getInstance():isDefault(OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT) then
-            stringBuffer:append(OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT:getName())
-        else
-            stringBuffer:append(OpenGLFeatureFactory.getInstance().OPENGL_MINIMUM:getName())
-        end
-        return tostring(stringBuffer)
-end
-
-SpecialMessageUtil.SINGLETON = SpecialMessageUtil.new()
-
-return SpecialMessageUtil
 

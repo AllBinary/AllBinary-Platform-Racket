@@ -27,6 +27,7 @@
       (raise (JR.newException "AbstractMethodError" "addArray")))
     (define/public (jm_clear_0)
       (raise (JR.newException "AbstractMethodError" "clear")))))
+(define (CacheInterface.jclassValue) CacheInterface%)
 
 (define (CacheInterface.jnew_0)
   (define this (new CacheInterface% [jclass "CacheInterface"]))

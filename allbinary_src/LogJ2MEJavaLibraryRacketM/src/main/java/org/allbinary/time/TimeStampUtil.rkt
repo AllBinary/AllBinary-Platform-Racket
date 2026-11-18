@@ -30,11 +30,13 @@
         (set! _calendar (Calendar.jm_getInstance_0))
         (set! _date (send _calendar jm_getTime_0))
         (jreturn (send _date jm_toString_0)))))))
+(define (TimeStampUtil.jclassValue) TimeStampUtil%)
 
 (define TimeStampUtil.jcell_instance 'jnone)
 (define (TimeStampUtil.jstatic_instance)
   (when (eq? TimeStampUtil.jcell_instance 'jnone) (set! TimeStampUtil.jcell_instance (TimeStampUtil.jnew_0)))
   TimeStampUtil.jcell_instance)
+(define (TimeStampUtil.jsetstatic_instance value) (set! TimeStampUtil.jcell_instance value))
 
 (define (TimeStampUtil.jnew_0)
   (define this (new TimeStampUtil% [jclass "TimeStampUtil"]))

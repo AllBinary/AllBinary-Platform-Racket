@@ -1,84 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.input
 
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local CompleteMotionGestureInputInterface = require("org.allbinary.game.input.CompleteMotionGestureInputInterface")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/logic/util/event/AllBinaryEventObject.rkt"
+  "./CompleteMotionGestureInputInterface.rkt")
+(lazy-require ["../../../../org/allbinary/input/motion/gesture/TouchMotionGestureFactory.rkt" (TouchMotionGestureFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CompleteMotionGestureInputEvent%
+  (class AllBinaryEventObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_name JR.null])
+    (field [f_motionGestureInput JR.null])
+    (define/public (jm_setName_1 _name)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_name this _name))))
+    (define/public (jm_getName_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_name this)))))
+    (define/public (jm_setMotionGestureInput_1 _motionGestureInput)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_motionGestureInput this _motionGestureInput))))
+    (define/public (jm_getMotionGestureInput_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_motionGestureInput this)))))))
+(define (CompleteMotionGestureInputEvent.jclassValue) CompleteMotionGestureInputEvent%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CompleteMotionGestureInputEvent = {}
-CompleteMotionGestureInputEvent.__index = CompleteMotionGestureInputEvent
-CompleteMotionGestureInputEvent.className = "CompleteMotionGestureInputEvent"
-setmetatable(CompleteMotionGestureInputEvent, {__index = AllBinaryEventObject})
-
-function CompleteMotionGestureInputEvent:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.name = StringUtil.getInstance().EMPTY_STRING
-    self.motionGestureInput = TouchMotionGestureFactory.getInstance().NO_MOTION
-end
-
-
-function CompleteMotionGestureInputEvent.new(name, motionGestureInput)
-    local self = setmetatable(AllBinaryEventObject.new(motionGestureInput), CompleteMotionGestureInputEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setName(name)
-        local try_ok, try_error = pcall(function()
-            self:setMotionGestureInput(motionGestureInput)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, "InputToGameKeyEventAction", e)
-        end
-    return self
-end
-
-
-function CompleteMotionGestureInputEvent:setName(name)
-        self.name = name
-end
+(define (CompleteMotionGestureInputEvent.jnew_2 _name _motionGestureInput)
+  (define this (new CompleteMotionGestureInputEvent% [jclass "CompleteMotionGestureInputEvent"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_name this (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)))
+    (set-field! f_motionGestureInput this (get-field f_NO_MOTION (TouchMotionGestureFactory.jm_getInstance_0)))
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (void)
+        (send this jm_setName_1 _name)
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this "InputToGameKeyEventAction" _e))])
+            (send this jm_setMotionGestureInput_1 _motionGestureInput))))
+  this)
 
 
-function CompleteMotionGestureInputEvent:getName()
-        return self.name
-end
-
-
-function CompleteMotionGestureInputEvent:setMotionGestureInput(motionGestureInput)
-        self.motionGestureInput = motionGestureInput
-end
-
-
-function CompleteMotionGestureInputEvent:getMotionGestureInput()
-        return self.motionGestureInput
-end
-
-return CompleteMotionGestureInputEvent
 

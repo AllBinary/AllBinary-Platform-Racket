@@ -1,53 +1,42 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.font
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.font
 
--- local Font = require("javax.microedition.lcdui.Font")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;OpenGLESBaseJ2MEJavaLibrary
+(define FontDebugBase%
+  (class JObject%
+    (super-new)
+    (field [f_SET_FONT JR.null])
+    (define/public (jm_debugMetrics_4 _currentFont _convertedTextSize _displayMetrics _stringBuffer)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_debugDpi_2 _densityDpi _stringBuffer)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_debugDimension_4 _currentFont _convertedTextSize _longestDimensionTotalPixels _stringBuffer)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (FontDebugBase.jclassValue) FontDebugBase%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define FontDebugBase.jcell_instanceBase 'jnone)
+(define (FontDebugBase.jstatic_instanceBase)
+  (when (eq? FontDebugBase.jcell_instanceBase 'jnone) (set! FontDebugBase.jcell_instanceBase (FontDebugBase.jnew_0)))
+  FontDebugBase.jcell_instanceBase)
+(define (FontDebugBase.jsetstatic_instanceBase value) (set! FontDebugBase.jcell_instanceBase value))
 
---OpenGLESBaseJ2MEJavaLibrary
-local FontDebugBase = {}
-FontDebugBase.__index = FontDebugBase
-FontDebugBase.className = "FontDebugBase"
+(define (FontDebugBase.jnew_0)
+  (define this (new FontDebugBase% [jclass "FontDebugBase"]))
+    (set-field! f_SET_FONT this "setFont")
+  this)
 
-function FontDebugBase:_init_fields()
-    self.SET_FONT = "setFont"
-end
-
-function FontDebugBase.new()
-    local self = setmetatable({}, FontDebugBase)
-    self:_init_fields()
-    return self
-end
-
-
-function FontDebugBase.getInstance()
-        return FontDebugBase.instanceBase
-end
-
-
-function FontDebugBase:debugMetrics(currentFont, convertedTextSize, displayMetrics, stringBuffer)
-end
-
-
-function FontDebugBase:debugDpi(densityDpi, stringBuffer)
-end
+(define (FontDebugBase.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (FontDebugBase.jstatic_instanceBase)))))
 
 
-function FontDebugBase:debugDimension(currentFont, convertedTextSize, longestDimensionTotalPixels, stringBuffer)
-end
-
-FontDebugBase.instanceBase = FontDebugBase.new()
-
-return FontDebugBase
 

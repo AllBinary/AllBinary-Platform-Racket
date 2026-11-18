@@ -1,50 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.business.advertisement
+
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define AdvertisementProcessorInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_process_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_start_0)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_stop_0)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (AdvertisementProcessorInterface.jclassValue) AdvertisementProcessorInterface%)
+
+(define (AdvertisementProcessorInterface.jnew_0)
+  (define this (new AdvertisementProcessorInterface% [jclass "AdvertisementProcessorInterface"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AdvertisementProcessorInterface = {}
-AdvertisementProcessorInterface.__index = AdvertisementProcessorInterface
-AdvertisementProcessorInterface.className = "AdvertisementProcessorInterface"
-
-function AdvertisementProcessorInterface.new()
-    local self = setmetatable({}, AdvertisementProcessorInterface)
-    return self
-end
-
-
-function AdvertisementProcessorInterface:process()
-end
-
-
-function AdvertisementProcessorInterface:start()
-end
-
-
-function AdvertisementProcessorInterface:stop()
-end
-
-return AdvertisementProcessorInterface
 

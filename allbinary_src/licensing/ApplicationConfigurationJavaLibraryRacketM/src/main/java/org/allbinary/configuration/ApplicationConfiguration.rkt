@@ -1,219 +1,184 @@
--- Generated Code Do Not Modify
--- package org.allbinary.configuration
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.configuration
 
--- local Closeable = require("java.io.Closeable")
--- local InputStream = require("java.io.InputStream")
--- local OutputStream = require("java.io.OutputStream")
-local Feature = require("org.allbinary.game.configuration.feature.Feature")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local MainFeatureFactory = require("org.allbinary.game.configuration.feature.MainFeatureFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AbDataInputStream = require("org.allbinary.logic.io.AbDataInputStream")
-local AbDataOutputStream = require("org.allbinary.logic.io.AbDataOutputStream")
-local FileStreamFactory = require("org.allbinary.logic.io.FileStreamFactory")
-local NullCloseable = require("org.allbinary.logic.io.NullCloseable")
-local StreamUtil = require("org.allbinary.logic.io.StreamUtil")
-local FileFactory = require("org.allbinary.logic.io.file.FileFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "../../../java/io/Closeable.rkt"
+  "../../../java/io/InputStream.rkt"
+  "../../../java/io/OutputStream.rkt")
+(lazy-require ["../../../org/allbinary/game/configuration/feature/Features.rkt" (Features.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/game/configuration/feature/MainFeatureFactory.rkt" (MainFeatureFactory.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/NullUtil.rkt" (NullUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/io/AbDataInputStream.rkt" (AbDataInputStream.jnew_1)])
+(lazy-require ["../../../org/allbinary/logic/io/AbDataOutputStream.rkt" (AbDataOutputStream.jnew_1)])
+(lazy-require ["../../../org/allbinary/logic/io/FileStreamFactory.rkt" (FileStreamFactory.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/io/NullCloseable.rkt" (NullCloseable.jstatic_NULL_CLOSEABLE)])
+(lazy-require ["../../../org/allbinary/logic/io/StreamUtil.rkt" (StreamUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/io/file/FileFactory.rkt" (FileFactory.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../org/allbinary/logic/string/StringUtil.rkt" (StringUtil.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(define ApplicationConfiguration%
+  (class JObject%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_fullscreen #f])
+    (field [f_showTitleBar #f])
+    (field [f_progressBarView #f])
+    (field [f_FILE JR.null])
+    (define/public (jm_read_0)
+    (let ([_fileInputStreamFactory JR.null][_fileInputStream JR.null][_dataInputStream JR.null][_fullScreen JR.null][_progressBarView JR.null][_showTitleBar JR.null])
+      (let/ec jreturn
+        (set! _fileInputStreamFactory (FileStreamFactory.jm_getInstance_0))
+        (set! _fileInputStream (send _fileInputStreamFactory jm_getFileInputStreamInstance_2 (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (get-field f_FILE this)))
+        (set! _dataInputStream (AbDataInputStream.jnew_1 _fileInputStream))
+        (set! _fullScreen (send _dataInputStream jm_readInt_0))
+        (if (= _fullScreen 0)
+            (begin
+            (send this jm_setFullscreen_1 #f))
+            (if (= _fullScreen 1)
+            (begin
+            (send this jm_setFullscreen_1 #t))
+            (begin
+            (raise (JR.newException "Exception" "Invalid FullScreen ActivityConfiguration")))))
+        (set! _progressBarView (send _dataInputStream jm_readInt_0))
+        (if (= _progressBarView 0)
+            (begin
+            (send this jm_setProgressBarView_1 #f))
+            (if (= _progressBarView 1)
+            (begin
+            (send this jm_setProgressBarView_1 #t))
+            (begin
+            (raise (JR.newException "Exception" "Invalid ProgressBarView ActivityConfiguration")))))
+        (set! _showTitleBar (send _dataInputStream jm_readInt_0))
+        (if (= _showTitleBar 0)
+            (begin
+            (send this jm_setShowTitleBar_1 #f))
+            (if (= _showTitleBar 1)
+            (begin
+            (send this jm_setShowTitleBar_1 #t))
+            (begin
+            (raise (JR.newException "Exception" "Invalid ShowTitleBar ActivityConfiguration")))))
+        (send (get-field f_logUtil this) jm_putF_3 (JR.concat "Read Configuration: " (send this jm_toString_0)) this "read"))))
+    (define/public (jm_write_0)
+    (let ([_closeable JR.null][_fileInputStreamFactory JR.null][_fileOutputStream JR.null][_dataOutputStream JR.null])
+      (let/ec jreturn
+        (set! _closeable (NullCloseable.jstatic_NULL_CLOSEABLE))
+        (dynamic-wind void (lambda () (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (raise _e))])
+            (send (get-field f_logUtil this) jm_putF_3 (JR.concat "Write Configuration: " (send this jm_toString_0)) this "write")
+            (set! _fileInputStreamFactory (FileStreamFactory.jm_getInstance_0))
+            (set! _fileOutputStream (send _fileInputStreamFactory jm_getFileOutputStreamInstance_2 (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (get-field f_FILE this)))
+            (set! _dataOutputStream (AbDataOutputStream.jnew_1 _fileOutputStream))
+            (set! _closeable _dataOutputStream)
+            (if (send this jm_isFullscreen_0)
+                (begin
+                (send _dataOutputStream jm_writeInt_1 1))
+                (begin
+                (send _dataOutputStream jm_writeInt_1 0)))
+            (if (send this jm_isProgressBarView_0)
+                (begin
+                (send _dataOutputStream jm_writeInt_1 1))
+                (begin
+                (send _dataOutputStream jm_writeInt_1 0)))
+            (if (send this jm_isShowTitleBar_0)
+                (begin
+                (send _dataOutputStream jm_writeInt_1 1))
+                (begin
+                (send _dataOutputStream jm_writeInt_1 0)))
+            (send _dataOutputStream jm_flush_0)))
+            (lambda ()
+            (send (StreamUtil.jm_getInstance_0) jm_close_1 _closeable))))))
+    (define/public (jm_update_1 _gameFeature)
+    (let ([_features JR.null])
+      (let/ec jreturn
+        (when (eq? _gameFeature (get-field f_FULL_SCREEN (MainFeatureFactory.jm_getInstance_0)))
+            (begin
+            (set! _features (Features.jm_getInstance_0))
+            (if (send _features jm_isFeature_1 _gameFeature)
+                (begin
+                (when (not (send this jm_isFullscreen_0))
+                    (begin
+                    (send this jm_setFullscreen_1 #t)
+                    (send this jm_write_0))))
+                (begin
+                (when (send this jm_isFullscreen_0)
+                    (begin
+                    (send this jm_setFullscreen_1 #f)
+                    (send this jm_write_0))))))))))
+    (define/public (jm_setFullscreen_1 _fullscreen)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_fullscreen this _fullscreen))))
+    (define/public (jm_isFullscreen_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_fullscreen this)))))
+    (define/public (jm_setShowTitleBar_1 _showTitleBar)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_showTitleBar this _showTitleBar))))
+    (define/public (jm_isShowTitleBar_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_showTitleBar this)))))
+    (define/public (jm_setProgressBarView_1 _progressBarView)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_progressBarView this _progressBarView))))
+    (define/public (jm_isProgressBarView_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_progressBarView this)))))
+    (define/override (jm_toString_0)
+    (let ([_stringBuffer JR.null])
+      (let/ec jreturn
+        (set! _stringBuffer (StringMaker.jnew_0))
+        (send _stringBuffer jm_append_1 "isFullscreen: ")
+        (send _stringBuffer jm_appendboolean_1 (send this jm_isFullscreen_0))
+        (send _stringBuffer jm_append_1 " isProgressBarView: ")
+        (send _stringBuffer jm_appendboolean_1 (send this jm_isProgressBarView_0))
+        (send _stringBuffer jm_append_1 " isShowTitleBar: ")
+        (send _stringBuffer jm_appendboolean_1 (send this jm_isShowTitleBar_0))
+        (jreturn (send _stringBuffer jm_toString_0)))))))
+(define (ApplicationConfiguration.jclassValue) ApplicationConfiguration%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ApplicationConfiguration.jcell_instance 'jnone)
+(define (ApplicationConfiguration.jstatic_instance)
+  (when (eq? ApplicationConfiguration.jcell_instance 'jnone) (set! ApplicationConfiguration.jcell_instance (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0))))
+  ApplicationConfiguration.jcell_instance)
+(define (ApplicationConfiguration.jsetstatic_instance value) (set! ApplicationConfiguration.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (ApplicationConfiguration.jnew_0)
+  (define this (new ApplicationConfiguration% [jclass "ApplicationConfiguration"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_fullscreen this #t)
+    (set-field! f_showTitleBar this #f)
+    (set-field! f_progressBarView this #f)
+    (set-field! f_FILE this "ReloadConfiguration.dat")
+    (let ([_commonStrings JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (set! _commonStrings (CommonStrings.jm_getInstance_0))
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION _commonStrings) this (get-field f_CONSTRUCTOR _commonStrings) _e))])
+            (if (send (FileFactory.jm_getInstance_0) jm_isFile_1 (get-field f_FILE this))
+                (begin
+                (send this jm_read_0))
+                (begin
+                (send this jm_write_0))))))
+  this)
 
-local ApplicationConfiguration = {}
-ApplicationConfiguration.__index = ApplicationConfiguration
-ApplicationConfiguration.className = "ApplicationConfiguration"
-
-function ApplicationConfiguration:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.fullscreen = true
-    self.showTitleBar = false
-    self.progressBarView = false
-    self.FILE = "ReloadConfiguration.dat"
-end
-
-
-function ApplicationConfiguration.getInstance()
-        if ApplicationConfiguration.instance == NullUtil.getInstance().NULL_OBJECT then
-            ApplicationConfiguration.instance = ApplicationConfiguration.new()
-        end
-        return ApplicationConfiguration.instance
-end
-
-
-function ApplicationConfiguration.new()
-    local self = setmetatable({}, ApplicationConfiguration)
-    self:_init_fields()
-        local try_ok, try_error = pcall(function()
-            if FileFactory.getInstance():isFile(self.FILE) then
-                self:read()
-            else
-                self:write()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-        end
-    return self
-end
-
-
--- throws Exception
-function ApplicationConfiguration:read()
-        local fileInputStreamFactory = FileStreamFactory.getInstance()
-        local fileInputStream = fileInputStreamFactory:getFileInputStreamInstance(StringUtil.getInstance().EMPTY_STRING, self.FILE)
-        local dataInputStream = AbDataInputStream.new(fileInputStream)
-        local fullScreen = dataInputStream:readInt()
-        if fullScreen == 0 then
-            self:setFullscreen(false)
-        elseif fullScreen == 1 then
-            self:setFullscreen(true)
-        else
-            error(java_exception("Exception", "Invalid FullScreen ActivityConfiguration"), 0)
-        end
-        local progressBarView = dataInputStream:readInt()
-        if progressBarView == 0 then
-            self:setProgressBarView(false)
-        elseif progressBarView == 1 then
-            self:setProgressBarView(true)
-        else
-            error(java_exception("Exception", "Invalid ProgressBarView ActivityConfiguration"), 0)
-        end
-        local showTitleBar = dataInputStream:readInt()
-        if showTitleBar == 0 then
-            self:setShowTitleBar(false)
-        elseif showTitleBar == 1 then
-            self:setShowTitleBar(true)
-        else
-            error(java_exception("Exception", "Invalid ShowTitleBar ActivityConfiguration"), 0)
-        end
-        self.logUtil:putF("Read Configuration: " .. tostring(self), self, "read")
-end
-
-
--- throws Exception
-function ApplicationConfiguration:write()
-        local closeable = NullCloseable.NULL_CLOSEABLE
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF("Write Configuration: " .. tostring(self), self, "write")
-            local fileInputStreamFactory = FileStreamFactory.getInstance()
-            local fileOutputStream = fileInputStreamFactory:getFileOutputStreamInstance(StringUtil.getInstance().EMPTY_STRING, self.FILE)
-            local dataOutputStream = AbDataOutputStream.new(fileOutputStream)
-            closeable = dataOutputStream
-            if self:isFullscreen() then
-                dataOutputStream:writeInt(1)
-            else
-                dataOutputStream:writeInt(0)
-            end
-            if self:isProgressBarView() then
-                dataOutputStream:writeInt(1)
-            else
-                dataOutputStream:writeInt(0)
-            end
-            if self:isShowTitleBar() then
-                dataOutputStream:writeInt(1)
-            else
-                dataOutputStream:writeInt(0)
-            end
-            dataOutputStream:flush()
-        end)
-        if not try_ok then
-            local e = try_error
-            error(e, 0)
-        end
-        do -- finally
-            StreamUtil.getInstance():close(closeable)
-        end
-end
-
-
--- throws Exception
-function ApplicationConfiguration:update(gameFeature)
-        if gameFeature == MainFeatureFactory.getInstance().FULL_SCREEN then
-            local features = Features.getInstance()
-            if features:isFeature(gameFeature) then
-                if not self:isFullscreen() then
-                    self:setFullscreen(true)
-                    self:write()
-                end
-            else
-                if self:isFullscreen() then
-                    self:setFullscreen(false)
-                    self:write()
-                end
-            end
-        end
-end
-
-
-function ApplicationConfiguration:setFullscreen(fullscreen)
-        self.fullscreen = fullscreen
-end
-
-
-function ApplicationConfiguration:isFullscreen()
-        return self.fullscreen
-end
-
-
-function ApplicationConfiguration:setShowTitleBar(showTitleBar)
-        self.showTitleBar = showTitleBar
-end
+(define (ApplicationConfiguration.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (when (eq? (ApplicationConfiguration.jstatic_instance) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))
+            (begin
+            (set! ApplicationConfiguration.jcell_instance (ApplicationConfiguration.jnew_0))))
+        (jreturn (ApplicationConfiguration.jstatic_instance)))))
 
 
-function ApplicationConfiguration:isShowTitleBar()
-        return self.showTitleBar
-end
-
-
-function ApplicationConfiguration:setProgressBarView(progressBarView)
-        self.progressBarView = progressBarView
-end
-
-
-function ApplicationConfiguration:isProgressBarView()
-        return self.progressBarView
-end
-
-
-function ApplicationConfiguration:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("isFullscreen: ")
-        stringBuffer:appendboolean(self:isFullscreen())
-        stringBuffer:append(" isProgressBarView: ")
-        stringBuffer:appendboolean(self:isProgressBarView())
-        stringBuffer:append(" isShowTitleBar: ")
-        stringBuffer:appendboolean(self:isShowTitleBar())
-        return tostring(stringBuffer)
-end
-ApplicationConfiguration.__tostring = function(self) return self:toString() end
-
-ApplicationConfiguration.instance = NullUtil.getInstance().NULL_OBJECT
-
-return ApplicationConfiguration
 

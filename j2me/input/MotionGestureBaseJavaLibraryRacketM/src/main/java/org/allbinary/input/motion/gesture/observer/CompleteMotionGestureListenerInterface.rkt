@@ -1,41 +1,33 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.input.motion.gesture.observer
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CompleteMotionGestureListenerInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_onMotionGestureCompleted_1 _list)
+      (raise (JR.newException "AbstractMethodError" "onMotionGestureCompleted")))))
+(define (CompleteMotionGestureListenerInterface.jclassValue) CompleteMotionGestureListenerInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local CompleteMotionGestureListenerInterface = {}
-CompleteMotionGestureListenerInterface.__index = CompleteMotionGestureListenerInterface
-CompleteMotionGestureListenerInterface.className = "CompleteMotionGestureListenerInterface"
+(define (CompleteMotionGestureListenerInterface.jnew_0)
+  (define this (new CompleteMotionGestureListenerInterface% [jclass "CompleteMotionGestureListenerInterface"]))
+  this)
 
 
--- throws Exception
-function CompleteMotionGestureListenerInterface:onMotionGestureCompleted(list)
-    error("abstract method onMotionGestureCompleted")
-end
-
-return CompleteMotionGestureListenerInterface
 

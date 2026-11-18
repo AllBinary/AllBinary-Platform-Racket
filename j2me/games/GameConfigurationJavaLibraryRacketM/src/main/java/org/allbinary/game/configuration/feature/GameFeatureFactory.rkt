@@ -1,66 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.feature
+
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt")
+(lazy-require ["./GameFeature.rkt" (GameFeature.jnew_1)])
+(lazy-require ["./Feature.rkt" (Feature.jnew_1)])
+(provide (all-defined-out))
+
+(define GameFeatureFactory%
+  (class JObject%
+    (super-new)
+    (field [f_SOUND JR.null])
+    (field [f_MUSIC JR.null])
+    (field [f_SCREEN_SHAKE JR.null])
+    (field [f_POST_IMAGE_LOADING_MODIFICATION JR.null])
+    (field [f_HEALTH_BARS JR.null])
+    (field [f_DAMAGE_FLOATERS JR.null])
+    (field [f_GAME_INPUT_LAYER_PROCESSOR JR.null])
+    (field [f_ARTIFICIAL_INTELLEGENCE_PROCESSOR JR.null])
+    (field [f_COLLIDABLE_INTERFACE_LAYER_PROCESSOR JR.null])
+    (field [f_TICKABLE_LAYER_PROCESSOR JR.null])
+    (field [f_CHEATING JR.null])
+    (field [f_DROPPED_ITEMS JR.null])
+    (field [f_DROPPED_ITEMS_FROM_DEATH JR.null])
+    (field [f_TEST_DESTROYED_LAYER_PROCESSOR JR.null])
+    (field [f_COLLISIONS_WITH_SOURCE JR.null])
+    (field [f_COLLISIONS_FORCED_TWO_DIMENSIONAL JR.null])))
+(define (GameFeatureFactory.jclassValue) GameFeatureFactory%)
+
+(define GameFeatureFactory.jcell_instance 'jnone)
+(define (GameFeatureFactory.jstatic_instance)
+  (when (eq? GameFeatureFactory.jcell_instance 'jnone) (set! GameFeatureFactory.jcell_instance (GameFeatureFactory.jnew_0)))
+  GameFeatureFactory.jcell_instance)
+(define (GameFeatureFactory.jsetstatic_instance value) (set! GameFeatureFactory.jcell_instance value))
+
+(define (GameFeatureFactory.jnew_0)
+  (define this (new GameFeatureFactory% [jclass "GameFeatureFactory"]))
+    (set-field! f_SOUND this (GameFeature.jnew_1 "Sound"))
+    (set-field! f_MUSIC this (GameFeature.jnew_1 "Music"))
+    (set-field! f_SCREEN_SHAKE this (Feature.jnew_1 "Screen Shake"))
+    (set-field! f_POST_IMAGE_LOADING_MODIFICATION this (Feature.jnew_1 "Post Image Loading Modification (Scaling, Rotation, or Other)"))
+    (set-field! f_HEALTH_BARS this (GameFeature.jnew_1 "Health Bars"))
+    (set-field! f_DAMAGE_FLOATERS this (GameFeature.jnew_1 "Damage Floaters"))
+    (set-field! f_GAME_INPUT_LAYER_PROCESSOR this (GameFeature.jnew_1 "Game Input Layer Processor"))
+    (set-field! f_ARTIFICIAL_INTELLEGENCE_PROCESSOR this (GameFeature.jnew_1 "Artificial Intelligence Layer Processor"))
+    (set-field! f_COLLIDABLE_INTERFACE_LAYER_PROCESSOR this (GameFeature.jnew_1 "Collidable Interface Layer Processor"))
+    (set-field! f_TICKABLE_LAYER_PROCESSOR this (GameFeature.jnew_1 "Tickable Layer Processor"))
+    (set-field! f_CHEATING this (GameFeature.jnew_1 "Cheating"))
+    (set-field! f_DROPPED_ITEMS this (GameFeature.jnew_1 "Drops"))
+    (set-field! f_DROPPED_ITEMS_FROM_DEATH this (GameFeature.jnew_1 "Drops from Dead"))
+    (set-field! f_TEST_DESTROYED_LAYER_PROCESSOR this (GameFeature.jnew_1 "Destroyed Layer Processor"))
+    (set-field! f_COLLISIONS_WITH_SOURCE this (GameFeature.jnew_1 "Allow Collisions With Source"))
+    (set-field! f_COLLISIONS_FORCED_TWO_DIMENSIONAL this (GameFeature.jnew_1 "Collisions Forced Two Dimensional"))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
+
+(define (GameFeatureFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (GameFeatureFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameFeatureFactory = {}
-GameFeatureFactory.__index = GameFeatureFactory
-GameFeatureFactory.className = "GameFeatureFactory"
-
-function GameFeatureFactory:_init_fields()
-    self.SOUND = GameFeature.new("Sound")
-    self.MUSIC = GameFeature.new("Music")
-    self.SCREEN_SHAKE = Feature.new("Screen Shake")
-    self.POST_IMAGE_LOADING_MODIFICATION = Feature.new("Post Image Loading Modification (Scaling, Rotation, or Other)")
-    self.HEALTH_BARS = GameFeature.new("Health Bars")
-    self.DAMAGE_FLOATERS = GameFeature.new("Damage Floaters")
-    self.GAME_INPUT_LAYER_PROCESSOR = GameFeature.new("Game Input Layer Processor")
-    self.ARTIFICIAL_INTELLEGENCE_PROCESSOR = GameFeature.new("Artificial Intelligence Layer Processor")
-    self.COLLIDABLE_INTERFACE_LAYER_PROCESSOR = GameFeature.new("Collidable Interface Layer Processor")
-    self.TICKABLE_LAYER_PROCESSOR = GameFeature.new("Tickable Layer Processor")
-    self.CHEATING = GameFeature.new("Cheating")
-    self.DROPPED_ITEMS = GameFeature.new("Drops")
-    self.DROPPED_ITEMS_FROM_DEATH = GameFeature.new("Drops from Dead")
-    self.TEST_DESTROYED_LAYER_PROCESSOR = GameFeature.new("Destroyed Layer Processor")
-    self.COLLISIONS_WITH_SOURCE = GameFeature.new("Allow Collisions With Source")
-    self.COLLISIONS_FORCED_TWO_DIMENSIONAL = GameFeature.new("Collisions Forced Two Dimensional")
-end
-
-
-function GameFeatureFactory.getInstance()
-        return GameFeatureFactory.instance
-end
-
-
-function GameFeatureFactory.new()
-    local self = setmetatable({}, GameFeatureFactory)
-    self:_init_fields()
-    return self
-end
-
-GameFeatureFactory.instance = GameFeatureFactory.new()
-
-return GameFeatureFactory
 

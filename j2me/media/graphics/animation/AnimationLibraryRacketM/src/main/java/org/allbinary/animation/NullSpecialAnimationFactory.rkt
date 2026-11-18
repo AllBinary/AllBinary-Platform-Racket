@@ -1,66 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local SpecialAnimation = require("org.allbinary.animation.special.SpecialAnimation")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./AnimationInterfaceFactoryInterface.rkt"
+  "./ProceduralAnimationInterfaceFactoryInterface.rkt")
+(lazy-require ["../../../org/allbinary/animation/special/SpecialAnimation.rkt" (SpecialAnimation.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullSpecialAnimationFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (jreturn (SpecialAnimation.jm_getInstance_0)))))
+    (define/public (jm_getInstanceAnimation_1 _animationInterface)
+    (let ()
+      (let/ec jreturn
+        (jreturn (SpecialAnimation.jm_getInstance_0)))))
+    (define/public (jm_setInitialScale_1 _scaleProperties)
+    (let ()
+      (let/ec jreturn (void))))))
+(define (NullSpecialAnimationFactory.jclassValue) NullSpecialAnimationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY 'jnone)
+(define (NullSpecialAnimationFactory.jstatic_NULL_SPECIAL_ANIMATION_FACTORY)
+  (when (eq? NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY 'jnone) (set! NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY (NullSpecialAnimationFactory.jnew_0)))
+  NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY)
+(define (NullSpecialAnimationFactory.jsetstatic_NULL_SPECIAL_ANIMATION_FACTORY value) (set! NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY value))
 
-local NullSpecialAnimationFactory = {}
-NullSpecialAnimationFactory.__index = NullSpecialAnimationFactory
-NullSpecialAnimationFactory.className = "NullSpecialAnimationFactory"
+(define (NullSpecialAnimationFactory.jnew_0)
+  (define this (new NullSpecialAnimationFactory% [jclass "NullSpecialAnimationFactory"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-
-function NullSpecialAnimationFactory.new()
-    local self = setmetatable({}, NullSpecialAnimationFactory)
-    return self
-end
-
-
-function NullSpecialAnimationFactory.getFactoryInstance()
-        return NullSpecialAnimationFactory.NULL_SPECIAL_ANIMATION_FACTORY
-end
-
-
--- throws Exception
-function NullSpecialAnimationFactory:getInstance(instanceId)
-        return SpecialAnimation.getInstance()
-end
-
-
--- throws Exception
-function NullSpecialAnimationFactory:getInstanceAnimation(animationInterface)
-        return SpecialAnimation.getInstance()
-end
+(define (NullSpecialAnimationFactory.jm_getFactoryInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullSpecialAnimationFactory.jstatic_NULL_SPECIAL_ANIMATION_FACTORY)))))
 
 
-function NullSpecialAnimationFactory:setInitialScale(scaleProperties)
-end
-
-NullSpecialAnimationFactory.NULL_SPECIAL_ANIMATION_FACTORY = NullSpecialAnimationFactory.new()
-
-return NullSpecialAnimationFactory
 

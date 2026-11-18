@@ -1,58 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.midlet
 
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
-local AppletUtil = require("org.allbinary.AppletUtil")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local Processor = require("org.allbinary.canvas.Processor")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(lazy-require ["../../../org/allbinary/AppletUtil.rkt" (AppletUtil.jm_isAppletLoader_1)])
+(lazy-require ["../../../org/allbinary/J2MEUtil.rkt" (J2MEUtil.jm_isJ2ME_0)])
+(lazy-require ["../../../org/allbinary/canvas/Processor.rkt" (Processor.jm_getInstance_0)])
+(lazy-require ["./MidletExitProcessor.rkt" (MidletExitProcessor.jnew_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define MidletExitProcessorFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getExitInstance_1 _midlet)
+    (let ()
+      (let/ec jreturn
+        (if (or (AppletUtil.jm_isAppletLoader_1 _midlet) (J2MEUtil.jm_isJ2ME_0))
+            (begin
+            (jreturn (Processor.jm_getInstance_0)))
+            (begin
+            (jreturn (MidletExitProcessor.jnew_1 _midlet)))))))))
+(define (MidletExitProcessorFactory.jclassValue) MidletExitProcessorFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define MidletExitProcessorFactory.jcell_instance 'jnone)
+(define (MidletExitProcessorFactory.jstatic_instance)
+  (when (eq? MidletExitProcessorFactory.jcell_instance 'jnone) (set! MidletExitProcessorFactory.jcell_instance (MidletExitProcessorFactory.jnew_0)))
+  MidletExitProcessorFactory.jcell_instance)
+(define (MidletExitProcessorFactory.jsetstatic_instance value) (set! MidletExitProcessorFactory.jcell_instance value))
 
-local MidletExitProcessorFactory = {}
-MidletExitProcessorFactory.__index = MidletExitProcessorFactory
-MidletExitProcessorFactory.className = "MidletExitProcessorFactory"
+(define (MidletExitProcessorFactory.jnew_0)
+  (define this (new MidletExitProcessorFactory% [jclass "MidletExitProcessorFactory"]))
+  this)
 
-function MidletExitProcessorFactory.new()
-    local self = setmetatable({}, MidletExitProcessorFactory)
-    return self
-end
-
-
-function MidletExitProcessorFactory.getInstance()
-        return MidletExitProcessorFactory.instance
-end
+(define (MidletExitProcessorFactory.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (MidletExitProcessorFactory.jstatic_instance)))))
 
 
-function MidletExitProcessorFactory:getExitInstance(midlet)
-        if AppletUtil.isAppletLoader(midlet) or J2MEUtil.isJ2ME() then
-            return Processor.getInstance()
-        else
-            return MidletExitProcessor.new(midlet)
-        end
-end
-
-MidletExitProcessorFactory.instance = MidletExitProcessorFactory.new()
-
-return MidletExitProcessorFactory
 

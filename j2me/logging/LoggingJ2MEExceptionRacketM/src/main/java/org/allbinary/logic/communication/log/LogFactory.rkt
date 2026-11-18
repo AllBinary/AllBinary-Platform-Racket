@@ -25,11 +25,13 @@
 (define LogFactory%
   (class JObject%
     (super-new)))
+(define (LogFactory.jclassValue) LogFactory%)
 
 (define LogFactory.jcell_LOG 'jnone)
 (define (LogFactory.jstatic_LOG)
   (when (eq? LogFactory.jcell_LOG 'jnone) (set! LogFactory.jcell_LOG (Log.jnew_4 (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)) (get-field f_EMPTY_STRING (StringUtil.jm_getInstance_0)) (get-field f_NULL_OBJECT (NullUtil.jm_getInstance_0)))))
   LogFactory.jcell_LOG)
+(define (LogFactory.jsetstatic_LOG value) (set! LogFactory.jcell_LOG value))
 
 (define (LogFactory.jnew_0)
   (define this (new LogFactory% [jclass "LogFactory"]))

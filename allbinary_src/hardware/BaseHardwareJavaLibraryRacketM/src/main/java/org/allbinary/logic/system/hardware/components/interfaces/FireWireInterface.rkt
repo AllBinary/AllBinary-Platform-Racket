@@ -21,6 +21,7 @@
 (define FireWireInterface%
   (class JObject%
     (super-new)))
+(define (FireWireInterface.jclassValue) FireWireInterface%)
 
 (define (FireWireInterface.jnew_0)
   (define this (new FireWireInterface% [jclass "FireWireInterface"]))

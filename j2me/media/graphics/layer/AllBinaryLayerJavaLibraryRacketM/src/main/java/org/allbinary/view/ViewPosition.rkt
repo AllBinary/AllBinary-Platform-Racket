@@ -1,88 +1,71 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.view
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2025 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.view
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./ViewPositionBase.rkt")
+(lazy-require ["../../../org/allbinary/layer/AllBinaryLayer.rkt" (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ViewPosition%
+  (class ViewPositionBase%
+    (super-new)
+    (field [f_allbinaryLayer JR.null])
+    (define/override (jm_getX_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_allbinaryLayer this) jm_getXP_0)))))
+    (define/override (jm_getY_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_allbinaryLayer this) jm_getYP_0)))))
+    (define/override (jm_getZ_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (send (get-field f_allbinaryLayer this) jm_getZP_0)))))
+    (define/override (jm_getX2_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (+ (send this jm_getX_0) (send (get-field f_allbinaryLayer this) jm_getWidth_0)))))))
+    (define/override (jm_getY2_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (+ (send this jm_getY_0) (send (get-field f_allbinaryLayer this) jm_getHeight_0)))))))
+    (define/override (jm_getZ2_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (JR.i64 (+ (send this jm_getZ_0) (send (get-field f_allbinaryLayer this) jm_getDepth_0))))))))
+    (define/override (jm_setAllbinaryLayer_1 _allbinaryLayer)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_allbinaryLayer this _allbinaryLayer))))))
+(define (ViewPosition.jclassValue) ViewPosition%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (ViewPosition.jnew_3 _x _y _z)
+  (define this (new ViewPosition% [jclass "ViewPosition"]))
+    (set-field! f_allbinaryLayer this (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-local ViewPosition = {}
-ViewPosition.__index = ViewPosition
-ViewPosition.className = "ViewPosition"
-setmetatable(ViewPosition, {__index = ViewPositionBase})
-
-function ViewPosition:_init_fields()
-    self.allbinaryLayer = AllBinaryLayer.NULL_ALLBINARY_LAYER
-end
-
-
-function ViewPosition.getInstanceD()
-        return ViewPosition.new(0, 0, 0)
-end
-
-
-function ViewPosition.new(x, y, z)
-    local self = setmetatable(ViewPositionBase.new(x, y, z), ViewPosition)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function ViewPosition:getX()
-        return self.allbinaryLayer:getXP()
-end
-
-
-function ViewPosition:getY()
-        return self.allbinaryLayer:getYP()
-end
-
-
-function ViewPosition:getZ()
-        return self.allbinaryLayer:getZP()
-end
-
-
-function ViewPosition:getX2()
-        return self:getX() + self.allbinaryLayer:getWidth()
-end
+(define (ViewPosition.jm_getInstanceD_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ViewPosition.jnew_3 0 0 0)))))
 
 
-function ViewPosition:getY2()
-        return self:getY() + self.allbinaryLayer:getHeight()
-end
-
-
-function ViewPosition:getZ2()
-        return java_int((self:getZ() + self.allbinaryLayer:getDepth()))
-end
-
-
-function ViewPosition:setAllbinaryLayer(allbinaryLayer)
-        self.allbinaryLayer = allbinaryLayer
-end
-
-return ViewPosition
 

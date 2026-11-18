@@ -137,11 +137,13 @@
             (begin
             (vector-set! (get-field f_STRING_ARRAY this) _i (JR.toString (vector-ref (get-field f_INTEGER_ARRAY this) _i)))))
         (jreturn (vector-ref (get-field f_STRING_ARRAY this) _i)))))))
+(define (SmallIntegerSingletonFactory.jclassValue) SmallIntegerSingletonFactory%)
 
 (define SmallIntegerSingletonFactory.jcell_instance 'jnone)
 (define (SmallIntegerSingletonFactory.jstatic_instance)
   (when (eq? SmallIntegerSingletonFactory.jcell_instance 'jnone) (set! SmallIntegerSingletonFactory.jcell_instance (SmallIntegerSingletonFactory.jnew_0)))
   SmallIntegerSingletonFactory.jcell_instance)
+(define (SmallIntegerSingletonFactory.jsetstatic_instance value) (set! SmallIntegerSingletonFactory.jcell_instance value))
 
 (define (SmallIntegerSingletonFactory.jnew_0)
   (define this (new SmallIntegerSingletonFactory% [jclass "SmallIntegerSingletonFactory"]))

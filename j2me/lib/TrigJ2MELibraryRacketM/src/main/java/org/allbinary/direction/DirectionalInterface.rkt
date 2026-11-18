@@ -1,55 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.direction
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.direction
 
-local Angle = require("org.allbinary.math.Angle")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define DirectionalInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_setFrameByDirection_1 _direction)
+      (raise (JR.newException "AbstractMethodError" "setFrameByDirection")))
+    (define/public (jm_setFrameToAngle_1 _angle)
+      (raise (JR.newException "AbstractMethodError" "setFrameToAngle")))
+    (define/public (jm_adjustFrameToAngle_1 _newAngle)
+      (raise (JR.newException "AbstractMethodError" "adjustFrameToAngle")))
+    (define/public (jm_adjustFrame_1 _angle)
+      (raise (JR.newException "AbstractMethodError" "adjustFrame")))))
+(define (DirectionalInterface.jclassValue) DirectionalInterface%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local DirectionalInterface = {}
-DirectionalInterface.__index = DirectionalInterface
-DirectionalInterface.className = "DirectionalInterface"
-
-
-function DirectionalInterface:setFrameByDirection(direction)
-    error("abstract method setFrameByDirection")
-end
-
-
-function DirectionalInterface:setFrameToAngle(angle)
-    error("abstract method setFrameToAngle")
-end
+(define (DirectionalInterface.jnew_0)
+  (define this (new DirectionalInterface% [jclass "DirectionalInterface"]))
+  this)
 
 
-function DirectionalInterface:adjustFrameToAngle(newAngle)
-    error("abstract method adjustFrameToAngle")
-end
-
-
-function DirectionalInterface:adjustFrame(angle)
-    error("abstract method adjustFrame")
-end
-
-return DirectionalInterface
 

@@ -1,89 +1,75 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.vector
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AndroidUtil = require("org.allbinary.AndroidUtil")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CircleAnimation = require("org.allbinary.animation.vector.CircleAnimation")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./CircleAnimation.rkt")
+(lazy-require ["../../../../org/allbinary/AndroidUtil.rkt" (AndroidUtil.jm_isAndroid_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define AdjustedCircleAnimation%
+  (class CircleAnimation%
+    (super-new)
+    (field [f_xAdjustment 0])
+    (field [f_yAdjustment 0])
+    (define/public (jm_initXY_2 _xAdjustment _yAdjustment)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_xAdjustment this _xAdjustment)
+        (set-field! f_yAdjustment this _yAdjustment))))
+    (define/public (jm_init_1 _innerWidth)
+    (let ([_widthPortion JR.null])
+      (let/ec jreturn
+        (if (AndroidUtil.jm_isAndroid_0)
+            (begin
+            (set! _widthPortion (JR.idiv (JR.i32 (* (JR.idiv _innerWidth 3) 10)) 7))
+            (set-field! f_xAdjustment this (JR.i32 (- (JR.i32 (- (arithmetic-shift (get-field f_width this) (- (bitwise-and 1 31))) _widthPortion)))))
+            (set-field! f_yAdjustment this (get-field f_xAdjustment this)))
+            (begin
+            (set-field! f_xAdjustment this (JR.i32 (- (JR.i32 (- (arithmetic-shift (get-field f_width this) (- (bitwise-and 1 31))) _innerWidth)))))
+            (set-field! f_yAdjustment this (get-field f_xAdjustment this)))))))
+    (define/override (jm_paintXY_3 _graphics _x _y)
+    (let ()
+      (let/ec jreturn
+        (JR.className (get-field f_basicSetColorUtil this))
+        (send _graphics jm_drawArc_6 (JR.i32 (+ _x (get-field f_xAdjustment this))) (JR.i32 (+ _y (get-field f_yAdjustment this))) (get-field f_width this) (get-field f_height this) 0 (get-field f_TOTAL_ANGLE this)))))))
+(define (AdjustedCircleAnimation.jclassValue) AdjustedCircleAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (AdjustedCircleAnimation.jnew_3 _width _height _basicColor)
+  (define this (new AdjustedCircleAnimation% [jclass "AdjustedCircleAnimation"]))
+    
+    
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-local AdjustedCircleAnimation = {}
-AdjustedCircleAnimation.__index = AdjustedCircleAnimation
-AdjustedCircleAnimation.className = "AdjustedCircleAnimation"
-setmetatable(AdjustedCircleAnimation, {__index = CircleAnimation})
+(define (AdjustedCircleAnimation.jm_createAnimation_5 _width _height _xAdjustment _yAdjustment _basicColor)
+    (let ([_adjustedCircleAnimation JR.null])
+      (let/ec jreturn
+        (set! _adjustedCircleAnimation (AdjustedCircleAnimation.jnew_3 _width _height _basicColor))
+        (send _adjustedCircleAnimation jm_initXY_2 _xAdjustment _yAdjustment)
+        (jreturn _adjustedCircleAnimation))))
 
-function AdjustedCircleAnimation:_init_fields()
-    self.xAdjustment = 0
-    self.yAdjustment = 0
-end
-
-
-function AdjustedCircleAnimation.createAnimation(width, height, xAdjustment, yAdjustment, basicColor)
-        local adjustedCircleAnimation = AdjustedCircleAnimation.new(width, height, basicColor)
-        adjustedCircleAnimation:initXY(xAdjustment, yAdjustment)
-        return adjustedCircleAnimation
-end
-
-
-function AdjustedCircleAnimation.createW(width, height, innerWidth, basicColor)
-        local adjustedCircleAnimation = AdjustedCircleAnimation.new(width, height, basicColor)
-        adjustedCircleAnimation:init(innerWidth)
-        return adjustedCircleAnimation
-end
-
-
-function AdjustedCircleAnimation.new(width, height, basicColor)
-    local self = setmetatable(CircleAnimation.new(width, height, basicColor), AdjustedCircleAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function AdjustedCircleAnimation:initXY(xAdjustment, yAdjustment)
-        self.xAdjustment = xAdjustment
-        self.yAdjustment = yAdjustment
-end
-
-
-function AdjustedCircleAnimation:init(innerWidth)
-        if AndroidUtil.isAndroid() then
-            local widthPortion = (java_idiv(((java_idiv(innerWidth, 3)) * 10), 7))
-            self.xAdjustment = -((((self.width) // (1 << (1)))) - widthPortion)
-            self.yAdjustment = self.xAdjustment
-        else
-            self.xAdjustment = -((((self.width) // (1 << (1)))) - innerWidth)
-            self.yAdjustment = self.xAdjustment
-        end
-end
+(define (AdjustedCircleAnimation.jm_createW_4 _width _height _innerWidth _basicColor)
+    (let ([_adjustedCircleAnimation JR.null])
+      (let/ec jreturn
+        (set! _adjustedCircleAnimation (AdjustedCircleAnimation.jnew_3 _width _height _basicColor))
+        (send _adjustedCircleAnimation jm_init_1 _innerWidth)
+        (jreturn _adjustedCircleAnimation))))
 
 
-function AdjustedCircleAnimation:paintXY(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-        graphics:drawArc(x + self.xAdjustment, y + self.yAdjustment, self.width, self.height, 0, self.TOTAL_ANGLE)
-end
-
-return AdjustedCircleAnimation
 

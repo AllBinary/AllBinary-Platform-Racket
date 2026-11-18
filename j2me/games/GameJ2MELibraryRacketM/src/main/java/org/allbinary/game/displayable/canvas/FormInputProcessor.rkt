@@ -1,103 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local GameKey = require("org.allbinary.game.input.GameKey")
-local GameKeyEventSourceInterface = require("org.allbinary.game.input.GameKeyEventSourceInterface")
-local GameKeyFactory = require("org.allbinary.game.input.GameKeyFactory")
-local Input = require("org.allbinary.game.input.Input")
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local InputProcessor = require("org.allbinary.game.input.InputProcessor")
-local PlatformKeyFactory = require("org.allbinary.game.input.PlatformKeyFactory")
-local DownKeyEventHandler = require("org.allbinary.game.input.event.DownKeyEventHandler")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local GameKeyEventFactory = require("org.allbinary.game.input.event.GameKeyEventFactory")
-local UpGameKeyEventHandler = require("org.allbinary.game.input.event.UpGameKeyEventHandler")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/input/InputProcessor.rkt")
+(lazy-require ["../../../../../org/allbinary/game/input/GameKeyFactory.rkt" (GameKeyFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/input/InputFactory.rkt" (InputFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/input/PlatformKeyFactory.rkt" (PlatformKeyFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/input/event/DownKeyEventHandler.rkt" (DownKeyEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/input/event/GameKeyEventFactory.rkt" (GameKeyEventFactory.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/game/input/event/UpGameKeyEventHandler.rkt" (UpGameKeyEventHandler.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/LogUtil.rkt" (LogUtil.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/logic/communication/log/PreLogUtil.rkt" (PreLogUtil.jm_put_3)])
+(lazy-require ["../../../../../org/allbinary/logic/string/StringMaker.rkt" (StringMaker.jnew_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonSeps.rkt" (CommonSeps.jm_getInstance_0)])
+(lazy-require ["../../../../../org/allbinary/string/CommonStrings.rkt" (CommonStrings.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define FormInputProcessor%
+  (class InputProcessor%
+    (super-new)
+    (field [f_logUtil JR.null])
+    (field [f_commonStrings JR.null])
+    (field [f_gameKeyEventFactory JR.null])
+    (field [f_downKeyEventHandler JR.null])
+    (field [f_upGameKeyEventHandler JR.null])
+    (field [f_inputFactory JR.null])
+    (field [f_platformKeyFactory JR.null])
+    (field [f_allBinaryGameCanvas JR.null])
+    (define/override (jm_keyPressedByDevice_2 _keyCode _deviceId)
+    (let ([_input JR.null][_gameKeyEvent JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_ADD_KEY_EVENT (get-field f_gameInputStrings this)) _e))])
+            (PreLogUtil.jm_put_3 (send (send (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_KEY_CODE_LABEL (get-field f_inputFactory this))) jm_appendint_1 _keyCode) jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0))) jm_append_1 (get-field f_DEVICE_ID_LABEL (get-field f_inputFactory this))) jm_appendint_1 _deviceId) jm_toString_0) this (get-field f_KEY_PRESSED (get-field f_gameInputStrings this)))
+            (set! _input (send (get-field f_inputFactory this) jm_getInstanceById_1 _keyCode))
+            (set! _gameKeyEvent (send (get-field f_gameKeyEventFactory this) jm_getInstanceForInput_2 (get-field f_allBinaryGameCanvas this) _input))
+            (send (get-field f_downKeyEventHandler this) jm_fireEventForGameKeyEvent_1 _gameKeyEvent)))))
+    (define/override (jm_keyReleasedByDevice_3 _canvas _keyCode _deviceId)
+    (let ([_input JR.null][_gameKey JR.null][_gameKeyEventSourceInterface JR.null][_gameKeyEvent JR.null])
+      (let/ec jreturn
+        (with-handlers ([(lambda (jerror) #t) (lambda (_e)
+            (send (get-field f_logUtil this) jm_put_4 (get-field f_EXCEPTION (get-field f_commonStrings this)) this (get-field f_ADD_KEY_EVENT (get-field f_gameInputStrings this)) _e))])
+            (set! _input (send (get-field f_inputFactory this) jm_getInstanceById_1 _keyCode))
+            (when (send (get-field f_platformKeyFactory this) jm_isEnter_1 _input)
+                (begin
+                (PreLogUtil.jm_put_3 (send (send (send (send (send (send (StringMaker.jnew_0) jm_append_1 (get-field f_KEY_CODE_LABEL (get-field f_inputFactory this))) jm_appendint_1 _keyCode) jm_append_1 (get-field f_SPACE (CommonSeps.jm_getInstance_0))) jm_append_1 (get-field f_DEVICE_ID_LABEL (get-field f_inputFactory this))) jm_appendint_1 _deviceId) jm_toString_0) this (get-field f_KEY_RELEASED (get-field f_gameInputStrings this)))
+                (set! _gameKey (get-field f_KEY_NUM0 (GameKeyFactory.jm_getInstance_0)))
+                (set! _gameKeyEventSourceInterface _canvas)
+                (set! _gameKeyEvent (send (get-field f_gameKeyEventFactory this) jm_getInstanceForInput_2 _gameKeyEventSourceInterface _gameKey))
+                (send (get-field f_upGameKeyEventHandler this) jm_fireEvent_1 _gameKeyEvent)
+                (JR.className (send (get-field f_upGameKeyEventHandler this) jm_getInstanceForDevice_1 _deviceId))))))))))
+(define (FormInputProcessor.jclassValue) FormInputProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local FormInputProcessor = {}
-FormInputProcessor.__index = FormInputProcessor
-FormInputProcessor.className = "FormInputProcessor"
-setmetatable(FormInputProcessor, {__index = InputProcessor})
-
-function FormInputProcessor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.gameKeyEventFactory = GameKeyEventFactory.getInstance()
-    self.downKeyEventHandler = DownKeyEventHandler.getInstance()
-    self.upGameKeyEventHandler = UpGameKeyEventHandler.getInstance()
-    self.inputFactory = InputFactory.getInstance()
-    self.platformKeyFactory = PlatformKeyFactory.getInstance()
-    self.allBinaryGameCanvas = nil
-end
+(define (FormInputProcessor.jnew_1 _allBinaryGameCanvas)
+  (define this (new FormInputProcessor% [jclass "FormInputProcessor"]))
+    (set-field! f_logUtil this (LogUtil.jm_getInstance_0))
+    (set-field! f_commonStrings this (CommonStrings.jm_getInstance_0))
+    (set-field! f_gameKeyEventFactory this (GameKeyEventFactory.jm_getInstance_0))
+    (set-field! f_downKeyEventHandler this (DownKeyEventHandler.jm_getInstance_0))
+    (set-field! f_upGameKeyEventHandler this (UpGameKeyEventHandler.jm_getInstance_0))
+    (set-field! f_inputFactory this (InputFactory.jm_getInstance_0))
+    (set-field! f_platformKeyFactory this (PlatformKeyFactory.jm_getInstance_0))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_allBinaryGameCanvas this _allBinaryGameCanvas)))
+  this)
 
 
-function FormInputProcessor.new(allBinaryGameCanvas)
-    local self = setmetatable(InputProcessor.new(), FormInputProcessor)
-    self:_init_fields()
-        self.allBinaryGameCanvas = allBinaryGameCanvas
-    return self
-end
-
-
-function FormInputProcessor:keyPressedByDevice(keyCode, deviceId)
-        local try_ok, try_error = pcall(function()
-            PreLogUtil.put(tostring(StringMaker.new():append(self.inputFactory.KEY_CODE_LABEL):appendint(keyCode):append(CommonSeps.getInstance().SPACE):append(self.inputFactory.DEVICE_ID_LABEL):appendint(deviceId)), self, self.gameInputStrings.KEY_PRESSED)
-            local input = self.inputFactory:getInstanceById(keyCode)
-            local gameKeyEvent = self.gameKeyEventFactory:getInstanceForInput(self.allBinaryGameCanvas, input)
-            self.downKeyEventHandler:fireEventForGameKeyEvent(gameKeyEvent)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.gameInputStrings.ADD_KEY_EVENT, e)
-        end
-end
-
-
-function FormInputProcessor:keyReleasedByDevice(canvas, keyCode, deviceId)
-        local try_ok, try_error = pcall(function()
-            local input = self.inputFactory:getInstanceById(keyCode)
-            if self.platformKeyFactory:isEnter(input) then
-                PreLogUtil.put(tostring(StringMaker.new():append(self.inputFactory.KEY_CODE_LABEL):appendint(keyCode):append(CommonSeps.getInstance().SPACE):append(self.inputFactory.DEVICE_ID_LABEL):appendint(deviceId)), self, self.gameInputStrings.KEY_RELEASED)
-                local gameKey = GameKeyFactory.getInstance().KEY_NUM0
-                local gameKeyEventSourceInterface = canvas
-                local gameKeyEvent = self.gameKeyEventFactory:getInstanceForInput(gameKeyEventSourceInterface, gameKey)
-                self.upGameKeyEventHandler:fireEvent(gameKeyEvent)
-                self.upGameKeyEventHandler:getInstanceForDevice(deviceId):fireEvent(gameKeyEvent)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.gameInputStrings.ADD_KEY_EVENT, e)
-        end
-end
-
-return FormInputProcessor
 

@@ -1,81 +1,62 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local NullCanvas = require("javax.microedition.lcdui.NullCanvas")
-local PlayerGameInput = require("org.allbinary.game.input.PlayerGameInput")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local BaseMotionGestureEventListener = require("org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener")
-local MotionGestureEvent = require("org.allbinary.input.motion.gesture.observer.MotionGestureEvent")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "../../../../../org/allbinary/game/input/PlayerGameInput.rkt"
+  "../../../../../org/allbinary/input/motion/gesture/observer/BaseMotionGestureEventListener.rkt")
+(lazy-require ["../../../../../javax/microedition/lcdui/NullCanvas.rkt" (NullCanvas.jstatic_NULL_CANVAS)])
+(lazy-require ["../../../../../org/allbinary/util/BasicArrayListD.rkt" (BasicArrayListD.jnew_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define BasicMenuInputProcessor%
+  (class PlayerGameInput%
+    (super-new)
+    (field [f_motionGestureEventList JR.null])
+    (field [f_canvas JR.null])
+    (define/public (jm_onMotionGestureEvent_1 _motionGestureEvent)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_motionGestureEventList this) jm_add_1 _motionGestureEvent))))
+    (define/public (jm_onScrolledMotionGestureEvent_1 _motionGestureEvent)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/public (jm_setCanvas_1 _canvas)
+    (let ()
+      (let/ec jreturn
+        (set-field! f_canvas this _canvas))))
+    (define/public (jm_getCanvas_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_canvas this)))))
+    (define/public (jm_processInputList_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.i32 (- 1))))))))
+(define (BasicMenuInputProcessor.jclassValue) BasicMenuInputProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local BasicMenuInputProcessor = {}
-BasicMenuInputProcessor.__index = BasicMenuInputProcessor
-BasicMenuInputProcessor.className = "BasicMenuInputProcessor"
-setmetatable(BasicMenuInputProcessor, {__index = PlayerGameInput})
-
-function BasicMenuInputProcessor:_init_fields()
-    self.motionGestureEventList = BasicArrayListD.new()
-    self.canvas = NullCanvas.NULL_CANVAS
-end
-
-
-function BasicMenuInputProcessor.new(gameKeyEventList, playerInputId, gameCanvas)
-    local self = setmetatable(PlayerGameInput.new(gameKeyEventList, BasicArrayListD.new(), playerInputId), BasicMenuInputProcessor)
-    self:_init_fields()
-        -- super(...) made self above
-        self.canvas = gameCanvas
-    return self
-end
-
-
-function BasicMenuInputProcessor:onMotionGestureEvent(motionGestureEvent)
-        self.motionGestureEventList:add(motionGestureEvent)
-end
-
-
-function BasicMenuInputProcessor:onScrolledMotionGestureEvent(motionGestureEvent)
-end
+(define (BasicMenuInputProcessor.jnew_3 _gameKeyEventList _playerInputId _gameCanvas)
+  (define this (new BasicMenuInputProcessor% [jclass "BasicMenuInputProcessor"]))
+    (set-field! f_motionGestureEventList this (BasicArrayListD.jnew_0))
+    (set-field! f_canvas this (NullCanvas.jstatic_NULL_CANVAS))
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_canvas this _gameCanvas)))
+  this)
 
 
-function BasicMenuInputProcessor:setCanvas(canvas)
-        self.canvas = canvas
-end
-
-
-function BasicMenuInputProcessor:getCanvas()
-        return self.canvas
-end
-
-
--- throws Exception
-function BasicMenuInputProcessor:processInputList()
-        return -1
-end
-
-return BasicMenuInputProcessor
 

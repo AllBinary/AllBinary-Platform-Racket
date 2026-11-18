@@ -1,49 +1,40 @@
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#lang racket/base
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation
 
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local RotationAnimation = require("org.allbinary.animation.RotationAnimation")
+(require racket/class racket/lazy-require
+  "../../../allbinary_java.rkt"
+  "./RotationAnimation.rkt")
+(lazy-require ["../../../org/allbinary/math/AngleFactory.rkt" (AngleFactory.jm_getInstance_0)])
+(lazy-require ["../../../org/allbinary/math/AngleInfo.rkt" (AngleInfo.jm_getInstance_1)])
+(lazy-require ["../../../org/allbinary/util/CircularIndexUtil.rkt" (CircularIndexUtil.jm_createInstance_1)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define NullRotationAnimation%
+  (class RotationAnimation%
+    (super-new)
+    (define/override (jm_getAnimationSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn 0))))))
+(define (NullRotationAnimation.jclassValue) NullRotationAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (NullRotationAnimation.jnew_3 _angleInfo _circularIndexUtil _animationBehavior)
+  (define this (new NullRotationAnimation% [jclass "NullRotationAnimation"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-local NullRotationAnimation = {}
-NullRotationAnimation.__index = NullRotationAnimation
-NullRotationAnimation.className = "NullRotationAnimation"
-setmetatable(NullRotationAnimation, {__index = RotationAnimation})
+(define (NullRotationAnimation.jm_createTotalAngle_3 _angleInfo _totalAngle _animationBehavior)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullRotationAnimation.jnew_3 _angleInfo (CircularIndexUtil.jm_createInstance_1 (JR.idiv _totalAngle (JR.className (send _angleInfo jm_getAngleIncrementInfo_0)))) _animationBehavior)))))
 
-
-function NullRotationAnimation.createTotalAngle(angleInfo, totalAngle, animationBehavior)
-        return NullRotationAnimation.new(angleInfo, CircularIndexUtil.createInstance(totalAngle / angleInfo:getAngleIncrementInfo():getAngleIncrement()), animationBehavior)
-end
-
-
-function NullRotationAnimation.createQuarter(animationBehavior)
-        return NullRotationAnimation.new(AngleInfo.getInstance(AngleFactory.getInstance().QUARTER_TOTAL_ANGLE), CircularIndexUtil.createInstance(4), animationBehavior)
-end
-
-
-function NullRotationAnimation.new(angleInfo, circularIndexUtil, animationBehavior)
-    local self = setmetatable(RotationAnimation.new(angleInfo, circularIndexUtil, animationBehavior), NullRotationAnimation)
-        -- super(...) made self above
-    return self
-end
+(define (NullRotationAnimation.jm_createQuarter_1 _animationBehavior)
+    (let ()
+      (let/ec jreturn
+        (jreturn (NullRotationAnimation.jnew_3 (AngleInfo.jm_getInstance_1 (get-field f_QUARTER_TOTAL_ANGLE (AngleFactory.jm_getInstance_0))) (CircularIndexUtil.jm_createInstance_1 4) _animationBehavior)))))
 
 
--- throws Exception
-function NullRotationAnimation:getAnimationSize()
-        return 0
-end
-
-return NullRotationAnimation
 

@@ -1,176 +1,173 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.special
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.special
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local IndexedAnimationBehavior = require("org.allbinary.animation.IndexedAnimationBehavior")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local ABSystemWrapper = require("org.allbinary.logic.ABSystemWrapper")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local SpecialAnimation = require("org.allbinary.animation.special.SpecialAnimation")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../java/lang/Integer.rkt"
+  "./SpecialAnimation.rkt")
+(lazy-require ["../../../../org/allbinary/animation/IndexedAnimationBehavior.rkt" (IndexedAnimationBehavior.jnew_2)])
+(lazy-require ["../../../../org/allbinary/graphics/color/BasicColorFactory.rkt" (BasicColorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton.rkt" (DisplayInfoSingleton.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/ABSystemWrapper.rkt" (ABSystemWrapper.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TitleAnimation%
+  (class SpecialAnimation%
+    (super-new)
+    (field [f_systemWrapper JR.null])
+    (field [f_deltaX 0.0])
+    (field [f_deltaY 0.0])
+    (field [f_deltaZ 0.0])
+    (field [f_basicColorArray JR.null])
+    (field [f_dxArray JR.null])
+    (field [f_dyArray JR.null])
+    (field [f_widthP 0])
+    (field [f_animationInterfaceArray JR.null])
+    (field [f_sizeP 0])
+    (field [f_y 0])
+    (field [f_lastFrameStartTime 0])
+    (field [f_displayInfoSingleton JR.null])
+    (field [f_CLEAR_COLOR JR.null])
+    (define/override (jm_nextFrame_0)
+    (let ([_currentTime JR.null][_totalTimeElapsed JR.null][_indexedAnimationBehavior JR.null])
+      (let/ec jreturn
+        (set! _currentTime (send (get-field f_systemWrapper this) jm_currentTimeMillis_0))
+        (set! _totalTimeElapsed (JR.i64 (- _currentTime (get-field f_lastFrameStartTime this))))
+        (set! _indexedAnimationBehavior (send this jm_getAnimationBehavior_0))
+        (when (> _totalTimeElapsed (get-field f_frameDelayTime _indexedAnimationBehavior))
+            (begin
+            (send this jm_previousFrame_0)
+            (set-field! f_lastFrameStartTime this _currentTime)))
+        (when (eq? (JR.className (vector-ref (get-field f_animationInterfaceArray this) 0)) 0)
+            (begin
+            (set-field! f_loopIndex _indexedAnimationBehavior (JR.i32 (+ (get-field f_loopIndex _indexedAnimationBehavior) 1))))))))
+    (define/override (jm_isComplete_0)
+    (let ([_indexedAnimationBehavior JR.null])
+      (let/ec jreturn
+        (set! _indexedAnimationBehavior (send this jm_getAnimationBehavior_0))
+        (if (or (or (= (get-field f_loopTotal _indexedAnimationBehavior) (JR.i32 (- 1))) (< (get-field f_loopIndex _indexedAnimationBehavior) (get-field f_loopTotal _indexedAnimationBehavior))) (not (= (send this jm_getFrame_0) 0)))
+            (begin
+            (jreturn #f))
+            (begin
+            (jreturn #t))))))
+    (define/override (jm_setSequence_1 _sequence)
+    (let ()
+      (let/ec jreturn (void))))
+    (define/override (jm_getSequence_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (PrimitiveIntUtil.jm_getArrayInstance_0)))))
+    (define/override (jm_getSize_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (vector-ref (get-field f_animationInterfaceArray this) 0))))))
+    (define/override (jm_getFrame_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (vector-ref (get-field f_animationInterfaceArray this) 0))))))
+    (define/override (jm_setFrame_1 _frame)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index (get-field f_sizeP this))
+                (let/ec jcontinue
+            (JR.className (vector-ref (get-field f_animationInterfaceArray this) _index)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop))))))))
+    (define/override (jm_setLastFrame_0)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setFrame_1 (JR.i32 (- (send this jm_getSize_0) 1))))))
+    (define/override (jm_reset_0)
+    (let ([_indexedAnimationBehavior JR.null])
+      (let/ec jreturn
+        (send this jm_setLastFrame_0)
+        (set! _indexedAnimationBehavior (send this jm_getAnimationBehavior_0))
+        (send _indexedAnimationBehavior jm_reset_0))))
+    (define/override (jm_previousFrame_0)
+    (let ([_index JR.null])
+      (let/ec jreturn
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index (get-field f_sizeP this))
+                (let/ec jcontinue
+            (JR.className (vector-ref (get-field f_animationInterfaceArray this) _index)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop))))))))
+    (define/public (jm_paintFrameXY_4 _graphics _frame _x _y)
+    (let ()
+      (let/ec jreturn
+        (send this jm_setFrame_1 _frame)
+        (send this jm_paintXY_3 _graphics _x _y))))
+    (define/override (jm_paintXY_3 _graphics _ax _ay)
+    (let ([_x JR.null][_deltaX JR.null][_deltaY JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _x 0)
+        (when (not (= (get-field f_widthP this) (Integer.jstatic_MIN_VALUE)))
+            (begin
+            (set! _x (JR.idiv (JR.i32 (- (send (get-field f_displayInfoSingleton this) jm_getLastWidth_0) (get-field f_widthP this))) 2))))
+        (set! _deltaX 0)
+        (set! _deltaY 0)
+        (begin
+            (set! _index 0)
+            (let/ec jbreak (let jloop () (when (< _index (get-field f_sizeP this))
+                (let/ec jcontinue
+            (set! _deltaX (JR.i32 (+ (vector-ref (get-field f_dxArray this) _index) _x)))
+            (set! _deltaY (JR.i32 (+ (vector-ref (get-field f_dyArray this) _index) (get-field f_y this))))
+            (when (not (eq? (vector-ref (get-field f_basicColorArray this) _index) (get-field f_CLEAR_COLOR this)))
+                (begin
+                (JR.className (get-field f_basicSetColorUtil this))))
+            (JR.className (vector-ref (get-field f_animationInterfaceArray this) _index)))
+                (set! _index (JR.i32 (+ _index 1))) (jloop))))))))))
+(define (TitleAnimation.jclassValue) TitleAnimation%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (TitleAnimation.jnew_7 _animationInterfaceArray _basicColorArray _dxArray _dyArray _y _width _animationBehavior)
+  (define this (new TitleAnimation% [jclass "TitleAnimation"]))
+    (set-field! f_systemWrapper this (ABSystemWrapper.jm_getInstance_0))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (set-field! f_displayInfoSingleton this (DisplayInfoSingleton.jm_getInstance_0))
+    (set-field! f_CLEAR_COLOR this (get-field f_CLEAR_COLOR (BasicColorFactory.jm_getInstance_0)))
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_lastFrameStartTime this (send (get-field f_systemWrapper this) jm_currentTimeMillis_0))
+        (set-field! f_animationInterfaceArray this _animationInterfaceArray)
+        (set-field! f_sizeP this (vector-length (get-field f_animationInterfaceArray this)))
+        (set-field! f_basicColorArray this _basicColorArray)
+        (set-field! f_dxArray this _dxArray)
+        (set-field! f_dyArray this _dyArray)
+        (set-field! f_y this _y)
+        (set-field! f_widthP this _width)
+        (send this jm_reset_0)))
+  this)
 
-local TitleAnimation = {}
-TitleAnimation.__index = TitleAnimation
-TitleAnimation.className = "TitleAnimation"
-setmetatable(TitleAnimation, {__index = SpecialAnimation})
-
-function TitleAnimation:_init_fields()
-    self.systemWrapper = ABSystemWrapper.getInstance()
-    self.deltaX = 0.0
-    self.deltaY = 0.0
-    self.deltaZ = 0.0
-    self.basicColorArray = nil
-    self.dxArray = nil
-    self.dyArray = nil
-    self.widthP = nil
-    self.animationInterfaceArray = nil
-    self.sizeP = nil
-    self.y = nil
-    self.lastFrameStartTime = nil
-    self.displayInfoSingleton = DisplayInfoSingleton.getInstance()
-    self.CLEAR_COLOR = BasicColorFactory.getInstance().CLEAR_COLOR
-end
-
-
-function TitleAnimation.createAnimation(animationInterfaceArray, basicColorArray, dxArray, dyArray, y, width)
-        return TitleAnimation.new(animationInterfaceArray, basicColorArray, dxArray, dyArray, y, width, IndexedAnimationBehavior.new(1, 250))
-end
-
-
-function TitleAnimation.new(animationInterfaceArray, basicColorArray, dxArray, dyArray, y, width, animationBehavior)
-    local self = setmetatable(SpecialAnimation.new(animationBehavior), TitleAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.lastFrameStartTime = self.systemWrapper:currentTimeMillis()
-        self.animationInterfaceArray = animationInterfaceArray
-        self.sizeP = (self.animationInterfaceArray.n or #self.animationInterfaceArray)
-        self.basicColorArray = basicColorArray
-        self.dxArray = dxArray
-        self.dyArray = dyArray
-        self.y = y
-        self.widthP = width
-        self:reset()
-    return self
-end
+(define (TitleAnimation.jm_createAnimation_6 _animationInterfaceArray _basicColorArray _dxArray _dyArray _y _width)
+    (let ()
+      (let/ec jreturn
+        (jreturn (TitleAnimation.jnew_7 _animationInterfaceArray _basicColorArray _dxArray _dyArray _y _width (IndexedAnimationBehavior.jnew_2 1 250))))))
 
 
-function TitleAnimation:nextFrame()
-        local currentTime = self.systemWrapper:currentTimeMillis()
-        local totalTimeElapsed = currentTime - self.lastFrameStartTime
-        local indexedAnimationBehavior = self:getAnimationBehavior()
-        if totalTimeElapsed > indexedAnimationBehavior.frameDelayTime then
-            self:previousFrame()
-            self.lastFrameStartTime = currentTime
-        end
-        if self.animationInterfaceArray[1]:getFrame() == 0 then
-            indexedAnimationBehavior.loopIndex = indexedAnimationBehavior.loopIndex + 1
-        end
-end
-
-
-function TitleAnimation:isComplete()
-        local indexedAnimationBehavior = self:getAnimationBehavior()
-        if indexedAnimationBehavior.loopTotal == -1 or indexedAnimationBehavior.loopIndex < indexedAnimationBehavior.loopTotal or self:getFrame() ~= 0 then
-            return false
-        else
-            return true
-        end
-end
-
-
-function TitleAnimation:setSequence(sequence)
-end
-
-
-function TitleAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
-function TitleAnimation:getSize()
-        return self.animationInterfaceArray[1]:getSize()
-end
-
-
-function TitleAnimation:getFrame()
-        return self.animationInterfaceArray[1]:getFrame()
-end
-
-
-function TitleAnimation:setFrame(frame)
-        for index = 0, self.sizeP - 1 do
-            self.animationInterfaceArray[index + 1]:setFrame(frame)
-        end
-end
-
-
-function TitleAnimation:setLastFrame()
-        self:setFrame(self:getSize() - 1)
-end
-
-
-function TitleAnimation:reset()
-        self:setLastFrame()
-        local indexedAnimationBehavior = (self:getAnimationBehavior())
-        indexedAnimationBehavior:reset()
-end
-
-
-function TitleAnimation:previousFrame()
-        for index = 0, self.sizeP - 1 do
-            self.animationInterfaceArray[index + 1]:previousFrame()
-        end
-end
-
-
-function TitleAnimation:paintFrameXY(graphics, frame, x, y)
-        self:setFrame(frame)
-        self:paintXY(graphics, x, y)
-end
-
-
-function TitleAnimation:paintXY(graphics, ax, ay)
-        local x = 0
-        if self.widthP ~= Integer.MIN_VALUE then
-            x = ((self.displayInfoSingleton:getLastWidth() - self.widthP) / 2)
-        end
-        local deltaX = 0
-        local deltaY = 0
-        for index = 0, self.sizeP - 1 do
-            deltaX = self.dxArray[index + 1] + x
-            deltaY = self.dyArray[index + 1] + self.y
-            if self.basicColorArray[index + 1] ~= self.CLEAR_COLOR then
-                self.basicSetColorUtil:setBasicColorP(graphics, self.basicColorArray[index + 1])
-            end
-            self.animationInterfaceArray[index + 1]:paintXY(graphics, deltaX, deltaY)
-        end
-end
-
-return TitleAnimation
 

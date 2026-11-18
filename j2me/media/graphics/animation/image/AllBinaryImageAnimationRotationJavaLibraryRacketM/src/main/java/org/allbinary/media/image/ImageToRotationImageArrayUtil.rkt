@@ -1,68 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt")
+(lazy-require ["./ImageRotationUtil.rkt" (ImageRotationUtil.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(define ImageToRotationImageArrayUtil%
+  (class JObject%
+    (super-new)
+    (define/public (jm_generate_3 _image _angleIncrement _totalAngle)
+    (let ([_imageRotationUtil JR.null][_totalFrames JR.null][_imageArray JR.null][_index JR.null])
+      (let/ec jreturn
+        (set! _imageRotationUtil (ImageRotationUtil.jm_getInstance_0))
+        (set! _totalFrames (JR.idiv _totalAngle _angleIncrement))
+        (set! _imageArray (JR.newArray JR.null _totalFrames))
+        (vector-set! _imageArray 0 _image)
+        (begin
+            (set! _index 1)
+            (let/ec jbreak (let jloop () (when (< _index _totalFrames)
+                (let/ec jcontinue
+            (vector-set! _imageArray _index (send _imageRotationUtil jm_createRotatedImage_2 _image (JR.i32 (* _index _angleIncrement)))))
+                (set! _index (JR.i32 (+ _index 1))) (jloop)))))
+        (jreturn _imageArray))))))
+(define (ImageToRotationImageArrayUtil.jclassValue) ImageToRotationImageArrayUtil%)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageToRotationImageArrayUtil.jcell_instance 'jnone)
+(define (ImageToRotationImageArrayUtil.jstatic_instance)
+  (when (eq? ImageToRotationImageArrayUtil.jcell_instance 'jnone) (set! ImageToRotationImageArrayUtil.jcell_instance (ImageToRotationImageArrayUtil.jnew_0)))
+  ImageToRotationImageArrayUtil.jcell_instance)
+(define (ImageToRotationImageArrayUtil.jsetstatic_instance value) (set! ImageToRotationImageArrayUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (ImageToRotationImageArrayUtil.jnew_0)
+  (define this (new ImageToRotationImageArrayUtil% [jclass "ImageToRotationImageArrayUtil"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
 
-local ImageToRotationImageArrayUtil = {}
-ImageToRotationImageArrayUtil.__index = ImageToRotationImageArrayUtil
-ImageToRotationImageArrayUtil.className = "ImageToRotationImageArrayUtil"
-
-
-function ImageToRotationImageArrayUtil.getInstance()
-        return ImageToRotationImageArrayUtil.instance
-end
+(define (ImageToRotationImageArrayUtil.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageToRotationImageArrayUtil.jstatic_instance)))))
 
 
-function ImageToRotationImageArrayUtil.new()
-    local self = setmetatable({}, ImageToRotationImageArrayUtil)
-    return self
-end
-
-
--- throws Exception
-function ImageToRotationImageArrayUtil:generate(image, angleIncrement, totalAngle)
-        local imageRotationUtil = ImageRotationUtil.getInstance()
-        local totalFrames = java_idiv(totalAngle, angleIncrement)
-        local imageArray = java_new_array(nil, totalFrames)
-        imageArray[1] = image
-        for index = 1, totalFrames - 1 do
-            imageArray[index + 1] = imageRotationUtil:createRotatedImage(image, index * angleIncrement)
-        end
-        return imageArray
-end
-
-ImageToRotationImageArrayUtil.instance = ImageToRotationImageArrayUtil.new()
-
-return ImageToRotationImageArrayUtil
 

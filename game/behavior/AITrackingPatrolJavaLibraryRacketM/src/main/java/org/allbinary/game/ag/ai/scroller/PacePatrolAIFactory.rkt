@@ -1,51 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.scroller
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.ag.ai.scroller
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local ArtificialIntelligenceInterfaceFactoryInterface = require("org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt"
+  "../../../../../../org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface.rkt")
+(lazy-require ["../../../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.rkt" (SmallIntegerSingletonFactory.jm_getInstance_0)])
+(lazy-require ["./BasePatrolAI.rkt" (BasePatrolAI.jstatic_MAX_DISTANCE)])
+(lazy-require ["./PacePatrolAI.rkt" (PacePatrolAI.jnew_3)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define PacePatrolAIFactory%
+  (class JObject%
+    (super-new)
+    (define/public (jm_getInstance_3 _hashtable _ownerLayerInterface _gameInput)
+    (let ()
+      (let/ec jreturn
+        (send _hashtable jm_put_2 (BasePatrolAI.jstatic_MAX_DISTANCE) (send (SmallIntegerSingletonFactory.jm_getInstance_0) jm_getAt_1 220))
+        (jreturn (PacePatrolAI.jnew_3 _hashtable _ownerLayerInterface _gameInput)))))))
+(define (PacePatrolAIFactory.jclassValue) PacePatrolAIFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PacePatrolAIFactory = {}
-PacePatrolAIFactory.__index = PacePatrolAIFactory
-PacePatrolAIFactory.className = "PacePatrolAIFactory"
-
-function PacePatrolAIFactory.new()
-    local self = setmetatable({}, PacePatrolAIFactory)
-    return self
-end
+(define (PacePatrolAIFactory.jnew_0)
+  (define this (new PacePatrolAIFactory% [jclass "PacePatrolAIFactory"]))
+  this)
 
 
--- throws Exception
-function PacePatrolAIFactory:getInstance(hashtable, ownerLayerInterface, gameInput)
-        hashtable:put(BasePatrolAI.MAX_DISTANCE, SmallIntegerSingletonFactory.getInstance():getAt(220))
-        return PacePatrolAI.new(hashtable, ownerLayerInterface, gameInput)
-end
-
-return PacePatrolAIFactory
 

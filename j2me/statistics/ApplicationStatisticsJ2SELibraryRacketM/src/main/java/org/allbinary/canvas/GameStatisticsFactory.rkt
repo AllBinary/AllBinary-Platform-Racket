@@ -37,11 +37,13 @@
     (let ()
       (let/ec jreturn
         (jreturn (send (send (send (StringMaker.jnew_0) jm_append_1 (super jm_toString_0)) jm_append_1 (send (get-field f_stringBuffer this) jm_toString_0)) jm_toString_0)))))))
+(define (GameStatisticsFactory.jclassValue) GameStatisticsFactory%)
 
 (define GameStatisticsFactory.jcell_instance 'jnone)
 (define (GameStatisticsFactory.jstatic_instance)
   (when (eq? GameStatisticsFactory.jcell_instance 'jnone) (set! GameStatisticsFactory.jcell_instance (GameStatisticsFactory.jnew_0)))
   GameStatisticsFactory.jcell_instance)
+(define (GameStatisticsFactory.jsetstatic_instance value) (set! GameStatisticsFactory.jcell_instance value))
 
 (define (GameStatisticsFactory.jnew_0)
   (define this (new GameStatisticsFactory% [jclass "GameStatisticsFactory"]))

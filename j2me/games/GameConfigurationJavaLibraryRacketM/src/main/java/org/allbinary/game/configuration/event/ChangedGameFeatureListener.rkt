@@ -1,53 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.event
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration.event
 
-local GameConfiguration = require("org.allbinary.game.configuration.GameConfiguration")
-local BaseChangedGameFeatureListener = require("org.allbinary.game.configuration.event.BaseChangedGameFeatureListener")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./BaseChangedGameFeatureListener.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ChangedGameFeatureListener%
+  (class BaseChangedGameFeatureListener%
+    (super-new)
+    (define/public (jm_isChangedGameConfiguration_1 _gameConfiguration)
+    (let ()
+      (let/ec jreturn
+        (jreturn (JR.className (get-field f_list this))))))))
+(define (ChangedGameFeatureListener.jclassValue) ChangedGameFeatureListener%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define ChangedGameFeatureListener.jcell_gameFeatureListener 'jnone)
+(define (ChangedGameFeatureListener.jstatic_gameFeatureListener)
+  (when (eq? ChangedGameFeatureListener.jcell_gameFeatureListener 'jnone) (set! ChangedGameFeatureListener.jcell_gameFeatureListener (ChangedGameFeatureListener.jnew_0)))
+  ChangedGameFeatureListener.jcell_gameFeatureListener)
+(define (ChangedGameFeatureListener.jsetstatic_gameFeatureListener value) (set! ChangedGameFeatureListener.jcell_gameFeatureListener value))
 
-local ChangedGameFeatureListener = {}
-ChangedGameFeatureListener.__index = ChangedGameFeatureListener
-ChangedGameFeatureListener.className = "ChangedGameFeatureListener"
-setmetatable(ChangedGameFeatureListener, {__index = BaseChangedGameFeatureListener})
+(define (ChangedGameFeatureListener.jnew_0)
+  (define this (new ChangedGameFeatureListener% [jclass "ChangedGameFeatureListener"]))
+  this)
 
-function ChangedGameFeatureListener.new()
-    local self = setmetatable(BaseChangedGameFeatureListener.new(), ChangedGameFeatureListener)
-    return self
-end
-
-
-function ChangedGameFeatureListener.getInstance()
-        return ChangedGameFeatureListener.gameFeatureListener
-end
+(define (ChangedGameFeatureListener.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ChangedGameFeatureListener.jstatic_gameFeatureListener)))))
 
 
-function ChangedGameFeatureListener:isChangedGameConfiguration(gameConfiguration)
-        return self.list:contains(gameConfiguration)
-end
-
-ChangedGameFeatureListener.gameFeatureListener = ChangedGameFeatureListener.new()
-
-return ChangedGameFeatureListener
 

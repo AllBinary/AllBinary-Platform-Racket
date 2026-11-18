@@ -28,6 +28,7 @@
       (raise (JR.newException "AbstractMethodError" "isDone")))
     (define/public (jm_reset_0)
       (raise (JR.newException "AbstractMethodError" "reset")))))
+(define (PriorityRunnable.jclassValue) PriorityRunnable%)
 
 (define (PriorityRunnable.jnew_0)
   (define this (new PriorityRunnable% [jclass "PriorityRunnable"]))

@@ -1,54 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form
 
-local Processor = require("org.allbinary.canvas.Processor")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/canvas/Processor.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define TempHorizontalFormProcessor%
+  (class Processor%
+    (super-new)
+    (field [f_scrollCurrentSelectionForm JR.null])
+    (define/override (jm_process_0)
+    (let ()
+      (let/ec jreturn
+        (send (get-field f_scrollCurrentSelectionForm this) jm_processTempHorizontalForm_0)
+        (set-field! f_processor (get-field f_scrollCurrentSelectionForm this) (Processor.jm_getInstance_0)))))))
+(define (TempHorizontalFormProcessor.jclassValue) TempHorizontalFormProcessor%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TempHorizontalFormProcessor = {}
-TempHorizontalFormProcessor.__index = TempHorizontalFormProcessor
-TempHorizontalFormProcessor.className = "TempHorizontalFormProcessor"
-setmetatable(TempHorizontalFormProcessor, {__index = Processor})
-
-function TempHorizontalFormProcessor:_init_fields()
-    self.scrollCurrentSelectionForm = nil
-end
-
-
-function TempHorizontalFormProcessor.new(scrollCurrentSelectionForm)
-    local self = setmetatable(Processor.new(), TempHorizontalFormProcessor)
-    self:_init_fields()
-        self.scrollCurrentSelectionForm = scrollCurrentSelectionForm
-    return self
-end
+(define (TempHorizontalFormProcessor.jnew_1 _scrollCurrentSelectionForm)
+  (define this (new TempHorizontalFormProcessor% [jclass "TempHorizontalFormProcessor"]))
+    
+    (let ()
+      (let/ec jreturn
+        (set-field! f_scrollCurrentSelectionForm this _scrollCurrentSelectionForm)))
+  this)
 
 
--- throws Exception
-function TempHorizontalFormProcessor:process()
-        self.scrollCurrentSelectionForm:processTempHorizontalForm()
-        self.scrollCurrentSelectionForm.processor = Processor.getInstance()
-end
-
-return TempHorizontalFormProcessor
 

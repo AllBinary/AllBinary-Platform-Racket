@@ -1,67 +1,57 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;; 
+;; AllBinary Open License Version 1 
+;; Copyright (c) 2022 AllBinary 
+;;  
+;; By agreeing to this license you and any business entity you represent are 
+;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;  
+;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;  
+;; Created By: Travis Berthelot 
+;;   
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local OpenGLUtil = require("org.allbinary.graphics.opengles.OpenGLUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./BaseImageAnimationFactory.rkt")
+(lazy-require ["../../../../org/allbinary/animation/AnimationBehaviorFactory.rkt" (AnimationBehaviorFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/graphics/opengles/OpenGLUtil.rkt" (OpenGLUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(lazy-require ["./ImageAnimation.rkt" (ImageAnimation.jnew_2)])
+(lazy-require ["./AdjustedImageAnimation.rkt" (AdjustedImageAnimation.jnew_4)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageAnimationFactory%
+  (class BaseImageAnimationFactory%
+    (super-new)
+    (define/override (jm_getInstance_1 _instanceId)
+    (let ([_scaledImage JR.null][_openGLUtil JR.null])
+      (let/ec jreturn
+        (set! _scaledImage (JR.className (get-field f_animationFactoryImageScaleUtil this)))
+        (set! _openGLUtil (OpenGLUtil.jm_getInstance_0))
+        (set! _scaledImage (send _openGLUtil jm_addImage_1 _scaledImage))
+        (if (or (not (= (get-field f_dx (get-field f_animationFactoryInitializationVisitor this)) 0)) (not (= (get-field f_dy (get-field f_animationFactoryInitializationVisitor this)) 0)))
+            (begin
+            (JR.className (get-field f_animationFactoryImageScaleUtil this))
+            (jreturn (AdjustedImageAnimation.jnew_4 _scaledImage (get-field f_dx (get-field f_animationFactoryInitializationVisitor this)) (get-field f_dy (get-field f_animationFactoryInitializationVisitor this)) (send (get-field f_animationBehaviorFactory this) jm_getOrCreateInstance_0))))
+            (begin
+            (jreturn (ImageAnimation.jnew_2 _scaledImage (send (get-field f_animationBehaviorFactory this) jm_getOrCreateInstance_0))))))))))
+(define (ImageAnimationFactory.jclassValue) ImageAnimationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define (ImageAnimationFactory.jnew_6 _image _width _height _dx _dy _animationBehaviorFactory)
+  (define this (new ImageAnimationFactory% [jclass "ImageAnimationFactory"]))
+    (let ()
+      (let/ec jreturn
+        (void)))
+  this)
 
-local ImageAnimationFactory = {}
-ImageAnimationFactory.__index = ImageAnimationFactory
-ImageAnimationFactory.className = "ImageAnimationFactory"
-setmetatable(ImageAnimationFactory, {__index = BaseImageAnimationFactory})
-
-
--- throws Exception
-function ImageAnimationFactory.createFactory(image)
-        return ImageAnimationFactory.new(image, image:getWidth(), image:getHeight(), 0, 0, AnimationBehaviorFactory.getInstance())
-end
+(define (ImageAnimationFactory.jm_createFactory_1 _image)
+    (let ()
+      (let/ec jreturn
+        (jreturn (ImageAnimationFactory.jnew_6 _image (send _image jm_getWidth_0) (send _image jm_getHeight_0) 0 0 (AnimationBehaviorFactory.jm_getInstance_0))))))
 
 
-function ImageAnimationFactory.new(image, width, height, dx, dy, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), width, height, dx, dy, animationBehaviorFactory), ImageAnimationFactory)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function ImageAnimationFactory:getInstance(instanceId)
-        local scaledImage = self.animationFactoryImageScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        local openGLUtil = OpenGLUtil.getInstance()
-        scaledImage = openGLUtil:addImage(scaledImage)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            self.animationFactoryImageScaleUtil:processAdjust(self)
-            return AdjustedImageAnimation.new(scaledImage, self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return ImageAnimation.new(scaledImage, self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
-
-return ImageAnimationFactory
 

@@ -1,52 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary
+
+(require racket/class racket/lazy-require
+  "../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+;import org.allbinary.logic.communication.log.PreLogUtil;
+(define AppletUtil%
+  (class JObject%
+    (super-new)))
+(define (AppletUtil.jclassValue) AppletUtil%)
+
+(define AppletUtil.jcell_applet 'jnone)
+(define (AppletUtil.jstatic_applet)
+  (when (eq? AppletUtil.jcell_applet 'jnone) (set! AppletUtil.jcell_applet #f))
+  AppletUtil.jcell_applet)
+(define (AppletUtil.jsetstatic_applet value) (set! AppletUtil.jcell_applet value))
+
+(define (AppletUtil.jnew_0)
+  (define this (new AppletUtil% [jclass "AppletUtil"]))
+    (let ()
+      (let/ec jreturn (void)))
+  this)
+
+(define (AppletUtil.jm_setApplet_0)
+    (let ()
+      (let/ec jreturn
+        (set! AppletUtil.jcell_applet #t))))
+
+(define (AppletUtil.jm_isAppletLoader_1 _anyType)
+    (let ()
+      (let/ec jreturn
+        (jreturn (AppletUtil.jstatic_applet)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
---import org.allbinary.logic.communication.log.PreLogUtil;
-local AppletUtil = {}
-AppletUtil.__index = AppletUtil
-AppletUtil.className = "AppletUtil"
-
-
-function AppletUtil.new()
-    local self = setmetatable({}, AppletUtil)
-    return self
-end
-
-
-function AppletUtil.setApplet()
-        AppletUtil.applet = true
-end
-
-
-function AppletUtil.isAppletLoader(anyType)
-        return AppletUtil.applet
-end
-
-AppletUtil.applet = false
-
-return AppletUtil
 

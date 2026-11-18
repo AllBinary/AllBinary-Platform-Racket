@@ -1,80 +1,71 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.game.configuration
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local TextField = require("javax.microedition.lcdui.TextField")
-local MIDPUtil = require("org.allbinary.MIDPUtil")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CommandForm = require("org.allbinary.graphics.displayable.screen.CommandForm")
-local ABSystemWrapper = require("org.allbinary.logic.ABSystemWrapper")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "../../../../org/allbinary/graphics/displayable/screen/CommandForm.rkt"
+  "../../../../java/lang/Long.rkt")
+(lazy-require ["../../../../javax/microedition/lcdui/TextField.rkt" (TextField.jnew_4 TextField.jstatic_ANY)])
+(lazy-require ["../../../../org/allbinary/MIDPUtil.rkt" (MIDPUtil.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/game/commands/GameCommandsFactory.rkt" (GameCommandsFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/logic/ABSystemWrapper.rkt" (ABSystemWrapper.jm_getInstance_0)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define SaveGameForm%
+  (class CommandForm%
+    (super-new)
+    (field [f_meUtil JR.null])
+    (define/override (jm_initCommands_1 _cmdListener)
+    (let ([_gameCommandsFactory JR.null])
+      (let/ec jreturn
+        (set! _gameCommandsFactory (GameCommandsFactory.jm_getInstance_0))
+        (send this jm_removeAllCommands_0)
+        (send this jm_addCommand_1 (get-field f_SAVE _gameCommandsFactory))
+        (send this jm_addCommand_1 (get-field f_CLOSE_AND_SHOW_GAME_CANVAS _gameCommandsFactory))
+        (send this jm_setCommandListener_1 _cmdListener))))))
+(define (SaveGameForm.jclassValue) SaveGameForm%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(define SaveGameForm.jcell_FORM 'jnone)
+(define (SaveGameForm.jstatic_FORM)
+  (when (eq? SaveGameForm.jcell_FORM 'jnone) (set! SaveGameForm.jcell_FORM (CommandForm.jm_getNullCommandForm_0)))
+  SaveGameForm.jcell_FORM)
+(define (SaveGameForm.jsetstatic_FORM value) (set! SaveGameForm.jcell_FORM value))
 
-local SaveGameForm = {}
-SaveGameForm.__index = SaveGameForm
-SaveGameForm.className = "SaveGameForm"
-setmetatable(SaveGameForm, {__index = CommandForm})
+(define (SaveGameForm.jnew_4 _commandListener _title _backgrounBasicColor _foregroundBasicColor)
+  (define this (new SaveGameForm% [jclass "SaveGameForm"]))
+    (set-field! f_meUtil this (MIDPUtil.jm_getInstance_0))
+    (let ([_timeString JR.null])
+      (let/ec jreturn
+        (void)
+        (JR.className (get-field f_logUtil this))
+        (set! _timeString (JR.str (send (ABSystemWrapper.jm_getInstance_0) jm_currentTimeMillis_0)))
+        (send (get-field f_meUtil this) jm_appendItem_2 this (TextField.jnew_4 "Name: " _timeString 30 (TextField.jstatic_ANY)))
+        (send this jm_initCommands_1 _commandListener)))
+  this)
 
-function SaveGameForm:_init_fields()
-    self.meUtil = MIDPUtil.getInstance()
-end
+(define (SaveGameForm.jm_createForm_4 _commandListener _title _backgrounBasicColor _foregroundBasicColor)
+    (let ()
+      (let/ec jreturn
+        (set! SaveGameForm.jcell_FORM (SaveGameForm.jnew_4 _commandListener _title _backgrounBasicColor _foregroundBasicColor))
+        (jreturn (SaveGameForm.jstatic_FORM)))))
 
-
--- throws Exception
-function SaveGameForm.createForm(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-        SaveGameForm.FORM = SaveGameForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-        return SaveGameForm.FORM
-end
-
-
-function SaveGameForm.getInstance()
-        return SaveGameForm.FORM
-end
-
-
-function SaveGameForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-    local self = setmetatable(CommandForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor), SaveGameForm)
-    self:_init_fields()
-        -- super(...) made self above
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        local timeString = tostring(ABSystemWrapper.getInstance():currentTimeMillis())
-        self.meUtil:appendItem(self, TextField.new("Name: ", timeString, 30, TextField.ANY))
-        self:initCommands(commandListener)
-    return self
-end
+(define (SaveGameForm.jm_getInstance_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (SaveGameForm.jstatic_FORM)))))
 
 
-function SaveGameForm:initCommands(cmdListener)
-        local gameCommandsFactory = GameCommandsFactory.getInstance()
-        self:removeAllCommands()
-        self:addCommand(gameCommandsFactory.SAVE)
-        self:addCommand(gameCommandsFactory.CLOSE_AND_SHOW_GAME_CANVAS)
-        self:setCommandListener(cmdListener)
-end
-
-SaveGameForm.FORM = CommandForm.getNullCommandForm()
-
-return SaveGameForm
 

@@ -32,11 +32,13 @@
     (field [f_NULL_INT_ARRAY_ARRAY JR.null])
     (field [f_NULL_INT_ARRAY_ARRAY_ARRAY JR.null])
     (field [f_NULL_FLOAT_ARRAY JR.null])))
+(define (NullUtil.jclassValue) NullUtil%)
 
 (define NullUtil.jcell_instance 'jnone)
 (define (NullUtil.jstatic_instance)
   (when (eq? NullUtil.jcell_instance 'jnone) (set! NullUtil.jcell_instance (NullUtil.jnew_0)))
   NullUtil.jcell_instance)
+(define (NullUtil.jsetstatic_instance value) (set! NullUtil.jcell_instance value))
 
 (define (NullUtil.jnew_0)
   (define this (new NullUtil% [jclass "NullUtil"]))

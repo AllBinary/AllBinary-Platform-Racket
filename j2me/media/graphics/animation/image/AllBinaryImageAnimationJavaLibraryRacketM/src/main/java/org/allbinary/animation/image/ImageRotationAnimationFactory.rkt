@@ -1,73 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local GameConfigurationCentral = require("org.allbinary.game.configuration.GameConfigurationCentral")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(require racket/class racket/lazy-require
+  "../../../../allbinary_java.rkt"
+  "./BaseImageAnimationFactory.rkt")
+(lazy-require ["../../../../org/allbinary/logic/math/PrimitiveIntUtil.rkt" (PrimitiveIntUtil.jm_getArrayInstance_0)])
+(lazy-require ["../../../../org/allbinary/math/AngleFactory.rkt" (AngleFactory.jm_getInstance_0)])
+(lazy-require ["../../../../org/allbinary/math/AngleInfo.rkt" (AngleInfo.jm_getInstance_1)])
+(lazy-require ["./ImageBaseRotationAnimation.rkt" (ImageBaseRotationAnimation.jnew_4)])
+(lazy-require ["./AdjustedImageBaseRotationAnimation.rkt" (AdjustedImageBaseRotationAnimation.jnew_6)])
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define ImageRotationAnimationFactory%
+  (class BaseImageAnimationFactory%
+    (super-new)
+    (field [f_angleIncrement 0])
+    (define/override (jm_getInstance_1 _instanceId)
+    (let ()
+      (let/ec jreturn
+        (if (or (not (= (get-field f_dx (get-field f_animationFactoryInitializationVisitor this)) 0)) (not (= (get-field f_dy (get-field f_animationFactoryInitializationVisitor this)) 0)))
+            (begin
+            (JR.className (get-field f_animationFactoryImageScaleUtil this))
+            (jreturn (AdjustedImageBaseRotationAnimation.jnew_6 (send this jm_getImage_0) (AngleInfo.jm_getInstance_1 (get-field f_angleIncrement this)) (get-field f_TOTAL_ANGLE (AngleFactory.jm_getInstance_0)) (get-field f_dx (get-field f_animationFactoryInitializationVisitor this)) (get-field f_dy (get-field f_animationFactoryInitializationVisitor this)) (send (get-field f_animationBehaviorFactory this) jm_getOrCreateInstance_0))))
+            (begin
+            (jreturn (ImageBaseRotationAnimation.jnew_4 (send this jm_getImage_0) (AngleInfo.jm_getInstance_1 (get-field f_angleIncrement this)) (get-field f_TOTAL_ANGLE (AngleFactory.jm_getInstance_0)) (send (get-field f_animationBehaviorFactory this) jm_getOrCreateInstance_0))))))))
+    (define/public (jm_getAngleIncrementP_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_angleIncrement this)))))))
+(define (ImageRotationAnimationFactory.jclassValue) ImageRotationAnimationFactory%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageRotationAnimationFactory = {}
-ImageRotationAnimationFactory.__index = ImageRotationAnimationFactory
-ImageRotationAnimationFactory.className = "ImageRotationAnimationFactory"
-setmetatable(ImageRotationAnimationFactory, {__index = BaseImageAnimationFactory})
-
-function ImageRotationAnimationFactory:_init_fields()
-    self.angleIncrement = nil
-end
-
-
-function ImageRotationAnimationFactory.new(image, width, height, dx, dy, angleIncrement, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), width, height, 0, 0, animationBehaviorFactory), ImageRotationAnimationFactory)
-    self:_init_fields()
-        -- super(...) made self above
-        self.angleIncrement = angleIncrement
-        self.animationFactoryInitializationVisitor.dx = dx
-        self.animationFactoryInitializationVisitor.dy = dy
-    return self
-end
-
-
--- throws Exception
-function ImageRotationAnimationFactory:getInstance(instanceId)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            self.animationFactoryImageScaleUtil:processAdjust(self)
-            return AdjustedImageBaseRotationAnimation.new(self:getImage(), AngleInfo.getInstance(self.angleIncrement), AngleFactory.getInstance().TOTAL_ANGLE, self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return ImageBaseRotationAnimation.new(self:getImage(), AngleInfo.getInstance(self.angleIncrement), AngleFactory.getInstance().TOTAL_ANGLE, self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
+(define (ImageRotationAnimationFactory.jnew_7 _image _width _height _dx _dy _angleIncrement _animationBehaviorFactory)
+  (define this (new ImageRotationAnimationFactory% [jclass "ImageRotationAnimationFactory"]))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_angleIncrement this _angleIncrement)
+        (set-field! f_dx (get-field f_animationFactoryInitializationVisitor this) _dx)
+        (set-field! f_dy (get-field f_animationFactoryInitializationVisitor this) _dy)))
+  this)
 
 
-function ImageRotationAnimationFactory:getAngleIncrementP()
-        return self.angleIncrement
-end
-
-return ImageRotationAnimationFactory
 

@@ -1,60 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.graphics.form.item
 
--- local Command = require("javax.microedition.lcdui.Command")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ABTextItem = require("org.allbinary.graphics.form.item.ABTextItem")
+(require racket/class racket/lazy-require
+  "../../../../../allbinary_java.rkt"
+  "./ABTextItem.rkt")
+(provide (all-defined-out))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(define CommandTextItem%
+  (class ABTextItem%
+    (super-new)
+    (field [f_command JR.null])
+    (define/override (jm_isFocusable_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn #t))))
+    (define/public (jm_getCommand_0)
+    (let ()
+      (let/ec jreturn
+        (jreturn (get-field f_command this)))))))
+(define (CommandTextItem.jclassValue) CommandTextItem%)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CommandTextItem = {}
-CommandTextItem.__index = CommandTextItem
-CommandTextItem.className = "CommandTextItem"
-setmetatable(CommandTextItem, {__index = ABTextItem})
-
-function CommandTextItem:_init_fields()
-    self.command = nil
-end
-
-
-function CommandTextItem.new(command, layout, altText, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ABTextItem.new(command:getLabel(), layout, altText, backgroundBasicColor, foregroundBasicColor), CommandTextItem)
-    self:_init_fields()
-        -- super(...) made self above
-        self.command = command
-    return self
-end
+(define (CommandTextItem.jnew_5 _command _layout _altText _backgroundBasicColor _foregroundBasicColor)
+  (define this (new CommandTextItem% [jclass "CommandTextItem"]))
+    
+    (let ()
+      (let/ec jreturn
+        (void)
+        (set-field! f_command this _command)))
+  this)
 
 
-function CommandTextItem:isFocusable()
-        return true
-end
-
-
-function CommandTextItem:getCommand()
-        return self.command
-end
-
-return CommandTextItem
 

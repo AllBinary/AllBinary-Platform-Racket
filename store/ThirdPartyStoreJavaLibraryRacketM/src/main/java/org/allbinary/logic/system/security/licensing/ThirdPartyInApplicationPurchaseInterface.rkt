@@ -1,94 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#lang racket/base
+;;
+;; AllBinary Open License Version 1
+;; Copyright (c) 2011 AllBinary
+;; 
+;; By agreeing to this license you and any business entity you represent are
+;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;; 
+;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;; 
+;; Created By: Travis Berthelot
+;;  
+;; Generated Code Do Not Modify
+;; package org.allbinary.logic.system.security.licensing
+
+(require racket/class racket/lazy-require
+  "../../../../../../allbinary_java.rkt")
+(provide (all-defined-out))
+
+(define ThirdPartyInApplicationPurchaseInterface%
+  (class JObject%
+    (super-new)
+    (define/public (jm_isPurchased_1 _lockableFeature)
+      (raise (JR.newException "AbstractMethodError" "isPurchased")))
+    (define/public (jm_onCreate_2 _anyType _stateObject)
+      (raise (JR.newException "AbstractMethodError" "onCreate")))
+    (define/public (jm_onDestroy_0)
+      (raise (JR.newException "AbstractMethodError" "onDestroy")))
+    (define/public (jm_onStart_0)
+      (raise (JR.newException "AbstractMethodError" "onStart")))
+    (define/public (jm_onActivityResult_3 _requestCode _resultCode _dataObject)
+      (raise (JR.newException "AbstractMethodError" "onActivityResult")))
+    (define/public (jm_onSaveInstanceState_1 _anyType)
+      (raise (JR.newException "AbstractMethodError" "onSaveInstanceState")))
+    (define/public (jm_onStop_0)
+      (raise (JR.newException "AbstractMethodError" "onStop")))
+    (define/public (jm_requestPurchase_1 _lockableFeature)
+      (raise (JR.newException "AbstractMethodError" "requestPurchase")))
+    (define/public (jm_requestReceipts_0)
+      (raise (JR.newException "AbstractMethodError" "requestReceipts")))
+    (define/public (jm_add_1 _lockableFeature)
+      (raise (JR.newException "AbstractMethodError" "add")))
+    (define/public (jm_getUserName_0)
+      (raise (JR.newException "AbstractMethodError" "getUserName")))
+    (define/public (jm_isEnabled_0)
+      (raise (JR.newException "AbstractMethodError" "isEnabled")))))
+(define (ThirdPartyInApplicationPurchaseInterface.jclassValue) ThirdPartyInApplicationPurchaseInterface%)
+
+(define (ThirdPartyInApplicationPurchaseInterface.jnew_0)
+  (define this (new ThirdPartyInApplicationPurchaseInterface% [jclass "ThirdPartyInApplicationPurchaseInterface"]))
+  this)
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local ThirdPartyInApplicationPurchaseInterface = {}
-ThirdPartyInApplicationPurchaseInterface.__index = ThirdPartyInApplicationPurchaseInterface
-ThirdPartyInApplicationPurchaseInterface.className = "ThirdPartyInApplicationPurchaseInterface"
-
-
-function ThirdPartyInApplicationPurchaseInterface:isPurchased(lockableFeature)
-    error("abstract method isPurchased")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:onCreate(anyType, stateObject)
-    error("abstract method onCreate")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:onDestroy()
-    error("abstract method onDestroy")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:onStart()
-    error("abstract method onStart")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:onActivityResult(requestCode, resultCode, dataObject)
-    error("abstract method onActivityResult")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:onSaveInstanceState(anyType)
-    error("abstract method onSaveInstanceState")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:onStop()
-    error("abstract method onStop")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:requestPurchase(lockableFeature)
-    error("abstract method requestPurchase")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:requestReceipts()
-    error("abstract method requestReceipts")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:add(lockableFeature)
-    error("abstract method add")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:getUserName()
-    error("abstract method getUserName")
-end
-
-
-function ThirdPartyInApplicationPurchaseInterface:isEnabled()
-    error("abstract method isEnabled")
-end
-
-return ThirdPartyInApplicationPurchaseInterface
 
