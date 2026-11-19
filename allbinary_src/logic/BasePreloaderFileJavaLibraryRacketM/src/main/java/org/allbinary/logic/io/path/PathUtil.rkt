@@ -88,14 +88,14 @@
       (let/ec jreturn
         (when (not (send this jm_isValidStart_1 _path))
             (begin
-            (set! _path (JR.concat (get-field f_SEPARATOR (get-field f_abPathData this)) _path))))
+            (set! _path (JR.concat (JR.str (get-field f_SEPARATOR (get-field f_abPathData this))) _path))))
         (jreturn _path))))
     (define/public (jm_adjustEnd_1 _path)
     (let ()
       (let/ec jreturn
         (when (not (send this jm_isValidEnd_1 _path))
             (begin
-            (set! _path (JR.concat _path (get-field f_SEPARATOR (get-field f_abPathData this))))))
+            (set! _path (JR.concat _path (JR.str (get-field f_SEPARATOR (get-field f_abPathData this)))))))
         (jreturn _path))))
     (define/public (jm_adjust_1 _path)
     (let ([_stringValidationUtil JR.null])
